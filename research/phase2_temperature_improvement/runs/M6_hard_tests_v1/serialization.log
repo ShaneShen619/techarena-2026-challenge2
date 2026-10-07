@@ -1,0 +1,14 @@
+COMMAND: /Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_validation/.venv/bin/python /Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_temperature_improvement/candidates/multi_temp/validate_submission.py
+STDOUT:
+1/4 framework files present ...
+2/4 train on sample_data ...
+    ok (0 s)
+3/4 test on every evaluation point (causal cut) ...
+    ok (0 s)
+4/4 checking output schema ...
+PASSED - output schema satisfied (5 evaluation points). Output: /var/folders/bd/mk1nt6yj6px0t948s3knh0640000gn/T/c2_validate_6i7ir6hz/output.csv
+Reminder: package ONE zip named <TeamName>_Challenge2.zip (without data/), test it from a clean
+extraction inside a fresh venv, and keep run_model.py / framework/ / validate_submission.py unmodified.
+
+STDERR:
+

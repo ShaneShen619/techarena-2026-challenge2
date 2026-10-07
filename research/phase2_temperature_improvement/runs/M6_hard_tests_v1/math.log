@@ -1,0 +1,6 @@
+COMMAND: /Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_validation/.venv/bin/python /Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_temperature_improvement/scripts/hard_checks.py math
+STDOUT:
+analytic Ah integration, local Ah voltage crossing, temperature surface units passed
+
+STDERR:
+

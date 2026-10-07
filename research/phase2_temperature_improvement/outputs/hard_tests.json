@@ -1,0 +1,40 @@
+{
+  "runner": "research/phase2_temperature_improvement/scripts/run_hard_tests.py",
+  "groups": {
+    "causality": {
+      "exit_code": 0,
+      "log": "runs/M6_hard_tests_v1/causality.log",
+      "seconds": 7.091728292056359
+    },
+    "isolation": {
+      "exit_code": 0,
+      "log": "runs/M6_hard_tests_v1/isolation.log",
+      "seconds": 0.5079820828977972
+    },
+    "math": {
+      "exit_code": 0,
+      "log": "runs/M6_hard_tests_v1/math.log",
+      "seconds": 0.3942655000137165
+    },
+    "event_quality": {
+      "exit_code": 0,
+      "log": "runs/M6_hard_tests_v1/event_quality.log",
+      "seconds": 0.5640064999461174
+    },
+    "serialization": {
+      "exit_code": 0,
+      "log": "runs/M6_hard_tests_v1/serialization.log",
+      "seconds": 0.697370000067167
+    },
+    "official_interface": {
+      "exit_code": 0,
+      "log": "runs/M6_hard_tests_v1/official_interface.log",
+      "seconds": 0.40855024999473244
+    },
+    "synthetic_truth": {
+      "exit_code": 0,
+      "log": "runs/M6_hard_tests_v1/synthetic_truth.log",
+      "seconds": 0.4172729590209201
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "mode": "3p55",
+  "selected_unique_events": 914,
+  "reconstructed_unique_events": 914,
+  "cropped_fragment_rows": 2436,
+  "by_budget": {
+    "15": 812,
+    "20": 812,
+    "30": 812
+  },
+  "window_support_by_budget": {
+    "15": {
+      "w00": 0,
+      "w01": 29,
+      "w02": 376,
+      "w03": 721,
+      "w04": 0,
+      "w05": 29,
+      "w06": 376,
+      "w07": 0,
+      "w08": 29
+    },
+    "20": {
+      "w00": 0,
+      "w01": 60,
+      "w02": 410,
+      "w03": 806,
+      "w04": 0,
+      "w05": 60,
+      "w06": 410,
+      "w07": 0,
+      "w08": 60
+    },
+    "30": {
+      "w00": 0,
+      "w01": 126,
+      "w02": 579,
+      "w03": 812,
+      "w04": 0,
+      "w05": 126,
+      "w06": 579,
+      "w07": 0,
+      "w08": 126
+    }
+  },
+  "source_selection_note": "Audited full-event IDs and stable-CC gate choose completed charge; alternate endpoint is frozen in protocol v1.4. Only native cropped fragment signals enter model-facing file.",
+  "label_columns_in_model_view": false,
+  "model_view_sha256": "2ecb0c5be3582b337498bf300b0a1639fa5cb4d39413be71fc91e612436bc782",
+  "target_rows": 1080,
+  "zero_event_rows": 48,
+  "lost_old_prequalified_event_references": 2355,
+  "visibility_sha256": "2898b337393a3557bcd7968bbcb22ee614a576a2ae66b38a363dc829fc358341"
+}

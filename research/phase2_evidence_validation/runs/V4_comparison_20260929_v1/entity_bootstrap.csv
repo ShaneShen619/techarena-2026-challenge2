@@ -1,0 +1,5 @@
+objective,contrast,metric,point_delta_pp,entity_bootstrap_q025,entity_bootstrap_q975,interpretation
+average,sampled_T_minus_matched_no_T,macro,1.2386765227689096,0.2933322677828501,2.1757843976241382,six reused development cells; descriptive instability only
+average,sampled_T_minus_matched_no_T,late_macro,0.36152901865025516,-1.2830556225345038,1.9567591234047235,six reused development cells; descriptive instability only
+tail,sampled_T_minus_matched_no_T,macro,1.9791971431254674,0.6873028432504192,3.0652287529815374,six reused development cells; descriptive instability only
+tail,sampled_T_minus_matched_no_T,late_macro,2.3109065489417797,0.26600534173176804,4.844545822449893,six reused development cells; descriptive instability only

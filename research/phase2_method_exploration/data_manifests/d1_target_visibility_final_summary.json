@@ -1,0 +1,10 @@
+{
+  "target_rows": 1080,
+  "zero_event_rows": 0,
+  "targets_without_current_fragment": 0,
+  "lost_old_prequalified_event_references": 186,
+  "event_source_sha256": "5fff25920a37de829453783845ac20ebb345ba469199d1d12935132a6e6418ac",
+  "visibility_sha256": "2e7cb84f6eb24ba4d27d31cf02acf77a30e0950c680e89d4e78f952ad67b8519",
+  "label_columns_in_visibility": true,
+  "no_substitution_for_missing_fragment": true
+}

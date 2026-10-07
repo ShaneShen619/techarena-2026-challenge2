@@ -1,0 +1,15 @@
+{
+  "frozen_after_stratified_inventory_before_full_scan": "2026-09-28",
+  "main_current_step_A": 10,
+  "sensitivity_step_A": [5,20],
+  "step_direction": "current becomes at least threshold A more negative; post current -200 to -5 A, pre current <0.5 A",
+  "paper_operating_point": {"SOC_percent_exclusive": [40,94],"temperature_C_exclusive": [10,100]},
+  "valid_interval_s": [1,10],
+  "balancing_exclusion": "exclude if any I_CNV_Cell_1..8 magnitude >0.05 A at either adjacent sample",
+  "valid_voltage_V": [2.0,3.7],
+  "valid_apparent_step_resistance_mOhm": [0.0,10.0],
+  "temporal_thinning": "for each system and each threshold retain the earliest qualifying step in each UTC 3h bin; causal selection, no future target values",
+  "cell_response": "R_step = (V_after-V_before)/(I_after-I_before) in ohm, multiplied by 1000; not pure instantaneous ohmic R due 5s median logging",
+  "SOC_limit": "BMS SOC is an operating-point covariate, not capacity truth",
+  "source_bias": "28 returned-for-warranty 8S packs, active balancing and gaps; cannot train official 4S capacity from this proxy"
+}

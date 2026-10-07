@@ -1,0 +1,9 @@
+[submodule "battgp-reference"]
+	path = research/phase2_literature_reassessment/papers/C_BattGP_code
+	url = https://github.com/JoachimSchaeffer/BattGP.git
+[submodule "genevbattery-reference"]
+	path = research/phase2_literature_reassessment/papers/C_GenEVBattery_code
+	url = https://github.com/en-research/GenEVBattery.git
+[submodule "battgp-b-source"]
+	path = research/phase2_literature_reassessment/papers/B_sources/BattGP_code
+	url = https://github.com/JoachimSchaeffer/BattGP.git

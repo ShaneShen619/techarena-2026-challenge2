@@ -1,0 +1,9 @@
+{
+  "registered_before_postprocess_run": "2026-09-28",
+  "source_models": ["M7_TCN_v1:TCN_from_scratch_3seed_ensemble", "M7_TCN_meta_only_v1:3seed_ensemble"],
+  "rules": ["raw", "causal_running_min", "causal_half_EMA", "causal_half_EMA_then_running_min"],
+  "initialization": "first available model prediction; no target capacity labels after public anchor",
+  "hypothesis": "capacity at fixed reference conditions should not jump upward, and causal smoothing may reduce unstable target-level variance",
+  "score": "same 180 D1 targets and whole-cell group macro MAE; evaluate all target points",
+  "claim_limit": "postprocessing is adapted on six development cells; monotonic physical aging may be obscured by measurement scatter or reversible conditions"
+}

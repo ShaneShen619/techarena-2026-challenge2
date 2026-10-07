@@ -1,0 +1,52 @@
+"""Write nine differentiated, source-linked route hypotheses for human review."""
+from pathlib import Path
+
+TASK=Path(__file__).resolve().parents[1]
+OUT=TASK/'route_cards';OUT.mkdir(exist_ok=True)
+routes=[
+dict(id='R01',title='CK0 锚定的保守轨迹与宽区间',status='保守交付回退；必须作为所有方法的同输入基线',question='Q1/Q8：若新增运行事件不能辨认容量，还能怎样给出诚实输出？',evidence='官方 CK0；C_Richardson2017_GP 说明 GP 衰退先验需多标签；本地 R4 提醒单锚识别性不足。反证：真实热老化和 knee 可使常数/固定斜率失准。',newinfo='无新增容量观测；只把日期、运行吞吐、温度暴露作受限定先验，增量信息主张为零。',data='CK0=100.41Ah；官方当前前缀时间戳和单调 Ah 计数器。月度检查吞吐量不在计数器；缺段可由累计差知运行量但不能知温度细节。',anchor='以 100.41Ah 锁截距。斜率/变化点不得由隐藏 CK 学；来自 D0/外部数据时做域外敏感性范围，而非假定已校准。',formula='Q_pack(t)=100.41Ah−clip(d(t),0,d_max)；d 为有界、单调的时间/运行损伤先验。SOH=100Q_pack/102。上下界来自外部不确定性方案，不称覆盖。',pseudocode='fit(ds): assert only CK0 labels; freeze prior family/limits; save no target future statistic\nestimate_soh(ds_t,t): read rows <=t; compute time/Ah exposure; return 100*bounded_prior(CK0,exposure)/102',confounds='25/45°C 设定温度与实际传感温度分开；缺失段作暴露区间；CK0 参考计量偏差单列；不把异常电阻强制转成容量。',validation='和常数 CK0、年龄线性、Ah 线性等同输入强基线比较；D1 内层选择后封存实体测试宏/最差/末期；新 D2 组级检验校准与最大误差。固定模型删未来检验持久化。',failure='若简单先验在新组尾部系统性高估，扩大区间并触发复测；绝不靠 CK1–7 反选斜率。',cost='实现约 0.5–1 人日（估计）；无需大模型。'),
+dict(id='R02',title='CK0 曲线锚定的低自由度四串组端识别',status='优先验证假设；只有识别性与增量验证通过才成为容量主路线',question='Q1/Q2/Q5：重复运行曲线是否能辨认一个组容量尺度，而不把 SOC 初值/偏置当容量？',evidence='Lin2015 Eq14–19 给平台和跨度的信息边界；B_card_Yi2024 在高斜率区更新 Q；A_Zhou2025 示 OCV/R 混淆；B_card_Cornejo2026 示逐芯模型有相对信息但绝对标度弱。',newinfo='与 R01 相比增加“同工况长期曲线的容量方向拉伸”及组端截止投影；自由容量维度先只 1 个，芯间偏移有界。',data='CK0 带载四芯 V–Ah 锚；D3 只取当前 CK 前完成的同方向、近似同 I/T/起点事件；要求每次多窗口覆盖和静置/均衡标记。没有独立运行 OCV。',anchor='CK0 定总体尺度；估计共享衰退 dQ、至多有界 z_i0/R_i 漂移。Q_i 独立自由拟合及老化 OCV 不可同时无先验地解。CK0 曲线包含原始负载/极化，不许再减一次绝对压降。',formula='令 B_i^0(q) 为 CK0 在 5.1A、参考温度/路径的逐芯带载电压，q 与 δq_i 单位均为 Ah。V_i(q,t)=B_i^0(q·Q_0/Q_t+δq_i)+ΔV_T,i+ΔV_h,i−[I R_i(t)−5.1A·R_i(0)]−[p_i(t)−p_i(0)]+[b_i(t)−b_i(0)]+ΔU_age,i；所有增量在 CK0 同条件为 0，因此回代必须有 V_i(q,0)=B_i^0(q)。ΔU_age 与 Q_t 若同时自由则可能不可辨，需有界或冻结。求最早 q≥0 使 Σ_i V_i(q,5.1A,T_ref)=11.2V；对 Q_t 扫描剖面、对偏移/阻抗等有界 nuisance 优化。',pseudocode='fit(ds): save CK0 loaded template, external/inner-selected priors only; assert CK0 back-substitution reproduces measured curve; do not save full target operation stats\nestimate_soh(ds_t,t): select qualified events ending <=t; for Q_grid profile nuisance with incremental corrections; gate on curvature, multiwindow consistency and prior sensitivity; if fail use R01; else project first 11.2V group root; return 100*q_root/102',confounds='低斜率平台、未知 SOC、温度/滞后、组压与单芯和通道差、测量偏置、缺段/重复戳均入质量门控。满充复位必须实际确认；充电触限芯不等于放电截止芯。',validation='先 CK0 回代恒等、单位/敏感性和合成可恢复性，再 CK0 内事件留出电压预测；D1 相同输入容量代理与固定模型干预；最终 D2 按物理四串组封存同协议 C/20 容量。比较 R01、局部比例和同维度 ECM；预注册宏≤1pp、最差≤2pp、最大≤5pp 为挑战目标，另要求对最强简单基线稳定增量。',failure='profile Q 宽、不同事件 Q 相互矛盾、温度切换改 Q 超容差、组级末期无增量均拒绝更新；不以电压拟合低误差替代容量验证。',cost='公式/代码原型 2–4 人日；D2 组测为主要依赖（估计）。'),
+dict(id='R03',title='真实浅充的多窗口局部 Ah/形状',status='条件性探索；需真实浅循环反证和 D2 标签',question='Q2：多个自然浅充片是否在控制起始 SOC 后仍含容量信息？',evidence='A_Deng2022 全充后裁片监督支持局部相关，但原文明确真实浅循环未验；A_Figgener2024 现场 LFP 峰弱；A_Wang2025 NMC 片段误差可高。',newinfo='增加自然到达的多窗口一致性和起点/热状态匹配，而不是换网络名。',data='按官方事件累计 Ah、组/芯压、I、温度；每窗口必须实际覆盖、同方向且当前前缀完成。外部容量监督数据须有真实浅循环或明示后验裁窗。',anchor='CK0 同电流/温度基线作局部比值，不宣称 Q=CK0·比值；起始 SOC 由共同已知满充锚或滤波区间，未知时放弃该窗。',formula='f_j=ΔAh[V_j−δ/2,V_j+δ/2]；用条件模型 E[Q|f_1...f_k,T,I,z0]，同窗跨事件离散/传感扰动为质量指标。局部 f_j 对 Q 的斜率须在独立容量标签上定。',pseudocode='fit: train on physical-entity split labeled external data; freeze windows/normalization\nestimate: event_end<=t; match state; require >=k consistent windows; else R01; return bounded calibrated pack-root mapping',confounds='实际浅充和全程裁片不同；未知起点、平台滞后、可变电压跨度、温度和负载电压极化可模仿衰退。',validation='同芯同温同起点，真实浅循环 vs 全程裁片固定模型配对；D2 整组外测同输入年龄/Ah、R02；固定窗口干预与重训适应分开；目标宏/最差/末期，报告有效窗比例。',failure='同寿命温度/起点变化超过容量等效变化，或 D2 相对基线无稳定增量时退为诊断窗。',cost='事件审计和外部数据适配约 3–6 人日；真实浅循环组测为主要成本（估计）。'),
+dict(id='R04',title='匹配脉冲/恢复的容量增量特征',status='备选研究构件；无 D2 时只作诊断/故障门控',question='Q4：匹配 SOC/T 的动态响应是否提供年龄与温度之外的容量信息？',evidence='B_card_Gasper2025 用多标签脉冲监督显示可能性；B_card_Schaeffer2024 现场电阻/故障而非容量；Yagci2025 容量衰减可无同步 IR 上升；本地 R3 是同脉冲电压预测。',newinfo='增加不同时间尺度脉冲/恢复形状和逐芯不均衡，先减去电流/SOC/T/静置影响。',data='官方约 20A/30min 周期脉冲、10s 采样；只用目标 t 前已结束脉冲；10s R_app 不叫毫秒 R0。恢复覆盖缺失或静置不匹配即拒绝。',anchor='CK0 定容量截距；需要 D2 多时间组容量学习动态→容量映射。没有 D2 时输出诊断分数不更新 Q。',formula='φ=(ΔV_10s/ΔI,ΔV_30s/ΔI,恢复斜率,2–10Ah的dV/dAh,芯间离散)；预测 ΔQ=βᵀ(φ−φ_CK0)+时间/热先验，β 只能从独立标签估。',pseudocode='fit: freeze pulse matcher and supervised β on external groups only\nestimate: select matched completed pulse<=t; compute quality; if D2 mapping unqualified return R01/R02; otherwise bounded posterior update',confounds='充后静置时长、SOC、温度、BMS 均衡和传感器偏置；四芯同组脉冲为一簇。',validation='37组脉冲 R3 只核电压；新的 D2 按组留出，对年龄+T+Ah 强基线和 R02 作特征增量、逐组 bootstrap、末期误差；同一次脉冲前1Ah预算单列。',failure='电压拟合好但容量增量不稳、温度匹配后特征消失、故障主导时只保留异常诊断。',cost='已有脉冲提取；标签与复测约 2–5 人日+硬件时间（估计）。'),
+dict(id='R05',title='热历史与低标签层级容量先验',status='风险不同的备选验证路线；需多实体 D2',question='Q3/Q6/Q7：热暴露与组间随机效应能否改善后期与最差组？',evidence='Yagci2025 12枚180Ah两温统一20°C RPT 支持热老化；A_Ruiz2018 运行温度与参考容量可反转；C_Richardson2019_GPTransition 需多次容量标签；D1 去显式温度宏/尾部冲突。',newinfo='从运行时间/T/Ah 引入可审计损伤先验和组随机效应；不把瞬时温度响应直接视容量。',data='temp_mean/min/max 实测统计+chamber 设定、日历时间、累计运行 Ah；缺段仅已知总Ah未知热史，区间处理。外部组数据温度和同协议容量须核。',anchor='每组 CK0 作随机截距；群体老化斜率/尾部分布来自独立带容量组，官方一组不能自估方差。',formula='Q_g(t)=Q_g0−f(t,EFC,H_T;β)−u_g(t)，H_T=∫w(T_cell,SOC)dt；β 层级收缩，u_g 允许但受数据制约。报告预测区间需组级校准，GP 后验方差不自动覆盖。',pseudocode='fit: train β/hyperprior on external labeled physical groups, frozen before target\nestimate: integrate prefix thermal exposure, represent gaps as bounds; CK0 intercept; predict bounded group Q and interval; if OOD use R01',confounds='热历史、SOC和通量共线；试验温度与运行温度不等；箱温非芯温；Arrhenius 两温外推和高温机制变化。',validation='D2 跨组/温度封存，和时间、Ah、chamber-only、cell-temp-only、no-T 在同预算比较；用宏/最差/末期和差异区间，内层先指定平均或尾部选择。',failure='新组热先验不稳、最差组恶化、区间失覆盖；回退 R01，保留温度作风险分层。',cost='统计原型 2–3 人日；独立标签组采集主导（估计）。'),
+dict(id='R06',title='多事件 ICA/DVA 与退化模式门控',status='保留机制诊断，暂不作绝对容量主估计',question='Q2/Q7：峰形变化是否能提示窗口失效、LLI/LAM 或末期机制变更？',evidence='A_Krupp2021 四串同质/异质 ICA 条件；Yagci2025 低倍率pOCV+半电池拟合；A_Figgener2024 现场 LFP 特征弱；Bilfinger2024 在106s1p LFP近全程低功率充电中保留部分DVA峰，但ICA噪声大且BMS上限变更伪装SOH；A_Ovejas2019 滞后影响。',newinfo='重复事件峰覆盖、峰位/面积与限压芯身份提供质量/机制代理。',data='优先相同温度/方向/电流的多次近CC完整可见片；10s采样及多窗合并；无足够峰区便不求导。',anchor='CK0 C/20曲线只作带载对照；半电池参数若无实测，LLI/LAM 只能是待验证解释。',formula='ICA=dQ/dV，DVA=dV/dQ；按原始电压量化和窗口宽度做稳健性扫描。峰时变特征不直接等于 C/20 组容量。',pseudocode='fit: freeze peak windows/smoothing from CK0 and training entities\nestimate: if qualified multi-event coverage compute peak diagnostics; gate R02/R03/R04 update; do not independently return Q',confounds='微分放大噪声、平台低斜率、温度/路径滞后、四串峰叠合及不均衡。',validation='同寿命重复事件/跨温假变化率，和独立容量/半电池诊断配对；用真实末期而非合成器自身标签反证。',failure='峰不存在/宽度敏感/换温误报时关闭门控特征。',cost='特征原型约 1–2 人日；机理确认需要额外低倍率/半电池实验（估计）。'),
+dict(id='R07',title='显式四芯状态与组端截止模型',status='高风险后续探索；R02通过后才增加自由度',question='Q5：芯间容量、SOC 偏移、极化和均衡怎样共同决定组端容量？',evidence='A_Krupp2021 四串异质性；B_card_Cornejo2026 逐芯重建但额外群体形状/锚；Lin2015 联合估计边界；官方组压截止。',newinfo='相比 R02 单共享容量，允许独立 Q_i 与 z_i0，在电芯分化时可能降低最差组误差；以组端根作唯一容量输出。',data='四芯 V、组 I、温度、满充复位/均衡事件；最好新增每芯可重复 OCV/容量约束，现有只 CK0。',anchor='CK0 约束总组容量而非确定每芯 Q_i；若后验有同等多解，则只给分布/区间不强行报逐芯容量。',formula='z_i(q)=z_i0−q/Q_i，V_pack(q)=Σ_i[U_i(z_i,T,h)−I R_i−p_i+b_i]；Q_group=inf{q:V_pack(q)≤11.2V,I=5.1A}。加入均衡旁路时各芯电荷积分需单列。此式的 U_i 必须来自独立 OCV 标定；若直接用 CK0 带载模板，应改成相对于 CK0 的增量压降形式并通过回代恒等检验。',pseudocode='fit: CK0 joint template plus externally measured bounds, freeze before target\nestimate: sequential multi-start constrained fit per qualified prefix; posterior predictive first pack-voltage root; reject if Q_i profile nonidentifiable; return group Q only',confounds='逐芯观测共享组电流且相关，电压相加与组压有mV差；健康容量与接触故障相互替代。',validation='数值求根/单位测试，合成机制互斥场景，独立组RPT和故障注入；固定 R02 与逐芯模型同输入同训练预算，对最差组做预定选择。',failure='若新增自由度只降电压残差而未降组容量误差或不确定性爆炸，回退 R02。',cost='模型/求根 4–8 人日、标定与组测额外（估计）。'),
+dict(id='R08',title='因果前缀自监督表征与少标签头',status='探索；需 D2 证明超过同输入简单基线',question='Q6：大规模无标签现场数据能否给容量头提供可迁移形状而不偷带寿命代理？',evidence='C_Arunan2025_SSL 现场车级SSL但有容量标签；C_YaoKowal2026_SSL 顺序预文本可学年龄；C_Che2023_Continual 目标早期3标签；F_Deng2024_RapidPackDA 在10辆NCM车上有完整充电标签并发现公开MAT分母冲突。',newinfo='仅无标签动态事件结构、跨域预训练；官方 CK0 定绝对截距，其他容量尺度来自外部多组真实标签。',data='TU现场可预训练缺口/温度/电阻表征但无容量；P1/Che部分有异协议标签；官方前缀不得加入未来目标行/统计。',anchor='CK0固定组截距；模型可学习相对特征，绝不凭SSL伪标签直接重定标隐藏容量。',formula='encoder h=fθ(x_{≤t})；label head ΔQ=gφ(h,age,T,Ah) 以外部真实组/单芯标签监督并层级适配；mask/contrastive loss 与年龄捷径逐项消融。',pseudocode='fit: pretrain only allowed external entities; freeze target-prefix normalization; train head on entity-disjoint labels\nestimate: build prefix event tensors; compare to age/T/Ah proxies; if OOD or no validated gain R01/R02',confounds='目标未来无标签片、预训练跨测试实体、寿命/里程/掩码代理、源容量分母不匹配。',validation='同物理组拆分；固定编码器删未来反事实、去电压/去时间/去温度/随机编码器与同输入岭回归；D1仅开发，D2物理组盲测宏/最差/末期。',failure='增益由年龄/温度/目标未来统计解释或外域失效时不进入交付。',cost='训练/审计约 5–10 人日及 GPU（估计），在简单路线无增益前不投入大搜索。'),
+dict(id='R09',title='末期变化风险、质量拒绝与容量复测触发',status='与任何容量路线并用的风险层；不独立造容量标签',question='Q7/Q8：何时停止相信平滑更新，何时要求新增容量测量？',evidence='A_Aeppli2025 100Ah LFP 末期个案；Zhang2024_knee_curvature 要多容量标签；A_Zhou2025 平滑外推受后期加速；B_card_Cornejo2026 故障可能伪装弱芯；Bilfinger2024 BMS充电上限变化可伪装SOH。',newinfo='匹配状态的残差、芯间差、脉冲/ICA一致性和数据质量构成拒绝/复测触发，不直接量化损伤。',data='官方当前前缀可观测量和 R02/04/06 门控；测量噪声/重复性目前不详，必须以开发数据或复测估。',anchor='CK0 保守输出与宽区间为拒绝后的回退；容量拐点只在新增多点 RPT 后能确认。',formula='S_t=robust_z(residual_V,matched_T_SOC)+robust_z(cell_spread)+gap/OOD penalty；连续m次超过内层阈值则 stop_update/request_RPT。阈值不由 CK 隐藏点调。',pseudocode='fit: freeze residual calibration and thresholds on training entities\nestimate: score only prefix completed events; if bad quality/shift return conservative bound and diagnostic flag; else allow validated estimator',confounds='温度切换、接触故障、时间缺段可引发非容量变化；组内四芯为一簇。',validation='在多标签组按时间滚动，预注册检测延迟、误报、末期高估及拒绝率/覆盖；和固定趋势、单温门槛比较。',failure='误报过高、延迟不能改变最差组决策或需偷看容量残差才能触发时撤回。',cost='门控原型约 1–2 人日；证实容量 knee 需多时点同协议组 RPT（估计）。'),
+]
+for r in routes:
+ text=f"""# {r['id']}｜{r['title']}
+
+**状态：**{r['status']}。本卡是可证伪方案，不代表已实现或官方性能已达标。
+
+## 科学问题与正反证据
+
+{r['question']} 依据与反证：{r['evidence']}
+
+## 新增信息、官方可用性与锚点
+
+- **新增信息/先验：**{r['newinfo']}
+- **字段、事件与缺项：**{r['data']}
+- **CK0与识别边界：**{r['anchor']}
+
+## 方程与实施伪代码
+
+{r['formula']}
+
+```text
+{r['pseudocode']}
+```
+
+仅持久化外部或在评价时点以前可用的标定、参数和 CK0。`fit(load_dataset(input))` 在官方框架中可见完整操作数据，因此必须以逐检查点前缀重建任何目标统计；不让未来事件、标准化或窗口选择进入早期预测。
+
+## 混淆、反证、评价与回退
+
+- **处理：**{r['confounds']}
+- **强基线/消融/划分/指标：**{r['validation']}
+- **预先定义的否定或回退：**{r['failure']}
+- **成本与依赖：**{r['cost']}
+
+所有容量结果均按物理实体、温度与末期列出 pp 误差及不确定性；未知官方 CK1–CK7 只做前缀和质量自检，不给虚构性能。D1 目标宏≤1 pp、最差≤2 pp、最大≤5 pp 保留为未来挑战目标，必须通过内层选择与独立确认；未达到仍可完成研究报告。
+"""
+ (OUT/f"{r['id']}.md").write_text(text,encoding='utf-8')
+print(len(routes),'route cards written')

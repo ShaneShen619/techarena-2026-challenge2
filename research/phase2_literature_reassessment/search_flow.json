@@ -1,0 +1,15 @@
+{
+  "date_utc": "2026-09-29",
+  "protocol": "notes/SEARCH_PROTOCOL.md",
+  "openalex_queries": 12,
+  "openalex_first_page_hits": 144,
+  "openalex_deduplicated_metadata_candidates": 117,
+  "openalex_title_abstract_seek_fulltext": 35,
+  "targeted_query_or_access_records": 80,
+  "targeted_screening_rows_A_B_C_D_E_F": 53,
+  "combined_screening_rows_including_duplicate_sources": 170,
+  "known_registry_card_rows_A_B_C_D_E_F": 38,
+  "known_unique_fulltext_card_studies_after_version_merge": 33,
+  "fulltext_reassessed_but_no_deep_card": "none counted; Bilfinger2026 and Jiang2023 remain metadata/abstract-only and excluded from fulltext count",
+  "limitation": "OpenAlex full-text search ranked broadly and returned many reviews/off-topic titles; targeted publisher/author/Zenodo search supplied core studies. This is a scoped evidence review, not an exhaustive systematic review. Candidate screens from multiple entries may duplicate the same study; duplicate_of records first known identity."
+}

@@ -1,0 +1,1248 @@
+{
+  "id": "https://openalex.org/W4389613901",
+  "doi": "https://doi.org/10.1016/j.xcrp.2023.101743",
+  "title": "Increasing generalization capability of battery health estimation using continual learning",
+  "display_name": "Increasing generalization capability of battery health estimation using continual learning",
+  "publication_year": 2023,
+  "publication_date": "2023-12-01",
+  "ids": {
+    "openalex": "https://openalex.org/W4389613901",
+    "doi": "https://doi.org/10.1016/j.xcrp.2023.101743"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1016/j.xcrp.2023.101743",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1016/j.xcrp.2023.101743",
+    "pdf_url": "https://ars.els-cdn.com/content/image/1-s2.0-S266638642300588X-fx1_lrg.jpg",
+    "source": {
+      "id": "https://openalex.org/S4210216867",
+      "display_name": "Cell Reports Physical Science",
+      "issn_l": "2666-3864",
+      "issn": [
+        "2666-3864"
+      ],
+      "is_oa": true,
+      "is_in_doaj": true,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320990",
+      "host_organization_name": "Elsevier BV",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320990"
+      ],
+      "host_organization_lineage_names": [
+        "Elsevier BV"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by-nc-nd",
+    "license_id": "https://openalex.org/licenses/cc-by-nc-nd",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Cell Reports Physical Science",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "crossref",
+    "doaj"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "gold",
+    "oa_url": "https://ars.els-cdn.com/content/image/1-s2.0-S266638642300588X-fx1_lrg.jpg",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5080342034",
+        "display_name": "Yunhong Che",
+        "orcid": "https://orcid.org/0000-0002-7350-0001"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I891191580",
+          "display_name": "Aalborg University",
+          "ror": "https://ror.org/04m5j1k67",
+          "country_code": "DK",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I891191580"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I97018004",
+          "display_name": "Stanford University",
+          "ror": "https://ror.org/00f54p054",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I97018004"
+          ]
+        }
+      ],
+      "countries": [
+        "DK",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Yunhong Che",
+      "raw_affiliation_strings": [
+        "Department of Energy Science and Engineering, Stanford University, Stanford, CA 94305, USA",
+        "Department of Energy, Aalborg University, 9220 Aalborg, Denmark"
+      ],
+      "raw_orcid": "https://orcid.org/0000-0002-7350-0001",
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Energy Science and Engineering, Stanford University, Stanford, CA 94305, USA",
+          "institution_ids": [
+            "https://openalex.org/I97018004"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Energy, Aalborg University, 9220 Aalborg, Denmark",
+          "institution_ids": [
+            "https://openalex.org/I891191580"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5041097181",
+        "display_name": "Yusheng Zheng",
+        "orcid": "https://orcid.org/0000-0003-4901-1846"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I47508984",
+          "display_name": "Imperial College London",
+          "ror": "https://ror.org/041kmwe10",
+          "country_code": "GB",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I47508984"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I891191580",
+          "display_name": "Aalborg University",
+          "ror": "https://ror.org/04m5j1k67",
+          "country_code": "DK",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I891191580"
+          ]
+        }
+      ],
+      "countries": [
+        "DK",
+        "GB"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Yusheng Zheng",
+      "raw_affiliation_strings": [
+        "Department of Energy, Aalborg University, 9220 Aalborg, Denmark",
+        "Department of Mechanical Engineering, Imperial College London, London SW7 2AZ, UK"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Energy, Aalborg University, 9220 Aalborg, Denmark",
+          "institution_ids": [
+            "https://openalex.org/I891191580"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Mechanical Engineering, Imperial College London, London SW7 2AZ, UK",
+          "institution_ids": [
+            "https://openalex.org/I47508984"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5081743084",
+        "display_name": "Simona Onori",
+        "orcid": "https://orcid.org/0000-0002-6556-2608"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I97018004",
+          "display_name": "Stanford University",
+          "ror": "https://ror.org/00f54p054",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I97018004"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Simona Onori",
+      "raw_affiliation_strings": [
+        "Department of Energy Science and Engineering, Stanford University, Stanford, CA 94305, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Energy Science and Engineering, Stanford University, Stanford, CA 94305, USA",
+          "institution_ids": [
+            "https://openalex.org/I97018004"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5106854527",
+        "display_name": "Xiaosong Hu",
+        "orcid": "https://orcid.org/0000-0002-2769-4183"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I158842170",
+          "display_name": "Chongqing University",
+          "ror": "https://ror.org/023rhb549",
+          "country_code": "CN",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I158842170"
+          ]
+        }
+      ],
+      "countries": [
+        "CN"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Xiaosong Hu",
+      "raw_affiliation_strings": [
+        "College of Mechanical and Vehicle Engineering, Chongqing University, Chongqing 400044, China"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "College of Mechanical and Vehicle Engineering, Chongqing University, Chongqing 400044, China",
+          "institution_ids": [
+            "https://openalex.org/I158842170"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5019644280",
+        "display_name": "Remus Teodorescu",
+        "orcid": "https://orcid.org/0000-0002-2617-7168"
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I891191580",
+          "display_name": "Aalborg University",
+          "ror": "https://ror.org/04m5j1k67",
+          "country_code": "DK",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I891191580"
+          ]
+        }
+      ],
+      "countries": [
+        "DK"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Remus Teodorescu",
+      "raw_affiliation_strings": [
+        "Department of Energy, Aalborg University, 9220 Aalborg, Denmark"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Energy, Aalborg University, 9220 Aalborg, Denmark",
+          "institution_ids": [
+            "https://openalex.org/I891191580"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 4,
+  "institutions_distinct_count": 4,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5081743084",
+    "https://openalex.org/A5106854527"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I158842170",
+    "https://openalex.org/I97018004"
+  ],
+  "apc_list": {
+    "value": 5460,
+    "currency": "USD",
+    "value_usd": 5460
+  },
+  "apc_paid": {
+    "value": 5460,
+    "currency": "USD",
+    "value_usd": 5460
+  },
+  "fwci": 2.1207,
+  "has_fulltext": true,
+  "cited_by_count": 30,
+  "citation_normalized_percentile": {
+    "value": 0.86909023,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": false
+  },
+  "cited_by_percentile_year": {
+    "min": 98,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "4",
+    "issue": "12",
+    "first_page": "101743",
+    "last_page": "101743"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10663",
+    "display_name": "Advanced Battery Technologies Research",
+    "score": 1.0,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2203",
+      "display_name": "Automotive Engineering"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/22",
+      "display_name": "Engineering"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10663",
+      "display_name": "Advanced Battery Technologies Research",
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2203",
+        "display_name": "Automotive Engineering"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10018",
+      "display_name": "Advancements in Battery Materials",
+      "score": 0.9876999855041504,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2208",
+        "display_name": "Electrical and Electronic Engineering"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10768",
+      "display_name": "Electric Vehicles and Infrastructure",
+      "score": 0.9747999906539917,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2208",
+        "display_name": "Electrical and Electronic Engineering"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/generalization",
+      "display_name": "Generalization",
+      "score": 0.7572450041770935
+    },
+    {
+      "id": "https://openalex.org/keywords/battery",
+      "display_name": "Battery (electricity)",
+      "score": 0.7418560981750488
+    },
+    {
+      "id": "https://openalex.org/keywords/forgetting",
+      "display_name": "Forgetting",
+      "score": 0.6931270360946655
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.6329413652420044
+    },
+    {
+      "id": "https://openalex.org/keywords/battery-capacity",
+      "display_name": "Battery capacity",
+      "score": 0.5683262348175049
+    },
+    {
+      "id": "https://openalex.org/keywords/estimation",
+      "display_name": "Estimation",
+      "score": 0.557174563407898
+    },
+    {
+      "id": "https://openalex.org/keywords/mean-squared-error",
+      "display_name": "Mean squared error",
+      "score": 0.4513685405254364
+    },
+    {
+      "id": "https://openalex.org/keywords/variable",
+      "display_name": "Variable (mathematics)",
+      "score": 0.42341890931129456
+    },
+    {
+      "id": "https://openalex.org/keywords/artificial-intelligence",
+      "display_name": "Artificial intelligence",
+      "score": 0.328402578830719
+    },
+    {
+      "id": "https://openalex.org/keywords/machine-learning",
+      "display_name": "Machine learning",
+      "score": 0.32793307304382324
+    },
+    {
+      "id": "https://openalex.org/keywords/power",
+      "display_name": "Power (physics)",
+      "score": 0.2112734317779541
+    },
+    {
+      "id": "https://openalex.org/keywords/engineering",
+      "display_name": "Engineering",
+      "score": 0.18473246693611145
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematics",
+      "display_name": "Mathematics",
+      "score": 0.17592725157737732
+    },
+    {
+      "id": "https://openalex.org/keywords/statistics",
+      "display_name": "Statistics",
+      "score": 0.16397565603256226
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C177148314",
+      "wikidata": "https://www.wikidata.org/wiki/Q170084",
+      "display_name": "Generalization",
+      "level": 2,
+      "score": 0.7572450041770935
+    },
+    {
+      "id": "https://openalex.org/C555008776",
+      "wikidata": "https://www.wikidata.org/wiki/Q267298",
+      "display_name": "Battery (electricity)",
+      "level": 3,
+      "score": 0.7418560981750488
+    },
+    {
+      "id": "https://openalex.org/C7149132",
+      "wikidata": "https://www.wikidata.org/wiki/Q1377840",
+      "display_name": "Forgetting",
+      "level": 2,
+      "score": 0.6931270360946655
+    },
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.6329413652420044
+    },
+    {
+      "id": "https://openalex.org/C2989104859",
+      "wikidata": "https://www.wikidata.org/wiki/Q267298",
+      "display_name": "Battery capacity",
+      "level": 4,
+      "score": 0.5683262348175049
+    },
+    {
+      "id": "https://openalex.org/C96250715",
+      "wikidata": "https://www.wikidata.org/wiki/Q965330",
+      "display_name": "Estimation",
+      "level": 2,
+      "score": 0.557174563407898
+    },
+    {
+      "id": "https://openalex.org/C139945424",
+      "wikidata": "https://www.wikidata.org/wiki/Q1940696",
+      "display_name": "Mean squared error",
+      "level": 2,
+      "score": 0.4513685405254364
+    },
+    {
+      "id": "https://openalex.org/C182365436",
+      "wikidata": "https://www.wikidata.org/wiki/Q50701",
+      "display_name": "Variable (mathematics)",
+      "level": 2,
+      "score": 0.42341890931129456
+    },
+    {
+      "id": "https://openalex.org/C154945302",
+      "wikidata": "https://www.wikidata.org/wiki/Q11660",
+      "display_name": "Artificial intelligence",
+      "level": 1,
+      "score": 0.328402578830719
+    },
+    {
+      "id": "https://openalex.org/C119857082",
+      "wikidata": "https://www.wikidata.org/wiki/Q2539",
+      "display_name": "Machine learning",
+      "level": 1,
+      "score": 0.32793307304382324
+    },
+    {
+      "id": "https://openalex.org/C163258240",
+      "wikidata": "https://www.wikidata.org/wiki/Q25342",
+      "display_name": "Power (physics)",
+      "level": 2,
+      "score": 0.2112734317779541
+    },
+    {
+      "id": "https://openalex.org/C127413603",
+      "wikidata": "https://www.wikidata.org/wiki/Q11023",
+      "display_name": "Engineering",
+      "level": 0,
+      "score": 0.18473246693611145
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.17592725157737732
+    },
+    {
+      "id": "https://openalex.org/C105795698",
+      "wikidata": "https://www.wikidata.org/wiki/Q12483",
+      "display_name": "Statistics",
+      "level": 1,
+      "score": 0.16397565603256226
+    },
+    {
+      "id": "https://openalex.org/C138885662",
+      "wikidata": "https://www.wikidata.org/wiki/Q5891",
+      "display_name": "Philosophy",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C62520636",
+      "wikidata": "https://www.wikidata.org/wiki/Q944",
+      "display_name": "Quantum mechanics",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C201995342",
+      "wikidata": "https://www.wikidata.org/wiki/Q682496",
+      "display_name": "Systems engineering",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C41895202",
+      "wikidata": "https://www.wikidata.org/wiki/Q8162",
+      "display_name": "Linguistics",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C134306372",
+      "wikidata": "https://www.wikidata.org/wiki/Q7754",
+      "display_name": "Mathematical analysis",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [],
+  "locations_count": 2,
+  "locations": [
+    {
+      "id": "doi:10.1016/j.xcrp.2023.101743",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1016/j.xcrp.2023.101743",
+      "pdf_url": "https://ars.els-cdn.com/content/image/1-s2.0-S266638642300588X-fx1_lrg.jpg",
+      "source": {
+        "id": "https://openalex.org/S4210216867",
+        "display_name": "Cell Reports Physical Science",
+        "issn_l": "2666-3864",
+        "issn": [
+          "2666-3864"
+        ],
+        "is_oa": true,
+        "is_in_doaj": true,
+        "is_core": true,
+        "host_organization": "https://openalex.org/P4310320990",
+        "host_organization_name": "Elsevier BV",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320990"
+        ],
+        "host_organization_lineage_names": [
+          "Elsevier BV"
+        ],
+        "type": "journal"
+      },
+      "license": "cc-by-nc-nd",
+      "license_id": "https://openalex.org/licenses/cc-by-nc-nd",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Cell Reports Physical Science",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmh:oai:pure.atira.dk:openaire/f4063a10-9804-4adb-bd4e-38c6584c1df9",
+      "is_oa": true,
+      "landing_page_url": "https://vbn.aau.dk/da/publications/f4063a10-9804-4adb-bd4e-38c6584c1df9",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306401731",
+        "display_name": "VBN Forskningsportal (Aalborg Universitet)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "host_organization": "https://openalex.org/I891191580",
+        "host_organization_name": "Aalborg University",
+        "host_organization_lineage": [
+          "https://openalex.org/I891191580"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by-nc-nd",
+      "license_id": "https://openalex.org/licenses/cc-by-nc-nd",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Che, Y, Zheng, Y, Onori, S, Hu, X & Teodorescu, R 2023, 'Increasing generalization capability of battery health estimation using continual learning', Cell Reports Physical Science, vol. 4, no. 12, 101743. https://doi.org/10.1016/j.xcrp.2023.101743",
+      "raw_type": "info:eu-repo/semantics/article"
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.1016/j.xcrp.2023.101743",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1016/j.xcrp.2023.101743",
+    "pdf_url": "https://ars.els-cdn.com/content/image/1-s2.0-S266638642300588X-fx1_lrg.jpg",
+    "source": {
+      "id": "https://openalex.org/S4210216867",
+      "display_name": "Cell Reports Physical Science",
+      "issn_l": "2666-3864",
+      "issn": [
+        "2666-3864"
+      ],
+      "is_oa": true,
+      "is_in_doaj": true,
+      "is_core": true,
+      "host_organization": "https://openalex.org/P4310320990",
+      "host_organization_name": "Elsevier BV",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320990"
+      ],
+      "host_organization_lineage_names": [
+        "Elsevier BV"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by-nc-nd",
+    "license_id": "https://openalex.org/licenses/cc-by-nc-nd",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Cell Reports Physical Science",
+    "raw_type": "journal-article"
+  },
+  "sustainable_development_goals": [
+    {
+      "id": "https://metadata.un.org/sdg/7",
+      "score": 0.5400000214576721,
+      "display_name": "Affordable and clean energy"
+    }
+  ],
+  "x_sdgs": [],
+  "study_designs": [],
+  "awards": [
+    {
+      "id": "https://openalex.org/G567613842",
+      "display_name": null,
+      "funder_award_id": "222860",
+      "funder_id": "https://openalex.org/F4320310490",
+      "funder_display_name": "Villum Fonden"
+    },
+    {
+      "id": "https://openalex.org/G6510882642",
+      "display_name": null,
+      "funder_award_id": "72361137006",
+      "funder_id": "https://openalex.org/F4320321001",
+      "funder_display_name": "National Natural Science Foundation of China"
+    },
+    {
+      "id": "https://openalex.org/G7876242591",
+      "display_name": null,
+      "funder_award_id": "52111530194",
+      "funder_id": "https://openalex.org/F4320321001",
+      "funder_display_name": "National Natural Science Foundation of China"
+    },
+    {
+      "id": "https://openalex.org/G8222775081",
+      "display_name": null,
+      "funder_award_id": "2022YFB3305403",
+      "funder_id": "https://openalex.org/F4320335777",
+      "funder_display_name": "National Key Research and Development Program of China"
+    },
+    {
+      "id": "https://openalex.org/G8872805846",
+      "display_name": null,
+      "funder_award_id": "2022YFB3305403",
+      "funder_id": "https://openalex.org/F4320336026",
+      "funder_display_name": "National Key Research and Development Program of China Stem Cell and Translational Research"
+    }
+  ],
+  "funders": [
+    {
+      "id": "https://openalex.org/F4320310490",
+      "display_name": "Villum Fonden",
+      "ror": "https://ror.org/007ww2d15"
+    },
+    {
+      "id": "https://openalex.org/F4320321001",
+      "display_name": "National Natural Science Foundation of China",
+      "ror": "https://ror.org/01h0zpd94"
+    },
+    {
+      "id": "https://openalex.org/F4320335777",
+      "display_name": "National Key Research and Development Program of China",
+      "ror": null
+    },
+    {
+      "id": "https://openalex.org/F4320336026",
+      "display_name": "National Key Research and Development Program of China Stem Cell and Translational Research",
+      "ror": null
+    }
+  ],
+  "has_content": {
+    "pdf": true,
+    "grobid_xml": true
+  },
+  "content_urls": {
+    "pdf": "https://content.openalex.org/works/W4389613901.pdf",
+    "grobid_xml": "https://content.openalex.org/works/W4389613901.grobid-xml"
+  },
+  "referenced_works_count": 70,
+  "referenced_works": [
+    "https://openalex.org/W1565327149",
+    "https://openalex.org/W2258281698",
+    "https://openalex.org/W2560647685",
+    "https://openalex.org/W2743151379",
+    "https://openalex.org/W2788388592",
+    "https://openalex.org/W2910705748",
+    "https://openalex.org/W2921358399",
+    "https://openalex.org/W2924382816",
+    "https://openalex.org/W2963168418",
+    "https://openalex.org/W2963691557",
+    "https://openalex.org/W2974904579",
+    "https://openalex.org/W2980420373",
+    "https://openalex.org/W2981984647",
+    "https://openalex.org/W2983762108",
+    "https://openalex.org/W2996061341",
+    "https://openalex.org/W2999951339",
+    "https://openalex.org/W3007217854",
+    "https://openalex.org/W3009652674",
+    "https://openalex.org/W3010408268",
+    "https://openalex.org/W3012214204",
+    "https://openalex.org/W3092068253",
+    "https://openalex.org/W3097816393",
+    "https://openalex.org/W3116029811",
+    "https://openalex.org/W3118751056",
+    "https://openalex.org/W3126452185",
+    "https://openalex.org/W3127344709",
+    "https://openalex.org/W3133349961",
+    "https://openalex.org/W3135515710",
+    "https://openalex.org/W3135774555",
+    "https://openalex.org/W3152570798",
+    "https://openalex.org/W3171025736",
+    "https://openalex.org/W3175001065",
+    "https://openalex.org/W3182713161",
+    "https://openalex.org/W3195109032",
+    "https://openalex.org/W3205043308",
+    "https://openalex.org/W3207967096",
+    "https://openalex.org/W3209512500",
+    "https://openalex.org/W4200097841",
+    "https://openalex.org/W4206686719",
+    "https://openalex.org/W4210562266",
+    "https://openalex.org/W4220920397",
+    "https://openalex.org/W4223621951",
+    "https://openalex.org/W4224037988",
+    "https://openalex.org/W4224947065",
+    "https://openalex.org/W4282914201",
+    "https://openalex.org/W4283790508",
+    "https://openalex.org/W4285725541",
+    "https://openalex.org/W4289774573",
+    "https://openalex.org/W4292060475",
+    "https://openalex.org/W4293801846",
+    "https://openalex.org/W4295934982",
+    "https://openalex.org/W4302774695",
+    "https://openalex.org/W4311468721",
+    "https://openalex.org/W4311766317",
+    "https://openalex.org/W4313592887",
+    "https://openalex.org/W4323975470",
+    "https://openalex.org/W4327954986",
+    "https://openalex.org/W4367680911",
+    "https://openalex.org/W4376876264",
+    "https://openalex.org/W4380050937",
+    "https://openalex.org/W4381432489",
+    "https://openalex.org/W4384831384",
+    "https://openalex.org/W4385989426",
+    "https://openalex.org/W6633949838",
+    "https://openalex.org/W6742921865",
+    "https://openalex.org/W6774935788",
+    "https://openalex.org/W6807146739",
+    "https://openalex.org/W6810717414",
+    "https://openalex.org/W6839087304",
+    "https://openalex.org/W6840764708"
+  ],
+  "related_works": [
+    "https://openalex.org/W4320853675",
+    "https://openalex.org/W4308964873",
+    "https://openalex.org/W2768611900",
+    "https://openalex.org/W2729780499",
+    "https://openalex.org/W2384016584",
+    "https://openalex.org/W2543699259",
+    "https://openalex.org/W1983017669",
+    "https://openalex.org/W4224267570",
+    "https://openalex.org/W3085364154",
+    "https://openalex.org/W2106976747"
+  ],
+  "abstract_inverted_index": {
+    "Accurate": [
+      0
+    ],
+    "and": [
+      1,
+      21,
+      37,
+      44,
+      73,
+      102,
+      104,
+      132
+    ],
+    "reliable": [
+      2
+    ],
+    "estimation": [
+      3,
+      96,
+      134
+    ],
+    "of": [
+      4,
+      23,
+      53,
+      92,
+      97,
+      146
+    ],
+    "battery": [
+      5,
+      24,
+      36
+    ],
+    "health": [
+      6,
+      11,
+      25
+    ],
+    "is": [
+      7,
+      118
+    ],
+    "crucial": [
+      8
+    ],
+    "for": [
+      9,
+      77,
+      94
+    ],
+    "predictive": [
+      10
+    ],
+    "management.": [
+      12
+    ],
+    "We": [
+      13,
+      65
+    ],
+    "report": [
+      14
+    ],
+    "a": [
+      15,
+      88
+    ],
+    "strategy": [
+      16,
+      124
+    ],
+    "to": [
+      17
+    ],
+    "strengthen": [
+      18
+    ],
+    "the": [
+      19,
+      95,
+      109,
+      121
+    ],
+    "accuracy": [
+      20
+    ],
+    "generalization": [
+      22
+    ],
+    "estimation.": [
+      26
+    ],
+    "The": [
+      27
+    ],
+    "model": [
+      28,
+      86,
+      117
+    ],
+    "can": [
+      29
+    ],
+    "be": [
+      30
+    ],
+    "initially": [
+      31
+    ],
+    "built": [
+      32
+    ],
+    "based": [
+      33
+    ],
+    "on": [
+      34
+    ],
+    "one": [
+      35
+    ],
+    "then": [
+      38
+    ],
+    "continuously": [
+      39
+    ],
+    "updated": [
+      40
+    ],
+    "using": [
+      41,
+      112,
+      135
+    ],
+    "unlabeled": [
+      42
+    ],
+    "data": [
+      43,
+      48,
+      136
+    ],
+    "sparse": [
+      45
+    ],
+    "limited": [
+      46
+    ],
+    "labeled": [
+      47
+    ],
+    "collected": [
+      49,
+      137
+    ],
+    "in": [
+      50,
+      56,
+      62,
+      138
+    ],
+    "early": [
+      51
+    ],
+    "stages": [
+      52
+    ],
+    "testing": [
+      54
+    ],
+    "batteries": [
+      55,
+      75
+    ],
+    "different": [
+      57,
+      98
+    ],
+    "scenarios,": [
+      58
+    ],
+    "satisfying": [
+      59
+    ],
+    "incremental": [
+      60
+    ],
+    "improvement": [
+      61
+    ],
+    "practical": [
+      63
+    ],
+    "applications.": [
+      64
+    ],
+    "generate": [
+      66
+    ],
+    "our": [
+      67
+    ],
+    "datasets": [
+      68
+    ],
+    "from": [
+      69
+    ],
+    "55": [
+      70
+    ],
+    "commercial": [
+      71
+    ],
+    "pouch": [
+      72
+    ],
+    "prismatic": [
+      74
+    ],
+    "aged": [
+      76
+    ],
+    "more": [
+      78
+    ],
+    "than": [
+      79,
+      148
+    ],
+    "116,000": [
+      80
+    ],
+    "cycles": [
+      81
+    ],
+    "under": [
+      82
+    ],
+    "various": [
+      83
+    ],
+    "scenarios.": [
+      84
+    ],
+    "Our": [
+      85,
+      116
+    ],
+    "achieves": [
+      87
+    ],
+    "root": [
+      89
+    ],
+    "mean-square": [
+      90
+    ],
+    "error": [
+      91
+    ],
+    "1.312%": [
+      93
+    ],
+    "dynamic": [
+      99
+    ],
+    "current": [
+      100
+    ],
+    "modes": [
+      101
+    ],
+    "rates": [
+      103
+    ],
+    "variable": [
+      105
+    ],
+    "temperature": [
+      106
+    ],
+    "conditions": [
+      107
+    ],
+    "over": [
+      108
+    ],
+    "entire": [
+      110
+    ],
+    "lifespan": [
+      111
+    ],
+    "partial": [
+      113
+    ],
+    "charging": [
+      114,
+      143
+    ],
+    "data.": [
+      115
+    ],
+    "interpreted": [
+      119
+    ],
+    "by": [
+      120
+    ],
+    "post": [
+      122
+    ],
+    "hoc": [
+      123
+    ],
+    "with": [
+      125,
+      144
+    ],
+    "unbiased": [
+      126
+    ],
+    "hidden": [
+      127
+    ],
+    "features,": [
+      128
+    ],
+    "prevents": [
+      129
+    ],
+    "catastrophic": [
+      130
+    ],
+    "forgetting,": [
+      131
+    ],
+    "supports": [
+      133
+    ],
+    "3": [
+      139
+    ],
+    "min": [
+      140
+    ],
+    "during": [
+      141
+    ],
+    "ultra-fast": [
+      142
+    ],
+    "errors": [
+      145
+    ],
+    "less": [
+      147
+    ],
+    "2.8%.": [
+      149
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 15
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 7
+    }
+  ],
+  "updated_date": "2026-09-12T09:15:50.089291",
+  "created_date": "2025-10-10T00:00:00"
+}

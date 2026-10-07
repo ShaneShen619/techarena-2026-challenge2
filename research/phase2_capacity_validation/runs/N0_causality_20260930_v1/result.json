@@ -1,0 +1,17 @@
+{
+  "run_id": "N0_causality_20260930_v1",
+  "started_utc": "2026-09-29T22:45:57Z",
+  "duration_s": 6.757,
+  "python": "3.12.14",
+  "free_disk_GiB": 103.99,
+  "cpu_count": 8,
+  "source_sha256": "9f1240b86ef6f2b5c8e8c793d502c3b841aef571773b6384cfa5ce0afb166b0b",
+  "config_sha256": "e4d8f49cc13d5c6410ad9c19f8e2967d2d56a5f98f1a99efd4b659e5bcbd53f9",
+  "total_operation_rows": 1572894,
+  "n_checkpoints": 8,
+  "all_checkpoints_have_future": true,
+  "ck7_future_rows": 90310,
+  "n_mutation_cases": 120,
+  "all_passed": true,
+  "n_failures": 0
+}

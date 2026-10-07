@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "count": 1,
+    "db_response_time_ms": 12,
+    "page": 1,
+    "per_page": 100,
+    "groups_count": null,
+    "x_query": {
+      "oql": "works where it cites (W7134959114)",
+      "oqo": {
+        "get_rows": "works",
+        "filter_rows": [
+          {
+            "column_id": "referenced_works",
+            "value": "W7134959114"
+          }
+        ]
+      },
+      "url": "/works?filter=referenced_works:W7134959114&per_page=100"
+    },
+    "cost_usd": 0.0001
+  },
+  "results": [
+    {
+      "id": "https://openalex.org/W7202369205",
+      "title": "PRFNet for Fast Soh Estimation of Lithium-Ion Batteries Using a Short Early-Charging Segment",
+      "doi": "https://doi.org/10.1109/ceege70076.2026.11637715",
+      "publication_year": 2026,
+      "type": "conference-paper"
+    }
+  ],
+  "group_by": []
+}

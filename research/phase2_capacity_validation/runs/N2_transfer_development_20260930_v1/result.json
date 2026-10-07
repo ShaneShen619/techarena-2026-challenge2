@@ -1,0 +1,31 @@
+{
+  "selected_candidate": "q_whole_negative_control",
+  "dev_metrics": [
+    {
+      "candidate": "median",
+      "dev_n": 15,
+      "dev_macro_MAE_Ah": 0.4225333333333336,
+      "dev_worst_Ah": 1.431,
+      "target": "author_prior_mean_capacity_Ah",
+      "status": "development_only"
+    },
+    {
+      "candidate": "q_window",
+      "dev_n": 15,
+      "dev_macro_MAE_Ah": 0.10486867561659242,
+      "dev_worst_Ah": 0.3400495419734888,
+      "target": "author_prior_mean_capacity_Ah",
+      "status": "development_only"
+    },
+    {
+      "candidate": "q_whole_negative_control",
+      "dev_n": 15,
+      "dev_macro_MAE_Ah": 0.0027335857367345893,
+      "dev_worst_Ah": 0.008234859806343753,
+      "target": "author_prior_mean_capacity_Ah",
+      "status": "development_only"
+    }
+  ],
+  "config_sha256": "5ef7d78756017e8522b7209cdccc233b1de22d4ea94f93c466f9ed2f8f9933b8",
+  "holdout_labels_accessed": false
+}

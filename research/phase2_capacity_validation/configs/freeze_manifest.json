@@ -1,0 +1,46 @@
+{
+  "version": "2026-09-30-N5-final-v1",
+  "official_cutoff": "each CK timestamp inclusive",
+  "source_eligibility": "D2 absent; Ji only single-cell different-protocol",
+  "official_candidates": {
+    "C0": "CK0 constant",
+    "C1": "causal none",
+    "C2": "start",
+    "C3": "start_gap",
+    "C4": "range"
+  },
+  "official_thresholds": {
+    "start_current_A_max": 5,
+    "max_gap_s_max": 60,
+    "Ah_range_multipliers": [
+      0.5,
+      1.5
+    ]
+  },
+  "official_reference": "fit uses only public CK0; q_ref recalculated at prediction prefix",
+  "transfer_selected": "q_window",
+  "transfer_voltage_window_V": [
+    3.35,
+    3.5
+  ],
+  "transfer_comparator": "development median",
+  "split_sha256": "df1c0180c22d8cb9770a2c2d8b9490633de9ecb00316b70dcf38b0333563bffb",
+  "feature_sha256": "554b532660dde9ccc382031c2c7ab08654347a3f9653d11c4058c5299da8b25e",
+  "candidate_sha256": "0d46d1a0aa079057eddf3b8d1188314930ec26c80dd06aa9ae09c10a7dd4cf59",
+  "rpt_extractor_sha256": "9b7b62a72549acf25498f058c7f3009effd82f4eabe5f222cbcaa62c4189a39b",
+  "pipeline_sha256": "07636758ec7832118ce854bf25aa51bd908bf7941379bcaba654d0e96fba1182",
+  "initial_config_sha256": "8657d336d93ae2930502339e325edef05b5e089581d73f2c0a776b519cdb15d2",
+  "transfer_final_config_sha256": "aa927de460321071e3fb0d905050679a95093b9d1f5ad374568bceb83abae4c8",
+  "seed": 20260930,
+  "holdout_score_limit": 1,
+  "researcher_blinding": "nonblind_source_filenames",
+  "target_protocol": "Ji reported prior capacity Ah; no verified nominal denominator",
+  "missing_metric_rule": "null; never convert to zero",
+  "stopping": "one holdout score, no retuning",
+  "high_goals_official_pp": {
+    "macro_MAE": 1,
+    "worst_entity_MAE": 2,
+    "max_single_AE": 5,
+    "relative_simple_improvement_fraction": 0.2
+  }
+}

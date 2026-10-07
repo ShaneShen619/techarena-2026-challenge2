@@ -1,0 +1,114 @@
+[
+  {
+    "method": "full",
+    "outer_group": "cell_id",
+    "macro_mae_pp": 1.0386628968934812,
+    "worst_cell_mae_pp": 1.7372707389318662,
+    "p95_absolute_error_pp": 2.6801097645352097,
+    "max_absolute_error_pp": 3.889631118621942,
+    "per_cell_mae_pp": {
+      "102Ah_25degC_0p5C_cell3": 1.1068115201992512,
+      "102Ah_25degC_1C_cell3": 0.5424419245024529,
+      "102Ah_35degC_1C_cell1": 1.0966984433254894,
+      "102Ah_45degC_0p5C_cell3": 1.1115876487975787,
+      "102Ah_45degC_1C_cell1": 0.6371671056042487,
+      "102Ah_55degC_1C_cell3": 1.7372707389318662
+    }
+  },
+  {
+    "method": "no_full_CC",
+    "outer_group": "cell_id",
+    "macro_mae_pp": 2.6307911788779825,
+    "worst_cell_mae_pp": 4.269079169786801,
+    "p95_absolute_error_pp": 7.270062887178053,
+    "max_absolute_error_pp": 12.08468551755756,
+    "per_cell_mae_pp": {
+      "102Ah_25degC_0p5C_cell3": 3.188907351744871,
+      "102Ah_25degC_1C_cell3": 0.7011605696160856,
+      "102Ah_35degC_1C_cell1": 3.3271239266657315,
+      "102Ah_45degC_0p5C_cell3": 3.515968754969667,
+      "102Ah_45degC_1C_cell1": 0.7825073004847359,
+      "102Ah_55degC_1C_cell3": 4.269079169786801
+    }
+  },
+  {
+    "method": "windows_T",
+    "outer_group": "cell_id",
+    "macro_mae_pp": 2.6917720965269836,
+    "worst_cell_mae_pp": 5.126812444403954,
+    "p95_absolute_error_pp": 6.399265666381293,
+    "max_absolute_error_pp": 7.576511826412656,
+    "per_cell_mae_pp": {
+      "102Ah_25degC_0p5C_cell3": 3.163679679819642,
+      "102Ah_25degC_1C_cell3": 1.1531032819924742,
+      "102Ah_35degC_1C_cell1": 2.065535817832356,
+      "102Ah_45degC_0p5C_cell3": 5.126812444403954,
+      "102Ah_45degC_1C_cell1": 0.9391274369869876,
+      "102Ah_55degC_1C_cell3": 3.7023739181264848
+    }
+  },
+  {
+    "method": "windows_noT",
+    "outer_group": "cell_id",
+    "macro_mae_pp": 1.3335981781967359,
+    "worst_cell_mae_pp": 2.437765337875619,
+    "p95_absolute_error_pp": 3.9949774114893817,
+    "max_absolute_error_pp": 5.557884484855009,
+    "per_cell_mae_pp": {
+      "102Ah_25degC_0p5C_cell3": 1.8585936836731554,
+      "102Ah_25degC_1C_cell3": 0.6110939585123163,
+      "102Ah_35degC_1C_cell1": 0.9885892262739977,
+      "102Ah_45degC_0p5C_cell3": 1.819506311061753,
+      "102Ah_45degC_1C_cell1": 0.2860405517835744,
+      "102Ah_55degC_1C_cell3": 2.437765337875619
+    }
+  },
+  {
+    "method": "usage_T",
+    "outer_group": "cell_id",
+    "macro_mae_pp": 5.062349366291774,
+    "worst_cell_mae_pp": 8.306093926400598,
+    "p95_absolute_error_pp": 12.282176073809811,
+    "max_absolute_error_pp": 18.444482369175383,
+    "per_cell_mae_pp": {
+      "102Ah_25degC_0p5C_cell3": 8.306093926400598,
+      "102Ah_25degC_1C_cell3": 2.96069084080117,
+      "102Ah_35degC_1C_cell1": 4.947998437119069,
+      "102Ah_45degC_0p5C_cell3": 5.3200796232757535,
+      "102Ah_45degC_1C_cell1": 3.357277654111765,
+      "102Ah_55degC_1C_cell3": 5.4819557160422905
+    }
+  },
+  {
+    "method": "full_CC_T",
+    "outer_group": "cell_id",
+    "macro_mae_pp": 0.7722114305407426,
+    "worst_cell_mae_pp": 1.0325492244853172,
+    "p95_absolute_error_pp": 1.6061777589201727,
+    "max_absolute_error_pp": 2.3582228576981237,
+    "per_cell_mae_pp": {
+      "102Ah_25degC_0p5C_cell3": 1.0325492244853172,
+      "102Ah_25degC_1C_cell3": 0.8243669366785582,
+      "102Ah_35degC_1C_cell1": 0.9498888050874754,
+      "102Ah_45degC_0p5C_cell3": 0.9855281327168574,
+      "102Ah_45degC_1C_cell1": 0.45160641743997254,
+      "102Ah_55degC_1C_cell3": 0.3893290668362752
+    }
+  },
+  {
+    "method": "full",
+    "outer_group": "temperature_group",
+    "macro_mae_pp": 1.169026683706627,
+    "worst_cell_mae_pp": 2.408273033183015,
+    "p95_absolute_error_pp": 2.829075898730277,
+    "max_absolute_error_pp": 3.2661958485060154,
+    "per_cell_mae_pp": {
+      "102Ah_25degC_0p5C_cell3": 1.1889438153455576,
+      "102Ah_25degC_1C_cell3": 0.40287720924032583,
+      "102Ah_35degC_1C_cell1": 0.6691218019136139,
+      "102Ah_45degC_0p5C_cell3": 2.408273033183015,
+      "102Ah_45degC_1C_cell1": 0.6076735036253836,
+      "102Ah_55degC_1C_cell3": 1.7372707389318662
+    }
+  }
+]

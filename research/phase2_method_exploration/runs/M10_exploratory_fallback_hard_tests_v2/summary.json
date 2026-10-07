@@ -1,0 +1,55 @@
+{
+  "candidate": "exploratory_fallback",
+  "tests": [
+    {
+      "test": "repeat_query",
+      "passed": true,
+      "detail": "80.43767678033286 versus 80.43767678033286"
+    },
+    {
+      "test": "out_of_order_query",
+      "passed": true,
+      "detail": "CK7 -> CK3 equals fresh CK3"
+    },
+    {
+      "test": "strict_operation_prefix",
+      "passed": true,
+      "detail": "2025-02-07 23:59:52"
+    },
+    {
+      "test": "future_row_contamination",
+      "passed": true,
+      "detail": "97.42503837036467 versus 97.42503837036467"
+    },
+    {
+      "test": "future_label_injection_fit",
+      "passed": true,
+      "detail": "97.42503837036467 versus 97.42503837036467"
+    },
+    {
+      "test": "cold_start_finite",
+      "passed": true,
+      "detail": "98.44117647058823"
+    },
+    {
+      "test": "long_gap_finite",
+      "passed": true,
+      "detail": "97.42503837036467"
+    },
+    {
+      "test": "cell_permutation_invariance",
+      "passed": true,
+      "detail": "80.43767678033286 versus 80.43767678033286"
+    },
+    {
+      "test": "finite_all_test_outputs",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "hard_correctness_pass": true,
+  "official_capacity_accuracy_verified": false,
+  "cold_start_SOH_pp": 98.44117647058823,
+  "long_gap_SOH_pp": 97.42503837036467,
+  "note": "Long gap test checks stability only; no labeled group capacity proves a stale forecast is calibrated."
+}

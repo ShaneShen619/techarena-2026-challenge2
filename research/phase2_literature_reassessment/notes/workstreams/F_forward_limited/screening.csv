@@ -1,0 +1,3 @@
+paper_id,title,doi,decision,source_depth,reason
+Deng2024_RapidPackDA,Rapid health estimation of in-service battery packs based on limited labels and domain adaptation,10.1016/j.jechem.2023.10.056,deep_evidence_card,author_fulltext_plus_original_mat,"Unique methodological warning: 10 NCM EV labels; source data discrepancy; different target protocol"
+Jiang2023_RelaxationGPR,An adaptive capacity estimation approach for lithium-ion battery using 10-min relaxation voltage within high state of charge range,10.1016/j.energy.2022.125802,abstract_only_screen,publisher_abstract_and_crossref,"Fulltext 403 and no verified OA; chemistry/n/label/split unknown; no detailed card"

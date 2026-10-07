@@ -1,0 +1,812 @@
+Battery capacity knee-onset identification and early prediction using
+degradation curvature
+
+
+Downloaded from: https://research.chalmers.se, 2026-09-29 20:14 UTC
+
+
+
+
+     Citation for the original published paper (version of record):
+     Zhang, H., Altaf, F., Wik, T. (2024). Battery capacity knee-onset identification and early prediction
+     using degradation curvature. Journal of Power Sources, 608.
+     http://dx.doi.org/10.1016/j.jpowsour.2024.234619
+
+
+
+
+N.B. When citing this work, cite the original published paper.
+
+
+
+
+research.chalmers.se offers the possibility of retrieving research publications produced at Chalmers University of Technology. It
+covers all kind of research output: articles, dissertations, conference papers, reports etc. since 2004. research.chalmers.se is
+administrated and maintained by Chalmers Library
+
+
+
+                                            (article starts on next page)
+                                                                  Journal of Power Sources 608 (2024) 234619
+
+
+                                                                   Contents lists available at ScienceDirect
+
+
+                                                                 Journal of Power Sources
+                                                        journal homepage: www.elsevier.com/locate/jpowsour
+
+
+
+
+Battery capacity knee-onset identification and early prediction using
+degradation curvature
+Huang Zhang a,b ,∗, Faisal Altaf b , Torsten Wik a
+a Department of Electrical Engineering, Chalmers University of Technology, Gothenburg, 41296, Sweden
+b
+    Department of Electromobility, Volvo Group Trucks Technology, Gothenburg, 40508, Sweden
+
+
+
+HIGHLIGHTS                                                GRAPHICAL                ABSTRACT
+
+• A curvature approximation method to
+  measure the rate of capacity fade is pro-
+  posed.
+• A new oscillatory degradation phenomenon
+  is discovered.
+• The oscillatory degradation phenomenon
+  is used to identify knee and knee-onset.
+• The method outperforms the state-of-
+  the-art method on both synthetic and
+  real data.
+• The method can be used for online knee-
+  onset identification and knee prediction.
+
+
+
+
+ARTICLE                 INFO                              ABSTRACT
+
+Keywords:                                                 Abrupt capacity fade can have a significant impact on performance and safety in battery applications. To
+Battery diagnosis                                         address concerns arising from possible knee occurrence, this work aims for a better understanding of their
+Degradation mechanisms                                    cause by introducing a new definition of capacity knees and their onset. A curvature-based identification of
+Knee identification
+                                                          a knee and its onset is proposed, which relies on the discovery of a distinctly fluctuating behavior in the
+Knee-onset early prediction
+                                                          transition between an initial and a final stable acceleration of the degradation. The method is validated on
+Curvature approximation
+                                                          experimental degradation data of two different battery chemistries, synthetic degradation data, and is also
+                                                          benchmarked to the state-of-the-art knee identification method in the literature. The results demonstrate that
+                                                          our proposed method could successfully identify capacity knees when the state-of-the-art knee identification
+                                                          method failed. Furthermore, a significantly strong correlation is found between knee and end of life (EoL)
+                                                          and almost equally strong between knee onset and EoL. As the method does not require the full capacity fade
+                                                          curve, this opens up online knee-onset identification as well as knee and EoL prediction.
+
+
+    ∗ Corresponding author at: Department of Electrical Engineering, Chalmers University of Technology, Gothenburg, 41296, Sweden.
+       E-mail addresses: huangz@chalmers.se (H. Zhang), faisal.altaf@volvo.com (F. Altaf), torsten.wik@chalmers.se (T. Wik).
+
+https://doi.org/10.1016/j.jpowsour.2024.234619
+Received 16 February 2024; Received in revised form 24 April 2024; Accepted 26 April 2024
+Available online 7 May 2024
+0378-7753/© 2024 The Author(s). Published by Elsevier B.V. This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/).
+H. Zhang et al.                                                                                                         Journal of Power Sources 608 (2024) 234619
+
+
+
+
+                                                                                    applicable to all types of capacity fade curves. Zhang et al. [8] firstly
+1. Introduction                                                                     learned a strip-shaped safety zone from experimental data of the height
+                                                                                    of a peak on the incremental capacity curve, and then the knee was
+    Lithium-ion batteries have been widely used as energy storage sys-              identified as the last cycle of four consecutive cycles beyond the safety
+tems in various applications, such as electric vehicles and microgrids,             zone using quantile regression and Monte Carlo simulation. Although
+due to their high power and energy density, rapid response, and long                the quantile regression method works with incoming data streams,
+lifetime characteristics [1]. However, as a result of a complex interplay           the identified knees vary with the amount of available online data.
+of different physical and chemical degradation mechanisms, the per-                 Sohn et al. [16] proposed a convolutional neural networks model to
+formance (e.g., available energy and available power) of lithium-ion                extract temporal features from time-series data to predict the number of
+batteries gradually degrades over their service lives, where the degra-             cycles left to the knee point. However, their method requires extensive
+dation rate is a nonlinear function of storage and cycling conditions               knee labeling beforehand for the model training process using the
+(temperature, state-of-charge (SoC) window, charge/discharge current,               Bacon–Watts model. In a very recent work by Costa et al. [17], a
+energy throughput, etc.). In some cases, accelerated capacity fade can              transformer-based deep learning model integrated with incremental
+not only lead to accelerated performance degradation but also battery               capacity analysis was proposed for knee identification and degrada-
+safety issues [2].                                                                  tion diagnosis. The knee identification was formulated into a binary
+    In both field data and experimental testing of commercial lithium-              classification problem, i.e., the model predicts whether or not a knee
+ion batteries, it has been observed that the capacity fade often exhibits           will occur within a window size of 800 cycles. Although the model
+a two-stage behavior, with a slow degradation rate in the first stage               can quantify degradation modes in addition to the knee indication
+and then an accelerated degradation rate in the second stage [3–5].                 within 800 cycles, it also requires knee labeling beforehand and does
+The transition from the first stage to the second stage infers a knee ap-           not identify the exact knee point on the capacity fade curve, which is
+pearance on the capacity fade curve. Generally, the knee occurs within              often preferable in practical applications, such as in the classification
+a 70%–95% capacity retention window depending on the operating                      of retired electric vehicle batteries. To summarize, the aforementioned
+conditions [6]. Furthermore, it has been experimentally demonstrated                knee identification methods can be divided into two categories. One is
+that reusing lithium-ion batteries in less-demanding second-life appli-             based on finding the intersection between a straight line approximating
+cations may not slow down the aging trend once the knee has already                 the early fade and a line following the rate of fade after a knee [13–
+occurred [2,7,8]. Therefore, for safety and performance reasons, the                15]. The disadvantages of this approach are that, depending on the
+occurrence of the knee should be avoided, or at least delayed, to ensure            shape of the capacity fade curve, they may fail, and they cannot be
+a long battery lifetime. Batteries with knee occurrence should normally             used for online identification and prediction as they need more or
+be retired immediately from operation, no matter if it is in their first-life       less the complete fade curve. The other category is methods based on
+or later-life application [2].                                                      machine learning models [8,16,17]. These methods can be used for
+    It is common for manufacturers of electric vehicles to provide a                online identification and prediction, but they require large amounts of
+battery warranty of 8–10 years, guaranteeing 70%–80% of their initial               labeled data and other inputs than only capacity.
+nominal capacity [9,10]. When a battery pack that consists of thou-                     Contribution: The objective of this work is to fill in the gap
+sands of battery cells retires from its first life in an electric vehicle,          indicated above by proposing a generalized capacity knee identification
+not all battery cells in the battery pack have necessarily reached 70%–             method that leverages battery degradation prior knowledge to im-
+80% of their initial nominal capacity, and knee at cell level may occur             prove knee identification performance. We formulate the capacity knee
+before or after the end of life defined at pack level, due to cell-to-cell          identification problem as an unsupervised time series segmentation
+variations in the pack [11]. Instead of being recycled or disposed of,              problem given an assumption of three consecutive discrete states of the
+                                                                                    degradation process, from the beginning of life till the end of life. Our
+one desirable option is to repurpose retired batteries to less demanding
+                                                                                    key results and contributions are:
+second-life applications as stationary battery energy storage systems
+(BESSs) [12]. However, to ensure the lifetime is maximized in its                      1. We are the first to propose the use of approximated curvature to
+second-life application, a knee occurrence on the capacity fade curve                     measure the rate of change of capacity fade rate in discrete time,
+needs to be identified prior to repurposing the retired batteries for a                   and this reveals a new oscillatory degradation phenomenon. This
+second-life application.                                                                  degradation phenomenon occurs during a period that clearly
+    To date, several studies have attempted to firstly define the knee                    separates the capacity fade curve into three distinct intervals
+and then propose a method to identify it, both in off-line scenarios [13–                 that can be automatically identified offline as well as online
+15], and online scenarios [8,16,17]. Diao et al. [13] defined the knee                    with some delay. The knee onset corresponds to the start of the
+as the intersection of two tangent lines at two points (i.e., the points                  oscillatory middle interval and the actual knee corresponds to
+with minimum and maximum absolute slope, respectively) on the                             the end of this period.
+capacity fade curve, and then developed an empirical degradation                       2. We validate the effectiveness of our proposed method on two ex-
+model to characterize the capacity fade curve from experimental data,                     perimental datasets of two different cathode chemistries (i.e., LFP
+on which the two points were identified to locate the two tangent                         and NMC) and one synthetic dataset, the three datasets cov-
+lines. However, different degradation models may be required to fit                       ering knee occurrence induced by lithium plating, resistance
+different types of capacity fade curves. Fermín-Cueto et al. [14] also                    growth, and particle cracking. Compared to the state-of-the-
+defined the knee as the intersection of two straight lines identified by                  art method (i.e., the double Bacon–Watts model), our proposed
+directly fitting the Bacon Watts model to capacity degradation data.                      method consistently identifies knee and knee-onset points on
+The Bacon–Watts method is simple and robust against noise without                         capacity fade curves over all three battery datasets while the
+superimposing a degradation model, but may not be applicable to                           double Bacon–Watts model completely fails on one of the battery
+all types of capacity fade curves. The bisector method, proposed by                       datasets.
+Greenbank and Howey [15], first fits the early and late life capacity                  3. With strong correlations between knee and knee-onset (iden-
+fade gradients using linear regression. Then the knee is identified as                    tified using our proposed identification method) and the end
+the intersection of an angle bisector of two gradients and the capacity                   of life, the knee-onset can provide an early warning of ac-
+fade curve. However, the bisector method is sensitive to the selection                    celerated degradation. Therefore, we demonstrate that learn-
+of early and late life capacity fade data, and may therefore not be                       ing early-prediction models for battery knee-onset prediction
+
+                                                                                2
+H. Zhang et al.                                                                                                              Journal of Power Sources 608 (2024) 234619
+
+Table 1                                                                                2.3. Scalable time series anytime matrix profile
+Initial values for the double Bacon–Watts model parameters.
+ Parameter          Description                               Value   Unit
+                                                                                           To efficiently compute these two time series, i.e., the matrix profile
+ 𝛼0                 Intercept                                 1       Ah
+                                                                                       𝑷 𝒁𝒁 and matrix profile index 𝑰 𝒁𝒁 , the algorithm that we adopt
+ 𝛼1                 Slope of the intersecting line 1          −10−4   Ah/cycle
+ 𝛼2                 Slope of the intersecting line 2          −10−4   Ah/cycle         in this work is called Scalable Time series Anytime Matrix Profile
+ 𝑥0                 knee-onset point                          7𝑁
+                                                                      cycle            (STAMP) [18]. STAMP is a time-series all-pairs one-nearest-neighbor
+                                                              10
+                                                                                       search algorithm that uses the Fast Fourier Transform for speed and
+                                                                                       scalability. There are only two input parameters, i.e., the time series
+                                                                                       𝒀 , and a subsequence length 𝐿1 , where 𝐿1 is the desired length of the
+        can significantly reduce experimental time and its associated                  time series pattern to search for.
+        costs. Moreover, knee-onset prediction can potentially benefit
+        several industrial applications with significant economic value
+                                                                                       2.4. Arc curve
+        (e.g., validation of formation protocols, battery grading, battery
+        replacement planning, and battery repurposing for second-life
+        applications).                                                                    Here we introduce all the necessary definitions related to the arc
+                                                                                       curve, which represents the likelihood of a regime change at each
+                                                                                       location [19].
+2. Background
+
+                                                                                       Definition 7. An arc is an entry pair (𝑗, 𝑘) drawn from the 𝑗th entry in
+2.1. Double Bacon–Watts model
+                                                                                       the matrix profile index 𝑰 𝒁𝒁 to its nearest neighbor location at index
+                                                                                       𝑘.
+   In order to identify both knee and knee-onset points on capacity
+fade curves instead of only one knee point, the double Bacon–Watts
+                                                                                       Definition 8. The Arc Curve (AC) for a time series 𝒀 of length 𝑀 is
+model is adapted from the Bacon–Watts model [14], i.e.,
+                                                                                       itself a time series of length 𝑀 containing nonnegative integer values.
+𝑌 =𝛼0 + 𝛼1 (𝑥 − 𝑥0 ) + 𝛼2 (𝑥 − 𝑥0 )tanh{(𝑥 − 𝑥0 )∕𝛾}                                   The 𝑗th index in the AC specifies the number of nearest neighbor arcs
+                                                                             (1)
+      + 𝛼3 (𝑥 − 𝑥2 )tanh{(𝑥 − 𝑥2 )∕𝛾} + 𝑍,                                             from the matrix profile index that cross over the location 𝑗.
+
+where 𝛼0 is an intercept; 𝛼1 , 𝛼2 , and 𝛼3 denote the slopes of the                       In addition to low values at the location of the regime change, the
+intersecting lines; 𝛾 determines the abruptness of the transition and is               AC also has low values at both the leftmost and rightmost edges, due to
+set to a low value (i.e., 10−8 ) to achieve an abrupt transition; 𝑍 is a               the fact that there are fewer arcs that can cross a location at the edges.
+zero mean, normally distributed random variable; 𝑥0 and 𝑥2 are two                     In order to reduce the edge effect on the AC, the Corrected Arc Curve
+transition points, i.e., knee-onset and knee.                                          (CAC) is often calculated instead.
+    Given a sequence of measured capacity data of a cell, the
+Levenberg–Marquardt nonlinear least squares algorithm is used to learn                 2.5. Fast low-cost unipotent semantic segmentation
+the model parameters in Eq. (1). Moreover, initial values for the model
+parameters that are used in this work are given in Table 1. Note that
+                                                                                          To produce the third time series, i.e., the Corrected Arc Curve
+𝑁 is the number of sampled capacity points.
+                                                                                       (CAC), we adopt the Fast Low-cost Unipotent Semantic Segmentation
+                                                                                       (FLUSS) algorithm [19]. FLUSS (see Algorithm 1) has only two input
+2.2. Matrix profile                                                                    parameters, i.e., the matrix profile index 𝑰 𝒁𝒁 and the subsequence
+                                                                                       length 𝐿2 .
+  Here, we first introduce all the necessary definitions related to
+matrix profile [18], which will be used later in our proposed method:
+                                                                                       Algorithm 1 FLUSS
+Definition 1. A time series 𝒀 = {𝑦𝑑1 , 𝑦𝑑2 , … , 𝑦𝑑𝑀 } is an ordered                    1: Input: 1. 𝑰𝒁𝒁 : matrix profile index with the length of 𝑀 − 𝐿2 + 1.
+sequence of real values that are evenly spaced, where 𝑀 is the length                   2: Input: 2. 𝐿2 : length of the subsequence
+of 𝒀 .                                                                                  3: Initialize three empty arrays with lengths of 𝑀 − 𝐿2 + 1, i.e., AC,
+                                                                                           CAC, MARK.
+Definition 2. A subsequence 𝒀 𝑗,𝐿 ⊆ 𝒀 is a continuous subset of the                     4: for i=1:𝑀 − 𝐿2 + 1 do
+values from 𝒀 of length 𝐿 starting from 𝑗, i.e., 𝒀 𝑗,𝐿 = {𝑦𝑑𝑗 , 𝑦𝑑𝑗+1 , … ,             5:    Count the number of arcs that cross over index 𝑖 and then store
+𝑦𝑑𝑗+𝐿−1 }, where 1 ≤ 𝑗 ≤ 𝑀 − 𝐿 + 1.                                                        in MARK
+                                                                                        6: end for
+                                                                                        7: for i=1:𝑀 − 𝐿2 + 1 do
+Definition 3. The set 𝒁 of a time series 𝒀 is an ordered set of all
+                                                                                        8:    Cumulatively sum values in MARK for each index 𝑖 and store in
+subsequences of 𝒀 obtained by sliding a window of length 𝐿 across 𝒀
+                                                                                           AC
+such that: 𝒁 = {𝒀 1,𝐿 , 𝒀 2,𝐿 , … , 𝒀 𝑀−𝐿+1,𝐿 }, where 𝐿 is a user-defined
+                                                                                        9: end for
+subsequence length.
+                                                                                       10: IAC = parabolic curve of length 𝑛 and height 𝑛∕2 [19]
+                                                                                       11: CAC = min(AC∕IAC, 1)
+Definition 4. A self-similarity set 𝑱 𝒁𝒁 is a set containing pairs of each             12: Output: CAC
+subsequence 𝒀 𝑗,𝐿 in 𝒁 with its nearest neighbor 𝒀 𝑘,𝐿 in 𝒁. We denote
+this as 𝑱 𝒁𝒁 = {(𝒀 𝑗,𝐿 , 𝒀 𝑘,𝐿 )}, 𝑗 ≠ 𝑘.
+                                                                                       2.6. Regime extracting algorithm
+Definition 5. A matrix profile 𝑷 𝒁𝒁 is a vector of the Euclidean
+distances between the two subsequences of each pair in 𝑱 𝒁𝒁 .                              With the advantage of having only two input parameters, i.e., the
+                                                                                       subsequence length 𝐿2 , and the number of states 𝑁𝑆 , we adopt the
+Definition 6. A matrix profile index 𝑰 𝒁𝒁 of a self-similarity set 𝑱 𝒁𝒁                regime extracting algorithm (REA) [19] to extract the locations of the
+is a vector of integers where 𝑰 𝒁𝒁 [𝑗] = 𝑘 if (𝒀 𝑗,𝐿 , 𝒀 𝑘,𝐿 ) ∈ 𝑱 𝒁𝒁 .                state changes from the CAC, i.e., 𝑩.
+
+                                                                                   3
+H. Zhang et al.                                                                                                               Journal of Power Sources 608 (2024) 234619
+
+
+Definition 9. A battery cell health degradation process with knee                  Assumption 1. The lithium-ion cell has a knee occurrence on its
+occurrence on the capacity fade curve consists of three discrete states            capacity fade curve before the end of the experiment.
+𝑺 = [𝑠1 , 𝑠2 , 𝑠3 ] separated by two boundaries 𝑩 = [𝑏1 , 𝑏2 ]. Here, 𝑠1
+represents the cell degradation process from the beginning of life to              Assumption 2. The 𝑥-values are evenly spaced. If not, the data points
+the knee-onset point, 𝑠2 represents the cell degradation process from              are fitted to a spline function and interpolated to become so.
+the knee-onset point to the knee point, and 𝑠3 represents the cell
+                                                                                      We summarize the proposed curvature approximation in a step-by-
+degradation process from the knee point to the end of life.
+                                                                                   step manner as follows:
+
+                                                                                      1. To have our capacity knee identification method as little affected
+Algorithm 2 Regime Extracting Algorithm                                                  as possible by variations in battery capacity magnitude, the
+ 1: Input: 1. CAC: corrected arc curve for approximated curvature                        raw capacity data points {𝑥𝑖 , 𝑦𝑖 }𝑁 𝑖=1
+                                                                                                                                  are first normalized with
+ 2: Input: 2. 𝐿2 : length of the subsequence                                             the battery’s initial nominal capacity 𝑄𝑛𝑜𝑚 . The resulting set of
+ 3: Input: 3. 𝑁𝑆 : number of state changes                                               normalized data points is {𝑥𝑖 , 𝑦𝑛𝑖 }𝑁
+                                                                                                                              𝑖=1
+                                                                                                                                  where
+ 4: Initialize an empty array 𝑩 of length 𝑁𝑆                                                       𝑦𝑖
+ 5: for i=1:𝑁𝑆 do
+                                                                                          𝑦𝑛𝑖 =        .
+                                                                                                  𝑄𝑛𝑜𝑚
+ 6:     𝑩(𝑖) = index(min(CAC))
+ 7:     Set an exclusion zone as five times the subsequence length 𝐿2                 2. As a low-pass filter that utilizes the local least-square polynomial
+    before and after 𝑩(𝑖)                                                                approximation, the Savitzky–Golay filter provides competitive
+ 8: end for                                                                              denoising performance [24]. Since it is more computationally
+ 9: Output: 𝑩                                                                            efficient than many other smoothing techniques with potential
+                                                                                         for real-time applications, it is used to smooth the normalized
+                                                                                         data points {𝑥𝑖 , 𝑦𝑛𝑖 }𝑁𝑖=1
+                                                                                                                     . The resulting set of smoothed data points
+3. Methods                                                                               {𝑥𝑖 , 𝑦𝑠𝑛𝑖 }𝑁   is then used   in the next step.
+                                                                                                     𝑖=1
+                                                                                                                                                            𝑁−(𝑤𝑠−1)∕2
+                                                                                      3. We approximate the curvature at data points {𝑥𝑖 , 𝑦𝑠𝑛𝑖 }𝑖=(𝑤𝑠+1)∕2
+    Researchers from different areas come across knee identification                     by calculating their corresponding successive differences 𝑦𝑑𝑖
+problems, in which knees can be detected in either an ad-hoc manner                      where
+or with a general tool [20]. The concept of a knee in the battery field
+generally relates to the degradation rate on the capacity fade curve.                     𝑦𝑑𝑖 = 𝑦𝑠𝑛𝑖−(𝑤𝑠−1)∕2 + 𝑦𝑠𝑛𝑖+(𝑤𝑠−1)∕2 − 2𝑦𝑠𝑛𝑖 .
+The degradation rate in terms of capacity fade is the result of the con-
+                                                                                          With the assumption that the 𝑥-values are evenly spaced, then
+volution of various underlying degradation mechanisms and possible
+                                                                                          𝑦𝑑𝑖 = 0 for any straight line. However, if any consecutive three
+interactions between them. Extrinsic factors, such as the sequence of ag-
+                                                                                          points form a knee, then 𝑦𝑑𝑖 < 0 as the middle point 𝑦𝑠𝑛𝑖 is
+ing tests, may influence the degradation rate in terms of capacity fade,
+                                                                                          now above the straight line that goes through the first point
+especially at high C-rates and long duration of continuous cycling [21].
+                                                                                          𝑦𝑠𝑛𝑖−(𝑤𝑠−1)∕2 and the third point 𝑦𝑠𝑛𝑖+(𝑤𝑠−1)∕2 . Analogously, if any
+Intrinsic factors, such as battery chemistry, and manufacturing vari-
+                                                                                          consecutive three points form an elbow, then 𝑦𝑑𝑖 > 0.
+ances, also have an impact on the degradation rate [22]. To design a
+general knee identification method, a consistent knee definition that is               The resulting approximated curvature of the example cell in
+applicable to batteries of any chemistry and a wide range of operating             Fig. 1(a) is illustrated in Fig. 1(b). Contrary to what one would perhaps
+conditions is required.                                                            expect from Fig. 1(a), having most fluctuations at the beginning, we
+    To measure the rate of change of the capacity fade, we first intro-            observe a very stable start of the curvature followed by a distinct period
+duce the concept of curvature, which is a mathematical measure of the              of large fluctuations, eventually followed by an abrupt change to yet
+amount by which a curve deviates from being a straight line [20]. For a            another stable period.
+continuous function 𝑓 , the curvature 𝜅(𝑥) of 𝑓 at any point, is defined               As a matter of fact, drastic changes of system states from one stable
+as                                                                                 state to another stable state through a critical transition state can also
+             𝑓 ′′ (𝑥)                                                              be observed in other complex dynamical systems in ecology, biology,
+𝜅(𝑥) =                      .                                           (2)        economics, and other fields [25,26]. Since we know that the fade curve
+         (1 + 𝑓 ′ (𝑥)2 )1.5
+                                                                                   exhibits accelerated aging in the last phase and a stable degradation
+The curvature value calculated at one point using Eq. (2) can be                   (after the low-pass filtering) in the first phase, it seems rational to
+positive, negative, or 0, depending on the second derivative of the                regard the initiation of the transition phase as the knee onset and then
+function 𝑓 .                                                                       define the end of this phase as the knee point.
+   Although a knee can be mathematically well-defined as the point                     Next, we will use the algorithms in Section 2 to automate the
+of maximum curvature for continuous functions [20], it is in practice              process of identifying the state of transition phase.
+challenging to accurately identify the knee using Eq. (2) as the capacity
+fade data is sampled and noisy. Therefore, the curvature needs to be               3.2. Knee and knee-onset identification
+approximated before the knee identification on discrete data.
+                                                                                       As suggested by [18], it is empirically shown that given the matrix
+3.1. Degradation curvature approximation                                           profile and the matrix profile index, the resulting corrected arc curve
+                                                                                   contains information about a possible regime change at each location
+    The starting point is a sequence of measured capacity data from a              of a time series. Therefore, we employ a similar approach to knee and
+lithium-ion cell, {𝑥𝑖 , 𝑦𝑖 }𝑁
+                            𝑖=1
+                                , where 𝑥𝑖 ∈ R+
+                                              0
+                                                is the number of cycles that       keen-onset identification. Specifically, our goal is to obtain three time
+the battery has been used, 𝑦𝑖 ∈ R+ is the discharge capacity measured              series, i.e., matrix profile, matrix profile index, and corrected arc curve,
+per cycle, and 𝑁 is the number of sampled capacity points in the set. As           to represent a time-series approximated curvature that is produced in
+an example, a set of discrete capacity fade data points of a sample cell,          the previous section.
+[b1c0] from the Toyota Research Institute dataset [23], is illustrated in              In Fig. 2(a), the time series approximated curvature of the sample
+Fig. 1(a).                                                                         cell [b1c0] is shown at the top, while its corresponding CAC is shown
+    Our curvature-based method relies on the following two assump-                 at the bottom. All the parameters that are used to produce Fig. 2(a) are
+tions:                                                                             listed in Table 2. It can be seen from Fig. 2(a) that the approximated
+
+                                                                               4
+H. Zhang et al.                                                                                                                   Journal of Power Sources 608 (2024) 234619
+
+
+
+
+                           Fig. 1. The curvature approximation results of a sample cell [b1c0] in the Toyota Research Institute dataset [23].
+
+
+
+
+                                           Fig. 2. The knee-onset and knee identification results of the sample cell [b1c0].
+
+
+curvature is approximately equal to zero from the beginning of life                    Table 2
+                                                                                       Input parameters in the proposed method.
+till the first state change point 𝑏1 , which is identified as the capacity
+                                                                                        Parameter     Description                                          Value     Unit
+knee-onset using REA. Until the second state change point 𝑏2 , the
+approximated curvature fluctuates significantly, which indicates that                   𝑤𝑠            Sliding window size to approximate curvature         3         cycle
+                                                                                        𝐿1            Subsequence length to produce matrix profile         3         cycle
+the rate of change of degradation rate on the capacity fade curve
+                                                                                        𝐿2            Subsequence length to produce CAC                    [ 𝑁5 ]    cycle
+fluctuates. After the second state change point 𝑏2 that is identified as                𝑁𝑆            Number of states to identify knee and knee-onset     3         –
+the capacity knee using REA, the degradation rate accelerates on the
+capacity fade curve till the end of life, as shown in Fig. 2(b).
+     Intuitively, the time series segmentation algorithm using its cor-
+responding CAC in the context of a battery capacity fade process is
+straightforward. For instance, suppose the time series approximated                    nominal capacity). The total 169 cells are from 4 batches ("2017-
+curvature 𝒀 of the sample cell [b1c0] has a state change at location                   05-12", ‘‘2017-06-30’’, ‘‘2018-04-12’’, and ‘‘2019-01-24’’) with batch
+𝑎, we would expect very few arcs to cross over 𝑎 as most of the                        name denoting the date when the experiment was started. The cells
+subsequences 𝒀 𝑗,𝐿 will find their nearest neighbors within the same                   were charged with a one-step or multi-step fast-charging protocol
+state. Therefore, the height of the CAC should be the lowest at the                    from 0% to 80% SoC and then charged with a uniform 1C constant
+location of the boundary where the state changes from one to another.                  current–constant voltage (CC–CV) charging step from 80% to 100%
+                                                                                       SoC. Subsequently, cells were discharged identically at 4C rate to 0%
+                                                                                       SoC. All cells were tested in an environmental chamber at a constant
+3.3. Experimental design
+                                                                                       ambient temperature of 30 ◦ C. The cells were cycled until they reached
+                                                                                       the end of life (EoL) threshold, set to 80% of their initial nominal capac-
+3.3.1. Toyota research institute dataset                                               ity. Time-series cell voltage, current, and (surface) temperature in each
+Dataset description. The first battery dataset used in this work was                   cycle were continuously measured, while two battery health metrics,
+generated by Toyota Research Institute in collaboration with Stanford                  i.e., rated capacity (4C discharge, 30 ◦ C) and internal resistance (±3.6
+University and Massachusetts Institute of Technology [23,27], in which                 C pulse current, 30 or 33 ms pulse width, 80% SoC) were measured
+there are 169 lithium iron ferrous phosphate (LFP)/graphite cylindrical                per cycle. All the cells in this dataset have knee occurrence on their
+cells manufactured by A124 Systems (model APR18650M1 A, 1.1 Ah                         capacity fade curves before the end of the experiment.
+
+                                                                                   5
+H. Zhang et al.                                                                                                         Journal of Power Sources 608 (2024) 234619
+
+
+Lithium plating-induced knees. The knee occurrence in this dataset is             Battery models. In order to verify the effectiveness of our proposed
+caused by lithium plating due to loss of delithiated negative electrode           method in identifying capacity knees caused by other degradation
+active material. Specifically, at high rates of loss of delithiated nega-         mechanisms and their interactions, synthetic battery degradation data
+tive electrode active material (LAM), the negative electrode capacity             is generated using physics-based models. Specifically, underlying bat-
+eventually falls below the remaining lithium inventory in a cell. Then,           tery states (e.g., lithium concentrations) are simulated using a Doyle–
+the negative electrode will not be able to accommodate all the lithium            Fuller–Newman (DFN) model [35]. To produce particle cracking-
+from the positive electrode during charge, which leads to irreversible            induced knees, two degradation mechanisms (i.e., SEI growth and parti-
+lithium plating and a resulting loss of lithium inventory (LLI). The loss         cle cracking) at the negative electrode are coupled with the DFN model
+of delithiated negative electrode active material, together with LLI,             in Python Battery Mathematical Modeling (PyBaMM) library [36].
+contribute to accelerated capacity fade, at which a knee also occurs.
+                                                                                  Model parameters. The DFN model parameters (i.e., electrode param-
+Moreover, a higher charge C-rate also accelerates the occurrence of
+                                                                                  eters, electrolyte parameters) are taken from Chen et al. [37] for a
+the knee in this dataset. Lithium plating-induced knees are commonly
+                                                                                  commercial NMC 811/graphite-SiOx cylindrical cell from LG Chem
+observed or hypothesized in commercial LFP/graphite cells [23,27–30].
+                                                                                  (INR21700 M50, 5 Ah). The values of electrode and electrolyte pa-
+                                                                                  rameters are listed in the supplementary information of Ref. [38].
+3.3.2. Sandia national lab dataset
+                                                                                  The parameters of the degradation models in PyBaMM are taken from
+Dataset description. The second battery dataset used in this work was
+                                                                                  multiple sources and are also listed in the supplementary information
+generated by Sandia National Laboratories [31], in which there are 32
+                                                                                  of Ref. [38]. Here, three distinct cells with their cracking rates in Paris’
+lithium nickel manganese cobalt oxide (NMC)/graphite cylindrical cells
+                                                                                  law being 10, 30, and 50 times the standard particle cracking rate
+from LG Chem (model 18650HG2, 3Ah). The NMC cells were cycled
+                                                                                  (i.e., 3.9 × 10−20 [39]) were used to generate synthetic capacity knees
+at three different ambient temperatures (15 ◦ C, 25 ◦ C, and 35 ◦ C)
+                                                                                  for validation purposes.
+with different depths of discharges (0%–100%, 20%–80%, and 40%–
+60%) and discharge currents (0.5C, 1C, 2C, and 3C). All the NMC cells             Cycling protocol. The cells used in this work have a nominal capacity of
+were identically charged at 0.5C rate. To reduce the effect of manu-              5 Ah with a lower voltage cut-off of 2.5 V and an upper voltage cut-off
+facturing variances, at least 2 cells were tested for each combination            of 4.2 V. The ambient temperature is assumed to be constant at 25 ◦ C.
+of ambient temperature, depth of discharge, and discharge current (12             The cells are charged with a 1C constant current–constant voltage (CC–
+combinations). The cells were cycled beyond the end of life, defined              CV) charging to 4.2 V and a current cut-off of C/100 (50 mA) followed
+as when they reach 80% of their initial nominal capacity. Time-series             by a rest for 5 min. The cells are subsequently discharged at 1C to 2.5
+cell voltage, current, and (surface) temperature in each cycle were               V with a current cut-off of C/100 (50 mA) and then at rest for 5 min.
+continuously measured, while one battery health metric, i.e., rated               The simulation is set to terminate if either 1200 cycles or 80% of the
+capacity (0.5C discharge at the same ambient temperature as that in               initial nominal capacity is reached. The discharge capacity is measured
+each cycling test) was measured periodically. Note that 4 cells that were         by integrating discharge current over time from 100% SoC to the cut-off
+cycled with 40%–60% depth-of-discharge are excluded from this work                voltage.
+due to the fact that neither the knee nor EoL (i.e., 80% of their initial
+nominal capacity) was experienced before the end of the experiment; 5             4. Results and discussion
+cells that were cycled with 20%–80% depth-of-discharge and one cell
+that was cycled with 0%–100% depth-of-discharge are also excluded                     As a fundamental step prior to addressing capacity knee-related
+from this work due to the fact that their discharge capacity data is              battery problems, one would like to accurately identify knee-onset and
+highly corrupted. In the end, 22 cells that have knee occurrence on their         knee on the capacity fade curve and then investigate the empirical
+capacity fade curves before the end of the experiment are included in             relationship between knee-onset and end of life (80% of initial nominal
+this work.                                                                        capacity), and between knee and end of life. In this section, we will
+                                                                                  first validate our proposed capacity knee identification method on the
+Resistance-induced knees. The knee occurrence in this dataset is at-              two experimental degradation datasets of different battery chemistry
+tributed to resistance growth that is caused by the growth of side                (LFP and NMC) and then on the synthetic degradation dataset. In the
+reaction products (e.g., solid electrolyte interphase (SEI)) on the surface       validation process, we will also benchmark our capacity knee identifi-
+of the electrode [31]. The NMC/graphite cells in this dataset have                cation method to the state-of-the-art knee identification method in the
+discharge voltage–capacity curves that are relatively flat at high voltage        literature, i.e., the double Bacon–Watts model [14] and the numerical
+levels and relatively steep at low voltage levels. At the beginning of            results of knee and knee-onset identification will also be presented.
+life, the discharge ends within the steep region of the voltage–capacity          Lastly, a case study will be provided to demonstrate one promising
+curve. However, as the overpotential increases due to resistance growth           application of knee-onset identification using our proposed method on
+during aging, the voltage–capacity curve is pushed downwards. As a                experimental data of commercial LFP batteries.
+result, a cell reaches its lower cut-off voltage more quickly, and the dis-
+charge will eventually end within the flat region of the voltage–capacity         4.1. Validation of the proposed method
+curve, making the discharge capacity highly sensitive to increasing
+resistance. As a result, the discharge capacity fade accelerates, assum-          4.1.1. Validation on Toyota research institute dataset
+ing a linear resistance growth rate, which leads to a capacity knee.                  With in total 169 LFP cells in the Toyota Research Institute (TRI)
+Resistance-induced knees are commonly observed or hypothesized in                 dataset, capacity knee-onset and capacity knee were identified for each
+cells made of oxide-based cathode materials, such as NMC, as they often           cell using the proposed capacity knee identification method. For these,
+operate above the stability window of the electrolyte [31,32].                    we found strong linear correlations between both knee-onset and end
+                                                                                  of life (𝜌 = 1.0), and between knee and end of life (𝜌 = 0.992), as
+3.3.3. Synthetic dataset                                                          shown in Fig. 3. In Table 3, we also compare the knee and knee-onset
+Particle cracking-induced knees. The knee occurrence can also be caused           identification performance of our proposed method with identification
+by particle cracking [6]. Specifically, the intercalation and deintercala-        using the double Bacon–Watts model. It can be concluded that the
+tion of lithium during cycling can induce alternating mechanical stress           identification performance of our proposed method outperforms that
+within the electrodes, which results in particle cracking. As the cracks          of the state-of-the-art (i.e., the double Bacon–Watts model).
+propagate, new surfaces are created for SEI growth, which accelerates                 Apart from the strong correlations, by referring to the diagonal
+LLI. The accelerated LLI contributes to an accelerated capacity fade              line [solid black line] in Fig. 3, it can be concluded that all the cells
+and a consequent knee occurrence. Particle cracking-induced knees                 have knees occurring before the end of life. It can also be noted that
+have been observed or hypothesized in cells with cathodes made of                 the capacity knee method identified both earlier knees and earlier
+NMC [33] and NCA [34].                                                            knee-onsets than those identified using the double Bacon–Watts model.
+
+                                                                              6
+H. Zhang et al.                                                                                                                            Journal of Power Sources 608 (2024) 234619
+
+
+
+
+              Fig. 3. The relationship between knee-onset and end of life (left), knee and end of life (right) for 169 cells in the Toyota Research Institute dataset.
+
+
+
+
+                  Fig. 4. The relationship between knee-onset and end of life (left), and knee and end of life (right) for 22 cells in the Sandia National Lab dataset.
+
+
+                             Table 3
+                             Battery capacity knee and knee-onset identification performance.
+                              Method                           Knee identification performance                Knee-onset identification performance
+                                                               measured by Pearson’s r                        measured by Pearson’s r
+                                                               TRI                               SNL          TRI                               SNL
+                              Double Bacon-Watts model         0.994                             0.125        0.977                             0.180
+                              Proposed method                  1.000                             0.710        0.992                             0.712
+
+
+
+4.1.2. Validation on sandia national lab dataset                                                life, is that by setting the initial values of the model parameters in
+    With the additional 22 NMC cells in the Sandia National Lab (SNL)                           Table 1, assumptions regarding the capacity fade curve hold for all
+dataset, we again found clear linear correlations between knee-onset                            the LFP cells in the TRI dataset but not for all the NMC cells in the
+and end of life (𝜌 = 0.712), and between knee and end of life (𝜌 = 0.71)                        SNL dataset. In fact, the NMC cells in the SNL dataset exhibit highly
+using the proposed capacity knee identification method, as shown in                             diverse capacity fade curves. It is therefore not possible to find one set
+Fig. 4. However, neither the knee-onset nor the knee identified using                           of initial values in Table 1 for all the NMC cells in the SNL dataset.
+the double Bacon–Watts model shows any clear correlations with the                              It might be possible to improve the knee-onset and knee identification
+end of life. As shown in Table 3, the knee and knee-onset identification                        performance using the double Bacon–Watts model in the SNL dataset
+performance of our proposed method again outperforms that of the                                by first classifying the NMC cells into several groups based on the
+state-of-the-art (i.e., the double Bacon–Watts model).                                          similarity level of their capacity fade curves and then setting different
+    In order to find out the possible cause of the weak correlations be-                        initial values in Table 1 for each group of NMC cells. However, this will
+tween both knee-onsets and knees, identified using the double Bacon–                            inevitably incur additional work. In contrast, our proposed curvature-
+Watts model and end of life, we compared the knee-onsets and the                                based identification method does not require any assumptions of the
+knees obtained using the double Bacon–Watts model and the proposed                              capacity fade curve, instead, it identifies knee and knee-onset points,
+capacity knee identification method for a sample NMC cell [No. 10]                              given an approximated degradation curvature.
+in the SNL dataset. As illustrated in Fig. 5(b), the sample cell exhibits                           Furthermore, by referring to the diagonal line [solid black line]
+convex capacity fade in the first degradation phase (i.e., from the                             in Fig. 4, it can be seen that there are NMC cells in the SNL dataset
+beginning of life to the knee-onset point) instead of relatively linear                         that have knees occurring both before and after the end of life, which
+capacity fade in Fig. 2(b). The double Bacon–Watts model failed to                              motivates the need for classifying retired batteries based on whether or
+identify both knee and knee-onset [green lines], while our proposed                             not the knee onset and the knee itself has occurred in their first lives.
+method successfully identified both knee and knee-onset [blue lines]
+on this NMC cell.                                                                               4.1.3. Validation on synthetic dataset
+    The reason for the weak correlations between both knee-onsets                                  In order to verify the effectiveness of our proposed method to
+and knees, identified using the double Bacon–Watts model and end of                             identify a capacity knee caused by particle cracking, we apply the
+
+                                                                                            7
+H. Zhang et al.                                                                                                                            Journal of Power Sources 608 (2024) 234619
+
+
+
+
+                               Fig. 5. The knee-onset and knee identification results of a sample cell [No. 10] in the Sandia National Lab dataset.
+
+
+Table 4
+Battery capacity knee and knee-onset identification performance.
+ Method                            Knee (cycles)                                               Knee-onset (cycles)                                      Identification performance
+                                                                                                                                                        measured by Pearson’s r
+                                   Cell 1 (10 ×)       Cell 2(30 ×)       Cell 3 (50 ×)        Cell 1 (10 ×)         Cell 2 (30 ×)   Cell 3 (50 ×)
+ Double Bacon-Watts model          863                 804                541                  164                   537             364                0.213
+ Proposed method                   840                 686                455                  358                   291             191                1.000
+
+Three cells with their cracking rates in Paris’ law being 10, 30, and 50 times the standard particle cracking rate (i.e., 3.9 × 10−20 [39]).
+
+
+
+method to the synthetic battery degradation data generated for the                             trajectories of multiple degradation modes can also lead to a knee
+three LGM50 cells with cracking rates as in Table 4. It can be seen from                       on the capacity fade curve–knee pathways [6]. Therefore, to enable
+Table 4 that both knee-onset and knee identified using the proposed                            battery degradation diagnosis including knee identification, a larger
+method monotonically decrease with increasing cracking rates (from                             synthetic dataset that covers a range of other knee pathways needs to be
+Cell 1 to Cell 3), and we again found a strong linear correlation between                      generated, or found in the literature, for example, the Hawaii Natural
+knee-onset and knee (𝜌 = 1.0) using the proposed knee identification                           Energy Institute (HNEI) synthetic dataset by Dubarry and Beck [40,41].
+method. Also here, the knee-onset and knee identified using the double
+Bacon–Watts model show only a weak correlation (𝜌 = 0.213).                                        Overall, the inconsistent results of using the state-of-the-art model
+    As a measure of the rate of change of degradation rate, the ap-                            (i.e., double Bacon–Watts model) to identify knee-onset and knee
+proximated curvature together with its corresponding CAC is plotted                            on two experimental battery degradation datasets and one synthetic
+versus the cycle number for the synthetic LGM50 cell 2 in Fig. 6(a).                           dataset indicate a lack of generalizability of the double Bacon–Watts
+A significant fluctuation of the approximated curvature can again be                           model towards various battery chemistries for a wide range of op-
+observed in the second state of which the boundaries [blue lines] were                         erating conditions. In contrast, the generalizability of our proposed
+successfully inferred by the proposed identification method. With a                            capacity knee identification method has been demonstrated on three
+state change at each boundary, very few arcs cross over the boundary                           battery chemistry types, two experimental degradation datasets, and
+as most of the approximated curvature subsequences should find their                           one synthetic dataset, under a wide range of operating conditions.
+nearest neighbors within the same state. Therefore, the height of the                          Moreover, as knee identification is formulated as an unsupervised
+CAC should be the lowest at each boundary where the LGM50 cell                                 learning problem, knee labeling is not required beforehand. Exact
+degradation process changes from one state to another, as shown at                             knee-onset and knee points on the capacity fade curve are identified
+the bottom of Fig. 6(a). The measured discharge capacity fade curves                           using capacity data as the only input, which is preferable in practical
+are shown in Fig. 6(b). It can be seen that the knee is observable after                       applications, such as a systematic evaluation of the knee prediction
+approximately 680 cycles, and is followed by a sudden failure at 980 cy-                       performance of both model-based methods and data-driven methods,
+cles due to the fact that the porosity at the negative electrode–separator                     and facilitating classification of retired electric vehicle batteries from
+interface reached zero.                                                                        safety and performance perspectives.
+    The loss of capacity is solely caused by LLI due to SEI growth on
+the normal particle surface and on the cracked surfaces. For a large                           4.2. An application case study: knee-onset early prediction
+cracking rate (i.e., 30 times the standard particle cracking rate [39]),
+the LLI begins with a square root dependence on time until it reaches                              As shown in Figs. 3 and 4, both knee and knee-onset points iden-
+the inflection point, which is close to the identified capacity knee-                          tified using our proposed method show strong correlations with the
+onset point, as shown in Fig. 7. After the inflection point, the LLI                           end of life. Additionally, compared to the knee alone, the knee-onset
+accelerates exponentially as the cracks propagate. The accelerated LLI                         can give a much earlier warning of accelerated degradation (note that
+as the internal state change is the only cause for the simulated knee                          on average there are 323 cycles for the LFP cells and 280 cycles for
+occurrence in this case. The use of synthetic data has the potential for                       the NMC cells between the knee-onset and the identified knee). Each
+further analysis into the interactions between degradation mechanisms                          charge–discharge cycle takes 50 min on average, and consequently, a
+and the evolution of degradation modes behind the observed knee                                reduction of 323 cycles in the TRI dataset translates to a reduction
+phenomena. Other degradation pathways that may consist of state                                of experimental time by approximately 269 h. Therefore, learning an
+
+                                                                                           8
+H. Zhang et al.                                                                                                                     Journal of Power Sources 608 (2024) 234619
+
+
+
+
+                                          Fig. 6. The knee-onset and knee identification results of the cylindrical LGM50 cell 2.
+
+
+                  Table 5
+                  MIT 6-feature set.
+                   Feature                    Description
+                   min(𝛥𝑄30−10 (𝑉 ))          Minimum of difference of the discharge voltage curve between cycle 30 and cycle 10.
+                   var(𝛥𝑄30−10 (𝑉 ))          Variance of difference of the discharge voltage curve between cycle 30 and cycle 10.
+                   ske(𝛥𝑄30−10 (𝑉 ))          Skewness of difference of the discharge voltage curve between cycle 30 and cycle 10.
+                   kur(𝛥𝑄30−10 (𝑉 ))          Kurtosis of difference of the discharge voltage curve between cycle 30 and cycle 10.
+                   𝑄2                         Discharge capacity at cycle 2
+                   𝑄max−2                     Difference between maximum discharge capacity within the first 30 cycles and discharge capacity at cycle 2
+
+
+
+                                                                                         normal-knee-onset class (150–270 cycles), and late-knee-onset class
+                                                                                         (> 270 cycles). Then, in order to learn a generalized knee-onset early-
+                                                                                         prediction model, the stratified random sampling method [42] is em-
+                                                                                         ployed to randomly split 169 cells, with 80% in a training set and 20%
+                                                                                         in a test set. Equal ratios of early-knee-onset cells, normal-knee-onset
+                                                                                         cells, and late-knee-onset cells are preserved in the training and test set
+                                                                                         at each split. Furthermore, the stratified random sampling is repeated
+                                                                                         5 times in order to reduce the random effect of the train-test split. The
+                                                                                         final model performance is averaged over 5 train-test splits.
+
+                                                                                         4.2.3. Model selection
+                                                                                             By combining a statistical technique called boosting, the Gradient
+                                                                                         boosting regression trees (GBRT) aggregate a set of ‘‘weak’’ trees to
+Fig. 7. Capacity loss due to SEI growth on the normal particle surface and on the        form a single ‘‘strong’’ tree. During the training stage, new trees are
+crack surface.                                                                           generated sequentially to correct the prediction errors of previous trees.
+                                                                                         This is achieved by minimizing a predefined loss function (e.g., least
+                                                                                         squares), which quantifies the difference between predicted and actual
+early-prediction model for battery knee-onset prediction requires much                   target values. Moreover, the contribution of each tree to the ensemble
+less degradation data than that for battery knee prediction, which in                    model is weighted by the learning rate to prevent overfitting [43]. It has
+turn significantly reduces experimental time and its associated costs.                   been demonstrated that the GBRT model provided the best battery life-
+                                                                                         time early prediction performance among other models (i.e., elastic net,
+4.2.1. Feature engineering                                                               support vector regression, random forests, gaussian process regression,
+    To develop machine learning models for battery knee-onset early                      quantile regression forests, quantile regression gradient boosting) using
+prediction, input features that are extracted from early degradation                     this 6-feature set in previous work [44]. Since the knee-onset points
+data determine their prediction performance. It has been demonstrated                    identified using our proposed method have shown strong correlations
+by Severson et al. [23] that a 6-feature set (see Table 5) results in                    with the end of life (see Fig. 3), the GBRT model is selected for
+an early-prediction model with the best battery lifetime prediction                      knee-onset early prediction in this case study.
+performance among the 3 feature sets investigated (i.e., 1-feature set,
+6-feature set, and 9-feature set). Therefore, this 6-feature set is used                 4.2.4. Model performance evaluation
+here for training knee-onset early-prediction models and predicting                          Firstly, a sensitivity analysis of the model performance using dif-
+knee-onset points later on.                                                              ferent amounts of early degradation data (from the first 15 cycles to
+                                                                                         the first 35 cycles) is illustrated in Fig. 8. It can be seen that the
+4.2.2. Train-test split                                                                  prediction errors, measured by root-mean-square error (RMSE) and
+    Most of knee-onset points identified using the proposed method fall                  mean absolute percentage error (MAPE), significantly decrease with
+between 150 and 270 cycles in the TRI dataset. Thus, these 169 cells are                 increasing number of cycles. The lowest prediction errors are obtained
+first graded into three classes, i.e., early-knee-onset class (< 150 cycles),            using degradation data from the first 30 cycles, i.e., RMSE of 59.2
+
+                                                                                     9
+H. Zhang et al.                                                                                                                           Journal of Power Sources 608 (2024) 234619
+
+
+
+
+                                Fig. 8. Knee-onset prediction performance as a function of cycle number in the Toyota Research Institute dataset.
+
+
+
+
+Fig. 9. The relationship between predicted knee-onset (using the first 30 cycles data) and identified knee-onset (left), predicted knee-onset and end of life (right) for 169 cells in
+the Toyota Research Institute dataset.
+
+
+cycles and MAPE of 20.2%, after which the prediction errors do not de-                        and the end points, respectively, of a transition state of the degradation
+crease significantly. Thus, this model is capable of providing knee-onset                     process, where the approximated curvature fluctuates significantly. The
+prediction with high accuracy after only 30 cycles.                                           proposed capacity knee identification method was benchmarked to
+    To further investigate the outcomes of early knee-onset predic-                           the state-of-the-art knee identification method (i.e., the double Bacon–
+tion using the proposed identification method and its correlation with                        Watts model) on both synthetic degradation data and experimental
+the battery’s end of life, we illustrate the relationship between pre-                        degradation data of both LFP and NMC cells. In the results for the
+dicted knee-onset (using the first 30 cycles data) and identified knee-                       NMC cells, it was demonstrated that the state-of-the-art method failed
+onset, predicted knee-onset and end of life in Fig. 9. Once more there                        to identify the knee on the capacity fade curve while our proposed
+are strong linear correlations between predicted knee-onset and knee-                         capacity knee identification method successfully identified the knee.
+onset identified using our proposed method (𝜌 = 0.816), and between                           The results of the capacity knee identification on synthetic degrada-
+predicted knee-onset and end of life (𝜌 = 0.816).                                             tion data further validated the effectiveness of our proposed capacity
+    Moreover, compared to battery lifetime early prediction using the                         knee identification method. In contrast to capacity knee identification
+first 100 cycles data in Severson et al. [23], a reduction of 70 cycles in                    alone, the knee-onset can give a much earlier warning of accelerated
+battery knee-onset early prediction translates to a reduction of experi-                      degradation (an average of 323 cycles was found for the LFP cells and
+mental time by approximately 58 h, which in turn reduces experimental                         an average of 280 cycles for the NMC cells between the knee-onset and
+costs.                                                                                        the knee). Therefore, learning early-prediction models for battery knee-
+                                                                                              onset prediction can therefore significantly reduce experimental time
+5. Conclusions                                                                                and its associated costs. Furthermore, knee-onset prediction can have
+                                                                                              significant economic value in various industrial applications, such as
+    Throughout our literature review, for various chemistries and dif-                        battery grading, battery replacement planning, and battery repurposing
+ferent operating conditions, we find knees indicating the beginning of                        to second-life applications. The capacity knee-onsets and capacity knees
+accelerated degradation and possible safety issues to occur within a                          that are identified can also be used to systematically evaluate the
+window of 70%–95% of the initial nominal capacity in experimental                             knee-related prediction performance of both model-based methods and
+testing of commercial lithium-ion cells. To prepare for a successful                          data-driven methods.
+second-life battery market, concerns arising from possible knee oc-                               Our proposed capacity knee identification method has been vali-
+currence during first-life and second-life need to be addressed at the                        dated on battery degradation data from static cycling tests. For wider
+repurposing stage.                                                                            applications, the method needs to be evaluated on dynamic cycling test
+    As the first step to address such concerns, the root causes for the for-                  data, such as realistic driving profiles for electric vehicles. Then we may
+mation of battery capacity knees have been considered and a curvature-                        not have access to all the cells, but at least the cell with the lowest
+based method to identify capacity knee and capacity knee-onset from                           capacity should be accessible. Therefore it would be recommended to
+the capacity fade curve is proposed. By analysis of the approximated                          validate our proposed capacity knee identification method on capacity
+curvature in discrete time, a new degradation phenomenon was found.                           fade data that is real-time estimated in the field in a next step. The
+The capacity knee-onset and capacity knee were identified as the start                        synthetic dataset of NMC cells with cracking-induced knees has been
+
+                                                                                         10
+H. Zhang et al.                                                                                                                              Journal of Power Sources 608 (2024) 234619
+
+
+generated for validation purposes. The use of this synthetic dataset                             [11] M. Baumann, L. Wildfeuer, S. Rohr, M. Lienkamp, Parameter variations within
+has demonstrated the potential of further analysis into the interactions                              Li-Ion battery packs–Theoretical investigations and experimental quantification,
+                                                                                                      J. Energy Storage 18 (2018) 295–307.
+between degradation mechanisms and the evolution of degradation
+                                                                                                 [12] L. Ahmadi, S.B. Young, M. Fowler, R.A. Fraser, M.A. Achachlouei, A cascaded
+modes that are associated with knee occurrence. Besides, the knee                                     life cycle: reuse of electric vehicle lithium-ion battery packs in energy storage
+occurrence can also depend on other degradation pathways that may                                     systems, Int. J. Life Cycle Assess. 22 (1) (2017) 111–124.
+consist of state trajectories of multiple degradation modes. Hence, to                           [13] W. Diao, S. Saxena, B. Han, M. Pecht, Algorithm to determine the knee point
+enable online battery degradation diagnosis including knee detection,                                 on capacity fade curves of lithium-ion cells, Energies 12 (15) (2019) 2910.
+a larger synthetic dataset that covers a wide range of different knee                            [14] P. Fermín-Cueto, E. McTurk, M. Allerhand, E. Medina-Lopez, M.F. Anjos, J.
+                                                                                                      Sylvester, G. Dos Reis, Identification and machine learning prediction of knee-
+pathways is needed. Lastly, considering the close relationship between                                point and knee-onset in capacity degradation curves of lithium-ion cells, Energy
+capacity knees and resistance/impedance elbows, it would also be                                      AI 1 (2020) 100006.
+interesting to adapt the proposed capacity knee identification method                            [15] S. Greenbank, D. Howey, Automated feature extraction and selection for data-
+accordingly so that the internal resistance elbows can be identified and                              driven models of rapid battery capacity fade and end of life, IEEE Trans. Ind.
+predicted from internal resistance/impedance data.                                                    Inform. 18 (5) (2021) 2965–2973.
+                                                                                                 [16] S. Sohn, H.-E. Byun, J.H. Lee, Two-stage deep learning for online prediction
+                                                                                                      of knee-point in Li-ion battery capacity degradation, Appl. Energy 328 (2022)
+CRediT authorship contribution statement                                                              120204.
+                                                                                                 [17] N. Costa, D. Anseán, M. Dubarry, L. Sánchez, ICFormer: A deep learning model
+   Huang Zhang: Writing – original draft, Validation, Software,                                       for informed lithium-ion battery diagnosis and early knee detection, J. Power
+Methodology, Formal analysis, Data curation, Conceptualization. Faisal                                Sources 592 (2024) 233910.
+                                                                                                 [18] C.-C.M. Yeh, Y. Zhu, L. Ulanova, N. Begum, Y. Ding, H.A. Dau, D.F. Silva, A.
+Altaf: Writing – review & editing, Supervision, Resources, Project
+                                                                                                      Mueen, E. Keogh, Matrix profile I: all pairs similarity joins for time series: a
+administration, Funding acquisition. Torsten Wik: Writing – review                                    unifying view that includes motifs, discords and shapelets, in: 2016 IEEE 16th
+& editing, Supervision, Resources, Funding acquisition.                                               International Conference on Data Mining, ICDM, IEEE, 2016, pp. 1317–1322.
+                                                                                                 [19] S. Gharghabi, Y. Ding, C.-C.M. Yeh, K. Kamgar, L. Ulanova, E. Keogh, Matrix
+Declaration of competing interest                                                                     profile VIII: domain agnostic online semantic segmentation at superhuman
+                                                                                                      performance levels, in: 2017 IEEE International Conference on Data Mining,
+                                                                                                      ICDM, IEEE, 2017, pp. 117–126.
+    The authors declare that they have no known competing financial                              [20] V. Satopaa, J. Albrecht, D. Irwin, B. Raghavan, Finding a ‘‘kneedle’’ in a haystack:
+interests or personal relationships that could have appeared to influence                             Detecting knee points in system behavior, in: 2011 31st International Conference
+the work reported in this paper.                                                                      on Distributed Computing Systems Workshops, IEEE, 2011, pp. 166–171.
+                                                                                                 [21] T. Raj, A.A. Wang, C.W. Monroe, D.A. Howey, Investigation of path-
+Data availability                                                                                     dependent degradation in lithium-ion batteries, Batteries Supercaps 3 (12) (2020)
+                                                                                                      1377–1385.
+                                                                                                 [22] T.C. Bach, S.F. Schuster, E. Fleder, J. Müller, M.J. Brand, H. Lorrmann, A. Jossen,
+    Data will be made available on request.                                                           G. Sextl, Nonlinear aging of cylindrical lithium-ion cells linked to heterogeneous
+                                                                                                      compression, J. Energy Storage 5 (2016) 212–223.
+Acknowledgments                                                                                  [23] K.A. Severson, P.M. Attia, N. Jin, N. Perkins, B. Jiang, Z. Yang, M.H. Chen,
+                                                                                                      M. Aykol, P.K. Herring, D. Fraggedakis, et al., Data-driven prediction of battery
+                                                                                                      cycle life before capacity degradation, Nature Energy 4 (5) (2019) 383–391.
+   This work was supported by the Swedish Energy Agency (Grant
+                                                                                                 [24] A. Savitzky, M.J. Golay, Smoothing and differentiation of data by simplified least
+number 45540-1). In particular, the authors would like to thank Xixi                                  squares procedures, Anal. Chem. 36 (8) (1964) 1627–1639.
+Liu from the Department of Electrical Engineering, Chalmers University                           [25] M. Scheffer, J. Bascompte, W.A. Brock, V. Brovkin, S.R. Carpenter, V. Dakos, H.
+of Technology for the constructive discussions.                                                       Held, E.H. Van Nes, M. Rietkerk, G. Sugihara, Early-warning signals for critical
+                                                                                                      transitions, Nature 461 (7260) (2009) 53–59.
+                                                                                                 [26] R. Liu, P. Chen, K. Aihara, L. Chen, Identifying early-warning signals of critical
+References
+                                                                                                      transitions with strong noise by dynamical network markers, Sci. Rep. 5 (1)
+                                                                                                      (2015) 17501.
+ [1] R. Schmuch, R. Wagner, G. Hörpel, T. Placke, M. Winter, Performance and cost
+                                                                                                 [27] P.M. Attia, A. Grover, N. Jin, K.A. Severson, T.M. Markov, Y.-H. Liao, M.H.
+     of materials for lithium-based rechargeable automotive batteries, Nature Energy
+                                                                                                      Chen, B. Cheong, N. Perkins, Z. Yang, et al., Closed-loop optimization of fast-
+     3 (4) (2018) 267–278.
+                                                                                                      charging protocols for batteries with machine learning, Nature 578 (7795) (2020)
+ [2] E. Martinez-Laserna, E. Sarasketa-Zabala, I.V. Sarria, D.-I. Stroe, M. Swierczynski,
+                                                                                                      397–402.
+     A. Warnecke, J.-M. Timmermans, S. Goutam, N. Omar, P. Rodriguez, Technical
+                                                                                                 [28] M. Lewerenz, A. Warnecke, D.U. Sauer, Post-mortem analysis on LiFePO4 |
+     viability of battery second life: A study from the ageing perspective, IEEE Trans.
+                                                                                                      Graphite cells describing the evolution & composition of covering layer on anode
+     Ind. Appl. 54 (3) (2018) 2703–2713.
+                                                                                                      and their impact on cell performance, J. Power Sources 369 (2017) 122–132.
+ [3] M. Dubarry, C. Truchot, B.Y. Liaw, Synthesize battery degradation modes via a
+                                                                                                 [29] D. Anseán, M. Dubarry, A. Devie, B. Liaw, V. García, J. Viera, M. González,
+     diagnostic and prognostic model, J. Power Sources 219 (2012) 204–216.
+                                                                                                      Operando lithium plating quantification and early detection of a commercial
+ [4] W. He, N. Williard, M. Osterman, M. Pecht, Prognostics of lithium-ion batteries
+                                                                                                      LiFePO4 cell cycled under dynamic driving schedule, J. Power Sources 356
+     based on Dempster–Shafer theory and the Bayesian Monte Carlo method, J.
+                                                                                                      (2017) 36–46.
+     Power Sources 196 (23) (2011) 10314–10321.
+ [5] F. Yang, D. Wang, Y. Xing, K.-L. Tsui, Prognostics of Li (NiMnCo) O2-based                  [30] M. Lewerenz, A. Marongiu, A. Warnecke, D.U. Sauer, Differential voltage analysis
+     lithium-ion batteries using a novel battery degradation model, Microelectron.                    as a tool for analyzing inhomogeneous aging: A case study for LiFePO4| Graphite
+     Reliab. 70 (2017) 70–78.                                                                         cylindrical cells, J. Power Sources 368 (2017) 57–67.
+ [6] P.M. Attia, A. Bills, F.B. Planella, P. Dechent, G. Dos Reis, M. Dubarry, P. Gasper,        [31] Y. Preger, H.M. Barkholtz, A. Fresquez, D.L. Campbell, B.W. Juba, J. Romàn-
+     R. Gilchrist, S. Greenbank, D. Howey, et al., ‘‘Knees’’ in lithium-ion battery aging             Kustas, S.R. Ferreira, B. Chalamala, Degradation of commercial lithium-ion cells
+     trajectories, J. Electrochem. Soc. 169 (6) (2022) 060517.                                        as a function of chemistry and cycling conditions, J. Electrochem. Soc. 167 (12)
+ [7] E. Martinez-Laserna, E. Sarasketa-Zabala, D.-I. Stroe, M. Swierczynski, A.                       (2020) 120532.
+     Warnecke, J.-M. Timmermans, S. Goutam, P. Rodriguez, Evaluation of lithium-                 [32] X. Ma, J.E. Harlow, J. Li, L. Ma, D.S. Hall, S. Buteau, M. Genovese, M. Cormier, J.
+     ion battery second life performance and degradation, in: 2016 IEEE Energy                        Dahn, Hindering rollover failure of Li [Ni0. 5Mn0. 3Co0. 2] O2/graphite pouch
+     Conversion Congress and Exposition, ECCE, IEEE, 2016, pp. 1–7.                                   cells during long-term cycling, J. Electrochem. Soc. 166 (4) (2019) A711–A724.
+ [8] C. Zhang, Y. Wang, Y. Gao, F. Wang, B. Mu, W. Zhang, Accelerated fading                     [33] A. Pfrang, A. Kersys, A. Kriston, D. Sauer, C. Rahe, S. Käbitz, E. Figgemeier,
+     recognition for lithium-ion batteries with nickel-cobalt-manganese cathode using                 Long-term cycling induced jelly roll deformation in commercial 18650 cells, J.
+     quantile regression method, Appl. Energy 256 (2019) 113841.                                      Power Sources 392 (2018) 168–175.
+ [9] E. Wood, M. Alexander, T.H. Bradley, Investigation of battery end-of-life con-              [34] L.K. Willenberg, P. Dechent, G. Fuchs, D.U. Sauer, E. Figgemeier, High-precision
+     ditions for plug-in hybrid electric vehicles, J. Power Sources 196 (11) (2011)                   monitoring of volume change of commercial lithium-ion batteries by using strain
+     5147–5154.                                                                                       gauges, Sustainability 12 (2) (2020) 557.
+[10] M. Arrinda, M. Oyarbide, H. Macicior, E. Muxika, H. Popp, M. Jahn, B. Ganev,                [35] M. Doyle, J. Newman, The use of mathematical modeling in the design
+     I. Cendoya, Application dependent end-of-life threshold definition methodology                   of lithium/polymer battery systems, Electrochim. Acta 40 (13–14) (1995)
+     for batteries in electric vehicles, Batteries 7 (1) (2021) 12.                                   2191–2196.
+
+
+                                                                                            11
+H. Zhang et al.                                                                                                                          Journal of Power Sources 608 (2024) 234619
+
+
+[36] V. Sulzer, S.G. Marquis, R. Timms, M. Robinson, S.J. Chapman, Python battery            [40] M. Dubarry, D. Beck, Big data training data for artificial intelligence-based Li-ion
+     mathematical modelling (PyBaMM), J. Open Res. Softw. 9 (1) (2021).                           diagnosis and prognosis, J. Power Sources 479 (2020) 228806.
+[37] C.-H. Chen, F.B. Planella, K. O’regan, D. Gastol, W.D. Widanage, E. Kendrick,           [41] M. Dubarry, D. Beck, Analysis of synthetic voltage vs. capacity datasets for big
+     Development of experimental techniques for parameterization of multi-scale                   data Li-ion diagnosis and prognosis, Energies 14 (9) (2021) 2371.
+     lithium-ion battery models, J. Electrochem. Soc. 167 (8) (2020) 080534.                 [42] Z. Reitermanova, et al., Data splitting, in: WDS, Vol. 10, 2010, pp. 31–36.
+[38] S.E. O’Kane, W. Ai, G. Madabattula, D. Alonso-Alvarez, R. Timms, V. Sulzer, J.S.        [43] F. Yang, D. Wang, F. Xu, Z. Huang, K.-L. Tsui, Lifespan prediction of lithium-ion
+     Edge, B. Wu, G.J. Offer, M. Marinescu, Lithium-ion battery degradation: how to               batteries based on various extracted features and gradient boosting regression
+     model it, Phys. Chem. Chem. Phys. 24 (13) (2022) 7909–7922.                                  tree model, J. Power Sources 476 (2020) 228654.
+[39] J. Purewal, J. Wang, J. Graetz, S. Soukiazian, H. Tataria, M.W. Ver-                    [44] H. Zhang, F. Altaf, T. Wik, S. Gros, Comparative analysis of battery cycle life
+     brugge, Degradation of lithium ion batteries employing graphite negatives                    early prediction using machine learning pipeline, IFAC-PapersOnLine 56 (2)
+     and nickel–cobalt–manganese oxide+ spinel manganese oxide positives: Part                    (2023) 3757–3763.
+     2, chemical–mechanical degradation model, J. Power Sources 272 (2014)
+     1154–1161.
+
+
+
+
+                                                                                        12
+

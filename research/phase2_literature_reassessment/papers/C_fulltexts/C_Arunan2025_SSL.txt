@@ -1,0 +1,973 @@
+                                                          This manuscript has been accepted in IEEE Transactions on Industrial Informatics.
+                                                                           DOI: https://doi.org/10.1109/TII.2025.3613385
+                                                  © 2025 IEEE. Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses, in any current or future media, including
+                                            reprinting/republishing this material for advertising or promotional purposes, creating new collective works, for resale or redistribution to servers or lists, or reuse of any
+                                                                                                        copyrighted component of this work in other works.
+
+
+
+
+                                              Learning More with Less: A Generalizable,
+                                           Self-Supervised Framework for Privacy-Preserving
+                                              Capacity Estimation with EV Charging Data
+
+
+
+
+arXiv:2510.05172v2 [cs.LG] 17 Oct 2025
+                                                            Anushiya Arunan                                                  Yan Qin                                                 Xiaoli Li
+                                                Engineering Product Development        School of Automation   Information Systems Technology and Design
+                                         Singapore University of Technology and Design Chongqing University Singapore University of Technology and Design
+                                          Email: anushiya arunan@mymail.sutd.edu.sg Email: yan.qin@cqu.edu.cn        Email: xiaoli li@sutd.edu.sg
+
+                                                                U-Xuan Tan                                                  H. Vincent Poor                                               Chau Yuen
+                                                Engineering Product Development        Electrical and Computer Engineering Electrical and Electronics Engineering
+                                         Singapore University of Technology and Design         Princeton University         Nanyang Technological University
+                                                 Email: uxuan tan@sutd.edu.sg              Email: poor@princeton.edu          Email: chau.yuen@ntu.edu.sg
+
+
+
+
+                                            Abstract—Accurate battery capacity estimation is key to al-                              learning, contrastive learning, data privacy, electric vehicles.
+                                         leviating consumer concerns about battery performance and
+                                         reliability of electric vehicles (EVs). However, practical data                                                            I. I NTRODUCTION
+                                         limitations imposed by stringent privacy regulations and labeled
+                                         data shortages hamper the development of generalizable capacity                                Electric vehicles (EVs), powered by lithium-ion batteries,
+                                         estimation models that remain robust to real-world data distribu-                           possess the transformative potential to accelerate the decar-
+                                         tion shifts. While self-supervised learning can leverage unlabeled                          bonization of the transportation sector [1]. However, consumer
+                                         data, existing techniques are not particularly designed to learn                            concerns, such as uncertainties about driving range, long
+                                         effectively from challenging field data—let alone from privacy-                             charging times, and battery safety, present significant barriers
+                                         friendly data, which are often less feature-rich and noisier. In this
+                                         work, we propose a first-of-its-kind capacity estimation model                              to the widespread adoption of EVs over their fossil fuel-
+                                         based on self-supervised pre-training, developed on a large-                                based counterparts [2]. A key to alleviating these concerns is
+                                         scale dataset of privacy-friendly charging data snippets from                               the availability of accurate battery capacity estimation—which
+                                         real-world EV operations. Our pre-training framework, snippet                               serves as the foundation for making informed and optimal
+                                         similarity-weighted masked input reconstruction, is designed to                             decisions about journey planning and battery maintenance [3].
+                                         learn rich, generalizable representations even from less feature-
+                                         rich and fragmented privacy-friendly data. Our key innovation                                  Batteries gradually lose capacity over time, with the de-
+                                         lies in harnessing contrastive learning to first capture high-                              terioration influenced by a combination of factors such as
+                                         level similarities among fragmented snippets that otherwise lack                            the intensity of charge-discharge cycles [4] and operating
+                                         meaningful context. With our snippet-wise contrastive learning                              environments [5]. As a result, accurately estimating battery
+                                         and subsequent similarity-weighted masked reconstruction, we                                capacity is highly challenging, especially under real-world
+                                         are able to learn rich representations of both granular charging
+                                         patterns within individual snippets and high-level associative                              conditions outside of controlled laboratory settings. Machine
+                                         relationships across different snippets. Bolstered by this rich rep-                        learning—especially deep learning (DL)—provides a flexible
+                                         resentation learning, our model consistently outperforms state-of-                          approach for capturing the complex dependencies affecting
+                                         the-art baselines, achieving 31.9% lower test error than the best-                          capacity degradation. By leveraging data mining and pat-
+                                         performing benchmark, even under challenging domain-shifted                                 tern analysis, DL models can bypass the need for detailed
+                                         settings affected by both manufacturer and age-induced distri-
+                                         bution shifts. Source code is available at https://github.com/en-                           mechanistic modeling to learn generalizable features [6], [7].
+                                         research/GenEVBattery.                                                                      In recent years, DL techniques have become indispensable
+                                            Index Terms—Battery capacity estimation, self-supervised                                 for the battery research community, driven by the growth in
+benchmark battery datasets and architectural advancements in          contrastive learning has proven capable of extracting discrim-
+time series modeling [8], [9].                                        inative features, even from noisy or incomplete data [31]. By
+    However, training data from actual EV operations is often         learning effectively from unlabeled data, the pre-trained model
+scarce in practice due to two critical constraints. First, as regu-   can be fine-tuned with a small amount of labeled data to
+latory scrutiny over responsible artificial intelligence increases,   adapt to any downstream task, thus reducing the massive data
+data security and privacy laws are poised to become more              labeling efforts needed for fully supervised models.
+stringent globally [10]–[12]. From the seminal General Data              Battery health prognostics stands to benefit greatly from
+Protection Regulation to the newly proposed EU Artificial             self-supervised learning, especially given the costly domain
+Intelligence Act [13], regulations increasingly mandate user          expertise needed for data labeling. However, the few nascent
+consent and minimization of collected data—which limit EV             efforts [32]–[34] to leverage self-supervised learning typically
+manufacturers’ ability to curate rich training data from real-        draw from computer vision techniques for images, and thus are
+world driving operations [14]. Second, even when battery              not particularly well-suited to learn from time series battery
+data is available, parsing complex sensor readings and anno-          measurements. For instance, some studies employ computa-
+tating them with ground-truth capacity labels is a resource-          tionally intensive transformations to convert time series battery
+intensive endeavor requiring specialized domain expertise [3].        data to images [32] and adopt parameter-heavy architectures
+With recent advancements like fast-charging batteries further         like vision transformers [32], [33] for the self-supervised
+complicating the analysis of battery behaviors [15] and raising       representation learning. However, these approaches may not
+data parsing costs, it is often only economically feasible to         adequately capture important temporal dependencies in the
+label a small portion of collected data [16]. In these data-          battery data, resulting in a higher labeled data demand of
+scarce environments, a continued reliance on labeled data             at least 25-30% for a good fine-tuning performance down-
+alone for model training will result in overfitted models of          stream [9], [32], [33]. Furthermore, self-supervised learning
+little practical applicability, struggling to generalize beyond       techniques have hardly been investigated on data from actual
+the limited number of training examples [9], [17], [18].              EV operations [9], [32]–[36]—let alone on more challenging
+    Therefore, we posit that, for capacity estimation models          privacy-friendly data. Hence, their generalization under prac-
+to be effective under real-world data constraints, they must          tical data constraints and real-world data distribution shifts are
+possess the following essential capabilities:                         unknown.
+ 1. Achieve accurate capacity estimation even with privacy-              In this work, we propose a first-of-its-kind capacity estima-
+    friendly field data, which have significantly lower feature-      tion model based on the self-supervised pre-training paradigm,
+    richness and contextual information [3] than laboratory-          developed and tested on a large-scale dataset of nearly 200,000
+    generated experimental data;                                      privacy-friendly, short-sequenced snippets of battery monitor-
+ 2. Leverage the untapped potential of unlabeled data, which          ing data from real-world EV charging operations (Fig. 1). Our
+    is more readily available and offers a greater diversity of       pre-training framework, snippet similarity-weighted masked
+    training examples than small labeled datasets.                    input reconstruction, is designed to learn rich, generalizable
+                                                                      representations even from less feature-rich and fragmented
+   However, the few battery studies from actual EV operations         privacy-friendly data. As a self-supervised technique, the basic
+tend to fall short of these requirements. Typically focused           principle of masked input reconstruction is to reconstruct the
+on public transportation fleets rather than private vehicles,         masked-out portions of the data as accurately as possible to the
+studies often rely on detailed, privacy-sensitive operational         original, thereby inducing the learning of meaningful represen-
+data such as on-road driving behaviors and mileage traveled           tations in the original data without any target labels. However,
+[19]–[23] to supplement battery data and achieve accurate bat-        the higher noise-to-signal ratio in fragmented snippets of
+tery health prognostics. With growing data-privacy regulations,       partial charging data can significantly challenge the masked
+the granular operational data needed by existing prognostics          reconstruction process and hamper effective representation
+models [19]–[23] is less likely to be available, especially from      learning.
+private EV owners. Moreover, the dependence on supervised                A key innovation of our pre-training design is thus lever-
+learning and labeled data [19]–[27] imposes a practical limit         aging contrastive learning to learn meaningful similarity as-
+on the generalization capabilities of these models, as it is not      sociations among the fragmented snippets, which enables the
+sustainable to pre-emptively create extensive, labeled training       model to focus on similarities between the masked and original
+datasets for every possible test condition.                           snippets, while suppressing noise from dissimilar snippets
+   A promising paradigm for learning generalizable models             during the reconstruction process. Although some state-of-the-
+under labeled data scarcity is self-supervised pre-training fol-      art time series pre-training frameworks [37], [38] also utilize
+lowed by supervised fine-tuning [28]. Known for its success in        contrastive learning, their computer vision-centric approaches
+computer vision, self-supervised pre-training involves solving        (e.g., hierarchical contrastive learning or reliance on multiple
+auxiliary tasks—such as reconstructing masked out patches             masked augmentations) often introduce additional noise and
+in images [29] or contrastive learning of image similarities          complexity, which impedes optimal representation learning
+[30]—to learn generalized representations and patterns of the         from already challenging field datasets. In comparison, we
+input data, without requiring any target labels. In particular,       harness contrastive learning in a simple but impactful man-
+                                 Extensively evaluate model                                                                    TABLE I
+                                 generalizability on realistic
+                                 out-of-distribution scenarios                                                 OVERVIEW OF GENERATED DATA DISTRIBUTIONS
+
+                                     No known work                                                       EV          Distribution       Accumulated mileage     Short-form
+                                                                                                     manufacturer       name                    m
+
+                                                                   Develop effective label-free,                    Distribution 1        m ≤ 100,000 km        EVM1D1
+     Utilize less feature-rich                                                                         EVM1         Distribution 2   100,000 < m ≤ 150,000 km   EVM1D2
+                                                        No known   self-supervised learning
+     privacy-friendly data
+                                                          work     techniques for challenging                       Distribution 3        m > 150,000 km        EVM1D3
+                                     Refs.
+                                                                   privacy-friendly field data
+                                   [25], [41]
+
+                                      Refs. [4], [5],
+                                       [19]-[27],                      Our work
+                                          [36]                                                               II. DATA DISTRIBUTION GENERATION FOR
+                                    Utilize field EV data                                                     OUT- OF - DISTRIBUTION PROBLEM DESIGN
+
+Fig. 1. Contribution of our work to the domain of practical EV battery                                To evaluate our capacity estimation model, we design a suite
+capacity estimation using field data.
+                                                                                                   of challenging problem settings investigating diverse aspects
+                                                                                                   of generalizability, including adaptability to age-induced data
+ner to first learn high-level similarity associations among                                        distribution shifts, cross-manufacturer transferability, and ro-
+fragmented snippets that otherwise lack meaningful context.                                        bustness to novel test patterns. This section establishes the data
+With our snippet-wise contrastive learning and subsequent                                          distributions for the out-of-distribution problem settings.
+similarity-weighted masked reconstruction, we can learn rich                                          For the problem design, we leverage a newly released
+representations of both granular charging patterns within indi-                                    dataset of EV charging records, collected over several years
+vidual snippets and high-level associative relationships across                                    from charging stations [41]. This is the largest publicly-
+different snippets.                                                                                available field data from EVs normally operating in real-world
+                                                                                                   conditions. Notably, this dataset is fundamentally privacy-
+   Our model’s generalizability is evaluated on a suite of
+                                                                                                   friendly as it contains only charging records. Battery charging
+diverse and challenging capacity estimation scenarios en-
+                                                                                                   data, unlike discharging data, cannot capture sensitive infor-
+countered by EV users and manufacturers—(i) adaptability
+                                                                                                   mation on day-to-day operational behaviours [42]. Moreover,
+to age-induced data distribution shifts across EV lifetime,
+                                                                                                   as an additional privacy-preserving measure, the raw data is
+(ii) transferability across different EV manufacturers, and
+                                                                                                   already pre-segmented, and only shorter, fragmented snippets
+(iii) robustness to novel test patterns unseen in the limited
+                                                                                                   of partial charging data are provided. While this does not
+labeled fine-tuning data. Bolstered by the rich representations
+                                                                                                   introduce systematic biases or diminish the dataset’s utility
+learnt by the pre-trained encoder, we consistently outperform
+                                                                                                   [41], the limited privacy-friendly features being spread across
+existing state-of-the-art baselines [37]–[40] across these out-
+                                                                                                   fragmented snippets makes the dataset highly challenging
+of-distribution scenarios, despite using only 10% labeled fine-
+                                                                                                   to work with. Nonetheless, the dataset serves as a realistic
+tuning data.
+                                                                                                   standard for the minimalistic data likely to be available under
+   Overall, the key contributions of this work are:                                                stricter privacy regulations.
+  1. As the first generalizable capacity estimation framework                                         The dataset contains EVs from three manufacturers, aliased
+     developed on field EV data, our work fills an important                                       as Manufacturers 1, 2, and 3. Within each manufacturer,
+     gap in existing literature: how to learn effectively from the                                 the charging data snippets are provided at the vehicle-level.
+     less feature-rich and privacy-friendly partial charging data                                  Each charging snippet only contains basic battery monitoring
+     to still yield robust and generalizable capacity estimation.                                  variables such as charging current, voltage, temperature, and
+  2. Our model’s generalizability extends to highly domain-                                        state of charge, and is stored as a multivariate time series
+     shifted settings affected by both manufacturer and age-                                       sequence. Every charging snippet has a mileage label indicat-
+     induced distribution shifts, where it still achieves 31.9%                                    ing the EV’s accumulated mileage at the time of charging.
+     lower test error than the best-performing benchmark.                                          However, only a subset of the snippets have capacity labels
+  3. Departing from existing studies, our work demonstrates                                        due to the complexity of the charging processes and the
+     that developing a generalizable model does not always                                         resource-intensive involvement of EV manufacturer engineers
+     require extensive labeled data. This marks a pivotal step                                     for capacity labeling [41].
+     towards practically implementable capacity estimation                                            We primarily use data from Manufacturer 1, which contains
+     models, amidst the dual challenges of privacy and labeled                                     the largest number of charging snippets among the three
+     data constraints.                                                                             manufacturers. We partition the charging snippets based on
+                                                                                                   their mileage labels, to generate three meaningfully different
+   The rest of the paper is organized as follows. Section II es-                                   data distributions, labeled 1 to 3, demarcated by the mileage
+tablishes the data distributions for realistic out-of-distribution                                 thresholds shown in Table I. Fig. 2a captures the inverse
+problem settings. Section III presents the proposed capacity                                       relationship between the mileage and capacity labels of the
+estimation framework, with a focus on the self-supervised pre-                                     charging snippets, and particularly, the capacity degradation
+training scheme. Section IV discusses the experimental results.                                    that occurs as EVs progress from Distributions 1 to 3 over
+Section V concludes and highlights future directions.                                              their operational lifetime. This capacity degradation results in
+                                               Distribution 1                  Distribution 2             Distribution 3        generalizable representations that can be reused across various
+                               44                                                                                               downstream capacity estimation scenarios.
+                               42                                                                                                  Fig. 3b details our proposed pre-training methodology:
+
+       Capacity (Ah)
+                               40                                                                                               snippet similarity-weighted masked input reconstruction. The
+                                                                                                                                basic principle of masked input reconstruction is to reconstruct
+                               38
+                                                                                                                                the masked-out portions of time series as accurately as possible
+                               36
+                                                                                                                                to the original, thereby inducing the learning of meaningful
+                                               m 100,000 km               100,000 < m 150,000 km          m > 150,000 km
+                               34                                                                                               representations in the original time series. However, the higher
+                                 0                50,000             100,000        150,000                 200,000             noise-to-signal ratio in fragmented snippets containing only
+                                                                  Accumulated mileage m (km)
+                                                                                 (a)                                            partial charging data can significantly challenge the masked
+                                                                                                                                reconstruction process and hamper effective representation
+                                     7000                                                          m 100,000 km                 learning. Addressing this critical gap, our pre-training method
+                                                 Distribution 1                                    100,000 < m 150,000 km
+                                                                       Distribution 2              m > 150,000 km               is specially designed to learn generalizable representations
+                                     6000
+
+
+
+
+       Number of charging snippets
+                                                                                                                                of broad practical applicability, even from less feature-rich
+                                     5000
+                                                                                  Distribution 3                                and fragmented, privacy-friendly data. The key innovation
+                                     4000                                                                                       lies in the snippet-wise similarity learning, which provides
+                                                                                                                                meaningful context to fragmented snippets. The learnt sim-
+                                     3000
+                                                                                                                                ilarities are then leveraged for a similarity-weighted, point-
+                                     2000                                                                                       wise reconstruction of the masked series, which significantly
+                                     1000
+                                                                                                                                enhances the masked reconstruction process and, thus, the
+                                                                                                                                representation learning needed for the subsequent fine-tuning
+                                        0 46       44             42          40        38           36          34        32   phase.
+                                                                              Capacity (Ah)
+                                                                                (b)                                             A. Self-supervised pre-training: Snippet similarity-weighted
+Fig. 2. Visualization of the three generated data distributions. Considering                                                    masked input reconstruction
+the charging snippets across all EVs, (a) illustrates the inverse relationship                                                      The pre-training method comprises of four sub-components,
+between the mileage and capacity labels of the charging snippets, particularly,
+highlighting the capacity degradation that occurs through distributions 1 to 3.                                                 illustrated step-by-step in Fig. 3b. We elaborate them below.
+(b) This capacity degradation results in the notable domain shifts.                                                                 1) Point-wise representation learning: Given N charging
+                                                                                                                                                N
+                                                                                                                                snippets {xi }i=1 , we first generate a masked snippet x∗i ∈
+                                                                                                                                   T ×C
+the notable domain shifts observed among the three generated                                                                    R        for each original snippet xi ∈ RT ×C by randomly
+distributions (Fig. 2b), which facilitates a rigorous evaluation                                                                masking a portion of the T time points for each battery moni-
+of our capacity estimation model’s generalizability to age-                                                                     toring variable in C. We adopt the well-established geometric
+induced data distribution shifts occurring over EV lifetime.                                                                    masking strategy [39] to randomly mask selected temporal
+   Aside from Manufacturer 1, we also strategically leverage                                                                    subsequences with zeros.
+the smaller dataset from Manufacturer 3 to evaluate additional                                                                      The original and masked snippets are fed into encoder f (·)
+aspects of model generalizability, such as transferability across                                                               to learn high-dimensional representations of each time point,
+different EV manufacturers. To maintain brevity, we discuss                                                                     which we henceforth term as point-wise representations:
+                                                                                                                                          N
+                                                                                                                                                            !     N
+this problem design together with the experimental results in                                                                             [
+                                                                                                                                                        ∗
+                                                                                                                                                                 [
+later sections.                                                                                                                       f      ({xi } ∪ {xi }) =       ({pi } ∪ {p∗i }) = P  (1)
+                                                                                                                                        i=1                     i=1
+    III. P ROPOSED CAPACITY ESTIMATION FRAMEWORK
+                                                                                                                                where, pi ∈ RT ×df and p∗i ∈ RT ×df are point-wise
+   We detail the capacity estimation framework, with a focus                                                                    representations learnt from the original and masked snippets,
+on the proposed self-supervised pre-training methodology. Fig.                                                                  respectively, and df is the encoder’s hidden dimension. Our
+3a provides an overview of the “pre-training–fine-tuning”                                                                       proposed encoder is a lightweight yet efficient, single-layer
+pipeline for developing a practically effective capacity estima-                                                                bidirectional LSTM block, designed to learn important sequen-
+tion model with broad generalization capabilities, even when                                                                    tial dependencies among time points in both directions.
+labeled training data is limited. During pre-training, a well-                                                                     2) Snippet-wise representation learning: Next, to explicitly
+designed self-supervised learning task (in our case, masked                                                                     associate the point-wise representations with their respective
+input reconstruction) trains the encoder to learn generalizable                                                                 snippets for the downstream similarity learning, a projector
+representations from the more readily available unlabeled                                                                       h(·) maps and condenses the point-wise representations into
+charging snippets. During fine-tuning, a capacity estimation                                                                    snippet-wise representations:
+model for different target distributions can then be quickly                                                                               N
+                                                                                                                                                             !     N
+trained by fine-tuning the pre-trained encoder on a small set                                                                          h
+                                                                                                                                           [
+                                                                                                                                                          ∗
+                                                                                                                                              ({pi } ∪ {pi }) =
+                                                                                                                                                                  [
+                                                                                                                                                                     ({si } ∪ {s∗i }) = S (2)
+of labeled snippets from the target distribution. The success                                                                             i=1                     i=1
+of this transfer learning, especially with limited labeled data,
+hinges on the pre-training framework’s ability to learn rich,                                                                    where, si ∈ R1×dh and s∗i ∈ R1×dh are the snippet-
+                          1 Self-supervised pre-training with unlabeled data
+                              to learn generalizable data representations
+                                                                                                                                                           Minimize error during training
+
+                             EV                                                                   Original snippets                 Masked snippets                   Encoder          Decoder                      Reconstructed
+                                                                                                                                                                                                                       snippets
+
+
+
+
+                                                                                       Features                         Features
+                          EV fleet           Historical, privacy-friendly                                                                                                                               Features
+                                              charging data snippets                              Time                             Time                                                                            Time
+                                                                                                                                                                               Transfer generalizable
+                                                                                                                                                                                pre-trained encoder
+                                     2 Supervised fine-tuning with few labeled data
+                                        on different real-world data distributions                                                                              Minimize error during training
+                                                                                                                                                                                      Regression
+                                       EV                                                                                                                             Encoder           head                Predicted
+                                                                                                   Original snippets               Capacity labels
+                                                                                                                                                                                                            capacity
+
+
+                                     Few EVs                                                          Features
+                                                                                                                 Time
+                                                       Different target data distributions
+                                                               across EV lifetime                                                                                                       Utilize fine-tuned model
+                                                                                                                                                                                        from target distribution
+
+                                                               3 Online capacity estimation                                                                                           Regression
+                                                                    during field operations
+                              Original time                                                                                                                           Encoder           head
+                              series point                                                                                         Any snippet from                                                         Predicted test
+                                                                                  EV                                                 test battery                                                          battery capacity
+                              Masked time
+
+                                                                                                                                     Features
+                              series point
+                             Reconstructed
+                             time series point                                                                                                   Time
+                                                                                Test snippet from any distribution
+
+                                                                                                                                   (a)
+
+
+
+                          In-depth look at proposed self-supervised pre-training framework in 1 :
+                          Snippet similarity-weighted masked input reconstruction
+                          to learn rich, generalizable representations from challenging and fragmented privacy-friendly data
+
+                                                           Learn granular temporal patterns within each snippet by minimizing reconstruction loss                                           Point-wise rep. (original snippet)
+                                                            Original snippets           Masked snippets                                                 Reconstructed snippets              Point-wise rep. (masked snippet)
+                                                                                                                                                                                            Reconstructed point-wise rep.
+                                                                                                                                                                                             Snippet-wise rep. of different
+                                                                                                                                                                                             snippets
+
+                                            Features
+                                                                                                                                                                                             High similarity weight
+                                                                                                                                                                                             Low similarity weight
+                                                        Time
+                                                                                   Encoder                              Decoder
+
+                                                       i                                                                                                                iv      Leverage learnt similarities
+                        Learn point-wise                                                                                                                                        for a more discriminative
+                         representations
+                                                             …                               …                          …                        +         +     …                 similarity-weighted
+                                                                                                                                                                                 point-wise reconstruction
+
+                                                                                   Projector                               Maximize distance
+                                                                                                                         between dissimilar pairs
+                                                       ii                                                                                                                iii
+                                                                                                                                                                                Learn meaningful similarity
+                       Learn corresponding                                                        …
+                          snippet-wise
+                                                             …                                                          …                                         …               associations between
+                                                                                                                                                                                 privacy-friendly snippets
+                         representations                                                                                                                                       by minimizing contrastive loss
+                                                                                                                                                      Minimize distance
+                                                                                                                                                     between similar pairs
+
+                                                                                                                                   (b)
+Fig. 3. (a) An overview of “pre-training–fine-tuning” pipeline for developing a generalizable capacity estimation model, followed by (b) an in-depth look at
+our proposed pre-training framework. The key innovation is learning meaningful similarities among the fragmented snippets, which enables the model to focus
+on similarities between the masked and original snippets, while suppressing noise from dissimilar snippets for the masked reconstruction process. With the
+snippet-wise contrastive learning and subsequent similarity-weighted masked reconstruction, the model captures rich representations of both granular charging
+patterns within individual snippets and high-level associative relationships across different snippets, significantly enhancing downstream capacity estimation.
+
+wise representations learnt from the original and masked                                                                                        the model needs to recognize that both representations origi-
+snippets, respectively, dh is the projector’s hidden dimension.                                                                                 nate from the same underlying snippet, and thus their snippet-
+The projector is a MLP layer that aggregates the point-wise                                                                                     wise representations si and s∗i should have high similarity. This
+representations from all T time points in the snippet sequence                                                                                  is especially crucial when dealing with privacy-friendly, short-
+into a single snippet-wise representation.                                                                                                      sequence snippets, as their relatively higher noise-to-signal ra-
+   3) Snippet-wise similarity learning: Learning snippet-wise                                                                                   tio can significantly challenge the reconstruction process and,
+similarities is the key feature of our model design for learn-                                                                                  ultimately, hamper the learning of meaningful representations
+ing effectively from fragmented and short-sequenced privacy-                                                                                    from input snippets.
+friendly snippets. To successfully reconstruct the original                                                                                        We leverage contrastive learning [30] and propose a new
+point-wise representation pi from its masked counterpart p∗i ,                                                                                  contrastive loss formulation to learn the pair-wise similarities
+and dissimilarities among the snippet-wise representations in                                         TABLE II
+S. The contrastive loss Lc is formalized as:                                  I MPACT OF PRE - TRAINING DATA ON CAPACITY ESTIMATION
+                                                        !                     PERFORMANCE , QUANTIFIED BY RMSE ( LOWER IS BETTER )
+           X X                     exp (Ds,s′ /τ )
+   Lc = −               log P                             (3)                                      Fine-tuning/ Test           Pre-training data
+                              s′′ ∈S\{s} exp (Ds,s /τ )
+                                                   ′′                          Setting
+            s∈S    ′  +
+                   s ∈S                                                                            data distribution
+                                                                                                                          EVM1D1          EVM1D̃1
+where, s′ ∈ S + ⊂ S are representations similar to s, D·,· is a             In-distribution           EVM1D1              1.852±0.339     1.723±0.308
+pairwise cosine similarity value in the similarity matrix D, and          Out-of-distribution
+                                                                                                      EVM1D2              2.627±2.504     1.388±0.252
+τ is the temperature parameter controlling the contrast between                                       EVM1D3              1.469±0.310     1.296±0.187
+
+similar and dissimilar pairs in the softmax normalization
+above.                                                                 B. Supervised fine-tuning for capacity estimation
+   Minimizing Lc requires decreasing the cosine distance                  Once pre-training is complete, the pre-trained encoder f (·)
+between similar snippet representations from the original snip-        can be leveraged for the capacity estimation task by combining
+pets and their masked counterparts, while increasing the dis-          it with a new regression head g(·) to estimate capacity yi of
+tance between dissimilar snippet representations. This guides          charging snippet xi . The regression head is just a single fully
+the projector h(.) to learn a more discriminative snippet-wise         connected linear layer, ensuring that accurate capacity esti-
+representation space.                                                  mation primarily depends on the effectiveness of the encoder.
+   4) Snippet similarity-weighted point-wise reconstruction:           During supervised fine-tuning, only a small amount of labeled
+With the learnt snippet-wise similarities, we can now perform                         N̄
+                                                                       data {xi , yi }i=1 with N̄ ≪ N is needed to train the capacity
+a better reconstruction of the i-th snippet back in the point-         estimation model g(f (·)), supervised by the minimization of
+wise representation space P by taking similarity-weighted              the squared error:
+aggregation of the point-wise representations:
+                                                                                                                N̄
+                                                                                                                X                  2
+                  X                exp (Dsi ,s′ /τ )                                            Lf inetune =           ∥yi − ybi ∥2                     (8)
+        p
+        bi =                 P                              p′   (4)                                             i=1
+                              s′′ ∈S\{si } exp (Dsi ,s /τ )
+                                                      ′′
+               s′ ∈S\{si }
+                                                                              IV. E XPERIMENTAL RESULTS AND DISCUSSION
+where, p′ is a point-wise representation, s′ is its snippet-wise          The model’s generalizability is evaluated under three highly
+representation, and pb i ∈ RT ×df is the reconstructed point-          challenging out-of-distribution scenarios: (i) adaptability to
+wise representation for the original snippet xi ∈ RT ×C .              age-induced distribution shifts across EV lifetime, (ii) transfer-
+  Unlike a simple averaging-based reconstruction that assigns          ability across different EV manufacturers, and (iii) robustness
+equal weights to all representations, including unrelated ones,        to novel test patterns unseen in the limited labeled fine-
+our similarity-weighted approach enables the model to focus            tuning data. This section discusses the capacity estimation
+on similarity associations between the masked and original             performance and provides insights into the model components
+snippet pairs, or even other relevant snippets, while suppress-        driving the performance.
+ing the noise from dissimilar snippets. Lastly, the reconstructed
+                                  N                                    A. Overview of unlabeled pre-training data and labeled fine-
+point-wise representations {b pi }i=1 are fed into the decoder
+d(·) to obtain the reconstructed snippets:                             tuning data
+                         N
+                                  
+                                        N
+                                                                         Each charging snippet contains basic battery monitoring
+                    {b
+                     xi }i=1 = d {b pi }i=1                   (5)
+                                                                       variables, such as charging current, voltage, temperature, and
+       bi ∈ RT ×C is the reconstruction of the original snippet
+where, x                                                               is stored as a multivariate time series of length 128. Recalling
+xi ∈ RT ×C . The decoder is just a simple MLP layer. The               that only a subset of charging snippets in the dataset have
+reconstruction loss Lr is formalized as:                               capacity labels, we briefly highlight the differences between
+                                N
+                                                                       the labeled and unlabeled snippets in the last two subplots
+                                X               2                      of Fig. 4, focusing on the charging current patterns. Labeled
+                       Lr =           ∥xi − x
+                                            bi ∥2                (6)
+                                                                       snippets mainly consist of slow-charging patterns, while unla-
+                                i=1
+                                                                       beled snippets contain a significantly diverse range of charging
+   The overall training loss to be minimized for our pre-
+                                                                       patterns, including higher fast-charging currents.
+training task of similarity-weighted masked reconstruction is             For self-supervised pre-training, we only use charging snip-
+thus                                                                   pets from Distribution 1. Within Distribution 1, we gen-
+                    Lpretrain = Lr + βLc                  (7)
+                                                                       erate two variants for the pre-training data: (i) EVM1D̃1,
+where, the weight β is automatically tuned based on the                which contains all charging snippets, including unlabeled fast-
+homoscedastic uncertainty of each loss term [43]. Incor-               charging snippets, and (ii) EVM1D1, which only contains
+porating both losses enables our encoder to capture richer             the initially labeled slow-charging snippets, now used without
+data representations—the reconstruction loss aids in learning          labels. These variants enable us to assess how harnessing
+fine-grained temporal patterns within each snippet, while the          the more diverse unlabeled snippets impacts the downstream
+contrastive loss promotes learning of high-level associative           capacity estimation performance. For the supervised fine-
+relationships among the fragmented snippets.                           tuning following pre-training, labeled snippets from any of
+                                                            TABLE III
+         C OMPARISON OF CAPACITY ESTIMATION PERFORMANCE AGAINST STATE - OF - THE - ART PRE - TRAINING FRAMEWORKS FOR TIME SERIES
+
+ Pre-training   Fine-tuning/             Ours               PITS [37] (ICLR’24)        SimMTM [38] (NeurIPS’23)    TST [39] (SIGKDD’21)        TSLANet [40] (ICML’24)
+     data       Test data
+                               RMSE          MAPE (%)      RMSE          MAPE (%)      RMSE          MAPE (%)      RMSE          MAPE (%)      RMSE          MAPE (%)
+                 EVM1D1        1.396±0.171   2.640±0.421   1.555±0.251   2.992±0.547   1.560±0.386   3.051±0.855   3.992±2.326   7.698±4.402   2.049±1.643   4.181±3.772
+  EVM1D̃1        EVM1D2        1.278±0.175   2.505±0.389   1.452±0.255   2.710±0.456   1.848±0.659   3.994±1.668   2.553±0.658   5.130±1.351   1.989±0.921   4.119±2.100
+                 EVM1D3        1.156±0.085   2.381±0.154   1.567±0.592   2.818±0.580   1.682±0.645   3.655±1.572   3.297±0.934   6.973±2.106   2.524±1.965   4.918±4.907
+
+
+                                                           TABLE IV
+C OMPARISON OF CAPACITY ESTIMATION PERFORMANCE WHEN PRE - TRAINING AND FINE - TUNING ON DIFFERENT MANUFACTURERS (EVM3 → EVM1)
+
+ Pre-training   Fine-tuning/             Ours               PITS [37] (ICLR’24)        SimMTM [38] (NeurIPS’23)    TST [39] (SIGKDD’21)        TSLANet [40] (ICML’24)
+     data       Test data
+                               RMSE          MAPE (%)      RMSE          MAPE (%)      RMSE          MAPE (%)      RMSE          MAPE (%)      RMSE          MAPE (%)
+                 EVM1D1        1.402±0.239   2.671±0.561   1.566±0.286   3.036±0.620   1.613±0.615   3.217±1.433   2.899±0.975   5.455±1.849   3.663±2.177   8.001±5.471
+   EVM3D̃1       EVM1D2        1.344±0.173   2.625±0.355   1.365±0.165   2.613±0.325   1.903±0.352   4.084±0.970   2.788±0.500   5.477±1.294   4.185±1.590   8.929±3.600
+                 EVM1D3        1.206±0.159   2.429±0.293   1.772±0.833   3.124±0.824   1.651±0.518   3.557±1.339   2.906±0.649   5.954±1.210   3.261±1.540   7.247±3.945
+
+
+
+
+the Distributions 1 through 3 can be used to train a capacity                          against several state-of-the-art time series pre-training frame-
+estimation model optimized for the target distribution. How-                           works [37]–[40]. These frameworks have demonstrated strong
+ever, unlike prior studies [9], [32], [33], we utilize only 10%                        performance across a wide range of domains, including health-
+labeled data to better reflect the real-world scarcity of labeled                      care and IoT. However, they have only been validated on
+data. Details are provided in Table A.1.                                               benchmark datasets, and their ability to generalize to more
+B. Impact of harnessing unlabeled data                                                 challenging, privacy-friendly field data under realistic data
+                                                                                       distribution shifts has yet to be investigated. In addition to
+   The pre-trained encoder’s generalizability depends on both
+                                                                                       RMSE, we also report the mean absolute percentage error
+the pre-training data quality and the effectiveness of the pre-
+                                                                                       (MAPE) as a scale-independent measure of relative error.
+training framework’s design. Before delving into the design,
+we examine the impact of harnessing the unlabeled data for
+                                                                                          All models are pre-trained only on EVM1D̃1, and then fine-
+pre-training. We consider two versions of pre-training data,
+                                                                                       tuned on different target distributions (EVM1D1 to EVM1D3)
+EVM1D̃1 and EVM1D1, as defined earlier in Section IV-A.
+                                                                                       across the EV lifetime. Table III compares the fine-tuned
+We assess the pre-trained encoder’s generalizability through its
+                                                                                       capacity estimation performance of our model against state-
+fine-tuning performance on out-of-distribution capacity esti-
+                                                                                       of-the-art baselines, PITS [37], SimMTM [38], TST [39], and
+mation scenarios, where clear distribution shifts exist between
+                                                                                       TSLANet [40]. Not only does our model achieve the lowest
+the target distribution (e.g., Distribution 2 or 3) and the pre-
+                                                                                       RMSE across all models for both in-distribution settings
+training data from Distribution 1 (recall Fig. 2b).
+                                                                                       (EVM1D1) and out-of-distribution settings (EVM1D2 and
+   Table II compares the capacity estimation performance
+                                                                                       EVM1D3), it is also the only model to maintain a robust
+of our encoder pre-trained on EVM1D1 and EVM1D̃1, re-
+                                                                                       capacity estimation performance throughout the distribution
+spectively. Pre-training on EVM1D̃1 consistently outperforms
+                                                                                       shifts from EVM1D1 to EVM1D3, as demonstrated by its
+EVM1D1 across both in-distribution and out-of-distribution
+                                                                                       progressively decreasing RMSE. This is a highly non-trivial
+test settings, as evidenced by its lower average root mean
+                                                                                       achievement for learning from privacy-friendly field data,
+square errors (RMSE). This outperformance is especially
+                                                                                       especially considering the mixed and underwhelming perfor-
+pronounced in out-of-distribution settings, highlighting the
+                                                                                       mance delivered by the state-of-the-art baselines. In fact, even
+importance of leveraging richer unlabeled charging data for de-
+                                                                                       on EVM1D3, the distribution with the largest shift from the
+veloping a generalizable pre-trained encoder that can withstand
+                                                                                       pretraining data, our model achieves a 26.2% lower RMSE
+data distribution shifts. Even more remarkably, harnessing
+                                                                                       than the best-performing baseline, PITS.
+the unlabeled data in EVM1D̃1 actually yields long-term
+improvements to capacity estimation performance, as seen
+                                                                                          The suboptimal performance of the baseline pre-training
+from the progressively decreasing RMSEs for the later-stage
+                                                                                       frameworks may be attributed to their masked modeling de-
+distributions, EVM1D2 and EVM1D3. This benefit stems from
+                                                                                       sign, which lacks consideration for more complex time series
+the encoder’s ability to uncover critical dependencies affecting
+                                                                                       in field applications. For instance, TST and SimMTM rely
+battery capacity from the unlabeled fast charging operations,
+                                                                                       on parameter-heavy transformer architectures not inherently
+which are known to accelerate capacity degradation [15].
+                                                                                       suited for time series representation learning [40], while
+C. Adaptability to age-induced distribution shifts                                     TSLANet and PITS require cumbersome data transformations
+  Next, we evaluate the effectiveness of our pre-training                              like patchifying time series and Fourier transforms, which risk
+design by benchmarking our capacity estimation performance                             losing granular temporal information.
+                    Novel test current patterns                         Typical current patterns of unlabeled                Typical current patterns of labeled
+                                                                             snippets in pre-training data                      snippets in fine-tuning data                                                                            TABLE V
+               0                                                          0                                                 0.0
+               5                                                         20                                                 2.5
+                                                                                                                                                                                                                                    A BLATION STUDY
+
+
+
+
+                                                                                                                                                                       Maximum current value (A)
+              10                                                         40                                                 5.0                                    0
+                                                                                                                            7.5
+
+
+Current (A)
+              15                                                         60                                                                                                                               Loss        Pre-train       Recon. error         Fine-tune         Capacity
+                                                          Current (A)                                        Current (A)
+                                                                                                                                                                   -20
+                                                                         80                                                10.0
+              20
+                                                                                                                           12.5
+                                                                                                                                                                                                       components       data       during pre-training1      data        estimation error
+              25                                                        100                                                                                        -80
+                                                                        120                                                15.0
+              30                                                                                                                                                   -160                                                                                    EVM1D1           1.435±0.395
+                                                                                                                           17.5
+              35                                                        140                                                                                                                             Lr only      EVM1D̃1           0.0439±0.0025       EVM1D2           1.317±0.297
+                                                                                                                           20.0
+                                                                        160
+              400   20   40   60    80      100 120                        0    25    50    75   100   125                    0    25     50   75   100   125
+                                                                                                                                                                                                                                                           EVM1D3           1.168±0.110
+                          Time (in 10s)                                              Time (in 10s)                                      Time (in 10s)
+                                                                                                                                                                                                                                                           EVM1D1           1.396±0.171
+                                                                                                                                                                                                       Lc + Lr       EVM1D̃1           0.0273±0.0044       EVM1D2           1.278±0.175
+Fig. 4. Comparison of some randomly sampled current patterns from the novel                                                                                                                                                                                EVM1D3           1.156±0.085
+test data with typical patterns observed in labeled and unlabeled snippets.                                                                                                                        1
+                                                                                                                                                                                                     Reconstruction error is reported as mean squared error, while capacity estimation error
+                                                                                                                                                                                                   is reported as root mean squared error.
+
+                                                     Pre-training data
+                                                            EVM1D1
+                                                 8          EVM1D1
+                                                                                                                                                                                                   E. Robustness to novel test patterns beyond fine-tuning data
+                                                 6                                                                                                                                                    We complete our evaluation of the pre-trained encoder’s
+                                     Test RMSE
+                                                                                                                                                                                                   generalizability by assessing the direct inference performance
+                                                 4                                                                                60.5%                                                            of our model (without further fine-tuning) on novel test
+                                                                               21.7%                                                                                                               charging patterns unseen in the limited fine-tuning data. To
+                                                 2
+                                                                                                                                                                                                   recap, labeled charging snippets available for fine-tuning are
+                                                      2.44 1.91                                      5.18 2.04
+                                                 0
+                                                                                                                                                                                                   mainly from regular, slow-charging scenarios with current
+                                                         Ours                                          PITS                                                                                        values below 20 A. However, a few rare EVs of the remain-
+Fig. 5. Inference performance on novel test patterns beyond fine-tuning data.                                                                                                                      ing manufacturer, EVM2, have labeled snippets with current
+                                                                                                                                                                                                   values up to 40 A—significantly higher than typical labeled
+D. Transferability across different EV manufacturers                                                                                                                                               snippets, but still lower than the fast-charging currents in
+                                                                                                                                                                                                   unlabeled snippets (see Fig. 4). These novel labeled charging
+   We further evaluate the generalizability of our pre-training                                                                                                                                    data serve as an insightful test case for evaluating the model’s
+framework in an even more demanding transfer learning                                                                                                                                              inference performance on rare yet operationally plausible
+setting, where the pre-training and fine-tuning data come from                                                                                                                                     patterns beyond the limited fine-tuning data.
+two different manufacturers. For the pre-training data, we                                                                                                                                            As the mileage distribution of these test snippets is below
+use manufacturer EVM3, which has the smallest number of                                                                                                                                            100,000 km and thus falls within Distribution 1, we select
+charging records among the three manufacturers. The number                                                                                                                                         the model fine-tuned on EVM1D1 for the inference. For pre-
+of charging snippets now available for pre-training is less than                                                                                                                                   training, we revisit the two variants of pre-training data from
+half of that from manufacturer EVM1 (see Table A.1), which                                                                                                                                         Distribution 1, EVM1D̃1 and EVM1D1, to also distinguish
+allows us to also assess the transferability of our pre-training                                                                                                                                   the impact of the pre-training data versus methodology design
+framework across manufacturers with significantly smaller                                                                                                                                          on inference performance. Fig. 5 compares our model’s direct
+pre-training data. Due to the smaller dataset, the mileage                                                                                                                                         inference performance on these novel test data (without further
+distribution of the EVM3 charging snippets is mostly from                                                                                                                                          fine-tuning) against the strongest baseline from earlier exper-
+Distribution 1, which we denote as EVM3D̃1 to differentiate                                                                                                                                        iments, PITS. Despite the added complexity of the test data,
+the manufacturer. The fine-tuning and test capacity estimation                                                                                                                                     our model remains robust, consistently achieving lower RMSE
+continue to be done on EVM1D1 to EVM1D3 from manufac-                                                                                                                                              than PITS, regardless of whether it was pre-trained on the more
+turer EVM1, as before.                                                                                                                                                                             diverse EVM1D̃1 or the limited EVM1D1. This robustness
+   Table IV presents the capacity estimation results for this                                                                                                                                      is a strong testament to the effectiveness of our pre-training
+EVM3-to-EVM1 transfer learning setting. Even when pre-                                                                                                                                             methodology, rather than just a consequence of the scale and
+trained on a smaller dataset from a different manufacturer,                                                                                                                                        quality of the pre-training data. In comparison, not only is
+our model achieves robust capacity estimation on the target                                                                                                                                        PITS’s inference performance on novel test patterns worse, but
+distributions from EVM1, surpassing all baselines in RMSE.                                                                                                                                         it is also more dependent on the pre-training data quality—
+Although MAPE is marginally higher than PITS on EVM1D2                                                                                                                                             as evidenced by the substantial data-driven performance gain
+(2.625% vs. 2.613%), this one-off and negligible difference is                                                                                                                                     (∆60.5%) needed to even achieve a comparable performance
+likely due to data-specific variability rather than any method-                                                                                                                                    (RMSE = 2.04) to our model (RMSE = 1.91).
+ological limitation. Crucially, on the most domain-shifted
+distribution, EVM1D3—affected by both manufacturer-related                                                                                                                                         F. Ablation study and sensitivity analysis
+and age-induced distribution shifts—our model experiences                                                                                                                                            For the ablation study, we investigate the impact of both
+only a 4.3% performance drop compared to the previous                                                                                                                                              the contrastive loss component for similarity learning and
+setting of pre-training with same manufacturer. Moreover, it                                                                                                                                       the choice of encoder architecture. As shown in Table V,
+still achieves a 31.9% lower RMSE than PITS, the previously                                                                                                                                        incorporating similarity learning via contrastive loss not only
+best-performing baseline in Table III.                                                                                                                                                             reduces masked reconstruction error during pre-training, but
+                    2.0                                                                                  ration, likely due to overparameterization of the projector rela-
+                                1-layer LSTM (4,705)             2-layer biLSTM (34,497)                 tive to the input features. Finally, the temperature parameter τ
+                                1 layerbiLSTM(9, 409)            1-layer Transformer (11,361)
+                    1.8         2-layer LSTM (13,153)                                                    in the contrastive loss controls the sharpness of the similarity
+                                                                                                         distribution over snippet-wise representation pairs. If τ is too
+                    1.6                                                                                  low (e.g., 0.01 as shown in Fig. 7), similarity learning may
+                                                                                                         be constrained to only the most similar pairs, such as masked
+             RMSE                                                                                        versions of the same snippet. If too high, the learnt similarities
+                    1.4
+                                                                                                         may not be meaningfully discriminative. Reasonably ranged
+                    1.2                                                                                  values like 0.1 and 0.5 yield stronger capacity estimation,
+                                                                                                         with τ = 0.1 providing a favorable balance across both in-
+                    1.0                                                                                  distribution and out-of-distribution settings.
+                      EVM1D1                          EVM1D2                           EVM1D3
+                                                                                                         G. Interpretability analysis
+                                                 Fine-tuned model
+                                                                                                            We investigate the internal learning mechanism that un-
+Fig. 6. Performance of different encoder architectures (and parameter count).                            derpins the rich representation learning and generalizability
+                                                                                                         of our framework. The key feature of our snippet similarity-
+       1.6                                 1.8         EVM1D1 EVM1D1        1.6                          weighted masked reconstruction is its ability to capture both
+                                                       EVM1D1 EVM1D3
+                                           1.6
+                                                                                                         fine-grained temporal patterns within a snippet and high-
+       1.4                                                                  1.4                          level similarity associations across snippets. We begin with
+RMSE                                       1.4
+                                                                                                         a high-level examination of the learnt similarity weights used
+       1.2                                                                  1.2
+                                           1.2                                                           during masked reconstruction. Due to the large size of the
+       1.0                                 1.0                              1.0                          similarity matrix, Fig. 8a only presents a subset of snippets
+             0.25         0.5     0.75           0.01      0.1      0.5           64       128     256   and their learnt similarity weights to other snippets, including
+                Masking ratio                      Temperature                         Proj. dim. dh
+Fig. 7. Sensitivity analysis of key hyperparameters on two representative fine-                          both the original and masked versions. Each row represents
+tuning settings: in-distribution EVM1D1 and out-of-distribution EVM1D3.                                  the similarity weights contributing to the reconstruction of a
+                                                                                                         single battery monitoring time series variable (e.g., current)
+                                                                                                         in a given snippet. As expected, the highest weights typically
+also improves the accuracy and stability (lower standard devi-                                           correspond to the masked version of the same snippet (seen
+ation) of downstream capacity estimation.                                                                as offset diagonals). However, the presence of large similarity
+   Fig. 6 presents the downstream capacity estimation per-                                               weights at some non-offset positions indicates that the model
+formance and model parameter sizes of several candidate                                                  also leverages similarities from other relevant variables and
+encoder architectures. Compared to transformers or deeper                                                snippets to improve reconstruction.
+LSTMs, the chosen 1-layer biLSTM encoder achieves the best                                                  Figs. 8b–d offer a granular view of the reconstruction pro-
+balance of capacity estimation accuracy, parameter efficiency,                                           cess for individual battery time series variables from selected
+and generalization across different fine-tuning scenarios. Its                                           snippets. The radial plots (left) highlight the battery variables
+effectiveness stems from the ability to capture temporal depen-                                          and snippets with the highest similarity weights contributing
+dencies in both past and future directions, which is especially                                          to the target variable’s reconstruction. The reconstruction plots
+valuable given the limited temporal context in fragmented                                                (right) depict the corresponding reconstruction performance
+charging snippets.                                                                                       for the target variable. As evident from these plots, recon-
+   We also analyze the model’s sensitivity to key hyperpa-                                               structing field data is particularly challenging due to the noisy
+rameters such as masking ratio, projector dimension size                                                 and erratic nature of signals in field applications. Thus, a
+dh , and contrastive learning temperature constant τ . Fig. 7                                            successful reconstruction relies on effective similarity learning
+reports the capacity estimation performance on two represen-                                             from appropriate snippets—whether from the masked version
+tative fine-tuning settings: in-distribution EVM1D1 and out-                                             of the target snippet (Fig. 8b), from other correlated variables
+of-distribution EVM1D3. A masking ratio of 0.5 strikes a                                                 within the same snippet (Fig. 8c), or even from entirely
+good balance between reconstruction difficulty and effective                                             different but contextually relevant snippets (Fig. 8d).
+representation learning, yielding strong capacity estimation
+performance in both in-distribution and out-of-distribution                                              H. Computational complexity analysis
+settings. Increasing the ratio beyond 0.5 to 0.75 tends to                                                   The main source of computational complexity in our pre-
+degrade performance, likely due to the greater complexity of                                             training method is the pairwise similarity computation. The
+reconstructing heavily masked field data. Next, the projector                                            batched similarity matrix D has size 2M × 2M , where M =
+dimension dh governs the expressiveness of the snippet-wise                                              b · C, with b as the batch size and C, to recap, the number of
+representation space used for computing contrastive similarity.                                          battery monitoring variables.
+Strong capacity estimation performance is achieved in both                                                   Therefore, the memory complexity of storing the similarity
+in-distribution and out-of-distribution settings with dh = 128.                                          matrix is O(b2 C 2 ), and the time complexity of the similarity
+Increasing dh beyond 128 to 256 leads to performance deterio-                                            computation is O(b2 C 3 ). As a large batch size can increase
+                                                                                                                       Original snippets                                                                                                              Masked snippets
+                                             Snippet 1                                                                                                                         Snippet N                         Snippet 1                                                                                                                   Snippet N
+                                             Current                                                                                                                            Current                                                                                                                                                  Current
+                                                                                                                             ...                                                                                                                                 ...
+                                             Ave volt                                                                                                                           Ave volt
+                                                                                                                                                                                  SOC
+                                                                                                                                                                               Max volt                                                                                                                                                  Ave volt
+                                               SOC                                                                                                                              Min volt
+                                                                                                                                                                               Max temp
+                                                                                                                                                                               Min temp                                                                                                                                                    SOC
+                                            Max volt
+                                             Min volt                                                                                                                           Current
+                                                                                                                                                                                Ave volt
+                                                                                                                                                                                  SOC                                                                                                                                                   Max volt
+                                                                                                                                                                                                                                                                                                                                         Min volt
+                                            Max temp
+                                            Min temp
+                                                                                                                                                                               Max volt
+                                                                                                                                                                                Min volt                                                                                                                                                Max temp
+                                                                                                                                                                                                                                                                                                                                        Min temp
+                                  Current                                                                                                                                                                                                                                                                                                                      1.0
+                                                                                                                                                                               Max temp
+                                                                                                                                                                               Min temp
+                                 Ave volt
+                    Snippet 1
+                                     SOC
+                                 Max volt                                                                                                                                                                                                                                                                                                                      0.8
+                                 Min volt
+
+
+
+Original snippets                                                                                                                                                                                                                                                                                                                                               Similarity weight
+                                Max temp
+                                Min temp                                                                                                                                                                                                                                                                                                                       0.6
+                                 ...
+                                  Current                                                                                                                                                                                                                                                                                                                      0.4
+                                 Ave volt
+
+                    Snippet n
+                                     SOC
+                                 Max volt                                                                                                                                                                                                                                                                                                                      0.2
+                                 Min volt
+                                Max temp
+                                Min temp                                                                                                                                                                                                                                                                                                                       0.0
+
+                                                                                                                                                                                             (a)
+
+                                                                                                                                                                                                                                                                                                                         2.5
+                                       Current                                          2.5                 Original                                                                                           3.5    Masked series
+                                     (Masked S7)                                                            Reconstructed                                                                                                                                                                                                2.4
+                                      96.3%                                             3.0                                                Max voltage
+                                                                                                                                           (Masked S7)
+                                                                                                                                                                                                               3.0                                 Min temp.
+                                                                                                                                                                                                                                                  (Masked S7)
+
+
+
+                                                                    Normalized values                                                                                                      Normalized values
+                                                                                                                                                                                                                                                                                                                         2.3
+
+
+
+                                                                                                                                                                                                                                                                                                     Normalized values
+                                                                                                                                                                                                               2.5
+                                                                                        3.5                                                                                                                                                                                                                              2.2
+                                                      60 80
+                                                              100
+                                                                                                                                                 47.0%                                                         2.0                                      64.8%
+                                                                                                                                                                         100
+                                              20 40                                     4.0 Masked series                                                        60 80                                                                                                     60 80
+                                                                                                                                                                                                                                                                                   100                                   2.1
+                                                                                                                                                         20 40  Min voltage                                    1.5
+                                                                                                                                                         10.3% (Original S7)
+                                                                                                                                                                                                                                                                   20 40   Max temp.
+                                                                                                                                                                                                                                                                   18.2% (Original                                       2.0 Masked series
+                                                                                        4.5                                                                                                                    1.0                Original                                         S31)
+                                                                                                                                                                                                                                                          12.1%
+                                                                                                                                                 39.1%                                                         0.5                Reconstructed                                                                          1.9                   Original
+                                                                                        5.0                                                                                                                                                                                                                                                    Reconstructed
+                                                                                                                                                                                                               0.0                                                                                                       1.8
+                                        Similarity weights (%)                            0         50           100                       Min voltage            Similarity weights (%)                          0          50          100                                Similarity weights (%)                          0        50            100
+                                        for reconstruction                                                                                                        for reconstruction                                                               Max temp.                for reconstruction
+                                        of target variable                                        Time (in 10s)                            (Masked S7)            of target variable                                       Time (in 10s)          (Masked S31)              of target variable                                      Time (in 10s)
+                                                                    (b) Current                                                                                          (c) Maximum Voltage                                                                               (d) Minimum Temperature
+  Fig. 8. Understanding the internal mechanism of our model which enables the rich representation learning of both granular temporal patterns within a snippet
+  and high-level similarity associations among different snippets. Taking a high-level view of the similarity matrix, (a) presents a subsample of snippets along
+  the rows and their learned similarity weights to all other snippets along the columns, including both the original and masked versions. (b) to (d) provide a
+  granular view into the similarity-weighted reconstruction process of individual battery charging variables, where S7 denotes Snippet 7, and so on.
+
+
+
+  training time, we adopt b = 32 to balance computational                                                                                                                                                      seconds per epoch. The inference time is negligible, averaging
+  efficiency and representational learning adequacy. Moreover,                                                                                                                                                 approximately 3.80 × 10−5 seconds per test snippet.
+  the number of input feature variables in the privacy-preserving                                                                                                                                                 Experiments were conducted on a NVIDIA RTX 3070
+  charging data is inherently low, with C = 7. Consequently,                                                                                                                                                   (8GB) GPU. Each experiment was repeated with 5 different
+  the similarity matrix computation takes approximately just                                                                                                                                                   random seeds to ensure robustness of model performance.
+  3.03×10−4 seconds per batch-per epoch, with a peak memory                                                                                                                                                    The average model performance and standard deviation are
+  usage of 0.99 MB on a NVIDIA RTX 3070 GPU.                                                                                                                                                                   reported. For benchmark models, we follow hyperparameters
+     In this work, the scale of the similarity matrix computation                                                                                                                                              recommended in the respective papers and official code, ap-
+  is manageable, as our pre-training method is designed to                                                                                                                                                     plying additional tuning as needed for our dataset.
+  effectively leverage less feature-rich, privacy-preserving data.
+  However, optimizations such as top-K neighbor truncation                                                                                                                                                                                        V. C ONCLUSION
+  [44] or a modified memory bank [45] could also be explored                                                                                                                                                      To realize the potential of DL for practical EV adoption,
+  in future iterations.                                                                                                                                                                                        generalizable models capable of adapting to real-world dis-
+                                                                                                                                                                                                               tribution shifts are needed. However, no prior studies have
+  I. Implementation details                                                                                                                                                                                    delved deeply into model generalizability and rigorously tested
+     We summarize the key implementation details here. A                                                                                                                                                       their capacity estimation models on realistic out-of-distribution
+  70%–10%–20% split of vehicles is adopted for pre-training,                                                                                                                                                   scenarios. Compounded with the challenges of privacy and
+  validation, and testing. For fine-tuning, only 10% of vehicles                                                                                                                                               data labeling costs, there is a need to rethink the reliance on
+  within the pre-training split are used. Snippet-level normaliza-                                                                                                                                             extensive, well-labeled training data to achieve model general-
+  tion is performed using a range-adjusted z-score normalization,                                                                                                                                              izability. In this work, we developed a first-of-its-kind capacity
+  as recommended for this dataset in [41].                                                                                                                                                                     estimation model based on self-supervised learning, designed
+     For time series masking, we apply geometric masking [39]                                                                                                                                                  to learn rich, generalizable representations even from less
+  with a masking ratio of 0.5, randomly replacing temporal                                                                                                                                                     feature-rich and fragmented privacy-friendly data. With our
+  subsequences with zeros. For contrastive learning, τ = 0.1.                                                                                                                                                  snippet-wise contrastive learning and subsequent similarity-
+  Batch size is set to 32. The model architecture consists of a                                                                                                                                                weighted masked reconstruction, we can learn rich represen-
+  single-layer biLSTM encoder with df = 32, an MLP projector                                                                                                                                                   tations of both granular charging patterns within individual
+  with dh = 128, and a linear regression head with output                                                                                                                                                      snippets and high-level associative relationships across differ-
+  dimension 1.                                                                                                                                                                                                 ent snippets. Bolstered by the rich representation learning, our
+     Model training is performed with the Adam optimizer.                                                                                                                                                      capacity estimation framework achieved new state-of-the-art
+  The learning rate is scheduled with a maximum initial value                                                                                                                                                  performance across multiple out-of-distribution settings, with
+  of 0.01. Pre-training is conducted for 50 epochs, averaging                                                                                                                                                  only 10% labeled fine-tuning data.
+  around 83.06 seconds per epoch. Fine-tuning is conducted                                                                                                                                                        We encourage the research community to build on this new
+  for 200 epochs with early stopping, averaging around 0.86                                                                                                                                                    research direction and prioritize the development of general-
+izable, future-ready prognostics models that are labeled data-                               [11] J. Sun, C. Wu, S. Mumtaz, J. Tao, M. Cao, M. Wang, and V. Fras-
+efficient and privacy-friendly. Another future area of interest                                   colla, “An efficient privacy-aware split learning framework for satellite
+                                                                                                  communications,” IEEE Journal on Selected Areas in Communications,
+is integrating difficulty-aware uncertainty quantification into                                   vol. 42, no. 12, pp. 3355–3365, 2024.
+the framework to provide prediction confidence as an added                                   [12] L. You, Z. Guo, C. Yuen, C. Y.-C. Chen, Y. Zhang, and H. V. Poor,
+reliability measure, particularly under extreme distribution                                      “A framework reforming personalized internet of things by federated
+                                                                                                  meta-learning,” Nature Communications, vol. 16, no. 1, p. 3739, 2025.
+shifts. Beyond battery capacity estimation, as our pre-training                              [13] O. J. Gstrein, N. Haleem, and A. Zwitter, “General-purpose AI regula-
+framework is generalizable and domain-agnostic, it can also be                                    tion and the European Union AI Act,” Internet Policy Review, vol. 13,
+adapted to other applications where learning from fragmented,                                     no. 3, pp. 1–26, 2024.
+                                                                                             [14] U. Ahmad, M. Han, A. Jolfaei, S. Jabbar, M. Ibrar, A. Erbad, H. H.
+privacy-protected sensor data is crucial (e.g., autonomous                                        Song, and Y. Alkhrijah, “A comprehensive survey and tutorial on smart
+vehicles, smart manufacturing).                                                                   vehicles: Emerging technologies, security issues, and solutions using
+                                                                                                  machine learning,” IEEE Transactions on Intelligent Transportation
+                                      A PPENDIX A                                                 Systems, vol. 25, no. 11, pp. 15 314–15 341, 2024.
+                           TABLE A.1                                                         [15] R. Zhou, R. Zhu, C.-G. Huang, and W. Peng, “State of health estimation
+ OVERVIEW OF DATA SPLITS USED FOR PRE - TRAINING AND FINE - TUNING                                for fast-charging lithium-ion battery based on incremental capacity
+                                                                                                  analysis,” Journal of Energy Storage, vol. 51, p. 104560, 2022.
+                           Data             Train          Validation          Test          [16] J. Lu, R. Xiong, J. Tian, C. Wang, and F. Sun, “Deep learning to esti-
+         Task                                                                                     mate lithium-ion battery state of health without additional degradation
+                       distribution
+                                          Number of vehicles / Number of snippets2
+                                                               1
+                                                                                                  experiments,” Nature Communications, vol. 14, no. 1, p. 2760, 2023.
+                       EVM1D1            23 / 54,234       3 / 6,007           NA            [17] Y. Wang, P. Lei, X. Wang, L. Jiang, L. Xuan, W. Cheng, H. Zhao,
+      Pre-training     EVM1D̃1           23 / 69,354       3 / 7,598           NA                 and Y. Li, “Leveraging large self-supervised time-series models for
+                       EVM3D̃1            5 / 28,937       1 / 7,350           NA                 transferable diagnosis in cross-aircraft type bleed air system,” Advanced
+                                                                                                  Engineering Informatics, vol. 65, p. 103275, 2025.
+                       EVM1D1             2 / 4,663        3 / 6,007        6 / 13,584       [18] Y. Wang, Y. Li, Y. Zhang, J. Lei, Y. Yu, T. Zhang, Y. Yang, and H. Zhao,
+      Fine-tuning      EVM1D2             2 / 3,472        3 / 6,388        7 / 14,170
+                       EVM1D3             2 / 4,582        3 / 4,553        7 / 11,333
+                                                                                                  “Incorporating prior knowledge into self-supervised representation learn-
+                                                                                                  ing for long phm signal,” Reliability Engineering & System Safety, vol.
+  1
+    We adopt a 70%–10%–20% split of vehicles for pre-training, validation, and testing.           241, p. 109602, 2024.
+  For fine-tuning, only 10% of vehicles within the pre-training split (i.e., two vehicles’   [19] C. She, Z. Wang, F. Sun, P. Liu, and L. Zhang, “Battery aging assessment
+  worth of data) are used. Each vehicle is uniquely assigned to exactly one split,
+                                                                                                  for real-world electric buses based on incremental capacity analysis and
+  ensuring that the train–validation–test splits are strictly disjoint with no cross-split
+  information leakage.                                                                            radial basis function neural network,” IEEE Transactions on Industrial
+  2
+    For brevity, we report only the average number of vehicles and charging snippets              Informatics, vol. 16, no. 5, pp. 3345–3354, 2019.
+  across five randomly generated train-validation-test splits used in the experiments.       [20] L. Song, K. Zhang, T. Liang, X. Han, and Y. Zhang, “Intelligent state
+                                                                                                  of health estimation for lithium-ion battery pack based on big data
+                                                                                                  analysis,” Journal of Energy Storage, vol. 32, p. 101836, 2020.
+                                      R EFERENCES                                            [21] J. Hong, Z. Wang, and Y. Yao, “Fault prognosis of battery system based
+                                                                                                  on accurate voltage abnormity prognosis using long short-term memory
+ [1] S. Li, P. Zhao, C. Gu, J. Li, S. Cheng, and M. Xu, “Battery protective                       neural networks,” Applied Energy, vol. 251, p. 113381, 2019.
+     electric vehicle charging management in renewable energy system,”                       [22] J. Hong, Z. Wang, W. Chen, L. Wang, P. Lin, and C. Qu, “Online
+     IEEE Transactions on Industrial Informatics, vol. 19, no. 2, pp. 1312–                       accurate state of health estimation for battery systems on real-world
+     1321, 2022.                                                                                  electric vehicles with variable driving conditions considered,” Journal
+ [2] F. Javadnejad, M. Jahanbakh, C. A. Pinto, and A. Saeidi, “Analyzing                          of Cleaner Production, vol. 294, p. 125814, 2021.
+     incentives and barriers to electric vehicle adoption in the united states,”
+                                                                                             [23] Z. Wang, C. Song, L. Zhang, Y. Zhao, P. Liu, and D. G. Dorrell, “A
+     Environment Systems and Decisions, pp. 1–32, 2023.
+                                                                                                  data-driven method for battery charging capacity abnormality diagnosis
+ [3] V. Sulzer, P. Mohtat, A. Aitio, S. Lee, Y. T. Yeh, F. Steinbacher, M. U.
+                                                                                                  in electric vehicle applications,” IEEE Transactions on Transportation
+     Khan, J. W. Lee, J. B. Siegel, A. G. Stefanopoulou et al., “The challenge
+                                                                                                  Electrification, vol. 8, no. 1, pp. 990–999, 2021.
+     and opportunity of battery lifetime prediction from field data,” Joule,
+     vol. 5, no. 8, pp. 1934–1955, 2021.                                                     [24] Z. Deng, L. Xu, H. Liu, X. Hu, Z. Duan, and Y. Xu, “Prognostics of
+ [4] D. Zhang, Z. Wang, P. Liu, C. She, Q. Wang, L. Zhou, and Z. Qin, “A                          battery capacity based on charging data and data-driven methods for
+     multi-step fast charging-based battery capacity estimation framework of                      on-road vehicles,” Applied Energy, vol. 339, p. 120954, 2023.
+     real-world electric vehicles,” Energy, vol. 294, p. 130773, 2024.                       [25] Y. Lu, D. Guo, G. Xiong, Y. Wei, J. Zhang, Y. Wang, and M. Ouyang,
+ [5] Q. Wang, Z. Wang, L. Zhang, P. Liu, and L. Zhou, “A battery capacity                         “Towards real-world state of health estimation: Part 2, system level
+     estimation framework combining hybrid deep neural network and re-                            method using electric vehicle field data,” eTransportation, vol. 22, p.
+     gional capacity calculation based on real-world operating data,” IEEE                        100361, 2024.
+     Transactions on Industrial Electronics, vol. 70, no. 8, pp. 8499–8508,                  [26] C. She, L. Zhang, Z. Wang, F. Sun, P. Liu, and C. Song, “Battery state-
+     2022.                                                                                        of-health estimation based on incremental capacity analysis method:
+ [6] Y. Wang, Y. Yu, K. Sun, P. Lei, Y. Zhang, E. Zio, A. Xia, and Y. Li,                         Synthesizing from cell-level test to real-world application,” IEEE Jour-
+     “Rmgpt: A foundation model with generative pre-trained transformer for                       nal of Emerging and Selected Topics in Power Electronics, vol. 11, no. 1,
+     fault diagnosis and prognosis in rotating machinery,” IEEE Internet of                       pp. 214–223, 2021.
+     Things Journal, pp. 1–1, 2025.                                                          [27] Z. Xu, J. Wang, P. D. Lund, and Y. Zhang, “Estimation and prediction
+ [7] Y. Wang, P. Lei, J. Song, Y. Hao, T. Chen, Y. Zhang, L. Jia, Y. Li, and                      of state of health of electric vehicle batteries using discrete incremental
+     Z. Wei, “Itformer: Bridging time series and natural language for multi-                      capacity analysis based on real driving data,” Energy, vol. 225, p.
+     modal qa with large-scale multitask dataset,” in Proceedings of the 42nd                     120160, 2021.
+     International Conference on Machine Learning (ICML), Jul 2025.                          [28] T. Chen, S. Kornblith, K. Swersky, M. Norouzi, and G. E. Hinton, “Big
+ [8] G. Dos Reis, C. Strange, M. Yadav, and S. Li, “Lithium-ion battery data                      self-supervised models are strong semi-supervised learners,” Advances
+     and where to find it,” Energy and AI, vol. 5, p. 100081, 2021.                               in Neural Information Processing Systems, vol. 33, pp. 22 243–22 255,
+ [9] Y. Wang, L. Shen, Y. Zhang, Y. Li, R. Zhang, and Y. Yang, “Self-                             2020.
+     supervised health representation decomposition based on contrast learn-                 [29] K. He, X. Chen, S. Xie, Y. Li, P. Dollár, and R. Girshick, “Masked au-
+     ing,” Reliability Engineering & System Safety, vol. 239, p. 109455, 2023.                    toencoders are scalable vision learners,” in Proceedings of the IEEE/CVF
+[10] J. Sun, G. Xu, H. Li, T. Zhang, C. Wu, X. Yang, and R. H. Deng,                              Conference on Computer Vision and Pattern Recognition, 2022, pp.
+     “Sanitizable cross-domain access control with policy-driven dynamic au-                      16 000–16 009.
+     thorization,” IEEE Transactions on Dependable and Secure Computing,                     [30] T. Chen, S. Kornblith, M. Norouzi, and G. Hinton, “A simple framework
+     2025.                                                                                        for contrastive learning of visual representations,” in Proceedings of the
+     International Conference on Machine Learning. PMLR, 2020, pp.
+     1597–1607.
+[31] C. Wu, J. Sun, J. Chen, M. Alazab, Y. Liu, and Y. Xiang, “TCG-
+     IDS: Robust network intrusion detection via temporal contrastive graph
+     learning,” IEEE Transactions on Information Forensics and Security,
+     vol. 20, pp. 1475–1486, 2025.
+[32] T. Wang, Z. Ma, S. Zou, Z. Chen, and P. Wang, “Lithium-ion battery
+     state-of-health estimation: A self-supervised framework incorporating
+     weak labels,” Applied Energy, vol. 355, p. 122332, 2024.
+[33] Y.-X. Wang, S. Zhao, S. Wang, K. Ou, and J. Zhang, “Enhanced vision-
+     transformer integrating with semi-supervised transfer learning for state
+     of health and remaining useful life estimation of lithium-ion batteries,”
+     Energy and AI, vol. 17, p. 100405, 2024.
+[34] J. Li, J. Zhu, Z. Huang, G. Fan, and X. Zhang, “A contrastive learning
+     battery state of health estimation method based on self-supervised aging
+     representation,” IFAC-PapersOnLine, vol. 56, no. 2, pp. 6130–6135,
+     2023.
+[35] M. A. Hannan, D. N. How, M. H. Lipu, M. Mansor, P. J. Ker, Z. Dong,
+     K. Sahari, S. K. Tiong, K. M. Muttaqi, T. I. Mahlia et al., “Deep learning
+     approach towards accurate state of charge estimation for lithium-ion
+     batteries using self-supervised transformer model,” Scientific Reports,
+     vol. 11, no. 1, p. 19541, 2021.
+[36] Q. Wang, M. Ye, S. Celik, Z. Deng, B. Li, D. U. Sauer, and W. Li,
+     “Unlocking the potential of unlabeled data: Self-supervised machine
+     learning for battery aging diagnosis with real-world field data,” Journal
+     of Energy Chemistry, vol. 99, pp. 681–691, 2024.
+[37] S. Lee, T. Park, and K. Lee, “Learning to embed time series patches
+     independently,” in Proceedings of the International Conference on
+     Learning Representations (ICLR), 2024.
+[38] J. Dong, H. Wu, H. Zhang, L. Zhang, J. Wang, and M. Long, “Simmtm:
+     A simple pre-training framework for masked time-series modeling,”
+     Advances in Neural Information Processing Systems, vol. 36, 2024.
+[39] G. Zerveas, S. Jayaraman, D. Patel, A. Bhamidipaty, and C. Eickhoff, “A
+     transformer-based framework for multivariate time series representation
+     learning,” in Proceedings of the 27th ACM SIGKDD Conference on
+     Knowledge Discovery & Data Mining, 2021, pp. 2114–2124.
+[40] E. Eldele, M. Ragab, Z. Chen, M. Wu, and X. Li, “TSLANet: Rethinking
+     transformers for time series representation learning,” in Proceedings of
+     the 41st International Conference on Machine Learning (ICML), 2024.
+[41] H. He, J. Zhang, Y. Wang, B. Jiang, S. Huang, C. Wang, Y. Zhang,
+     G. Xiong, X. Han, D. Guo et al., “Evbattery: A large-scale electric
+     vehicle dataset for battery health and capacity estimation,” 2022, arXiv
+     preprint arXiv:2201.12358, version 3.
+[42] L. Kang and H. Shen, “Electric vehicle battery energy information is
+     enough to track you,” in Proceedings of 19th ACM/IEEE International
+     Conference on Information Processing in Sensor Networks (IPSN).
+     IEEE, 2020, pp. 217–228.
+[43] A. Kendall, Y. Gal, and R. Cipolla, “Multi-task learning using uncer-
+     tainty to weigh losses for scene geometry and semantics,” in Proceedings
+     of the IEEE Conference on Computer Vision and Pattern Recognition,
+     2018, pp. 7482–7491.
+[44] D. Dwibedi, Y. Aytar, J. Tompson, P. Sermanet, and A. Zisserman, “With
+     a little help from my friends: Nearest-neighbor contrastive learning of
+     visual representations,” in Proceedings of the IEEE/CVF International
+     Conference on Computer Vision, 2021, pp. 9588–9597.
+[45] A. Bulat, E. Sánchez-Lozano, and G. Tzimiropoulos, “Improving mem-
+     ory banks for unsupervised learning with large mini-batch, consis-
+     tency and hard negative mining,” in Proceedings of the 2021 IEEE
+     International Conference on Acoustics, Speech and Signal Processing
+     (ICASSP). IEEE, 2021, pp. 1695–1699.
+

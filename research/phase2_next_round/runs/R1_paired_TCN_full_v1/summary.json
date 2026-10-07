@@ -1,0 +1,23 @@
+{
+  "condition": "full",
+  "zero_channels": [],
+  "late_weight": 1.0,
+  "targets": 180,
+  "cells": 6,
+  "macro_MAE_pp": 2.8506935812720986,
+  "worst_cell_MAE_pp": 5.571703597785854,
+  "max_abs_error_pp": 17.174684187624337,
+  "p95_abs_error_pp": 8.401769741713574,
+  "late_macro_MAE_pp": 4.329366261004546,
+  "late_worst_cell_MAE_pp": 11.646992421078476,
+  "per_cell_MAE_pp": {
+    "102Ah_25degC_0p5C_cell3": 0.457601038721594,
+    "102Ah_25degC_1C_cell3": 1.9644336044224706,
+    "102Ah_35degC_1C_cell1": 3.047097495165278,
+    "102Ah_45degC_0p5C_cell3": 5.505369876084262,
+    "102Ah_45degC_1C_cell1": 0.5579558754531334,
+    "102Ah_55degC_1C_cell3": 5.571703597785854
+  },
+  "pretraining_target": "next raw voltage increment; held physical cell excluded",
+  "claim_limit": "D1 six-cell development proxy; not independent or official accuracy"
+}

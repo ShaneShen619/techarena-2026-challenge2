@@ -1,0 +1,8 @@
+item,available,scope,value,capacity_accuracy_test
+official_CK0_capacity,True,one_4S_pack_one_anchor,100.41 Ah,False
+official_CK1_CK7_capacity,False,seven_hidden_targets,,False
+official_operation,True,one_4S_pack_8_checkpoints,1572894 rows; 41 extracted windows,False
+D1_six_cell_proxy,True,6_reused_single_cells_180_targets,"different protocol, no direct 13.4 V 4S mapping",False
+TU_8S_field,True,28_8S_systems,no paired reference capacity,False
+Che_single_cell,True,11_cells,"normalized full-charge labels, different protocol",False
+independent_four_series_D2,False,none_qualified_local,,False

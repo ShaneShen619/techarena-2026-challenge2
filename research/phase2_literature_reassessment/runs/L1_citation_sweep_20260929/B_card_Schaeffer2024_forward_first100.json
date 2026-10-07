@@ -1,0 +1,187 @@
+{
+  "meta": {
+    "count": 23,
+    "db_response_time_ms": 25,
+    "page": 1,
+    "per_page": 100,
+    "groups_count": null,
+    "x_query": {
+      "oql": "works where it cites (W4403896537)",
+      "oqo": {
+        "get_rows": "works",
+        "filter_rows": [
+          {
+            "column_id": "referenced_works",
+            "value": "W4403896537"
+          }
+        ]
+      },
+      "url": "/works?filter=referenced_works:W4403896537&per_page=100"
+    },
+    "cost_usd": 0.0001
+  },
+  "results": [
+    {
+      "id": "https://openalex.org/W4409035132",
+      "title": "Systematic feature design for cycle life prediction of lithium-ion batteries during formation",
+      "doi": "https://doi.org/10.1016/j.joule.2025.101884",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4411923178",
+      "title": "Diagnostic-free onboard battery health assessment",
+      "doi": "https://doi.org/10.1016/j.joule.2025.102010",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4411046780",
+      "title": "Fault detection and safety risk evaluation of lithium-ion batteries based on confidence interval of Gaussian process regression for real-world application",
+      "doi": "https://doi.org/10.1016/j.ymssp.2025.112951",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4410894595",
+      "title": "Aging matrix visualizes complexity of battery aging across hundreds of cycling protocols",
+      "doi": "https://doi.org/10.1039/d4ee05609d",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4402177760",
+      "title": "Fast Charging of Lithium-Ion Batteries While Accounting for Degradation and Cell-to-Cell Variability",
+      "doi": "https://doi.org/10.1149/1945-7111/ad76dd",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4412087180",
+      "title": "Lifetime extension of aged Li-ion prismatic batteries via mechanical constraints",
+      "doi": "https://doi.org/10.1016/j.xcrp.2025.102685",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4415220416",
+      "title": "Data-secure and privacy-protected electric vehicle battery fault detection using decentralized federated learning with differential privacy",
+      "doi": "https://doi.org/10.1016/j.ensm.2025.104681",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4415883283",
+      "title": "Multifault Isolation and Quantification for Energy Storage Battery Module Based on Dynamic Time Warping",
+      "doi": "https://doi.org/10.1109/tie.2025.3621668",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4416715791",
+      "title": "Predicting remaining useful life of lithium-ion batteries: A review of degradation mechanisms and open-source data availability",
+      "doi": "https://doi.org/10.1016/j.fub.2025.100124",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7160535246",
+      "title": "A Review of Data-Driven Approaches and Datasets for Battery State of Health Estimation",
+      "doi": "https://doi.org/10.4271/14-15-02-0009",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7162543507",
+      "title": "Feature Selection and State of Health Estimation Based on Segmented Voltage Data of Lithium-Ion Batteries",
+      "doi": "https://doi.org/10.1149/1945-7111/ae73f4",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4409660274",
+      "title": "Performance Analysis of the Battery Management System in an Electric Vehicle",
+      "doi": "https://doi.org/10.1109/icidea64800.2025.10962859",
+      "publication_year": 2025,
+      "type": "conference-paper"
+    },
+    {
+      "id": "https://openalex.org/W4414525636",
+      "title": "Fault Diagnosis Method for Lithium-ion Battery Packs Based on ETL",
+      "doi": "https://doi.org/10.2139/ssrn.5531638",
+      "publication_year": 2025,
+      "type": "preprint"
+    },
+    {
+      "id": "https://openalex.org/W4415262514",
+      "title": "Leveraging In Silico Data for the Development and Implementation of Multivariate Statistical Process Monitoring Models in Monoclonal Antibody Manufacturing",
+      "doi": "https://doi.org/10.3390/jpbi2040017",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4416748027",
+      "title": "A Hybrid Physics-Informed and Machine Learning Approach for Degradation Modeling of LiFePO 4 Batteries in Energy Storage Applications",
+      "doi": "https://doi.org/10.1109/induscon66435.2025.11241547",
+      "publication_year": 2025,
+      "type": "conference-paper"
+    },
+    {
+      "id": "https://openalex.org/W7133185594",
+      "title": "A Survey on Machine Learning-Based Fault Detection and Correction in Lithium-Ion Batteries using CatBoost Algorithm",
+      "doi": "https://doi.org/10.1109/medcom67532.2025.11405364",
+      "publication_year": 2025,
+      "type": "conference-paper"
+    },
+    {
+      "id": "https://openalex.org/W7134182168",
+      "title": "From Failure Mechanisms to Hierarchical Diagnosis: Analysis of Research Status in Fault Diagnosis for Lithium‐Ion Battery Energy Storage Systems",
+      "doi": "https://doi.org/10.1002/ente.202502352",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7150993240",
+      "title": "Proactive Fault Detection in EV Batteries Via Hybrid Method: Cell-to-Cell Variation Pattern and Physics-Based Model Insights",
+      "doi": "https://doi.org/10.4271/2026-01-0391",
+      "publication_year": 2026,
+      "type": "conference-paper"
+    },
+    {
+      "id": "https://openalex.org/W7155064190",
+      "title": "Gaussian Process State-Space Models for Irregularly Sampled Sequential Data",
+      "doi": "https://doi.org/10.1109/icassp55912.2026.11462443",
+      "publication_year": 2026,
+      "type": "conference-paper"
+    },
+    {
+      "id": "https://openalex.org/W7160300557",
+      "title": "Taxonomy and Detection of Faults in Lithium-Ion Batteries for EV Applications: A Review",
+      "doi": "https://doi.org/10.1109/stpec66316.2025.11490758",
+      "publication_year": 2025,
+      "type": "conference-paper"
+    },
+    {
+      "id": "https://openalex.org/W7165360235",
+      "title": "EFFECTS OF TRAINING-TEST SPLITTING RATIO ON THE PERFORMANCE OF LSTM-BASED BATTERY STATE OF CHARGE ESTIMATION MODEL: A COMPARATIVE STUDY",
+      "doi": "https://doi.org/10.65206/pajes.1927254",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7203636386",
+      "title": "Implementation of a Lithium-Ion Battery Fault Detection Method Based on a Luenberger Observer and CNN",
+      "doi": "https://doi.org/10.1109/iccad69956.2026.11643098",
+      "publication_year": 2026,
+      "type": "conference-paper"
+    },
+    {
+      "id": "https://openalex.org/W7204487389",
+      "title": "A Prediction-Driven Framework for Unsupervised Fault Isolation and Diagnostics in LFP Batteries",
+      "doi": "https://doi.org/10.3390/electronics15173852",
+      "publication_year": 2026,
+      "type": "article"
+    }
+  ],
+  "group_by": []
+}

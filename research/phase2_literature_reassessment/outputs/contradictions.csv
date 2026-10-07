@@ -1,0 +1,17 @@
+id,claim_under_tension,support_paper_ids,limiting_or_opposing_paper_ids,verified_evidence_and_conditions,resolution,minimal_discriminating_test
+Q2-C1,窄窗也能估容量,A_Deng2022,A_Figgener2024|A_Yi2025,Deng: 完整0.5C充电后裁片+跨寿命监督; Figgener: 现场多片段重建LFP特征弱; Yi: 平台低斜率禁Q更新,不互斥。数据生成、先验、目标和在线时点不同；对真实浅充单锚点的直接支持弱,真实浅充 vs 同芯完整周期后验裁片；固定芯/温度/训练预算
+Q2-C2,单次标定的OCV形状跨寿命不变,A_Wang2025,A_Zhou2025|A_Ovejas2019,Wang: NMC/石墨硅单芯局部配准; Zhou: 老化OCV形状变化被电阻GP吸收; Ovejas: LFP滞后随老化变,Wang是可行性特例，LFP平台及路径变化可使容量/起始SOC/偏置不可辨,"LFP固定容量多路径多温扫描C,z0剖面似然"
+Q2-C3,组端ICA可代表单芯,A_Krupp2021,A_Cornejo2026,Krupp: 同质4S峰可缩放，异质峰改变; Cornejo: 模组均值模型掩蔽限制芯,同质条件成立，异质/截止协议破坏；Cornejo的31%是模型间差非官方容量真值,逐芯电压+总压截止重放，与组参考容量对照
+Q3-C1,运行温度高则容量健康低,A_Ruiz2018,A_Yi2025|A_Aeppli2025,Ruiz: 同芯运行1C与25°C参考排序可反转; Yi: 5/25°C容量真值分别测试; Aeppli: 热历史/箱温与芯温不同,容量测温、当下可逆效应、热历史永久损伤须区分；不能只做单项温度回归,同芯温度交叉+共同25°C参考测量+实测芯温
+Q3-C2,统一Arrhenius补偿可跨芯适用,A_Aeppli2025,A_Ruiz2018,Aeppli: 只有高初始容量组呈较清楚Arrhenius趋势，低初始容量组10°C可快于30°C; Ruiz: 充放温度交互,经验拟合可限于本实体/温区；不能未经验证推广至45°C和不同历史,按初始容量/历史分层测试25/45°C老化斜率
+Q7-C1,平滑退化轨迹能外推到末期,A_Zhou2025,A_Aeppli2025,Zhou: NMC cell A后期加速使GP趋势外推变差; Aeppli: LFP100Ah某芯约8000次偏离早期幂律,末期误差可能是变机制或统计/测量口径变化，单例不能规定阈值,冻结早期模型滚动残差+独立容量复测；控制温度与截止
+Q7-C2,电阻上升是容量拐点可靠先兆,A_Aeppli2025,A_Zhou2025|A_Ovejas2019,Aeppli: 个案电阻非线性上升与退化相关; Zhou: 拟合R吸收OCV漂移; Ovejas: LFP放电极化早期下降后上升,相关并非容量可辨识性，固定SOC/温度/方向及ECM结构至关重要,固定状态的脉冲指标与参考容量联合跟踪，OCV形状独立复测
+Q2-C4,Berecibar可直接证明组DVA达1.5%,Berecibar2016,A_Krupp2021|A_Deng2022,Berecibar出版页报告平均相对误差，但全文未取得；核心分割、训练/验证与拓扑无法核实,本轮只作元数据/摘要线索，不进入定量决策,取得合法全文后重审方法、标签、实体拆分与组真值
+V1,BattGP物理芯数量,B_card_Schaeffer2024,C_Schaeffer2024_BattGP,正式PDF 28×8=224；Zenodo README写28系统/232芯；过时arXiv29/232,用正式表1 28/224，README数量未由原始CSV全量核裁,读取全量Zenodo列/唯一设备ID；仅必要时下载1.7GB
+V2,Yagci循环倍率,Yagci2025_large_LFP_aging,Yagci2025_large_LFP_aging,§2/表2 50A/180Ah=0.28C，§5/表4称1C,视为原文内部错误/未解释差异；不做倍率精确比较,作者澄清或逐原始cycling记录核电流
+V3,Richardson2019容量标签积分方向,C_Richardson2019_GPTransition,C_Richardson2019_GPTransition,原文p6相邻句称2A参考放电曲线与2A充电积分,来源内部歧义，容量是已测参考曲线但方向待核,NASA原始readme和例文件重算一个RPT
+V4,Gasper表I实体与测试总数,B_card_Gasper2025,B_card_Gasper2025,表I四行相加75实体/255测试，Totals列79/259；脉冲和47906一致,实体数不取无说明的总计；不以测试次数做独立数,联系不到作者时按逐行条件报告并核补充材料
+V5,温度消融平均改善但尾部恶化,A_Ruiz2018;Yagci2025_large_LFP_aging,research/phase2_next_round R1,D1严格无显式温度宏2.479pp低于全信号2.851pp，但最差6.147pp高于5.572pp,平均与尾部非同一选择目标，且时间/热历史代理仍在；不选外层赢家,内层封存物理芯，固定前缀同预算对比温度三层处理
+V6,Zhou动态ICA旧版无LFP与新版有LFP,Zhou2026_dynamic_ICA,research/phase2_literature old notes,arXiv v3/accepted manuscript新增233枚LFP带标签迁移，旧笔记称无LFP,修正书目/数据事实；0.23%不升级为官方容量证据,真实浅充、目标一锚、组级封存重验
+V7,Bilfinger图8单位和正文误差表述,Bilfinger2024,Bilfinger2024,图8约58.9对59.4kWh差0.5kWh；正文称0.5%，按58kWh约0.86 SOH pp,保留单位冲突，不引用0.5%为方法精度,原始车端数据与作者解释进一步核对
+V8,Deng车5容量分母及公开字段,F_Deng2024_RapidPackDA,F_Deng2024_RapidPackDA,论文/README 174Ah 82.21%，MAT 147Ah 97.30765%，Q同为143.04225Ah；README字段多于MAT,原因未获作者证实；两套预注册敏感性或排除，不能作独立D2,逐车审计原始MAT与论文标签；不改原数据

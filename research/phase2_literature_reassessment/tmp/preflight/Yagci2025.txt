@@ -1,0 +1,1016 @@
+OPUS-HSO
+Repositorium der Hochschule Offenburg
+https://opus.hs-offenburg.de
+
+
+
+
+Degradation modes of large-format stationary-storage
+LFP-based lithium-ion cells during calendaric and cyclic
+aging
+
+Mehmet C. Yagci, Oliver Richter, René Behmann, Wolfgang G. Bessler
+
+Zitiervorschlag im APA Stil:
+Yagci, M. C., Richter, O., Behmann, R., & Bessler, W. G. (2025). Degradation modes of large-
+format stationary-storage LFP-based lithium-ion cells during calendaric and cyclic aging.
+Journal of Energy Storage, 124, 1–16. https://doi.org/10.1016/j.est.2025.116774
+
+
+Abstract
+
+Lithium-ion batteries exhibit capacity loss as a result of the combined degrading effects of
+cal-endaric and cyclic aging. In this study, we quantify the lifetime of large-format (180 Ah)
+com-mercial stationary-storage lithium iron phosphate-based lithium-ion cells by perform-
+ing 1500 cycles of cyclic aging and ca. 850 days of calendaric aging. The aging tests were
+performed at two different temperatures (35 °C and 50 °C) to observe the effect of tempera-
+ture on aging. The calendaric aging cells were stored at two different states of charge (SOC)
+(100 % and 75 %) to observe the effect of SOC. At the end of aging tests, the capacity loss of
+all cells at 50 °C ex-ceeded those of all cells at 35 °C. Temperature was thus identified as ma-
+jor aging driver. The observed global activation energy over all investigated aging protocols
+was 37.3 kJ/mol. Fur-thermore, aging modes (loss of lithium inventory and loss of active ma-
+terial) were investigated by differential voltage analysis of the charge-discharge curves; for
+the cyclic aging cells, this was performed on the cycling data directly. The degradation mode
+analysis showed that loss of lithium inventory is mainly responsible for capacity loss.
+
+
+
+
+Nutzungsbedingungen                                                     Kontakt
+Dieses Dokument wird unter diesen Bedinungen zur Verfügung gestellt:    Hochschule Offenburg | Bibliothek
+Creative Commons - CC BY - Namensnennung 4.0 International              Badstraße 24
+Für weitere Informationen siehe:                                        77652 Offenburg
+https://creativecommons.org/licenses/by/4.0/deed.de                     Telefon: (0781) 205-240
+                                                                        E-Mail: bibliothek@hs-offenburg.de
+                                                                        www.hs-offenburg.de/bibliothek
+                                                                   Journal of Energy Storage 124 (2025) 116774
+
+
+                                                                    Contents lists available at ScienceDirect
+
+
+                                                                Journal of Energy Storage
+                                                             journal homepage: www.elsevier.com/locate/est
+
+
+Research papers
+
+Degradation modes of large-format stationary-storage LFP-based
+lithium-ion cells during calendaric and cyclic aging
+Mehmet C. Yagci , Oliver Richter , René Behmann , Wolfgang G. Bessler *
+Institute of Sustainable Energy Systems (INES), Offenburg University of Applied Sciences, Badstrasse 24, 77652 Offenburg, Germany
+
+
+
+
+A R T I C L E I N F O                                      A B S T R A C T
+
+Keywords:                                                  Lithium-ion batteries exhibit capacity loss as a result of the combined degrading effects of calendaric and cyclic
+Lithium-ion batteries                                      aging. In this study, we quantify the lifetime of large-format (180 Ah) commercial stationary-storage lithium iron
+LFP                                                        phosphate-based lithium-ion cells by performing 1500 cycles of cyclic aging and ca. 850 days of calendaric aging.
+Calendaric aging
+                                                           The aging tests were performed at two different temperatures (35 ◦ C and 50 ◦ C) to observe the effect of tem­
+Cyclic aging
+                                                           perature on aging. The calendaric aging cells were stored at two different states of charge (SOC) (100 % and 75
+Degradation modes
+Stationary storage                                         %) to observe the effect of SOC. At the end of aging tests, the capacity loss of all cells at 50 ◦ C exceeded those of
+                                                           all cells at 35 ◦ C. Temperature was thus identified as major aging driver. The observed global activation energy
+                                                           over all investigated aging protocols was 37.3 kJ/mol. Furthermore, aging modes (loss of lithium inventory and
+                                                           loss of active material) were investigated by differential voltage analysis of the charge-discharge curves; for the
+                                                           cyclic aging cells, this was performed on the cycling data directly. The degradation mode analysis showed that
+                                                           loss of lithium inventory is mainly responsible for capacity loss.
+
+
+
+
+1. Introduction                                                                                      Published lifetime data from commercial BESS operation are scarce.
+                                                                                                 Figgener et al. have recently published a field study on 8 years of
+    Harvesting solar energy by using photovoltaic (PV) panels is the most                        operation of 21 privately-owned home-storage systems [7]. Most of the
+popular carbon-free residential electricity generation technology. Be­                           investigated systems reached end of life (defined as 20 % capacity loss)
+tween 2015 and 2022, the installed global capacity of residential solar                          after 1000-1500 equivalent full cycles or 5–7 years. Dubarry et al. have
+PV power increased by 400 % from 38.9 GW to 195.2 GW [1]. Electrical                             evaluated operation data from a 2.3 GWh BESS used for frequency
+energy storage is an indispensable element of an energy system with a                            regulation [8]. They observed around 15 % capacity loss after 7 years
+high ratio of renewable energies to compensate supply-demand                                     and 7500 equivalent full cycles. We have investigated two 8 kWh home-
+mismatch. In 2023, the installed energy of residential energy storage                            storage systems under laboratory operation and observed end of life
+in Germany increased by 165 % compared to the installed energy in                                after around 800 equivalent full cycles (2.5 years) [9]. These studies
+2022, with 98 % of the systems equipped with lithium-ion batteries                               show that aging is significant, and practical lifetimes of BESS are far
+[2,3]. A residential battery energy storage system (BESS) is generally                           lower than those of PV systems.
+consisting of multiple battery cells, an inverter to provide alternating                             One of the common cell chemistries used in residential BESS is
+current output, and an energy management system to control the                                   graphite/lithium iron phosphate (LiFePO4, LFP) due to its relatively low
+operation and ensure system safety. Despite the continuously decreasing                          cost, long lifetime and thermal stability [10–12]. We have recently
+prices [4,5], cell costs remain the biggest expense in BESS [6]. There­                          investigated aging of 28 commercial LFP lithium-ion cells as a part of
+fore, a long cell lifetime is vital for their economic feasibility. The                          two 8 kWh commercial energy storage systems without active temper­
+investigation of cell aging has significance because understanding the                           ature control during 2.5 years of operation [9]. We observed signifi­
+influence of operating conditions (temperature, charge/discharge pro­                            cantly faster capacity loss in those systems compared to a single cell
+file and state of charge, SOC) and aging mechanisms contributes to                               cycled under controlled laboratory conditions. We concluded that cell
+improving cell performance. Moreover, understanding aging is impor­                              temperature, rather than cycle number, has a dominant effect on ca­
+tant for accurate lifetime prognosis.                                                            pacity loss [9]. Various studies on the effect of temperature on the aging
+
+
+
+ * Corresponding author.
+   E-mail address: wolfgang.bessler@hs-offenburg.de (W.G. Bessler).
+
+https://doi.org/10.1016/j.est.2025.116774
+Received 27 September 2024; Received in revised form 28 February 2025; Accepted 22 April 2025
+Available online 5 May 2025
+2352-152X/© 2025 The Authors. Published by Elsevier Ltd. This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/).
+M.C. Yagci et al.                                                                                                          Journal of Energy Storage 124 (2025) 116774
+
+
+of LFP cells demonstrated higher capacity losses at temperatures above             Table 1
+40 ◦ C compared to room temperature during cyclic [13–17] or calen­                Specifications of the studied cell according to the manufacturer data sheet [36]
+daric aging [18,19]. Moreover, during calendaric aging, higher capacity            and our measurements [35].
+loss was observed at elevated temperatures compared to room temper­                 Manufacturer                China Aviation Lithium Battery Co. Ltd. (CALB)
+ature independent of SOC, thus confirming the dominant effect of                    Model                       CA180FI
+temperature on aging [20,21].                                                       Active material             Negative electrode: graphite / Positive electrode: LFP
+                                                                                    Nominal capacity / Ah       180
+    Studies available for LFP cell aging have been in general performed
+                                                                                    Nominal voltage / V         3.2
+on cells with a relatively small capacity (≤15 Ah). However, cell format,           Voltage range / V           2.5–3.65
+size and internal structure have a strong influence on the internal tem­            Nominal weight / kg         5.7
+perature distribution and, hence, aging. Therefore, results from small-             Nominal energy / Wh         576
+                                                                                    Size / mm3                  280 × 180 × 71
+format cells are not necessarily representative of the behavior of large-
+format cells. In the current study we investigate large-format (180 Ah
+nominal capacity) LFP cells for usage in residential BESS. To our                      Each fresh cell underwent an activation procedure performed with a
+knowledge this is the first time commercial large-format cells have been           Biologic VMP3 battery cycler (Bio-Logic Science Instruments SAS,
+investigated for a long period of ca. 850 days.                                    France) in a CTS 40/200 LI climate chamber (CTS Clima Temperatur
+    For lithium-ion batteries under real operation conditions, physico­            Systeme GmbH, Germany) set to 20 ◦ C before start of the aging exper­
+chemical aging mechanisms cannot be easily identified from the limited             iments, with the intent of reducing effects of electrochemical (e.g.,
+measurement data available, which typically include only voltage,                  diffusion of ions to inactive sites in anode overhang) fatigue from
+current, and temperature. In order to facilitate analysis, physicochem­            possible long periods of inactivity during or before shipment. Activation
+ical aging mechanisms can be grouped into degradation modes whose                  was performed using two full constant current constant voltage (CCCV)
+effects can be quantified by changes in the open circuit voltage (OCV)             discharge-charge cycles consisting of 50 A (0.28C) constant current (CC)
+curves [22]. In this study, we follow the degradation modes approach               phase followed by constant voltage (CV) phase with 9 A (0.05C) cut-off
+and accordingly group the aging mechanisms into two degradation                    current, followed by a final full discharge; the CV phase was included for
+modes: loss of active material (LAM) and loss of lithium inventory (LLI)           both charge and discharge. The cells rested 30 min between charge and
+[23]. Both modes nonlinearly reduce cell capacity and increase internal            discharge cycles.
+resistance (IR). LAM is caused by different mechanisms, such as the
+isolation of active material particles due to particle cracking [23,24], the
+formation of fully passivating surface layers [25,26], or electrode dry-           2.2. Calendaric and cyclic aging experiments
+out [27]. The amount of charge is limited with available lithium in­
+ventory that can participate in redox reactions. Thus, LLI causes irre­                Calendaric and cyclic cell aging was investigated with twelve indi­
+versible loss of cell capacity. The most dominant mechanism causing LLI            vidual cells. The tests were carried out using two separate climate
+is the formation of the solid electrolyte interphase (SEI) layer due to the        chambers Binder KB 115 climate chambers (Binder GmbH, Germany) set
+decomposition of the electrolyte [10,18,19,28–32]. Following Dubarry's             to 35 ◦ C and 50 ◦ C ambient temperature, respectively. In each chamber,
+degradation mode modeling approach [33], the full-cell voltage                     three tests, each consisting of two cells under the same conditions, were
+response is a convolution of the half-cell voltage responses, depending            performed. A summary of the test cells and protocols is given in Table 2.
+on the two electrodes' relative capacities (“loading ratio”) and a shift of            Two SOC levels were selected for calendaric aging tests: 100 %
+the half-cell curves against each other (“offset”). From a physically-             represents a fully-charged cell and 75 % represents a partially dis­
+based viewpoint, these properties are directly related to the lithium              charged cell. These two SOCs were selected in order to investigate the
+stoichiometry ranges in the active materials during cycling. They are              sensitivity of the LFP electrode potential on calendaric aging. For both
+also referred to as the balance of the electrodes [34]. Time-resolved              SOCs, the graphite electrode potential is the same, being on one of the
+analysis of the electrode balance allows to quantify LAM and LLI. This             graphite potential plateaus. However, the LFP electrode shows a large
+concept has been widely adopted in the lithium-ion battery aging                   potential difference of about 0.35 V between 75 % and 100 % SOC (of a
+literature [22]. In this study, we apply it to the calendaric and cyclic           fresh cell). This is shown in Fig. 1.
+aging data of the investigated large-format cells.                                     Calendaric aging test cells, following the initial reference perfor­
+    The goal of the present paper is to investigate the aging behavior of          mance test (RPT) (cf. Section 2.3), were charged with 10 A (0.055C)
+large-format LFP-based lithium-ion cells by quantifying electrical                 with Basytec GSM battery cycler (Basytec GmbH, Germany) until the
+quantities (capacity, IR, efficiency), electrode balances (lithium stoi­           test voltage level corresponding to the SOC level indicated in Table 2.
+chiometry limits) and degradation modes (LAM, LLI) as function of time             The test voltages were calculated from the voltage values corresponding
+for different aging conditions (cyclic vs. calendaric) and temperature.            to respective SOC levels at pseudo-OCV curves (cf. Section 2.3)
+The experimental methodologies and degradation mode analysis are                   measured during the first RPT. Then, the cells were kept at CV for 5 h at
+described in Section 2. The calendaric and cyclic aging results are pre­           test voltage. After the first 5 h CV phase, the calendaric aging cells were
+sented in Section 3. The results of degradation mode analysis are given            kept actively at the target SOC (“floated”) by applying continuous CV at
+in Section 4. In Section 5, the combined results are discussed. Finally, the       test voltages throughout calendaric aging tests. Thus, calendaric aging
+conclusions of the study are outlined in Section 6.                                cells were continuously connected to the battery cycler to stay
+                                                                                   constantly at the set voltage. The influence of voltage floating on cal­
+2. Methodology                                                                     endaric aging is typically supposed to be minor [54]. Fig. 2 shows
+                                                                                   exemplary current and voltage time profiles of a calendaric aging cell.
+2.1. Investigated cells                                                            Continuous but small current fluctuations (ca. 0.75 A, corresponding to
+                                                                                   around C/250) around an offset of ca. − 0.4 A are visible, which is likely
+    In this study we investigated twelve individual CALB CA180FI                   within the measurement accuracy of the battery cycler.
+(China Aviation Lithium Battery Co. Ltd., China) lithium-ion battery                   Cyclic aging cells underwent 1500 full CCCV cycles performed with
+cells, as selected from the same delivery batch. The cells feature LFP as          Basytec XCTS battery cycler (Basytec GmbH, Germany) consisting of a
+positive active material and graphite as negative active material. The             50 A (0.28C) CC phase followed by a CV phase with 9 A (0.05C) cut-off
+cell specifications are given in Table 1. The electrical and geometrical           current; the CV phase was included for both charge and discharge. The
+characteristics of the cells were analyzed in detail in our previous work          cells rested only 10 s after each charge and discharge. The test plan was
+[35].                                                                              programmed to run for 100 cycles and restart to segment the test data for
+
+                                                                               2
+M.C. Yagci et al.                                                                                                                     Journal of Energy Storage 124 (2025) 116774
+
+
+Table 2
+Calendaric and cyclic aging test protocols.
+  Test group                Group 1                Group 2                   Group 3                       Group 4                  Group 5                    Group 6
+
+  Cell #                    1, 2                   3, 4                      5, 6                          7, 8                     9, 10                      11, 12
+  Temperature               35 ◦ C                 35 ◦ C                    35 ◦ C                        50 ◦ C                   50 ◦ C                     50 ◦ C
+  Aging type                Cyclic                 Calendaric                Calendaric                    Cyclic                   Calendaric                 Calendaric
+  C-rate (current)          0.28C (50 A)           –                         –                             0.28C (50 A)             –                          –
+  SOC (voltage)             –                      75 % (3.336 V)            100 % (3.65 V)                –                        75 % (3.336 V)             100 % (3.65 V)
+  Cycling depth             100 %                  –                         –                             100 %                    –                          –
+
+
+
+
+                                                                                         Fig. 2. Current and voltage of cell #10 (cf. Table 2) as function of time for an
+                                                                                         exemplary 15 h duration during calendaric aging at 50 ◦ C. Black dotted line
+                                                                                         represents battery cycler set voltage. Inset: Detail of the figure showing current
+                                                                                         and voltage fluctuations in a 6-minute timeframe.
+
+
+                                                                                         efficient data recording and continuous data analysis.
+                                                                                             The cycling data were analyzed for each individual cycle. The actual
+                                                                                         cell capacity (Ccell ) was calculated by integrating the current over the
+                                                                                         discharge duration. Internal resistance (IRcycle ) was calculated according
+                                                                                         to [37]
+
+                                                                                                     V chg − V dis
+                                                                                         IRcycle =                                                                           (1)
+                                                                                                      Ichg − Idis
+
+                                                                                         where V chg is the average charge voltage, V dis is the average discharge
+                                                                                         voltage, Ichg is the average charge current, and Idis is the average
+                                                                                         discharge current in full charge/discharge cycle (the sign of charge
+                                                                                         current is positive and the sign of discharge current is negative).
+                                                                                         Capacity-based state of health (SOHC ) was calculated as
+                                                                                                     C
+                                                                                         SOHC =                                                                              (2)
+                                                                                                     C0
+
+                                                                                         where C0 is the initial cell capacity calculated during the initial RPT.
+                                                                                         Coulombic efficiency (CE) and energy efficiency (ηenergy ) were calcu­
+                                                                                         lated as
+                                                                                                Qdischarge,CCCV
+                                                                                         CE =                                                                                (3)
+                                                                                                 Qcharge,CCCV
+                                                                                                                      ∫
+                                                                                                     Edischarge,CCCV   discharge
+                                                                                                                                 I(t)⋅V(t)⋅dt
+                                                                                         ηenergy =                   = ∫                                                     (4)
+                                                                                                      Echarge,CCCV       charge
+                                                                                                                                I(t)⋅V(t)⋅dt
+
+                                                                                         where Qdischarge,CCCV is charge throughput during discharge, Qcharge,CCCV
+Fig. 1. (a) Low C-rate (0.02C) charge and discharge curves of a fresh Calb cell
+                                                                                         is charge throughput during charge, Edischarge,CCCV is the electrical energy
+used to obtain pseudo-OCV (pOCV) curve according to the protocol in Section
+                                                                                         supplied from the cell during discharge and Echarge,CCCV is the electrical
+2.3, (b) positive electrode, and (c) negative electrode half-cell potential curves
+and respective Li stoichiometry ranges used within the nominal voltage ranges,           energy supplied to the cell during charge.
+as obtained from electrode balancing analysis. The SOCs selected for calendaric
+aging are marked. The half-cell curves were taken from literature [41,43].
+
+
+
+                                                                                     3
+M.C. Yagci et al.                                                                                                           Journal of Energy Storage 124 (2025) 116774
+
+
+2.3. Periodic reference performance tests (checkups)                                2.4. Analysis of electrode balance
+
+    The status of all cells was monitored by four periodic reference                    The “balance” of the positive electrode (PE) and negative electrode
+performance tests (RPT) (hereafter also referred to as “checkup”) per­              (NE) refers to the range of lithium stoichiometries (x in Lix C6 for
+formed when cyclic aging cells made 100, 500, 1000, and 1500 full                   graphite, y in Liy FePO4 for LFP) that the cell uses during cycling between
+cycles. The checkups of the calendaric aging cells were performed                   the cut-off voltages. We define the lithium stoichiometries x and y as the
+simultaneously with the cyclic aging cells. The checkup intervals                   lithium concentration relative to the maximum lithium concentration
+correspond to 106, 255, 553, and 846 days of calendaric aging (slightly             according to
+differing for the individual cells). The objective of the first checkup after
+                                                                                                c(Li)
+start of the tests (checkup #1), performed at 100 cycles (106 days) of              x or y =                                                                       (6)
+                                                                                               cmax (Li)
+aging, was to test the setup and not to interrupt aging tests for long
+period of time. Therefore, during first checkup time-consuming low C-
+                                                                                    where c(Li) is the actual lithium concentration and cmax (Li) is the
+rate pseudo-OCV (pOCV) tests (see below) were not performed. Thus,
+                                                                                    maximum lithium concentration in graphite (NE) or LFP (PE). Theo­
+these were not used for degradation modes analysis. The initial RPT
+                                                                                    retically, lithium stoichiometry varies between 0 and 1. However, in
+(checkup #0) was performed with a Biologic VMP3 battery cycler inside
+                                                                                    practice, the complete range may not be accessible.
+CTS-40/200 LI climate chambers. The following RPTs (checkups #1-4)
+                                                                                        The aim of electrode balance analysis is to empirically determine the
+were performed with Basytec XTS and Basytec GSM battery cyclers in­
+                                                                                    actual stoichiometry ranges of both electrodes during a full cycle using
+side Binder KB 115 climate chambers. Before each checkup, the cells
+                                                                                    pOCV measurements, which is needed to further quantify LLI am LAM.
+were kept for at least one day at 20 ◦ C to ensure thermal equilibrium.
+                                                                                    The methodology to determine the electrode balance from measured
+The initial and following checkups were performed at 20 ◦ C ambient
+                                                                                    pOCV curves was developed in-house and presented in Ref. [34]. Briefly,
+temperature following the same protocol consisting of capacity, IR, and                                              eq
+                                                                                    the full-cell pOCV curve Vcell      , depending on the full-cell charge
+pOCV measurements.                                                                                                                                           eq
+    First step of the checkup was the determination of actual cell ca­              throughput Q, is a superposition of the two half-cell potential curves, VPE
+                                                                                                               eq
+pacity. Capacity tests consisted of two full charge/discharge cycles                (positive electrode) and VNE (negative electrode), depending on the half-
+identical to the activation test protocol (cf. Section 2.1). The discharge          cell lithium stoichiometries XPE (positive electrode), XNE (negative
+capacity of the second cycle was defined as actual cell capacity, Ccell ,           electrode). The stoichiometry ranges were determined by comparing
+obtained by integrating the measured current over the complete                      full-cell OCV curves synthesized from the half-cell curves to the
+discharge duration (including CC and CV phases). The capacity                       measured pOCV of the target cell using mathematical optimization.
+measured during the initial checkup was defined as the initial cell ca­             Mathematically, this is described as the nonlinear optimization problem
+pacity, C0 . The accuracy of the capacity measurement, based on the                                 [
+                                                                                                      ∑ ( d ( eq )
+                                                                                                       N                                  ) )2
+                                                                                                                                               ]
+                                                                                                                             d ( eq
+current measurement accuracy of the cyclers as given by the cycler                  minp χ 2 = minp           Vcell,exp −       Vcell,mod                   (7)
+                                                                                                          dQ             n  dQ             n
+manufacturers, is estimated around 1.6 Ah, which corresponds to 0.8 %                                 n=1
+
+of the initial capacity. This also limits the accuracy of CE and ηenergy to
+                                                                                    with five unknown parameters,
+0.8 %.
+                                                                                        { min max min max               }
+    In a second step, IR measurements were performed at each 2 % SOC                p = XPE   , XPE , XNE , XNE , Ccell                                            (8)
+from 98 % SOC to 2 % SOC, based on Ccell . IR was measured by applying
+                                                                                              eq                                    eq
+a lower 25 A (0.14C) current pulse for 30 s, starting from t0 , during 50 A            Here, Vcell,exp is the measured pOCV curve, Vcell,mod is the synthetic
+(0.28C) continuous CC discharge or charge. From the voltage response,               OCV curve calculated from the half-cell potential curves, χ 2 is the merit
+IR was calculated according to                                                      function, and the sum runs over N measured data points of the pOCV
+                                                                                    curve. The merit function represents the deviation between experi­
+              V(t1 ) − V(t0 )
+IRpulse = −                                                              (5)        mental and synthetic differential voltage (DV) curves. The required
+               I(t1 ) − I(t0 )
+                                                                                    methods for interpolation, table manipulation, and optimization were
+                                                                                    taken from MATLAB (R2019a). The interior-point algorithm imple­
+by taking t1 − t0 = 3 s. For cell selection (cf. Section 3.1), the average IR
+                                                                                    mented in MATLAB's fmincon solver was used for optimization. In order
+in the whole SOC range calculated from Eq. (5) (IRpulse ) during the initial                                            eq
+                                                                                    to create a synthetic OCV curve (Vcell,mod ), the half-cell potential curves of
+RPT (checkup #0) is used to compare homogeneity of cells. For aging
+investigations, IR calculated from charge/discharge curves during                   the two active materials (AM) are needed. As half-cell measurements
+                                          )                                         were not included in our experimental framework, we used literature
+checkups according to Eq. (1) (IRcycle is used for the sake of accurate
+                                                                                    data. Half-cell potential curves of a given active material may vary
+comparison with the IR calculated from aging cycles by using the same
+                                                                                    depending on the source and processing (e.g., degree of graphitization of
+approach.
+                                                                                    graphite). We tested different data for LFP and for graphite, and ob­
+    Finally, one full CCCV charge-discharge cycle at low-C-rate (0.1C =
+                                                                                    tained the best optimization results with the following data. For LFP,
+18 A, 9 A CV phase cut-off current, 30 min rest between charge-
+                                                                                    half-cell potential curves were taken from Verbrugge et al. [41], and
+discharge) was performed at 20 ◦ C in order to calculate OCV curves.
+                                                                                    entropies from Viswanathan et al. [42]. For graphite, half-cell potential
+There is a limitation to the accuracy of the battery cyclers, so reducing
+                                                                                    curves were taken from Smekens et al. [43], and entropies from Reynier
+the C-rate further would decrease the signal-to-noise ratio considerably
+                                                                                    et al. [44].
+and increase checkup time significantly. Furthermore, LFP-based cells
+                                                                                        Fig. 1 shows exemplary results of electrode balance analysis of an as-
+exhibit a well-known voltage hysteresis, that is, the OCV is different
+                                                                                    received cell. Half-cell curves from the literature are shown as thin solid
+depending on whether the cell is being charged or discharged [38–40].
+                                                                                    lines in panels (b) and (c), whereas the calculated stoichiometry ranges
+Therefore, we took the arithmetic average of charge and discharge
+                                                                                    are represented as thick solid lines. The end points of the used stoichi­
+voltage corresponding to the same SOC. Thus, we interpret the resulting
+                                                                                    ometry ranges represent the full and empty battery states.
+characteristic curve as pseudo-OCV curve.
+                                                                                        Electrode balance analysis was applied to both, the pOCV data ob­
+    The RPTs during aging experiments (checkups #1-4) were performed
+                                                                                    tained during checkups, and the continuous cycles of the cyclic aging
+without changing the cell position in order to avoid potential influences
+                                                                                    test cells. When analyzing the cyclic aging test cells, the last optimized
+from a change in cooling profiles as a result of cell displacement inside
+                                                                                    parameters were used as initial values for the next optimization.
+the climate chambers.
+
+
+
+                                                                                4
+M.C. Yagci et al.                                                                                                                Journal of Energy Storage 124 (2025) 116774
+
+
+2.5. Degradation modes                                                                 XNE (t). Due to the better identifiability of XPE for a fully-charged cell (cf.
+                                                                                       next section), we used the stoichiometric pair at 100 % SOC, resulting in
+   From the electrode balance obtained in the previous section, three
+                                                                                       QLLI (t) = C0PE − XPE
+                                                                                                          min               max
+                                                                                                              (t)CPE (t) − XNE  (t)CNE (t)                            (21)
+degradation modes can be obtained, that is, loss of active material of the
+positive electrode (LAMPE), loss of active material of the negative elec­                 Eqs. (14), (15) and (21) allow to quantify LAMPE, LAMNE, and LLI
+trode (LAMNE), and loss of lithium inventory (LLI). We quantify them in                from electrode balance analysis of a fresh cell (results indicated with
+units of capacity Q (in Ah) for straightforward interpretation.                        superscript 0) and the same cell after aging for the duration of time t.
+   The stoichiometry range ΔX that an electrode is cycled in between
+the cell cut-off voltages is obtained from the upper and lower stoichi­                2.6. Parameter identifiability
+ometry limits (Xmax and Xmin ) calculated from electrode balance analysis
+as                                                                                         The framework derived in the two previous sections allows the
+                                                                                                                                                                    min
+ΔX(t) = Xmax (t) − Xmin (t)                                                 (9)        determination of LAMPE, LAMNE, and LLI by using parameters XPE                   ,
+                                                                                         max    min    max
+                                                                                       XPE   , XNE  , XNE  , and Ccell . From the experimental data, however, not all
+for both electrodes. The theoretically available half-cell capacities for              of these parameters are identifiable. Therefore, further assumptions are
+positive and negative electrodes (CPE and CNE ) can be obtained as                     necessary to eliminate the unidentifiable parameters. In Fig. 1 it is
+                                                                                       noticeable that with a fully-charged cell the NE lithium stoichiometry is
+            Ccell (t)
+CPE (t) =                                                                  (10)        in a potential plateau region, while the PE half-cell curve of the cathode
+            ΔXPE (t)
+                                                                                       shows a strong gradient. For an empty cell, on the other hand, the NE
+                                                                                       half-cell curve exhibits a strong gradient and the PE is adjacent to the
+            Ccell (t)
+CNE (t) =                                                                  (11)        voltage plateau, spanning nearly the whole PE stoichiometry. Therefore,
+            ΔXNE (t)
+                                                                                       the identifiability of XNE is best for an empty cell and that of XPE for a full
+    Eqs. (9)–(11) are time-dependent because stoichiometric ranges and                 cell. Still, as the NE half-cell potential curve has several steps, the
+cell capacity change with aging. For a fresh cell, the equations above are             identifiability of the NE lithium stoichiometry range remains good.
+redefined by adding the superscript “0” to indicate that all values                        As a result of ongoing LLI, the maximum stoichiometry of the posi­
+                                                                                                          max
+address the initial values as                                                          tive electrode XPE      shifts to lower values in time. For the LFP electrode of
+                                                                                                                             max
+                                                                                       the cell shown in Fig. 1 (b), XPE         shifts into the large voltage plateau
+         C0cell                                                                                                                                             max
+C0PE =       0
+                                                                           (12)        where the voltage is nearly constant. Within this plateau, XPE           is prac­
+         ΔXPE
+                                                                                       tically unidentifiable because the plateau voltage can be associated with
+                                                                                                                                         max
+                                                                                       a wide range of Li stoichiometries. Thus, XPE         needs to be excluded from
+         C0cell
+C0NE =      0
+                                                                           (13)        the optimization problem. This, in turn, makes the identification of
+         ΔXNE
+                                                                                       LAMPE impossible. Therefore, we assumed that the LFP positive elec­
+   We assume that the fresh cell has no LAM. LAMPE an LAMNE of the                     trode does not undergo LAM by setting
+aged cell can therefore be calculated as
+                                                                                       QLAM,PE = 0.                                                                   (22)
+QLAM,PE (t) = C0PE − CPE (t)                                               (14)
+                                                                                          Accordingly, we assume that the theoretical capacity of PE does not
+                                                                                       change,
+QLAM,NE (t) = C0NE − CNE (t)                                               (15)
+                                                                                       CPE = C0PE .                                                                   (23)
+    LLI causes a shift of the two half-cell curves with respect to each
+other. In order to develop a quantitative description, the charge content                 Under this assumption, the maximum stoichiometry at any given
+of the two electrodes QPE , QNE can be defined according to                            time XPE
+                                                                                             max
+                                                                                                 (t) can be calculated according to
+QNE (t) = XNE (t)CNE (t)                                                   (16)                                Ccell (t)
+                                                                                       XPE
+                                                                                        max        min
+                                                                                            (t) = XPE  (t) +                                                          (24)
+                                                                                                                C0PE
+QPE (t) = XPE (t)CPE (t)                                                   (17)
+                                                                                           It might be mentioned that LAMPE is non-identifiable only as long as
+    We assume that the cell is manufactured with a fully-lithiated posi­               LAMPE < LLI, which is the case in the present experiments. The quan­
+tive electrode (XPE
+                 max
+                     = 1, QPE = C0PE , here: LiFePO4) and a fully deli­                tification of LAMPE would require dedicated half-cell experiments with
+thiated negative electrode (XNE
+                             min
+                                 = 0, QNE = 0, here: pure graphite C6).                PEs harvested from the full cell at different aging states. However, this is
+We furthermore assume that LLI occurs only at the NE, resulting from                   out of scope of the present study. If only LAMPE occurs, or if LAMPE >
+SEI formation and irreversible plating. With these assumptions, the NE                 LLI, the LFP electrode cycles beyond its plateau, and the stoichiometric
+lithium stoichiometry at an arbitrary time is given as                                 range remains identifiable from full-cell measurements.
+                                                                                           Furthermore, as mentioned earlier, we calculated Ccell directly from
+            QNE (t) Qcell (t) − QLLI (t)
+XNE (t) =           =                                                      (18)        the experimental data from the discharge curves. The number of opti­
+            CNE (t)        CNE (t)
+                                                                                       mization parameters was reduced by two with these two assumptions.
+and the PE lithium stoichiometry is given as                                           As a consequence, the parameter set to be determined for solving the
+                                                                                                                                     { min max min }
+                                                                                       optimization problem was reduced to p = XNE        , XNE , XPE . These pa­
+            QPE (t) C0PE − Qcell (t)                                                   rameters are sufficient to calculate LAMNE and LLI from Eqs. (15) and
+XPE (t) =           =                                                      (19)
+            CPE (t)     CPE (t)                                                        (21), respectively.
+    Here, Qcell (t) is the total charge throughput of the cell until time t. For
+a fully charged cell Qcell = Ccell and for a fully discharged cell Qcell = 0.          3. Experimental results
+The combination of Eqs. (18) and (19) by eliminating Qcell (t) results in
+an expression for QLLI according to                                                    3.1. Initial characterization
+
+QLLI (t) = C0PE − XPE (t)CPE (t) − XNE (t)CNE (t)                          (20)           In order to minimize cell-to-cell variations, the most homogenous
+    The expression can be calculated with an arbitrary pair of XPE (t),                twelve cells were selected according to the capacity (Ccell ) and IR
+                                                                                       (IRpulse) measurement results during initial RPT (checkup #0), which
+
+                                                                                   5
+M.C. Yagci et al.                                                                                                                Journal of Energy Storage 124 (2025) 116774
+
+
+are shown in Fig. 3. The cells were numbered from #1 to #12 for aging                      analysis (cf. Section 4).
+tests (cf. Table 2) The average discharge capacities vary between 199.9                          The quantitative analysis of cell characteristics during cycling is
+Ah and 201.1 Ah. The capacity range is 1.2 Ah which corresponds to 0.6                     shown in Fig. 6. Cell #1 and cell #2 were cycled at 35 ◦ C, and cell #7
+% of the maximum cell capacity. The average (between 2 and 98 % SOC)                       and cell #8 were cycled at 50 ◦ C ambient temperature. Discharge ca­
+IR varies between 0.58 mΩ and 0.73 mΩ. The IR range is 0.15 mΩ,                            pacity is displayed in panel (a). All cells continuously lose capacity. The
+corresponding to 20 % of maximum IR. While capacity variation is                           curves show small discontinuities every ca. 100 cycles, associated with
+small, IR variation is significantly higher than reported in literature                    scheduled stops and restarts of the cycling protocol according to the
+[55]. This may be explained by the very low, sub-milliohm IR of these                      experimental methodology (cf. Section 2.2). The 50 ◦ C cells show more
+large-format cells that could significantly be affected by different con­                  significant discontinuities at 100, 500, 1000 and 1400 cycles. These
+tact resistances as a result of using different test connectors for each cell.             points correspond to long interruptions of cyclic aging tests lasting more
+However, the influence of contact resistance on measured IR was not                        than a week: the first three are RPT and the last one corresponds to a
+further investigated.                                                                      technical problem resulting in power outage in the laboratory. After
+                                                                                           each break, the cycling continues with visibly different capacity for a
+3.2. Cyclic aging                                                                          few cycles until the curve approaches the pre-check-up values. This
+                                                                                           behavior has been interpreted before due to anode overhang [45].
+    The cyclic aging tests were performed until each cell completed                        Although the 35 ◦ C cells were subjected to checkups simultaneously
+approximately 1500 full cycles. Specifically, 1509, 1500, 1495 and 1505                    with 50 ◦ C cells, the impact of breaks on the discharge capacity of 35 ◦ C
+full cycles were completed for cells #1, #2, #7 and #8, respectively.                      cells are much less pronounced than in the case of the 50 ◦ C cells.
+Exemplary full charge/discharge cycles of cell #1 (cycling at 35 ◦ C) and                        Fig. 6(b) shows IRcycle (cf. Eq. (1)) as function of cycle number. All
+cell #7 (cycling at 50 ◦ C) are shown in Fig. 4. The upper panels of Fig. 4                cells show a small drop of IR during the first ca. 20 cycles. The origin of
+show relatively fresh cells undergoing 10th and 11th cycles. The length                    the temporary increase in IR between around 50-100 cycles is unclear.
+of full charge/discharge cycles are 8 h (±4 min). The lower panels show                    The 35 ◦ C cells then exhibit a very slow increase of only 4.7 % in average
+the same cells in their aged state undergoing 1100th and 1101st cycles.                    between 100th and 1000th cycles, followed by a slightly accelerated IR
+For the aged cells, full cycle duration is significantly shortened to 7.35 h               increase. The 50 ◦ C cells start with a significantly lower IR, associated
+(cell #1 at 35 ◦ C) and 6.7 h (cell #7 at 50 ◦ C) due to capacity loss with                with faster electrochemical reactions and transport processes at higher
+aging (current level was kept unchanged). Cell surface temperatures are,                   temperatures. The IR is only slightly increasing up to ca. 800 cycles.
+on average, 2 ◦ C higher than ambient temperature (note the accuracy of                    Then the cells show an “elbow” type behavior [46], with rapidly
+the temperature sensors was verified to be ≤0.3 ◦ C). CV phases were                       increasing IR, accompanied by short-term fluctuations. After the break
+carried out for both charge and discharge, but are not visible in the data                 at 1000th cycle for checkup #3, the cells continue with a higher IR;
+due to their very short duration (maximum 2 min) compared to the total                     while after the break at 1400th cycle due to power outage, IR decreases
+length of full charge/discharge.                                                           significantly. These results underline the influence of the checkups and
+    Charge and discharge curves of every 100th cycle, plotted as voltage                   other long interruptions on the cell behavior, and therefore the
+vs. charge throughput, are shown in Fig. 5 for cell #1 (cycling at 35 ◦ C)                 nonlinear dependence of aging on cell history.
+and cell #7 (cycling at 50 ◦ C). The cell capacity clearly decreases with                        The IR measurement results are consistent with initial overvoltage
+increasing number of cycles. As expected, the capacity loss is faster at                   decrease of LFP cells observed in literature [39]. The impedance
+50 ◦ C. Interestingly, at 35 ◦ C, there is no significant change in the                    decrease in first cycles of LFP cells was attributed to the electrochemical
+voltage gap between charge and discharge branches with increasing                          milling of the PE [47]. Electrochemical milling is the process in which
+cycle number, which means no significant change in overpotentials.                         LFP particles crack and crumble because of mechanical stress as a result
+These stable charge-discharge plateaus indicate a non-increasing cell                      of volumetric change during Li (de)intercalation. These cracks increase
+resistance [31]. On the other hand, at 50 ◦ C, overpotentials increase                     active surface area and the tortuosity of the electrode that in turn fa­
+continuously, more significantly at lower SOC (0-25 %) and higher SOC                      cilitates electronic conductivity and mass transport. Although beneficial
+(75–100 %). Both datasets show a clear shift of the characteristic voltage                 in the primary phases of cycling, the detachment of such particles as a
+step at around 60 Ah charge throughput, associated with the graphite                       result of further milling causes detachments from conductive carbon
+negative electrode, which will be exploited in the degradation modes                       black causes LAM. If disconnected LFP particles are lithiated, this
+                                                                                           lithium inventory is also lost [23].
+                                                                                                 Panels (c) and (d) show the state of health (SOHC ), defined here as
+                                                                                           relative capacity according to Eq. (2). Panel (c) shows a linear plot,
+                                                                                           while panel (d) uses the same data plotted as function of the square root
+                                                                                           of the number of cycles. The cells cycled at 35 ◦ C show a significantly
+                                                                                           better capacity retention (86-88 % SOHC ) at the end of the test,
+                                                                                           compared to the ones cycled at 50 ◦ C (77-79 % SOHC ). The cells cycled
+                                                                                           at 50 ◦ C (cell #7 and cell #8) reached 80 % SOHC (end of commercial
+                                                                                           life), at around 1350 cycles. The dashed line in panel (d) corresponds to
+                                                                                           linear fitting using the first 300 cycles for each cell. Cell #1 (cycled at
+                                                                                           35 ◦ C) demonstrates close-to-linear behavior of SOHC versus square root
+                                                                                           of cycle number during first 500 cycles, while cell #2 (cycled at 35 ◦ C)
+                                                                                           temporarily deviates from linear fit between cycles 50-290. After 415
+                                                                                           cycles, cell #2 permanently deviates from linear fit. Both cells cycled at
+                                                                                           50 ◦ C show an initial deviation from linear fit (between cycles 27-255 for
+                                                                                           cell #7 and cycles 27-132 for cell #8). After ca. 350 cycles both cells
+                                                                                           cycled at 50 ◦ C deviate from the linear fit permanently. In the literature,
+                                                                                           the square root of time dependence of capacity loss was experimentally
+Fig. 3. Discharge capacity and average (between 2 % and 98 % SOC) internal                 validated by semi-empirical life models [48]. The physical origin of the
+resistance IRpulse (Eq. (5)) of the twelve cells used for aging tests during initial       t 0.5 dependency is attributed to diffusion-limited growth of the SEI [49].
+checkup #0 (initial RPT). Cell numbers are given next to the data points (cf.                    Finally, panels (e) and (f) show CE and ηenergy . CE remains close to
+Table 2). Aging test protocols of the cells are indicated in the legend.
+
+                                                                                       6
+M.C. Yagci et al.                                                                                                             Journal of Energy Storage 124 (2025) 116774
+
+
+
+
+Fig. 4. Voltage, current and temperature profiles during two exemplary consecutive full cycles as function of time. (a) Cycle 10 and 11, cell #1 cycled at 35 ◦ C. (b)
+Cycle 10 and 11, cell #7 cycled at 50 ◦ C. (c) Cycle 1100 and 1101, cell #1 cycled at 35 ◦ C. (d) Cycle 1100 and 1101, cell #7 cycled at 50 ◦ C.
+
+
+
+
+Fig. 5. Selected 0.28C aging cycles of (a) cell #1 cycled at 35 ◦ C, and (b) cell #7 cycled at 50 ◦ C. The lower branches on the curves represent discharge, where time
+progresses from left to right; the upper branches of the curves represent charge, where time progresses from right to left.
+
+
+unity for all cells over the complete experiment; we believe that slightly             850 days. Worthwhile noting that the electrical properties of the cal­
+lower efficiency of cell #7 as well as efficiencies >100 % for cell #1 are             endaric aging cells, except cell voltage, were only measured during
+due to miscalibrations of the associated battery cycler test channels; the             checkups, which were carried out at 20 ◦ C ambient temperature;
+estimated uncertainty of the CE calculation is ±0.8 % (cf. Section 2.3).               therefore, these data need to be interpreted differently to those of the
+Still, the 50 ◦ C cell data exhibit larger noise than the 35 ◦ C cell data, the        cyclic aging cells presented in the previous section.
+origin of which is unclear. After ca. 900 cycles, ηenergy of 50 ◦ C cells                  Fig. 7(a) shows the discharge capacity. All cells lose capacity
+reduce below the efficiencies of 35 ◦ C cells. Moreover, the reduction of              continuously with progressing calendaric aging. Exceptionally, between
+ηenergy of 50 ◦ C cells are inversely symmetrical with the increase of IR              checkup #1 and checkup #2, taking place after 106 and 255 days of
+after 900 cycles in panel (b). Therefore, IR increase is the main cause of             aging, capacity losses of 35 ◦ C cells are minimal (between 0.8 Ah and
+ηenergy decrease in 50 ◦ C cells.                                                      1.08 Ah) which is more than 2 to 7 times smaller compared to capacity
+                                                                                       losses between other checkups. SOHC evolution is shown in panel (c).
+                                                                                       Relative capacity loss is higher in 50 ◦ C cells (ca. 13.6 % on average)
+3.3. Calendaric aging                                                                  compared to 35 ◦ C cells (ca. 7.7 % on average). Within the cells aged at
+                                                                                       same temperature, no systematic difference is observed between SOC
+   The calendaric aging cells were kept at test conditions given in                    levels. The observations on relative capacity change indicate that tem­
+Table 2 for 875 days. The quantitative analysis of checkup results is                  perature is the dominant factor on SOHC decrease of calendaric aging
+presented in Fig. 7. Checkups were performed at ca. 0, 100, 250, 550 and               cells. Panel (d) shows SOHC change as function of the square root of time
+
+                                                                                   7
+M.C. Yagci et al.                                                                                                                Journal of Energy Storage 124 (2025) 116774
+
+
+
+
+Fig. 6. Quantitative analysis of cycling data. Ambient temperature during cycling is given in figure next to cell numbers. (a) Discharge capacity, (b) internal
+resistance IRcycle (Eq. (1)), (c) state of health SOHC (Eq. (2)) vs. cycle number, (d) SOHC vs. square root of cycle number, (e) coulombic efficiency CE (Eq. (3)), and (f)
+energy efficiency ηenergy (Eq. (4)).
+
+
+
+
+plotted along with dashed lines corresponding to linear fits. 50 ◦ C cells,              tests. IR measurements at checkup #3 show that the cells aged at 100 %
+except for slight discrepancies at checkup #2, show a linear behavior                    SOC have lower IR than those aged at 75 % SOC, but this pattern could
+with square root of time until the end of experiment. It is not possible to              not be observed at other checkups. As discussed in Section 3.1, the IR
+observe any linear behavior for 35 ◦ C cells.                                            measurements are subject to measurement uncertainties resulting from
+    Panel (b) shows IR calculated from charge/discharge curves during                    contact resistances that may vary from cell to cell and also from checkup
+                                          )
+checkups according to Eq. (1) (IRcycle as function of test time. After                   to checkup due to the use of different battery cycler systems.
+initial IR drop for all cells at checkup #1, all cells underwent IR increase                 Panels (e) and (f) show CE and ηenergy . The CE values are subject to
+at checkup #2. The highest IR values were measured for all cells except                  limited measurement accuracy (cf. Section 2.3). Moreover, checkup #0
+cell #9 (50 ◦ C, 100 % SOC) at checkup #2. IR decreases once more at                     was performed with Biologic VMP3 battery cycler and checkups #1-4
+checkup #3 until rising finally close to initial values at the end of the                with Basytec XCTS and Basytec GSM battery cyclers, with different
+
+
+                                                                                     8
+M.C. Yagci et al.                                                                                                               Journal of Energy Storage 124 (2025) 116774
+
+
+
+
+Fig. 7. Quantitative analysis of the checkup results of calendaric aging cells. Aging conditions (temperature and SOC) are given in legend next to cell numbers.
+Checkups were performed at 20 ◦ C ambient temperature. (a) Discharge capacity, (b) internal resistance IRcycle (Eq. (1)), (c) state of health SOHC vs. time (Eq. (2)), (d)
+SOHC vs. square root of time, (e) coulombic efficiency CE (Eq. (3)), (f) energy efficiency ηenergy (Eq. (4)).
+
+
+measurement accuracies. Qualitatively, for each individual cell, CE re­                 (checkup #4). In panels (a) and (c), corresponding to the 1st and 750th
+mains constant after checkup #1. The ηenergy dataset in panel (f) shows                 cycle, well-formed voltage plateaus and steps are visible in the pOCV
+that 50 ◦ C cells have higher ηenergy than 35 ◦ C cells starting with checkup           curves, which translate to clear peaks in the DV curves in panels (b) and
+#1. Similar to CE, ηenergy of calendaric aging cells show little variation              (d). Synthetic OCV and DV curves match well with the experimental
+(<0.5 % for all cells).                                                                 ones, so the optimization algorithm outputs are accurate. The DV peaks
+                                                                                        change their position towards lower charge throughput for the older
+4. Degradation modes                                                                    cell; for example, the NE peak at ca. 65 Ah (cycle 1) shifts to ca. 45 Ah
+                                                                                        (cycle 750).
+4.1. Differential voltage analysis                                                          The data for cycle 1495 (panels e and f) show a qualitative differ­
+                                                                                        ence. Here, the steps in the pOCV curve are hardly recognizable (panel
+    Fig. 8 shows exemplary charge/discharge curves of cell #7 during                    e). Consequently, characteristic features of the DV curve (panel f)
+cyclic aging at 50 ◦ C along with the electrode balance analysis (exper­                become very broad. The NE DV peak, which is initially positioned
+imental pOCV curve, synthetic OCV curve, DV plots of both experi­                       around 65 Ah, has nearly vanished, except for a small feature at ca. 25
+mental and model along with individual electrode signals) at four                       Ah. As these peaks serve as a basis for identifying the lithium stoichi­
+selected times corresponding to the start of tests (1st cycle), the                     ometry regions, the optimization algorithm is unable to obtain good
+midpoint of tests (750th cycle), last (1495th) cycle, and the last checkup              results – the DV peak at ca. 25 Ah is shifted to ca. 5 Ah in the synthetic
+
+
+                                                                                    9
+M.C. Yagci et al.                                                                                                               Journal of Energy Storage 124 (2025) 116774
+
+
+
+
+Fig. 8. Electrode balance analysis of cycling data and last checkup of cell #7. Left panels (a), (c), (e), and (g): Experimental charge, discharge, their average (pseudo-
+OCV), and synthetic OCV curve. Right panels (b), (d), (f), and (h): DV analysis of pseudo-OCV and synthetic OCV curves along with individual electrodes. (a–b) 1st
+cycle, (c–d) 750th cycle, (e–f) 1495th (last) cycle, (g–h) last checkup (checkup #4) performed at the end of cycling. Cycling tests were performed with the CCCV test
+protocol with 0.28C (0.05C CV cut-off current) at 50 ◦ C, and the checkup #4 capacity test was performed with the CCCV test protocol with 0.1C (0.05C CV cut-off)
+at 20 ◦ C.
+
+
+curve, resulting in poor agreement between experimental and synthetic                   % SOHC (cf. Fig. 6c). On the other hand, the broadening of peaks beyond
+pOCV. The broadening of DV peaks can be attributed to spatially inho­                   identifiability does not occur for 35 ◦ C cyclic aging cells (results not
+mogeneous aging, leading to a superposition of multiple different half-                 shown), allowing the calculation of the lithium stoichiometries until the
+cell curves [28].                                                                       end of the test. At the end of tests, the SOHC of cells cycled at 35 ◦ C are
+    We have observed before that high C-rates broaden the characteristic                86 % and 88 %.
+steps in the voltage curves, as compared to low C-rates [35]. Therefore,
+low C-rates (< C/10) are used in literature for DV analyses [50]. The
+cyclic aging dataset in panels (a)-(f) consists of CCCV charge/discharge                4.2. Degradation modes of cyclic aging cells
+cycles at 0.28C at 50 ◦ C. The checkup data in panels (g) and (h) was
+measured with CCCV 0.1C at 20 ◦ C. Despite the lower C-rate, the DV                         The results of electrode balance and degradation mode analysis are
+peaks are broader in panel (h). Still, the optimization algorithm is able to            shown for all cyclic aging cells in Fig. 9. Panels (a)–(d) show the mini­
+converge to a good agreement between experimental and synthetic                         mum and maximum lithium stoichiometries of PE and NE as a function
+pOCV curves (panel g).                                                                  of cycle number. Two types of data sets are shown. The continuous data
+    The broadening of DV peaks (as in panels f and h) beyond identifiable               points (dots) represent the cycle-by-cycle analysis, the individual data
+limits hinders the calculation of Li stoichiometries. The electrode bal­                points (circles) represent the analysis of pOCV curves performed during
+ance analysis of cyclic aging cells showed that the peak identifiability of             checkups (initial and after 500, 1000 and 1500 cycles).
+cells aging at 50 ◦ C is lost after ca. 1000 cycles, corresponding to ca. 83                The NE is almost completely delithiated in a fully-discharged cell
+
+                                                                                   10
+M.C. Yagci et al.                                                                                                           Journal of Energy Storage 124 (2025) 116774
+
+
+
+
+Fig. 9. Lithium stoichiometries and degradation modes resulting from electrode balance analysis of cyclic aging cells. Cyclic aging data is represented with dots
+(aging temperature is given next to cell number in legends), and checkup data (at 20 ◦ C) is represented with circles. (a) Maximum NE stoichiometry, (b) minimum NE
+stoichiometry, (c) maximum PE stoichiometry, (d) minimum PE stoichiometry, (e) QLAM,NE vs. cycle number, (f) QLLI vs. cycle number, (g) QLAM,NE vs. time, (h) QLLI
+vs. time. All cycles were performed with the CCCV test protocol with 0.28C (0.05C CV cut-off current), and checkups were performed with the CCCV test protocol
+with 0.1C (0.05C CV cut-off).
+
+   min
+(XNE    in panel b), and remains so during aging. Similarly, in a fully-                  LAM at the NE, QLAM,NE , and LLI, QLLI , are shown in Fig. 9 both as a
+charged cell, there are hardly any lithium ions left in PE (XPE     min
+                                                                        panel         function of cycle number (panels e and f) and as a function of time
+d). Thus, during the entire experiment, discharge cut-off voltage is                  (panels g and h). In the overall view, all cells exhibit both LLI and LAMNE
+limited by the NE, and charge cut-off voltage by the PE. PE maximum                   during aging, LLI is always higher than LAMNE, and the losses are higher
+lithium stoichiometry (XPE max
+                               in panel c) starts at about 99 % lithiation for        at 50 ◦ C compared to 35 ◦ C. The two degradation modes show quite
+all cells. This shows that the usable cell capacity is initially dictated by          different time behavior. LAMNE initially slowly increases up to around
+PE. Upon aging, XPE  max
+                          decreases proportional to the cell capacity ac­             300 cycles, then shows a plateau behavior, and finally exhibits an
+cording to Eq. (24). The maximum lithium stoichiometries of NE (XNE       max         “elbow”-like behavior of nonlinear increase. The “elbow” starts at ca.
+in panel a) is below 80 % in the beginning of cycling; therefore, the NE is           1500 cycles at 35 ◦ C, and at ca. 750 cycles at 50 ◦ C. LLI, on the other
+oversized by the manufacturer. Both XNE   max
+                                               and XPEmax
+                                                          decrease during the         hand, shows an initial fast and nonlinear increase up to ca. 300 cycles,
+entire aging process. In the case of the two 50 ◦ C cells, a sharp drop of            after which the further loss increases almost linearly. It can be noted that
+  max
+XNE    is observed after the 1000th cycle. As this does not seem realistic,           LAMNE data is missing after ca. 1000 cycles for the 50 ◦ C cells; this is a
+                                                                                                                                        max
+we attribute it to the incorrect identifiability of the lithium stoichiom­            consequence of the incorrect assessment of XNE        (cf. panel a) resulting
+etry due to broadened features (cf. previous section). The analyses                   from broadened DV peaks. The data resulting from the checkups (solid
+resulting from the checkups (solid symbols) are consistent with those                 symbols) are consistent with the results derived from cycling only for
+derived from the cycling data. This demonstrates the feasibility of                   LLI. For LAMNE, the checkup results are not entirely consistent with the
+electrode balance analysis from cycling data.                                         cycling results; the origin of the deviation is unclear.
+
+
+                                                                                 11
+M.C. Yagci et al.                                                                                                         Journal of Energy Storage 124 (2025) 116774
+
+
+4.3. Degradation modes of calendaric aging cells                                              min
+                                                                                    values (XPE   in panel d) remain at very small values. Similar to the cyclic
+                                                                                    aging cells, charge cut-off remains limited by the PE, and discharge cut-
+    For calendaric aging experiments, charge/discharge data is only                 off by the NE.
+available from the periodic checkups. Fig. 10 shows results of electrode                The resulting degradation modes, LAMNE and LLI, are shown in
+balance and degradation mode analyses in a similar way as for the cyclic            panels (e) and (f), respectively. LAMNE values fluctuate irregularly
+aging experiments in Fig. 9. Panels (a)-(d) show the NE and PE lithium              around 10 Ah after an initial increase in checkup #1. There is no sys­
+stoichiometries variation. Maximum lithium stoichiometry values of                  tematic difference between the two investigated SOC and temperature.
+           max                      max
+both NE (XNE   in panel a) and PE (XPE  in panel c) continuously decrease           LLI values exhibit a continuous increase for 50 ◦ C cells with aging,
+for 50 C cells and stay constant or decreases for 35 ◦ C with aging. The
+       ◦
+                                                                                    regardless of storage SOC. For 35 ◦ C, after the initial increase to ca. 10
+decrease is always higher for 50 ◦ C cells, regardless of SOC. Minimum              Ah is observed in checkup #1, the values stay stagnant except for a small
+                      min
+NE stoichiometry (XNE      in panel b) and minimum PE stoichiometry                 increase to ca. 12 Ah at the last checkup. The ambient temperature has a
+
+
+
+
+Fig. 10. Li stoichiometry and degradation modes calculated from electrode balance analysis of calendaric aging cells checkup measurements. (a) Maximum NE
+stoichiometry, (b) minimum NE stoichiometry, (c) maximum PE stoichiometry, (d) minimum PE stoichiometry, (e) QLAM,NE vs. time, (f) QLLI vs. time. All checkups are
+performed using the CCCV test protocol with 0.1C (0.05C CV cut-off) at 20 ◦ C.
+
+                                                                               12
+M.C. Yagci et al.                                                                                                              Journal of Energy Storage 124 (2025) 116774
+
+
+significant effect on LLI, while the storage SOC (75 % vs. 100 %) does not             cells. Still, cyclic aging at 50 ◦ C clearly shows a strong increase of IR at
+have a systematic influence. Different to cyclic aging, LAMNE and LLI are              progressive aging.
+similar, at least at 35 ◦ C.                                                               As for the degradation modes, Fig. 11(c) compares LAMNE. All aging
+                                                                                       conditions (calendaric and cyclic) show a strong increase after the initial
+5. Discussion                                                                          checkup, after which QLAM,NE remains on a more or less constant plateau
+                                                                                       throughout the remainder of the experiments. Aging conditions do not
+    The objective of the present study is to investigate the influence of              seem to systematically influence the initial increase, except for the 35 ◦ C
+operating conditions (cycling vs. rest, temperature, and SOC) on the                   cyclic aging cells that clearly show the lowest increase. The physico­
+aging of large-format lithium-ion cells. In this section, the results pre­             chemical origin of these observations (the initial increase, the consec­
+sented in the previous sections are combined and interpreted. Fig. 11                  utive plateau, the behavior of 35 ◦ C cyclic cells) is unclear. Fig. 11(d)
+shows SOHC , IR, LAMNE, and LLI of calendaric and cyclic aging cells in                shows LLI. These data can be approximately divided into three aging
+comparison. Only checkup results (measured at 20 ◦ C for all cells) are                groups: 1.) 50 ◦ C cyclic aging cells, 2.) 50 ◦ C calendaric aging cells and
+presented in order to be able to compare cells aged under different                    35 ◦ C cyclic aging cells, and 3.) 35 ◦ C calendaric aging cells. The 50 ◦ C
+conditions. In panels (c) and (d) the average LAMNE and LLI values of                  cycling aging cells show continuously increasing QLLI values that are the
+two cells that underwent the same aging protocol (cf. Table 2) are shown               highest at the end of tests (44.1 Ah in average). The 50 ◦ C calendaric
+for the sake of clearer comparison.                                                    aging cells and 35 ◦ C cyclic aging cells have continuously increasing and
+    Fig. 11(a) compares SOHC changes during checkups. The data show                    similar QLLI values at the end of experiments (in average 25.8 Ah and 26
+that, regardless of aging protocol, all cells aged at 50 ◦ C had lower SOHC            Ah, respectively). The 35 ◦ C calendaric aging cells have rather stagnant
+than all cells aged at 35 ◦ C at all checkups. This will be further discussed          QLLI values throughout the measurements with a final value of 12.2 Ah
+below. Fig. 11(b) compares the IR. Except for cycling aging at 50 ◦ C,                 in average. LLI is well correlated with SOHC , indicating that LLI is the
+there is no clear trend of the IR. In particular, the storage SOC (75 % or             dominant mechanism for capacity loss.
+100 %) does not have a systematic influence. This is consistent with                       For further comparison, we calculated the relative capacity loss Δ
+previous observations of calendaric aging of LFP cells by Keil et al. [51].            SOHC at the end of experiments according to
+A systematic initial drop from checkup #0 to checkup #1 might be
+                                                                                       ΔSOHC = 1 − SOHC,checkup#4                                                   (25)
+indicative of a conditioning behavior. As discussed in Section 3.1,
+because of the low IR of the studied large-format cells, the contact re­                  The values are presented in Table 3. Aging at 50 ◦ C increased ΔSOHC
+sistances can have a significant influence and can cause fluctuations of               by factor of ca. two compared to aging at 35 ◦ C, in average 16.5 % and
+IR values. Note that, due to tests channel limitations, cell contacts had to           8.8 %, respectively. Among the cells that are aged at the same temper­
+be changed for some cells during each checkup for the calendaric aging                 ature, cyclic aging at 1C increased ΔSOHC by factor of ca. 1.5 as
+
+
+
+
+Fig. 11. Comparison of calendaric and cyclic aging investigations: (a) SOHC vs cell number, (b) IRcycle (Eq. (1)) vs. cell number, (c) average QLAM,NE vs. time for each
+aging test protocol (d) average QLLI vs. time each aging test protocol.
+
+                                                                                  13
+M.C. Yagci et al.                                                                                                                     Journal of Energy Storage 124 (2025) 116774
+
+
+Table 3
+Relative capacity loss ΔSOHC for each cell at the end of experiment.
+  Temperature                        35 ◦ C                                                                    50 ◦ C
+
+  Aging protocol                     Cyclic            Calendaric 75 % SOC       Calendaric 100 % SOC          Cyclic          Calendaric 75 % SOC      Calendaric 100 % SOC
+
+  Cell number                        1        2        3      4                  5          6                  7        8      9       10               11       12
+  ΔSOHC (Eq. (25))                   10.6     11.4     8.6    6.4                8.0        7.6                22.2     22.4   14.4    12.2             13.1     14.9
+  Average ΔSOHC by aging protocol    11.0              7.5                       7.8                           22.3            13.3                     14.0
+  Average ΔSOHC by temperature       8.8                                                                       16.5
+
+
+
+
+Table 4
+Relative loss ΔSOHC during cyclic and calendaric aging as well as their ratio for this work compared to LFP/graphite cell aging studies by Schimpe et al. [56] and Safari
+et al. [14].
+                                                     Cyclic capacity loss at 1C / %                      Calendaric capacity loss at 100 % SOC / %                       Ratio
+
+  This work, 35 ◦ C, 28 months                       11                                                  7.8                                                             1.41
+  This work, 50 ◦ C, 28 months                       22.3                                                14                                                              1.59
+  Schimpe et al., 35 ◦ C, 8 months                   9.2                                                 5.8                                                             1.59
+  Schimpe et al., 55 ◦ C, 2 months                   10                                                  5.2                                                             1.92
+  Safari et al., 25 ◦ C, 6 months                    6.3                                                 3.4                                                             1.85
+  Safari et al., 45 ◦ C, 6 months                    15.4                                                9.4                                                             1.64
+
+
+
+compared to calendaric aging at 100 % SOC. Table 4 shows that some­                          aging cells below), the data still demonstrate that temperature has a
+what higher ratios were observed in other studies. Additionally, for                         strong influence on aging independently of aging protocol. The obtained
+calendaric aging at both temperatures, no distinctive difference of Δ                        global activation energy is (37.3 ± 12.8) kJ/mol. This represents an
+SOHC is observed between 75 % and 100 % SOC (the difference is 0.3 %                         average value over all cells and aging protocols. The rather large value
+for 35 ◦ C, and 0.7 % for 50 ◦ C cells). The two SOC levels were selected                    of 12.8 kJ/mol of the 95 % confidence bound is indicative of the devi­
+(cf. Section 2.2) because they cause a significant difference in PE po­                      ation from ideal Arrhenius behavior. Still, Fig. 12 shows that tempera­
+tential while having the same NE potential. The results show that PE                         ture dominates other aging drivers in the investigated cells. This is
+potential has either little influence on PE aging, or that the influence is                  consistent with the conclusion of our previous work on similar cells
+masked by the more dominant LLI. The influence of NE potential on                            operated in battery systems [9].
+calendaric aging was not subject of the present study; it was shown
+before to have a strong impact on capacity loss [52].                                        6. Summary and conclusions
+    We have further investigated the influence of temperature on ca­
+pacity loss by an Arrhenius analysis for all investigated cells combined.                        The influence of aging protocol (cyclic or calendaric), temperature
+When comparing cyclic and calendaric aging cells, it needs to be kept in                     (35 ◦ C or 50 ◦ C), and storage SOC (75 % or 100 %) on cell aging was
+mind that cycling causes heat losses and therefore increases internal cell                   investigated by testing twelve large-format LFP-based lithium-ion cells
+temperature. Initial thermal simulations using a pseudo-3D model [53]                        under controlled laboratory conditions. Cyclic aging was investigated
+parameterized to the present large-format prismatic cell indicated an                        for 1500 cycles, and calendaric aging for 850 days. Both the cycling
+average temperature inside the cell of ca. 3 ◦ C above the ambient tem­                      data, and data resulting from periodic reference performance tests, were
+perature for 50 A cycling. This increased temperature can further                            investigated by degradation mode analysis in order to quantify LAM and
+accelerate aging. Assuming an average temperature 3 ◦ C above ambient                        LLI. The main results are summarized as the following:
+temperature for the cycling cells, the resulting Arrhenius plot is shown in
+Fig. 12. While the twelve cells do not fall entirely together on a single                     • Regardless of aging conditions, all cells exhibited significant capacity
+Arrhenius slope (the cyclic aging cells are above the slope, the calendaric                     losses over time. Within the duration of the aging experiments, an
+                                                                                                increase of IR was only observed late during 50 ◦ C cyclic aging, and
+                                                                                                not at all for calendaric aging. Therefore, capacity fade was the
+                                                                                                primary aging indicator for both calendaric and cyclic aging under
+                                                                                                the investigated conditions.
+                                                                                              • Cyclic aging cells tested at 35 ◦ C lost, on average, 11 % of their initial
+                                                                                                capacity, whereas the cyclic aging cells tested at 50 ◦ C lost, on
+                                                                                                average, 22.3 % of their initial capacity at the end of the experiment.
+                                                                                                50 ◦ C cyclic aging cells reached the “end of life” (20 % capacity loss)
+                                                                                                at ca. 1350 cycles. Therefore, capacity retention during cyclic aging
+                                                                                                was superior at 35 ◦ C.
+                                                                                              • All calendaric aging cells tested at 50 ◦ C lost higher capacity (ca. 14
+                                                                                                % on average) than calendaric aging cells tested at 35 ◦ C (ca. 8 % on
+                                                                                                average), independent of storage SOC level. No distinctive effect of
+                                                                                                the investigated two storage SOC levels (75 % and 100 %) on aging
+                                                                                                was observed. This shows that the LFP electrode potential has no
+                                                                                                influence on observed capacity loss.
+                                                                                              • Temperature was observed to be the dominant aging driver (rather
+                                                                                                than aging protocol or storage SOC). For example, calendaric aging
+                                                                                                at 50 ◦ C caused faster aging that cyclic aging at 35 ◦ C. The observed
+                                                                                                global activation energy for capacity loss (over all conditions) was
+Fig. 12. Arrhenius plot of the capacity losses of all cells at the end                          37.3 kJ/mol.
+of experiment.
+
+                                                                                       14
+M.C. Yagci et al.                                                                                                                            Journal of Energy Storage 124 (2025) 116774
+
+
+ • The energy efficiency at 35 ◦ C cyclic aging was constantly above 97                         [3] J. Figgener, C. Hecht, D. Haberschusz, J. Bors, K.G. Spreuer, K.-P. Kairies,
+                                                                                                    P. Stenzel, D.U. Sauer, The Development of Battery Storage Systems in Germany: A
+   %. In the first 1000 cycles, the energy efficiency at 50 ◦ C cyclic aging
+                                                                                                    Market Review (Status 2023), arXiv 2203 (2023) 06762, https://doi.org/
+   was above 98 %, but after the efficiency dropped to 96 % as IR                                   10.48550/ARXIV.2203.06762.
+   increased. Energy efficiency remained nearly constant during cal­                            [4] K.-P. Kairies, J. Figgener, D. Haberschusz, O. Wessels, B. Tepe, D.U. Sauer, Market
+   endaric aging, with minor fluctuations between 96 and 98 %.                                      and technology development of PV home storage systems in Germany, J. Energy
+                                                                                                    Storage 23 (2019) 416–424, https://doi.org/10.1016/j.est.2019.02.023.
+   Coulombic efficiency was unity (within the measurement accuracy)                             [5] J. Figgener, P. Stenzel, K.-P. Kairies, J. Linßen, D. Haberschusz, O. Wessels,
+   during cyclic and calendaric aging.                                                              G. Angenendt, M. Robinius, D. Stolten, D.U. Sauer, The development of stationary
+ • Degradation modes could be successfully obtained from the cycling                                battery storage systems in Germany – a market review, J. Energy Storage 29 (2020)
+                                                                                                    101153, https://doi.org/10.1016/j.est.2019.101153.
+   data, without requiring low-C-rate pOCV tests. LLI was observed the                          [6] M. Müller, L. Viernstein, C.N. Truong, A. Eiting, H.C. Hesse, R. Witzmann,
+   dominating degradation mode for cyclic aging, exhibiting a signifi­                              A. Jossen, Evaluation of grid-level adaptability for stationary battery energy
+   cant temperature dependence. For calendaric aging, LAMNE and LLI                                 storage system applications in Europe, J. Energy Storage 9 (2017) 1–11, https://
+                                                                                                    doi.org/10.1016/j.est.2016.11.005.
+   were observed to have a similar magnitude. LAMNE did not exhibit a                           [7] J. Figgener, J. Van Ouwerkerk, D. Haberschusz, J. Bors, P. Woerner, M. Mennekes,
+   clear dependence on temperature or cycling type. LAMPE could not                                 F. Hil-denbrand, C. Hecht, K.-P. Kairies, O. Wessels, D.U. Sauer, Multi-year field
+   be quantified due to the plateau in the LFP half-cell voltage curve.                             measurements of home storage systems and their use in capacity estimation, Nat.
+                                                                                                    Energy 9 (11) (2024) 1438–1447, https://doi.org/10.1038/s41560-024-01620-9.
+ • A square-root-of-time dependence of LLI was observed until ca. 10 %                          [8] M. Dubarry, M. Tun, G. Baure, M. Matsuura, R.E. Rocheleau, Battery durability and
+   capacity loss for all cyclic aging cells, indicating a diffusion-limited                         reliability under electric utility grid operations: analysis of on-site reference tests,
+   SEI growth mechanism. However, at later stages of aging (SOHC <                                  Electronics 10 (13) (2021) 1593, https://doi.org/10.3390/electronics10131593.
+                                                                                                [9] M.C. Yagci, T. Feldmann, E. Bollin, M. Schmidt, W.G. Bessler, Aging characteristics
+   90 %), LLI cannot be explained by a single t 0.5 -dependent                                      of stationary Lithium-ion battery systems with serial and parallel cell
+   mechanism.                                                                                       configurations, Energies 15 (2022) 3922, https://doi.org/10.3390/en15113922.
+                                                                                               [10] W.-J. Zhang, Structure and performance of LiFePO4 cathode materials: a review,
+                                                                                                    J. Power Sources 196 (2011) 2962–2970, https://doi.org/10.1016/j.
+    In conclusion, the results show the dominant effect of temperature on
+                                                                                                    jpowsour.2010.11.113.
+aging of LFP cells. The effect of aging protocol (cyclic or calendaric                         [11] Z. Li, D. Zhang, F. Yang, Developments of lithium-ion batteries and challenges of
+aging) has secondary influence. The investigated commercial cells are                               LiFePO4 as one promising cathode material, J. Mater. Sci. 44 (2009) 2435–2443,
+                                                                                                    https://doi.org/10.1007/s10853-009-3316-z.
+intended to be used for stationary storage in a residential BESS. There­
+                                                                                               [12] H. Hesse, R. Martins, P. Musilek, M. Naumann, C. Truong, A. Jossen, Economic
+fore, the results suggest that a good thermal management and, poten­                                optimization of component sizing for residential battery storage systems, Energies
+tially, active cooling are important extending the lifetime and therefore                           10 (2017) 835, https://doi.org/10.3390/en10070835.
+improving the economic viability of BESS.                                                      [13] N. Omar, M.A. Monem, Y. Firouz, J. Salminen, J. Smekens, O. Hegazy, H. Gaulous,
+                                                                                                    G. Mulder, P. Van den Bossche, T. Coosemans, J. van Mierlo, Lithium iron
+                                                                                                    phosphate based battery – assessment of the aging parameters and development of
+CRediT authorship contribution statement                                                            cycle life model, Appl. Energy 113 (2014) 1575–1585, https://doi.org/10.1016/j.
+                                                                                                    apenergy.2013.09.003.
+                                                                                               [14] M. Safari, C. Delacourt, Aging of a commercial graphite/LiFePO4 cell,
+    Mehmet C. Yagci: Writing – original draft, Visualization, Validation,                           J. Electrochem. Soc. 158 (2011) A1123, https://doi.org/10.1149/1.3614529.
+Software, Project administration, Methodology, Investigation, Formal                           [15] E. Sarasketa-Zabala, I. Gandiaga, L.M. Rodriguez-Martinez, I. Villarreal, Calendar
+                                                                                                    ageing analysis of a LiFePO4/graphite cell with dynamic model validations:
+analysis, Data curation, Conceptualization. Oliver Richter: Writing –
+                                                                                                    towards realistic lifetime predictions, J. Power Sources 272 (2014) 45–57, https://
+original draft, Visualization, Validation, Software, Methodology,                                   doi.org/10.1016/j.jpowsour.2014.08.051.
+Investigation, Formal analysis, Data curation. René Behmann: Visual­                          [16] M. Naumann, F.B. Spingler, A. Jossen, Analysis and modeling of cycle aging of a
+ization, Validation, Software, Investigation, Formal analysis, Data                                 commercial LiFePO4/graphite cell, J. Power Sources 451 (2020) 227666, https://
+                                                                                                    doi.org/10.1016/j.jpowsour.2019.227666.
+curation. Wolfgang G. Bessler: Writing – review & editing, Validation,                         [17] L. Tan, L. Zhang, Q. Sun, M. Shen, Q. Qu, H. Zheng, Capacity loss induced by
+Supervision, Project administration, Methodology, Funding acquisition,                              lithium deposition at graphite anode for LiFePO4/graphite cell cycling at different
+Formal analysis, Conceptualization.                                                                 temperatures, Electrochim. Acta 111 (2013) 802–808, https://doi.org/10.1016/j.
+                                                                                                    electacta.2013.08.074.
+                                                                                               [18] S. Grolleau, A. Delaille, H. Gualous, P. Gyan, R. Revel, J. Bernard, E. Redondo-
+                                                                                                    Iglesias, J. Peter, Calendar aging of commercial graphite/LiFePO4 cell – predicting
+Declaration of competing interest                                                                   capacity fade under time dependent storage conditions, J. Power Sources 255
+                                                                                                    (2014) 450–458, https://doi.org/10.1016/j.jpowsour.2013.11.098.
+                                                                                               [19] K. Amine, J. Liu, I. Belharouak, High-temperature storage and cycling of C-
+    The authors declare that they have no known competing financial
+                                                                                                    LiFePO4/graphite Li-ion cells, Electrochem. Commun. 7 (2005) 669–673, https://
+interests or personal relationships that could have appeared to influence                           doi.org/10.1016/j.elecom.2005.04.018.
+the work reported in this paper.                                                               [20] M. Kassem, J. Bernard, R. Revel, S. Pélissier, F. Duclaud, C. Delacourt, Calendar
+                                                                                                    aging of a graphite/LiFePO4 cell, J. Power Sources 208 (2012) 296–305, https://
+                                                                                                    doi.org/10.1016/j.jpowsour.2012.02.068.
+Acknowledgements                                                                               [21] M. Dubarry, N. Qin, P. Brooker, Calendar aging of commercial Li-ion cells of
+                                                                                                    different chemistries – a review, Curr. Opin. Electrochem. 9 (2018) 106–113,
+                                                                                                    https://doi.org/10.1016/j.coelec.2018.05.023.
+   This work was co-funded by the European Regional Development                                [22] C.R. Birkl, M.R. Roberts, E. McTurk, P.G. Bruce, D.A. Howey, Degradation
+Fund and the Land Baden-Württemberg in the framework of the LIBlife                                 diagnostics for lithium ion cells, J. Power Sources 341 (2017) 373–386, https://
+project (grant no. FEIH_KMU_1098567). The experiments were carried                                  doi.org/10.1016/j.jpowsour.2016.12.011.
+                                                                                               [23] M. Dubarry, B.Y. Liaw, M.-S. Chen, S.-S. Chyan, K.-C. Han, W.-T. Sie, S.-H. Wu,
+out in the Enerlab 4.0 laboratory which was funded by the BMBF (grant                               Identifying battery aging mechanisms in large format Li ion cells, J. Power Sources
+no. 13FH091IN6). Offenburg University of Applied Sciences supported                                 196 (2011) 3420–3425, https://doi.org/10.1016/j.jpowsour.2010.07.029.
+the publication fee.                                                                           [24] D. Wang, X. Wu, Z. Wang, L. Chen, Cracking causing cyclic instability of LiFePO4
+                                                                                                    cathode material, J. Power Sources 140 (2005) 125–128, https://doi.org/10.1016/
+                                                                                                    j.jpowsour.2004.06.059.
+Data availability                                                                              [25] J.P. Fath, D. Dragicevic, L. Bittel, A. Nuhic, J. Sieg, S. Hahn, L. Alsheimer, B. Spier,
+                                                                                                    T. Wetzel, Quantification of aging mechanisms and inhomogeneity in cycled
+    Data will be made available on request.                                                         lithium-ion cells by differential voltage analysis, J. Energy Storage 25 (2019)
+                                                                                                    100813, https://doi.org/10.1016/j.est.2019.100813.
+                                                                                               [26] M. Lewerenz, J. Münnix, J. Schmalstieg, S. Käbitz, M. Knips, D.U. Sauer, Systematic
+References                                                                                          aging of commercial LiFePO4/graphite cylindrical cells including a theory
+                                                                                                    explaining rise of capacity during aging, J. Power Sources 345 (2017) 254–263,
+                                                                                                    https://doi.org/10.1016/j.jpowsour.2017.01.133.
+ [1] International Energy Agency, Solar PV power capacity in the Net Zero Scenario,
+                                                                                               [27] C. Kupper, B. Weißhar, S. Rißmann, W.G. Bessler, End-of-life prediction of a
+     2015–2030. www.iea.org/data-and-statistics/charts/solar-pv-power-capacity-in-th
+                                                                                                    lithium-ion battery cell based on mechanistic aging models of the graphite
+     e-net-zero-scenario-2015-2030, 2015. (Accessed 7 May 2024).
+                                                                                                    electrode, J. Electrochem. Soc. 165 (2018) A3468–A3480, https://doi.org/
+ [2] J. Figgener, C. Hecht, D.U. Sauer, Battery charts. https://www.battery-charts.de/.
+                                                                                                    10.1149/2.0941814jes.
+     (Accessed 28 August 2024).
+
+
+                                                                                          15
+M.C. Yagci et al.                                                                                                                               Journal of Energy Storage 124 (2025) 116774
+
+[28] J. Sieg, M. Storch, J. Fath, A. Nuhic, J. Bandlow, B. Spier, D.U. Sauer, Local                     3O2 electrode, Electrochim. Acta 174 (2015) 615–624, https://doi.org/10.1016/j.
+     degradation and differential voltage analysis of aged lithium-ion pouch cells,                    electacta.2015.06.015.
+     J. Energy Storage 30 (2020) 101582, https://doi.org/10.1016/j.est.2020.101582.               [44] Y. Reynier, R. Yazami, B. Fultz, The entropy and enthalpy of lithium intercalation
+[29] P. Verma, P. Maire, P. Novák, A review of the features and analyses of the solid                 into graphite, J. Power Sources 119-121 (2003) 850–855, https://doi.org/
+     electrolyte interphase in Li-ion batteries, Electrochim. Acta 55 (2010) 6332–6341,                10.1016/S0378-7753(03)00285-4.
+     https://doi.org/10.1016/j.electacta.2010.05.072.                                             [45] J.P. Fath, L. Alsheimer, M. Storch, J. Stadler, J. Bandlow, S. Hahn, R. Riedel,
+[30] S.K. Heiskanen, J. Kim, B.L. Lucht, Generation and evolution of the solid electrolyte             T. Wetzel, The influence of the anode overhang effect on the capacity of lithium-
+     interphase of Lithium-ion batteries, Joule 3 (2019) 2322–2333, https://doi.org/                   ion cells – a 0D-modeling approach, J. Energy Storage 29 (2020) 101344, https://
+     10.1016/j.joule.2019.08.018.                                                                      doi.org/10.1016/j.est.2020.101344.
+[31] P. Liu, J. Wang, J. Hicks-Garner, E. Sherman, S. Soukiazian, M. Verbrugge,                   [46] P.M. Attia, A. Bills, F. Brosa Planella, P. Dechent, G. dos Reis, M. Dubarry,
+     H. Tataria, J. Musser, P. Finamore, Aging mechanisms of LiFePO4 batteries                         P. Gasper, R. Gilchrist, S. Greenbank, D. Howey, O. Liu, E. Khoo, Y. Preger, A. Soni,
+     deduced by electrochemical and structural analyses, J. Electrochem. Soc. 157                      S. Sripad, A.G. Stefanopoulou, V. Sulzer, Review—“Knees” in lithium-ion battery
+     (2010) A499, https://doi.org/10.1149/1.3294790.                                                   aging trajectories, J. Electrochem. Soc. 169 (2022) 60517, https://doi.org/
+[32] Y. Zhang, C.-Y. Wang, X. Tang, Cycling degradation of an automotive LiFePO4                       10.1149/1945-7111/ac6d13.
+     lithium-ion battery, J. Power Sources 196 (2011) 1513–1520, https://doi.org/                 [47] M. Dubarry, C. Truchot, B.Y. Liaw, Cell degradation in commercial LiFePO4 cells
+     10.1016/j.jpowsour.2010.08.070.                                                                   with high-power and high-energy designs, J. Power Sources 258 (2014) 408–419,
+[33] M. Dubarry, C. Truchot, B.Y. Liaw, Synthesize battery degradation modes via a                     https://doi.org/10.1016/j.jpowsour.2014.02.052.
+     diagnostic and prognostic model, J. Power Sources 219 (2012) 204–216, https://               [48] J. Wang, P. Liu, J. Hicks-Garner, E. Sherman, S. Soukiazian, M. Verbrugge,
+     doi.org/10.1016/j.jpowsour.2012.07.016.                                                           H. Tataria, J. Musser, P. Finamore, Cycle-life model for graphite-LiFePO4 cells,
+[34] M. Mayur, M.C. Yagci, S. Carelli, P. Margulies, D. Velten, W.G. Bessler,                          J. Power Sources 196 (2011) 3942–3948, https://doi.org/10.1016/j.
+     Identification of stoichiometric and microstructural parameters of a lithium-ion                  jpowsour.2010.11.134.
+     cell with blend electrode, Phys. Chem. Chem. Phys. 21 (2019) 23672–23684,                    [49] I. Bloom, B. Cole, J. Sohn, S. Jones, E. Polzin, V. Battaglia, G. Henriksen,
+     https://doi.org/10.1039/C9CP04262H.                                                               C. Motloch, R. Richardson, T. Unkelhaeuser, D. Ingersoll, H. Case, An accelerated
+[35] M.C. Yagci, R. Behmann, V. Daubert, J.A. Braun, D. Velten, W.G. Bessler, Electrical               calendar and cycle life study of Li-ion cells, J. Power Sources 101 (2001) 238–247,
+     and structural characterization of large-format lithium iron phosphate cells used in              https://doi.org/10.1016/S0378-7753(01)00783-2.
+     home-storage systems, Energ. Technol. 9 (2021) 2000911, https://doi.org/                     [50] P. Keil, A. Jossen, Calendar aging of NCA lithium-ion batteries investigated by
+     10.1002/ente.202000911.                                                                           differential voltage analysis and coulomb tracking, J. Electrochem. Soc. 164 (2017)
+[36] China Aviation Lithium Battery Co., Ltd, CA 180FI Product Specification: Prismatic                A6066–A6074, https://doi.org/10.1149/2.0091701jes.
+     Lithium Ion Battery, China, 2014.                                                            [51] P. Keil, S.F. Schuster, J. Wilhelm, J. Travi, A. Hauser, R.C. Karl, A. Jossen, Calendar
+[37] W.G. Bessler, Capacity and resistance diagnosis of batteries with voltage-controlled              aging of lithium-ion batteries, J. Electrochem. Soc. 163 (2016) A1872–A1880,
+     models, J. Electrochem. Soc. 171 (2024) 80510, https://doi.org/10.1149/1945-                      https://doi.org/10.1149/2.0411609jes.
+     7111/ad6938.                                                                                 [52] F. Single, A. Latz, B. Horstmann, Identifying the mechanism of continued growth of
+[38] A. Farmann, D.U. Sauer, A study on the dependency of the open-circuit voltage on                  the solid-electrolyte interphase, ChemSusChem 11 (2018) 1950–1955, https://doi.
+     temperature and actual aging state of lithium-ion batteries, J. Power Sources 347                 org/10.1002/cssc.201800077.
+     (2017) 1–13, https://doi.org/10.1016/j.jpowsour.2017.01.098.                                 [53] S. Carelli, M. Quarti, M.C. Yagci, W.G. Bessler, Modeling and experimental
+[39] V.J. Ovejas, A. Cuadras, Effects of cycling on lithium-ion battery hysteresis and                 validation of a high-power lithium-ion pouch cell with LCO/NCA blend cathode,
+     overvoltage, Sci. Rep. 9 (2019) 14875, https://doi.org/10.1038/s41598-019-                        J. Electrochem. Soc. 166 (2019) A2990–A3003, https://doi.org/10.1149/
+     51474-5.                                                                                          2.0301913jes.
+[40] M.A. Roscher, O. Bohlen, J. Vetter, OCV hysteresis in Li-ion batteries including             [54] M. Lewerenz, S. Käbitz, M. Knips, J. Münnix, J. Schmalstieg, A. Warnecke, D.
+     two-phase transition materials, Int. J. Electrochem. 2011 (2011) 1–6, https://doi.                U. Sauer, New method evaluating currents keeping the voltage constant for fast
+     org/10.4061/2011/984320.                                                                          and highly resolved measurement of Arrhenius relation and capacity fade, J. Power
+[41] M. Verbrugge, D. Baker, B. Koch, X. Xiao, W. Gu, Thermodynamic model for                          Sources 353 (2017) 144–151, https://doi.org/10.1016/j.jpowsour.2017.03.136.
+     substitutional materials: application to lithiated graphite, spinel manganese oxide,         [55] L. Wildfeuer, M. Lienkamp, Quantifiability of inherent cell-to-cell variations of
+     Iron phosphate, and layered nickel-manganese-cobalt oxide, J. Electrochem. Soc.                   commercial Lithium-ion batteries, eTransportation 9 (2021) 100129, https://doi.
+     164 (2017) E3243–E3253, https://doi.org/10.1149/2.0341708jes.                                     org/10.1016/j.etran.2021.100129.
+[42] V.V. Viswanathan, D. Choi, D. Wang, W. Xu, S. Towne, R.E. Williford, J.-G. Zhang,            [56] M. Schimpe, M.E. Von Kuepach, M. Naumann, H.C. Hesse, K. Smith, A. Jossen,
+     J. Liu, Z. Yang, Effect of entropy change of lithium intercalation in cathodes and                Comprehensive modeling of temperature-dependent degradation mechanisms in
+     anodes on Li-ion battery thermal management, J. Power Sources 195 (2010)                          lithium iron phosphate batteries, J. Electrochem. Soc. 165 (2) (2018) A181–A193,
+     3720–3729, https://doi.org/10.1016/j.jpowsour.2009.11.103.                                        https://doi.org/10.1149/2.1181714jes.
+[43] J. Smekens, J. Paulsen, W. Yang, N. Omar, J. Deconinck, A. Hubin, J. van Mierlo,
+     A modified Multiphysics model for Lithium-ion batteries with a LixNi1/3Mn1/3Co1/
+
+
+
+
+                                                                                             16
+

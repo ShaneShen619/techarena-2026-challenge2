@@ -1,0 +1,1136 @@
+                                                                                                                              ll
+                                                                                                                       OPEN ACCESS
+
+
+
+Article
+Increasing generalization capability of battery
+health estimation using continual learning
+                                                                                          Yunhong Che, Yusheng Zheng,
+                                                                                          Simona Onori, Xiaosong Hu,
+                                                                                          Remus Teodorescu
+
+                                                                                          sonori@stanford.edu (S.O.)
+                                                                                          xiaosonghu@ieee.org (X.H.)
+
+                                                                                          Highlights
+                                                                                          Improving model generalization
+                                                                                          incrementally for battery health
+                                                                                          estimation
+
+                                                                                          Applicable under various working
+                                                                                          conditions without catastrophic
+                                                                                          forgetting
+
+                                                                                          Model is interpretable with
+                                                                                          unbiased feature distributions
+
+                                                                                          Generate large aging datasets for
+                                                                                          prismatic and pouch batteries
+
+
+
+
+Che et al. demonstrate the approach and significance of using domain adaptative
+continual learning to incrementally increase the generalization ability of battery
+health estimation model. The model ensures estimations under various scenarios
+related to practical applications for different batteries in their different lifetimes,
+with interpretations of unbiased feature distributions and avoidance of
+catastrophic forgetting.
+
+
+
+
+                                                                                          Che et al., Cell Reports Physical Science 4,
+                                                                                          101743
+                                                                                          December 20, 2023 ª 2023 The Author(s).
+                                                                                          https://doi.org/10.1016/j.xcrp.2023.101743
+                                                                                                                                         ll
+                                                                                                                                   OPEN ACCESS
+
+
+
+Article
+Increasing generalization capability of battery
+health estimation using continual learning
+Yunhong Che,1,2 Yusheng Zheng,1,4 Simona Onori,2,* Xiaosong Hu,3,5,* and Remus Teodorescu1
+
+
+SUMMARY
+Accurate and reliable estimation of battery health is crucial for pre-
+dictive health management. We report a strategy to strengthen the
+accuracy and generalization of battery health estimation. The model
+can be initially built based on one battery and then continuously up-
+dated using unlabeled data and sparse limited labeled data
+collected in early stages of testing batteries in different scenarios,
+satisfying incremental improvement in practical applications. We
+generate our datasets from 55 commercial pouch and prismatic bat-
+teries aged for more than 116,000 cycles under various scenarios.
+Our model achieves a root mean-square error of 1.312% for the esti-
+mation of different dynamic current modes and rates and variable
+temperature conditions over the entire lifespan using partial
+charging data. Our model is interpreted by the post hoc strategy
+with unbiased hidden features, prevents catastrophic forgetting,
+and supports estimation using data collected in 3 min during ultra-
+fast charging with errors of less than 2.8%.
+
+INTRODUCTION
+Lithium-ion batteries occupy main roles in energy storage systems for electric vehicles,
+portable electronics, smart grids, and other electrified devices.1,2 However, battery
+degradation is unavoidable during storage and usage due to numerous aging-related
+side reactions that occur during charging, discharging, and storage, resulting in irrevers-
+ible capacity and power decades.3–5 State of health (SOH), which is generally defined as
+a ratio of current capacity to the initial capacity, is one key indicator to represent the
+health state of batteries.6,7 It helps release the anxiety of cruise concern, fear of failure,
+and over-usage from consumers, and guides proper maintenance and retirement for
+second-life applications.8–10 Therefore, one critical and urgent challenge that must be
+addressed is indirect and accurate SOH estimation for commercial lithium-ion batteries.
+
+A wealth of literature has been published on this topic. Model-based approaches
+aim to build physical models for the characterization of the microscopic electro-
+chemical reactions, including the growth of solid electrolyte interphase films, loss                   1Department of Energy, Aalborg University, 9220
+of active material, cathode oxidation, lithium plating, etc.,11–13 to estimate the                     Aalborg, Denmark
+health of batteries through the estimation of aging-related parameters. The physical                   2Department of Energy Science and Engineering,
+
+interpretation of the parameters is the most advantageous aspect, whereas the high                     Stanford University, Stanford, CA 94305, USA
+                                                                                                       3College of Mechanical and Vehicle Engineering,
+computational burden and complex solving work prevent the practical deployment
+                                                                                                       Chongqing University, Chongqing 400044, China
+in a battery management system.14 As a result, recent research focuses more on
+                                                                                                       4Department of Mechanical Engineering,
+data-driven methods for battery health prognostics, which benefit from good flexi-                     Imperial College London, London SW7 2AZ, UK
+bility, transferability, extrapolation capability, etc.                                                5Lead contact
+
+
+                                                                                                       *Correspondence: sonori@stanford.edu (S.O.),
+The general idea behind the data-driven methods is to use machine learning models                      xiaosonghu@ieee.org (X.H.)
+to directly map the relationship between the available parameters/features and the                     https://doi.org/10.1016/j.xcrp.2023.101743
+
+
+
+                                                                Cell Reports Physical Science 4, 101743, December 20, 2023 ª 2023 The Author(s).      1
+                               This is an open access article under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-nc-nd/4.0/).
+          ll
+     OPEN ACCESS
+                                                                                          Article
+
+SOH.15–17 Zhang et al.,18 Gasper et al.,19 and Jones et al.20 investigated the physical
+relationship between the electrochemical impedance spectroscopy (EIS) curve and
+battery aging and used machine learning to achieve accurate estimations of battery
+SOH. However, acquiring EIS data online necessitates the use of specialized mea-
+surement equipment, which is costly and difficult to implement onboard. The infor-
+mation extracted from online measured data can also meet the requirement for bat-
+tery health estimation. Zhu et al.21 investigated the voltage relaxation after fully
+charging to extract several features. Previous works22–24 have also found high corre-
+lations between the capacities and the information extracted from the discharge
+curve. However, the long time required for the voltage relaxation followed by the
+full charging and the random discharging profiles due to the load and environment
+in the real world presents challenges for rapid and effective estimations. The
+charging procedure, on the other hand, is more predictable and controllable
+throughout the life cycle. Information from charging curves is widely extracted for
+battery health estimation.9,25–28 For example, Roman et al.17 extracted several fea-
+tures from the voltage and current curves during the charging process. In practical
+applications, batteries are generally undergoing partial charging and partial dis-
+charging. Features extracted from partial charging curves are becoming hot topics
+to make the machine learning-based battery health estimation methods more robust
+and practical.25,29,30 In feature-free deep learning, partial charging curves also
+become the research objectives. Tian and co-workers31,32 used partial constant cur-
+rent curves and short pulse curves to achieve accurate and reliable EIS prediction for
+batteries over their entire their lifetime via deep learning. Therefore, the estimation
+effectiveness needs evaluation under different and shallow charging stages to verify
+the generalization regarding practical applications when developing the battery
+health prognostics methods.
+
+Regarding the machine learning models, various algorithms have been used such as
+linear/multi-linear regression (LR),33,34 Gaussian process regression (GPR),27,28,35
+support vector regression (SVR),22,36 XGboost regression,20,21 artificial neural net-
+works,37–39 etc. Although it has been demonstrated that these algorithms achieve
+accurate estimations, conventional data-driven models struggle to handle estima-
+tions in a variety of scenarios because of domain discrepancies existing between
+different batteries. Transfer learning is a promising method for improving estimation
+performance on testing batteries by leveraging knowledge from source batteries. It
+has been summarized in Liu et al.40 that transfer learning has promoted the develop-
+ment of smarter battery management in modeling, state estimation, and aging
+prognostics, especially in recent years. Both the domain adaptation41–43 and model
+parameter fine-tuning strategies23,24,44–47 have been proven to have satisfactory
+performance. However, the available data from the tested batteries are most unla-
+beled while only very limited data can be recorded in practical industrial applica-
+tions.48,49 Conventional machine learning methods mostly ignore the effectiveness
+of taking advantage of unlabeled data for model improvement. Recent works50,51
+have proven that, by leveraging the information from the unlabeled data, the accu-
+racy of the target tasks, i.e., battery SOH estimation, can be improved by either
+reducing the feature domain discrepancies or setting up a pre-trained model. This
+is significant for industrial applications since most available data are unlabeled.
+Therefore, the optimal use of both unlabeled data and sparsely labeled data from
+batteries to incrementally improve the model accuracy and generalization is worth
+investigating to promote industrial implementations. Conventional machine
+learning-based methods suffer from catastrophic forgetting,52,53 which means
+that, after transfer learning, the performance of the data-driven model on the target
+domain improves while the estimation on source domains degrades. For the battery
+
+
+2    Cell Reports Physical Science 4, 101743, December 20, 2023
+                                                                                                                                ll
+                                                                                                                           OPEN ACCESS
+Article
+
+health model, the model generalization on the different working conditions be-
+comes one of the most concerned issues but such a problem cannot be tackled prop-
+erly by simply updating the model using newly obtained information. The capability
+to estimate battery health under different scenarios with only one model is lacking.
+Continual learning or lifelong learning, which focuses on learning sequentially as
+biological systems do and maintaining the ability learned before, provides great op-
+portunities in battery health prognostics.54,55 The memory-based framework is easy
+to understand and implement while the important information that represents the
+learned characteristics needs investigating to alleviate the storage challenge. Poor
+interpretability is another major disadvantage of conventional machine learning-
+based methods. The interpretability of machine learning is valuable to help under-
+stand models by explaining or presenting their behaviors in some understandable
+terms.56 A good explanation will improve the trust of users to adopt the machine
+learning model and help researchers to know why the system fails and seek safety
+improvement. Generally, methods for machine learning interpretability can be
+divided into model based and post hoc based.57 Regarding machine learning for
+battery health prognostics, the model-based method can be realized by analyzing
+the dependencies between the physical features and the output battery health met-
+rics.58 It helps understand the mechanisms better while physical modeling and
+feature extraction are required. For the post-hoc-based method, it is significant to
+analyze the learned characteristics of machine learning to help interpret and under-
+stand the reason for the model behaviors, which can be applied for pure data-driven
+methods but is still ignored by most existing works.
+
+In this work, we seek to investigate the way to make full use of both unlabeled data and
+labeled data from batteries operating under various unseen conditions to improve the
+accuracy and generalization of the data-driven battery health estimation models without
+catastrophic forgetting. Instead of using large amounts of source data for model
+training, we first built an initial machine learning model using data from a commonly
+aged battery and then improved it during different applications, making it continuously
+learn the aging information that covers various scenarios to satisfy the estimations under
+various scenarios. Only unlabeled data and limited sparsely labeled data are required for
+memory-based continual learning updating. As shown in Figure 1, the unlabeled data,
+which can be obtained from each operating cycle, are used for the unsupervised domain
+adaptation, while the sparsely labeled data from the testing battery (limited in practical
+applications) and the stored sparse data from previous scenarios are adopted for
+continual updating. The detailed framework introduction and model updating process
+are described in Note S1, methods, and Note S4. The machine learning model can be
+interpreted based on the unbiased hidden state distributions under different scenarios.
+The comparisons between existing methods are provided to explain the advantage of
+the proposed method regarding the performance metrics and learned characteristics
+interpretation. The generalization of our model is also evaluated using shallow charging
+processes for the different practical requirements in different implementation scenarios.
+Comprehensive aging datasets covering different battery chemistries, formats (pouch
+and prismatic), different environmental conditions, and different current modes and
+types are generated to verify the generalization of the proposed method under different
+application scenarios.
+
+
+RESULTS
+Data generation
+Experimental data on different kinds of commercial battery cells are generated in
+this study. The batteries are cycled in the thermal chamber or room environment
+
+
+
+                                                                              Cell Reports Physical Science 4, 101743, December 20, 2023   3
+           ll
+     OPEN ACCESS
+                                                                                                                                      Article
+
+
+
+
+Figure 1. Workflow
+The basic experiment is first conducted to collect data on one commonly aged battery. Then, the collected data is used for base model training and
+some spare labeled data containing full aging information is stored for later training. When the data from batteries tested with different operating
+profiles and environmental conditions are collected, the continuous unlabeled data, along with the stored sparsely labeled data from the source
+domain, is used to retrain the base model with the domain adaptation strategy. When discontinuous labeled data from the tested battery are obtained,
+the model is further trained on top of the domain-adapted model. Finally, online estimations are performed using the updated model.
+
+
+
+with different current profiles and rates using the platform shown in Figure S1. These
+batteries are from different formats and chemistry and are aged under primary appli-
+cation scenarios and secondary application scenarios. The summary of the gener-
+ated dataset is listed in Table S1. The detailed experimental procedure to generate
+these datasets is listed in Table S2 and Note S2. Different from most of the datasets
+in the published works,2,18,20,21,33,48 where the small cylindrical or coin batteries
+were used for cycling, this paper focuses on the data generation based on pouch
+cells and prismatic cells. These two types of batteries are widely used in energy stor-
+age systems (e.g., EVs and grid stations), where limited source data are available at
+the current time. In addition, we also test batteries using dynamic discharging pro-
+files and under variable temperatures and continue aging some of them in their sec-
+ondary lifespan to make our dataset cover more aging scenarios and applications.
+The dynamic loadings and variable temperature conditions help emulate battery ag-
+ing under practical usage with seasonal variations,59,60 which cause the degradation
+curves in Figures 2B and 2C to fluctuate with the variation of environmental temper-
+atures. A total of 55 pouch and prismatic batteries were tested with 116,681 cycles in
+total, which are publicly available to be used for further research on battery health
+prognostics. The considered information in the cycling test is shown in Figure 2A.
+The degradation curves of batteries in dataset 1 to dataset 5 are shown in
+Figures 2B–2F.
+
+
+Health estimation
+We first demonstrate the effectiveness of the estimations for the batteries working
+under different dynamic profiles and variable temperatures. The SOH is outputted
+by the machine learning model by inputting the partial charging capacity-voltage
+(Q-V) sequence. The detailed model construction and training are described in
+methods and Notes S1–S4. This application scenario is close to practical
+
+
+4     Cell Reports Physical Science 4, 101743, December 20, 2023
+                                                                                                                                          ll
+                                                                                                                                    OPEN ACCESS
+Article
+
+
+
+
+Figure 2. Cycling test for data generation and normalized capacity curves of the tested batteries
+(A) The main influence factors affecting battery health estimation that are considered in the aging test, where different battery chemistry and formats,
+different temperature conditions, and different current modes and rates are included in the generated dataset.
+(B) The normalized capacities versus aging cycles in dataset 1 with different discharging profiles and variable temperatures (cause the degradation
+trajectories to fluctuate with temperature variations).
+(C) The normalized capacities versus aging cycles of second-life batteries in dataset 2 under constant temperature and variable temperatures.
+(D) The capacities versus aging cycles in dataset 3 with different current rates and temperatures.
+(E) The capacities versus aging cycles in dataset 4 with different current rates and temperatures.
+(F) The capacities versus aging cycles in dataset 5 under room temperature with 1/3C current in the whole lifespan.
+
+
+applications where the constant current condition (which is generally experimented
+in the lab) is used for the estimations under dynamic current conditions with variable
+temperatures (close to field data), and only three sparsely labeled samples from the
+first 10% data of the test batteries are used. The results in Figure 3A show that the
+initial model can be used to estimate the SOH of batteries aging under different dy-
+namic working profiles through a domain adaptative continual learning process.
+Estimation errors show that most entries fall in the range of [0.04, 0.01]. When
+the model is applied for the SOH estimation of batteries operating under dynamic
+working profiles and/or variable temperatures (the results in Figure 3B), estimations
+are still stable and converged to the real values although more outliers appear. The
+estimation errors are mostly within [0.04, 0.02], and more than half fell in [0.01,
+0.01]. The R square (R2) between the estimated SOH and the real SOH is larger
+than 0.87. Both estimations show significant improvement in the accuracy and
+convergency to the results obtained by the initial base model (the results shown in
+Figure S2), which indicates that our model can quickly suit different application sce-
+narios through only unlabeled and very few labeled data for continual learning.
+
+The estimations for the batteries in the second lifespan under constant temperature and
+variable temperatures are shown in Figures 3C and 3D, indicating that our model also
+meets the accuracy and reliability requirements. The R2 between the estimations and
+
+
+                                                                                      Cell Reports Physical Science 4, 101743, December 20, 2023      5
+           ll
+     OPEN ACCESS
+                                                                                                                                        Article
+
+
+
+
+Figure 3. Results of SOH estimations for batteries aged under various conditions
+(A) Estimated SOH and estimated errors for batteries in dataset 1 aged under constant temperature with dynamic discharge profiles.
+(B) Estimated SOH and estimated errors for batteries in dataset 1 aging under variable temperatures with dynamic discharge profiles.
+(C) Estimated SOH and estimated errors for secondary life batteries in dataset 2 aged under constant temperature.
+(D) Estimated SOH and estimated errors for secondary life batteries in dataset 2 aging under variable temperatures.
+(E) Estimated SOH and estimated errors for batteries in dataset 3 aged under different current rates and temperature conditions using only cell 2 (1C/
+25  C) for base model training.
+(F) Estimated SOH and estimated errors for batteries in dataset 3 aged under different current rates and temperature conditions using only cell 6 (1C/
+35  C) for base model training. Our model trained by one battery aged under constant temperature and constant current can be used to estimate the
+SOH under various conditions with most errors less than 0.04 (99.75% for 114,741 entries in total), which shows great improvement to the base model
+(Figure S2) using a few early data for continual learning.
+
+
+
+
+6     Cell Reports Physical Science 4, 101743, December 20, 2023
+                                                                                                                              ll
+                                                                                                                         OPEN ACCESS
+Article
+
+the real values is larger than 0.95, and the estimated errors are mostly within [0.03,
+0.02]. The estimation results using the initial base model are shown in Figure S2, which
+have larger errors than our model. In short, the estimations meet the accuracy and reli-
+ability requirement satisfactorily under both dynamic discharge current and constant
+discharge current, both the constant temperature and dynamic temperatures, and in
+both primary life batteries and secondary life batteries.
+
+The batteries in the third dataset are aged under different constant temperatures us-
+ing constant currents with different rates. Batteries aged in dataset 3 have a large ca-
+pacity (100 Ah), which makes them suitable for heavy duty EVs and grid storage sta-
+tions. We evaluate our model using one battery aged under one specific current rate
+and temperature to estimate the SOH of other batteries aged with other current
+rates and temperatures. Batteries using a common aging scenario with 1 C current
+under 25 C (cell 2 in dataset 3) and 1 C current under 35 C (cell 6 in dataset 3) are
+used to build the initial base model to estimate other batteries through continual
+learning using early information, and the results are shown in Figures 3E and 3F,
+respectively. The estimated values converge to the real values satisfactorily with
+R2 of 0.924 and 0.936, respectively. Similarly, most errors are less than 0.04, indi-
+cating accurate and robust estimations across a wide temperature range (25 C–
+55 C) and different current rates. The estimations based on the base model are
+shown in Figures S2E and S2F, where the results show that only a few estimated
+values converge to the real values while the majority diverge, indicating the poor
+generalization of conventional data-driven models.
+
+Feature distribution interpretation
+Lack of interpretation in most data-driven methods such as ‘‘black boxes’’ causes dif-
+ficulties in understanding the mechanisms behind their performance. In contrast, our
+method tried to interpret the model performance by looking inside the developed
+data-driven model using the post hoc analysis strategy. The hidden states are critical
+information for the final output, i.e., the estimations of the neural network model.
+Therefore, we demonstrate the distribution of the hidden states, referring to the
+node values, in the same layer for both source and target batteries in our work to
+explain the model performance. The output distribution of the domain adaptative
+layer for the batteries in the target domain and source domain are shown in Figures 4
+A–4C for datasets 1, 2, and 3, respectively. The output distributions of the same layer
+in the initial base model and the updated model using the fine-tuning strategy with
+newly obtained labeled data from the target battery45–47 are shown in Figures 4D–4F
+and 4G–4I, respectively. The comparison in Figure 4 demonstrates that the distribu-
+tion of the hidden states has nearly perfect overlaps in our model, which gives an
+interpretation of why the model performs satisfactorily in both source and target do-
+mains. The hidden state’s distribution of the base model shows domain discrep-
+ancies between the target and source batteries, which makes the model fail to
+have high accuracy and reliability on the target batteries. As for fine-tuning strat-
+egy-based models, the distributions also show discrepancies, which improve the
+model performance on the target battery but deteriorate the performance on the
+source battery (further discussed in the following section). As a result, our model
+can be regarded as a ‘‘gray box,’’ where the hidden state distributions help interpret
+the model performance properly despite the unknown physical meaning of these
+hidden states.
+
+Continual learning ability
+A major limitation to the generalization of data-driven models used is the ‘‘cata-
+strophic forgetting.’’ On the contrary, our model can continually learn new aging
+
+
+                                                                            Cell Reports Physical Science 4, 101743, December 20, 2023   7
+           ll
+     OPEN ACCESS
+                                                                                                                                          Article
+
+
+
+
+Figure 4. Hidden state distributions interpretation
+(A–C) The distribution of the hidden states outputted by the domain adaptative layer for the source batteries and target batteries based on our model in
+datasets 1, 2, and 3, respectively.
+(D–F) The distribution of the hidden states outputted by the same layer for the source batteries and target batteries based on the base model in
+datasets 1, 2, and 3, respectively.
+(G–I) The distribution of the hidden states outputted by the same layer for the source batteries and target batteries based on the purely fine-tuned
+model in datasets 1, 2, and 3, respectively. The state distribution of the target domain overlaps better in our model, which enables satisfactory
+estimations of the target batteries while maintaining the performance of the source batteries.
+
+
+
+information while maintaining the ability to estimate the health of batteries that have
+similar aging conditions to the learned information before. We use dataset 3 for the
+demonstration and evaluation since different temperatures cause obviously
+different degradation patterns, as shown in Figure 2. The estimation results are
+shown in Figure 5. First, the initial base model trained by cell 2 (aged with 1C under
+25 C) is used to estimate the SOH of all batteries aged with 1C under 35 C and 55 C,
+and 0.3C under 35 C, the results could be seen from Figure 5A. Then, the sparse
+data of this battery are stored in the data storage buffer to continually train the
+model with domain adaptation using sparsely labeled data and unlabeled data
+collected from early stages from one battery aging under 35 C. Then the updated
+model is again used for the estimation of all batteries, as shown in Figure 5B. After
+that, sparse data from one battery aging under 1C/55 C and 0.3C/35 C are
+
+
+8     Cell Reports Physical Science 4, 101743, December 20, 2023
+                                                                                                                                            ll
+                                                                                                                                      OPEN ACCESS
+Article
+
+
+
+
+Figure 5. Continual learning evaluations
+(A and B) (A) Estimated SOH and estimated error of batteries in dataset 2 with the initial base model trained using data from 1C/25  C. (B) Estimated SOH
+and estimated errors of batteries in dataset 2 with continual learning using data from a battery aging under 1C/35  C based on the model from (A).
+(C) Estimated SOH and estimated errors of batteries in dataset 2 with continual learning using data from a battery aging under 1C/55 C based on the
+model from (B).
+(D) Estimated SOH and estimated errors of batteries in dataset 2 with continual learning using data from a battery aging under 0.3C/35  C based on the
+model from (C).
+
+
+
+                                                                                       Cell Reports Physical Science 4, 101743, December 20, 2023       9
+           ll
+      OPEN ACCESS
+                                                                                                                                            Article
+
+Figure 5. Continued
+(E) Hidden states distribution of batteries aging under different scenarios from the model in (A).
+(F) Hidden states distribution of batteries aging under different scenarios from the model in (D). Our model has a good ability to learn the aging
+information with the availability of limited data from different scenarios while maintaining satisfactory performance on the previously learned scenarios,
+which enables our model to cover more estimation requirements and ensure the feature distributions converge to similar distributions.
+
+continually used to update our model, whose estimation performances on all batte-
+ries are shown in Figures 5C and 5D, respectively. Our model continually learned
+new aging information under different scenarios while maintaining the previously
+learned information successfully, so that the accuracy and generalization are incre-
+mentally improved. The R2 increased from 1.669 to 0.969 from the initial base
+model to the final model. The main error distribution decreases from [0.152,
+0.014] to [0.019, 0.034]. The root mean-square error (RMSE) and mean absolute er-
+ror (MAE) also decrease continually from case A to case D in Figures 5A–5D, as listed
+in Table S3, where the RMSE and MAE for the final model on the estimation of all the
+batteries are reduced to 0.959% and 0.629%, respectively, from 8.957% to 7.399%.
+The comparative results shown in Figures 5E and 5F, which show the hidden state
+distributions of batteries for various scenarios generated by the initial model and
+the final updated model, can be used to interpret the model. This explains why
+the initial model failed for health estimation under various application scenarios
+and why our model’s generalization grew. The feature distributions are almost over-
+lapping, which improves the estimation model’s generalization and accuracy under a
+variety of working conditions. To demonstrate the advantage of our method
+compared with the existing fine-tuning-based method, which purely uses newly ob-
+tained labeled data from the target domain to update the model, the performances
+of the fine-tuning-based method under the same updating scenarios are shown in
+Figures S3A–S3C. It demonstrates that, although the fine-tuned model performs
+better in the target battery after updating the model, it forgets the historically
+learned characteristics and causes a worse performance in previous estimation sce-
+narios. Therefore, when purely applying the fine-tuning strategy, catastrophic
+forgetting happens, making the model fail to satisfy the estimations under different
+scenarios. The hidden states distribution shown in Figure S3D also interprets the
+reason for this phenomenon after fine-tuning. That is the domain discrepancies be-
+tween different scenarios still exist, causing poor model performance on the previ-
+ous tasks. The results are of great value to industrial applications, where the initial
+model can be built with some experiments in the lab before implementations and
+be incrementally improved during applications in various unseen working scenarios
+such as loading profiles and environment temperatures.
+
+Different battery manufacturers
+The other two datasets (datasets 4 and 5) are used to evaluate the generalization of
+our method. The estimation results are shown in Figures S4 and S5. Our model
+meets the requirement for the estimations under different scenarios with R2 greater
+than 0.978 and errors within 0.03 with dataset 4. Dataset 5 contains aging data in a
+standard current mode under room temperature for the whole lifespan (SOH re-
+duces to less than 0.4). The estimation results shown in Figure S5 indicate accurate
+and reliable estimations with R2 larger than 0.996 and errors within 0.05. Therefore,
+combined with the estimation on all five datasets, our model has satisfactory gener-
+alization ability on the application under different battery chemistry and formats,
+different working profiles, and environmental temperatures.
+
+Comparisons with other transfer learnings
+The avoidance of catastrophic forgetting while learning new aging information is
+one major advantage of our model. We compare our method with other transfer
+
+
+10    Cell Reports Physical Science 4, 101743, December 20, 2023
+                                                                                                                                     ll
+                                                                                                                                OPEN ACCESS
+Article
+
+
+
+
+Figure 6. Comparative results with other transfer learnings
+(A and B) The estimated RMSE for the target batteries and source batteries for datasets 1 and 2.
+(C and D) The estimated RMSE for the target batteries and source batteries for datasets 3 and 4. Compared with the base model and models with other
+transfer learning strategies, our model shows better accuracy and reliability.
+
+
+
+learning strategies to evaluate the accuracy in all estimation scenarios. Fine-tuning
+and basic domain adaptation are included, where four models in total are included
+for the comparisons. The meaning of each model is described in Note S3. The RMSE
+of the target and source batteries in datasets 1 and 2 (results contain the two data-
+sets) are shown in Figures 6A and 6B while the corresponding MAE are shown in
+Figures S6A and S6B, respectively. It shows that our model has the best performance
+for the batteries working under different dynamic discharging profiles and variable
+temperatures with a narrow error distribution, indicating the best accuracy and reli-
+ability compared with other models. The RMSE and MAE results for batteries con-
+tained in datasets 3 and 4 (results containing the two datasets) are shown in
+Figures 6C, 6D, S6C, and S6D respectively. In this case, the target batteries have
+different current rates and different temperatures to the source battery, which
+causes the base model to have poor accuracy on the target domain. When the infor-
+mation from the batteries is obtained for transfer learning or continual learning, er-
+rors are reduced significantly. This indicates from the results that unlabeled data
+used for reducing domain discrepancies between the source battery and target bat-
+tery are also beneficial for accuracy improvement. This is because the mapping re-
+lationships between the input measurements and output SOH are more adaptable
+for the testing battery by minimizing the domain discrepancies. Compared with
+the pure unlabeled data-enabled domain adaptation, sparse limited data help
+improve the accuracy of the target domain, while pure fine-tuning suffers from cata-
+strophic forgetting. Our model, on the contrary, maintains good performance on
+
+
+                                                                                   Cell Reports Physical Science 4, 101743, December 20, 2023   11
+            ll
+       OPEN ACCESS
+                                                                                                                                   Article
+
+Table 1. Comparative evaluation of our model and other transfer learnings (%)
+                 RMSE for target domain           MAE for target domain            RMSE for source domain       MAE for source domain
+Case             Mean      Max.        SD         Mean       Max.         SD       Mean      Max.      SD       Mean      Max.      SD
+BASE             4.573     17.987      4.562      4.193      17.965       4.475    0.172     0.324     0.087    0.126     0.242     0.067
+FT               2.361     11.213      2.218      1.838      8.129        1.700    3.108     12.633    2.869    2.826     12.076    2.679
+DA               2.259     5.704       1.412      1.949      5.484        1.274    0.420     1.838     0.339    0.328     1.797     0.321
+DA_FT            2.361     11.213      2.218      1.838      8.129        1.700    3.108     12.633    2.869    2.826     12.076    2.679
+DA_CT            1.312     3.015       0.682      1.085      2.662        0.628    0.159     0.623     0.102    0.128     0.666     0.107
+GPR              3.952     17.959      3.999      3.497      17.938       3.719    0.077     0.199     0.056    0.056     0.147     0.042
+RFR              3.930     17.834      3.462      3.549      17.722       3.372    0.039     0.074     0.021    0.026     0.046     0.013
+LR               14.758    185.806     35.519     10.784     147.825      27.389   0.129     0.297     0.089    0.095     0.221     0.067
+SVR              4.137     23.651      5.170      3.893      23.633       5.121    0.225     0.604     0.181    0.179     0.523     0.163
+CNN              6.2151    25.3715     6.4348     5.7801     25.2623      6.3335   0.1894    0.4955    0.1488   0.1390    0.3739    0.1143
+LSTM             4.4001    26.9428     5.4930     3.8836     20.7222      4.9787   0.4001    0.5633    0.1475   0.2930    0.4101    0.1125
+CNN-LSTM         3.4643    16.3019     3.3709     3.1271     16.2852      3.1825   0.2458    0.4566    0.1345   0.1828    0.3384    0.0996
+
+
+
+both the target domain and source domain with the errors located in the smallest
+range, indicating satisfactory accuracy and reliability. Refer to Figures S7–S11 and
+Tables S4–S8 for the estimation results of each testing battery cell and the compar-
+isons between different models.
+
+The numerical statistical results for all the batteries are listed in Table 1. Our model
+has minimal mean and maximum errors, and minimal standard deviation (SD) of error
+distributions, indicating accurate and reliable estimations on all domains with
+different aging profiles and temperature conditions. The mean and maximum
+RMSE for the target domain are 1.312% and 3.015%, respectively, reducing more
+than three times from the initial base model, while the SD reduced significantly
+from 4.562 to only 0.682. The improvement of our model compared with other trans-
+fer learning strategies is also reflected in Table 1. In addition, four widely used ma-
+chine learning methods for battery SOH estimation are also included for evaluation,
+which are LR, SVR, GPR, and random forest regression. As shown in Table 1, like the
+basic neural network-based method, these four machine learning methods all have
+good performances on the trained source domain but fail to provide satisfactory es-
+timations for target domains with various application conditions. It is also foresee-
+able that these models will also suffer from catastrophic forgetting when they are
+simply updated with newly acquired data such as the fine-tuning strategy. The
+results with other advanced deep learning models including LSTM, CNN, and
+CNN-LSTM for the base model construction are also listed in Table 1. The results
+indicate that CNN-LSTM has better accuracy compared with feedforward NN,
+LSTM, and CNN for the SOH estimations. While the base model also has poor gener-
+alization ability under different working scenarios, reflected by the large maximum
+values of the RMSE and MAE, from the battery that has diverse degradation pat-
+terns. Therefore, the model is still required to be updated during applications, espe-
+cially under different working conditions to improve the model’s accuracy and
+generalization, which can be achieved by the proposed framework. Therefore, the
+proposed framework shows priority regarding the performance on both source
+and target domains compared with conventional machine learning and transfer
+learning methods. The main objective is to update the model incrementally so
+that the feedforward NN is applied for the demonstrations. In real applications,
+the base network can be constructed with different networks. For example, the
+CNN-LSTM can be used for the base network part under condition data showing
+poor quality than experimental data, while the proposed framework is generally
+applicable for the model continually updating during applications.
+
+
+12     Cell Reports Physical Science 4, 101743, December 20, 2023
+                                                                                                                                             ll
+                                                                                                                                       OPEN ACCESS
+Article
+
+
+
+
+Figure 7. Generalization with a different voltage range for model input and different ratios for continual learning
+(A) The estimated mean RMSE, MAE, and fitted R 2 of the three batteries with three kinds of dynamic working profiles with different voltage ranges (V i and
+V j represent the lower voltage and upper voltage in the partial voltage sequence). The results indicate that our model can meet the estimation
+requirement using data from a voltage range less than 0.1 V in 3 min charging with an error less than 2.78% and fitted R 2 larger than 0.8.
+(B) The estimated mean RMSE, MAE, and fitted R 2 for the three batteries in dataset 1 aging under three kinds of dynamic profiles with different ratios of
+data for model updating. Our model has errors less than 0.94% and fitted R 2 larger than 0.96 with only 5% data for continual learning and maintaining
+high accuracy with different ratios.
+
+
+Different voltage ranges and data ratios for model updating
+Practical applications usually have a partial charging process and the usually used
+voltage ranges vary with the real requirement such as in EVs and smart grids. There-
+fore, it is also significant to evaluate our model under different partial charging con-
+ditions for the generalization assessment. We select three batteries aged under
+three different dynamic profiles to evaluate our model by changing the voltage
+range from 3.6 to 4.2 V in the first stage charging process. The mean results of the
+three testing batteries are shown in Figure 7A. It shows that, when the lower voltage
+is below 3.8 V and the upper voltage is larger than 3.9 V, our model realizes RMSE
+and MAE less than 2.78% and the fitting R2 is larger than 0.8. When the upper
+voltage is larger than 4.0 V, the errors are reduced to less than 1.67% while the R2
+is larger than 0.9. Considering the charging process of the battery in dataset 1, as
+shown in Figure S12, the charging time between 3.8 and 3.9 V in the first charging
+stage is less than 3 min and the charging time between 3.8 and 4.0 V is less than
+4 min, which enables our model to be used in practical applications using short-
+term charging data.
+
+We evaluate our model and other transfer learning models with the increase of ratio
+for model updating, and the mean values are shown in Figure 7B. The results on the
+source batteries are shown in Figure S13. The results indicate that our model quickly
+reduces the errors to less than 0.942% and increase the R2 to larger than 0.966 even
+
+
+                                                                                        Cell Reports Physical Science 4, 101743, December 20, 2023      13
+          ll
+     OPEN ACCESS
+                                                                                         Article
+
+with only 5% ratio of data for model updating, where only two sparsely labeled sam-
+ples are used. Compared with other transfer learning strategies that may have poor
+performance under some scenarios, our model maintains high performance in all
+cases. Therefore, from the evaluations of different voltage ranges and available
+data rations, the model has promising industrial application abilities under random
+depths of discharges during their whole lives. The batter health estimation model
+can still be incrementally improved based on the proposed framework.
+
+
+Full life estimation
+Finally, we evaluate our model on the estimation for the full lifespan. In the above
+sections, the estimation results of dataset 5 indicate that our model provides accu-
+rate estimations for the whole lifespan. Here, we use the battery in dataset 1 to es-
+timate the second-life battery application in dataset 2, which is the same battery but
+with a different aging profile retired from dataset 1. The results shown in Figure S14
+indicate that our model has better accuracy than other models, meeting the estima-
+tion requirement for the second-life battery by taking advantage of information
+gathered from the primary-life battery. This is significant for practical applications
+since it is assumed that many batteries are retired from EVs to be implemented in
+smart grids, etc., and the model developed in our method shows great application
+potential to continually learn the aging information to meet the health estimation for
+health estimation of second-life batteries.
+
+
+DISCUSSION
+We developed a data-driven model for battery health estimation based on domain
+adaptative continual learning to solve the natural challenges of low generalization,
+the large requirement of labeled data, catastrophic forgetting, and poor interpreta-
+tion. Our model is initially built using the data collected from one common aging test
+and can be adopted for the estimation under unknown conditions with only unla-
+beled data and sparsely limited labeled data at early stages, where the RMSE is
+less than 0.95 and the R2 is larger than 0.96 under the case with only two sparsely
+labeled samples from the first 5% aging data, indicating data efficient for the
+modeling. With three sparsely labeled samples collected from the first 10% aging
+data, our model achieves the most absolute errors of less than 5% despite different
+battery chemistry and formats, different aging profiles and current rates, and
+different environmental temperatures, with only one battery used for initial
+modeling. The proposed method is valuable for industrial applications, where the
+initial model can be constructed via some lab data and be continually improved
+with unlabeled data and sparsely labeled data obtained during usage to incremen-
+tally improve the model generalization.
+
+Our model is interpreted by post hoc analysis, and succeeds in reducing the domain
+discrepancy between the source domain and target domain that interprets the satis-
+factory estimation performances. Our model is continuously improved with the avail-
+ability of both unlabeled and labeled data from unknown conditions while maintain-
+ing the performance on previous tasks, which avoids catastrophic forgetting.
+Compared with other transfer learning strategies, both the unlabeled data and
+labeled data from the target batteries are well used for model improvement. Our
+model has better accuracy and generalization under different testing scenarios,
+with a mean RMSE of only 1.312%, and even the worst testing achieves an RMSE
+of only 3.015%. Our model is also more reliable to the different ratios of data
+used for learning compared with other transfer learnings. Finally, our model also
+supports estimations using shallow partially charged data within 3 min for a mean
+
+
+14   Cell Reports Physical Science 4, 101743, December 20, 2023
+                                                                                                                                ll
+                                                                                                                           OPEN ACCESS
+Article
+
+RMSE of less than 2.78% under three typical dynamic discharging scenarios and
+achieves a mean RMSE of 1.67% with data collected within 4 min. Our model is a
+general framework that can be easily extended to modeling with other neural net-
+works and with a feature-based method. Therefore, our model is promising for im-
+plementation in onboard applications.
+
+The proposed method shows satisfactory performance on the health estimations un-
+der different application scenarios. However, there are still some limitations that
+need to be addressed in future work. Firstly, there are some local large errors exist-
+ing in the estimations due to the quality of measured data and the quick change of
+environmental situations. In future work, the physics information from the electro-
+chemical model is supposed to be integrated to reduce these errors and further
+improve the generalization and interpretability by explaining with physical aging
+mechanism. Secondly, the preset manually tailed transfer weight is used in this pa-
+per for domain adaptation, and the overall performance considering all the testing
+scenarios has been significantly improved. One specific value for all testing sce-
+narios also tells the strategy is general and avoids biased results with carefully
+selected weight for each specific testing scenario. However, it cannot be optimal
+for all the specific conditions, indicating a more intelligent optimization method is
+worth investigating to adapt the best choice of transfer weight under different sce-
+narios during training the model with optimization methods. Finally, the extrapola-
+tion to other types of batteries such as all solid batteries, and Li-sulfur batteries, and
+the implementation in battery packs are valuable to evaluate the effectiveness of the
+proposed framework.
+
+
+EXPERIMENTAL PROCEDURES
+Resource availability
+Lead contact
+Further information and requests for resources and materials should be directed to
+and will be fulfilled by the lead contact, Xiaosong Hu (xiaosonghu@ieee.org).
+
+Materials availability
+This study did not generate any unique materials.
+
+Data and code availability
+The data generated in this study can be found at https://data.mendeley.com/
+datasets/n3b54nsw8m/2. Additional raw data may be available upon reasonable
+request.
+
+Battery cycling and data preparation
+Experiments for the aging of several commercial batteries are conducted in this pa-
+per for the verification of the proposed method. The first is ultra-fast charging fol-
+lowed by a dynamic discharging profiles-based battery dataset. To the best knowl-
+edge of the authors, this is the first public dataset with different dynamic discharging
+profiles to age the batteries until end of life. Different dynamic profiles are included,
+which are urban dynamic profile, highway profile, and hybrid profile. The current
+load of each profile and the corresponding voltage are shown in Figure S15. Two cy-
+cles of the dynamic current lasting 24 min are used. The mean current is set to ensure
+that the three dynamic loadings have similar throughput during this period. Two
+different time periods are considered to load the dynamic currents, which makes
+the dynamic loading conducted at two different state of charge (SOC) stages.
+One battery aging under the constant current is used as the benchmark to illustrate
+the types of current on the aging influence of batteries. To make the experiment
+
+
+                                                                              Cell Reports Physical Science 4, 101743, December 20, 2023   15
+          ll
+     OPEN ACCESS
+                                                                                            Article
+
+closer to the practical applications, another batch is conducted on the periodically
+changed temperatures varied from 25 C–35 C to 25 C–15 C, which emulates the in-
+fluence of seasonal variations on battery aging.60 Again, this is the first dataset con-
+ducted on the changeable environmental temperatures to the best knowledge of
+the authors, where the degradation trajectories are varied with environmental tem-
+peratures during aging. The normalization is conducted by calculating the ratio of
+the current available capacity to the fresh capacity (starting from 25 C), which makes
+the demanded estimation of current capacity to be easily obtained by multiplying
+the estimated SOH with the fresh capacity. There are 15 batteries in total in this data-
+set, whose capacity curves are shown in Figure 2. The second dataset is the same
+batteries from the first dataset, which are used for the constant current discharging
+after the batteries retired from dataset 1. These batteries are now considered sec-
+ond-life batteries. The CC-CV charging and CC discharging are conducted to
+continually age the batteries. Similarly, constant environment temperature and
+changeable temperatures are considered. The first two datasets are collected
+from the pouch batteries. The third and fourth dataset is collected from the aging
+experiment conducted on the prismatic cells with 100 Ah. Most of the public data-
+sets are aging on cylindrical batteries, while prismatic batteries are also popular in
+real applications for both electric transportation and energy storage stations. We
+aged these batteries with different current rates and environmental temperatures
+to generate data seen in different application scenarios. The last battery dataset is
+collected by aging the small polymer batteries from fresh to SOH less than 0.4 for
+the study of SOH estimation over the entire lifetime.
+
+The feature-free method is adopted in our model, where the partially charged Q-V
+curve is selected as input information. Note that the incomplete charging/discharg-
+ing process when starting the test from reset is deleted. The abnormal data such as a
+larger difference between the sample from previous and later data are filtered with a
+moving average. The raw measured data changed with battery aging, which caused
+the Q-V curve to be unaligned. Therefore, the interpolation method is used to obtain
+the Q-V curve in a certain voltage range, where linear interpolation is adopted. To
+ensure the online application, the partial voltage range is used, where [3.6, 4.2] is
+selected as the initial voltage range for NCA and polymer batteries while [3.3, 3.5]
+is used for LFP batteries with a voltage interval of 5 and 2 mV for interpolation to
+ensure the same input length. The voltage ranges can also be reduced considering
+the specific applications and are evaluated in the results.
+
+Machine learning model
+For the end-to-end health estimation, the measured data of partial charging Q-V se-
+quences are needed for the input while the SOH is the output. For the purpose of us-
+ing a simple model to demonstrate the proposed model while also guaranteeing the
+estimation performance, a feedforward neural network with backward propagation is
+adopted, where two hidden layers and an output layer are included. The design of the
+framework is described in Figure S16. The source labeled data from one battery,
+stored sparse data in previous tasks, and sparsely labeled data from the target bat-
+tery are used to train the model by minimizing the mean square error loss of the
+output layer and the maximum mean discrepancy (MMD) loss of the domain adaptive
+layer simultaneously. To interpret the model performance based on the post hoc
+analysis, the distribution of hidden states of the domain adaptative layer is also illus-
+trated. Domain discrepancies would cause divergent distributions of hidden states in
+the source domain and target domain, leading to the poor generalization ability of
+conventional machine learning models. By analyzing the distributions of hidden
+states in both the source and target domain, we find the interpretations for the
+
+
+16   Cell Reports Physical Science 4, 101743, December 20, 2023
+                                                                                                                                                     ll
+                                                                                                                                                OPEN ACCESS
+Article
+
+high performance of our model under different scenarios. It should be noted that the
+bottleneck layer can be changed to other machine learning models such as CNN,
+LSTM, CNN-LSTM, etc., which are widely used networks in battery health prognos-
+tics, and the implementations of these machine learning models are also provided
+for reference. The hyperparameters and settings of the neural network are listed in
+Note S4. The basic calculation of a neuron in fully connected layers by the weight
+w, bias b, and states h from the former layer is denoted as,
+
+                                                 X
+                                                 N
+                                         y =            wi hi + bi                                (Equation 1)
+                                                 i= 1
+
+The first hidden layer is set as a sharing layer while the second hidden layer is set as a
+domain adaptative layer, where the MMD is calculated between the hidden states of
+the source battery and target battery as a loss that needs to be reduced. The MMD is
+a measure of the difference between two probability distributions in the mean
+embedding of the features.61 Given two samples in two datasets X = fxi gni =1 1 and
+Y = fyi gni =2 1 , the MMD between the X and Y could be expressed as,62
+                                                                
+                   MMDH ðX; Y Þ = supF ˛ H Ep ½FðxÞ  Eq ½FðyÞ            (Equation 2)
+
+where H represents a reproducing kernel Hilbert space (RKHS), Fð $Þ is a nonlinear
+mapping function from raw data space to the RKHS space, and p and q are the prob-
+ability distributions of generating the two datasets. The empirical approximation to
+the MMD can be denoted as follows,42,63
+                                                                
+                                1 n                           2
+                                 X                1 X
+                                                        n2
+                                                                 
+                                       1
+
+             MMDH2 ðX; Y Þ    =          Fðxi Þ           F yj                                 (Equation 3)
+                                n1 i = 1          n2 j = 1      
+                                                                              H
+
+The kernel trick is then used to get the expression,42
+
+                    1 X
+                          n1 X  n2
+                                                   2 X
+                                                            n1 X  n2              1 X    n1 X  n2           
+  MMDH2 ðX; Y Þ =                   k   xi ; xj                      k   xi ; yj  +                 k yi ; yj
+                    n21 i = 1 j = 1                 n1 n2 i = 1 j = 1                n22 i = 1 j = 1
+                                                                                                  (Equation 4)
+where kð$; $Þ is the kernel function of the RKHS. In this paper, the Gaussian radial ba-
+sis function is used,42
+
+                                                 ð kxi  yj k Þ
+                                                                     2
+
+
+                                      k xi ; yj = e     2g2                                       (Equation 5)
+
+The final loss function during continual learning is constructed as follows
+                                     X
+                                 L=     LMSE + lLMMD                      (Equation 6)
+
+During the initial base training and fine-tuning using labeled data, the MMD loss is
+set as 0 and only the MSE loss is considered to train the neural network. In the
+domain adaptation process, the MSE loss of the source battery, and the MMD loss
+of the domain discrepancy between the source battery and target battery of the
+domain adaptative layer are reduced during training. The weight factor of MMD
+loss is set as 0.01 for all the testing cases for the generalization of our model. The
+Adam optimization method is used to train the model and the early stopping strat-
+egy is adopted to avoid overfitting. The RMSE, MAE, and R2 are used for the accu-
+racy evaluations of the estimation results, which are defined as follows.
+                                         vﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+                                         u
+                                         u1 N  X
+                               RMSE = t                ðyi  zi Þ2 ;        (Equation 7)
+                                           N i= 1
+
+
+
+
+                                                                                                   Cell Reports Physical Science 4, 101743, December 20, 2023   17
+            ll
+      OPEN ACCESS
+                                                                                                                                                    Article
+
+                                                    X
+                                                  1 N
+                                       MAE =             jyi  zi j;                         (Equation 8)
+                                                  N i= 1
+
+                                              P            2
+                                                ðyi  zi Þ
+                                              i
+                                        R = 1P
+                                          2
+                                                           2
+                                                             ;                               (Equation 9)
+                                                ðyi  y i Þ
+                                                    i
+
+where y represents the true value and z is the estimated value while y is the mean value of
+all the true values. During model training, one source battery is firstly used for the initial
+model training, then the unlabeled data and limited labeled data from the target batte-
+ries are used for the domain adaptative continual learning to update the model to
+improve the generalization under different scenarios. Therefore, the model is incremen-
+tally updated from the beginning to the various applications. Note that the cross-valida-
+tion is used during the initial model training and is not applied during subsequent model
+updating, since only very limited labeled data is available in the testing scenarios. Be-
+sides, early stooping is also adopted to help avoid overfitting. The specific cell that
+serves as the source battery is listed in Tables S4–S8 in each test.
+
+SUPPLEMENTAL INFORMATION
+Supplemental information can be found online at https://doi.org/10.1016/j.xcrp.
+2023.101743.
+
+ACKNOWLEDGMENTS
+The work of X.H. was funded by the National Key Research and Development Pro-
+gram (grant no. 2022YFB3305403), the project of basic research funds for central uni-
+versities (grant no. 2022CDJDX-006), the Natural Science Foundation of China (grant
+nos. 52111530194 and 72361137006), , and the Talent Plan Project of Chongqing
+(grant no. cstc2021ycjh-bgzxm0295). The work of R.T. was funded by the ‘‘SMART
+BATTERY’’ project, granted by Villum Foundation in 2021 (project no. 222860).
+
+AUTHOR CONTRIBUTIONS
+Y.C. conceived the study, carried out the experiments, analyzed the data, developed
+the model, and wrote the paper. Y.C. and Y.Z. prepared the first and revised drafts.
+Y.C., Y.Z., S.O., X.H., and R.T. discussed the results and commented on the manu-
+script. R.T., and X.H. supervised the work.
+
+DECLARATION OF INTERESTS
+The authors declare no competing interests.
+
+Received: September 7, 2023
+Revised: October 24, 2023
+Accepted: November 20, 2023
+Published: December 12, 2023
+
+
+REFERENCES
+ 1. Jiang, B., Gent, W.E., Mohr, F., Das, S.,               B., Perkins, N., Yang, Z., et al. (2020). Closed-     electrochemical signatures. Cell Rep. Phys.
+    Berliner, M.D., Forsuelo, M., Zhao, H., Attia,          loop optimization of fast-charging protocols          Sci. 2, 100352.
+    P.M., Grover, A., Herring, P.K., et al. (2021).         for batteries with machine learning. Nature
+    Bayesian learning for rapid prediction of               578, 397–402.                                       4. Palacı́n, M.R., and De Guibert, A. (2016).
+    lithium-ion battery-cycling protocols. Joule 5,                                                                Batteries: Why do batteries fail? Science 351.
+    3187–3203.                                           3. Chen, B.R., Kunz, M.R., Tanim, T.R., and
+                                                            Dufek, E.J. (2021). A machine learning              5. Weng, A., Mohtat, P., Attia, P.M., Sulzer, V.,
+ 2. Attia, P.M., Grover, A., Jin, N., Severson, K.A.,       framework for early detection of lithium               Lee, S., Less, G., and Stefanopoulou, A. (2021).
+    Markov, T.M., Liao, Y.H., Chen, M.H., Cheong,           plating combining multiple physics-based               Predicting the impact of formation protocols
+
+
+
+
+18    Cell Reports Physical Science 4, 101743, December 20, 2023
+                                                                                                                                                                  ll
+                                                                                                                                                            OPEN ACCESS
+Article
+
+    on battery lifetime immediately after                   20. Jones, P.K., Stimming, U., and Lee, A.A. (2022).              Herring, P.K., Fraggedakis, D., et al. (2019).
+    manufacturing. Joule 5, 2971–2992.                          Impedance-based forecasting of battery                        Data-driven prediction of battery cycle life
+                                                                performance amid uneven usage. Nat.                           before capacity degradation. Nat. Energy 4,
+ 6. Zhu, J., Xu, W., Knapp, M., Dewi Darma, M.S.,               Commun. 13, 4806.                                             383–391.
+    Mereacre, L., Su, P., Hua, W., Liu-Théato, X.,
+    Dai, H., Wei, X., et al. (2023). A method to            21. Zhu, J., Wang, Y., Huang, Y., Bhushan                     34. Vilsen, S.B., and Stroe, D.I. (2021). Battery state-
+    prolong lithium-ion battery life during the full            Gopaluni, R., Cao, Y., Heere, M., Mühlbauer,                 of-health modelling by multiple linear
+    life cycle. Cell Rep. Phys. Sci. 101464.                    M.J., Mereacre, L., Dai, H., Liu, X., et al. (2022).          regression. J. Clean. Prod. 290, 125700.
+                                                                Data-driven capacity estimation of commercial
+ 7. Che, Y., Hu, X., Lin, X., Guo, J., and                      lithium-ion batteries from voltage relaxation.            35. Che, Y., Deng, Z., Tang, X., Lin, X., Nie, X., and
+    Teodorescu, R. (2023). Health prognostics for               Nat. Commun. 13. 2261–10.                                     Hu, X. (2022). Lifetime and aging degradation
+    lithium-ion batteries: mechanisms, methods,                                                                               prognostics for lithium-ion battery packs based
+    and prospects. Energy Environ. Sci. 16,                 22. Meng, J., Cai, L., Stroe, D.I., Huang, X., Peng,              on a cell to pack method. ChinChin. J. Mech.
+    338–371.                                                    J., Liu, T., and Teodorescu, R. (2022). An                    Eng. 35, 4.
+                                                                Automatic Weak Learner Formulation for
+ 8. Börner, M.F., Frieges, M.H., Späth, B., Spütz,           Lithium-Ion Battery State of Health Estimation.           36. Sui, X., He, S., Meng, J., Teodorescu, R., and
+    K., Heimes, H.H., Sauer, D.U., and Li, W. (2022).           IEEE Trans. Ind. Electron. 69, 2659–2668.                     Stroe, D.I. (2021). Fuzzy Entropy-Based State of
+    Challenges of second-life concepts for retired                                                                            Health Estimation for Li-Ion Batteries. IEEE
+    electric vehicle batteries. Cell Rep. Phys. Sci.        23. Che, Y., Deng, Z., Li, P., Tang, X., Khosravinia,             Journal of Emerging and Selected Topics in
+    3, 1–19.                                                    K., Lin, X., and Hu, X. (2022). State of health               Power Electronics 9, 5125–5137.
+                                                                prognostics for series battery packs: A
+ 9. Ng, M.F., Zhao, J., Yan, Q., Conduit, G.J., and             universal deep learning method. Energy 238,               37. Tian, J., Xiong, R., Shen, W., Lu, J., and Sun, F.
+    Seh, Z.W. (2020). Predicting the state of charge            121857.                                                       (2022). Flexible battery state of health and state
+    and health of batteries using data-driven                                                                                 of charge estimation using partial charging
+    machine learning. Nat. Mach. Intell. 2, 161–170.        24. Che, Y., Zheng, Y., Wu, Y., Sui, X., Bharadwaj,               data and deep learning. Energy Storage Mater.
+                                                                P., Stroe, D.I., Yang, Y., Hu, X., and Teodorescu,            51, 372–381.
+10. Harper, G., Sommerville, R., Kendrick, E.,                  R. (2022). Data efficient health prognostic for
+    Driscoll, L., Slater, P., Stolkin, R., Walton, A.,          batteries based on sequential information-                38. Che, Y., Stroe, D.I., Hu, X., and Teodorescu, R.
+    Christensen, P., Heidrich, O., Lambert, S., et al.          driven probabilistic neural network. Appl.                    (2023). Semi-supervised self-learning-based
+    (2019). Recycling lithium-ion batteries from                Energy 323, 119663.                                           lifetime prediction for batteries. IEEE Trans.
+    electric vehicles. Nature 575, 75–86.                                                                                     Ind. Inf. 19, 6471–6481.
+                                                            25. Deng, Z., Hu, X., Xie, Y., Xu, L., Li, P., Lin, X., and
+11. Kim, S., Yi, Z., Kunz, M.R., Dufek, E.J., Tanim,            Bian, X. (2022). Battery health evaluation using          39. Wei, Z., Ruan, H., Li, Y., Li, J., Zhang, C., and He,
+    T.R., Chen, B.R., and Gering, K.L. (2022).                  a short random segment of constant current                    H. (2022). Multistage State of Health Estimation
+    Accelerated battery life predictions through                charging. iScience 25, 104260.                                of Lithium-Ion Battery with High Tolerance to
+    synergistic combination of physics-based                                                                                  Heavily Partial Charging. IEEE Trans. Power
+    models and machine learning. Cell Rep. Phys.            26. Ruan, H., Chen, J., Ai, W., and Wu, B. (2022).
+                                                                                                                              Electron. 37, 7432–7442.
+    Sci. 3, 101023.                                             Generalised diagnostic framework for rapid
+                                                                battery degradation quantification with deep              40. Liu, K., Peng, Q., Che, Y., Zheng, Y., Li, K.,
+12. Reniers, J.M., Mulder, G., and Howey, D.A.                  learning. Energy and AI 9, 100158.                            Teodorescu, R., Widanage, D., and Barai, A.
+    (2019). Review and Performance Comparison of                                                                              (2023). Transfer learning for battery smarter
+    Mechanical-Chemical Degradation Models for              27. Tagade, P., Hariharan, K.S., Ramachandran, S.,
+                                                                                                                              state estimation and ageing prognostics :
+    Lithium-Ion Batteries. J. Electrochem. Soc. 166,            Khandelwal, A., Naha, A., Kolake, S.M., and
+                                                                                                                              Recent progress , challenges , and
+    A3189–A3200.                                                Han, S.H. (2020). Deep Gaussian process
+                                                                                                                              prospects. Advances in Applied Energy 9,
+                                                                regression for lithium-ion battery health
+13. Li, J., Landers, R.G., and Park, J. (2020). A                                                                             100117.
+                                                                prognosis and degradation mode diagnosis.
+    comprehensive single-particle-degradation                   J. Power Sources 445, 227281.                             41. Ma, G., Xu, S., Yang, T., Du, Z., Zhu, L., Ding, H.,
+    model for battery state-of-health prediction.
+                                                            28. Wang, Z., Yuan, C., and Li, X. (2021). Lithium                and Yuan, Y. (2022). A Transfer Learning-Based
+    J. Power Sources 456, 227950.
+                                                                Battery State-of-Health Estimation via                        Method for Personalized State of Health
+14. Hu, X., Xu, L., Lin, X., and Pecht, M. (2020).              Differential Thermal Voltammetry with                         Estimation of Lithium-Ion Batteries. IEEE Trans.
+    Battery Lifetime Prognostics. Joule 4, 310–346.             Gaussian Process Regression. IEEE                             Neural Netw. Learn. Syst. 1, 1–11.
+                                                                Transactions on Transportation Electrification
+15. Ali, M.U., Kallu, K.D., Masood, H., Niazi, K.A.K.,                                                                    42. Han, T., Wang, Z., and Meng, H. (2022). End-to-
+                                                                7, 16–25.
+    Alvi, M.J., Ghafoor, U., and Zafar, A. (2021).                                                                            end capacity estimation of Lithium-ion
+    Kernel recursive least square tracker and long-         29. Feng, X., Weng, C., He, X., Han, X., Lu, L., Ren,             batteries with an enhanced long short-term
+    short term memory ensemble based battery                    D., and Ouyang, M. (2019). Online State-of-                   memory network considering domain
+    health prognostic model. iScience 24, 103286.               Health Estimation for Li-Ion Battery Using                    adaptation. J. Power Sources 520, 230823.
+                                                                Partial Charging Segment Based on Support
+16. Sun, Y., Ayalasomayajula, S.M., Deva, A., Lin,                                                                        43. Lu, J., Xiong, R., Tian, J., Wang, C., Sun, F., and
+                                                                Vector Machine. IEEE Trans. Veh. Technol. 68,
+    G., and Garcı́a, R.E. (2022). Artificial intelligence                                                                     Tian, J. (2023). Deep learning to estimate
+                                                                8583–8592.
+    inferred microstructural properties from                                                                                  battery state of health without additional
+    voltage–capacity curves. Sci. Rep. 12.                  30. Li, X., Wang, Z., and Yan, J. (2019). Prognostic              degradation experiments. Nat.
+    13421–11.                                                   health condition for lithium battery using the                Commun. 1–13.
+                                                                partial incremental capacity and Gaussian
+17. Roman, D., Saxena, S., Robu, V., Pecht, M., and             process regression. J. Power Sources                      44. Li, S., He, H., Zhao, P., and Cheng, S. (2022).
+    Flynn, D. (2021). Machine learning pipeline for             421, 56–67.                                                   Health-Conscious vehicle battery state
+    battery state-of-health estimation. Nat. Mach.                                                                            estimation based on deep transfer learning.
+    Intell. 3, 447–456.                                     31. Duan, Y., Tian, J., Lu, J., Wang, C., Shen, W.,               Appl. Energy 316, 119120.
+                                                                and Xiong, R. (2021). Deep neural network
+18. Zhang, Y., Tang, Q., Zhang, Y., Wang, J.,                   battery impedance spectra prediction by only              45. Tan, Y., and Zhao, G. (2020). Transfer
+    Stimming, U., and Lee, A.A. (2020). Identifying             using constant-current curve. Energy Storage                  learning with long short-term memory
+    degradation patterns of lithium ion batteries               Mater. 41, 24–31.                                             network for state-of-health prediction of
+    from impedance spectroscopy using machine                                                                                 lithium-ion batteries. IEEE Trans. Ind.
+    learning. Nat. Commun. 11. 1706–11.                     32. Tian, J., Xiong, R., Chen, C., Wang, C., Shen,                Electron. 67, 8723–8731.
+                                                                W., and Sun, F. (2023). Simultaneous prediction
+19. Gasper, P., Schiek, A., Smith, K., Shimonishi, Y.,          of impedance spectra and state for lithium-ion            46. Shu, X., Shen, J., Li, G., Zhang, Y., Chen, Z., and
+    and Yoshida, S. (2022). Predicting battery                  batteries from short-term pulses. Electrochim.                Liu, Y. (2021). A Flexible State-of-Health
+    capacity from impedance at varying                          Acta 449, 142218.                                             Prediction Scheme for Lithium-Ion Battery
+    temperature and state of charge using                                                                                     Packs with Long Short-Term Memory Network
+    machine learning. Cell Rep. Phys. Sci. 3,               33. Severson, K.A., Attia, P.M., Jin, N., Perkins, N.,            and Transfer Learning. IEEE Transactions on
+    101184.                                                     Jiang, B., Yang, Z., Chen, M.H., Aykol, M.,                   Transportation Electrification 7, 2238–2248.
+
+
+
+                                                                                                      Cell Reports Physical Science 4, 101743, December 20, 2023                19
+             ll
+      OPEN ACCESS
+                                                                                                                                                          Article
+
+47. Che, Y., Deng, Z., Lin, X., Hu, L., and Hu, X.           forgetting in neural networks. Proc. Natl. Acad.           Deng, H.D., Thaman, H.L., et al. (2023).
+    (2021). Predictive Battery Health Management             Sci. USA 114, 3521–3526.                                   Interpretable Data-Driven Modeling Reveals
+    With Transfer Learning and Online Model                                                                             Complexity of Battery Aging. Preprint at
+    Correction. IEEE Trans. Veh. Technol. 70,            53. Kemker, R., McClure, M., Abitino, A., Hayes,               ChemRxiv.
+    1269–1277.                                               T.L., and Kanan, C. (2018). Measuring
+                                                             catastrophic forgetting in neural networks. In         59. Pozzato, G., Allam, A., Pulvirenti, L., Negoita,
+48. Tang, X., Liu, K., Li, K., Widanage, W.D.,               32nd AAAI Conference on Artificial                         G.A., Paxton, W.A., and Onori, S. (2023).
+    Kendrick, E., and Gao, F. (2021). Recovering             Intelligence, 201832nd AAAI Conference on                  Analysis and key findings from real-world
+    large-scale battery aging dataset with machine           Artificial Intelligence (AAAI), pp. 3390–3398.             electric vehicle field data. Joule 7, 2035–2053.
+    learning. Patterns 2, 100302.
+                                                         54. Hadsell, R., Rao, D., Rusu, A.A., and Pascanu, R.      60. Deng, Z., Xu, L., Liu, H., Hu, X., Duan, Z.,
+49. Sulzer, V., Mohtat, P., Aitio, A., Lee, S., Yeh,         (2020). Embracing Change: Continual Learning               and Xu, Y. (2023). Prognostics of battery
+    Y.T., Steinbacher, F., Khan, M.U., Lee, J.W.,            in Deep Neural Networks. Trends Cogn. Sci.                 capacity based on charging data and data-
+    Siegel, J.B., Stefanopoulou, A.G., and Howey,            24, 1028–1040.                                             driven methods for on-road vehicles. Appl.
+    D.A. (2021). The challenge and opportunity of                                                                       Energy 339, 120954.
+    battery lifetime prediction from field data.         55. Parisi, G.I., Kemker, R., Part, J.L., Kanan, C., and
+    Joule 5, 1934–1955.                                      Wermter, S. (2019). Continual lifelong learning
+                                                                                                                    61. Wang, S., Miao, H., Li, J., and Cao, J. (2022).
+                                                             with neural networks: A review. Neural Netw.
+50. Che, Y., Hu, X., and Teodorescu, R. (2023).                                                                         Spatio-Temporal Knowledge Transfer for
+                                                             113, 54–71.
+    Opportunities for battery aging mode                                                                                Urban Crowd Flow Prediction via Deep
+    diagnosis of renewable energy storage. Joule         56. Du, M., Liu, N., and Hu, X. (2019). Techniques             Attentive Adaptation Networks. IEEE Trans.
+    7, 1405–1407.                                            for interpretable machine learning. Commun.                Intell. Transport. Syst. 23, 4695–4705.
+                                                             ACM 63, 68–77.
+51. Che, Y., Zheng, Y., Sui, X., and Teodorescu, R.                                                                 62. Ghifary, M., Bastiaan Kleijn, W., and Zhang, M.
+    (2023). Boosting battery state of health             57. Murdoch, W.J., Singh, C., Kumbier, K., Abbasi-             (2014). Domain adaptive neural networks for
+    estimation based on self-supervised learning.            Asl, R., and Yu, B. (2019). Definitions, methods,          object recognition. Lect. Notes Comput. Sci.
+    J. Energy Chem. 84, 335–346.                             and applications in interpretable machine                  8862, 898–904.
+                                                             learning. Proc. Natl. Acad. Sci. USA 116, 22071–
+52. Kirkpatrick, J., Pascanu, R., Rabinowitz, N.,            22080.                                                 63. Tzeng, E., Hoffman, J., Zhang, N., Saenko, K.,
+    Veness, J., Desjardins, G., Rusu, A.A., Milan, K.,                                                                  and Darrell, T. (2014). Deep Domain Confusion:
+    Quan, J., Ramalho, T., Grabska-Barwinska, A.,        58. Vlijmen, B.V., Asinger, P.A., Lam, V., Cui, X.,            Maximizing for Domain Invariance. Preprint at
+    et al. (2017). Overcoming catastrophic                   Sun, S., Herring, P.K., Balaji, C., Geise, N.,             arXiv.
+
+
+
+
+20     Cell Reports Physical Science 4, 101743, December 20, 2023
+

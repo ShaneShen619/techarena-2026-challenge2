@@ -1,0 +1,1368 @@
+{
+  "id": "https://openalex.org/W4403896537",
+  "doi": "https://doi.org/10.1016/j.xcrp.2024.102258",
+  "title": "Gaussian process-based online health monitoring and fault analysis of lithium-ion battery systems from field data",
+  "display_name": "Gaussian process-based online health monitoring and fault analysis of lithium-ion battery systems from field data",
+  "publication_year": 2024,
+  "publication_date": "2024-10-30",
+  "ids": {
+    "openalex": "https://openalex.org/W4403896537",
+    "doi": "https://doi.org/10.1016/j.xcrp.2024.102258"
+  },
+  "language": "en",
+  "primary_location": {
+    "id": "doi:10.1016/j.xcrp.2024.102258",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1016/j.xcrp.2024.102258",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S4210216867",
+      "display_name": "Cell Reports Physical Science",
+      "issn_l": "2666-3864",
+      "issn": [
+        "2666-3864"
+      ],
+      "is_oa": true,
+      "is_in_doaj": true,
+      "is_core": true,
+      "listed_in": [
+        "cwts-core",
+        "doaj",
+        "jufo-1",
+        "ki-jl-1",
+        "norway-1"
+      ],
+      "host_organization": "https://openalex.org/P4310320990",
+      "host_organization_name": "Elsevier BV",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320990"
+      ],
+      "host_organization_lineage_names": [
+        "Elsevier BV"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Cell Reports Physical Science",
+    "raw_type": "journal-article"
+  },
+  "type": "article",
+  "indexed_in": [
+    "arxiv",
+    "crossref",
+    "datacite",
+    "doaj"
+  ],
+  "open_access": {
+    "is_oa": true,
+    "oa_status": "gold",
+    "oa_url": "https://doi.org/10.1016/j.xcrp.2024.102258",
+    "any_repository_has_fulltext": true
+  },
+  "authorships": [
+    {
+      "author_position": "first",
+      "author": {
+        "id": "https://openalex.org/A5087733086",
+        "display_name": "Joachim Schaeffer",
+        "orcid": "https://orcid.org/0000-0001-8767-4101",
+        "observed_orcids": [
+          "https://orcid.org/0000-0001-8767-4101"
+        ]
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I31512782",
+          "display_name": "Technische Universität Darmstadt",
+          "ror": "https://ror.org/05n911h24",
+          "country_code": "DE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I31512782"
+          ]
+        },
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "DE",
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Joachim Schaeffer",
+      "raw_affiliation_strings": [
+        "Control and Cyber-Physical Systems Laboratory Technical, University of Darmstadt, 64289 Darmstadt, Germany",
+        "Department of Chemical Engineering, Massachusetts Institute of Technology, Cambridge, MA 02139, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Control and Cyber-Physical Systems Laboratory Technical, University of Darmstadt, 64289 Darmstadt, Germany",
+          "institution_ids": [
+            "https://openalex.org/I31512782"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Chemical Engineering, Massachusetts Institute of Technology, Cambridge, MA 02139, USA",
+          "institution_ids": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5092741863",
+        "display_name": "Eric Lenz",
+        "orcid": "https://orcid.org/0000-0003-1742-4750",
+        "observed_orcids": [
+          "https://orcid.org/0000-0003-1742-4750"
+        ]
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I31512782",
+          "display_name": "Technische Universität Darmstadt",
+          "ror": "https://ror.org/05n911h24",
+          "country_code": "DE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I31512782"
+          ]
+        }
+      ],
+      "countries": [
+        "DE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Eric Lenz",
+      "raw_affiliation_strings": [
+        "Control and Cyber-Physical Systems Laboratory Technical, University of Darmstadt, 64289 Darmstadt, Germany"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Control and Cyber-Physical Systems Laboratory Technical, University of Darmstadt, 64289 Darmstadt, Germany",
+          "institution_ids": [
+            "https://openalex.org/I31512782"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5099703831",
+        "display_name": "Duncan Gulla",
+        "orcid": null,
+        "observed_orcids": []
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I31512782",
+          "display_name": "Technische Universität Darmstadt",
+          "ror": "https://ror.org/05n911h24",
+          "country_code": "DE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I31512782"
+          ]
+        }
+      ],
+      "countries": [
+        "DE"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Duncan Gulla",
+      "raw_affiliation_strings": [
+        "Control and Cyber-Physical Systems Laboratory Technical, University of Darmstadt, 64289 Darmstadt, Germany"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Control and Cyber-Physical Systems Laboratory Technical, University of Darmstadt, 64289 Darmstadt, Germany",
+          "institution_ids": [
+            "https://openalex.org/I31512782"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5070486479",
+        "display_name": "Martin Z. Bazant",
+        "orcid": "https://orcid.org/0000-0002-8200-4501",
+        "observed_orcids": [
+          "https://orcid.org/0000-0002-8200-4501"
+        ]
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Martin Z. Bazant",
+      "raw_affiliation_strings": [
+        "Department of Chemical Engineering, Massachusetts Institute of Technology, Cambridge, MA 02139, USA",
+        "Department of Mathematics, Massachusetts Institute of Technology, Cambridge, MA 02139, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemical Engineering, Massachusetts Institute of Technology, Cambridge, MA 02139, USA",
+          "institution_ids": [
+            "https://openalex.org/I63966007"
+          ]
+        },
+        {
+          "raw_affiliation_string": "Department of Mathematics, Massachusetts Institute of Technology, Cambridge, MA 02139, USA",
+          "institution_ids": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "middle",
+      "author": {
+        "id": "https://openalex.org/A5083684552",
+        "display_name": "Richard D. Braatz",
+        "orcid": "https://orcid.org/0000-0003-4304-3484",
+        "observed_orcids": [
+          "https://orcid.org/0000-0003-4304-3484"
+        ]
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I63966007",
+          "display_name": "Massachusetts Institute of Technology",
+          "ror": "https://ror.org/042nb2s44",
+          "country_code": "US",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ],
+      "countries": [
+        "US"
+      ],
+      "is_corresponding": false,
+      "raw_author_name": "Richard D. Braatz",
+      "raw_affiliation_strings": [
+        "Department of Chemical Engineering, Massachusetts Institute of Technology, Cambridge, MA 02139, USA"
+      ],
+      "raw_orcid": null,
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Department of Chemical Engineering, Massachusetts Institute of Technology, Cambridge, MA 02139, USA",
+          "institution_ids": [
+            "https://openalex.org/I63966007"
+          ]
+        }
+      ]
+    },
+    {
+      "author_position": "last",
+      "author": {
+        "id": "https://openalex.org/A5040485515",
+        "display_name": "Rolf Findeisen",
+        "orcid": "https://orcid.org/0000-0002-9112-5946",
+        "observed_orcids": [
+          "https://orcid.org/0000-0002-9112-5946"
+        ]
+      },
+      "institutions": [
+        {
+          "id": "https://openalex.org/I31512782",
+          "display_name": "Technische Universität Darmstadt",
+          "ror": "https://ror.org/05n911h24",
+          "country_code": "DE",
+          "type": "education",
+          "lineage": [
+            "https://openalex.org/I31512782"
+          ]
+        }
+      ],
+      "countries": [
+        "DE"
+      ],
+      "is_corresponding": true,
+      "raw_author_name": "Rolf Findeisen",
+      "raw_affiliation_strings": [
+        "Control and Cyber-Physical Systems Laboratory Technical, University of Darmstadt, 64289 Darmstadt, Germany"
+      ],
+      "raw_orcid": "https://orcid.org/0000-0002-9112-5946",
+      "affiliations": [
+        {
+          "raw_affiliation_string": "Control and Cyber-Physical Systems Laboratory Technical, University of Darmstadt, 64289 Darmstadt, Germany",
+          "institution_ids": [
+            "https://openalex.org/I31512782"
+          ]
+        }
+      ]
+    }
+  ],
+  "institutions": [],
+  "countries_distinct_count": 2,
+  "institutions_distinct_count": 2,
+  "corresponding_author_ids": [
+    "https://openalex.org/A5040485515"
+  ],
+  "corresponding_institution_ids": [
+    "https://openalex.org/I31512782"
+  ],
+  "apc_list": {
+    "value": 5460,
+    "currency": "USD",
+    "value_usd": 5460
+  },
+  "apc_paid": {
+    "value": 5460,
+    "currency": "USD",
+    "value_usd": 5460
+  },
+  "fwci": 2.6614,
+  "has_fulltext": true,
+  "cited_by_count": 25,
+  "citation_normalized_percentile": {
+    "value": 0.90587175,
+    "is_in_top_1_percent": false,
+    "is_in_top_10_percent": true
+  },
+  "cited_by_percentile_year": {
+    "min": 89,
+    "max": 100
+  },
+  "biblio": {
+    "volume": "5",
+    "issue": "11",
+    "first_page": "102258",
+    "last_page": "102258"
+  },
+  "is_retracted": false,
+  "is_paratext": false,
+  "is_xpac": false,
+  "primary_topic": {
+    "id": "https://openalex.org/T10663",
+    "display_name": "Advanced Battery Technologies Research",
+    "score": 1.0,
+    "subfield": {
+      "id": "https://openalex.org/subfields/2203",
+      "display_name": "Automotive Engineering"
+    },
+    "field": {
+      "id": "https://openalex.org/fields/22",
+      "display_name": "Engineering"
+    },
+    "domain": {
+      "id": "https://openalex.org/domains/3",
+      "display_name": "Physical Sciences"
+    }
+  },
+  "topics": [
+    {
+      "id": "https://openalex.org/T10663",
+      "display_name": "Advanced Battery Technologies Research",
+      "score": 1.0,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2203",
+        "display_name": "Automotive Engineering"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10876",
+      "display_name": "Fault Detection and Control Systems",
+      "score": 0.978600025177002,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2207",
+        "display_name": "Control and Systems Engineering"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    },
+    {
+      "id": "https://openalex.org/T10018",
+      "display_name": "Advancements in Battery Materials",
+      "score": 0.9675999879837036,
+      "subfield": {
+        "id": "https://openalex.org/subfields/2208",
+        "display_name": "Electrical and Electronic Engineering"
+      },
+      "field": {
+        "id": "https://openalex.org/fields/22",
+        "display_name": "Engineering"
+      },
+      "domain": {
+        "id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"
+      }
+    }
+  ],
+  "keywords": [
+    {
+      "id": "https://openalex.org/keywords/lithium-ion-battery",
+      "display_name": "Lithium-ion battery",
+      "score": 0.5644612312316895
+    },
+    {
+      "id": "https://openalex.org/keywords/lithium",
+      "display_name": "Lithium (medication)",
+      "score": 0.520987331867218
+    },
+    {
+      "id": "https://openalex.org/keywords/process",
+      "display_name": "Process (computing)",
+      "score": 0.5094419121742249
+    },
+    {
+      "id": "https://openalex.org/keywords/battery",
+      "display_name": "Battery (electricity)",
+      "score": 0.5052052140235901
+    },
+    {
+      "id": "https://openalex.org/keywords/fault",
+      "display_name": "Fault (geology)",
+      "score": 0.4999539852142334
+    },
+    {
+      "id": "https://openalex.org/keywords/computer-science",
+      "display_name": "Computer science",
+      "score": 0.47932326793670654
+    },
+    {
+      "id": "https://openalex.org/keywords/field",
+      "display_name": "Field (mathematics)",
+      "score": 0.4776807427406311
+    },
+    {
+      "id": "https://openalex.org/keywords/reliability-engineering",
+      "display_name": "Reliability engineering",
+      "score": 0.46991220116615295
+    },
+    {
+      "id": "https://openalex.org/keywords/gaussian-process",
+      "display_name": "Gaussian process",
+      "score": 0.44842344522476196
+    },
+    {
+      "id": "https://openalex.org/keywords/ion",
+      "display_name": "Ion",
+      "score": 0.4130942225456238
+    },
+    {
+      "id": "https://openalex.org/keywords/gaussian",
+      "display_name": "Gaussian",
+      "score": 0.3958759009838104
+    },
+    {
+      "id": "https://openalex.org/keywords/data-mining",
+      "display_name": "Data mining",
+      "score": 0.34026360511779785
+    },
+    {
+      "id": "https://openalex.org/keywords/engineering",
+      "display_name": "Engineering",
+      "score": 0.2990146577358246
+    },
+    {
+      "id": "https://openalex.org/keywords/medicine",
+      "display_name": "Medicine",
+      "score": 0.17296439409255981
+    },
+    {
+      "id": "https://openalex.org/keywords/chemistry",
+      "display_name": "Chemistry",
+      "score": 0.16209730505943298
+    },
+    {
+      "id": "https://openalex.org/keywords/mathematics",
+      "display_name": "Mathematics",
+      "score": 0.13337847590446472
+    },
+    {
+      "id": "https://openalex.org/keywords/physics",
+      "display_name": "Physics",
+      "score": 0.12291449308395386
+    },
+    {
+      "id": "https://openalex.org/keywords/power",
+      "display_name": "Power (physics)",
+      "score": 0.11067435145378113
+    },
+    {
+      "id": "https://openalex.org/keywords/computational-chemistry",
+      "display_name": "Computational chemistry",
+      "score": 0.08107072114944458
+    }
+  ],
+  "concepts": [
+    {
+      "id": "https://openalex.org/C2779197387",
+      "wikidata": "https://www.wikidata.org/wiki/Q2822895",
+      "display_name": "Lithium-ion battery",
+      "level": 4,
+      "score": 0.5644612312316895
+    },
+    {
+      "id": "https://openalex.org/C2778541603",
+      "wikidata": "https://www.wikidata.org/wiki/Q152763",
+      "display_name": "Lithium (medication)",
+      "level": 2,
+      "score": 0.520987331867218
+    },
+    {
+      "id": "https://openalex.org/C98045186",
+      "wikidata": "https://www.wikidata.org/wiki/Q205663",
+      "display_name": "Process (computing)",
+      "level": 2,
+      "score": 0.5094419121742249
+    },
+    {
+      "id": "https://openalex.org/C555008776",
+      "wikidata": "https://www.wikidata.org/wiki/Q267298",
+      "display_name": "Battery (electricity)",
+      "level": 3,
+      "score": 0.5052052140235901
+    },
+    {
+      "id": "https://openalex.org/C175551986",
+      "wikidata": "https://www.wikidata.org/wiki/Q47089",
+      "display_name": "Fault (geology)",
+      "level": 2,
+      "score": 0.4999539852142334
+    },
+    {
+      "id": "https://openalex.org/C41008148",
+      "wikidata": "https://www.wikidata.org/wiki/Q21198",
+      "display_name": "Computer science",
+      "level": 0,
+      "score": 0.47932326793670654
+    },
+    {
+      "id": "https://openalex.org/C9652623",
+      "wikidata": "https://www.wikidata.org/wiki/Q190109",
+      "display_name": "Field (mathematics)",
+      "level": 2,
+      "score": 0.4776807427406311
+    },
+    {
+      "id": "https://openalex.org/C200601418",
+      "wikidata": "https://www.wikidata.org/wiki/Q2193887",
+      "display_name": "Reliability engineering",
+      "level": 1,
+      "score": 0.46991220116615295
+    },
+    {
+      "id": "https://openalex.org/C61326573",
+      "wikidata": "https://www.wikidata.org/wiki/Q1496376",
+      "display_name": "Gaussian process",
+      "level": 3,
+      "score": 0.44842344522476196
+    },
+    {
+      "id": "https://openalex.org/C145148216",
+      "wikidata": "https://www.wikidata.org/wiki/Q36496",
+      "display_name": "Ion",
+      "level": 2,
+      "score": 0.4130942225456238
+    },
+    {
+      "id": "https://openalex.org/C163716315",
+      "wikidata": "https://www.wikidata.org/wiki/Q901177",
+      "display_name": "Gaussian",
+      "level": 2,
+      "score": 0.3958759009838104
+    },
+    {
+      "id": "https://openalex.org/C124101348",
+      "wikidata": "https://www.wikidata.org/wiki/Q172491",
+      "display_name": "Data mining",
+      "level": 1,
+      "score": 0.34026360511779785
+    },
+    {
+      "id": "https://openalex.org/C127413603",
+      "wikidata": "https://www.wikidata.org/wiki/Q11023",
+      "display_name": "Engineering",
+      "level": 0,
+      "score": 0.2990146577358246
+    },
+    {
+      "id": "https://openalex.org/C71924100",
+      "wikidata": "https://www.wikidata.org/wiki/Q11190",
+      "display_name": "Medicine",
+      "level": 0,
+      "score": 0.17296439409255981
+    },
+    {
+      "id": "https://openalex.org/C185592680",
+      "wikidata": "https://www.wikidata.org/wiki/Q2329",
+      "display_name": "Chemistry",
+      "level": 0,
+      "score": 0.16209730505943298
+    },
+    {
+      "id": "https://openalex.org/C33923547",
+      "wikidata": "https://www.wikidata.org/wiki/Q395",
+      "display_name": "Mathematics",
+      "level": 0,
+      "score": 0.13337847590446472
+    },
+    {
+      "id": "https://openalex.org/C121332964",
+      "wikidata": "https://www.wikidata.org/wiki/Q413",
+      "display_name": "Physics",
+      "level": 0,
+      "score": 0.12291449308395386
+    },
+    {
+      "id": "https://openalex.org/C163258240",
+      "wikidata": "https://www.wikidata.org/wiki/Q25342",
+      "display_name": "Power (physics)",
+      "level": 2,
+      "score": 0.11067435145378113
+    },
+    {
+      "id": "https://openalex.org/C147597530",
+      "wikidata": "https://www.wikidata.org/wiki/Q369472",
+      "display_name": "Computational chemistry",
+      "level": 1,
+      "score": 0.08107072114944458
+    },
+    {
+      "id": "https://openalex.org/C202444582",
+      "wikidata": "https://www.wikidata.org/wiki/Q837863",
+      "display_name": "Pure mathematics",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C134018914",
+      "wikidata": "https://www.wikidata.org/wiki/Q162606",
+      "display_name": "Endocrinology",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C127313418",
+      "wikidata": "https://www.wikidata.org/wiki/Q1069",
+      "display_name": "Geology",
+      "level": 0,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C178790620",
+      "wikidata": "https://www.wikidata.org/wiki/Q11351",
+      "display_name": "Organic chemistry",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C62520636",
+      "wikidata": "https://www.wikidata.org/wiki/Q944",
+      "display_name": "Quantum mechanics",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C165205528",
+      "wikidata": "https://www.wikidata.org/wiki/Q83371",
+      "display_name": "Seismology",
+      "level": 1,
+      "score": 0.0
+    },
+    {
+      "id": "https://openalex.org/C111919701",
+      "wikidata": "https://www.wikidata.org/wiki/Q9135",
+      "display_name": "Operating system",
+      "level": 1,
+      "score": 0.0
+    }
+  ],
+  "mesh": [],
+  "locations_count": 4,
+  "locations": [
+    {
+      "id": "doi:10.1016/j.xcrp.2024.102258",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.1016/j.xcrp.2024.102258",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4210216867",
+        "display_name": "Cell Reports Physical Science",
+        "issn_l": "2666-3864",
+        "issn": [
+          "2666-3864"
+        ],
+        "is_oa": true,
+        "is_in_doaj": true,
+        "is_core": true,
+        "listed_in": [
+          "cwts-core",
+          "doaj",
+          "jufo-1",
+          "ki-jl-1",
+          "norway-1"
+        ],
+        "host_organization": "https://openalex.org/P4310320990",
+        "host_organization_name": "Elsevier BV",
+        "host_organization_lineage": [
+          "https://openalex.org/P4310320990"
+        ],
+        "host_organization_lineage_names": [
+          "Elsevier BV"
+        ],
+        "type": "journal"
+      },
+      "license": "cc-by",
+      "license_id": "https://openalex.org/licenses/cc-by",
+      "version": "publishedVersion",
+      "is_accepted": true,
+      "is_published": true,
+      "raw_source_name": "Cell Reports Physical Science",
+      "raw_type": "journal-article"
+    },
+    {
+      "id": "pmh:oai:arXiv.org:2406.19015",
+      "is_oa": true,
+      "landing_page_url": "http://arxiv.org/abs/2406.19015",
+      "pdf_url": "https://arxiv.org/pdf/2406.19015",
+      "source": {
+        "id": "https://openalex.org/S4306400194",
+        "display_name": "arXiv (Cornell University)",
+        "issn_l": "2331-8422",
+        "issn": [
+          "2331-8422"
+        ],
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "listed_in": [],
+        "host_organization": "https://openalex.org/I205783295",
+        "host_organization_name": "Cornell University",
+        "host_organization_lineage": [
+          "https://openalex.org/I205783295"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "other-oa",
+      "license_id": "https://openalex.org/licenses/other-oa",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": null,
+      "raw_type": "text"
+    },
+    {
+      "id": "pmh:oai:dspace.mit.edu:1721.1/157659",
+      "is_oa": true,
+      "landing_page_url": "https://hdl.handle.net/1721.1/157659",
+      "pdf_url": "https://dspace.mit.edu/bitstream/1721.1/157659/2/1-s2.0-S2666386424005630-main.pdf",
+      "source": {
+        "id": "https://openalex.org/S4306400425",
+        "display_name": "DSpace@MIT (Massachusetts Institute of Technology)",
+        "issn_l": null,
+        "issn": null,
+        "is_oa": false,
+        "is_in_doaj": false,
+        "is_core": false,
+        "listed_in": [],
+        "host_organization": "https://openalex.org/I63966007",
+        "host_organization_name": "Massachusetts Institute of Technology",
+        "host_organization_lineage": [
+          "https://openalex.org/I63966007"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": "cc-by-nc",
+      "license_id": "https://openalex.org/licenses/cc-by-nc",
+      "version": "submittedVersion",
+      "is_accepted": false,
+      "is_published": false,
+      "raw_source_name": "Elsevier",
+      "raw_type": "Article"
+    },
+    {
+      "id": "doi:10.48550/arxiv.2406.19015",
+      "is_oa": true,
+      "landing_page_url": "https://doi.org/10.48550/arxiv.2406.19015",
+      "pdf_url": null,
+      "source": {
+        "id": "https://openalex.org/S4306400194",
+        "display_name": "arXiv (Cornell University)",
+        "issn_l": "2331-8422",
+        "issn": [
+          "2331-8422"
+        ],
+        "is_oa": true,
+        "is_in_doaj": false,
+        "is_core": false,
+        "listed_in": [],
+        "host_organization": "https://openalex.org/I205783295",
+        "host_organization_name": "Cornell University",
+        "host_organization_lineage": [
+          "https://openalex.org/I205783295"
+        ],
+        "host_organization_lineage_names": [],
+        "type": "repository"
+      },
+      "license": null,
+      "license_id": null,
+      "version": null,
+      "is_accepted": false,
+      "is_published": null,
+      "raw_source_name": null,
+      "raw_type": "article-journal"
+    }
+  ],
+  "best_oa_location": {
+    "id": "doi:10.1016/j.xcrp.2024.102258",
+    "is_oa": true,
+    "landing_page_url": "https://doi.org/10.1016/j.xcrp.2024.102258",
+    "pdf_url": null,
+    "source": {
+      "id": "https://openalex.org/S4210216867",
+      "display_name": "Cell Reports Physical Science",
+      "issn_l": "2666-3864",
+      "issn": [
+        "2666-3864"
+      ],
+      "is_oa": true,
+      "is_in_doaj": true,
+      "is_core": true,
+      "listed_in": [
+        "cwts-core",
+        "doaj",
+        "jufo-1",
+        "ki-jl-1",
+        "norway-1"
+      ],
+      "host_organization": "https://openalex.org/P4310320990",
+      "host_organization_name": "Elsevier BV",
+      "host_organization_lineage": [
+        "https://openalex.org/P4310320990"
+      ],
+      "host_organization_lineage_names": [
+        "Elsevier BV"
+      ],
+      "type": "journal"
+    },
+    "license": "cc-by",
+    "license_id": "https://openalex.org/licenses/cc-by",
+    "version": "publishedVersion",
+    "is_accepted": true,
+    "is_published": true,
+    "raw_source_name": "Cell Reports Physical Science",
+    "raw_type": "journal-article"
+  },
+  "sustainable_development_goals": [],
+  "x_sdgs": [],
+  "study_designs": [],
+  "awards": [],
+  "funders": [],
+  "has_content": {
+    "pdf": false,
+    "grobid_xml": false
+  },
+  "content_urls": null,
+  "referenced_works_count": 69,
+  "referenced_works": [
+    "https://openalex.org/W824892955",
+    "https://openalex.org/W1967142014",
+    "https://openalex.org/W1999479532",
+    "https://openalex.org/W2041108396",
+    "https://openalex.org/W2051655329",
+    "https://openalex.org/W2079064413",
+    "https://openalex.org/W2084680485",
+    "https://openalex.org/W2091651498",
+    "https://openalex.org/W2092950713",
+    "https://openalex.org/W2106446118",
+    "https://openalex.org/W2113449668",
+    "https://openalex.org/W2122456939",
+    "https://openalex.org/W2148347826",
+    "https://openalex.org/W2164573606",
+    "https://openalex.org/W2201263372",
+    "https://openalex.org/W2336223670",
+    "https://openalex.org/W2343560038",
+    "https://openalex.org/W2495099137",
+    "https://openalex.org/W2539308310",
+    "https://openalex.org/W2559148811",
+    "https://openalex.org/W2568610671",
+    "https://openalex.org/W2612210564",
+    "https://openalex.org/W2624543473",
+    "https://openalex.org/W2768835165",
+    "https://openalex.org/W2772728162",
+    "https://openalex.org/W2896294159",
+    "https://openalex.org/W2902305684",
+    "https://openalex.org/W2924382816",
+    "https://openalex.org/W2940934113",
+    "https://openalex.org/W2944510253",
+    "https://openalex.org/W2991630966",
+    "https://openalex.org/W2999837629",
+    "https://openalex.org/W3000488426",
+    "https://openalex.org/W3009569330",
+    "https://openalex.org/W3033326462",
+    "https://openalex.org/W3037414163",
+    "https://openalex.org/W3057127347",
+    "https://openalex.org/W3088523737",
+    "https://openalex.org/W3103904046",
+    "https://openalex.org/W3126315086",
+    "https://openalex.org/W3135698256",
+    "https://openalex.org/W3171392646",
+    "https://openalex.org/W3171724330",
+    "https://openalex.org/W3175561862",
+    "https://openalex.org/W3182713161",
+    "https://openalex.org/W3184270535",
+    "https://openalex.org/W3186024736",
+    "https://openalex.org/W3200277715",
+    "https://openalex.org/W3201108028",
+    "https://openalex.org/W4220776750",
+    "https://openalex.org/W4229052262",
+    "https://openalex.org/W4282545338",
+    "https://openalex.org/W4292060475",
+    "https://openalex.org/W4378191227",
+    "https://openalex.org/W4378907960",
+    "https://openalex.org/W4383031919",
+    "https://openalex.org/W4385989426",
+    "https://openalex.org/W4387818026",
+    "https://openalex.org/W4388263538",
+    "https://openalex.org/W4402261271",
+    "https://openalex.org/W4402807069",
+    "https://openalex.org/W4407022117",
+    "https://openalex.org/W6772918934",
+    "https://openalex.org/W6779664324",
+    "https://openalex.org/W6852719924",
+    "https://openalex.org/W6854272744",
+    "https://openalex.org/W6857389716",
+    "https://openalex.org/W6864408682",
+    "https://openalex.org/W6871662238"
+  ],
+  "related_works": [
+    "https://openalex.org/W2995074223",
+    "https://openalex.org/W2357719166",
+    "https://openalex.org/W4224246090",
+    "https://openalex.org/W3165173190",
+    "https://openalex.org/W1964286703",
+    "https://openalex.org/W2080384327",
+    "https://openalex.org/W2159458361",
+    "https://openalex.org/W3161330592",
+    "https://openalex.org/W2274723115",
+    "https://openalex.org/W2169866437"
+  ],
+  "abstract_inverted_index": {
+    "Health": [
+      0
+    ],
+    "monitoring,": [
+      1
+    ],
+    "fault": [
+      2,
+      62,
+      84
+    ],
+    "analysis,": [
+      3
+    ],
+    "and": [
+      4,
+      30,
+      54,
+      124,
+      129,
+      141
+    ],
+    "detection": [
+      5,
+      63
+    ],
+    "methods": [
+      6
+    ],
+    "are": [
+      7
+    ],
+    "important": [
+      8
+    ],
+    "to": [
+      9,
+      26,
+      40
+    ],
+    "operate": [
+      10
+    ],
+    "battery": [
+      11,
+      23,
+      37,
+      121
+    ],
+    "systems": [
+      12,
+      38
+    ],
+    "safely.": [
+      13
+    ],
+    "We": [
+      14,
+      59,
+      136
+    ],
+    "apply": [
+      15
+    ],
+    "Gaussian": [
+      16,
+      68
+    ],
+    "process": [
+      17
+    ],
+    "resistance": [
+      18
+    ],
+    "models": [
+      19
+    ],
+    "on": [
+      20
+    ],
+    "lithium-iron-phosphate": [
+      21
+    ],
+    "(LFP)": [
+      22
+    ],
+    "field": [
+      24,
+      128
+    ],
+    "data": [
+      25,
+      57,
+      78
+    ],
+    "separate": [
+      27
+    ],
+    "the": [
+      28,
+      41,
+      75,
+      117,
+      127,
+      131,
+      139,
+      143
+    ],
+    "time-dependent": [
+      29
+    ],
+    "operating-point-dependent": [
+      31
+    ],
+    "resistances.": [
+      32
+    ],
+    "The": [
+      33,
+      83,
+      114
+    ],
+    "dataset": [
+      34,
+      144
+    ],
+    "contains": [
+      35
+    ],
+    "28": [
+      36
+    ],
+    "returned": [
+      39
+    ],
+    "manufacturer": [
+      42
+    ],
+    "for": [
+      43,
+      104
+    ],
+    "warranty,": [
+      44
+    ],
+    "each": [
+      45
+    ],
+    "with": [
+      46,
+      74,
+      101,
+      145
+    ],
+    "eight": [
+      47
+    ],
+    "cells": [
+      48,
+      53,
+      105
+    ],
+    "in": [
+      49,
+      107,
+      126
+    ],
+    "series,": [
+      50,
+      108
+    ],
+    "totaling": [
+      51
+    ],
+    "224": [
+      52
+    ],
+    "133": [
+      55
+    ],
+    "million": [
+      56
+    ],
+    "rows.": [
+      58
+    ],
+    "develop": [
+      60
+    ],
+    "probabilistic": [
+      61
+    ],
+    "rules": [
+      64
+    ],
+    "using": [
+      65
+    ],
+    "recursive": [
+      66
+    ],
+    "spatiotemporal": [
+      67
+    ],
+    "processes.": [
+      69
+    ],
+    "These": [
+      70
+    ],
+    "processes": [
+      71
+    ],
+    "scale": [
+      72
+    ],
+    "linearly": [
+      73
+    ],
+    "number": [
+      76
+    ],
+    "of": [
+      77,
+      119,
+      133
+    ],
+    "points,": [
+      79
+    ],
+    "allowing": [
+      80
+    ],
+    "online": [
+      81,
+      134
+    ],
+    "monitoring.": [
+      82,
+      135
+    ],
+    "analysis": [
+      85
+    ],
+    "underlines": [
+      86
+    ],
+    "that": [
+      87
+    ],
+    "often,": [
+      88
+    ],
+    "only": [
+      89
+    ],
+    "a": [
+      90,
+      97
+    ],
+    "single": [
+      91
+    ],
+    "cell": [
+      92
+    ],
+    "shows": [
+      93
+    ],
+    "abnormal": [
+      94
+    ],
+    "behavior": [
+      95
+    ],
+    "or": [
+      96
+    ],
+    "knee": [
+      98
+    ],
+    "point,": [
+      99
+    ],
+    "consistent": [
+      100
+    ],
+    "weakest-link": [
+      102
+    ],
+    "failure": [
+      103
+    ],
+    "connected": [
+      106
+    ],
+    "amplified": [
+      109
+    ],
+    "by": [
+      110
+    ],
+    "local": [
+      111
+    ],
+    "resistive": [
+      112
+    ],
+    "heating.": [
+      113
+    ],
+    "results": [
+      115
+    ],
+    "further": [
+      116
+    ],
+    "understanding": [
+      118
+    ],
+    "how": [
+      120
+    ],
+    "packs": [
+      122
+    ],
+    "degrade": [
+      123
+    ],
+    "fail": [
+      125
+    ],
+    "demonstrate": [
+      130
+    ],
+    "potential": [
+      132
+    ],
+    "open": [
+      137
+    ],
+    "source": [
+      138
+    ],
+    "code": [
+      140
+    ],
+    "publish": [
+      142
+    ],
+    "this": [
+      146
+    ],
+    "article.": [
+      147
+    ]
+  },
+  "counts_by_year": [
+    {
+      "year": 2026,
+      "cited_by_count": 8
+    },
+    {
+      "year": 2025,
+      "cited_by_count": 16
+    },
+    {
+      "year": 2024,
+      "cited_by_count": 1
+    }
+  ],
+  "updated_date": "2026-09-29T14:09:16.559479",
+  "created_date": "2025-10-10T00:00:00"
+}

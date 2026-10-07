@@ -1,0 +1,10 @@
+{
+  "deep_events": 8,
+  "cell_event_fits": 32,
+  "fit_Q_median_Ah": 92.0,
+  "fit_Q_at_bound_fraction": 0.0,
+  "voltage_RMSE_mV_median": 5.440564509357104,
+  "voltage_offset_mV_median": 77.16212702629237,
+  "charge_transfer_limit": "A 20.4A charge has direction/rate hysteresis relative to CK0 5.1A discharge. A narrow Q profile is not proof of true capacity if residual shape is wrong.",
+  "truth": "CK1-CK7 hidden; deep CC Ah is observable but not a capacity label"
+}

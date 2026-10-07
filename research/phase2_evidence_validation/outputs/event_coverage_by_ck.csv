@@ -1,0 +1,9 @@
+checkup,cutoff,completed_all_events,completed_strict_5p1_events,completed_pulse_20A_events,completed_charge_events,strict_current_shape_candidates_min5Ah,strict_candidate_total_Ah,official_capacity_qualified_events,reference_temperature_status,reference_full_charge_state_status
+CK0,2025-01-14T00:00:00,0,0,0,0,0,0.0,0,unknown,unknown
+CK1,2025-02-08T00:00:00,7352,2713,4,1325,0,0.0,0,unknown,unknown
+CK2,2025-03-11T00:00:00,9874,3602,7,1823,0,0.0,0,unknown,unknown
+CK3,2025-04-14T00:00:00,20970,7697,13,3818,0,0.0,0,unknown,unknown
+CK4,2025-05-16T00:00:00,31790,11722,19,5730,0,0.0,0,unknown,unknown
+CK5,2025-06-16T00:00:00,41674,15332,25,7551,0,0.0,0,unknown,unknown
+CK6,2025-07-25T00:00:00,53360,19687,32,9603,0,0.0,0,unknown,unknown
+CK7,2025-08-28T00:00:00,64532,23793,39,11647,0,0.0,0,unknown,unknown

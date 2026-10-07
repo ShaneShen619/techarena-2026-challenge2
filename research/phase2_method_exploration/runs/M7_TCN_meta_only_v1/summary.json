@@ -1,0 +1,24 @@
+{
+  "method": "TCN_scratch_meta_only",
+  "scores": [
+    {
+      "seed": 20260928,
+      "macro_MAE_pp": 2.427548126920605,
+      "worst_cell_MAE_pp": 4.999907019127617,
+      "max_abs_error_pp": 15.943299576560491
+    },
+    {
+      "seed": 20260929,
+      "macro_MAE_pp": 2.378415916215742,
+      "worst_cell_MAE_pp": 5.366556932915459,
+      "max_abs_error_pp": 16.852232262412542
+    },
+    {
+      "seed": 20260930,
+      "macro_MAE_pp": 2.785553742745597,
+      "worst_cell_MAE_pp": 5.809416479258944,
+      "max_abs_error_pp": 17.89984826735639
+    }
+  ],
+  "status": "mechanism ablation on six development cells, not independent confirmation"
+}

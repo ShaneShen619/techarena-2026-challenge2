@@ -1,0 +1,30 @@
+{
+  "version": "2026-09-29-v1",
+  "config_files": [
+    {
+      "path": "protocol.json",
+      "sha256": "a8d5f12ed7d0298b729b8b118cc200ff2aafd1afae175a764e84754cfa95bfb3",
+      "bytes": 1708,
+      "frozen_before": "V1_event_coverage"
+    },
+    {
+      "path": "acceptance.json",
+      "sha256": "4cdcc0ce327fc7031e2308a60734f670ce87d936ee6e7a1f4906e11d4fe636d2",
+      "bytes": 1307,
+      "frozen_before": "V1_event_coverage"
+    },
+    {
+      "path": "r02.json",
+      "sha256": "231bac2c71569ad53ad39b1d3d5a6c24b2f62462f02959c64c19efac0a61c720",
+      "bytes": 1941,
+      "frozen_before": "V1_event_coverage"
+    },
+    {
+      "path": "r05.json",
+      "sha256": "cb3ad1105756087cf622b3a488363ba67b69868171554f8b653d993c5c4cc4ac",
+      "bytes": 1610,
+      "frozen_before": "V1_event_coverage"
+    }
+  ],
+  "mutation_rule": "new version and run_id; never overwrite completed run"
+}

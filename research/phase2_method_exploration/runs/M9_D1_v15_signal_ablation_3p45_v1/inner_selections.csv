@@ -1,0 +1,43 @@
+held_cell,method,selected_json,inner_macro_mae_pp
+102Ah_25degC_0p5C_cell3,age_only,null,
+102Ah_25degC_0p5C_cell3,age_plus_current,"[10.0, 2.0]",4.325867537002489
+102Ah_25degC_0p5C_cell3,age_plus_voltage,"[10.0, 0.5]",4.168103437860653
+102Ah_25degC_0p5C_cell3,age_plus_current_voltage,"[1.0, 0.5]",3.6292869459515757
+102Ah_25degC_0p5C_cell3,age_plus_windows,"[10.0, 2.0]",4.242760190844722
+102Ah_25degC_0p5C_cell3,age_plus_windows_current,"[10.0, 2.0]",4.243337007183506
+102Ah_25degC_0p5C_cell3,full_window_workpoint,"[1.0, 0.5]",3.928784986166536
+102Ah_25degC_1C_cell3,age_only,null,
+102Ah_25degC_1C_cell3,age_plus_current,"[1.0, 0.5]",109.59521590837892
+102Ah_25degC_1C_cell3,age_plus_voltage,"[10.0, 2.0]",109.9110880557616
+102Ah_25degC_1C_cell3,age_plus_current_voltage,"[1.0, 0.5]",108.94101392211243
+102Ah_25degC_1C_cell3,age_plus_windows,"[10.0, 2.0]",109.83499931599155
+102Ah_25degC_1C_cell3,age_plus_windows_current,"[1.0, 1.0]",109.73274662386459
+102Ah_25degC_1C_cell3,full_window_workpoint,"[1.0, 0.5]",109.19878615744715
+102Ah_35degC_1C_cell1,age_only,null,
+102Ah_35degC_1C_cell1,age_plus_current,"[10.0, 2.0]",4.000909789410716
+102Ah_35degC_1C_cell1,age_plus_voltage,"[10.0, 2.0]",4.094900245218405
+102Ah_35degC_1C_cell1,age_plus_current_voltage,"[1.0, 1.0]",3.413154959546565
+102Ah_35degC_1C_cell1,age_plus_windows,"[10.0, 2.0]",3.9881291955235776
+102Ah_35degC_1C_cell1,age_plus_windows_current,"[10.0, 2.0]",3.9864060694365024
+102Ah_35degC_1C_cell1,full_window_workpoint,"[1.0, 0.5]",3.797859868167893
+102Ah_45degC_0p5C_cell3,age_only,null,
+102Ah_45degC_0p5C_cell3,age_plus_current,"[10.0, 2.0]",43.156886455109984
+102Ah_45degC_0p5C_cell3,age_plus_voltage,"[10.0, 2.0]",43.335138846381
+102Ah_45degC_0p5C_cell3,age_plus_current_voltage,"[1.0, 1.0]",42.90606434029381
+102Ah_45degC_0p5C_cell3,age_plus_windows,"[10.0, 2.0]",43.16671255932603
+102Ah_45degC_0p5C_cell3,age_plus_windows_current,"[10.0, 2.0]",43.128334062696965
+102Ah_45degC_0p5C_cell3,full_window_workpoint,"[1.0, 0.5]",42.895645512625066
+102Ah_45degC_1C_cell1,age_only,null,
+102Ah_45degC_1C_cell1,age_plus_current,"[1.0, 1.0]",4.96877816343749
+102Ah_45degC_1C_cell1,age_plus_voltage,"[10.0, 2.0]",5.078609101383934
+102Ah_45degC_1C_cell1,age_plus_current_voltage,"[1.0, 1.0]",4.180938657327232
+102Ah_45degC_1C_cell1,age_plus_windows,"[10.0, 2.0]",5.033775104239438
+102Ah_45degC_1C_cell1,age_plus_windows_current,"[1.0, 1.0]",4.870969398295996
+102Ah_45degC_1C_cell1,full_window_workpoint,"[1.0, 0.5]",4.351883323076107
+102Ah_55degC_1C_cell3,age_only,null,
+102Ah_55degC_1C_cell3,age_plus_current,"[1.0, 1.0]",2.2953229764959713
+102Ah_55degC_1C_cell3,age_plus_voltage,"[10.0, 2.0]",2.4371489645301714
+102Ah_55degC_1C_cell3,age_plus_current_voltage,"[1.0, 2.0]",2.326586549330842
+102Ah_55degC_1C_cell3,age_plus_windows,"[10.0, 1.0]",2.409698292227903
+102Ah_55degC_1C_cell3,age_plus_windows_current,"[10.0, 0.5]",2.3018766947184615
+102Ah_55degC_1C_cell3,full_window_workpoint,"[1.0, 1.0]",2.328476099603036

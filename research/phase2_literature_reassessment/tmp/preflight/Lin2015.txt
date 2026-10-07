@@ -1,0 +1,1382 @@
+                                                    Journal of The Electrochemical Society, 162 (9) A1879-A1891 (2015)                                                A1879
+
+
+                                        Analytic Bound on Accuracy of Battery State and Parameter
+                                        Estimation
+                                        Xinfan Linz and Anna G. Stefanopoulou
+                                        Department of Mechanical Engineering, University of Michigan, Ann Arbor, Michigan 48109, USA
+
+                         Methods for battery state and parameter estimation have been widely investigated, while the achievable accuracy of the estimation
+                         remains a critical but somehow overlooked topic. In this paper, the analytic bounds on the accuracy of battery state and parameter
+                         estimation accounting for voltage measurement noises are derived based on the Fisher information matrix and Cramer-Rao bound
+                         analysis. The state and parameters under discussion include the state of charge, capacity and (ohmic) resistance. The estimation
+                         accuracy is influenced by the information contained in the data set used for estimation. It is found that the main contributing factors to
+                         the accuracy of SOC estimation are the slope of the OCV curve and number of data points, while the accuracy of capacity estimation
+                         is affected by both OCV slope and SOC variation, and that of resistance estimation depends heavily on the current magnitude. The
+                         analytic bounds are derived for both standalone estimation, where only one state/parameter is estimated, and combined estimation
+                         where they are estimated together. The loss of accuracy in combined estimation compared to standalone estimation is usually
+                         expected. However, when the current excitation satisfies certain patterns, such loss can be avoided. The conclusions can be used as
+                         guidelines for offline experiment design as well as online evaluation of the accuracy of adaptive state and parameter estimation.
+                         © The Author(s) 2015. Published by ECS. This is an open access article distributed under the terms of the Creative Commons
+                         Attribution 4.0 License (CC BY, http://creativecommons.org/licenses/by/4.0/), which permits unrestricted reuse of the work in any
+                         medium, provided the original work is properly cited. [DOI: 10.1149/2.0791509jes] All rights reserved.
+
+                         Manuscript submitted March 18, 2015; revised manuscript received May 28, 2015. Published July 3, 2015.
+
+
+           Battery state and parameter estimation has been studied extensively                   Lyapunov-based adaptation34 among others. There have also seen sub-
+       in literature. Critical battery states include state of charge (SOC), tem-                stantial efforts addressing combined estimation of SOC and capacity/
+       perature, state of power (SOP) and state of health (SOH) among others.                    resistance, mostly based on EKF. For example, dual extended Kalman
+       As for the parameters, some of them are commonly seen in almost                           filtering (DEKF)35 has been used to estimate the battery SOC and
+       all types of models, such as the (ohmic) internal resistance, capacity,                   capacity/resistance in a sequential way, which further includes the
+       and open circuit voltage (OCV). Others are model-specific, especially                     synchronized (standard) DEKF36–38 and the multi-time-scale DEFK
+       those relating to the transient battery dynamics, e.g. R-C circuits in                    where the SOC and capacity are updated at different rates.39,40 Joint
+       the equivalent circuit model, or diffusion coefficient/electrical con-                    extended Kalman filter (JEKF) has also been studied, which updates
+       ductivity in the electrochemical model. In this paper, the discussion                     the SOC and capacity estimation simultaneously.41,42
+       will be limited to SOC, resistance and capacity, but the methodology                          Another important aspect of the estimation problem, the achiev-
+       can be extended to other states and parameters. It is noted that state es-                able accuracy of estimation from available data, has not been equally
+       timation and parameter estimation are greatly interconnected for two                      emphasized in the previous study though. Related topics include anal-
+       reasons. For one thing, some of the states are in fact defined based on                   ysis on sensitivity, confidence interval and error bound among others.
+       certain parameters. For example, it is well known that as battery ages,                   There have seen increasing interests in the field recently. In Ref. 43, the
+       its capacity decreases1–3 while resistance grows.4–6 Therefore, SOH is                    sensitivity of the output voltage to the parameters of an electrochem-
+       often defined as the ratio of the remaining capacity and the nominal ca-                  ical model is quantified based on simulation under parameter pertur-
+       pacity, or the ratio of the actual (degraded) resistance and the nominal                  bation. Similarly, in Ref. 44, the sensitivity of capacity estimation is
+       resistance.7 For another, it has been shown that the accuracy of state                    studied by calculating the deviation of estimates under perturbation
+       estimation will be greatly affected by the precision of parameters.8                      of other parameters. In Ref. 45, the confidence interval of parameter
+           Various methods have been proposed in literature for battery state                    estimation is obtained through Monte Carlos simulation. Other works
+       and parameter estimation. For SOC estimation, the basic method is                         are mainly based on Fisher information analysis,46 which measures
+       coulomb counting,9–10 where the current is integrated over time to                        the sufficiency of data for state/parameter estimation. For example, in
+       calculate the change in stored energy. Since this method is suscep-                       Ref. 47 the eigenvalues of the Fisher information matrix are used to
+       tible to inaccurate initial SOC and current measurement bias/noise,                       determine and group the strongly identifiable parameters. In Ref. 48,
+       corrections based on OCV under rest is often applied to improve                           the Fisher-Information-based Cramer-Rao bounds, which quantifies
+       estimation accuracy.11 When the battery is under load, however,                           the theoretical lower bound of the variance of estimates, are numeri-
+       due to the unavailability of OCV, model-based methods are typ-                            cally calculated for parameters of an electrochemical battery model.
+       ically used, which combine model, and current and voltage mea-                            In Ref. 49, the confidence intervals of the estimates are obtained based
+       surement. The commonly used models include the OCV-R model,9                              on Analysis of Variance (ANOVA). In Refs. 50 and 51, the relationship
+       equivalent circuit model,12–13 neural network model,16,17 electrochem-                    between the estimation accuracy and the characteristics of the data set,
+       ical models18,19 and the simplified versions20–23 among others. As for                    such as the SOC range, number of data points and current magnitude,
+       the estimation algorithm, the most widely used one is the extended                        is studied based on Cramer-Rao bound analysis. The expression of the
+       Kalman filtering (EKF) originally reported in Ref. 24. Others in-                         Fisher information matrix of the OCV-R model under periodic current
+       clude but are not limited to unscented Kalman filtering (UKF),25 slid-                    excitation is also derived in Ref. 50. In Ref. 52, the attempt is made
+       ing mode observer,26 H∞ observer,27 and Partial Differential Equa-                        to enhance the identifiability by choosing the current excitation that
+       tion (PDE)-based observer.28 The topic has also been studied un-                          maximizes the determinant of the Fisher information matrix.
+       der reduced voltage sensing, where only the total voltage of two                              In this paper, the analytic bounds on estimation accuracy of SOC,
+       (or more) cells connected in series is measured.29,30 Nonlinear ob-                       capacity and resistance will be derived under various circumstances.
+       servers, such as the Newton observer and sliding mode observer,                           The unique contributions of the paper include the following three as-
+       are designed to solve the SOC estimation problem. As for bat-                             pects. First, the lower bound of the variance of the estimation is analyt-
+       tery capacity and resistance estimation, it can be performed sep-                         ically derived based on the equivalent circuit model, which shows the
+       arately from SOC estimation, and the explored methods in litera-                          contributing factors to estimation accuracy in an explicit way. Most of
+       ture include least-squares based algorithm,31,32 particle filtering,33                    the existing works focus on computing the numerical bounds. Second,
+                                                                                                 the analytic bound is studied for standalone estimation as well as com-
+          z
+              E-mail: xflin@umich.edu                                                            bined state and parameter estimation. Standalone estimation refers to
+
+Downloaded on 2016-01-11 to IP 141.212.134.72 address. Redistribution subject to ECS terms of use (see ecsdl.org/site/terms_use) unless CC License in place (see abstract).
+      A1880                                      Journal of The Electrochemical Society, 162 (9) A1879-A1891 (2015)
+
+
+      the case that only one state or parameter is being estimated, assuming               where x is the state, θ is the parameter, u is the input, k is the time
+      all others are known, e.g. estimating SOC based on known capacity.                   step, y is the output, and f and h are the nonlinear state and output
+      In reality, however, multiple states and/or parameters may need to                   equations. The model is herein considered as single input and single
+      be estimated. For example, battery capacity degrades over lifetime,1–3               output, since for most battery electrical models the only input is current
+      making the SOC estimation based on the nominal capacity inaccurate.                  and the only output is voltage. The number of states and parameters
+      Estimation of multiple state/parameters, which includes both the dual                could be larger than 1. It is noted here that the parameter θ include
+      estimation and joint estimation as mentioned in the literature review,               only those that remain to be determined. The known parameters are
+      is referred to as combined estimation here. The accuracy of combined                 treated as implicit parts of the state and output equations.
+      estimation will usually deteriorate as compared to that of standalone                    In control practice, the unknown states and parameters are typically
+      estimation. The loss of accuracy is quantified through comparison in                 estimated based on output measurement. It is easy to conceive that
+      this paper. More importantly, it is also found that the loss of accuracy             the information contained in the output will determine the quality
+      can be avoided when the current input is designed to satisfy certain                 of estimation. The Fisher information matrix, which is based on the
+      patterns, which enlightens the experiment design. Third, the analytic                sensitivity (or derivative) of the output to each state/parameter, is a way
+      bound will be evaluated under some commonly used/seen current                        to quantify this relationship.46 Given a series of output measurements
+      inputs, such as the constant and square-wave currents, revealing prac-               over time instants t1 , t2 , . . . t N ,
+      tical and easily perceptible insights. The conclusions can be used                                                                    T
+      as guidelines for designing offline experiments for identification as                                      Y = y1 y2 . . . y N ,                              [2]
+      well as evaluating the accuracy of online state/parameter estimation.
+      The analysis is conducted based on control-oriented battery electrical               the Fisher information matrix can be practically calculated as47,50
+      models, but it could provide insight for generic battery models.                                                        T           
+                                                                                                                    1     ∂Y           ∂Y
+                                                                                                            Finfo = 2                          ,               [3]
+                  Methodology: Fisher Information Matrix and                                                       σ y ∂(x, θ)       ∂(x, θ)
+                             Cramer-Rao Bound
+                                                                                           where σ2y is the variance of the output measurement error which is
+        The basics about the Fisher information matrix and the Cramer-
+                                                                                           assumed to be Gaussian, and
+      Rao bound are introduced in this section. Consider the following
+
+
+                                                          ⎡                                                                     ⎤
+                                                          ∂y        ∂y                ∂y        ∂y       ∂y              ∂y
+                                                                  ,          , ...            ,        ,        , ...
+                                                       ⎢ ∂ x1 t     ∂ x 2 t1         ∂ xn t1 ∂θ1 t1 ∂θ2 t1              ∂θm t1 ⎥
+                                                       ⎢        1                                                               ⎥
+                                                       ⎢ ∂y         ∂y                ∂y        ∂y       ∂y              ∂y     ⎥
+                                                       ⎢                                                                        ⎥
+                                                 ∂Y    ⎢          ,          , . . .          ,        ,        , . . .         ⎥
+                                                       ⎢ ∂ x 1 t2 ∂ x 2 t2           ∂ x        ∂θ       ∂θ             ∂θ 2 t2 ⎥
+                                                      =⎢                                 n t2     1 t2     2 t2
+                                                                                                                                ⎥                                    [4]
+                                               ∂(x, θ) ⎢                               ...       ...                            ⎥
+                                                       ⎢                                                                        ⎥
+                                                       ⎢                                                                        ⎥
+                                                       ⎢                                                                        ⎥
+                                                       ⎣ ∂y         ∂y               ∂y         ∂y       ∂y             ∂y      ⎦
+                                                                  ,          , ...            ,        ,        , ...
+                                                         ∂ x1 t N ∂ x2 t N           ∂ xn t N ∂θ1 t N ∂θ2 t N           ∂θn t N
+      is the sensitivity matrix consisting of the partial derivatives of the output to each state/parameter at each time instant. The final form of Finfo can
+      be obtained as
+                 ⎡              2                                                                                                                         ⎤
+                    N     ∂y         N     ∂y       ∂y               N     ∂y      ∂y       N     ∂y     ∂y       N     ∂y      ∂y              N     ∂y        ∂y
+                 ⎢                                            ...                                                                        ...                          ⎥
+                 ⎢k=1 ∂ x1                ∂ x 1 tk ∂ x 2 tk               ∂ x1 tk ∂ xn tk k=1 ∂ x1 tk ∂θ1 tk k=1 ∂ x1 tk ∂θ2 tk                      ∂ x1 tk ∂θm tk ⎥
+                 ⎢            tk    k=1                             k=1                                                                        k=1                    ⎥
+                 ⎢                                    2                                                                                                     ⎥
+                 ⎢                             ∂y                          ∂y      ∂y             ∂y     ∂y             ∂y      ∂y                    ∂y        ∂y    ⎥
+                 ⎢                      N                            N                      N                     N                             N
+                                                                                                                                                                      ⎥
+                 ⎢        ∗                                   ...                                                                        ...                          ⎥
+                 ⎢                            ∂ x 2 tk                    ∂ x2 tk ∂ xn tk k=1 ∂ x2 tk ∂θ1 tk k=1 ∂ x2 tk ∂θ2 tk                      ∂ x1 tk ∂θm tk ⎥
+                 ⎢                     k=1                          k=1                                                                        k=1
+                                                                                                                                                                      ⎥
+                 ⎢        ∗                    ∗              ...             ...                   ...                    ...           ...             ...          ⎥
+                 ⎢                                                                                                                                                    ⎥
+                 ⎢                                                                                                                                                    ⎥
+                 ⎢                                                                                                                                            ⎥
+                 ⎢                                                                     2                                                                              ⎥
+                 ⎢                                                      N     ∂y            N     ∂y     ∂y       N     ∂y      ∂y              N     ∂y        ∂y    ⎥
+                 ⎢        ∗                    ∗              . . .                                                                      . . .                        ⎥
+               1⎢⎢                                                           ∂ x n tk            ∂ xn tk ∂θ1 tk k=1 ∂ xn tk ∂θ2 tk                   ∂ xn tk ∂θm tk ⎥
+                                                                       k=1                 k=1                                                 k=1                    ⎥
+      Finfo = 2 ⎢                                                                                          2                                                    ⎥,
+              σy ⎢                                                                                   ∂y                 ∂y      ∂y                    ∂y       ∂y     ⎥
+                 ⎢                                                                             N                  N                             N
+                                                                                                                                                                      ⎥
+                 ⎢        ∗                    ∗              ...              ∗                                                         ...                          ⎥
+                 ⎢                                                                                  ∂θ                 ∂θ       ∂θ                   ∂θ        ∂θm tk ⎥
+                 ⎢                                                                            k=1      1 tk      k=1
+                                                                                                                        
+                                                                                                                          1 tk    2 tk
+                                                                                                                                  
+                                                                                                                                               k=1
+                                                                                                                                                   
+                                                                                                                                                        1 tk
+                                                                                                                                                                     ⎥
+                 ⎢                                                                                                                  2                                 ⎥
+                 ⎢                                                                                                   N     ∂y                   N     ∂y       ∂y     ⎥
+                 ⎢        ∗                    ∗              . . .            ∗                     ∗                                   . . .                        ⎥
+                 ⎢                                                                                                        ∂θ2 tk                     ∂θ2 tk ∂θm tk ⎥
+                 ⎢                                                                                                  k=1                        k=1                    ⎥
+                 ⎢                                                                                                                                                    ⎥
+                 ⎢        ∗                    ∗              . . .            ∗                     ∗                    . . .          . . .           . . .        ⎥
+                 ⎢                                                                                                                                                    ⎥
+                 ⎢                                                                                                                                                    ⎥
+                 ⎢                                                                                                                                               2 ⎥
+                 ⎢                                                                                                                                        ∂           ⎥
+                 ⎣        ∗                    ∗              ...              ∗                     ∗                      ∗            ...
+                                                                                                                                                   N        y         ⎦
+                                                                                                                                                  k=1   ∂θm tk
+                                                                                                                                                                      [5]
+
+      nonlinear discrete-time plant model,                                                 where ∗ denotes the symmetric entry. It is seen that the Fisher infor-
+                  xk+1 = f (xk , θk , u k ),   x ∈ Rn , θ ∈ Rm , u ∈ R                     mation matrix evaluates the quality of estimation by considering the
+                                                                                 [1]       noise level of the output measurements and the information contained
+                    yk = h(xk , θk , u k ),    y∈R                                         in the data (featured by sensitivity of the output to the state/parameter).
+
+Downloaded on 2016-01-11 to IP 141.212.134.72 address. Redistribution subject to ECS terms of use (see ecsdl.org/site/terms_use) unless CC License in place (see abstract).
+                                                Journal of The Electrochemical Society, 162 (9) A1879-A1891 (2015)                                             A1881
+
+
+            The Fisher information matrix can be used to evaluate the iden-
+       tifiability of the state/parameter from the data in various ways. For
+       example, in Ref. 47, the minimum eigenvalue of Finfo is compared to a
+       threshold to determine identifiability, and in Ref. 52, the determinant
+       of Finfo is used as the criterion. However, it is difficult to demonstrate
+       the identifiability intuitively by using the Fisher information matrix
+       directly, as neither its eigenvalue nor determinant has clear physical in-
+       sight. An alternative is the Cramer-Rao bound,53 which establishes that
+       the covariance of the estimation by an unbiased estimator is bounded
+       from below by the inverse of Finfo evaluated at the actual values x
+       and θ,
+                                             −1
+                                  covest ≥ Finfo (x, θ).                         [6]
+                                                       −1
+       Specifically, the diagonal element of         Finfo      prescribes the lower
+       bound of the variance for each state/parameter estimate, σ2 (x̂ j ), j =           Figure 1. Schematic of the Equivalent Circuit Model.
+       1, 2, . . . n, or σ2 (θ̂ j ), j = 1, 2, . . . m. The normalized standard devi-
+       ation (SD), σ̄(x̂ j ) or σ̄(θ̂ j ), which represents the ratio of the expected     series resistance R captures the lumped ohmic resistance of both the
+       error SD to the true value, can be obtained by dividing σ(x̂ j ) or σ(θ̂ j )       solid and liquid phases of the cell material. The R-C pairs are used
+       with x j or θ j .                                                                  to approximate the voltage transient behaviors such as the dynamics
+           The Cramer-Rao bound is capable of predicting the best-case vari-              of the SEI film, dynamics of the charge-transfer resistance and the
+       ance of the state/parameter estimation based on the knowledge of the               double layer capacitance, and lithium ion diffusion.13 The accuracy of
+       variance of the output measurement σ2y and the correlation between                 the approximation typically improves with the number of R-C pairs at
+       the output and the state/parameter specified by the partial derivatives.           the cost of computational complexity, and the optimal number varies
+       The Cramer-Rao bound was derived independent of any specific form                  among battery chemistries. To preserve generality, a general number n
+       of observers, and it specifies the minimum achievable variance by any              is considered in this paper. The governing equations of the equivalent
+       unbiased estimator. It needs to be acknowledged that impacts of the                circuit model usually take the form
+       unmodeled system dynamics, which are inevitable for most modeling
+       approaches, have not been considered in this framework. Indeed, un-                              d S OC(t)   I (t)
+       modeled system dynamics will increase the error on top of the bounds                                       =
+                                                                                                            dt       Q
+       analytically derived in this paper.
+                                                                                                          d Vcj (t)    Vcj (t)   I (t)
+                                                                                                                    =−         −       ,                           [7]
+                                                                                                             dt        Rcj Ccj   Ccj
+       Derivation of the Cramer-Rao Bound for Battery SOC, Capacity
+                          and Resistance Estimation                                                                                 
+                                                                                                                                    n
+                                                                                                              V (t) = g (S OC) +           Vcj (t) + I (t)R
+           In this section, the analytic expression of the Cramer-Rao bound on                                                       j=1
+       the battery state and parameter estimation will be derived based on the
+       equivalent circuit model,12–15 which is the most widely used in control            where I is the current, Q is the battery capacity (could be lumped
+       practice and whose structural identifiability has been established in              with the charging/discharging efficiency), and Rcj and Ccj are the
+       Ref. 58. The considered state is the battery SOC, and the parameters               coefficients of the R-C pairs. The ohmic resistance R is assumed to
+       are the capacity Q and (ohmic) resistance R. The sensitivity of the                be a constant for simplicity although it may change with SOC for
+       measured voltage to the state/parameter will first be derived. The                 some batteries. Parameter values are usually different for different
+       Cramer-Rao bound will then be derived for three different estimation               battery chemistries, and no specific numbers are assumed through-
+       schemes, namely                                                                    out derivation for generality. It is noted that not all battery models
+                                                                                          have an explicit form as that in Equation 7, e.g. the electrochemi-
+           1) standalone estimation, i.e. only one state/parameter is being               cal model18,19 consisting of four partial differential equations captur-
+              estimated.                                                                  ing solid and liquid phase lithium concentration and potential, and
+           2) combined estimation of two state/parameters simultaneously,                 an algebraic constraint (Butler-Volmer equation). Nevertheless, the
+              and                                                                         conclusions obtained based on the equivalent circuit model are still
+           3) combined estimation of three state/parameters simultane-                    enlightening for the analysis of electrochemical model since the two
+              ously.                                                                      are closely related. On one hand, it has been shown in Refs. 21 and
+                                                                                          22 that the electrochemical model can be reduced to a “single par-
+       In standalone estimation, the assumption is that all the other state/
+                                                                                          ticle” model which is in an explicit form essentially the same as
+       parameters are perfectly known, and the data is used to identify the
+                                                                                          that of the equivalent circuit model. The state of charge calculated
+       one state/parameter solely. When multiple state/parameters are un-
+                                                                                          by coulomb counting in the equivalent circuit model represents the
+       known, they all need to be identified and such case will be discussed
+                                                                                          bulk/surface concentration of the lithium ion stored in the particle.
+       in the combined estimation. It will also be shown how large the estima-
+                                                                                          The series resistance R is the sum of the resistance of the electrolyte,
+       tion error will be if one parameter is identified by assuming erroneous
+                                                                                          electrode film and current collectors. The capacity is associated with
+       values for other state/parameters as comparison. The conclusions will
+                                                                                          the amount of active materials that could store lithium ion. The con-
+       demonstrate how the estimation accuracy is affected by the charac-
+                                                                                          clusions later derived in the paper, such as the contributing factors of
+       teristics of the data such as the SOC variation, number of data points,
+                                                                                          the data set to the estimation accuracy, can be used to guide the exper-
+       slope of OCV and current magnitude among others.
+                                                                                          iment design for estimating those parameters in the electrochemical
+                                                                                          model. On the other hand, although phenomenological as it appears,
+           Sensitivity of voltage measurement to battery state/parameters.—               the equivalent circuit model is often derived based on electrochemi-
+       Typically, the equivalent circuit model uses an open circuit voltage, a            cal measurement directly. For example, constant phase elements have
+       series resistance, and resistance-capacitor (R-C) pair(s) to capture the           been widely used to model battery electrochemical behavior by using
+       voltage dynamics of a battery cell, as shown in Figure 1. The open                 electrochemical impedance spectroscopy (EIS) data.13 The final form
+       circuit voltage represents the potential difference between the cathode            of such model in time domain is realized as the equivalent circuit
+       and the anode of the cell, which is a function of battery SOC. The                 model.
+
+Downloaded on 2016-01-11 to IP 141.212.134.72 address. Redistribution subject to ECS terms of use (see ecsdl.org/site/terms_use) unless CC License in place (see abstract).
+      A1882                                        Journal of The Electrochemical Society, 162 (9) A1879-A1891 (2015)
+
+
+          The state/parameter estimation problem is defined as determining
+                                                                                                                4
+
+
+
+
+                                                                                              OCV of NMC (V)
+      some or all of S OC, Q and R based on measurements of current I (t)
+      and voltage V (t) over a period of time [t0 , t f ]. In practice, however, the
+                                                                                                               3.5                         α ≈ 0.65V/100%
+      measurements can only be obtained as sampled signals at discrete time
+      instants. Hence it is necessary to transform the continuous differential
+                                                                                                                3
+      Equation 7 to discrete time equation57 as
+            ⎡           ⎤ ⎡1            0         . . . ⎤ ⎡ S OC ⎤                                             2.5
+               S OCk+1                                                k                                              0       0.2          0.4           0.6              0.8            1
+            ⎢ Vc1,k+1 ⎥ ⎢              −t                ⎥⎢
+                                                          ⎥ ⎢ Vc1,k ⎥
+            ⎢           ⎥ ⎢     0 e Rc1 Cc1                             ⎥                                                                        SOC Open Circuit Voltage
+            ⎢           ⎥=⎢                               ⎥⎢
+                                                          ⎥⎣ ... ⎥
+            ⎣ ... ⎦ ⎢
+                                                                                                                                                     Piece-wise Linear Approximation
+                              ⎣       . . .               ⎦             ⎦                                      3.6
+                                                   −t
+                Vcn,k+1         0     ...      e Rcn Ccn        Vcn,k                                          3.4
+
+
+
+                                                                                              OCV of LFP (V)
+                                  ⎡                          ⎤
+                                            t                                                                 3.2
+                                                                                                                                           α ≈ 0.17V/100%
+                                  ⎢          Q               ⎥                   [8]                            3
+                                  ⎢                          ⎥
+                                  ⎢ −R (1 − e Rc1−tCc1 ) ⎥                                                    2.8
+                               +⎢ ⎢
+                                         c1                  ⎥ Ik ,
+                                                             ⎥
+                                  ⎢         . . .            ⎥                                                 2.6
+                                  ⎣                          ⎦
+                                                     −t                                                             0       0.2          0.4           0.6              0.8            1
+                                    −Rcn (1 − e Rcn Ccn )                                                                                        SOC
+                                 n
+            Vk = g (S OCk ) +       Vcj + Ik R                                                Figure 2. Open Circuit Voltage of LFP and NMC battery.
+                                    j=1
+
+      where the subscript k denotes the time step, and t is the sampling
+      period. The sampling period t is determined by the specifications                      are listed in Table I. The subsequent derivation only requires slight
+      of the voltage and current sensors and the requirement on estimation                    modification even if α is considered as SOC-dependent.
+      accuracy, which is typically 10 ms in the battery management systems.
+      Shorter sampling time will yield higher estimation accuracy at the                         Cramer-Rao bound for standalone estimation.— The state/
+      cost of increased hardware and computational overhead. Number of                        parameter is estimated given a series of voltage and current measure-
+      data points collected for estimation will also affect the estimation                    ments, V = [ V1 V2 . . . VN ]T and I = [I1 I2 . . . I N ]T , collected
+      accuracy. It will be shown later in the derivation that as the number of                over time instants t1 , t2 , . . . t N .
+      data points increases, the variance the estimation error will decrease,                    When only SOC is being estimated, the Fisher information matrix
+      showing improved estimation accuracy.                                                   can be derived based on Eq. 5 and Eq. 11a as
+          Suppose that the initial battery SOC is S OC0 , the SOC at time                                                                                 2
+      instant tk can be obtained based on Eq. 8 as,                                                                               1 
+                                                                                                                                      N
+                                                                                                                                                 ∂V                 N α2
+                                                                                                                          Finfo = 2                             =        ,          [12]
+                                                      
+                                                      k−1
+                                                          Ii t                                                                  σV i=1       ∂ S OC0 tk            σ2V
+                               S OCk = S OC0 +                                         [9]
+                                                             Q
+                                                      i=1                                     where σ2V is the variance of the voltage measurement noises. The
+      and hence Vk will be                                                                    Cramer-Rao bound for SOC estimation is then
+                                                                                                                                        −1     σV
+                           k−1
+                                Ii t               k−1 n                        −t                                         σ S ÔC0 ≥ Finfo2 = √ .                              [13]
+        Vk = g S OC0 +                  + Ik R +                   Rcj Ii (1 − e Rcj Ccj ).                                                       α N
+                            i=1
+                                  Q                  i=1 j=1
+                                                                                       [10]       Note 1: As expected, the SD of estimation error is proportional to
+      The sensitivity of the voltage to each state/parameter at each time                     that of the measurement noise.
+      instant, i.e. the partial derivatives ∂ S∂OC
+                                                V
+                                                   |tk , ∂∂ VQ |tk , and ∂∂ VR |tk can be         Note 2: The accuracy will improve under larger slope of the OCV
+      obtained as                                                                             and more data points used for estimation. For SOC estimation, most
+                                                                                              online recursive algorithms use one voltage measurement each time
+                                         ∂V                                                   for SOC estimation (N = 1), and σ̄(S ÔC0 ) will hence be 1.54% for
+                                                 = α,                               [11a]
+                                      ∂ S OC0 tk                                              NMC battery (using α = 0.65V /100% in the middle SOC range as
+                                                                                              listed in Table I) and 5.88% for LFP battery (using α = 0.17V /100%
+                                             α 
+                                                       k−1
+                                    ∂V                                                        in the middle SOC range in Table I) assuming σV = 10mV . This
+                                           =− 2    Ii t,                           [11b]
+                                    ∂ Q tk   Q i=1                                            agrees with the intuition that steeper OCV is conducive to high SOC
+                                                                                              estimation accuracy.
+                                            ∂V
+                                                   = Ik ,                           [11c]
+                                            ∂ R tk
+      where α is the slope of the function g (mainly OCV). It is noted                                         Table I. Model Parameters of LiFePO4 (LFP) and LiNiMnCo
+      that the slope of OCV is constant for most battery chemistries within                                    Batteries (25◦ C ambient).
+      the normal operation range and hence α is treated as a fixed value
+      here. For example, the OCV of two lithium ion battery chemistries,                                                                              LiFePO4               LiNiMnCo
+      LiNiMnCo (NMC) and LiFePO4 (LFP), are plotted in Figure 2. It                                                         OC V                      Figure 2a              Figure 2b
+      can be seen that both OCVs can be approximated very well by piece-                                       α (OCV slope, middle SOC range)    1.7 mV/1% SOC          6.5 mV/1% SOC
+      wise linear segments, and the slope of OCV is nearly constant in                                                       Q                         2.3 Ah                   5 Ah
+      the normal operation range of 10%-90% SOC, i.e. 0.65 V/100% for                                                        R                         10 m                    2 m
+      NMC and 0.17 V/100% for LFP. These two battery chemistries will                                                       Rc1                        15 m                   0.8 m
+      be used as examples to analyze the results later. The equivalent circuit                                              Cc1                        2.4 kF                    6 kF
+      model of them have been parameterized and validated in Refs. 12                                                       Rc2                        20 m                    1 m
+      and 56 respectively, and their model parameters under 25◦ C ambient                                                   Cc2                         70 kF                    4 kF
+
+Downloaded on 2016-01-11 to IP 141.212.134.72 address. Redistribution subject to ECS terms of use (see ecsdl.org/site/terms_use) unless CC License in place (see abstract).
+                                                      Journal of The Electrochemical Society, 162 (9) A1879-A1891 (2015)                                                    A1883
+
+
+           When only the capacity Q is being estimated, the Fisher informa-                             increase accordingly. Ideally, the SD of the estimation error could be
+       tion matrix can be derived based on Eq. 5 and Eq. 11b as                                         arbitrarily small if N is large sufficiently. However, the computa-
+                                    2                k−1        2                                   tional load to process the data will also increase drastically and hence
+                      1  ∂V                1 α2  
+                          N                         N
+                                                                                                        impose a practical limit. These conclusions confirm the long existing
+             Finfo = 2                   = 2 4              (Ii t)                                     intuition on the factors affecting estimation accuracy, and more impor-
+                     σV k=1 ∂ Q tk         σV Q k=1 i=1
+                                                                                                        tantly, also provide theoretical and quantifiable correlations between
+                                                                                                        the variance of the estimate and these factors.
+                             α2 
+                                    N
+                       =               (S OCk )2 ,                                            [14]
+                           σ2V Q 2 k=1
+                                                                                                            Cramer-Rao bound for combined estimation of two state/
+                                    k−1                                                                 parameters.— In this subsection, three cases of combined estimation
+                                        Ii t                                                           will be discussed, including combined S OC/Q estimation, combined
+       where S OCk =               i
+                                     = S OCk − S OC0 denotes the variation
+                              Q                                                                         S OC/R estimation, and combined Q/R estimation. The significance
+       of S OCk from the initial value. The normalized Cramer-Rao bound                                 of exploring the accuracy of combined estimation is explained as
+       for Q estimation is then                                                                         follows. When one state/parameter, e.g. SOC, needs to be estimated
+                              −1              σV                                                      with some others also unknown, e.g. capacity, there are typically two
+                     σ̄ Q̂ ≥ Finfo2 /Q =                 .           [15]                              ways of conducting the estimation. The first one is to estimate all the
+                                                             N
+                                                     α            (S OCk )2                            unknown state/parameters with the data obtained (combined estima-
+                                                          k=1                                           tion), and the other one is to only estimate the interested one while
+                                                                                                        assuming nominal values for the other unknown ones (standalone esti-
+           Note 1: The noise level in voltage measurement has a proportional                            mation with imperfect parameters). The second way will usually lead
+       effect on the estimation accuracy.                                                               to large estimation error as to be shown, which inspires the extensive
+           Note 2: The accuracy of capacity estimation will improve un-                                 research on combined estimation documented in literature. For com-
+        higher OCV slope α and larger SOC variation in the data set
+       der                                                                                              bined estimation, it will be shown that under common current inputs,
+            N                                                                                           the accuracy of combined estimation usually degrades as compared
+                  (S OCk )2 . Assume two voltage measurements are used for ca-                         to that of standalone estimation. However, when the current input
+            k=1
+       pacity estimation, one at 10% SOC and the other at 90% SOC (amount                               is designed to satisfy certain patterns, such loss of accuracy can be
+       to SOC variation of 80%), σ̄( Q̂) will be 1.92% for NMC battery and                              avoided.
+       7.35% for LFP battery when σV = 10 mV . If the SOC variation is                                      When both S OC and capacity Q need to be estimated, the Fisher
+       down to 40%, σ̄( Q̂) will increase to 3.85% and 14.71% for NMC and                               information matrix can be derived based on Eq. 5, Eq. 11a and
+       LFP respectively.                                                                                Eq. 11b as
+           When only the resistance R is being estimated, the Fisher infor-                                          ⎡                       2       ⎛                      ⎞⎤
+       mation matrix can be derived based on Eq. 5 and Eq. 11c as                                                          N        ∂V              N
+                                                                                                                                                       ⎝    ∂ V       ∂ V     ⎠⎥
+                                                                                                                     ⎢
+                                         2                                                                         ⎢ k=1 ∂ S OC0                       ∂ S OC0 tk ∂ Q        ⎥
+                          1  ∂V
+                              N
+                                                  1 
+                                                     N                                                            1 ⎢⎢
+                                                                                                                                           tk      k=1                         ⎥
+                                                                                                                                                                               ⎥
+                                                                                                        Finfo = 2 ⎢        ⎛                     ⎞                   2
+                                                                                                                                                                          t k
+                                                                                                                                                                               ⎥
+                  Finfo = 2                   = 2       (Ik )2 .       [16]                                      σV ⎢ N                                                        ⎥
+                         σV k=1 ∂ R tk           σV k=1                                                              ⎣     ⎝     ∂ V      ∂ V    ⎠
+                                                                                                                                                         N     ∂ V             ⎦
+                                                                                                                       k=1    ∂ S OC 0 tk ∂ Q           k=1    ∂ Q tk
+       The normalized Cramer-Rao bound for R estimation is then                                                                                tk
+
+                               −1          σV                                                                      ⎡                                    ⎤
+                                                                                                                                       α2 
+                                                                                                                                           N
+                       σ̄ R̂ ≥ Finfo2 /R =          .                                         [17]
+                                                                                                                  ⎢      Nα          −
+                                                                                                                                     2
+                                                                                                                                              (S OCk ) ⎥
+                                                                                                               1 ⎢                                        ⎥
+                                                                  N
+                                                         R             (Ik )2                                     ⎢                    Q k=1              ⎥
+                                                                                                             = 2 ⎢                                        ⎥.                   [18]
+                                                                                                              σ V ⎢ α2                                   ⎥
+                                                                 k=1                                                    N              2 N
+                                                                                                                  ⎣−                 α                  2 ⎦
+          Note 1: Similar to the previous cases, SD of the estimation error is                                             (S OCk )         (S OC k )
+                                                                                                                     Q k=1           Q 2 k=1
+       proportional to the noise level in voltage measurement.
+          Note 2: The
+                     accuracy of resistance estimation will improve under                              The normalized Cramer-Rao bounds for combined SOC and capacity
+                            N
+                                    2                                                                   estimation are then
+       high current              (Ik ) , which is easy to understand as higher current
+                           k=1                                                                                                σV        1
+       will result in larger voltage change from OCV. The normalized error                                   σ̄ S OC,Q S ÔC0 ≥ √ 
+                                                                                                                               α N    N           2
+       SD will also be smaller for battery with larger nominal resistance. Take                                                    
+                                                                                                                                           S OC
+       the NMC and LFP batteries as examples, whose nominal resistances                                                                          k
+                                                                                                                                   1 − k=1
+       are 2 m and 10 m respectively, when a single measurement is used                                                          
+       for estimation under I = 20A, σ̄( R̂) will be 25% for NMC battery                                                                N
+                                                                                                                                       N    (S OCk )2
+       and 5% for LFP battery assuming σV = 10 mV .                                                                                                 k=1
+           In summary, for all three state/parameters, the SD of the estimation                                                        σV            1
+                                                                                                             σ̄ S OC,Q Q̂ ≥                                       .
+       will improve under smaller measurement noise σV . Other contribut-                                                                                    2
+                                                                                                                                             2 
+                                                                                                                                 N                   N
+       ing factors to estimation accuracy includes the slope of OCV curve α,                                                  α     (S OCk )          S OCk
+                                                                                                                                               
+                                                                  N                                                             k=1            1 − k=1
+       number of data points N , current variation                     (Ik )2 , and SOC variation                                              
+                                                                                                                                                    N
+
+        N
+                                                                 k=1
+                                                                                                                                                   N     (S OCk )2
+                                                                                                                                                             k=1
+             (S OCk )2 . Specifically, SOC estimation improves under larger α
+       k=1                                                                                                                                                                     [19]
+                                                                         N                              where the subscript S OC, Q denotes the combined SOC and Q
+       and N , capacity estimation favors larger α and                                    2
+                                                                              (S OCk ) , and re-       estimation.
+                                                                        k=1
+                                                 N
+                                                                                                            Interestingly, it is noticed that the SDs of the estimates are amplified
+                                                                                                                                   1
+       sistance estimation prefers larger             (Ik )2 . Large N will also improve                by a factor of                2 as compared to those in standalone
+                                                                                                                             N
+                                                k=1                                                                             S OCk
+                                                                                                                         
+                                                         N                           N                                   1− k=1
+                                                                                                                         
+       the estimation accuracy of Q and R as                     (S OCk )2 and           (Ik )2 will                    
+                                                                                                                            N
+                                                                                                                              N
+                                                                                                                                 (S OCk )2
+                                                         k=1                        k=1                                        k=1
+
+
+Downloaded on 2016-01-11 to IP 141.212.134.72 address. Redistribution subject to ECS terms of use (see ecsdl.org/site/terms_use) unless CC License in place (see abstract).
+      A1884                                                        Journal of The Electrochemical Society, 162 (9) A1879-A1891 (2015)
+
+
+                                                                                                       Figure 3a. The amplification factor will be infinite, indicating no iden-
+                                                                                                       tifiability, when S OCk is constant, e.g. under a single pulse shown in
+                                                                                                       Figure 3b. It can be concluded that
+
+                                                                                                           r the accuracy of the combined SOC/Q estimation will never
+                                                                                                       exceed that of the standalone estimation;
+                                                                                                           r SOC variation is required for combined SOC/Q estimation as
+                                                                                                       the variance of the estimate will be infinite under zero SOC variation,
+                                                                                                       and larger SOC variation will reduce the loss of accuracy;
+                                                                                                           r it is possible to avoid loss of accuracy under combined SOC/Q
+                                                                                                       estimation if the current profile is designed such that the SOC variation
+                                                                                                       is zero-sum over time.
+
+
+                                                                                                           In order to illustrate the derived results numerically, the SOC esti-
+                                                                                                       mation errors of different estimation schemes for NMC and LFP bat-
+                                                                                                       teries under square-wave current (plotted in Figure 3c) are calculated
+                                                                                                       and shown in Figure 4. The example data sets contain 8 measurement
+                                                                                                       points (N = 8); current I = ±1C, which is 5 A for NMC whose
+                                                                                                       capacity is 5 Ah, and 2.3 A for LFP whose capacity is 2.3 Ah; SOC
+                                                                                                       varies from 10% to around 90%; and the OCV slope in the middle
+                                                                                                       SOC range (α = 6.5 mV /1% for NMC and α = 1.7 mV /1% for LFP)
+                                                                                                       are used. It is seen that under combined SOC and Q estimation, the
+                                                                                                       error SD σ̄soc is 0.94% for NMC and 3.56% for LFP (second group
+      Figure 3. Examples of Current Input Profile.                                                     in Figure 4), increasing from 0.59% for NMC and 2.22% for LFP
+                                                                                                       under standalone estimation with perfect knowledge of capacity Q
+                                                                                                       (first group in Figure 4). The estimation errors of standalone SOC
+                                                                                                       estimation with erroneous Q (biased by 10%) is also calculated based
+                                                                                                       on Monte Carlos simulation and shown in Figure 4 (the fifth group).
+      estimation shown in Eq. 13 and Eq. 15, which is in the range of                                  It is seen that imperfect knowledge of capacity will lead to larger
+                                                                                                       errors in SOC estimation, i.e. 3.37% mean (bias) error and 0.58%
+                                                           1                                           error SD (random) for NMC and 3.37% mean error and 2.23% error
+                                                 1≤                    ≤ ∞.                 [20]
+                                                       N          2                                 SD for LFP. The overall estimation error is larger than the combined
+                                                    
+                                                            S OCk                                    SOC and Q estimation, which does not suffer from mean error (bias).
+                                                    
+                                                    1 − k=1                                           The capacity estimation errors for different estimation schemes are
+                                                    
+                                                         N                                            shown in Figure 5. Similar to SOC estimation, it can be seen that
+                                                        N    (S OCk )2                                under square-wave current, the capacity estimation accuracy of the
+                                                            k=1
+                                                                                                       combined SOC and Q estimation (the second group) will deteriorate
+      The amplification factor will be equal to 1, meaning no loss of ac-                              compared to that of standalone estimation with perfect knowledge of
+      curacy, when the SOC variation S OCk is a zero-sum sequence, for                                SOC (the first group), but still better than that of standalone estimation
+      example, under the SOC-symmetric square-wave current shown in                                    when SOC is not accurately known (the fifth group).
+
+
+
+
+                                                 6                                                                               LFP
+
+
+
+
+                                                 5        mean error
+                                                          standard deviation error
+
+                                                                                                                           NMC
+
+
+
+
+                      SOC estimation error (%)
+                                                 4                                                              LFP
+                                                                                     LFP
+
+
+
+                                                 3
+
+                                                                  LFP                            LFP                                               LFP
+
+                                                 2
+
+
+                                                                                                          NMC
+                                                 1                          NMC
+
+                                                           NMC                             NMC                                               NMC
+
+
+
+                                                 0
+                                                             alone           SOC&Q         SOC&R         SOC&Q&R             alone            alone
+                                                                                                                         (Q biased by 10%) (R biased by 10%)
+
+      Figure 4. SOC estimation errors of different estimation schemes under square-wave current.
+
+Downloaded on 2016-01-11 to IP 141.212.134.72 address. Redistribution subject to ECS terms of use (see ecsdl.org/site/terms_use) unless CC License in place (see abstract).
+                                                                                     Journal of The Electrochemical Society, 162 (9) A1879-A1891 (2015)                                                       A1885
+
+
+                                            18                                                                                                                            LFP
+
+
+                                            16                                   mean error
+                                                                                 standard deviation error
+                                            14
+                                                                                                                                                                   NMC
+
+
+
+
+                   Q estimation error (%)
+                                            12
+
+                                            10                                                                                                          LFP
+
+                                                                                                                LFP
+                                            8
+                                                                                                                                                                                                 LFP
+
+                                            6                                   LFP                                                     LFP
+
+
+
+                                            4
+                                                                                                    NMC                                           NMC
+                                            2                            NMC                                                  NMC                                                          NMC
+
+
+
+                                            0
+                                                                             alone                  SOC&Q                          Q&R          SOC&Q&R              alone                  alone
+                                                                                                                                                               (SOC biased by 5%) (R biased by 10%)
+
+       Figure 5. Capacity estimation errors of different estimation schemes under square-wave current.
+
+
+
+
+          When both S OC and resistance R need to be estimated, the                                                                               It is noticed that the standard deviations of the estimates are am-
+                                                                                                                                                                            1
+       Fisher information matrix can be derived based on Eq. 5, Eq. 11a and                                                                   plified by a factor of        2 as compared to those in standalone
+                                                                                                                                                                        N
+       Eq. 11c as                                                                                                                                                   
+                                                                                                                                                                           Ik
+                                                                                                                                                                    1− k=1
+                                                                                                                                                                    
+                                                                                                                                                                        N
+
+                                     ⎡                                         2                ⎛                                ⎞⎤                                  N    (Ik )2
+                                                                                                                                                                          k=1
+                                                                 ∂V                               ⎝ ∂V        ∂V
+                                                     N                                        N                                               estimation shown in Eq. 13 and Eq. 17. It can be easily shown that the
+                  ⎢                                                                                                                ⎠⎥
+                  ⎢ k=1                                       ∂ S OC0 tk                           ∂ S OC0 tk ∂ R                   ⎥         amplification factor is bounded by
+                1 ⎢                                                                                                                 ⎥
+                                                                                              k=1
+                                                                                                                              tk
+                  ⎢                                                                                                                 ⎥                                     1
+        Finfo = 2 ⎢   ⎛                                                                   ⎞                                         ⎥                             1≤                ≤ ∞.                        [23]
+               σV ⎢                                                                                                     2         ⎥                                    N 2
+                  ⎢ N                                        ∂V      ∂V                                 N       ∂V                  ⎥                                
+                  ⎣   ⎝                                                                   ⎠                                         ⎦                                        Ik
+                                                          ∂ S OC0 tk ∂ R                                        ∂ R tk                                               
+                                            k=1                                                     k=1                                                              1 − k=1
+                                                                                     tk                                                                              
+                                                                                                                                                                           N
+                                                                                                                                                                         N    (Ik )2
+                                     ⎡                                   N
+                                                                               ⎤                                                                                                     k=1
+                                                 N α2            α       (Ik ) ⎥
+               1 ⎢
+                 ⎢                                                   k=1       ⎥                                                              The amplification factor will be equal to 1, meaning no loss of ac-
+             = 2 ⎢                                                             ⎥.                                                  [21]       curacy, when the current sequence Ik is zero-sum, for example, the
+              σV ⎣                               N                   N         ⎦
+                                            α            (Ik )         (Ik )2                                                                 square-wave shown in Figure 3c. The amplification factor will be
+                                                 k=1                 k=1                                                                      infinite, indicating no identifiability, when Ik is constant, shown in
+                                                                                                                                              Figure 3d. It can be concluded that
+       The normalized Cramer-Rao bounds for combined SOC and resistance                                                                           r the accuracy of combined SOC and R estimation will never
+       estimation are then                                                                                                                    exceed that of the standalone estimation;
+                                                                                                                                                  r current variation is required for combined SOC and R estimation
+                                σV      1                                                                                                   as the variance of the estimate will be infinite under constant current,
+               σ̄ S OC,R S ÔC0 ≥ √ 
+                                 α N     N 2                                                                                               and larger current variation will reduce the loss of accuracy;
+                                     
+                                     
+                                                                                                                                                  r it is possible to avoid loss of accuracy under combined SOC
+                                             Ik
+                                     1 − k=1                                                                                                 and R estimation if the current profile is designed to be zero-sum over
+                                                                                                                                             time.
+                                           N
+                                         N    (Ik )2
+                                                                                                  k=1                                             For numerical illustration, the SOC estimation errors of the com-
+                                                                                                                                   [22]       bined SOC and R estimation using the previous data set are calculated
+                                                                   σV       1
+               σ̄ S OC,R R̂ ≥                                                          ,                                                    and shown in Figure 4 (the third group). It is seen that under the
+                                                                             N 2                                                           square-wave current, the SOC error standard deviation is the same as
+                                                                       2 
+                                                                     N
+                                                            R     (Ik )          Ik                                                          that of standalone SOC estimation (for both NMC and LFP), which
+                                                                         
+                                                              k=1        1 − k=1                                                             agrees with the above conclusion that loss of accuracy can be avoided
+                                                                         
+                                                                               N
+                                                                                                                                              with square-wave current. The same observation can be made for re-
+                                                                             N    (Ik )2
+                                                                                                   k=1
+                                                                                                                                              sistance estimation shown in Figure 6 (comparing first group with the
+                                                                                                                                              second group).
+                                                                                                                                                  When both capacity Q and resistance R need to be estimated, the
+       the subscript S OC, R denotes the combined SOC and R estimation.                                                                       Fisher information matrix can be derived based on Eq. 5, Eq. 11b and
+
+Downloaded on 2016-01-11 to IP 141.212.134.72 address. Redistribution subject to ECS terms of use (see ecsdl.org/site/terms_use) unless CC License in place (see abstract).
+      A1886                                                                        Journal of The Electrochemical Society, 162 (9) A1879-A1891 (2015)
+
+
+                                                   70
+                                                                                                                                                                                        NMC
+
+                                                                            mean error
+                                                   60
+                                                                            standard deviation error
+
+
+                                                   50
+
+
+
+
+                          R estimation error (%)
+                                                   40
+
+
+                                                   30
+
+                                                                                                                                               NMC
+                                                                            NMC                            NMC                  NMC                            NMC
+                                                   20
+                                                                                                                                                                                               LFP
+
+
+                                                   10                                  LFP                           LFP              LFP            LFP             LFP
+
+
+
+
+                                                   0
+                                                                                 alone                     SOC&R                 Q&R          SOC&Q&R            alone                   alone
+                                                                                                                                                            (SOC biased by 5%) (Q biased by 10%)
+
+      Figure 6. Resistance estimation errors of different estimation schemes under square-wave current.
+
+
+
+      Eq. 11c as                                                                                                                            that the amplification factor is bounded by
+
+                      ⎡                                              2                     ⎛            ⎞⎤                                                                         1
+                                                            ∂V                             ∂      ∂                                                        1≤                                             < ∞.   [26]
+                  ⎢
+                                                   N                                   N
+                                                                                       ⎝     V      V     ⎠⎥                                                                  N                    2
+                  ⎢ k=1                                                                                    ⎥                                                  
+                1 ⎢                                         ∂ Q tk                         ∂ Q tk ∂ R      ⎥                                                                        Ik S OCk
+                                                                                   k=1
+                                                                                                                                                              
+        Finfo = 2 ⎢     ⎛                                                        ⎞                   2 ⎥
+                                                                                                       tk
+                                                                                                                                                             1 −
+               σV ⎢                                                                                        ⎥                                                                   k=1
+                  ⎢ N                                                                                      ⎥                                                  
+                        ⎝ ∂V ∂V                                                               ∂V                                                              
+                                                                                        N                                                                                  N             N
+                  ⎣                                                              ⎠                         ⎦                                                                   (Ik )2         (S OCk )2
+                    k=1   ∂ Q tk ∂ R                                                   k=1    ∂ R tk                                                                     k=1            k=1
+                                                                            tk
+                      ⎡                                     ⎤
+                    α2                 α 
+                        N                  N
+                  ⎢        (S OCk ) −
+                                    2
+                                               (Ik S OCk ) ⎥                                                                               The amplification factor will be equal to 1, meaning no loss of accu-
+                1 ⎢                                         ⎥                                                                               racy, when the product of Ik and S OCk adds up to zero over time,
+                      2
+                  ⎢ Q k=1               Q k=1               ⎥
+              = 2 ⎢                                         ⎥ . [24]                                                                        for example, under the square-wave current shown in Figure 3a or
+               σV ⎢ α  N                    N              ⎥
+                  ⎣−       (Ik S OCk )         (Ik )2      ⎦                                                                               Figure 3c. The amplification factor will never be infinite, since it re-
+                     Q k=1                 k=1                                                                                              quires the sequence Ik and sequence S OCk to be linearly dependent
+                                                                                                                                            according to the Cauchy-Schwarz Inequality. It can be concluded that
+
+      The normalized Cramer-Rao bounds for combined SOC and capacity
+      estimation are then
+                                                                                                                                                r the accuracy of combined Q/R estimation will never exceed that
+                                                                                                                                            of the standalone estimation;
+                                                                                                                                                r larger variation of the product of Ik and S OCk will reduce the
+                                                       σV                                                 1                               loss of accuracy;
+          σ̄ Q,R Q̂ ≥                     
+                                                                                                    N                    2                   r it is possible to avoid loss of accuracy under combined Q/R
+                                         2 
+                             N
+                          α     (S OCk )                                                                  Ik S OCk                       estimation if the current profile is designed such that the product ofIk
+                                                                                                                                           and S OCk is zero-sum over time.
+                            k=1            1 −                                                       k=1
+                                           
+                                                                                                N               N
+                                                                                                      (Ik )2          (S OCk )2
+                                                                                             k=1               k=1
+                                                  σV                                           1                                              For numerical illustration, the capacity estimation errors of the
+          σ̄ Q,R R̂ ≥                                                                                                    ,                combined Q and R estimation using the previous data set are calculated
+                                                                                      N                             2
+                                     2 
+                             N
+                                                                                                                                            and shown in Figure 5 (the third group). It is seen that under the
+                          R     (Ik )                                                           Ik S OCk
+                                                                                                                                           square-wave current, the SOC error standard deviation is the same as
+                            k=1        1 −                                                k=1
+                                                                                                                                           that of standalone SOC estimation (for both NMC and LFP), which
+                                                                                  N                 N
+                                                                                                                                            agrees with the above conclusion that loss of accuracy can be avoided
+                                                                                         (Ik )2            (S OCk )2
+                                                                                  k=1                k=1                                    with square-wave current. The same observation can be made for
+                                                                          [25]                                                              resistance estimation shown in Figure 6 (comparing first group with
+      where the subscript Q, R denotes the combined Q and R estimation.                                                                     the third group).
+          It is noticed that the standard deviations of the estimates are am-
+                                         1
+      plified by a factor of                2
+                                                    as compared to those in
+                                                              N
+                                                                 Ik S OCk                                                                    Cramer-rao bound for combined estimation of three state/
+                                                        
+                                                        1−   k=1
+                                                                                                                                           parameters.— When all three state/parameters, S OC0 , capacity Q,
+                                                           N
+                                                                 2
+                                                                     N
+                                                                    (Ik )         (S OCk )2
+                                                              k=1           k=1                                                             and resistance R, need to be estimated, the Fisher information matrix
+      standalone estimation shown in Eq. 15 and Eq. 17. It can be shown                                                                     can be derived based on Eq. 5, Eq. 11a, Eq. 11b and Eq. 11c as
+
+Downloaded on 2016-01-11 to IP 141.212.134.72 address. Redistribution subject to ECS terms of use (see ecsdl.org/site/terms_use) unless CC License in place (see abstract).
+                                               Journal of The Electrochemical Society, 162 (9) A1879-A1891 (2015)                                                     A1887
+
+                                              ⎡                              2                ⎛                     ⎞           ⎛                       ⎞⎤
+                                            ⎢
+                                                     N              ∂V                     N
+                                                                                               ⎝     ∂ V       ∂ V    ⎠
+                                                                                                                              N
+                                                                                                                                ⎝     ∂ V        ∂ V      ⎠⎥
+                                            ⎢                    ∂ S OC0 tk                       ∂ S OC0 tk ∂ Q                   ∂ S OC0 tk ∂ R          ⎥
+                                            ⎢ k=1                                          k=1                              k=1                            ⎥
+                                            ⎢     ⎛                  ⎞                                        2
+                                                                                                                   tk
+                                                                                                                                  ⎛                    ⎞ ⎥
+                                                                                                                                                       tk
+                                            ⎢                                                                                                              ⎥
+                                            ⎢          ∂                                                                                                   ⎥
+                                                               ∂                                        ∂V                        ⎝ ∂V ∂V ⎠ ⎥
+                                               N         V       V                                N                             N
+                                          1 ⎢     ⎝                  ⎠
+                                  Finfo = 2 ⎢                                                                                                              ⎥
+                                         σV ⎢ k=1 ∂ S OC0 tk ∂ Q t                               k=1    ∂ Q tk                k=1     ∂ Q     ∂ R          ⎥
+                                            ⎢                      k
+                                                                                                                                           tk       tk     ⎥
+                                            ⎢     ⎛                  ⎞                           ⎛                 ⎞                            2        ⎥
+                                            ⎢ N                                                                                                            ⎥
+                                            ⎢          ∂ V     ∂ V                             N     ∂ V    ∂ V                    N     ∂V                ⎥
+                                            ⎣     ⎝                  ⎠                           ⎝                 ⎠                                       ⎦
+                                              k=1   ∂ S OC0 tk ∂ R                           k=1     ∂ Q tk ∂ R                   k=1    ∂ R  tk
+                                                                               tk                                tk
+
+
+                                              ⎡                                                                                           ⎤
+                                                                                      α2 
+                                                                                            N                             N
+                                            ⎢         Nα           2
+                                                                                    −        α
+                                                                                            (S OCk )
+                                                                                                   (Ik )      ⎥
+                                            ⎢                                         Q k=1    k=1            ⎥
+                                            ⎢                                                                 ⎥
+                                            ⎢                                                                 ⎥
+                                          1 ⎢  α 2 N
+                                                                   α 2 N
+                                                                                          α N
+                                                                                                              ⎥
+                                            ⎢                                                    (Ik S OCk ) ⎥
+                                        = 2 ⎢−                                          −                     ⎥.
+                                                                                     2
+                                                        (S OCk )          (S OCk )                                                                                     [27]
+                                         σV ⎢ Q k=1                Q 2 k=1                Q k=1               ⎥
+                                            ⎢                                                                 ⎥
+                                            ⎢                          N                                     ⎥
+                                            ⎣         N             α                          N              ⎦
+                                                   α     (Ik )    −        (Ik S OCk )           (Ik )2
+                                                     k=1            Q k=1                    k=1
+
+       The normalized Cramer-Rao bounds for combined estimation are then
+                              σV                                                           1
+           σ̄ S OC,Q,R S ÔC0 ≥ √ 
+                               α N        N
+                                                    2 N                   N
+                                                                                          2 N                N  N                N              
+                                              I          (S OC   ) 2
+                                                                       +       S    OC         (I   ) 2
+                                                                                                         − 2      I         S OC         I   S OC
+                                                k               k                      k          k                k             k         k       k
+                                   1 − k=1           k=1                  k=1              k=1               k=1       k=1           k=1
+                                   
+                                                                         N           N                      N
+                                                                       N      (Ik )2    (S OCk )2 − N          (Ik S OCk )2
+                                                                                               k=1      k=1                       k=1
+                                                                                                                                                                        [28a]
+
+                                     σV                                                     1
+          σ̄ S OC,Q,R Q̂ ≥                      N          2 N              N              2      N  N             N            
+                                              
+                                  N
+                                              
+                             α     (S OCk )2         S OCk       (Ik )2 + N         Ik S OCk − 2        Ik      S OCk       Ik S OCk
+                                              
+                               k=1            1 − k=1          k=1                k=1                  k=1     k=1          k=1
+                                                                                                    N 2 N
+                                                                         N         N
+                                                                     N      (Ik )2     (S OCk )2 −     Ik     (S OCk )2
+                                                                                                k=1      k=1                      k=1    k=1
+                                                                                                                                                                        [28b]
+
+                                σV                                                   1
+         σ̄ S OC,Q,R R̂ ≥                   N 2 N                    N              2     N  N              N                                               [28c]
+                                         
+                                  N
+                                         
+                            R     (Ik )2         Ik     (S OCk )2 + N         Ik S OCk − 2       Ik      S OCk        Ik S OCk
+                                         
+                              k=1        1 − k=1    k=1                    k=1                 k=1     k=1           k=1
+                                                                                            N        2 N
+                                                                  N         N
+                                                              N      (Ik )2     (S OCk )2 −    S OCk       (Ik )2
+                                                                                     k=1         k=1                  k=1                k=1
+
+
+
+       where the subscript S OC, Q, R denotes the combined SOC, Q and R                                    r current variation and SOC variation are both required for com-
+       estimation.                                                                                     bined SOC/Q/R estimation as the variance of the estimate will be
+           Similar to the combined estimation of two state/parameters, the                             infinite otherwise, e.g. under single pulse or constant current, and
+       standard deviation of each estimate can be expressed as the baseline                            larger variation will reduce the loss of accuracy.
+       standard deviation under standalone estimation derived in Eq. 13,                                   r it is possible to avoid loss of accuracy under combined SOC/Q/R
+       Eq. 15 or Eq. 17 multiplied by an amplification factor. It can                                  estimation if the current input is designed such that the current se-
+       be easily shown that all three amplification factors are bounded                                quence Ik , SOC variation sequence S OCk , and Ik S OCk are all
+       between 1 and infinity. The amplification factor will be equal to                               zero-sum over time.
+                                                         N               N
+       1, meaning no loss of accuracy, when                  Ik = 0,          S OCk = 0,
+                                                      k=1               k=1
+             N
+                                                                                                           It is likely to hold but remains to be proven that the accuracy
+       and         Ik S OCk = 0, for example, under the SOC-symmetric                                 of combined SOC/Q/R estimation will never exceed that of any
+             k=1                                                                                       combined two-state/parameter estimation (need to show that the
+       square-wave current shown in Figure 3a. The amplification factor will                           amplification factors in Eq. 28a–28c are larger than those in Eq. 19,
+       be infinity, indicating no identifiability, under the same conditions                           Eq. 22 and Eq. 25).
+       as those in two-state/parameters combined estimation shown in the                                   The estimation errors of the combined SOC, Q and R estimation
+       previous section. It is concluded that                                                          are shown in Figure 4, Figure 5 and Figure 6 respectively (all in the
+                                                                                                       fourth group). It can be seen that the estimation accuracy deteriorates
+          r the accuracy of combined SOC/Q/R estimation will never ex-                                 as compared to that of standalone and combined estimation. The re-
+       ceed that of the standalone estimation;                                                         sistance estimation does not suffer from obvious degradation though.
+
+Downloaded on 2016-01-11 to IP 141.212.134.72 address. Redistribution subject to ECS terms of use (see ecsdl.org/site/terms_use) unless CC License in place (see abstract).
+      A1888                                    Journal of The Electrochemical Society, 162 (9) A1879-A1891 (2015)
+
+
+          Table II. Cramer-Rao Bounds for Battery SOC/capacity/resistance Estimation under Generic Current Input.
+
+                                                  σ̄(S ÔC)                            σ̄( Q̂)                                                     σ̄( R̂)
+                                                    σ√V                                             σV                                                  σV
+          Standalone Estimation
+                                                   α N                                         N                                                          N
+                                                                                       α             (S OCk )2                                     R          (Ik )2
+                                                                                               k=1                                                       k=1
+                                                    σ√V                                           σV
+          Combined              SOC/Q                           1                                                   1
+                                                                                                                                                   \
+                                                   α N      N          2                     N              
+                                                                                                                   N           2
+           2-state/                                             S OCk )              α           (S OCk )2         S OCk )
+                                                           (                                                    (
+          parameter                                     1− k=1                                k=1            1− k=1
+                                                                                                             
+                                                             N
+                                                                  (S OC )2
+                                                                                                                   N
+                                                                                                                        (S OC )2
+          Estimation                                       N
+                                                               k=1
+                                                                           k                                     N
+                                                                                                                    k=1
+                                                                                                                                  k
+                                                    σ√V                                                                                                 σV
+                                SOC/R                         1
+                                                                                       \                                                                                 1
+                                                   α N       N      2                                                                                   N         
+                                                                                                                                                                          N     2
+                                                                                                                                                   R        (Ik )2 
+                                                           (    Ik )                                                                                                  (    Ik )
+                                                        1− k=1                                                                                          k=1        1− k=1
+                                                                                                                                                                   
+                                                          N
+                                                               N
+                                                                 (I )2
+                                                                                                                                                                      N
+                                                                                                                                                                           N
+                                                                                                                                                                             (I )2
+                                                                       k                                                                                                          k
+                                                               k=1                                                                                                        k=1
+                                                                                                     σV                                                  σV
+                                Q/R               \                                                    
+                                                                                                        
+                                                                                                                    1                                            
+                                                                                                                                                                 
+                                                                                                                                                                             1
+                                                                                          N                     N             2                       N                 N             2
+                                                                                       α     (S OCk )2            Ik S OCk )                     R     (Ik )2            Ik S OCk )
+                                                                                                             (                                                       (
+                                                                                         k=1            1−    k=1                                    k=1        1−    k=1
+                                                                                                                                                                
+                                                                                                           N
+                                                                                                               (I )2
+                                                                                                                       N
+                                                                                                                         (S OC )2
+                                                                                                                                                                    N
+                                                                                                                                                                        (I )2
+                                                                                                                                                                                N
+                                                                                                                                                                                  (S OC )2
+                                                                                                                        k              k                                      k              k
+                                                                                                                  k=1       k=1                                         k=1           k=1
+          Combined 3-state/parameter              Eq. 28a                              Eq. 28b                                                     Eq. 28c
+          Estimation
+
+
+          All the previously derived Cramer-Rao bounds have been summa-                            denoted as
+      rized in Table II.                                                                                                                        N I0 t
+                                                                                                                                      ∇ S OC =           .                                  [30]
+                                                                                                                                                   Q
+       Cramer-Rao Bounds for Battery SOC, Capacity and Resistance                                  It is noted that the SOC swings under square-wave and SOC-
+               Estimation under Featured Current Inputs                                            symmetric square-wave are ∇ S2OC and ∇ S4OC respectively.
+          In this section, the derived Cramer-Rao bounds will be evaluated                             It can be concluded from Table III that
+      under different featured current inputs, namely the constant current                         1)     under constant current
+      and square-wave current. It will be shown what the bounds are under
+      these commonly seen currents, and how they degrade under combined                                    r SOC cannot be estimated together with resistance, but can
+      estimation as compared to standalone estimation. The bounds will also
+                                                                                                          be estimated along with capacity at the cost of doubling the
+      be compared between different inputs.
+                                                                                                          estimation error;
+          The three considered inputs will take the form,                                                  r capacity can be estimated together with either SOC or resis-
+               constant current: I (k) = I0 , k = 1, 2, . . . N                [29a]                      tance, both at the cost of doubling the error;
+                                                                                                           r resistance cannot be estimated together with SOC, but can be
+                                                                                                          estimated along with capacity with doubled estimation error;
+                                      ⎧                                                                    r the three cannot be estimated altogether;
+                                      ⎪
+                                      ⎪
+                                      ⎨ I0 ,     k = 1, 2, . . .
+                                                                   N                                       r it is noted that the above conclusions are based on the as-
+                                                                   2                                      sumption of constant OCV slope α. Varying α could improve the
+            square-wave: I (k) =                                               [29b]
+                                      ⎪
+                                      ⎪                                                                   identifiability and reduce the errors. Indeed, it has been consid-
+                                      ⎩ −I0 , k = N + 1, . . . N
+                                                  2                                                       ered in Ref. 54 to improve the accuracy of SOC estimation by
+                                                                                                          introducing an abrupt change of slope on the OCV curve.
+      SOC-symmetric square-wave:
+                          ⎧                                                                        2)     under square-wave current
+                          ⎪                           N
+                          ⎪
+                          ⎪     I0 ,  k = 1, 2, . . .
+                          ⎪
+                          ⎪
+                          ⎪                           4                                                    r SOC can be estimated together with either capacity at the cost
+                          ⎨
+                   I (k) = −I ,          N              3N                                                of doubling the error, or resistance without loss of accuracy;
+                          ⎪
+                          ⎪    0     k=     + 1, . . .                         [29c]                       r capacity can be estimated together with either SOC at the cost
+                          ⎪
+                          ⎪              4               4
+                          ⎪
+                          ⎪                                                                               of doubling the error, or resistance without loss of accuracy;
+                          ⎩ I0 ,     k=
+                                        3N
+                                             + 1, . . .
+                                                        N                                                  r resistance can be estimated together with either SOC or capac-
+                                         4               2
+                                                                                                          ity, both without loss of accuracy;
+      as shown in Figure 7. The Cramer-Rao bounds have been calculated                                     r the three can be estimated altogether, and the estimation errors
+      and summarized in Table III for all three inputs (when the data points                              for SOC and capacity will be doubled while that for resistance
+      N are large), where the SOC swing under the constant current is                                     remains unchanged;
+
+
+
+
+      Figure 7. Featured Current Inputs.
+
+Downloaded on 2016-01-11 to IP 141.212.134.72 address. Redistribution subject to ECS terms of use (see ecsdl.org/site/terms_use) unless CC License in place (see abstract).
+                                                                         Journal of The Electrochemical Society, 162 (9) A1879-A1891 (2015)                                                                                       A1889
+
+
+            Table III. Cramer-Rao Bounds for Battery SOC/capacity/resistance Estimation under Featured Currents (under sufficiently large N).
+
+                                                                                        σ̄(S ÔC)                                                    σ̄( Q̂)                                                σ̄( R̂)
+
+                                                                                                                                                                                                                              SOC
+                                                                                          SOC                                                            SOC                                                                  symmetric
+                                                              Constant                    symmetric    Constant                                          symmetric   Constant                           Square                Square-
+                                                              Current         Square Wave Square- Wave Current                               Square Wave Square-Wave Current                            Wave                  Wave
+                                                                                                                            √                       √               √
+                                                               σ√V             σ√V                    σ√V                  √ 3σV                  √2 3σV          √4 3σV                 σV√               σV√                   σV√
+            Standalone Estimation
+                                                              α N             α N                    α N                  α N√∇ S OC             α N√∇ S OC      α N√∇ S OC           I0 R N            I0 R N                I0 R N
+                                                              2σ              2σ                      σ√V                  √2 3σV                 √4 3σV          √4 3σV
+            Combined 2- SOC/Q                                   √V              √V                                                                                                                               \
+                                                              α N             α N                    α N                  α N ∇ S OC             α N ∇ S OC      α N ∇ S OC
+            state/parameter
+                                                                               σ√V                    σ√V                                                                                                  σV√                   σV√
+            Estimation      SOC/R                             ∞                                                                                        \                              ∞
+                                                                              α N                    α N                     √                      √               √                                   I0 R N                I0 R N
+                                                                                                                           √2 3σV                 √2 3σV          √4 3σV                2σ√                σV√                   σV√
+                                    Q/R                                       \                                                                                                           V
+                                                                                                                          α N ∇ S OC             α N√∇ S OC      α N√∇ S OC           I0 R N            I0 R N                I0 R N
+                                                                              2σ                      σ√V                                         √4 3σV          √4 3σV                                   σV√                   σV√
+            Combined 3-state/parameter ∞                                       √V                                         ∞                                                           ∞
+                                                                              α N                    α N                                         α N ∇ S OC      α N ∇ S OC                             I0 R N                I0 R N
+            Estimation
+
+
+
+      3)       under SOC-symmetric square-wave current                                                                          I0 . Higher current can be applied to increase the SOC swing and
+                                                                                                                                improve the accuracy for capacity estimation.
+               r all three state/parameters can be estimated in group of 2 or 3                                                      Simulation has been performed based on the equivalent circuit
+               with no loss of accuracy.                                                                                        model of the NMC battery to verify the theoretical derivation. In the
+                                                                                                                                simulation, the square-wave current was used, with I0 = 10 A, SOC0
+                                                                                                                                = 10% and a total simulation time of 2700 seconds giving a maximum
+           It is noted that the SOC-symmetric square-wave current is the best
+                                                                                                                                SOC of 90%. The state and parameters were estimated based on the
+       current profile among the three for estimation as the accuracy will
+                                                                                                                                least squares algorithm using 12 data points (N = 12) which were
+       not degrade for any state/parameter under combined estimation. The
+                                                                                                                                equally distributed in time. Gaussian noise with a standard deviation
+       SOC-symmetric square-wave also has the same baseline (standalone
+                                                                                                                                of 10 mV was added to the voltage signal, and the simulation was
+       estimation) accuracy as that under the other two profiles for SOC and
+                                                                                                                                repeated by 10000 times. The standard deviation of the estimation
+       resistance. The only exception appears to be the capacity as the error
+                                                                                                                                errors were calculated over repeated simulation and compared with
+       standard deviation is 4 times of that under constant current or twice of
+                                                                                                                                that predicted by the derived Cramer-Rao bound. The results are sum-
+       that under square wave. The reason is the smaller SOC swing under
+                                                                                                                                marized in Figure 8–10. In all three figures, subplot (a) shows the
+       the SOC-symmetric square-wave given the same current magnitude
+
+
+                      5
+                                                                                                    Errors                                                                                                              Errors
+                                                                                                                                           50
+                                                SD of Q Error                                                                                                         SD of R Error
+
+             eQ(%)    0                                                                                                            eR(%)    0
+
+                                                                         SD of SOC Error
+                                                                                                                                                                                          SD of SOC Error
+                                                                                                                                           -50
+
+                      -5
+                       -3           -2            -1              0                 1           2              3                             -2        -1.5     -1       -0.5      0           0.5     1              1.5         2
+                                                               eSOC (%)                                                                                                         eSOC (%)
+                                               (a) Standalone Estimation Errors                                                                                  (a) Standalone Estimation Errors
+                     10
+                                                                                                                                                       SD of SOC-R combined Estimation Error                            Errors
+                      5        SD of SOC-Q Combined Estimation Error                                                                       50
+
+
+           eQ(%)      0                                                                                                            eR(%)    0
+
+                      -5                                                                            Errors
+                                                                                                                                           -50
+
+                     -10
+                       -3           -2            -1              0                 1           2              3                             -2        -1.5     -1       -0.5      0           0.5     1              1.5         2
+                                                               eSOC (%)                                                                                                         eSOC (%)
+                                         (b) SOC-Q combined Estimation Errors                                                                                  (b) SOC-R Combined Estimation Errors
+                      4
+                                                                                                                                           30CR,combined              SD,combined           CR,standalone                   SD,standalone
+                      CR,combined              SD,combined                  CR,standalone                 SD,standalone
+                      2                                                                                                                    20
+                                                                                                                                           10
+             eQ(%)    0                                                                                                            eR(%)    0
+                                                                                                                                           -10
+                      -2
+                                                                                                                                           -20
+                      -4                                                                                                                   -30
+                       -2    -1.5         -1           -0.5          0        0.5          1        1.5        2                             -1                -0.5                0                  0.5                         1
+                                                               eSOC (%)                                                                                                         eSOC (%)
+                               (c) Error Standard Deviation and Cramer-Rao Bound                                                                        (c) Error Standard Deviation and Cramer-Rao Bound
+
+       Figure 8. SOC and Capacity Estimation Errors under Standalone and Com-                                                   Figure 9. SOC and Resistance Estimation Errors under Standalone and Com-
+       bined Estimation (using square wave current and NMC equivalent circuit                                                   bined Estimation (using square wave current and NMC equivalent circuit
+       model).                                                                                                                  model).
+
+Downloaded on 2016-01-11 to IP 141.212.134.72 address. Redistribution subject to ECS terms of use (see ecsdl.org/site/terms_use) unless CC License in place (see abstract).
+      A1890                                            Journal of The Electrochemical Society, 162 (9) A1879-A1891 (2015)
+
+
+                                                                                Errors
+                                                                                                input, the error variances for SOC and resistance combined estimation
+                 50                                                                             are infinity (assuming constant OCV slope), indicating no estimabil-
+                                       SD of R Error
+                                                                                                ity. Nevertheless, it is still possible to avoid or minimize this loss of
+         eR(%)    0                                                                             accuracy if the current profile satisfies certain patterns. For example,
+                                                          SD of Q Error
+                                                                                                if the current adds up to zero over the data set, e.g. under square-wave
+                 -50                                                                            current shown in Figure 3c, the combined SOC and R estimation will
+                                                                                                not only become possible, but also be free from loss of accuracy. In
+                   -5                               0                                    5
+                                                  eQ(%)
+                                                                                                general, if the current profile is designed such that current sequence Ik ,
+                                                                                                SOC variation sequence S OCk , and the product sequence Ik S OCk
+                                   (a) Standalone Estimation Errors                             are all zero-sum over the data set, the combined estimation will not
+                         SD of Q-R Combined Estimation Error                    Errors          suffer from extra loss of accuracy compared with standalone estima-
+                 50
+                                                                                                tion. Such current pattern will maximize the information contained in
+         eR(%)
+                                                                                                the data set for state/parameter estimation, and could be considered
+                  0
+                                                                                                as a guideline for experiment design.
+                                                                                                    The methods and results presented in this paper can be extended in
+                 -50
+                                                                                                several directions in future work. First, the analytic bounds for other
+                   -5                               0                                    5      critical battery state/parameters, such as the R-C pairs in the equivalent
+                                                  eQ(%)                                         circuit model, can also be derived by following the same methodology.
+                                 (b) Q-R combined Estimation Errors
+                                                                                                Second, it is also interesting and of practical use to derive the bounds
+                 30                                                                             under other typical current inputs, e.g. the sinusoidal current, and to
+                  CR,combined        SD,combined            CR,standalone       SD,standalone
+                 20                                                                             eventually design a specific current optimizing the identifiability by
+                 10                                                                             minimizing the bounds. In addition, the current noise has not been
+         eR(%)    0                                                                             considered in this work at present. It is possible to incorporate the
+                 -10                                                                            current noise by using the total least squares framework.31,55
+                 -20
+                 -30
+                   -3       -2          -1          0             1         2            3
+                                                                                                                                         References
+                                                  eQ(%)
+                                                                                                 1. P. Ramadass, B. Haran, P. M. Gomadam, R. White, and B. N. Popov, “Development
+                           (c) Error Standard Deviation and Cramer-Rao Bound                        of first principles capacity fade model for Li-ion cells,” Journal of the Electrochemical
+                                                                                                    Society, 151(2), A196 (2004).
+      Figure 10. Capacity and Resistance Estimation Errors under Standalone and                  2. X. Lin, J. Park, L. Liu, Y. Lee, A. M. Sastry, and W. Lu, “A comprehensive capacity
+                                                                                                    fade model and analysis for li-ion batteries,” Journal of The Electrochemical Society,
+      Combined Estimation (using square wave current and NMC equivalent circuit                     160(10), A1701 (2013).
+      model).                                                                                    3. M. Safari, M. Morcrette, A. Teyssot, and C. Delacourt, “Multimodal physics-based
+                                                                                                    aging model for life prediction of Li-ion batteries,” Journal of The Electrochemical
+                                                                                                    Society, 156(3), A145 (2009).
+                                                                                                 4. G. K. Prasad and C. D. Rahn, “Model based identification of aging parameters in
+                                                                                                    lithium ion batteries,” Journal of power sources, 232, 79 (2013).
+      standalone estimation errors of two state/parameters over the repeated                     5. M. T. Lawder, P. W. C. Northrop, and V. R. Subramanian, “Model-Based SEI Layer
+      estimation. The errors, denoted by dots, spread over the x and y axis                         Growth and Capacity Fade Analysis for EV and PHEV Batteries and Drive Cycles,”
+      of the eSOC -eQ plane. Subplot (b) presents the distribution of errors                        Journal of The Electrochemical Society, 161(14), A2099 (2014).
+      under combined estimation over the eSOC -eQ plane, and the standard                        6. J. R. Belt, D. M. Bernardi, and V. Utgikar, “Development and Use of a Lithium-
+                                                                                                    Metal Reference Electrode in Aging Studies of Lithium-Ion Batteries,” Journal of
+      deviation of the estimation errors is labeled by the red dash frame.                          The Electrochemical Society, 161(6), A1116 (2014).
+      In subplot (c), the standard deviation of the estimation errors is com-                    7. L. Lu, X. Han, J. Li, J. Hua, and M. Ouyang, Journal of Power Sources, 226, 272
+      pared with that predicted by the derived Cramer-Rao bound. It is seen                         (2013).
+      that in all cases, the Cramer-Rao bound matches well with the actual                       8. X. Lin, A. G. Stefanopoulou, P. Laskowsky, J. S. Freudenberg, Y. Li, and
+                                                                                                    R. D. Anderson, Proceedings of ASME Dynamic Systems and Control Conference,
+      standard deviation, demonstrating the validity of the derivation. The                         p. 393 (2011).
+      results also agree with the prediction listed in Table III for the square-                 9. Y. Cadirci and Y. Ozkazanc, Journal of Power Sources, 129, 330 (2004).
+      wave current input. Using the error standard deviation (SD) under                         10. K. Ng, C. Moo, Y. Chen, and Y. Hsieh, Applied Energy, 86, 1506 (2004).
+      standalone estimation as the benchmark, the SOC estimation error SD                       11. M. Dubarry, V. Svoboda, R. Hwu, and B. Y. Liaw, Journal of Power Sources, 174,
+                                                                                                    1121 (2007).
+      under combined SOC-Q estimation is twice as much, and the error                           12. X. Lin, H. E. Perez, S. Mohan, J. B. Siegel, A. G. Stefanopoulou, Y. Ding, and
+      SD under combined SOC-R estimation remains unchanged. Similarly,                              M. P. Castanier, “A lumped-parameter electro-thermal model for cylindrical batter-
+      the capacity estimation error SD doubles under SOC-Q combined es-                             ies,” Journal of Power Sources, 257, 1 (2014).
+      timation and does not change under Q-R combined estimation. The                           13. T. K. Dong, A. Kirchev, F. Mattera, J. Kowal, and Y. Bultel, “Dynamic modeling of
+                                                                                                    Li-ion batteries using an equivalent electrical circuit,” Journal of the Electrochemical
+      resistance estimation error SDs are the same in all cases.                                    Society, 158(3), A326 (2011).
+                                                                                                14. P. L. Moss, G. Au, E. J. Plichta, and J. P. Zheng, “An electrical circuit for modeling
+                                                                                                    the dynamic response of li-ion polymer batteries,” Journal of The Electrochemical
+                                             Conclusions                                            Society, 155, 12, A986 (2008).
+                                                                                                15. M. W. Verbrugge and R. S. Conell, “Electrochemical and thermal characterization
+          The accuracy of battery state/parameter estimation is affected by                         of battery modules commensurate with electric vehicle integration,” Journal of the
+                                                                                                    Electrochemical Society, 149(1), A45 (2002).
+      the characteristics of the battery as well as those of the data set.                      16. M. Charkhgard and M. Farrokhi, “State-of-charge estimation for lithium-ion batteries
+      The main contributing factors to the accuracy of SOC estimation                               using neural networks and EKF,” Industrial Electronics, IEEE Transactions, 57(12),
+      are the slope of the OCV curve and number of data points, while                               4178 (2010).
+      the accuracy of capacity estimation is affected by both OCV slope                         17. C. C. Chan, E. W. C. Lo, and Shen Weixiang, “The available capacity computation
+                                                                                                    model based on artificial neural network for lead–acid batteries in electric vehicles,”
+      and SOC variation, and that of resistance estimation depends heav-                            Journal of Power Sources, 87(1), 201 (2000).
+      ily on the current magnitude. The derived error bounds not only                           18. M. Doyle, T. F. Fuller, and J. Newman, “Modeling of galvanostatic charge and dis-
+      agree with the existing rule of thumb for battery state/parameter                             charge of the lithium/polymer/insertion cell,” Journal of the Electrochemical Society,
+      estimation, but also quantify the effect of the contributing                                  140(6), 1526 (1993).
+                                                                                                19. W. B. Gu and C. Y. Wang, “Thermal-Electrochemical Modeling of Battery Systems,”
+      factors.                                                                                      Journal of The Electrochemical Society, 147(8), 2910 (2000).
+          When some of the state/parameters are being estimated in a com-                       20. J. C. Forman, S. Bashash, J. L. Stein, and H. K. Fathy, “Reduction of an
+      bined fashion, loss of accuracy (as compared to standalone estimation)                        electrochemistry-based Li-ion battery model via quasi-linearization and Padé ap-
+      is usually expected. As an extreme example, under constant current                            proximation,” Journal of the Electrochemical Society, 158(2), A93 (2011).
+
+Downloaded on 2016-01-11 to IP 141.212.134.72 address. Redistribution subject to ECS terms of use (see ecsdl.org/site/terms_use) unless CC License in place (see abstract).
+                                                      Journal of The Electrochemical Society, 162 (9) A1879-A1891 (2015)                                                             A1891
+
+
+       21. D. Di Domenico, A. G. Stefanopoulou, and G. Fiengo, “Lithium-ion battery state of        40. C. Hu, B. D. Youn, and J. Chung, “A multiscale framework with extended kalman
+           charge and critical surface charge estimation using an electrochemical model-based           filter for lithium-ion battery soc and capacity estimation,” Applied Energy, 92, 694
+           extended Kalman filter,” Journal of dynamic systems, measurement, and control,               (2012).
+           132(6), 061302 (2010).                                                                   41. H. He, R. Xiong, and H. Guo, “Online estimation of model parameters and
+       22. K. A. Smith, C. D. Rahn, and C.-Y. Wang. “Control oriented 1D electrochemical                state-of-charge of lifepo4 batteries in electric vehicles,” Applied Energy, 89, 413
+           model of lithium ion battery,” Energy Conversion and Management, 48(9), 2565                 (2012).
+           (2007).                                                                                  42. H. Dai, X. Wei, and Z. Sun, “State and parameter estimation of a HEV li-ion battery
+       23. E. Prada, D. Di Domenico, Y. Creff, J. Bernard, V. Sauvant-Moynot, and F. Huet,              pack using adaptive Kalman filter with a new soc-ocv concept,” in International
+           “Simplified electrochemical and thermal model of LiFePO4-graphite Li-ion batteries           Conference on Measuring Technology and Mechatronics Automation (2009).
+           for fast charge applications,” Journal of The Electrochemical Society, 159(9), A1508     43. L. Zhang, C. Lyu, G. Hinds, L. Wang, W. Luo, J. Zheng, and K. Ma, “Parameter Sen-
+           (2012).                                                                                      sitivity Analysis of Cylindrical LiFePO4 Battery Performance Using Multi-Physics
+       24. G. L. Plett, “Extended Kalman filtering for battery management systems of LiPB-              Modeling,” Journal of The Electrochemical Society, 161(5), A762 (2014).
+           based HEV battery packs: Part 3. State and parameter estimation,” Journal of power       44. J. Marcicki, F. Todeschini, S. Onori, and M. Canova, “Nonlinear Parameter Estimation
+           sources, 134(2), 277 (2004).                                                                 for Capacity Fade in Lithium-Ion Cells Based on a Reduced-Order Electrochemical
+       25. F. Sun, X. Hu, Y. Zou, S. Li, and S. “Adaptive unscented Kalman filtering for state of       Model”, Proceedings of American Control Conference, p. 572 (2012).
+           charge estimation of a lithium-ion battery for electric vehicles,” Energy, 36(5), 3531   45. V. Ramadesigan, K. Chen, N. A. Burns, V. Boovaragavan, R. D. Braatz, and
+           (2011).                                                                                      V. R. Subramanian, “Parameter estimation and capacity fade analysis of lithium-
+       26. Il-S. Kim, “The novel state of charge estimation method for lithium battery using            ion batteries using reformulated models”, Journal of The Electrochemical Society,
+           sliding mode observer,” Journal of Power Sources, 163(1), 584 (2006).                        158(9), A1048 (2011).
+       27. F. Zhang, et al., “Estimation of Battery State of Charge With Observer: Applied          46. E. L. Lehmann and G. Casella, Theory of point estimation, Vol. 31, Springer
+           to a Robot for Inspecting Power Transmission Lines,” Industrial Electronics, IEEE            (1998).
+           Transactions, 59(2), 1086 (2012).                                                        47. A. P. Schmidt, M. Bitzer, Á. W. Imre, and L. Guzzella, “Experimentdriven electro-
+       28. S. J. Moura, M. Krstic, and N. A. Chaturvedi, “Adaptive pde observer for battery             chemical modeling and systematic parameterization for a lithium-ion battery cell,”
+           soc/soh estimation,” ASME 2012 5th Annual Dynamic Systems and Control Confer-                J. Power Sour., 195(15), 5071 (2010).
+           ence joint with the JSME 2012 11th Motion and Vibration Conference, American             48. J. C. Forman, S. J. Moura, J. L. Stein, and H. K. Fathy, “Genetic identification and
+           Society of Mechanical Engineers (2012).                                                      fisher identifiability analysis of the Doyle–Fuller–Newman model from experimental
+       29. X. Lin, A. G. Stefanopoulou, Y. Li, and R. D. Anderson, “State of charge estima-             cycling of a LiFePO4 cell,” Journal of Power Sources, 210, 263 (2012).
+           tion of cells in series connection by using only the total voltage measurement,” in      49. J. Vazquez-Arenas, L. E. Gimenez, M. Fowler, T. Han, and S. K. Chen, “A rapid esti-
+           Proceedings of American Control Conference, p. 704 (2013)                                    mation and sensitivity analysis of parameters describing the behavior of commercial
+       30. X. Lin, A. G. Stefanopoulou, Y. Li, and R. D. Anderson, “State of Charge Imbalance           Li-ion batteries including thermal analysis”, Energy Conversion and Management,
+           Estimation for Battery Strings under Reduced Voltage Sensing,” IEEE Transactions             vol. 87, p. 472 (2014).
+           on Control Systems Technology, 23, 1052 (2015).                                          50. A. Sharma, H. K. Fathy, and H. K. “Fisher identifiability analysis for a periodically-
+       31. G. L. Plett, “Recursive approximate weighted total least squares estimation of battery       excited equivalent-circui1t lithium-ion battery model”, Proceedings of American
+           cell total capacity,” Journal of Power Sources, 196(4), 2319 (2011).                         Control Conference, 274 (2014).
+       32. M. Verbrugge and B. Koch, “Generalized recursive algorithm for adaptive multipa-         51. X. Lin, “Adaptive estimation of thermal dynamics and charge imbalance in battery
+           rameter regression application to lead acid, nickel metal hydride, and lithium-ion           strings,” Ph. D. dissertation, Dept. Mech. Eng., Univ. Michigan, Ann Arbor, MI, USA
+           batteries,” Journal of The Electrochemical Society, 153(1), A187 (2006).                     (2014).
+       33. Bhaskar Saha, et al., “Prognostics methods for battery health monitoring using a         52. M. Rothenberger, J. Anstrom, S. Brennan, and H. K. Fathy, “Maximizing Param-
+           Bayesian framework,” Instrumentation and Measurement, IEEE Transactions, 58(2),              eter Identifiability of an Equivalent-Circuit Battery Model using Optimal Periodic
+           291 (2009).                                                                                  Input Shaping”, Proceedings of ASME Dynamic Systems and Control Conference
+       34. Y.-H. Chiang, W.-Y. Sean, and J.-C. Ke, “Online estimation of internal resistance and        (2014).
+           open-circuit voltage of lithium-ion batteries in electric vehicles,” Journal of Power    53. H. Cramér, Mathematical methods of statistics, Vol. 9, Princeton university press
+           Sources, 196(8), 3921 (2011).                                                                (1999).
+       35. E. Wan and A. Nelson, Kalman Filtering and Neural Networks, Chapter 5: Dual              54. J. Wang, M. W. Verbrugge, P. Liu, and P. “Composite Titanate–Graphite Negative
+           extended Kalman filter methods. Wiley/Inter-Science (2001).                                  Electrode for Improved State-of-Charge Estimation of Lithium-Ion Batteries,” Jour-
+       36. S. Santhanagopalan and R. E. White, “Online estimation of the state of charge of a           nal of The Electrochemical Society, 157(2), A185 (2010).
+           lithium ion cell,” Journal of Power Sources, 16(2), 1346 (2006).                         55. G. H. Golub and C. F. Van Loan, “An analysis of the total least squares problem,”
+       37. S. Lee, J. Kim, J. Lee, and B. Cho, “State-of-charge and capacity estimation of              SIAM Journal on Numerical Analysis, 17(6), 883 (1980).
+           lithium-ion battery using a new open-circuit voltage versus state-of-charge,” Journal    56. N. A. Samad, J. B. Siegel, and A. G. Stefanopoulou, “Parameterization and validation
+           of Power Sources, 185, 1367 (2008).                                                          of a distributed coupled electro-thermal model for prismatic cells,” ASME 2014 Dy-
+       38. J. Kim, S. Lee, and B. H. Cho, “Complementary cooperation algorithm based on                 namic Systems and Control Conference, American Society of Mechanical Engineers
+           DEKF combined with pattern recognition for SOC/capacity estimation and SOH                   (2014).
+           prediction,” IEEE Transactions on Power Electronics, 27, 436 (2012).                     57. C.-T. Chen, Linear system theory and design, Oxford University Press, Inc.
+       39. M. Rubagotti, S. Onori, and G. Rizzoni, “Automotive battery prognostics using dual           (1995).
+           extended kalman filter,” in Proceedings of the ASME 2009 Dynamic Systems and             58. S. M. M. Alavi, A. Mahdi, S. J. Payne, and D. A. Howey, “Structural identifiability
+           Control Conference (2009).                                                                   of battery equivalent circuit models,” arXiv preprint arXiv:1505.00153 (2015).
+
+
+
+
+Downloaded on 2016-01-11 to IP 141.212.134.72 address. Redistribution subject to ECS terms of use (see ecsdl.org/site/terms_use) unless CC License in place (see abstract).
+

@@ -1,0 +1,12 @@
+{
+  "version": "2026-09-30-v2",
+  "frozen_after": "B1 direct raw-row event audit; before B2 v4 candidate results",
+  "start_state_gate": {
+    "reject_if_start_current_A_above": 5.0,
+    "unit": "A",
+    "source": "B1 found all eight long ~44-58 Ah windows cross 13.4 V during ~20.4 A charging, while ordinary ~21 Ah windows begin at zero-current transition",
+    "status": "post-B1 mechanism hypothesis, not capacity-tuned"
+  },
+  "hypothesis": "An under-load 13.4 V crossing does not represent the same starting SOC as a zero-current rest-to-charge transition; comparing their Ah windows biases the state proxy.",
+  "falsifier": "If independent four-series capacity labels show worse error or missingness after the gate, reject it regardless of smoother official predictions."
+}

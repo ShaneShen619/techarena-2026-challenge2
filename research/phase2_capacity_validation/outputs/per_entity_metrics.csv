@@ -1,0 +1,17 @@
+source_id,entity_id,candidate,target_Ah,prediction_Ah,signed_error_Ah,MAE_Ah,SOH_error_pp,temperature_C,stage
+Ji_second_life_23,J02,median,3.78,4.871,1.0910000000000006,1.0910000000000006,,25,one_second_life_snapshot_late_unavailable
+Ji_second_life_23,J03,median,3.81,4.871,1.0610000000000004,1.0610000000000004,,25,one_second_life_snapshot_late_unavailable
+Ji_second_life_23,J04,median,3.422,4.871,1.4490000000000003,1.4490000000000003,,25,one_second_life_snapshot_late_unavailable
+Ji_second_life_23,J06,median,4.6,4.871,0.2710000000000008,0.2710000000000008,,25,one_second_life_snapshot_late_unavailable
+Ji_second_life_23,J09,median,4.59,4.871,0.2810000000000006,0.2810000000000006,,25,one_second_life_snapshot_late_unavailable
+Ji_second_life_23,J11,median,4.366,4.871,0.5050000000000008,0.5050000000000008,,25,one_second_life_snapshot_late_unavailable
+Ji_second_life_23,J22,median,5.595,4.871,-0.7239999999999993,0.7239999999999993,,25,one_second_life_snapshot_late_unavailable
+Ji_second_life_23,J23,median,5.596,4.871,-0.7249999999999996,0.7249999999999996,,25,one_second_life_snapshot_late_unavailable
+Ji_second_life_23,J02,q_window,3.78,3.5976608823217697,-0.18233911767823008,0.18233911767823008,,25,one_second_life_snapshot_late_unavailable
+Ji_second_life_23,J03,q_window,3.81,3.5512728748850977,-0.25872712511490237,0.25872712511490237,,25,one_second_life_snapshot_late_unavailable
+Ji_second_life_23,J04,q_window,3.422,3.3931293990969302,-0.02887060090306992,0.02887060090306992,,25,one_second_life_snapshot_late_unavailable
+Ji_second_life_23,J06,q_window,4.6,4.516309949386754,-0.08369005061324586,0.08369005061324586,,25,one_second_life_snapshot_late_unavailable
+Ji_second_life_23,J09,q_window,4.59,4.366576477896368,-0.2234235221036318,0.2234235221036318,,25,one_second_life_snapshot_late_unavailable
+Ji_second_life_23,J11,q_window,4.366,4.40836014348582,0.04236014348582007,0.04236014348582007,,25,one_second_life_snapshot_late_unavailable
+Ji_second_life_23,J22,q_window,5.595,5.455775482589471,-0.1392245174105291,0.1392245174105291,,25,one_second_life_snapshot_late_unavailable
+Ji_second_life_23,J23,q_window,5.596,5.449904618204698,-0.1460953817953019,0.1460953817953019,,25,one_second_life_snapshot_late_unavailable

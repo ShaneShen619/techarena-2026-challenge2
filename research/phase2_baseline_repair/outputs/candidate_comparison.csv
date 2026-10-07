@@ -1,0 +1,6 @@
+candidate,n_checkpoints,n_fallback,n_eligible_events_final,max_abs_delta_pp,causal_mutations_passed,capacity_MAE_pp,capacity_status
+combined,8,1,32,0.2776831055682578,True,,not_testable_CK1_CK7_hidden
+gap,8,1,39,0.012183660554086373,True,,not_testable_CK1_CK7_hidden
+none,8,1,39,0.012183660554086373,True,,not_testable_CK1_CK7_hidden
+range,8,1,32,0.2776831055682578,True,,not_testable_CK1_CK7_hidden
+start,8,1,32,0.2776831055682578,True,,not_testable_CK1_CK7_hidden

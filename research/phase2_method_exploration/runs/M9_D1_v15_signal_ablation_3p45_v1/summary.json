@@ -1,0 +1,51 @@
+{
+  "endpoint": "3p45",
+  "protocol": "v1.5 prefix-only",
+  "n_physical_cells": 6,
+  "n_targets_per_method": 180,
+  "metrics": [
+    {
+      "method": "age_only",
+      "macro_mae_pp": 4.080608282033581,
+      "worst_cell_mae_pp": 8.323162476106324,
+      "max_absolute_error_pp": 20.15396892103675
+    },
+    {
+      "method": "age_plus_current",
+      "macro_mae_pp": 4.3792797002191906,
+      "worst_cell_mae_pp": 7.534035093529017,
+      "max_absolute_error_pp": 20.22329406835044
+    },
+    {
+      "method": "age_plus_current_voltage",
+      "macro_mae_pp": 3.543517269240478,
+      "worst_cell_mae_pp": 7.499222996195516,
+      "max_absolute_error_pp": 19.784132247300192
+    },
+    {
+      "method": "age_plus_voltage",
+      "macro_mae_pp": 4.265567146407768,
+      "worst_cell_mae_pp": 8.381733211181663,
+      "max_absolute_error_pp": 20.262488267474026
+    },
+    {
+      "method": "age_plus_windows",
+      "macro_mae_pp": 4.07703090932887,
+      "worst_cell_mae_pp": 8.404969111951516,
+      "max_absolute_error_pp": 20.38558495837802
+    },
+    {
+      "method": "age_plus_windows_current",
+      "macro_mae_pp": 4.22242617324277,
+      "worst_cell_mae_pp": 8.011125678391172,
+      "max_absolute_error_pp": 20.293514470034722
+    },
+    {
+      "method": "full_window_workpoint",
+      "macro_mae_pp": 3.4412676458979683,
+      "worst_cell_mae_pp": 8.054703269103737,
+      "max_absolute_error_pp": 20.567153224800265
+    }
+  ],
+  "interpretation_limit": "P1 six-cell development; workpoint ablation, no official capacity truth."
+}

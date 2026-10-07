@@ -1,0 +1,224 @@
+Capacity Estimation of Lithium-ion Batteries Using Invariance Property in Open Circuit Voltage Relationshipfootnoteinfo 
+Title: 
+Content selection saved. Describe the issue below: Description: 
+arXiv is now an independent nonprofit! Learn more × 
+
+License: arXiv.org perpetual non-exclusive license 
+arXiv:2511.06989v1 [eess.SY] 10 Nov 2025 
+
+Capacity Estimation of Lithium-ion Batteries Using Invariance Property in Open Circuit Voltage Relationship footnoteinfo This research has been funded by Volvo AB (Sweden) and NWO (Netherlands) (Grant No. TKI-HTSM 21.0056). 
+Yang Wang Marta Zagorowska Riccardo M.G. Ferrari Address: Delft Center for Systems and Control, Delft University of Technology, Mekelweg 5, Delft, 2628 CD, Netherlands (e-mail: y.wang-40@tudelft.nl, m.a.zagorowska@tudelft.nl, r.ferrari@tudelft.nl) 
+Abstract 
+Lithium-ion (Li-ion) batteries are ubiquitous in electric vehicles (EVs) as efficient energy storage devices. The reliable operation of Li-ion batteries depends critically on the accurate estimation of battery capacity. However, conventional estimation methods require extensive training datasets from costly battery tests for modeling, and a full cycle of charge and discharge is often needed to estimate the capacity. To overcome these limitations, we propose a novel capacity estimation method that leverages only one cycle of the open-circuit voltage (OCV) test in modeling and allows for estimating the capacity from partial charge or discharge data. Moreover, by applying it with OCV identification algorithms, we can estimate the capacity from dynamic discharge data without requiring dedicated data collection tests. We observed an invariance property in the OCV versus state of charge relationship across aging cycles. Leveraging this invariance, the proposed method estimates the capacity by solving an OCV alignment problem using only the OCV and the discharge capacity data from the battery. Simulation results demonstrate the method’s efficacy, achieving a mean absolute relative error of 0.85% in capacity estimation across 12 samples from 344 aging cycles. 
+keywords Lithium-ion battery, electric vehicles, capacity estimation, open circuit voltage. 
+
+1 Introduction 
+
+Electric vehicles (EVs) are gaining increasing popularity in modern transportation due to their roles in reducing greenhouse gas emissions, leading to carbon neutralization ( Meng et al., 2018 ; Hannan et al., 2017 ) . Lithium-ion (Li-ion) batteries are renowned for their favorable energy density, energy efficiency, and extended service life, and are widely adopted in EVs as energy storage devices ( Plett, 2015 ) . As batteries undergo cycles of charge and discharge, they inevitably experience performance impairment, in which battery capacity declines significantly ( Peng et al., 2025 ) . This degradation deteriorates the performance of the EV’s range and raises safety concerns. As a result, accurate monitoring of the battery capacity is crucial for reliable vehicle operation ( Zhang et al., 2025 ) . 
+
+Estimating the capacity of the battery primarily relies on three categories of approaches: direct measurement methods, model-based methods, and data-driven methods ( Wang et al., 2023 ) . Direct measurement approaches estimate battery capacity by applying Coulomb counting over a full charge or discharge cycle ( Navidi et al., 2024 ) . This method is straightforward, but it is inconvenient for EVs under operation as the battery is seldom in a fully discharged state, which can permanently damage the battery. Model-based methods enable online estimation of capacity from operational data using established battery models. Common models encompass empirical models and physical models. Empirical model-based approaches collect historical records of the capacity and operating conditions, e.g., the number of cycles, C-rate, and SOC span, and fit an empirical model to the data to relate these characteristics with capacity fade ( Wan et al., 2025 ; Zagorowska et al., 2020 ) . Physical model-based methods utilize an electrochemical model (EM) or an equivalent circuit model (ECM) to identify the capacity of the battery. The single particle model (SPM), a commonly used EM, relates microscopic degradation factors, e.g., the mass of active materials and the inventory of lithium-ions, to the battery capacity and simulates the capacity trajectory by modeling the trend of their degradation with the stress factors ( El-Dalahmeh et al., 2023 ) . The ECM correlates electrical parameters, e.g., internal resistance, open-circuit voltage (OCV), with battery capacity using data from aging tests. Then, it estimates the capacity during operation by identifying the current values of these parameters from operational data ( Li et al., 2024 ) . However, the practical application of EMs is hindered by the difficulty of accessing battery-specific chemical parameters and the requirement for substantial computational power. The ECM needs extensive experiments to establish an accurate correlation between battery parameters and degradation. These factors limit the application of model-based approaches in practical usage. 
+
+Data-driven methods are divided into feature-based methods and end-to-end methods. Feature-based methods establish machine learning models that relate features from the OCV curve, such as the curve in differential voltage analysis (DVA) and incremental capacity analysis (ICA), to the capacity of the battery ( Navidi et al., 2024 ; Bloom et al., 2005 ) . End-to-end-based methods directly process measurement data, e.g., current, voltage, and temperature from battery operation, and infer from usage records the capacity of the battery using neural network architectures ( Lu et al., 2022 ; Lianpo et al., 2025 ) . Although showing promising results, data-driven approaches rely on extensive training data, the acquisition of which is costly and time- and energy-consuming. 
+
+A mechanistic model-based capacity estimation was proposed, leveraging the open circuit potential (OCP) of electrodes ( Dubarry et al., 2012 ) . The OCV of the full battery is obtained as the difference between the positive and the negative electrode potential. The degradations of active materials of the two electrodes and the loss of lithium-ion inventory are modeled as scaling and translation of the OCP curves, and the degradation of electrode capacity is estimated by fitting alignment parameters of the OCPs to the measured OCV ( Schmitt et al., 2023 ) . However, this approach requires the data of the half-cell OCP relationships, which rely on invasive experiments that open the battery and build a half-cell from samples of the electrodes. This type of experiment is repeated for each battery configuration, which is costly and induces safety concerns. 
+
+In this work, we propose a novel capacity estimation method that leverages a geometric property in the OCV-SOC relationship. The method requires only one cycle of the OCV measurements from the nominal battery, eliminating the need for cumbersome OCV-SOC measurements across all aging cycles and the disassembling of the battery to build half-cell samples. With only a sequence of OCV and discharge capacity data, we estimate the capacity throughout the battery’s lifespan with sufficient accuracy. With an OCV estimation algorithm, this approach enables us to estimate the capacity from dynamic discharge data, without using additional capacity diagnostic tests, showing potential for online estimation of capacity from dynamic operational data. 
+
+The remainder of this paper is structured as follows. Section 2 introduces the proposed capacity estimation method, Section 3 presents the estimation results on real-life batteries, and Section 5 gives concluding remarks of this study. 
+
+2 Battery capacity estimation 
+
+The estimation of battery capacity relies on a geometric property in the open circuit voltage and state of charge (OCV-SOC) relationship. We first introduce the invariance property observed in the battery OCV relationships, then propose the capacity estimation method utilizing this invariance. 
+
+2.1 State of charge of aged batteries 
+
+The state of charge (SOC) is a critical component closely related to the capacity of the battery. It is defined as the charge stored in the battery in relation to its total capacity. However, the correctness of SOC with respect to the real value of the battery critically depends on the total capacity with which the SOC is computed. For an aged battery with a total capacity of 8 Ah and a nominal capacity of 10 Ah, when the battery is fully discharged, the SOC computed with 10 Ah is 20% while the actual SOC is 0%. 
+
+To distinguish the type of SOC, we use notations a a and n n to denote the aged and the nominal battery. We define C i ∈ ℝ > 0 C_{i}\in\mathbb{R}_{>0} as the capacity of the battery and i ∈ { a , n } i\in\{a,n\} denotes the type of the battery, e.g., C a C_{a} is the aged capacity and C n C_{n} is the nominal capacity. 
+
+For computing the SOC, we define the discharge capacity Q d ​ c i ​ ( t ) Q_{dc}^{i}(t) as the amount of charge withdrawn from the battery i i . The value of Q d ​ c i ​ ( t ) Q_{dc}^{i}(t) always starts with zero, independent of the initial SOC when it starts counting. It can be computed via Coulomb counting as: 
+Q d ​ c i ( t ) = − 1 3600 ∫ t 0 t i b ( τ ) d τ , \displaystyle Q_{dc}^{i}(t)=-\frac{1}{3600}\int_{t_{0}}^{t}i_{b}(\tau)d\tau, (1) 
+where Q d ​ c i ​ ( t ) ∈ ℝ Q_{dc}^{i}(t)\in\mathbb{R} is the discharge capacity in Ampere-hour (Ah) for battery i i , i ∈ { a , n } i\in\{a,n\} denotes the aged or the nominal battery, i b ​ ( t ) ∈ ℝ i_{b}(t)\in\mathbb{R} is the load current of the battery (positive for charging), and 3600 is the factor converting Coulombs into Ah. The SOC is defined with Q d ​ c i ​ ( t ) Q_{dc}^{i}(t) and the battery’s total capacity C j C_{j} as: 
+Z j i ​ ( t ) = Z j i ​ ( t 0 ) − Q d ​ c i ​ ( t ) C j × 100 % \displaystyle Z^{i}_{j}(t)=Z^{i}_{j}(t_{0})-\frac{Q_{dc}^{i}(t)}{C_{j}}\times 100\% (2) 
+where Z j i ​ ( t ) ∈ [ 0 , 1 ] Z^{i}_{j}(t)\in[0,1] is the SOC of the i i -th battery computed with the capacity C j C_{j} at time t t , Z j i ​ ( t 0 ) ∈ [ 0 , 1 ] Z^{i}_{j}(t_{0})\in[0,1] is the initial SOC, and C j ∈ ℝ > 0 C_{j}\in\mathbb{R}_{>0} is the total capacity of the battery j j in Ah, and i , j ∈ { a , n } i,j\in\{a,n\} denotes the type of the battery. 
+
+When the type of the battery actually being discharged and the type of capacity used to compute the SOC are consistent, i.e., i = j i=j , the SOC Z j i ​ ( t ) Z_{j}^{i}(t) is defined as calibrated, i.e., Z a a ​ ( t ) Z_{a}^{a}(t) and Z n n ​ ( t ) Z_{n}^{n}(t) are calibrated, and the capacity is defined as the calibrated capacity, i.e., C i C_{i} is calibrated for battery i i . When i ≠ j i\neq j , e.g., Z n a ​ ( t ) Z_{n}^{a}(t) , the SOC Z j i ​ ( t ) Z_{j}^{i}(t) is skewed or uncalibrated, and the capacity is an uncalibrated capacity. Only the calibrated SOC can reflect the real value of the battery currently being operated. 
+
+Note that Z a n ​ ( t ) Z_{a}^{n}(t) can be defined with the notation, but does not have a physical meaning and is unused in the paper. 
+
+The open circuit voltage (OCV) is the terminal voltage when the battery is not connected to external circuits. It is formally measured as the terminal voltage when the battery is in an open circuit and rested for a sufficient amount of time. The value of OCV varies with the SOC, and as we will see in the next subsection, when the SOC is calibrated, the OCV-SOC relationship is invariant across aging cycles. The OCV and SOC are independently collected sequences from the battery. We write by V o ​ c i ​ ( t ) ∈ ℝ V_{oc}^{i}(t)\in\mathbb{R} , i ∈ { a , n } i\in\{a,n\} , the OCV of the i i -th battery, and denote by V o ​ c ​ ( Z ​ ( t ) ) V_{oc}(Z(t)) the OCV-SOC relationship. The query of V o ​ c ​ ( t ) V_{oc}(t) at Z ⁡ ( t ) Z(t) can be achieved through sample interpolation. 
+
+2.2 Invariance in OCV-SOC relationships 
+
+The OCV-SOC relationship can reveal the aging status of the battery. When the battery undergoes continuous aging, the total capacity of the battery decreases, and the OCV reaches the lower cut-off voltage faster with less discharge capacity extracted from the battery. This is illustrated in Figures 1(a) and 1(c) . However, when we compute the calibrated SOC with the calibrated capacity, we examine in the OCV-SOC relationships that the paths of the relationships are highly invariant across all degrees of aging of the battery. 
+
+This phenomenon is observed in batteries with different types of chemistries from different datasets. For example, Figure 1 shows the OCV versus discharge capacity relationships and the OCV-SOC relationships of a LiNiMnCoO2 (NMC) battery from the Stanford Accelerated Aging dataset ( Pozzato et al., 2022 ) . We can see from Figure 1(a) that the maximum discharge capacity at lower cut-off voltage decreases as the battery undergoes more and more aging cycles, and when the OCV is related to the calibrated SOC computed with the calibrated capacity, we see from Figure 1(b) that the OCV-SOC curves align closely with each other across all cycles. The mean of RMSEs of the OCV-SOC relationships compared to the OCV-SOC curve of the nominal battery is 0.0132 V, only 0.31% of the upper cut-off voltage of the battery. A similar observation can be made from a LiMO2 (LMO) battery using the data from the Oxford Battery Degradation Dataset ( McTurk et al., 2015 ) shown in Figures 1(c) and 1(d) . The alignment of OCV-SOC relationships after calculating the calibrated SOC with the calibrated capacity is noticeably close, and the mean RMSE of the OCV curves is 0.0274 V, 0.65% of the battery’s upper cut-off voltage. 
+
+(a) OCV vs discharge capacity of the NMC battery. 
+(b) OCV-SOC of the NMC battery. 
+(c) OCV vs discharge capacity of the LMO battery. 
+(d) OCV-SOC of the LMO battery. Figure 1 : Relationships of OCV versus discharge capacity and OCV-SOC for the NMC ( Pozzato et al., 2022 ) and the LMO batteries ( McTurk et al., 2015 ) . 
+
+From this observation, we develop a novel capacity estimation method using the invariance property in the OCV-SOC relationship. To formulate the estimation method, we make a formal assumption about the OCV-SOC relationship in the following. 
+Assumption 1 
+
+The open circuit voltage versus state of charge relationship is invariant under aging when the state of charge is calculated with the battery’s calibrated capacity. 
+
+The shape-invariance assumption is proposed similarly in the half-cell OCP model for capacity estimation. The principle lies in the hypothesis that the thermodynamic property depends only on the charging degree of the cell and is a structural property that would not change with battery age ( Schmitt et al., 2023 ) . 
+
+From Assumption 1 , we can derive the following corollary. 
+Corollary 1 
+
+The open circuit voltages are equal for the same level of calibrated SOC computed with the calibrated capacity of the battery. 
+
+This property is the essence of the capacity estimation method proposed in the next subsection. In addition to the OCV relationship, we make the following assumption on the functional property of the OCV-SOC relationship. 
+Assumption 2 
+
+The OCV-SOC relationship is bijective at every aging state of the battery. 
+
+This assumption ensures that every SOC maps to a unique OCV and every OCV has a unique SOC to map, and this gives the uniqueness of the solution in capacity estimation in the next subsection. 
+
+2.3 Capacity estimation based on OCV invariance 
+
+We use the invariance property in the OCV-SOC relationship to estimate the battery capacity. From Corollary 1 , we have that when the calibrated SOCs of the aged and the nominal battery are equal, i.e., Z a a ​ ( t ) = Z n n ​ ( t ) Z_{a}^{a}(t)=Z_{n}^{n}(t) , the OCVs of the battery at two aging states equal each other, i.e., V o ​ c a ​ ( Z a a ​ ( t ) ) ≡ V o ​ c n ​ ( Z n n ​ ( t ) ) V_{oc}^{a}(Z_{a}^{a}(t))\equiv V_{oc}^{n}(Z_{n}^{n}(t)) , and we have: 
+V o ​ c a ​ ( Z a a ​ ( t ) ) = V o ​ c n ​ ( Z a a ​ ( t ) ) . \displaystyle V_{oc}^{a}(Z_{a}^{a}(t))=V_{oc}^{n}(Z_{a}^{a}(t)). (3) 
+When the OCV V o ​ c a ​ ( t ) V_{oc}^{a}(t) of the aged battery is obtained, from the nominal OCV-SOC relationship V o ​ c n ​ ( Z n n ​ ( t ) ) V_{oc}^{n}(Z_{n}^{n}(t)) , we can find the calibrated SOC Z a a ​ ( t ) Z_{a}^{a}(t) by looking for the SOC Z n n ​ ( t ) Z_{n}^{n}(t) that gives the same value V o ​ c n ​ ( Z n n ​ ( t ) ) V_{oc}^{n}(Z_{n}^{n}(t)) as the aged OCV V o ​ c a ​ ( t ) V_{oc}^{a}(t) . 
+
+As we are given only the aged discharge capacity Q d ​ c a ​ ( t ) Q_{dc}^{a}(t) and the OCV V o ​ c a ​ ( t ) V_{oc}^{a}(t) , we can define the SOC Z a a ​ ( t ) Z_{a}^{a}(t) with an unknown calibrated capacity C a C_{a} and an initial SOC Z a a ​ ( t 0 ) Z_{a}^{a}(t_{0}) and solve for the capacity C a C_{a} via an optimization problem. 
+
+Let C a ∈ ℝ C_{a}\in\mathbb{R} be the capacity of the aged battery, Z a a ​ ( t 0 ) ∈ [ 0 , 1 ] Z_{a}^{a}(t_{0})\in[0,1] be the initial SOC of Z a a ​ ( t ) Z_{a}^{a}(t) . The calibrated SOC Z a a ​ ( t ) Z_{a}^{a}(t) of the aged battery can be expressed in terms of Q d ​ c a ​ ( t ) Q_{dc}^{a}(t) as: 
+Z a a ​ ( t ) = Z a a ​ ( t 0 ) − Q d ​ c a ​ ( t ) C a × 100 % . \displaystyle Z_{a}^{a}(t)=Z_{a}^{a}(t_{0})-\frac{Q_{dc}^{a}(t)}{C_{a}}\times 100\%. (4) 
+
+By letting the OCV of the nominal OCV-SOC relationship V o ​ c n ​ ( Z n n ​ ( t ) ) V_{oc}^{n}(Z_{n}^{n}(t)) evaluated at the calibrated SOC Z a a ​ ( t ) Z_{a}^{a}(t) equal the OCV V o ​ c a ​ ( t ) V_{oc}^{a}(t) of the aged battery, we can solve for the calibrated capacity C a C_{a} and the initial SOC Z a a ​ ( t 0 ) Z_{a}^{a}(t_{0}) by solving the following optimization problem: 
+min C a , Z a a ​ ( t 0 ) ⁡ ‖ V o ​ c , m a − V o ​ c , m n ​ ( Z a , m a ) ‖ F 2 \displaystyle\min_{C_{a},Z_{a}^{a}(t_{0})}\ \|V_{oc,m}^{a}-V_{oc,m}^{n}(Z_{a,m}^{a})\|_{F}^{2} (5) 
+where ∥ ⋅ ∥ \|\cdot\| is the Frobenius norm, V o ​ c , m a ∈ ℝ m + 1 V_{oc,m}^{a}\in\mathbb{R}^{m+1} is the vector of OCVs of the aged battery V o ​ c a ​ ( t ) V_{oc}^{a}(t) , and V o ​ c , m n ​ ( Z a , m a ) ∈ ℝ m + 1 V_{oc,m}^{n}(Z_{a,m}^{a})\in\mathbb{R}^{m+1} is the vector of OCVs of the OCV-SOC relationship V o ​ c n ​ ( Z n n ​ ( t ) ) V_{oc}^{n}(Z_{n}^{n}(t)) evaluated at Z a , m a Z_{a,m}^{a} : 
+V o ​ c , m a = [ V o ​ c a ​ ( t 0 ) V o ​ c a ​ ( t 1 ) V o ​ c a ​ ( t m ) ] , V o ​ c , m n ​ ( Z a , m a ) = [ V o ​ c n ​ ( Z a a ​ ( t 0 ) ) V o ​ c n ​ ( Z a a ​ ( t 1 ) ) V o ​ c n ​ ( Z a a ​ ( t m ) ) ] . \displaystyle V_{oc,m}^{a}=\begin{bmatrix}V_{oc}^{a}(t_{0})\\
+V_{oc}^{a}(t_{1})\\
+\vdots\\
+V_{oc}^{a}(t_{m})\end{bmatrix},\ V_{oc,m}^{n}(Z_{a,m}^{a})=\begin{bmatrix}V_{oc}^{n}(Z_{a}^{a}(t_{0}))\\
+V_{oc}^{n}(Z_{a}^{a}(t_{1}))\\
+\vdots\\
+V_{oc}^{n}(Z_{a}^{a}(t_{m}))\end{bmatrix}. (6) 
+Z a , m a ∈ ℝ m + 1 Z_{a,m}^{a}\in\mathbb{R}^{m+1} is the vector of SOCs written by discharge capacity Q d ​ c a ​ ( t ) Q_{dc}^{a}(t) and initial value Z a a ​ ( t 0 ) Z_{a}^{a}(t_{0}) with ( 4 ): 
+Z o ​ c , m n = Z a a ​ ( t 0 ) ​ 𝟏 − 1 C a ​ [ Q d ​ c a ​ ( t 0 ) Q d ​ c a ​ ( t 1 ) Q d ​ c a ​ ( t m ) ] , \displaystyle Z_{oc,m}^{n}=Z_{a}^{a}(t_{0})\mathbf{1}-\frac{1}{C_{a}}\begin{bmatrix}Q_{dc}^{a}(t_{0})\\
+Q_{dc}^{a}(t_{1})\\
+\vdots\\
+Q_{dc}^{a}(t_{m})\end{bmatrix}, (7) 
+where 𝟏 ∈ ℝ m + 1 \mathbf{1}\in\mathbb{R}^{m+1} is a vector of 1, t k := k ​ T , k ∈ ℤ 1 m t_{k}:=kT,k\in\mathbb{Z}_{1}^{m} is the k k -th time instant, and T ∈ ℝ > 0 T\in\mathbb{R}_{>0} is the sampling time. The evaluation V o ​ c , m n ​ ( Z a , m a ) V_{oc,m}^{n}(Z_{a,m}^{a}) of the OCV-SOC relationship V o ​ c n ​ ( Z a n ​ ( t ) ) V_{oc}^{n}(Z_{a}^{n}(t)) , composed of two sequences V o ​ c n ​ ( t ) V_{oc}^{n}(t) and Z n n ​ ( t ) Z_{n}^{n}(t) , at Z a , m a Z_{a,m}^{a} can be achieved via linear interpolation. 
+
+To validate the fulfillment of invariance with the obtained capacity C a C_{a} and initial value Z a a ​ ( t 0 ) Z_{a}^{a}(t_{0}) , we derive the calibrated OCV-SOC relationship V o ​ c a ​ ( Z a a ​ ( t ) ) V_{oc}^{a}(Z_{a}^{a}(t)) from the discharge capacity Q d ​ c a ​ ( t ) Q_{dc}^{a}(t) and the OCV V o ​ c a ​ ( t ) V_{oc}^{a}(t) , then compare it with the nominal relationship. We define an uncalibrated 1-initialized SOC as Z ~ n a ​ ( t ) := 1 − D n a ​ ( t ) \tilde{Z}_{n}^{a}(t):=1-D_{n}^{a}(t) , where D n a ​ ( t ) := Q d ​ c a ​ ( t ) / C n D_{n}^{a}(t):=Q_{dc}^{a}(t)/C_{n} . The calibrated relationship V o ​ c a ​ ( Z a a ​ ( t ) ) V_{oc}^{a}(Z_{a}^{a}(t)) can be obtained from the uncalibrated relationship V o ​ c a ​ ( Z ~ n a ​ ( t ) ) V_{oc}^{a}(\tilde{Z}_{n}^{a}(t)) by scaling and translating Z ~ n a ​ ( t ) \tilde{Z}_{n}^{a}(t) as: 
+Z a a ​ ( t ) = k ​ Z ~ n a ​ ( t ) + b , \displaystyle Z_{a}^{a}(t)=k\tilde{Z}_{n}^{a}(t)+b, (8) 
+where k := C n / C a ∈ ℝ k:=C_{n}/C_{a}\in\mathbb{R} is the scaling factor and b := Z a a ​ ( t 0 ) − k ∈ ℝ b:=Z_{a}^{a}(t_{0})-k\in\mathbb{R} is the translation factor of the transformation. This transformation is illustrated by an example shown in Figure 2 . The transformed OCV-SOC relationship V o ​ c a ​ ( Z a a ​ ( t ) ) V_{oc}^{a}(Z_{a}^{a}(t)) will align with the nominal relationship V o ​ c n ​ ( Z n n ​ ( t ) ) V_{oc}^{n}(Z_{n}^{n}(t)) satisfying the invariance property. 
+
+(a) Scaling 
+(b) Translation Figure 2 : Scaling and translation of the uncalibrated OCV-SOC relationship for capacity estimation. 
+
+The developed method utilizes the nominal OCV-SOC relationship V o ​ c n ​ ( Z n n ​ ( t ) ) V_{oc}^{n}(Z_{n}^{n}(t)) and the data of the aged OCV V o ​ c a ​ ( t ) V_{oc}^{a}(t) and the discharge capacity Q o ​ c a ​ ( t ) Q_{oc}^{a}(t) . The OCV value V o ​ c a ​ ( t ) V_{oc}^{a}(t) can be obtained from dynamic discharge data with an OCV identification algorithm from our previous work ( Wang and Ferrari, 2025 ; Wang et al., 2025 ) . 
+
+The advantages of the developed method are threefold. First, this method requires only one sequence of the OCV-SOC relationship from the nominal battery, without using intensive battery tests. Second, the developed method allows for estimating the capacity from partial discharge data, eliminating the need to fully charge or discharge the battery. Third, by applying it with an OCV identification algorithm, we can estimate the capacity from dynamic discharge data without using additional battery experiments during maintenance. 
+
+In the following section, we validate the capacity estimation method using real-life battery data from both OCV tests and dynamic discharge tests. 
+
+3 Simulation Experiments 
+
+We evaluate the effectiveness of the developed method for capacity estimation on the Stanford Accelerated Aging dataset ( Pozzato et al., 2022 ) . The dataset tested a collection of ten battery cells; we selected cell W5 for the validation of this paper. The specification of the tested cell is shown in Table 1 . Table 1 : Specifications of the tested battery. 
+Specification Value 
+Battery chemistry LiNiMnCoO2/Graphite and silicon 
+Nominal voltage 3.63V 
+Nominal capacity 4.85Ah 
+Higher cutoff voltage 4.2V 
+Lower cutoff voltage 2.5V 
+
+The tested cell experienced a total of 344 aging cycles, each of which was discharged with an Urban Dynamometer Driving Schedule (UDDS) profile that emulates real-life driving conditions. The tested battery was discharged from 80% to 20% SOC and was charged with a constant current and constant voltage profile. After every few cycles, an offline low-current OCV test was performed to measure the OCV and the current capacity of the battery. 
+
+3.1 Capacity estimation from OCV test data 
+
+We first validate the capacity estimation method using the OCV test data in the accelerated aging dataset. We collected the OCV and the discharge capacity after the 1st, 159th, 194th, 269th, and 344th cycles of the battery as the validation cycles used to test the developed approach. We selected the OCV and the SOC of the first cycle as the nominal OCV-SOC relationship for validation of capacity estimation. The calibrated capacity C a C_{a} and the initial SOC Z a a ​ ( t 0 ) Z_{a}^{a}(t_{0}) are estimated by solving ( 5 ). The estimated capacities and the absolute relative errors (ARE) of each validation cycle are tabulated in Table 2 . We see from the table that the estimated capacities exhibit AREs of less than 0.5% for all 4 validation cycles. Table 2 : Estimated capacities (Ah) and absolute relative errors (%) of capacity estimation of the aged battery with OCV test data. 
+Aging cycle 
+Estimated 
+capacity (Ah) 
+Actual 
+capacity (Ah) ARE (%) 
+159 4.6280 4.6285 0.0102 
+194 4.5568 4.5466 0.2241 
+269 4.5166 4.5007 0.3538 
+344 4.4706 4.4505 0.4501 
+
+The OCV-SOC transformations of the 4 cycles are shown in Figure 3 . From the figure, we see that the calibrated OCV-SOC relationships with the estimated capacities and initial SOCs satisfy the invariance property. 
+
+(a) Cycle 159 
+(b) Cycle 194 
+(c) Cycle 269 
+(d) Cycle 344 Figure 3 : OCV-SOC transformations of capacity estimation of validation cycles using OCV test data. 
+
+We validate the effectiveness of the developed method on partial OCV data. The data from cycles 159 and 194 are tested. For each cycle, the first, middle, and last 33% of the OCV data are used to estimate the capacity of the battery. The AREs of each segment of data of the two cycles, and the estimated capacities of the battery are shown in Table 3 . The table demonstrates an average of less than 1.5% relative error of capacity estimation of the aged battery using partial OCV data. The average estimated capacities from three parts of the OCV data are 4.69 Ah and 4.61 Ah for the 159th and 194th cycles, respectively. The actual capacities for the two cycles are 4.63 Ah and 4.55 Ah, showing close agreement. Table 3 : AREs (%) of capacity estimation using partial OCV data for the 159th and 194th cycles of the aging test. 
+Cycle Beginning Middle End Average 
+Cycle 159 2.6949 1.0627 2.4023 1.3448 
+Cycle 194 5.5931 1.8138 2.9077 1.4997 
+
+The OCV-SOC transformations of two cycles using each part of the OCV data are shown in Figure 4 . From the figures, we see that the transformations achieve good alignment to the nominal relationships with partial OCV data from the beginning, middle, and end parts of the cycles. 
+
+(a) Cycle 159 beginning 
+(b) Cycle 194 beginning 
+(c) Cycle 159 middle 
+(d) Cycle 194 middle 
+
+(e) Cycle 159 end 
+(f) Cycle 194 end Figure 4 : OCV-SOC transformations of capacity estimation using partial data of the OCV tests. (a)(c)(e): Transformation for the 159th cycle. (b)(d)(f): Transformation for the 194th cycle. 
+
+This result demonstrates the effectiveness of the developed method on capacity estimation using the invariance of the OCV-SOC relationship of the aged battery. 
+
+3.2 Capacity estimation from dynamic discharge data 
+
+We estimate the capacity using the OCV values identified from dynamic discharge data with the OCV identification algorithm ( Wang and Ferrari, 2025 ) . The OCV data identified from the 1st and the 344th cycles are used to validate the capacity estimation.
+The identification RMSEs of the terminal voltage for both cycles are 4.3 mV and 4.0 mV, respectively, 0.1% of the upper cut-off voltage. 
+
+The estimated capacities, actual capacities, and the AREs of the estimation are tabulated in Table 4 . Table 4 : Estimated capacities (%) and absolute relative errors (%) of capacity estimation using identified OCV relationships. 
+Cycle 
+Estimated 
+capacity (Ah) 
+Actual 
+capacity (Ah) ARE (%) 
+Cycle 1 4.8985 4.8566 0.8640 
+Cycle 344 4.4479 4.4505 0.0604 
+
+We see from the table that with the OCV identified from dynamic data, the capacity estimation is accurate for both the first cycle and the last cycle of the aging test with AREs of less than 0.9%. These results demonstrate the efficacy of combining an OCV identification algorithm with the developed capacity estimation. 
+
+Figure 5 shows the OCV-SOC transformation with the estimated capacities of the two cycles in comparison to the nominal relationship from the first cycle. We see from the figure that the transformed OCV-SOC relationships align with the nominal relationship with satisfactory accuracy. 
+
+(a) Transformation of the identified OCV-SOC relationship from cycle 159. 
+(b) Transformation of the identified OCV-SOC relationship from cycle 344. Figure 5 : Transformations of the identified OCV-SOC relationships of capacity estimation from cycles 159 and 344. 
+
+We adopted the developed approach to 12 test cycles from the 344 aging cycles using the OCVs identified from dynamic discharge data. The estimated capacity in comparison with the actual capacity and the ARE of the estimation are shown in Figure 6 . From the figure, we see that the developed method is effective in capturing the decreasing trend in the capacity and estimates the capacity with a satisfactory accuracy of less than 2% ARE. Figure 6 : Estimated capacity in comparison to the actual capacity of the aged battery after dynamic cycles. 
+
+The average RMSE and MAE of the capacity estimation for all cycles are 0.045 Ah and 0.040 Ah, respectively. The mean ARE of the estimation is 0.85%. The accuracy across aging cycles demonstrates the efficacy of the developed method for estimating the capacity of the aged battery with OCV-SOC relationships identified from dynamic discharge data. 
+
+4 Discussion 
+
+The developed approach principally relies on the invariance assumption on the OCV-SOC relationship. Although it is empirically validated for the studied battery, it is recommended to conduct an experiment to validate the invariance for the batteries that differ from the studied one. Additionally, the temperature of battery operation is assumed to be constant in this work. When the ambient temperature in real operation differs from the experimental condition, an additional test for invariance may be needed. According to the simulation results, the middle part of the OCV curve likely provides a higher estimation accuracy of the capacity. For the length of the estimation data, it is recommended to have a longer horizon to enhance estimation accuracy. 
+
+5 Conclusion 
+
+In this work, we developed a novel method that estimates a battery’s capacity based on its discharge capacity and the nominal OCV-SOC relationship. The estimation is achieved through an invariance property in the OCV-SOC relationship across aging cycles. With the invariance, the capacity can be estimated by solving an OCV alignment optimization problem using the OCV of the aged battery. This approach applies to partial OCV data without using a full cycle of battery operation. With an OCV identification algorithm, the capacity can be estimated from dynamic discharge data. Simulation experiments showed an average ARE of capacity estimation with OCV test data of less than 0.5% and an average ARE of 0.85% using dynamic discharge data across 12 test cycles from 344 aging cycles, sufficient for practical usage in EV batteries. In future work, we will extend the developed approach to predict the remaining useful life of the battery. 
+
+References 
+Bloom et al. (2005) I. Bloom, A. N. Jansen, D. P. Abraham, J. Knuth, S. A. Jones, V. S. Battaglia, and G. L. Henriksen Differential voltage analyses of high-power, lithium-ion cells: 1. technique and application . Journal of Power Sources 139 ( 1-2 ), pp. 295–303 . Cited by: §1 . 
+Dubarry et al. (2012) M. Dubarry, C. Truchot, and B. Y. Liaw Synthesize battery degradation modes via a diagnostic and prognostic model . Journal of power sources 219 , pp. 204–216 . Cited by: §1 . 
+El-Dalahmeh et al. (2023) M. El-Dalahmeh, M. Al-Greer, M. El-Dalahmeh, and I. Bashir Physics-based model informed smooth particle filter for remaining useful life prediction of lithium-ion battery . Measurement 214 , pp. 112838 . Cited by: §1 . 
+Hannan et al. (2017) M. A. Hannan, M. H. Lipu, A. Hussain, and A. Mohamed A review of lithium-ion battery state of charge estimation and management system in electric vehicle applications: challenges and recommendations . Renewable and Sustainable Energy Reviews 78 , pp. 834–854 . Cited by: §1 . 
+Li et al. (2024) Y. Li, L. Wang, Y. Feng, C. Liao, and J. Yang An online state-of-health estimation method for lithium-ion battery based on linear parameter-varying modeling framework . Energy 298 , pp. 131277 . Cited by: §1 . 
+Lianpo et al. (2025) L. Lianpo, D. Songmei, and W. Lin Capacity degradation prediction of electric vehicle battery by integrating convolutional neural network with informer model . Journal of Power Sources 651 , pp. 237497 . Cited by: §1 . 
+Lu et al. (2022) J. Lu, R. Xiong, J. Tian, C. Wang, C. Hsu, N. Tsou, F. Sun, and J. Li Battery degradation prediction against uncertain future conditions with recurrent neural network enabled deep learning . Energy Storage Materials 50 , pp. 139–151 . Cited by: §1 . 
+McTurk et al. (2015) E. McTurk, C. Birkl, M. Roberts, D. Howey, and P. Bruce Minimally invasive insertion of reference electrodes into commercial lithium-ion pouch cells . ECS Electrochemistry Letters 4 ( 12 ), pp. A145 . Cited by: Figure 1 , Figure 1 , §2.2 . 
+Meng et al. (2018) J. Meng, G. Luo, M. Ricco, M. Swierczynski, D. Stroe, and R. Teodorescu Overview of lithium-ion battery modeling methods for state-of-charge estimation in electrical vehicles . Applied sciences 8 ( 5 ), pp. 659 . Cited by: §1 . 
+Navidi et al. (2024) S. Navidi, A. Thelen, T. Li, and C. Hu Physics-informed machine learning for battery degradation diagnostics: a comparison of state-of-the-art methods . Energy Storage Materials 68 , pp. 103343 . Cited by: §1 , §1 . 
+Peng et al. (2025) S. Peng, Y. Wang, A. Tang, Y. Jiang, J. Kan, and M. Pecht State of health estimation joint improved grey wolf optimization algorithm and lstm using partial discharging health features for lithium-ion batteries . Energy 315 , pp. 134293 . Cited by: §1 . 
+Plett (2015) G. L. Plett Battery management systems, volume i: battery modeling . Vol. 1 , Artech House . Cited by: §1 . 
+Pozzato et al. (2022) G. Pozzato, A. Allam, and S. Onori Lithium-ion battery aging dataset based on electric vehicle real-driving profiles . Data in brief 41 , pp. 107995 . Cited by: Figure 1 , Figure 1 , §2.2 , §3 . 
+Schmitt et al. (2023) J. Schmitt, M. Rehm, A. Karger, and A. Jossen Capacity and degradation mode estimation for lithium-ion batteries based on partial charging curves at different current rates . Journal of Energy Storage 59 , pp. 106517 . Cited by: §1 , §2.2 . 
+Wan et al. (2025) Z. Wan, S. Pannala, C. Solbrig, T. R. Garrick, A. G. Stefanopoulou, and J. B. Siegel Degradation and expansion of lithium-ion batteries with silicon/graphite anodes: impact of pretension, temperature, c-rate and state-of-charge window . eTransportation 24 , pp. 100416 . Cited by: §1 . 
+Wang et al. (2025) Y. Wang, R. M. G. Ferrari, and M. Verhaegen Continuous-time system identification and ocv reconstruction of li-ion batteries via regularized least squares . External Links: 2509.21116 , Link Cited by: §2.3 . 
+Wang and Ferrari (2025) Y. Wang and R. M. G. Ferrari Direct continuous-time lpv system identification of li-ion batteries via l1-regularized least squares . External Links: 2509.21110 , Link Cited by: §2.3 , §3.2 . 
+Wang et al. (2023) Z. Wang, X. Zhao, L. Fu, D. Zhen, F. Gu, and A. D. Ball A review on rapid state of health estimation of lithium-ion batteries in electric vehicles . Sustainable Energy Technologies and Assessments 60 , pp. 103457 . Cited by: §1 . 
+Zagorowska et al. (2020) M. Zagorowska, O. Wu, J. R. Ottewill, M. Reble, and N. F. Thornhill A survey of models of degradation for control applications . Annual Reviews in Control 50 , pp. 150–173 . Cited by: §1 . 
+Zhang et al. (2025) K. Zhang, T. Lv, X. Chen, J. Chen, Y. Shen, L. Zhou, T. Sun, and Y. Zheng Study on battery capacity recognition method for real electric vehicle under complex operating conditions . Journal of Energy Storage 118 , pp. 116219 . Cited by: §1 . 

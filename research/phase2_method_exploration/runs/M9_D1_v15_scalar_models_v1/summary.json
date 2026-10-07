@@ -1,0 +1,40 @@
+{
+  "scores": [
+    {
+      "method": "fixed_age_ridge",
+      "seed": -1,
+      "macro_MAE_pp": 3.6864866470637967,
+      "worst_cell_MAE_pp": 7.465475226344208,
+      "max_abs_error_pp": 19.863843811345617
+    },
+    {
+      "method": "scalar_MLP",
+      "seed": 20260928,
+      "macro_MAE_pp": 3.116027478240085,
+      "worst_cell_MAE_pp": 7.3171855326813615,
+      "max_abs_error_pp": 15.960266245198767
+    },
+    {
+      "method": "scalar_MLP",
+      "seed": 20260929,
+      "macro_MAE_pp": 3.2221040604280944,
+      "worst_cell_MAE_pp": 6.42869867397775,
+      "max_abs_error_pp": 17.76047648270182
+    },
+    {
+      "method": "scalar_MLP",
+      "seed": 20260930,
+      "macro_MAE_pp": 3.600297364471022,
+      "worst_cell_MAE_pp": 7.470283793044304,
+      "max_abs_error_pp": 16.831760776830237
+    },
+    {
+      "method": "scalar_RBF",
+      "seed": -1,
+      "macro_MAE_pp": 3.2848935135629347,
+      "worst_cell_MAE_pp": 5.7998608227141215,
+      "max_abs_error_pp": 17.46416585175136
+    }
+  ],
+  "claim_limit": "same six P1 development cells and high-rate single-cell capacity proxy; cannot confirm official 4S C/20 accuracy"
+}

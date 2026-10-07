@@ -1,0 +1,16 @@
+[
+  {
+    "bias_C": -1.0,
+    "median_abs_shift_pp": 0.24106780792903493,
+    "p95_abs_shift_pp": 0.6117956053434737,
+    "max_abs_shift_pp": 0.6900324204972321,
+    "gt0p5pp_targets": 24
+  },
+  {
+    "bias_C": 1.0,
+    "median_abs_shift_pp": 0.24106780792903493,
+    "p95_abs_shift_pp": 0.6117956053434744,
+    "max_abs_shift_pp": 0.6900324204972321,
+    "gt0p5pp_targets": 24
+  }
+]

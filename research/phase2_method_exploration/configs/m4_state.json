@@ -1,0 +1,30 @@
+{
+  "frozen_before_M4_runs": "2026-09-28",
+  "reference": "data/checkups/CK0_reference_discharge.csv.gz; 5.1 A finite-rate discharge, group endpoint 11.2 V; quasi-OCV only",
+  "evidence_levels": ["D3_official_unlabeled_voltage", "S_mechanism_truth"],
+  "official_visible_event": "M1 certified ~20.4 A 10 Ah pulse; fit/align on target 0.2-1.0 Ah only, score 2-10 Ah",
+  "synthetic_protocol": {
+    "truth_Q_Ah": [82.0, 94.0, 106.0],
+    "truth_initial_SOC": [0.94, 0.98],
+    "windows_Ah": [10.0, 30.0, 90.0],
+    "sampling_Ah": 0.25,
+    "truth_voltage_bias_V": [0.0, 0.004],
+    "truth_R_ohm": [0.0012, 0.0022],
+    "truth_dynamic_polarization_V": "0.003*(1-exp(-q/2Ah)) plus 0.0015*sin(2*pi*q/30Ah)",
+    "estimator_model": "CK0 median smoothed quasi-OCV plus constant bias; no fitted truth polarization or sine",
+    "estimator_Q_range_Ah": [70.0, 120.0],
+    "estimator_z0_range": [0.88, 1.0],
+    "voltage_noise_sensitivity_mV": [1.0, 5.0, 20.0],
+    "seed": 20260928
+  },
+  "gate": {
+    "minimum_profile_95pct_interval_width_Ah": 0.0,
+    "maximum_profile_95pct_interval_width_Ah_for_update": 20.0,
+    "minimum_profile_unique_interior_minimum": true,
+    "maximum_per_event_Q_update_fraction": 0.02,
+    "unobservable_uncertainty_growth_Ah_per_event": 0.5,
+    "reference_prior_Q_Ah": 100.41,
+    "reference_prior_halfwidth_Ah": 10.0
+  },
+  "selection_policy": "Voltage-only forecasts do not select a capacity estimator. D3 has no CK1-CK7 capacity labels. S truth only tests mechanism and is not official accuracy."
+}

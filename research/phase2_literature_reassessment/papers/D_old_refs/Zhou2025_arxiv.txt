@@ -1,0 +1,745 @@
+                                                 Battery State of Health Estimation and
+                                             Incremental Capacity Analysis under Dynamic
+                                                Charging Profile Using Neural Networks
+                                                          Qinan Zhou, Gabrielle Vuylsteke, R. Dyche Anderson, and Jing Sun, Fellow, IEEE
+
+
+
+                                             Abstract—Incremental capacity analysis (ICA) and differ-              including photoelectron spectroscopy [4], scanning electron
+
+
+
+
+arXiv:2502.19586v3 [eess.SY] 9 Jan 2026
+                                          ential voltage analysis (DVA) are two effective approaches               microscopy [5], X-ray diffraction [6], etc., provide the exact
+                                          for battery degradation monitoring. One limiting factor for              health and degradation status of batteries, but require expen-
+                                          their real-world application is that they require constant-
+                                          current (CC) charging profiles. This research removes this               sive equipment and are more suitable for laboratory testing.
+                                          limitation and proposes an approach that extends ICA/DVA-                Moreover, they may lead to changes in battery performance or
+                                          based degradation monitoring from CC charging to dy-                     even cause permanent damage [2]. In contrast, non-intrusive
+                                          namic charging profiles. A novel concept of virtual incre-               methods use measurements such as current, voltage, and
+                                          mental capacity (VIC) and virtual differential voltage (VDV)             temperature to infer the battery degradation status. Popu-
+                                          is proposed. Then, two related convolutional neural net-
+                                          works (CNNs), called U-Net and Conv-Net, are proposed to                 lar non-intrusive methods include electrochemical impedance
+                                          construct VIC/VDV curves and estimate the state of health                spectroscopy [7], incremental capacity analysis (ICA) [8], [9],
+                                          (SOH) from dynamic charging profiles across any state-                   differential voltage analysis (DVA) [10], [11], adaptive filter-
+                                          of-charge (SOC) range that satisfies some constraints. Fi-               ing [12]–[14], and data-driven techniques [15], [16]. These
+                                          nally, two CNNs called Mobile U-Net and Mobile-Net are                   methods do not require special instrumentation and can be
+                                          proposed as replacements for the U-Net and Conv-Net, re-
+                                          spectively, to reduce the computational footprint and mem-               implemented with existing onboard vehicle sensors.
+                                          ory requirements, while keeping similar performance. Us-                    This paper also focuses on ICA and DVA, two approaches
+                                          ing an extensive experimental dataset of battery modules,                that integrate physical insights with data analytics to inter-
+                                          the proposed CNNs are demonstrated to provide accurate                   pret battery degradation from measured current and voltage
+                                          VIC/VDV curves and enable ICA/DVA-based battery degra-                   profiles [8], [17], [18]. Specifically, ICA and DVA yield
+                                          dation monitoring under various fast-charging protocols
+                                          and different SOC ranges.                                                incremental capacity (IC) and differential voltage (DV) curves,
+                                                                                                                   from which IC/DV features can be extracted [17]. Changes
+                                             Index Terms—Convolutional Neural Network, Differen-                   in these features reflect underlying degradation mechanisms
+                                          tial Voltage Analysis, Fast Charging, Incremental Capac-
+                                          ity Analysis, State of Health Estimation, Variable-Current
+                                                                                                                   within batteries [8], [18]. The ability to extract such physical
+                                          Charging                                                                 insights without complex models is a key strength of ICA/DVA
+                                                                                                                   compared to purely data-driven methods. Previous studies have
+                                                                                                                   demonstrated that IC/DV features can be used to accurately es-
+                                                                I. INTRODUCTION                                    timate cell-level SOH under different charging conditions [17],
+                                                                                                                   [19]–[22] and module-level SOH under cell-to-cell variations
+                                          E     STIMATING battery state of health (SOH) and monitor-
+                                                ing associated degradation from onboard measurements
+                                          are crucial for range estimation, performance, safety, mainte-
+                                                                                                                   [23].
+                                                                                                                      Although originally developed for open-circuit conditions
+                                          nance, and warranty of electrified vehicles [1]. SOH can be              [8], ICA and DVA have been adapted for charging under
+                                          characterized by either capacity fading or resistance rising,            nonzero constant C-rate conditions. [24] reconstructs open-
+                                          both of which lead to a reduction in usable energy [2], [3].             circuit profiles from constant-current (CC) charging and per-
+                                          This paper focuses on capacity fading and defines SOH as                 forms ICA/DVA on the reconstructed profiles. Another type of
+                                          SOH = C/Cfresh , where C and Cfresh are the capacities of a              approach applies ICA/DVA directly to CC charging profiles,
+                                          battery at its current and fresh state, respectively.                    where the resulting IC/DV curves and features exhibit a C-
+                                             The battery degradation status can be assessed using in-              rate dependency [17], [21], [25]–[27]. Thus, C-rate is treated
+                                          trusive and non-intrusive methods. Various intrusive methods,            as an additional feature for degradation monitoring [28].
+                                                                                                                   Nonetheless, constant current (CC) remains a key requirement.
+                                             Qinan Zhou is with the Department of Mechanical Engineering,             The primary limitation of ICA/DVA is the requirement
+                                          University of Michigan, Ann Arbor, MI, 48103, USA. (email: qi-           of CC charging over a broad SOC range [9], [29]–[31],
+                                          nan@umich.edu).
+                                             Gabrielle Vuylsteke and R. Dyche Anderson are with Research and       which is often unmet in real-world charging scenarios with
+                                          Advanced Engineering, Ford Motor Company, Dearborn, MI 48124,            varying SOC windows and nonconstant charging currents,
+                                          USA. (email: gvuylste@ford.com, rander34@ford.com).                      especially in fast charging and constant-power charging [32].
+                                             Jing Sun is with the Department of Naval Architecture and Marine
+                                          Engineering, University of Michigan, Ann Arbor, MI 48103, USA. (email:   As a result, ICA/DVA-based degradation monitoring becomes
+                                          jingsun@umich.edu).                                                      inapplicable. To relax the requirement for a broad SOC range,
+Tian et al. [33] reconstructed entire CC charging profiles using              for VIC/VDV curve construction and direct SOH estimation,
+only 10 minutes of partial data. ICA/DVA has been extended                    respectively, using dynamic charging profiles. Section V dis-
+from CC charging to pulsed constant-current charging [34]–                    cusses the battery module dataset used in this study. Section
+[36]. To the best of our knowledge, extending ICA/DVA to                      VI assesses the performance of the proposed methods using
+more dynamic real-world charging current profiles, such as                    experimental data. Section VII summarizes the paper.
+fast charging profiles, has not been addressed in the literature.
+   This paper extends ICA/DVA to dynamic charging pro-                            II. VIRTUAL INCREMENTAL CAPACITY AND
+files1 . In contrast to prior studies [24], [33]–[36], the pro-                        DIFFERENTIAL VOLTAGE CURVES
+posed approach, for the first time, enables ICA/DVA-based                        This section defines the proposed concepts that underpin this
+SOH estimation and degradation monitoring without requiring                   work. First, VIC/VDV curves are defined. Then, VIC/VDV
+constant-current conditions. To evaluate the performance of                   features are briefly discussed.
+the approach, a large experimental dataset of battery modules                    IC/DV curves are originally defined in fully relaxed open-
+with three cells connected in parallel is used. Specifically, the             circuit conditions [8], which are rarely encountered in practice.
+contributions of the paper are four-fold:                                     To accommodate real-world applications, subsequent studies
+   • First, notions of virtual IC/DV (VIC/VDV) curves are                     [17], [21], [25]–[27] have defined IC/DV curves as:
+      proposed to enable the extension of the conventional                       • IC Curve: IC = dQCC /dVCC as a function of VCC ,
+      ICA/DVA-based SOH estimation approach from CC                              • DV Curve: DV = dVCC /dQCC as a function of QCC ,
+      charging to dynamic charging. For cells or modules                      where VCC is voltage and QCC is the charged capacity under
+      charged using dynamic current profiles1 , VIC/VDV                       CC charging with a reference C-rate of interest. The subscript
+      curves are defined as the IC/DV curves that the same                    “CC” emphasizes that these quantities are obtained from the
+      cells or modules, in the identical state of degradation,                constant-current conditions, and the shapes of IC/DV curves
+      would exhibit under CC charging at a reference C-rate of                depend on the C-rate [28].
+      interest.                                                                  Consider battery cells or modules charged with dynamic
+   • Second, a convolutional neural network (CNN), called
+                                                                              current profiles. While Q-V curves can still be measured and
+      U-Net, is developed to construct VIC/VDV curves from                    differentiated, the resulting derivative curves do not conform
+      dynamic charging profiles with any SOC ranges satisfying                to the above definitions of IC/DV curves and therefore lack
+      some constraints. Applied to the aforementioned dataset,                meaningful interpretation for ICA/DVA.
+      VIC/VDV curves are shown to approximate actual IC/DV                       To overcome the reliance on CC charging and to extend the
+      curves very well. As a case study, 0.7% root-mean-square                ICA/DVA-based degradation monitoring to dynamic charging
+      error (RMSE) for SOH estimation is achieved using only                  conditions, this paper defines the VIC/VDV curves as the
+      two features extracted from the VIC/VDV curves.                         IC/DV curves that the same cells or modules, in the identical
+   • Third, a CNN called Conv-Net is proposed to estimate
+                                                                              state of degradation, would exhibit under CC charging at the
+      SOH directly, bypassing the construction of VIC/VDV                     same reference C-rate, denoted as:
+      curves. For the same dataset, Conv-Net achieves a root-                                             b as a function of VbCC ,
+                                                                                 • Virtual IC Curve: IC
+      mean-square error (RMSE) of 0.6% in SOH estimation
+                                                                                 • Virtual DV Curve: c    DV as a function of Q b CC ,
+      from dynamic charging profiles.
+   • Fourth, computationally efficient CNNs, referred to as
+                                                                              where VbCC , Qb CC , IC,
+                                                                                                    b and DV
+                                                                                                           c are estimates that approximate
+      Mobile U-Net and Mobile-Net, are developed to reduce                    the expected response under CC charging. The notation b·
+      the computational and memory loads. For the same                        emphasizes that they are inferred from charging profiles that
+      dataset, the Mobile U-Net and Mobile-Net are shown to                   are not necessarily constant-current.
+      reduce the total number of neural-network parameters and                   Features extracted from VIC/VDV curves are called
+      floating-point operations by roughly 67%, while keeping                 VIC/VDV features and defined analogously to IC/DV features
+      similar performance for VIC/VDV curve construction and                  commonly used in the literature [8], [18], [26], [37], [38]. The
+      SOH estimation.                                                         specific VIC/VDV features employed for SOH estimation in
+                                                                              this work are detailed in Section V-A.
+Note that the main contribution of this paper is not the proposal
+of new degradation-related features or feature extraction meth-
+                                                                                 III. VIRTUAL IC/DV CURVE CONSTRUCTION
+ods. Instead, the key contribution lies in extending the con-
+ventional ICA/DVA-based degradation monitoring framework,                        With key concepts defined, the next step is to develop a
+which is traditionally developed for CC charging, to dynamic                  mapping from dynamic charging profiles to VIC/VDV curves
+charging conditions with time-varying current profiles.                       so that ICA/DVA can be performed. Given the complexity
+   To elucidate the proposed approach, the paper is orga-                     of formulating such a mapping analytically, a CNN-based
+nized as follows. Section II defines VIC/VDV curves and                       approach is adopted. Compared to other neural networks, CNN
+features. Sections III and IV describe the proposed methods                   is selected for its strong ability to capture spatial information.
+                                                                              Note that important IC/DV features, such as IC peak heights,
+   1 Hereafter, the term “dynamic current profiles” refers to current pro-    locations, and areas, are all spatial information.
+files that are not necessarily constant, and the term “dynamic charging          This section elaborates on the proposed method summarized
+profiles” denotes profiles that can be measured from charging with
+dynamic current profiles, such as profiles of voltage, current, transferred   in Algorithm 1. The CNNs are implemented and evaluated
+charge, etc.                                                                  using the Keras framework [39].
+   Note that the proposed CNNs are black-box models without           B. Downsampling
+embedding physical knowledge. However, once their construc-              {I (∆Q)} and {V (∆Q)} profiles measured onboard, even
+tion accuracy is established by proper design and training,           for a limited SOC range, typically have different sequence
+the virtual IC/DV curves can closely approximate the actual           lengths that exceed the length required by the proposed CNNs.
+IC/DV curves and, therefore, serve as a reliable alternative          To standardize the inputs, the downsampling and the one-
+when the latter cannot be obtained. As such, features visual-         sided symmetric padding (to be explained in Section III-C)
+ized using proper tools, can be used to derive relevant physical      are applied, as illustrated in Algorithm 1.
+interpretation, as shown in [40], [41].                                  This paper proposes downsampling based on transferred
+                                                                      charge (∆Q), rather than time or SOC, for the following
+ Algorithm 1: To Construct VIC/VDV Curves                             reasons. First, time-based downsampling can misrepresent key
+            n         o n          o n    o n        o
+  Output: Q   b CC (k) , VbCC (k) , IC(k)
+                                        b   , DV(k)
+                                               c                      regions of a charging profile. For instance, the segment from
+                                                                      80% to 100% SOC in fast charging has lower current and
+  Input: {I (∆Q)} and {V (∆Q)} from dynamic
+                                                                      longer duration, leading to disproportionately higher sampling
+   charging, a downsampling increment ∆q
+                                                                      density in a small portion of the entire charging range [32].
+                                                                      Second, while both SOC-based and ∆Q-based downsampling
+      n          o n           o
+   1: I˜ (∆Q) , Ṽ (∆Q) ← Downsample
+      n       o n        o          n     o     n       o             can mitigate this issue, SOC must be estimated in practice [42],
+   2: I˜ (k) , Ṽ (k) ← Pad I˜ (∆Q) and Ṽ (∆Q)                       bringing additional uncertainty. Thus, downsampling based on
+                                                                      ∆Q is the most suitable.
+      n          o n           o
+   3: I˜(s) (k) , Ṽ (s) (k) ← Equation (4)
+      n          o n           o  (s)                                  Specifically, {I (∆Q)} and {V (∆Q)} are downsampled for
+          (s)           (s)         b (k) ←                           every incremental ∆q defined as:
+   4: QCC (k) , VCC (k) , IC
+        b             b
+            n         o n            o                                                            ∆Qmax
+      CNN I˜(s) (k) , Ṽ (s) (k)                                                                ∆q =      ,                    (2)
+      n          o n          o n       o                                                            Nnn
+   5: Q b CC (k) , VbCC (k) , b    IC(k) ← Equation (4)               where Nnn is the required input sequence length of the
+      n        o         n       o
+   6: DV(k)
+        c         ← 1/ IC(k)b                                         proposed CNNs, and ∆Qmax is the maximum amount of
+                                                                      transferred charge the proposed method needs to handle. One
+                                                                    way to determine ∆Qmax is:
+  /* ∆Q ∈ 0, ∆Q , k ∈ {1, 2, ..., Nnn }                    */
+                                                                                          ∆Qmax = ∆SOC · Cfresh ,                      (3)
+                                                                      where ∆SOC is the maximum charging SOC range to be
+A. Input                                                              handled, and Cfresh is the capacity of a battery at the fresh state.
+   Define SOCinitial , SOCfinal , ∆SOC = SOCfinal − SOCinitial        Both ∆Qmax and ∆q are computed once during algorithm
+as initial SOC, final SOC, and partial charging range, re-            calibration and stored. Hence, no SOC information is needed
+spectively. Consider a dynamic charging event that satisfy the        for the algorithm implementation.
+following SOC window:                                                 Remark 1. For each charging profile, the total amount of
+                       ∆SOC ≥ ∆SOC,                             (1)   transferred charge ∆Q is not necessarily divisible by ∆q.
+                                                                      Thus, after downsampling, each original profile often has a
+where the underline · and overline · represent the lower and          small residual with the amount of transferred charge less than
+upper bounds, respectively. As the SOC window narrows,                ∆q. Because ∆q is chosen to be small, this residual can be
+charging profiles contain less information, leading to higher         omitted for the rest of the proposed method.
+construction errors. Hence, for a given target accuracy, the
+smallest possible SOC window is selected by trial and error
+to maximize coverage across diverse SOC ranges. Moreover,             C. One-Sided Symmetric Padding
+since the degradation process evolves gradually, SOH esti-               Recall that the proposed CNNs require input profiles of
+mation does not need to be performed for every charging               a fixed sequence length (Nnn ) [43]. Since original profiles
+cycle. Therefore, it is acceptable if an encountered SOC range        have different ∆Q and are downsampled with a fixed ∆q,
+occasionally falls beyond the chosen SOC window.                      sequence lengths of downsampled profiles (Npoint ) are different
+   Let {I (t)}, {V (t)}, {∆Q (t)}, t ∈ [0, T ] be the profiles of     for different profiles and Npoint ≤ Nnn . Thus, padding is
+current, voltage, and transferred charge over the interval [0, T ],   applied to resolve this mismatch in input sequence length.
+respectively, where t is time and T is the total charging
+                                                   Rt        time.       Among various padding strategies [44], this paper modifies
+The
+    transferred
+                 charge  is defined as ∆Q  (t) =   0
+                                                      I (τ ) dτ ∈     the strategy from [45] because of its ability to reduce errors
+ 0, ∆Q . {∆Q (t)} always starts at 0 and ends at the total            at the boundaries of the constructed profiles. Specifically, the
+amount of transferred charge (∆Q). Furthermore, both {I (t)}          one-sided symmetric padding scheme is used, where mirrored
+and {V (t)} can be re-written as functions of {∆Q (t)}, de-         values are appended to the end of the target profile to reach
+noted as {I (∆Q)}, {V (∆Q)}, ∆Q ∈ 0, ∆Q , respectively.               the required length. For example, extending a profile array
+   The inputs to the proposed method given in Algorithm 1             [a, b, c] to a length of 8 yields [a, b, c, c, b, a, a, b], where the
+are {I (∆Q)} and {V (∆Q)}. Hence, SOC is not used as an               original values remain at the beginning and mirrored values
+input.                                                                are appended at the end. In general, a profile with Npoint points
+                   Fig. 1: Designs of the Proposed U-Net (Section III-E) and Mobile U-Net (Section III-G).
+
+
+is padded with (Nnn − Npoint ) mirrored points at the end to         Fig. 1. U-Net is selected over other CNNs for two reasons.
+produce a final length of Nnn .                                      First, its encoder-decoder structure provides a clear separation
+   After downsampling and padding,      n theo resulting
+                                                   n      ocurrent   between feature extraction and profile construction, enhancing
+                                           ˜
+and voltage profiles, denoted as I (k) , Ṽ (k) , k ∈                explainability [43]. Second, its skip connections preserve
+{1, 2, ..., Nnn }, respectively, are sent as two separate channels   spatial information at both local and global levels, allowing
+to the proposed CNNs, where k is an index. ∆Q profile                the CNN to integrate multi-scale features for more accurate
+is no longer needed, as it is implicitly embedded in the             profile construction [46].
+downsampled current and voltage profiles.                               The U-Net shown in Fig. 1 consists of three main compo-
+                                                                     nents: the contraction path, skip connections, and expansion
+                                                                     path [47]. The contraction path (or encoder), composed of con-
+D. Output
+                                                                     volution and max pooling, extracts features at different levels
+   The outputs ofn the     proposed
+                              o   n CNNso n   contain othree sep-    [43]. As its depth increases, extracted features become more
+arate channels: Q    b CC (k) , VbCC (k) , IC(k)  b      , k ∈       global and less local [43]. Skip connections (or concatenations)
+                                                                     send the extracted features to the expansion path, allowing
+                  n       o
+{1, 2, ..., Nnn }. DV(k)
+                    c        is computed as DV(k)
+                                               c      = 1/IC(k).
+                                                            b
+                                                                     CNN to leverage both local and global information [46].
+The output SOC range is fixed and the same for all predictions,
+                                                                     The expansion path (or decoder), consisting of convolution
+regardless of the input SOC range. While this fixed range does
+                                                                     and transposed convolution, constructs profiles using received
+not need to be full-range, it must be broad enough to include
+                                                                     features [43]. Transposed convolution optimally increases the
+all the IC/DV features hof interest. This paper
+                                             i denotes this fixed    resolution of constructed profiles, while convolution combines
+SOC range as SOC  d ∈ SOC d initial , d
+                                     SOCfinal . Within this range,   the constructed profiles with received features [47].
+datapoints for output profiles are evenly distributed. Due to           U-Net offers significant design flexibility, including the
+the symmetry of the U-Net architecture (to be discussed in           number of levels and layers, as well as layer-specific config-
+Section III-E), the output sequence length is also Nnn , equal       urations. Fig. 1 shows the specific design used by this paper.
+to the input sequence length.                                        While some design choices are directly adopted from [47],
+                                                                     others are customized to fit the needs of this study and are
+E. U-Net for VIC/VDV Curve Construction                              worthy of discussion.
+  This subsection elaborates on the proposed CNN, called                • Performance Enhancement: First, larger kernel sizes are
+U-Net. The details of the proposed U-Net are shown in                      used in early and late layers to suppress input noise in
+    the contraction path and generate smoother output profiles      convolution for spatial filtering followed by a pointwise con-
+    in the expansion path. Second, parametric rectified linear      volution for channel-wise combination. This structure signifi-
+    unit (PReLU) [48] is used for activation. It learns optimal     cantly reduces both computation and memory cost compared
+    leakage hyperparameters to solve the dying ReLU prob-           to conventional convolutions [52]. Second, upsampling with
+    lem, thereby leading to better performance without an           simple repetition (as implemented in Keras [39]) replaces
+    increase in computational complexity [48]. As in [48], the      transposed convolution. Such upsampling has no parameters to
+    PReLU is applied with a shared leakage hyperparameter           be learned. Compared to transposed convolution, upsampling
+    per channel and distinct hyperparameters across channels.       loses the ability to learn optimal upsampling strategies, but
+  • Improved Training Efficiency: He Normal parameter               offers substantial savings in computation and memory. A
+    initialization [48] and batch normalization [49] are used       detailed comparison of the computation and memory for U-
+    to mitigate vanishing gradient problems [50]. Following         Net and Mobile U-Net will be given in Section VI-D.
+    [49], batch normalization is applied after linear operations       Otherwise, as shown in Fig. 1, Mobile U-Net employs the
+    and before nonlinear activations, effectively removing          same layer design strategies and training procedure described
+    the effects of biases in linear operations. The default         in Sections III-E and III-F, respectively.
+    hyperparameters in Keras [39] are adopted for batch
+                                                                                 IV. DIRECT SOH ESTIMATION
+    normalization.
+                                                                       With the trained U-Net and Mobile U-Net, general-purpose
+                                                                    VIC/VDV curves can be constructed for various degradation-
+F. Standardization and Training                                     related tasks, such as assessing remaining useful life [54] and
+   To ensure unbiasedn training
+                           o n and o  faster convergence, all       detecting internal short-circuit faults [55]. However, if SOH
+the input profiles ( I˜ (k) , Ṽ (k) ) and output profiles          estimation is the sole objective, these CNNs can be simplified
+ n         o n        o n       o                                   to provide SOH estimates directly from dynamic charging
+( Qb CC (k) , VbCC (k) , IC(k)
+                           b     ) are standardized using:          profiles with any SOC ranges satisfying Constraint (1), while
+                  n         o {z(k)} − µ                            achieving higher estimation accuracy than using constructed
+                                        z
+                   z (s) (k) =            ,                  (4)    VIC/VDV curves. The simplified CNNs are called Conv-Net
+                                  σz                                and Mobile-Net.
+where z can be any of the variables listed above, and µz and           While many CNNs are proposed in the literature for SOH
+σz are the mean and standard deviation computed over all the        estimation [15], [56], [57], most of them use fully connected
+points in all the training samples:                                 layers, which introduce large parameter counts and substantial
+                             n           oN                       computational overhead. In contrast, the proposed Conv-Net
+              µz = mean         [{z(k)}]j       ,         (5)       uses only convolutions, resulting in significantly fewer pa-
+                                           j=1
+                           n           oN                         rameters and improved computational efficiency. By adopting
+              σz = std        [{z(k)}]j       ,           (6)       depthwise separable convolutions, Mobile-Net is proposed
+                                         j=1                        to further simplify Conv-Net, while maintaining estimation
+where [{z(k)}]j denotes the profile {z(k)} from the j-th            performance. A detailed comparison of their computational
+training sample, k ∈ {1, 2, ..., Nnn }, and N is the total number   footprints will be given in Section VI-D.
+of training samples.                                                   The proposed method uses the same input, downsampling,
+                                                                    and one-sided symmetric padding as what is discussed in
+   The mean squared error (MSE) loss is used in this paper.
+                                                                    Sections III-A, III-B, and III-C. The outputs are SOH estimates
+The ADAM solver [51] with default settings in Keras [39]
+                                                                    ranging from 0 to 1. The overall procedure of the proposed
+is used to solve the optimization problem, allowing adaptive
+                                                                    method is summarized in Algorithm 2.
+learning rate, faster convergence, and bias corrections. As a
+regularization technique, early stopping is employed to halt
+                                                                     Algorithm 2: To Construct SOH Estimates
+the training process when the validation MSE loss does not
+decrease for consecutive Nth epochs [50].                             Output: SOH estimate d  SOH ∈ [0, 1]
+                                                                      Input: {I (∆Q)} and {V (∆Q)} from dynamic
+                                                                       charging, a pre-stored increment ∆q
+G. Mobile U-Net for Computational Efficiency
+                                                                          n        o n          o
+   The computational and memory demands of the proposed                1: I˜ (∆Q) , Ṽ (∆Q) ← Downsample
+U-Net can be further reduced without compromising perfor-                 n      o n       o         n     o    n  o
+                                                                       2: I˜ (k) , Ṽ (k) ← Pad I˜ (∆Q) and Ṽ (∆Q)
+mance. Inspired by [52], this paper derives a more computa-               n        o n          o
+tionally efficient CNN called Mobile U-Net to replace U-Net            3: I˜(s) (k) , Ṽ (s) (k) ← Equation (4)
+for onboard implementations.                                                            n         o n
+                                                                          d ← CNN I˜(s) (k) , Ṽ (s) (k)
+                                                                                                            o
+                                                                       4: SOH
+   As shown in Fig. 1, the proposed Mobile U-Net retains
+the same architecture as the U-Net, but incorporates two key                      
+modifications. First, depthwise separable convolution is used         /* ∆Q ∈ 0, ∆Q , k ∈ {1, 2, ..., Nnn }                 */
+in place of convolution. Originally proposed in [52] and widely
+adopted in CNNs for mobile and embedded applications [52],            Specific designs for Conv-Net and Mobile-Net are shown
+[53], depthwise separable convolution consists of a depthwise       in Fig. 2. It should be noted that these models can be
+                                  Fig. 2: Designs of the Proposed Conv-Net and Mobile-Net
+
+
+trained from scratch, independently of the U-Net and Mobile        greater generality and versatility. VIC/VDV curves can be
+U-Net. However, to maintain a unified framework across             utilized for a broad range of applications, including SOH
+VIC/VDV construction and SOH estimation, transfer learning         estimation, remaining useful life prediction [54], and internal
+is employed. Specifically, the entire contraction path of the      short-circuit fault detection [55], which allows a single trained
+trained U-Net and Mobile U-Net is transferred to the Conv-         model to serve multiple diagnostic and prognostic purposes. In
+Net and Mobile-Net, respectively, for feature extraction. Since    contrast, if models are designed to output specific VIC/VDV
+the contraction path extracts degradation-related features for     features, different models are required for different tasks be-
+VIC/VDV construction, it is well-suited for direct SOH pre-        cause different features are informative for different objectives.
+diction. During training, the parameters of the contraction path
+are frozen, and additional layers of convolution or depthwise      V. BATTERY DATASETS USED FOR EVALUATION
+separable convolution are appended for regression.                    This section describes the battery dataset used in this study
+   Similar to Section III-F, the MSE loss, ADAM solver [51],       for performance evaluation. Although the original dataset only
+and early stopping are used for training. As SOH values lie        contains a long charging range, random truncation of the
+in the range [0, 1], output standardization is unnecessary.        charging profiles is applied to generate randomly varying SOC
+However, inputs are still standardized using Equation (4) to       ranges, thereby better reflecting real-world partial charging
+ensure stable and fast convergence.                                scenarios. Section V-A introduces the original dataset, while
+Remark 2. (On Direct Construction of VIC/VDV Features)             Section V-B details the random truncation process used to
+The proposed Conv-Net and Mobile-Net architectures can             simulate diverse partial charging conditions.
+also be adapted to directly predict key VIC/VDV features,
+instead of VIC/VDV curves. In this case, the final layer of the    A. Original Battery Dataset
+CNNs shown in Fig. 2 can be configured with multiple output           A proprietary dataset, comprising 96 lithium nickel-
+channels corresponding to the number of target VIC/VDV             manganese-cobalt oxide 622 (NMC622) modules from a real
+features, rather than a single channel used for SOH estimation.    electrified vehicle battery pack, is used. Each module consists
+The training procedure follows the same settings described         of three NMC622 cells connected in parallel. Table I summa-
+in Section III-F. Both inputs and outputs are standardized         rizes the key attributes of the dataset. Data were collected by
+according to Equation (4).                                         real onboard sensors on a commercially available electrified
+Remark 3. (On Construction of VIC/VDV Curves vs Features)          vehicle at a 1 Hz sampling rate, without imposing any special-
+This work focuses on constructing complete VIC/VDV curves          purpose sensing or sampling requirement beyond what is
+rather than specific VIC/VDV features, as the former offers        available on the vehicle. Since California regulations require
+electrified vehicle batteries to maintain at least 80% of their
+original capacity [3], this private dataset contains no samples
+with SOH values below 80%. Consequently, the proposed
+methods are validated under SOH ≥ 80%.
+   These modules are cycled alternately using low C-rate and
+fast charging profiles. Rest periods are inserted before and after
+each cycle to allow full voltage relaxation, enabling accurate
+determination of both initial and final SOC, as well as module-
+level SOH. Within each module, three parallelly connected                  Fig. 4: Example IC/DV Curves and Features in the Dataset
+cells have self-balancing effects and do not involve any
+balancing circuitry. The low C-rate charging profile includes               For training the proposed U-Net and Mobile U-Net, the
+two CC charging stages with 86A (0.4C) and 64.5A (0.3C)                   module-level IC/DV curves from one low C-rate charging
+module-level currents, and one subsequent constant-voltage                cycle are used as the ground truth for the outputs, while the
+stage. Module-level IC/DV curves are computed from the first              module-level fast charging profiles from the next cycle are
+CC stage, as this stage contains all important IC/DV features             used as inputs.
+for this dataset. The analytical derivative method proposed by
+[17], [19], [20], [58] is used here to incorporate some robust-           B. Dataset Used for Developing Proposed CNNs
+ness against high-frequency measurement noise. Additionally,
+                                                                             The original dataset contains fast-charging profiles with a
+this dataset contains three types of fast-charging protocols, as
+                                                                          SOC range spanning from 13% to 91%. To better reflect real-
+shown in Fig. 3. They are used to validate the feasibility of the
+                                                                          world conditions where the charging SOC range varies, these
+proposed methods in extending ICA/DVA to dynamic charging
+                                                                          profiles are randomly truncated to generate a more diverse
+profiles, which represents the primary objective of this study.
+                                                                          dataset with different SOC ranges satisfying Constraint (1).
+However, due to the limitations of the current dataset, the
+                                                                             To train CNNs that generalize across arbitrary SOC ranges
+performance of the proposed methods under other charging
+                                                                          within the specified window, truncation must be performed
+protocols with substantially different dynamic characteristics
+                                                                          in a randomized manner. Assuming equal importance across
+cannot yet be comprehensively evaluated.
+                                                                          different SOC ranges, the sampling distribution should be a
+                                                                          uniform distribution satisfying Constraint (1). The Dirichlet-
+                                                                          rescale algorithm proposed by [59] is used to generate random
+                                                                          SOC ranges from such a constrained uniform distribution. To
+                                                                          further enrich the data, each input profile from the original
+                                                                          dataset is truncated Ntruncate times to produce multiple profiles
+                                                                          with distinct SOC ranges. The value of Ntruncate is chosen
+                                                                          empirically based on the desired dataset size and computa-
+                                                                          tional budget. The number of input-output pairs after random
+                                                                          truncations is given in Table I.
+    Fig. 3: Fast-Charging Current Profiles in the Dataset
+                                                                                    VI. PERFORMANCE EVALUATION
+                                                                             This section evaluates the performance of the proposed
+                                                                          CNNs using the dataset prepared in Section V-B. The follow-
+       TABLE I: Key Attributes of the Battery Dataset                     ing specific case study is used as an example to illustrate the
+  Attributes                                        Descriptions          performance: ∆SOC ≥ 20%, ∆SOC = 91% − 13% = 78%,
+  Chemistry                                         NMC622                Nnn = 128, SOCd initial = 5%, d
+                                                                                                        SOCfinal = 56%, Ntruncate = 10,
+  Module Nominal Capacity                           208Ah                 Nth = 30, and a mini-batch size of 64 for the ADAM solver.
+  Module Configuration                              3 Cells in Parallel
+                                                                          As explained in Section III-A, a trade-off exists between the
+  No. of Modules                                    96
+  Module-Level SOH Range                            100% - 86%            SOC window and construction accuracy. Thus, the proposed
+  No. of Fast Charging Protocols                    3                     methods can be further extended to ∆SOC < 20%, but with
+  No. of Input-Output Pairs                         40512                 deteriorated construction accuracy.
+  No. of Input-Output Pairs Derived by Truncating   405120
+                                                                             The dataset described in Section V-B is randomly split
+                                                                          into 60% training, 20% validation, and 20% testing sets
+                                                                          for development and evaluation. The comparisons among the
+   Fig. 4 shows one example of module-level IC/DV curves.                 proposed U-Net, Mobile U-Net, Conv-Net, and Mobile-Net
+This paper uses features such as IC peak height (IC PH) and IC            are elucidated.
+partial areas (IC PA). As shown in Fig. 4, the IC PH is defined
+as the y-coordinate of the IC peak, and the IC PA is defined
+as the area either above a user-defined horizontal cutoff line            A. Accuracy of Constructed VIC/VDV Curves
+(IC PA 2) or within a user-defined symmetric voltage window                 As noted in Sections I and II, derivatives directly com-
+around a target IC peak (IC PA 1) [26].                                   puted from fast-charging profiles do not satisfy the definitions
+                                              (a) Error Distribution of the Testing Set
+
+
+
+
+                   (b) Category A            (c) Category B              (d) Category C          (e) Category D
+                   Fig. 5: Performance of VIC/VDV Curve Construction under Random Input SOC Ranges
+
+
+of IC/DV curves and, thus, are unsuitable for ICA/DVA.              (40%-80% SOC), and narrow-range (55%-80% SOC). These
+Hence, VIC/VDV curves are constructed as an alternative. This       test cases are generated by directly truncating profiles from
+subsection evaluates the accuracy of module-level VIC/VDV           the original dataset. The U-Net and Mobile U-Net are not
+curve construction using module-level fast charging profiles        re-trained for any specific ranges. Fig. 6 compares the error
+through the proposed U-Net and Mobile U-Net. n                o     distributions of these cases against the random-range baseline.
+   Recall that outputs of the proposed CNNs are Q    b (s) (k) ,    Results show that the performance of the VIC/VDV construc-
+                                                       CC
+n         o  (s)                                 n          o     tion remains consistent across different specific ranges, with
+    (s)          b (k) , which approximate Q(s) (k) ,
+  VCC (k) ,
+  b             IC                                     CC           only slight deterioration when the SOC range is narrower due
+n
+    (s)
+          o n
+                 (s)
+                        o                                           to reduced information content.
+  VCC (k) , IC (k) . The construction error can be defined
+as:
+                                      (s)  2
+                              (s)
+                     N nn   IC    (k)    ICb (k)
+                  1 X  (s)   (s) 
+        Error =            VCC (k)  −  VbCC (k)  ,       (7)
+                Nnn           (s)            (s)
+                     k=1    QCC (k)       QCC (k) 2
+                                           b
+where ∥ · ∥2 is the Euclidean norm.
+   Fig. 5a shows the error distribution of the testing set under
+                                                                                              (a) U-Net
+random input SOC ranges, divided into four categories. For
+each category, a pair of virtual and actual IC/DV curves from
+Mobile U-Net with an average error is shown in the rest
+of Fig. 5. Several observations can be drawn. First, most
+VIC/VDV curves closely match their corresponding actual
+IC/DV curves, indicating that U-Net and Mobile U-Net can
+effectively construct accurate VIC/VDV curves for ICA/DVA-
+based degradation monitoring. Second, Mobile U-Net achieves
+                                                                                           (b) Mobile U-Net
+similar performance to U-Net in VIC/VDV curve construction,
+but offers significantly lower computational requirements (to       Fig. 6: Testing Error Distributions of VIC/VDV Curve Con-
+be discussed in Section VI-D).                                      struction under Different Input SOC Ranges
+   To evaluate the generalizability of the U-Net and Mobile
+U-Net trained from random input SOC ranges to specific                In summary, the proposed U-Net and Mobile U-Net en-
+input SOC ranges, the following three fast-charging cases           able ICA/DVA-based degradation monitoring from dynamic
+are investigated: wide-range (15%-90% SOC), medium-range            charging profiles, overcoming the constant-current limitations
+of traditional methods. Models trained on random SOC ranges       besides SOH estimation, such as the remaining useful life
+generalize well to any fast-charging profiles satisfying the      prediction [54] and internal short-circuit fault detection [55].
+range constraints in Section V-B.
+
+B. Applications of VIC/VDV Curves and Features
+   To demonstrate the utility of the constructed module-level
+VIC/VDV curves for battery degradation monitoring, this
+paper uses module-level SOH estimation as a case study.
+   For module-level SOH estimation, by using feature selection    Fig. 7: Testing Absolute SOH Estimation Error Using Conv-
+algorithms, an optimal set of IC/DV features can be found         Net and Mobile-Net under Random Input SOC Ranges
+to combat against cell-to-cell variations [23]. For the given
+dataset, IC partial areas (IC PA 1 and IC PA 2 defined in Fig.       Fig. 7 shows the testing absolute error distributions for
+4) are ranked the top two [23] and are selected for this study.   SOH estimation under random input SOC ranges satisfying
+Then, using the relevance vector regression from [23], models     constraints in Section V-B. Results indicate that the proposed
+are learned to map these features to SOH.                         Mobile-Net has similar performance to Conv-Net for SOH
+                                                                  estimation, but requires significantly lower computation and
+TABLE II: SOH Estimation Performance under Fast Charging          memory (to be discussed in Section VI-D).
+Based on Testing Set
+                                                                     To assess the generalizability of the models trained from
+      Neural
+                     Approach       RMSE
+                                             99.7th-Percentile    random SOC ranges to specific SOC ranges, the same three
+     Network                                  Absolute Error      cases in Section VI-A are employed. Similarly, the proposed
+                  Through VIC/VDV   0.73%
+      U-Net
+                       Features      SOH
+                                               2.54% SOH          Conv-Net and Mobile-Net are not re-trained, and all the data
+                  Through VIC/VDV   0.79%                         are used for testing. Fig. 8 shows the absolute error distri-
+   Mobile U-Net                                2.86% SOH
+                       Features      SOH                          butions for the testing set, demonstrating that SOH estimation
+                        Direct      0.64%                         accuracy remains consistent across different SOC ranges, with
+    Conv-Net                                   2.28% SOH
+                      Estimation     SOH
+                        Direct      0.68%                         a slight deterioration under narrower input SOC ranges due to
+    Mobile-Net                                 2.44% SOH
+                      Estimation     SOH                          reduced informational content.
+                                                                     In summary, direct SOH estimation using Conv-Net and
+   The first two rows of Table II summarize the SOH estima-       Mobile-Net not only outperforms VIC/VDV-based SOH es-
+tion performance under fast charging with random input SOC        timation using U-Net and Mobile U-Net, but also generalizes
+ranges using VIC/VDV features. The extracted VIC/VDV              well across arbitrary SOC ranges that satisfy constraints given
+features achieve a good performance well below the 5%             in Section V-B.
+SOH error threshold required by California regulations [3],
+demonstrating the effectiveness of the constructed VIC/VDV
+curves for degradation monitoring under dynamic charging.
+As to be further discussed in Section VI-C, VIC/VDV are
+more general-purpose (because different features can be ex-
+tracted from VIC/VDV curves for different tasks), albeit with
+slightly reduced estimation accuracy compared to direct SOH
+estimation approaches.                                                                     (a) Conv-Net
+
+C. Accuracy of Direct SOH Estimates
+   When SOH estimation is the sole objective, the proposed
+U-Net and Mobile U-Net can be simplified into Conv-Net
+and Mobile-Net, respectively. This subsection evaluates and
+compares the performance of Conv-Net and Mobile-Net in
+directly estimating SOH from dynamic charging profiles.                                   (b) Mobile-Net
+   The last two rows of Table II summarize the SOH estimation
+performance using Conv-Net and Mobile-Net. The direct SOH         Fig. 8: Testing Absolute Error Distributions for SOH Estima-
+estimation using Conv-Net and Mobile-Net outperforms the          tion under Different Input SOC Ranges
+VIC/VDV feature-based SOH estimation using U-Net and
+Mobile U-Net. The performance also significantly surpasses
+California’s regulatory requirements in Section VI-B. Hence,      D. Computational Footprint Comparison
+Conv-Net and Mobile-Net have the advantage of better SOH             The computation and memory demands are critical factors
+estimation performance, while U-Net and Mobile U-Net of-          for neural networks. Their footprint can be measured by the
+fer the complementary benefit of generating general-purpose       total number of CNN parameters and floating-point operations.
+VIC/VDV curvs whose features can be used for other tasks          Table III summarizes these quantities for the proposed CNNs.
+  Based on Table III, one can have the following observations.           contraction path are fine-tuned. For VIC/VDV curve construc-
+First, most of the parameters in the Conv-Net and Mobile-                tion, in the expansion path, the last five convolutions plus a
+Net are inherited from the contraction path of the U-Net                 corresponding transposed convolution are fine-tuned for the
+and Mobile U-Net for extracting degradation-related features.            U-Net, while the last five depthwise separable convolutions
+Second, when comparing U-Net to Mobile U-Net and Conv-                   plus a corresponding upsampling are fine-tuned for the Mobile
+Net to Mobile-Net, the mobile CNNs contain approximately                 U-Net. Similarly, for direct SOH estimation, the last two
+1/3 of the parameters and the floating-point operations. As              convolutions or depthwise separable convolutions are fine-
+seen in Sections VI-A, VI-B, and VI-C, Mobile U-Net and                  tuned for Conv-Net or Mobile-Net, respectively.
+Mobile-Net maintain strong performance in VIC/VDV curve                     The fine-tuned U-Net and Mobile U-Net accurately con-
+construction and SOH estimation, respectively, despite their             struct VIC/VDV curves under new fast-charging profiles.
+reduced complexity.                                                      Then, SOH estimation is conducted using the VIC peak
+                                                                         height as the sole input feature [17] and its performance is
+TABLE III: Number of Parameters and Floating-Point Opera-                summarized in Table V. Similarly, the fine-tuned Conv-Net
+tions for Proposed CNNs                                                  and Mobile-Net achieve accurate SOH estimation under these
+                        No. of Parameters        No. of Floating-Point   previously unseen fast-charging profiles, with performance
+     Models
+                    (Total, Trainable, Fixed)         Operations         metrics reported in Table V. Overall, Table V demonstrates
+    U-Net              (95503, 94323, 1180)            5537954           that, with transfer learning, the proposed CNN architectures
+  Mobile U-Net         (32425, 31385, 1040)            1879739           exhibit strong adaptability to both unseen charging protocols
+   Conv-Net           (73361, 12991, 60370)            2809101
+   Mobile-Net          (27118, 4946, 22172)             981243           and new battery datasets.
+
+                                                                         TABLE V: SOH Estimation Performance under Previously
+                                                                         Unseen Fast-Charging Protocols Based on Testing Set
+E. Adaptivity to New Charging Protocols and Datasets
+                                                                                 Neural                             99.7th-Percentile
+   The neural network-based approach inherently has poor                        Network
+                                                                                              Approach     RMSE
+                                                                                                                     Absolute Error
+generalizability to previously unseen conditions [50]. How-                                  Through VIC    0.90%
+                                                                                 U-Net                                 3.10% SOH
+ever, this limitation can be effectively mitigated through                                   Peak Height     SOH
+transfer learning, which enables the trained CNN models to                                   Through VIC    0.90%
+                                                                              Mobile U-Net                             3.17% SOH
+                                                                                             Peak Height     SOH
+adapt to unseen dynamic charging profiles and new battery                                       Direct      0.23%
+datasets. Only a small subset of early and late layers of                       Conv-Net                               1.04% SOH
+                                                                                              Estimation     SOH
+the trained models is fine-tuned, while all remaining layers                                    Direct      0.29%
+                                                                               Mobile-Net                              1.36% SOH
+                                                                                              Estimation     SOH
+are kept fixed. The extent of fine-tuning can be adjusted
+depending on application requirements, with fine-tuning more
+layers generally leading to improved performance.                                            VII. CONCLUSIONS
+   To demonstrate this capability, a public dataset [60], com-              This paper proposes a unified approach, shown in Algo-
+prising lithium iron phosphate (LFP) cells, is utilized. The             rithms 1 and 2, that enables ICA/DVA-based degradation
+cells are charged using 224 distinct six-step multi-stage fast-          monitoring under dynamic charging profiles for any SOC
+charging protocols, none of which are encountered during                 ranges that satisfy Constraint (1) for the first time.
+the training of the CNN models presented in Sections VI-A,                  By introducing the concepts of VIC/VDV curves, the
+VI-B, VI-C, and VI-D. Basic information about the dataset is             proposed U-Net constructs VIC/VDV curves that accurately
+summarized in Table IV, while detailed descriptions can be               approximate actual IC/DV curves. A case study on module-
+found in [60]. The dataset is then randomly partitioned into             level SOH estimation demonstrates the practical utility of
+60% training, 20% validation, and 20% testing sets.                      VIC/VDV curves for degradation monitoring. Applied to a
+                                                                         large experimental dataset of NMC622 modules with three
+   TABLE IV: Key Attributes of the New Battery Dataset
+                                                                         parallel-connected cells, VIC/VDV features achieve an RMSE
+              Attributes                        Descriptions             of 0.73% and a 99.7th-percentile absolute error of 2.54% for
+              Chemistry                         LFP                      module-level SOH estimation. If SOH is the only information
+              Cell Nominal Capacity             1.1Ah
+              No. of Cells                      233
+                                                                         of interest, the proposed Conv-Net provides accurate SOH
+              Cell-Level SOH Range              100% - 80%               estimates directly. On the same dataset, Conv-Net achieves
+              No. of Fast Charging Protocols    224                      an RMSE of 0.64% SOH and a 99.7th-percentile absolute
+              No. of Input-Output Pairs         56320                    error of 2.28% SOH for module-level SOH estimation, while
+                                                                         maintaining a smaller computational footprint compared to
+   To adapt to these new charging protocols, transfer learning           other CNNs in the literature.
+is applied. Note that, as mentioned previously, the extent of               The proposed Mobile U-Net and Mobile-Net can replace U-
+fine-tuning is not unique and depends on one’s needs. For                Net and Conv-Net, respectively, to significantly reduce compu-
+demonstration purposes, this paper adopts the following fine-            tation and memory requirements. These mobile CNNs reduce
+tuning strategy. For all four trained CNN models (e.g., U-               the numbers of parameters and floating-point operations to 1/3
+Net, Mobile U-Net, Conv-Net, and Mobile-Net), their first                of their counterparts, without losing performance. Specifically,
+four convolutions or depthwise separable convolutions in the             for module-level SOH estimation, VIC/VDV features from
+Mobile U-Net achieve an RMSE of 0.79% SOH and a 99.7th-                            [14] B. V. Nguyen and J. W. Jeon, “Enhancing particle filter performance for
+percentile absolute error of 2.86% SOH, while Mobile-Net                                high accuracy state estimation and rul prediction,” IEEE Transactions
+                                                                                        on Instrumentation and Measurement, vol. 74, p. 3537112, 2025.
+achieves an RMSE of 0.68% SOH and a 99.7th-percentile                              [15] N. Yang, Z. Song, H. Hofmann, and J. Sun, “Robust state of health
+absolute error of 2.44%.                                                                estimation of lithium-ion batteries using convolutional neural network
+   The promising results also lead to some directions for future                        and random forest,” Journal of Energy Storage, vol. 48, p. 103857, 2022.
+                                                                                   [16] R. S. D. Teixeira, R. F. Calili, M. F. Almeida, and D. R. Louzada,
+work. First, the performance of the proposed method under                               “Recurrent neural networks for estimating the state of health of lithium-
+SOH values below 80% is worth investigating for applications                            ion batteries,” Energies, vol. 10, no. 3, p. 111, 2024.
+beyond electrified vehicles. Second, because of the data-driven                    [17] C. Weng, Y. Cui, J. Sun, and H. Peng, “On-board state of health
+                                                                                        monitoring of lithium-ion batteries using incremental capacity analysis
+nature of the proposed CNNs, it is essential to further assess                          with support vector regression,” Journal of Power Sources, vol. 235, pp.
+the performance and generalizability of the proposed methods                            36–44, 2013.
+under practical considerations for onboard implementation,                         [18] A. Krupp, E. Ferg, F. Schuldt, K. Derendorf, and C. Agert, “Incremental
+                                                                                        capacity analysis as a state of health estimation method for lithium-ion
+including computational limitations of in-vehicle hardware and                          battery modules with series-connected cells,” Batteries, vol. 7, no. 1,
+the efficient scalability of the framework to a large number                            p. 2, 2021.
+of modules within a battery pack. Third, the performance of                        [19] C. Weng, J. Sun, and H. Peng, “Model parametrization and adaptation
+                                                                                        based on the invariance of support vectors with applications to battery
+the proposed framework for more general charging/discharging                            state-of-health monitoring,” IEEE Transactions on Vehicular Technology,
+conditions and other battery chemistries besides NMC622 and                             vol. 64, no. 9, pp. 3908–3917, 2015.
+LFP will be investigated.                                                          [20] C. Weng, J. Sun, and H. Peng, “A unified open-circuit-voltage model
+                                                                                        of lithium-ion batteries for state-of-charge estimation and state-of-health
+                              R EFERENCES                                               monitoring,” Journal of Power Sources, vol. 258, no. 9, pp. 228–237,
+                                                                                        2014.
+ [1] N. Noura, L. Boulon, and S. Jemei, “A review of battery state of health       [21] Q. Zhou, E. Hellstrom, D. Anderson, and J. Sun, “Sensitivity analysis
+     estimation methods: Hybrid electric vehicle challenges,” World Electric            of support vector regression-based incremental capacity analysis for
+     Vehicle Journal, vol. 11, no. 4, p. 66, 2020.                                      battery state of health estimations,” in 2023 IEEE Conference on Control
+ [2] M. Berecibar, I. Gandiaga, I. Villarreal, N. Omar, J. V. Mierlo, and P. den        Technology and Applications (CCTA), pp. 1122–1127, Bridgetown,
+     Bossche, “Critical review of state of health estimation methods of li-             Barbados, 2023.
+     ion batteries for real applications,” Renewable and Sustainable Energy        [22] D. Stephens, Q. Zhou, H. Hofmann, and J. Sun, “Integrated incre-
+     Reviews, vol. 56, pp. 572–587, 2016.                                               mental capacity analysis and differential thermal analysis for improved
+ [3] “Data standardization requirements for 2026 and subsequent model year              robustness in li-ion battery state of health estimation,” in 2024 IEEE
+     light-duty zero emission vehicles and plug-in hybrid electric vehicles,”           Conference on Control Technology and Applications (CCTA), pp. 729–
+     California Code of Regulations, Title 13, §1962.5, 2024, available from:           734, Newcastle upon Tyne, UK, 2024.
+     California Office of Administrative Law.                                      [23] Q. Zhou, D. Anderson, and J. Sun, “State of health estimation for battery
+ [4] B. Philippe, R. Dedryvere, J. Allouche, F. Lindgren, M. Gorgoi,                    modules with parallel-connected cells under cell-to-cell variations,”
+     H. Rensmo, D. Gonbeau, and K. Edstrom, “Nanosilicon electrodes for                 eTransportation, vol. 22, p. 100346, 2024.
+     lithium-ion batteries: Interfacial mechanisms studied by hard and soft x-     [24] J. Tian, R. Xiong, W. Shen, and F. Sun, “Electrode ageing estimation
+     ray photoelectron spectroscopy,” Chemistry of Materials, vol. 24, no. 6,           and open circuit voltage reconstruction for lithium ion batteries,” Energy
+     pp. 1107–1115, 2012.                                                               Storage Materials, vol. 37, pp. 283–295, 2021.
+ [5] P. Abellan, B. L. Mehdi, L. R. Parent, M. Gu, C. Park, W. Xu, Y. Zhang,       [25] C. Wong, A. Weng, S. Pannala, J. Choi, J. B. Siegel, and A. Ste-
+     I. Arslan, J.-G. Zhang, C.-M. Wang, J. E. Evans, and N. D. Browning,               fanopoulou, “Differential voltage analysis and patterns in parallel-
+     “Probing the degradation mechanisms in electrolyte solutions for li-ion            connected pairs of imbalanced cells,” in 2024 American Control Con-
+     batteries by in situ transmission electron microscopy,” Nano Letters,              ference (ACC), Toronto, Canada, 2024.
+     vol. 14, no. 3, pp. 1293–1299, 2014.                                          [26] R. Zhou, R. Zhu, C.-G. Huang, and W. Peng, “State of health estimation
+ [6] F. Luo, C. Wei, C. Zhang, H. Gao, J. Niu, W. Ma, Z. Peng, Y. Bai,                  for fast-charging lithium-ion battery based on incremental capacity
+     and Z. Zhang, “Operando x-ray diffraction analysis of the degradation              analysis,” Journal of Energy Storage, vol. 51, p. 104560, 2022.
+     mechanisms of a spinel limn2o4 cathode in different voltage windows,”         [27] Y. Chen, L. Torres-Castro, K.-H. Chen, D. Penley, J. Lamb, M. Karulkar,
+     Journal of Energy Chemistry, vol. 44, pp. 138–146, 2020.                           and N. P. Dasgupta, “Operando detection of li plating during fast
+ [7] Y. Li, M. Ye, Q. Wang, G. Lian, M. Kemeny, B. Xia, and B. Zhang,                   charging of li-ion batteries using incremental capacity analysis,” Journal
+     “Capacity estimation of lithium-ion battery through interpretation of              of Power Sources, vol. 539, p. 231601, 2022.
+     electrochemical impedance spectroscopy combined with machine learn-           [28] A. Fly and R. Chen, “Rate dependency of incremental capacity analysis
+     ing,” Measurement, vol. 243, p. 116374, 2025.                                      (dq/dv) as a diagnostic tool for lithium-ion batteries,” Journal of Energy
+ [8] M. Dubarry, V. Svoboda, R. Hwu, and B. Y. Liaw, “Incremental capacity              Storage, vol. 29, p. 101329, 2020.
+     analysis and close-to-equilibrium ocv measurements to quantify capacity       [29] T. Zhang, N. Guo, X. Sun, J. Fan, N. Yang, J. Song, and Y. Zou,
+     fade in commercial rechargeable lithium batteries,” Electrochemical and            “A systematic framework for state of charge, state of health and state
+     Solid-State Letters, vol. 9, no. 10, p. A454, 2006.                                of power co-estimation of lithium-ion battery in electric vehicles,”
+ [9] Z. Xu, Z. Chen, L. Yang, and S. Zhang, “State of health estimation                 Sustainability, vol. 13, no. 9, p. 5166, 2021.
+     for lithium-ion batteries based on incremental capacity analysis and          [30] J. John, G. Kudva, and N. S. Jayalakshmi, “Secondary life of electric ve-
+     transformer modeling,” Applied Soft Computing, vol. 165, p. 112072,                hicle batteries: Degradation, state of health estimation using incremental
+     2024.                                                                              capacity analysis, applications and challenges,” IEEE Access, vol. 12,
+[10] W. Xu, J. Zhu, J. Zhang, M. Tian, J. Cai, H. Wu, G. Wei, T. Chen,                  pp. 63 735–63 753, 2024.
+     X. Wei, and H. Dai, “Investigation of lithium-ion battery degradation         [31] K. Li and N. Xie, “Battery health prognostics based on improved
+     by corrected differential voltage analysis based on reference electrode,”          incremental capacity using a hybrid grey modelling and gaussian process
+     Applied Energy, vol. 389, p. 125735, 2025.                                         regression,” Energy, vol. 303, p. 131888, 2024.
+[11] Q. Wang, H. Yan, Y. Wang, Y. Yang, X. Liu, Z. Zhu, G. Huang,                  [32] A. Tomaszewska, Z. Chu, X. Feng, S. O’Kane, X. Liu, J. Chen, C. Ji,
+     and Z. Huang, “Probabilistic state of health prediction for lithium-ion            E. Endler, R. Li, L. Liu, Y. Li, S. Zheng, S. Vetterlein, M. Gao, J. Du,
+     batteries based on incremental capacity and differential voltage curves,”          M. Parkes, M. Ouyang, M. Marinescu, G. Offer, and B. Wu, “Lithium-
+     Energies, vol. 18, no. 20, p. 111, 2024.                                           ion battery fast charging: A review,” eTransportation, vol. 1, p. 100011,
+[12] G. L. Plett, “Extended kalman filtering for battery management systems             2019.
+     of lipb-based hev battery packs: Part 3. state and parameter estimation,”     [33] J. Tian, R. Xiong, W. Shen, J. Lu, and X.-G. Yang, “Deep neural network
+     Journal of Power Sources, vol. 134, no. 2, pp. 277–292, 2004.                      battery charging curve prediction using 30 points collected in 10 min,”
+[13] G. L. Plett, “Sigma-point kalman filtering for battery management                  Joule, vol. 5, no. 6, pp. 1521–1534, 2021.
+     systems of lipb-based hev battery packs: Part 2: Simultaneous state and       [34] X. Tang, Y. Wang, Q. Liu, and F. Gao, “Reconstruction of the incre-
+     parameter estimation,” Journal of Power Sources, vol. 161, no. 2, pp.              mental capacity trajectories from current-varying profiles for lithium-ion
+     1369–1384, 2006.                                                                   batteries,” Iscience, vol. 24, no. 10, p. 103103, 2021.
+[35] J. Wind and P. J. S. Vie, “Revisiting pulse-based ocv incremental             [49] S. Ioffe and C. Szegedy, “Batch normalization: Accelerating deep
+     capacity analysis for diagnostics of li-ion batteries,” Batteries, vol. 10,        network training by reducing internal covariate shift,” in Proceedings
+     no. 8, p. 277, 2024.                                                               of the 32nd International Conference on Machine Learning, pp. 448–
+[36] T. Gong, J. Lee, S. Lee, Y. Kim, B. Ko, and W. Na, “Enhanced incre-                456, Lille, France, 2015.
+     mental capacity analysis for evaluating battery degradation mechanisms        [50] A. Geron, Hands-on machine learning with Scikit-Learn, Keras, and
+     of optimized fast charging methods,” in 2025 IEEE Applied Power                    TensorFlow. Sebastopol, US: O’Reilly Media, Inc, 2022.
+     Electronics Conference and Exposition (APEC), pp. 3006–3011, Atlanta,         [51] D. P. Kingma and J. Ba, “Adam: A method for stochastic optimization,”
+     USA, 2025.                                                                         arXiv:1412.6980, 2017.
+[37] I. Bloom, A. N. Jansen, D. P. Abraham, J. Knuth, S. A. Jones, V. S.
+     Battaglia, and G. L. Henriksen, “Differential voltage analyses of high-       [52] A. G. Howard, M. Zhu, B. Chen, D. Kalenichenko, W. Wang, T. Weyand,
+     power, lithium-ion cells: 1. technique and application,” Journal of Power          M. Andreetto, and H. Adam, “Mobilenets: Efficient convolutional neural
+     Sources, vol. 139, no. 1-2, pp. 295–303, 2005.                                     networks for mobile vision applications,” arXiv:1704.04861, 2017.
+[38] D. Ansean, V. M. Garcia, M. GonzÃ¡lez, C. Blanco-Viejo, J. C. Viera,         [53] M. Sandler, A. Howard, M. Zhu, A. Zhmoginov, and L.-C. Chen,
+     Y. F. Pulido, and L. Sanchez, “Lithium-ion battery degradation indicators          “Mobilenetv2: Inverted residuals and linear bottlenecks,” in Proceedings
+     via incremental capacity analysis,” IEEE Transactions on Industry                  of the IEEE Conference on Computer Vision and Pattern Recognition
+     Applications, vol. 55, no. 3, pp. 2992–3002, 2019.                                 (CVPR), pp. 4510–4520, Salt Lake City, US, 2018.
+[39] F. Chollet et al., “Keras,” https://keras.io, 2015.                           [54] X. Pang, X. Liu, J. Jia, J. Wen, Y. Shi, J. Zeng, and Z. Zhao, “A
+[40] D. Erhan, Y. Bengio, A. Courville, and P. Vincent, “Visualizing higher-            lithium-ion battery remaining useful life prediction method based on
+     layer features of a deep network,” 2009.                                           the incremental capacity analysis and gaussian process regression,”
+[41] R. Kotikalapudi and contributors, “keras-vis,” https://github.com/                 Microelectronics Reliability, vol. 127, p. 114405, 2021.
+     raghakot/keras-vis, 2017.                                                     [55] X. Zhao, J. Wang, M. Zhao, B. Pan, R. Wang, L. Wang, and X. Yan,
+[42] G. L. Plett, Battery Management Systems, Volume II: Equivalent-Circuit             “Micro-short circuit fault diagnosis of the parallel battery module based
+     Methods. Boston, MA: Artech House, 2015.                                           on increment capacity curve,” Journal of Energy Storage, vol. 86, no. A,
+[43] N. Siddique, S. Paheding, C. P. Elkin, and V. Devabhaktuni, “U-net and             p. 111201, 2024.
+     its variants for medical image segmentation: A review of theory and           [56] X. Gu, K. See, P. Li, K. Shan, Y. Wang, L. Zhao, K. C. Lim, and
+     applications,” IEEE Access, vol. 9, pp. 82 031–82 057, 2021.                       N. Zhang, “A novel state-of-health estimation for the lithium-ion battery
+[44] N. Innamorati, T. Ritschel, T. Weyrich, and N. J. Mitra, “Learning on              using a convolutional neural network and transformer model,” Energy,
+     the edge: Investigating boundary filters in cnns,” International Journal           vol. 262, no. B, p. 125501, 2023.
+     of Computer Vision, vol. 128, pp. 773–782, 2020.
+[45] X. Fan, W. Zhang, C. Zhang, A. Chen, and F. An, “Soc estimation of li-        [57] E. Chemali, P. J. Kollmeyer, M. Preindl, Y. Fahmy, and A. Emadi, “A
+     ion battery using convolutional neural network with u-net architecture,”           convolutional neural network approach for estimation of li-ion battery
+     Energy, vol. 256, p. 124612, 2022.                                                 state of health from charge profiles,” Energies, vol. 15, no. 3, p. 1185,
+[46] R. Azad, E. K. Aghdam, A. Rauland, Y. Jia, A. H. Avval, A. Bozorgpour,             2022.
+     S. Karimijafarbigloo, J. P. Cohen, E. Adeli, and D. Merhof, “Medical          [58] C. Weng, X. Feng, J. Sun, and H. Peng, “State-of-health monitoring of
+     image segmentation review: The success of u-net,” arXiv:2211.14830,                lithium-ion battery modules and packs via incremental capacity peak
+     2022.                                                                              tracking,” Applied Energy, vol. 180, pp. 360–368, 2016.
+[47] O. Ronneberger, P. Fischer, and T. Brox, “U-net: Convolutional networks       [59] D. Griffin, I. Bate, and R. I. Davis, “Generating utilization vectors for the
+     for biomedical image segmentation,” in Medical Image Computing and                 systematic evaluation of schedulability tests,” in 2020 IEEE Real-Time
+     Computer-Assisted Intervention - MICCAI 2015 (MICCAI 2015), pp.                    Systems Symposium (RTSS), pp. 76–88, Houston, USA, 2020.
+     234–241, Munich, Germany, 2015.                                               [60] P. M. Attia, A. Grover, N. Jin, K. A. Severson, T. M. Markov, Y.-H.
+[48] K. He, X. Zhang, S. Ren, and J. Sun, “Delving deep into rectifiers:                Liao, M. H. Chen, B. Cheong, N. Perkins, Z. Yang, P. K. Herring,
+     Surpassing human-level performance on imagenet classification,” in                 M. Aykol, S. J. Harris, R. D. Braatz, S. Ermon, and W. C. Chueh,
+     Proceedings of the IEEE International Conference on Computer Vision                “Closed-loop optimization of fast-charging protocols for batteries with
+     (ICCV), pp. 1026–1034, Santiago, Chile, 2015.                                      machine learning,” Nature, vol. 578, pp. 397–402, 2020.
+

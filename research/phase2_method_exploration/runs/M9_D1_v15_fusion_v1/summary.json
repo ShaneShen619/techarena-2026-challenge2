@@ -1,0 +1,101 @@
+{
+  "n_targets": 180,
+  "gate_triggered_targets": 47,
+  "scores": [
+    {
+      "method": "age",
+      "n_targets": 180,
+      "macro_MAE_pp": 3.8369069531780404,
+      "worst_cell_MAE_pp": 8.367997062736771,
+      "max_abs_error_pp": 20.200065978755532,
+      "P95_abs_error_pp": 11.520642444726422,
+      "bias_pp": -0.044632168669032364
+    },
+    {
+      "method": "disagreement_gate",
+      "n_targets": 180,
+      "macro_MAE_pp": 2.855302882330226,
+      "worst_cell_MAE_pp": 5.531136413042776,
+      "max_abs_error_pp": 17.384275381005125,
+      "P95_abs_error_pp": 9.797180880572178,
+      "bias_pp": 0.2579637800002796
+    },
+    {
+      "method": "missing_temperature",
+      "n_targets": 180,
+      "macro_MAE_pp": 3.081042382419875,
+      "worst_cell_MAE_pp": 6.934999229389039,
+      "max_abs_error_pp": 18.644628352703393,
+      "P95_abs_error_pp": 9.018256020576006,
+      "bias_pp": -0.14511641855672888
+    },
+    {
+      "method": "missing_waveform",
+      "n_targets": 180,
+      "macro_MAE_pp": 3.7130659700050104,
+      "worst_cell_MAE_pp": 6.8224741390881665,
+      "max_abs_error_pp": 18.93971300705728,
+      "P95_abs_error_pp": 12.561220241329307,
+      "bias_pp": 0.22286317838254932
+    },
+    {
+      "method": "simple_age_tcn",
+      "n_targets": 180,
+      "macro_MAE_pp": 3.081042382419875,
+      "worst_cell_MAE_pp": 6.934999229389039,
+      "max_abs_error_pp": 18.644628352703393,
+      "P95_abs_error_pp": 9.018256020576006,
+      "bias_pp": -0.14511641855672888
+    },
+    {
+      "method": "simple_temp_tcn",
+      "n_targets": 180,
+      "macro_MAE_pp": 2.9634867911577945,
+      "worst_cell_MAE_pp": 5.531136413042776,
+      "max_abs_error_pp": 17.384275381005125,
+      "P95_abs_error_pp": 9.809393618297578,
+      "bias_pp": 0.12237892849485289
+    },
+    {
+      "method": "tcn",
+      "n_targets": 180,
+      "macro_MAE_pp": 3.072504778136496,
+      "worst_cell_MAE_pp": 6.143811505059985,
+      "max_abs_error_pp": 17.08919072665124,
+      "P95_abs_error_pp": 10.232439260186585,
+      "bias_pp": -0.24560066844442427
+    },
+    {
+      "method": "temperature",
+      "n_targets": 180,
+      "macro_MAE_pp": 4.058779147223172,
+      "worst_cell_MAE_pp": 6.64590046136359,
+      "max_abs_error_pp": 21.872612016144295,
+      "P95_abs_error_pp": 13.724987671769085,
+      "bias_pp": 0.49035852543412944
+    },
+    {
+      "method": "temperature_plus10",
+      "n_targets": 180,
+      "macro_MAE_pp": 3.1874454183277936,
+      "worst_cell_MAE_pp": 9.371658861368022,
+      "max_abs_error_pp": 21.292170679880343,
+      "P95_abs_error_pp": 13.046167004308247,
+      "bias_pp": 2.7018693365578033
+    },
+    {
+      "method": "waveform_plus10",
+      "n_targets": 180,
+      "macro_MAE_pp": 3.295458760116388,
+      "worst_cell_MAE_pp": 9.371658861368022,
+      "max_abs_error_pp": 21.292170679880343,
+      "P95_abs_error_pp": 13.046167004308247,
+      "bias_pp": 2.7657088503830805
+    }
+  ],
+  "age_group_rank_80_observed_target_coverage": 0.9777777777777777,
+  "age_group_rank_80_observed_entire_cell_coverage": 0.8333333333333334,
+  "age_group_rank_median_half_width_pp": 20.29397439842542,
+  "finite_90_group_band_possible_with_5_calibration_cells": false,
+  "claim_limit": "D1 v1.5 six development cells; original fusion weights retained from v1.4 and were chosen after prior M2/M7 development. Intervals are a small-sample rank diagnostic, not a reliable official coverage guarantee."
+}

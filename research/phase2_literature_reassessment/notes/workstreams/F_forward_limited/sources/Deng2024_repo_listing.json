@@ -1,0 +1,34 @@
+[
+  {
+    "name": "BatPackdata.mat",
+    "path": "BatPackdata.mat",
+    "sha": "3c9635a84667eb2dcabe5bd4b09ef56e13ca8d48",
+    "size": 2863703,
+    "url": "https://api.github.com/repos/BatICM/Charging-test-data-of-in-service-electric-vehicles/contents/BatPackdata.mat?ref=main",
+    "html_url": "https://github.com/BatICM/Charging-test-data-of-in-service-electric-vehicles/blob/main/BatPackdata.mat",
+    "git_url": "https://api.github.com/repos/BatICM/Charging-test-data-of-in-service-electric-vehicles/git/blobs/3c9635a84667eb2dcabe5bd4b09ef56e13ca8d48",
+    "download_url": "https://raw.githubusercontent.com/BatICM/Charging-test-data-of-in-service-electric-vehicles/main/BatPackdata.mat",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/BatICM/Charging-test-data-of-in-service-electric-vehicles/contents/BatPackdata.mat?ref=main",
+      "git": "https://api.github.com/repos/BatICM/Charging-test-data-of-in-service-electric-vehicles/git/blobs/3c9635a84667eb2dcabe5bd4b09ef56e13ca8d48",
+      "html": "https://github.com/BatICM/Charging-test-data-of-in-service-electric-vehicles/blob/main/BatPackdata.mat"
+    }
+  },
+  {
+    "name": "README.md",
+    "path": "README.md",
+    "sha": "4881b9001bf9b3224469308e9c665401ffd1d742",
+    "size": 4601,
+    "url": "https://api.github.com/repos/BatICM/Charging-test-data-of-in-service-electric-vehicles/contents/README.md?ref=main",
+    "html_url": "https://github.com/BatICM/Charging-test-data-of-in-service-electric-vehicles/blob/main/README.md",
+    "git_url": "https://api.github.com/repos/BatICM/Charging-test-data-of-in-service-electric-vehicles/git/blobs/4881b9001bf9b3224469308e9c665401ffd1d742",
+    "download_url": "https://raw.githubusercontent.com/BatICM/Charging-test-data-of-in-service-electric-vehicles/main/README.md",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/BatICM/Charging-test-data-of-in-service-electric-vehicles/contents/README.md?ref=main",
+      "git": "https://api.github.com/repos/BatICM/Charging-test-data-of-in-service-electric-vehicles/git/blobs/4881b9001bf9b3224469308e9c665401ffd1d742",
+      "html": "https://github.com/BatICM/Charging-test-data-of-in-service-electric-vehicles/blob/main/README.md"
+    }
+  }
+]

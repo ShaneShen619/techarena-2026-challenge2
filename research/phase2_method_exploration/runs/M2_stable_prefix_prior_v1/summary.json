@@ -1,0 +1,16 @@
+{
+  "method": "stable_age_count_anchor",
+  "macro_mae_pp": 3.8087706774664976,
+  "worst_cell_mae_pp": 8.294324536414052,
+  "max_abs_error_pp": 19.984069338018017,
+  "per_cell_mae_pp": {
+    "102Ah_25degC_0p5C_cell3": 4.690972593746981,
+    "102Ah_25degC_1C_cell3": 1.8385880460164317,
+    "102Ah_35degC_1C_cell1": 3.567805907371578,
+    "102Ah_45degC_0p5C_cell3": 4.050497656011799,
+    "102Ah_45degC_1C_cell1": 0.41043532523814386,
+    "102Ah_55degC_1C_cell3": 8.294324536414052
+  },
+  "invariant_to_crop_position_by_construction": true,
+  "claim_limit": "Same six P1 development cells; no official capacity verification."
+}

@@ -1,0 +1,42 @@
+{
+  "common_cell_events_for_best": 71255,
+  "system_macro_MAE_common_by_method": {
+    "RBF_plus_adaptive_workpoint": {
+      "10A": 0.15434539521214893,
+      "20A": 0.14085171731772453
+    },
+    "RBF_plus_causal_Wiener_time": {
+      "10A": 0.17716939354631658,
+      "20A": 0.15242917325755917
+    },
+    "global_median": {
+      "10A": 0.20929359878930187,
+      "20A": 0.21020490221063415
+    },
+    "global_plus_adaptive_workpoint": {
+      "10A": 0.14414447138486527,
+      "20A": 0.13817101518445465
+    },
+    "global_plus_causal_Wiener_time": {
+      "10A": 0.15955696206303516,
+      "20A": 0.1543558227265901
+    },
+    "last_same_cell_step": {
+      "10A": 0.29012873213470447,
+      "20A": 0.2062250484163261
+    },
+    "linear_plus_causal_Wiener_time": {
+      "10A": 0.1669408446347472,
+      "20A": 0.1488268410216025
+    },
+    "workpoint_RBF_approx": {
+      "10A": 0.21717471521188778,
+      "20A": 0.19543811381831158
+    },
+    "workpoint_linear_ridge": {
+      "10A": 0.21351701015591062,
+      "20A": 0.19231107857723576
+    }
+  },
+  "limit": "Different models were trained on different threshold-selected data; identical target-event comparison controls scoring composition but not training-set difference."
+}

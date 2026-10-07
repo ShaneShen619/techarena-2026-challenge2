@@ -1,0 +1,16 @@
+{
+  "zip": "/Users/shane/Desktop/Arena \u9636\u6bb5 2 \u5b98\u65b9\u6750\u6599/research/phase2_baseline_repair/candidates/causal_baseline_research_only_v2.zip",
+  "sha256": "cbafcd73741de143aea917fde45d79671925ade0308dbfa90327dc9cec4c7ce1",
+  "files": [
+    "run_model.py",
+    "validate_submission.py",
+    "requirements.txt",
+    "framework/__init__.py",
+    "framework/data.py",
+    "framework/io.py",
+    "framework/persistence.py",
+    "my_model/__init__.py",
+    "my_model/model_baseline.py"
+  ],
+  "status": "research_candidate_not_submitted"
+}

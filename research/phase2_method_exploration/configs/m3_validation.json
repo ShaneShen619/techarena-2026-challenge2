@@ -1,0 +1,40 @@
+{
+  "frozen_before_M3_runs": "2026-09-28",
+  "evidence_levels": ["D1_P1_capacity_proxy", "D3_official_unlabeled_voltage", "S_bias_counterfactual"],
+  "first_phase_surface": {
+    "source": "research/phase2_temperature_improvement/outputs/thermal_provenance.json",
+    "use": "external equipment transfer diagnostic only",
+    "reject_portability_if_official_charge_temp_MAE_exceeds_C": 2.0
+  },
+  "matched_P1_event_pairs": {
+    "same_physical_cell": true,
+    "max_gap_hours": 48,
+    "minimum_measured_temperature_difference_C": 2.0,
+    "maximum_current_difference_A": 0.5,
+    "window": "3.44-3.48 V under 20Ah first-3.50V crop",
+    "minimum_independent_pairs_for_claim": 10
+  },
+  "official_temperature_pairs": {
+    "same_4S_pack": true,
+    "bracket_opposite_temperature_before_after_days": 45,
+    "features": ["10s apparent voltage drop per current", "2-10Ah discharge voltage"],
+    "capacity_claim_allowed": false
+  },
+  "sensor_bias_C": [-1.0, 0.0, 1.0],
+  "regression_temperature_channels": [
+    "no_temperature",
+    "current_event_temperature",
+    "historical_cropped_temperature",
+    "both_current_and_historical"
+  ],
+  "supplemental_full_prefix_temperature_scalar": {
+    "source": "old audited P1 completed charge-event cache; event_end strictly before target",
+    "fields": ["prefix_mean_event_T_C", "prefix_hot_event_fraction_above40C", "prefix_arrhenius_event_sum"],
+    "budget_notice": "full-event temperature median is a separate additional input channel, not the D1 15 cropped-fragment waveform budget; report separately",
+    "cannot_claim": "complete calendar thermal exposure or causal temperature effect",
+    "mandatory_static_control": "mean temperature of first 10 qualified post-anchor completed charge events, no later temperature; compare with rolling prefix mean under identical folds"
+  },
+  "crossvalidation": "nested leave one physical P1 cell out",
+  "unmeasured_temperature_fallback": "training-fold median numeric imputation with missingness/source flag for D1; old physical surface rejected for official 25C transfer; measured credible T preferred",
+  "strict_claim_limit": "No within-cell matched temperature transitions means conditional association only, not causal thermal coefficient."
+}

@@ -1,0 +1,1022 @@
+                                                 Gaussian process regression for forecasting battery state of health
+                                                                Robert R. Richardson1 , Michael A. Osborne1 , and David A. Howey1
+                                                            1
+                                                                Department of Engineering Science, University of Oxford, Oxford, UK
+
+                                                                                                 June 1, 2017
+
+
+
+
+arXiv:1703.05687v2 [stat.AP] 31 May 2017
+                                                                                                    Abstract
+                                                  Accurately predicting the future capacity and remaining useful life of batteries is necessary to
+                                               ensure reliable system operation and to minimise maintenance costs. The complex nature of battery
+                                               degradation has meant that mechanistic modelling of capacity fade has thus far remained intractable;
+                                               however, with the advent of cloud-connected devices, data from cells in various applications is becoming
+                                               increasingly available, and the feasibility of data-driven methods for battery prognostics is increasing.
+                                               Here we propose Gaussian process (GP) regression for forecasting battery state of health, and highlight
+                                               various advantages of GPs over other data-driven and mechanistic approaches. GPs are a type of
+                                               Bayesian non-parametric method, and hence can model complex systems whilst handling uncertainty
+                                               in a principled manner. Prior information can be exploited by GPs in a variety of ways: explicit
+                                               mean functions can be used if the functional form of the underlying degradation model is available,
+                                               and multiple-output GPs can effectively exploit correlations between data from different cells. We
+                                               demonstrate the predictive capability of GPs for short-term and long-term (remaining useful life)
+                                               forecasting on a selection of capacity vs. cycle datasets from lithium-ion cells.
+
+
+                                           Keywords
+                                                                                                                      1                                                        1                                 Celln3
+                                           Lithium-ion battery, Gaussian process regression, State-                  0.8
+                                                                                                                                                                              0.8
+                                           of-Health, degradation, prognostics
+                                                                                                            Cycles
+                                                                                                                                                                   Capacity
+                                                                                                                     0.6
+                                                                                                                                                                              0.6
+                                                                                                                     0.4
+
+                                           Highlights                                                                0.2
+                                                                                                                                                                              0.4
+                                                                                                                       0
+                                                                                                                               50
+                                             • Gaussian process (GP) regression used for forecasting                                  100                2
+                                                                                                                                                               3
+                                                                                                                                                                              0.2
+                                                                                                                                                    1                               0   50       100       150        200
+                                               battery state of health                                                     Timen(days)
+                                                                                                                                                        Cell                                 Timen(days)
+                                                                                                                                                                                                       Confidence
+                                                                                                                           Truencapacity        Observations                    Prediction
+                                             • Systematic kernel function selection allows fitting of                                                                                                            ±2�
+                                                                                                                                                                                                       intervaln(nnnnnnn)
+
+                                               complex degradation behaviour
+                                                                                                                                            Figure 1: Graphical abstract
+                                             • Explicit mean functions combine GPs with knowledge
+                                               of cell degradation mechanisms
+                                                                                                            often over-sized and under-used, which results in unnec-
+                                             • Multi-output GPs effectively exploit correlations be- essary cost inefficiencies. Second life applications – which
+                                                tween data from different cells                             offer a potential means of offsetting high initial battery
+                                                                                                            costs in EV applications [2, 3] – rely particularly heav-
+                                                                                                            ily on accurate capacity forecasting, since this determines
+                                                                                                            the potential value of a cell in its secondary application.
+                                           1 Introduction                                                   Hence, accurate prognostics is an important component of
+                                                                                                            a modern battery management system.
+                                            Lithium-ion batteries (LIBs) are increasingly playing a
+                                                                                                                Since the performance capability of a cell is largely
+                                           pivotal role in applications ranging from transport to grid
+                                                                                                            defined by its nominal capacity and internal resistance,
+                                           energy storage. However, not knowing a battery’s rate of
+                                                                                                            the State of Health (SoH) is typically defined by one or
+                                           capacity loss or useful life renders the system susceptible
+                                                                                                            both of these parameters. In the present case we focus
+                                           to an unanticipated decline in performance or to oper-
+                                                                                                            on capacity estimation, although the methods we employ
+                                           ate in an unsafe regime [1]. To mitigate this, LIBs are
+                                                                                                            could be applied in either case. Predicting the future state
+                                              1 Author contact information: robert.richardson@eng.ox.ac.uk, of a LIB is non-trivial due to the complex interplay of
+                                           mosb@robots.ox.ac.uk, david.howey@eng.ox.ac.uk.                  parameters and the path-dependence of the degradation
+
+
+                                                                                                        1
+behaviour [4].                                                      for predicting future cell capacity based on it’s historical
+     The conventional approach to SoH forecasting relies            capacity vs. cycle data and/or from data from multiple
+on degradation modelling via electrochemical or equiva-             identical cells [11, 12, 13, 14]. The success of these works
+lent circuit models. Electrochemical models enable some             demonstrates the advantage of such approaches.
+physical interpretation of degradation behaviour; how-                  However, an important aspect of prognostics is not only
+ever, simulating all the underlying dynamics responsible            predicting future values of the variable of interest but also
+for battery degradation is a momentous challenge. Semi-             expressing the uncertainty associated with these values.
+empirical models have also been used to capture the de-             Bayesian methods provide a principled approach to deal-
+pendence of battery SoH on likely stressing factors. For            ing with uncertainty. This results in a credible interval
+instance, Ref. [5] develops a capacity fade model using             comprising probabilistic upper and lower bounds, which
+temperature, depth-of-discharge (DoD), C-rate and time              is essential for making informed decisions. GPs are a non-
+as inputs. These models have had some success, although             parametric Bayesian method that offer a number of other
+their accuracy is limited when environmental and load               unique advantages which have not been fully exploited in
+conditions differ from the training data set, and when the          prior work.
+capacity fade depends on additional contributions from                 There have been a limited number of studies investigat-
+unknown sources.                                                    ing GPs for battery prognostics. Goebel et al. [6] inves-
+    Data-driven approaches are gaining attention due to             tigated the use of GPs for extrapolating battery internal
+the increasing availability of large quantities of battery          resistance and subsequently deriving capacity estimates
+data. There are various ways data-driven techniques could           based on a linear relationship between resistance and ca-
+be applied, and each amounts to different assumptions               pacity. They showed that GPs could handle the non-
+about the nature of the underlying processes. The most              linear data manifested by battery degradation but they
+common and simple of these is to use a direct mapping               concluded that although they were capable of character-
+from cycle to SoH [6, 7, 8]. Simplistically, this amounts to        izing the uncertainty in the predictions, they lacked long-
+fitting a curve to the capacity-cycle data, and then predict-       range predictive capability. Recently, Liu et al. [10] ap-
+ing future values by extrapolating the fitted curve. This           plied Gaussian process regression to battery capacity pre-
+implies that accurate capacity data for some previous cy-           diction, and showed that their predictive accuracy was im-
+cles in the battery life is available. We note that battery         proved when a linear or quadratic Explicit Mean Function
+capacity estimation is another important topic; however,            (EMF; see Section 2.2) was used. However, the assump-
+the primary concern of this paper is capacity forecasting,          tion of a linear or quadratic function for the underlying
+i.e. estimating future values of capacity. Hence, we as-            battery behaviour is overly simplistic; it would be prefer-
+sume that capacity-cycle data is available – in practice            able to use mean functions inspired by battery degrada-
+such data may be acquired by direct measurement (slow-              tion models. In a separate study by the same authors [15],
+rate charge-discharge cycles specifically applied at peri-          a Mixture of Gaussian Processes model was used to ini-
+odic intervals for capacity measurement) or by a variety            tialise the parameters of a parametric model using data
+of other techniques which obviate the need to interfere             from identical cells. The model parameters were then re-
+with the system (such as parameter estimation of equiva-            cursively updated using a particle filter. Whilst this made
+lent circuit models). For a detailed review of methods for          use of data from multiple cells, it merely used the data
+capacity estimation see Ref. [9].                                   as a means of initialising a parametric model. Superior
+    On the one hand, mapping from cycle to SoH is over-             performance can be achieved by using multi-output mod-
+simplistic since the cell capacity depends on various fac-          els to capture correlations between the capacity trends in
+tors, and the historical capacity data alone is unlikely to         each cell, as we show in the present work.
+be sufficient for predicting future capacity. On the other              Existing studies fail to exploit many of the capabili-
+hand, it is reasonable to expect the previous capacity to           ties of GPs – in the current study, we present a thorough
+be somewhat correlated with future capacity and hence               analysis of these capabilities. Specifically, we use GPs for
+it is worth exploring the limits of its predictive capabil-         short-term and long-term, i.e. remaining useful life (RUL),
+ity. Moreover, the methods applied to capacity vs. cycle            forecasting on a selection of capacity vs. cycle datasets
+data could subsequently be applied to more informative              from lithium-ion cells (Fig. 2). First, the most basic GP
+(possibly higher dimensional) inputs (such as estimates of          is studied. We highlight the importance of systematically
+physical parameters such as lithium inventory or active             selecting the correct kernel function (an issue which has
+material vs. cycle; see [4]).                                       been overlooked in previous works) and the advantages of
+     A key advantage of our approach is that it is non-             using compound kernel functions. We then present two
+parametric. Non-parametric methods permit a model ex-               extensions to this basic approach which enable improved
+pressivity (e.g a number of parameters) that is naturally           performance: (i) we use explicit mean functions based on
+calibrated to the requirements of the data. Hence, such             known parametric battery degradation models to exploit
+methods can model arbitrarily complex systems, provided             prior knowledge of battery degradation behaviour and (ii)
+enough data is available. For instance, a number of re-             we use multi-output GPs to effectively exploit available
+cent studies have used Support Vector Machines (SVMs)               capacity data from multiple identical cells. Lastly, it is
+
+
+                                                                2
+        a                                                  b                                           c
+                  1                      A1    A3                                    B1       B3                  1                       C1
+                                         A2    A4
+                                                                1                                                                         C2
+                                                                                     B2       B4
+                 0.9                                                                                                                      C3
+                                                                                                                 0.8
+
+      Capacity                                      Capacity                                          Capacity
+                 0.8                                           0.9
+                                                                                                                 0.6
+                 0.7
+
+                 0.6                                           0.8                                               0.4
+
+                       0   50       100       150                    0   50   100       150   200                      0   50       100
+                                Cycles                                        Cycles                                       Time (days)
+
+Figure 2: Battery datasets. a, NASA Battery Data Set used with the basic, single-output GP (Figs. 3 - 6), b, Data
+extracted from Liu et al. [10] and used with the explicit mean function GP (Fig. 7) c, NASA Randomized Battery Usage Data
+Set used with the multi-output GP (Fig. 8). Note that the capacity is normalised against the starting capacity in each case.
+
+
+worth underscoring the fact that all the methods presented                        where ŷi is the estimate given data only up to and includ-
+here are rigorously evaluated using different proportions of                      ing c. By taking only one training proportion (i.e. a single
+training data (i.e. using capacity data up to the current                         value of c), we would obtain just a single RMSEQ value.
+cycle for training, with various different values of the cur-                     This would run the risk of misrepresenting the true perfor-
+rent cycle). This is in contrast to most previous studies on                      mance of the method over the full cycle-life. For instance,
+battery prognostics, which merely evaluate the accuracy of                        it would not be acceptable for the estimates to be accurate
+the predictions made at a single arbitrarily selected cycle                       after the first 30 cycles are observed but to then diverge
+(e.g. the first half of training data).                                           when the next 5 cycles are received. Hence, in order to
+                                                                                  thoroughly validate our methods, we test the performance
+                                                                                  using all values of c from 20% of the cycle-life onwards.
+2     Methods                                                                     We thus obtain a value of RMSEQ at each cycle, and can
+                                                                                  plot RMSEQ vs. cycle (see later). This is in contrast to
+The goal of a regression problem is to learn the map-
+                                                                                  most previous studies, which use just a single arbitrary
+ping from inputs x to outputs y, given a labelled train-
+                                                                                  value of c.
+ing set of input-output pairs D = {(xi , yi )}N  i=1 , where ND
+                                                   D
+                                                                                     The second metric is the RMSE in the EoL prediction,
+is the number of training examples. In our case, the in-
+                                                                                  which we denote RMSEEoL . For each value of c, there
+put xi ∈ Z+ is the integer number of cycles applied up
+                                                                                  is a single EoL prediction. Hence, we can compare the
+to the current cycle, and the output yi ∈ R+ is the corre-
+                                                                                  predictions at all c values against the true EoL to obtain
+sponding measured capacity (all capacities are normalised
+                                                                                  a mean error, defined as
+against the initial, maximum capacity). We assume the                                                            v
+underlying model takes the form y = f (x) + ε, where f (x)                                                       u 1 N
+                                                                                                                 u
+                                                                                                                      X c                    2
+                                                                                                 ∗       ∗
+represents a latent function and ε ∼ N (0, σ 2 ) is an inde-                        RMSEEoL (x̂EoL, j , xEoL ) = t          x̂∗EoL, j − x∗EoL
+                                                                                                                   Nc j=1
+pendent and identically distributed noise contribution.
+   The learned model can then be used to make predic-                                                                                     (2)
+tions at test indices x∗ = {x∗i }N   i=1 (cycles at which we
+                                       T                                          where x̂EoL is the estimate given data only up to and in-
+wish to estimate the capacity) for unknown observations                           cluding c, and Nc is the number of cycles at which we test
+y∗ = {yi∗ }Ni=1 , where NT is the number of test indices.
+              T                                                                   (i.e. the number of different values of c).
+In our case we are interested in extrapolation to forecast                           Note that this metric neglects the intermediate values
+future values of capacity (and so the test indices are the                        of the capacity between the current cycle and the EoL.
+future cycles up until the end of life (EoL)). The EoL                            For instance, two cells could have very different capacity
+is reached when the capacity drops below a predefined                             trajectories over the duration of their lives, whilst still
+threshold denoted by yEoL ; the corresponding cycle num-                          reaching their EoL after a similar number of cycles. Hence,
+ber at which this occurs is denoted xEoL . Note that xEoL                         a good model should have low values of both of the above
+is a-priori unknown, we will infer it using our model.                            metrics.
+   We evaluate our methods using two different metrics,
+which reflect the quantities of interest in a practical appli-                    2.1     Gaussian process regression
+cation: the first is the root-mean-squared error (RMSE)
+in the capacity estimation, which we denote RMSEQ . At                            This section gives an overview of Gaussian process regres-
+a given cycle, c, where we train using data up to the cur-                        sion. For simplicity, our presentation assumes the inputs
+rent cycle (x = [1, 2, . . . c]T ) and test on the remainder                      and outputs are scalar, since we only consider 1-D capac-
+(x∗ = [c+1, c+2, . . . xEoL ]T ), RMSEQ is defined as                             ity vs. cycle data in this work. However, the analysis can
+                                                                                  easily be extended to multidimensional inputs, if desired.
+                                v
+                                u
+                                u 1 X  NT                                         A more detailed presentation of Gaussian process regres-
+                                                         2
+         RMSEQ (yˆi ∗ , yi∗ ) = t         (yˆi ∗ − yi∗ )     (1)                  sion (GPR) is given in Chapter 15 of [16], and a more
+                                   NT i=1                                         comprehensive book on the topic is [17].
+
+
+                                                                              3
+   A Gaussian process (GP) defines a probability distribu-          Compound kernels can be created by affine transforma-
+tion over functions, and is denoted as:                          tions of individual kernels. We limit our attention in this
+                                                                 paper to addition of kernels, since these were found to
+                     f (x) ∼ GP m(x), κ(x, x0 ) ,
+                                                
+                                                             (3) be capable of expressing the structure of the battery data
+
+where m(x) and κ(x, x0 ) are the mean and covariance func- under study, and since they lead to greater ease of inter-
+tions respectively, denoted by                                   pretation than multiplicative kernels. Ref. [19] provides
+                                                                 a more detailed discussion of kernel composition and also
+            m(x) = E[f (x)],                                 (4) addresses the issue of automating the choice of kernels.
+                                                         T       In summing kernels, the data are modelled as a superpo-
+          κ(x, x0 ) = E[(f (x) − m(x)) (f (x0 ) − m(x0 )) ]. (5)
+                                                                 sition of independent functions. This can be interpreted
+For any finite collection of input points, say x = as different processes operating at different input and/or
+x1 , ..., xND , this process defines a probability distribution output scales.
+p (f (x1 ), ..., f (xND )) that is jointly Gaussian, with some      The mean function is commonly defined as m(x) = 0
+mean m(x) and covariance K(x) given by Kij = κ(xi , xj ). since the GP is flexible enough to model the true mean ar-
+   Gaussian process regression is a way to undertake non- bitrarily well. In Section 2.2, we consider parametric mod-
+parametric regression with Gaussian processes. The key els (based on battery degradation models) for the mean
+idea is that, rather than postulating a parametric form for function, such that the GP models only the residual er-
+the function f (x, θ) and estimating the parameters θ (as in rors.
+parametric regression), we instead assume that the func-            Now, if we observe a labelled training set of input-
+                                                                                               ND
+tion f (x) is a sample from a Gaussian process as defined output pairs D = {(xi , yi )}i=1 , predictions can be made at
+above.                                                           test indices x∗ by computing the conditional distribution
+                                                                     ∗ ∗
+   The most common choice of covariance function is the p(y |x , x, y). This can be obtained analytically by the
+squared exponential (SE), defined by                             standard rules for conditioning Gaussians [16], and (as-
+                                                               suming a zero mean for notational simplicity) results in a
+                                        1          2             Gaussian distribution given by:
+              κSE (x, x0 ) = θf2 exp − 2 kx − x0 k .         (6)
+                                       θl
+                                                                               p(y∗ |x∗ , x, y) = N (y∗ |m∗ , Σ∗ )       (9)
+                                           1
+The covariance function parameters , θf and θl , control
+the y-scaling and x-scaling, respectively.                       where
+   The SE kernel is a stationary kernel, since the correla-        m∗ = K(x, x∗ )T K(x, x∗ )−1 y                        (10)
+tion between points is purely a function of the difference            ∗       ∗   ∗             ∗ T       ∗ −1     ∗
+in their inputs, x − x0 . We only consider stationary ker-          Σ = K(x , x ) − K(x, x ) K(x, x ) K(x, x ). (11)
+nels in this work. The choice of the SE kernel makes the            The values of the hyperparameters θ may be optimised
+assumption that the function is very smooth (infinitely dif- by minimising the negative log marginal likelihood de-
+ferentiable). This may be too strict a condition for many fined as NLML = − log p(y|x, θ). The NLML automat-
+physical phenomena [18], and so a common alternative is ically performs a trade-off between bias and variance, and
+the Matérn covariance class:                                    hence avoids over-fitting the data. Given an expression
+                                                                    for the NLML and its derivative w.r.t θ (both of which
+   κMa (x − x0 ) =                                                  can  be obtained in closed form), we can estimate θ using
+                                    ν
+            1−ν   √             0          √            0
+                                                          
+          2             (x  − x   )             (x −  x   )         any  standard gradient-based optimizer. In our case, we
+      σ2             2ν                Rν    2ν               , (7)
+          Γ(ν)              ρ                      ρ                used  the GPML toolbox [20] implementation of conjugate
+                                                                    gradients. Since the objective is not convex, local min-
+where ν is a smoothness hyperparameter (larger ν implies ima can be a problem. However, this was not an issue in
+smoother functions) and Rν is the modified Bessel func- the present study, as was verified by repeated diverse ini-
+tion. This equation simplifies considerably for half-integer tialisations using Latin hypercube sampling [21] yielding
+ν. The most common examples are ν = 5/2 and ν = 3/2, identical results. Minimising the NLML further allows us
+which we denote as Ma5 and Ma3 in this work. The fi- to perform model selection, i.e. to choose the kernel func-
+nal covariance we consider in this paper is the periodic tion, not just the values of the hyperparameters for a given
+covariance,                                                         kernel function. Kernel function selection is perhaps the
+                               
+                                     2
+                                            
+                                               x−x  0
+                                                                  most important aspect of GP modelling, yet it has not
+        κPe (x, x0 ) = θf2 exp − 2 sin2 π                       (8) been addressed in a principled manner in the aforemen-
+                                     θl          p
+                                                                    tioned battery degradation literature [6, 10, 15]
+which is suitable for functions with periodic behaviour.
+The hyperparameter p is the period of f (x).                        2.2 Explicit mean functions
+   1 The term ‘non-parametric’ is evidently a misnomer since the
+
+covariance function contains parameters; however, these are techni-
+                                                                          Explicit mean functions (EMFs), also referred to as ex-
+cally hyperparameters [17] since they are the parameters of a prior       plicit basis functions [17] or semi-parametric Gaussian pro-
+function.                                                                 cesses [16], allow us to express prior information we may
+
+
+                                                                      4
+have about the expected functional form of the model. For               where τ = {τl }m l=1 is a vector of output scales correspond-
+instance, let’s say we have a battery degradation model                 ing to the different values of l, and S is an upper triangular
+which predicts capacity fade of the form y = m(x; θdeg )                matrix of size m×m, whose lth column contains the spher-
+where θdeg are the parameters of the degradation model,                 ical coordinates in Rl of a point on the hypersphere S l−1 ,
+but we believe that there may be other contributions to                 followed by the requisite number of zeros. For example, S
+the battery capacity fade that the model does not account               for a three dimensional space is
+for. We can then model the capacity as the sum of a GP                                                                      
+and the parametric model:                                                                  1 cos(φ1 )          cos(φ1 )
+                                                                                    S = 0 sin(φ1 ) sin(φ2 ) cos(φ3 )            (16)
+                 y = m(x, θdeg ) + f (x, θ) + ε                    (12)                    0       0       sin(φ2 ) sin(φ3 )
+This formulation expresses that the data are close to the                                      T
+degradation model with the residuals being modelled by a Note that this ensures that S S has ones across its diago-
+GP (and a noise term). When fitting this model, we opti- nal and hence all other entries may be thought of as akin
+mize over the degradation model parameters θdeg jointly to correlation coefficients, lying between −1 and 1.
+with the hyperparameters θ of the covariance function.            The full set of hyperparameters, θl , therefore consists of
+                                                                the values of φl and τl . If the output scales are expected
+                                                                to be the same for each cell (as we assume in the present
+2.3 Multi-output GPs                                            work), then the values of τl can be fixed to a single value, τ .
+If we have capacity vs. cycle data for multiple batteries In this case, the total number of hyperparameters required
+                                                                   1
+undergoing similar loading profiles, we may expect the ca- is 2 (m + 1).
+pacity trends to be correlated. This prior assumption can         Once a suitable covariance has been defined, parametri-
+be modelled using multi-output GPs. This section draws sation and test prediction can be achieved in the same
+largely from previous works on multi-output GPs [22, 23]; manner as that of single-output GPs, using optimisation
+and further details of similar methods can be found in of the NLML to select the hyperparameters of the joint
+those works.                                                    covariance matrix. The advantage of the multi-output
+   A function with multiple outputs can be dealt with by scheme is that similarities between cells can be captured
+treating it as having a single output and an additional (through the shared hyperparameters, θx ), without im-
+input. This additional (discrete) input, l, can be thought posing strict equivalence (through the cell-specific differ-
+of as a label for the associated output. Let’s say we have ences induced by the label hyperparameter, θl ). We em-
+m cells whose inputs and outputs are {xl , yl }m                ploy a standard implementation of this method, which
+                                                  l=1 , where                  3 3
+{x , y } = {(xi , yi )}i=1 , and Nl is the number of training scales as O(m n ). However, we note various different
+   l    l              Nl
+
+points associated with cell l. Each input of the multi- efficient/approximate schemes have been proposed in the
+output model is then a 1 × 2 vector defined as xi,l = literature, based on approximating input data with pseudo
+[xl (i), l], and this has an associated scalar output yi,l = points [24], exploiting grid structure [25] and exploiting
+yl (i). Assuming, for notational simplicity, that all cells are the recursivity of the estimation problem in online set-
+observed at the same set of cycles and hence Nl = n for all tings [22, 26, 27]; and these could be used if larger numbers
+l, we can now write the entire set of inputs and outputs of cells/training points were required.
+                       m                                m
+as X = {{xi,j }ni=1 }l=1 and y = {{yi,j }ni=1 }l=1 . A new
+covariance function can then be defined as the product of
+a label covariance and a standard covariance
+                                                                              3   Basic single-output GP – Re-
+          κMOGP (x, x0 , l, l0 ) = κl (l, l0 ) × κx (x, x0 )       (13)
+                                                                                  sults
+where κl captures the correlation between outputs, and κx The first example we consider is a basic single-output GP
+is the covariance with respect to cycles for a given output. with a constant prior mean set equal to the mean of the
+The covariance matrix for all n cells is then the mn × mn observed capacity data. The dataset considered consists
+matrix defined by                                            of capacity vs. cycle data obtained from the NASA battery
+                                                             data repository (see Appendix A, and Fig. 2a). Here, we
+     KMOGP (X, L, θl , θx ) = Kl (l, θl ) ⊗ Kx (X, θx ) (14) present the results for Cell A1, although similar results
+where ⊗ is the Kronecker product, L = {l}m , and θ and were obtained for Cells A2-A4.
+                                                    j=1        l
+θx are the hyperparameters for Kl and Kx respectively.
+Note that the assumption that Nl = n for all cells can 3.1 Kernel function selection
+easily be relaxed such that the model may be applied to
+                                                            It is apparent from Fig. 2a that the capacities experience
+problems with capacities observed at different cycles for
+                                                           a long-term downward trend with occasional, apparently
+each cell.
+                                                           discontinuous, step increases. In other words, they ex-
+  Lastly, we parametrise the label covariance matrix using
+                                                           hibit a combination of short- and long- term structure.
+a spherical parametrisation scheme [22]:
+                                                           The physical explanation for the short term jumps is not
+                    Kl = S T Sdiag(τ )                (15) clear – it may in fact be an artefact of the measurement
+
+                                                                          5
+process. For instance, the data indicates that these in-                                                capacity data and tested on the remainder. The sub-plots
+creases tend to occur after long periods without cycling,                                               beneath each main plot show the individual contributions,
+possibly when reference tests were performed, which indi-                                               including the noise covariance (which is implicitly included
+cates that the capacity increase may be related to these                                                in each model). It can be seen that the Ma5 term captures
+pauses. In any case, accounting for these local variations                                              the smooth long-term downward trend as desired, with an
+by means of appropriate kernel function selection is essen-                                             increasing uncertainty as it is projected into the future;
+tial since: (i) the capacity measurement provided in a real                                             the Ma3 term captures the short term variation; and the
+application could also manifest similar artefactual varia-                                              noise term models the remaining small scale variation in
+tions, and (ii) accounting for such artefacts is necessary in                                           the data. As a result, the extrapolation performance at
+order to correctly express the uncertainty in subsequent                                                this particular cycle is quite good, as indicated by the
+measurements obtained via the same process.                                                             close match between the mean prediction and the true
+    In order to identify a suitable compound kernel func-                                               data for the remaining cycles. Fig. 4b shows the result
+tion, we assessed 10 different compound kernels: namely,                                                for a kernel pair which performed less well (NLML = 500,
+all possible pairs of the following base kernels: Matérn                                               Fig. 3). In this case, the long-term trend is captured by
+5/2 (Ma5), Matérn 3/2 (Ma3), Squared Exponential (SE)                                                  the periodic component, whilst the Ma5 term is forced to
+and Periodic (Pe). The NLML of the GP when applied                                                      model the short term variation. This indicates that there
+to the full capacity vs. cycle data was used to evaluate                                                is little actual periodic structure present in the data, since
+the kernel combinations. The ranking of these results is                                                the optimised length-scale of the periodic term is similar
+shown in the bar-plot of Fig. 3. This plot shows that four                                              to the time-scale of the data, and hence only half a cycle
+combinations achieve an NLML between 527 and 530, and                                                   of the periodic term is modelled. The predictions from
+hence perform similarly well. The performance then drops                                                this model indicate that the capacity will increase in the
+off more rapidly for the subsequent 5 combinations, and                                                 subsequent 100 cycles, before decreasing again and then
+finally the last combination (Pe+Pe, NLML = 97.1) per-                                                  repeating this behaviour periodically, which is clearly un-
+forms significantly worse than the others. This is perhaps                                              realistic. Finally, Fig. 4c shows the decomposition of a
+not surprising given the lack of any exactly periodic struc-                                            singleton SE kernel function (i.e. not the sum of two base
+ture in the data, let alone a superposition of two periodic                                             kernels). In this case, the SE term is forced to try to model
+components.                                                                                             both the long and short term trends in the data. This re-
+                                                                                                        sults in the long-term trends being heavily influenced by
+
+
+
+
+Neg. log marginal likelihood
+                               600                                                                      the short term variations. Hence, when the short term
+                                       530   529   528   527   521   521   506   500   485              step increase at ∼ cycle 90 is reached, the model predicts
+                               400
+                                                                                                        a smooth increase (then subsequent decrease) in the gra-
+                                                                                                        dient, which is unrepresentative of the data. Moreover,
+                                                                                                        there is obvious structure still present in the noise contri-
+                               200                                                                      bution (bottom sub-plot), which indicates that not all of
+                                                                                             97.1       the structure in the data has been captured by the model.
+                                                                                                        Both of these attributes are clearly undesirable and lead
+                                0
+                                                                                                        to poor extrapolation performance.
+                                       a3  a5  a5  SE  SE  SE  a3  SE  a5   Pe
+                                   3 +M 3+M 5+M a5+ SE+ a3+ e+M Pe+ e+M Pe+
+                                Ma     M a M a  M       M   P       P
+                                                                                                        3.3    Short-term lookahead prediction
+Figure 3: Ranking of kernel function combinations by
+marginal likelihood. The coloured bars for selected kernel                                              Having selected a suitable kernel function, we now investi-
+pairs correspond to the coloured lines in Figs. 4a and 4b.                                              gate the extrapolation performance using training data up
+                                                                                                        to various different current cycles, c. Fig. 5 shows the per-
+    Although Ma3+Ma3 was the highest ranked pair, it                                                    formance of the method for n-step lookahead forecasting.
+performed only marginally better than the second ranked                                                 Fig. 5a shows the posterior mean and covariance using
+pair, Ma5+Ma3 (red bar in Fig. 3). Hence we chose the                                                   prediction horizons of 5, 10, 20 and 40 cycles. For each
+latter for subsequent analysis because the contributions of                                             cycle number, the posterior is obtained using data up to
+each base kernel are easily interpretable.                                                              the current cycle, and the mean and standard deviation
+                                                                                                        are evaluated at the cycle n steps ahead of the current
+                                                                                                        cycle. This is repeated at every cycle up until the vertical
+3.2                                  Kernel function decomposition
+                                                                                                        dashed line (equal to the number of the last cycle minus
+ In order to highlight the significance of kernel function                                              the size of the prediction horizon). Hence, the posterior
+selection, the posterior mean and covariance for selected                                               mean and variance shown in the plots is the amalgamated
+kernel pairs are decomposed into their constituent con-                                                 posterior from all of these cycles.
+tributions in Fig. 4 (using equations 2.17 and 2.18 from                                                   The plots show that the method is highly accurate for
+[28]).                                                                                                  relatively small n but that the performance diminishes as
+    Fig. 4a shows the decomposition of the selected                                                     n is increased. This is hardly surprising given that we
+Ma5+Ma3 kernel pair, evaluated using 55% of the cycle-                                                  have no a-priori reason to believe that the capacity data
+
+
+                                                                                                    6
+ a           1
+                                                  b          1
+                                                                                                       c            1
+
+
+
+ Capacity                                        Capacity                                               Capacity
+            0.8                                             0.8                                                    0.8
+
+            0.6                                             0.6                                                    0.6
+                      Ma5+Ma3                                     Ma5+Pe                                                     SE
+
+             1                                                1                                                      1
+                                                            0.8                                                    0.5
+            0.5       Ma5                                   0.6 Per                                                  0 SE
+
+       0.04                                                                                                   0.02
+       0.02                                            0.02
+          0                                               0                                                      0
+      -0.02 Ma3                                       -0.02 Ma5                                              -0.02 Noise
+      -0.04
+       0.01                                            0.01                                                              0             50       100    150
+          0                                               0                                                                                 Cycles
+      -0.01 Noise                                     -0.01 Noise
+                                                      -0.02
+                                                                                                                                  Ma5+Ma3     SE+Per   SE
+                  0         50       100   150              0              50           100      150
+                                 Cycles                                         Cycles
+
+Figure 4: Decomposition of posterior functions into constituent kernels. The top plot in each column shows the
+posterior mean and credibility interval of the compound kernel. For this and all subsequent figures, the black markers indicate
+data-points used for training, and the continuous black line indicates testing data, the coloured line indicates the mean of the
+posterior, and the correspondingly coloured shaded region indicates the area enclosed by the mean plus or minus two standard
+deviations. The vertical line indicates the extent of the training data. a, Ma5+Ma3 (the selected kernel pair); b, SE+Per (a
+poorly performing kernel pair); c, SE (a singleton kernel)
+
+
+up to a given cycle has strong predictive capabilities for                          ing data are acquired and having large credible intervals
+distant future cycles.                                                              when the extrapolation is far into the future. It also out-
+   However, it is clear that the principled selection of the                        performs the baseline autoregressive model. However, the
+kernel function has been advantageous, since the method                             EoL predictions are poor at the initial cycles when there
+clearly outperforms the singleton Ma5 GP. Fig. 5b shows                             are limited training data available. For instance, it can
+box-plots of the extrapolation error for various prediction                         be seen from Fig. 6a-b that the EoL is first severely over-
+horizons for the Ma5-Ma3 GP, whilst Fig. 5c shows the                               estimated and then severely underestimated as new data
+same data for the singleton Ma5 GP. Lastly, we evaluated                            are received. This results in only moderate overall perfor-
+a more conventional time-series approach, an autoregres-                            mance as indicated by the corresponding RMSEEoL values
+sive moving average of order 10 (i.e. using the 10 most re-                         (see inset of Fig. 6d. This plot also shows the credibility
+cent data-points for training at each cycle), which is shown                        intervals in the EoL estimate. These were obtained by ex-
+in Fig. 5c.                                                                         trapolating the upper and lower confidence intervals in the
+   The Ma5+Ma3 GP has the best performance of these                                 capacity estimates until they reached the EoL value. In
+three, as shown by Fig. 5e which plots the RMSE against                             some cases the upper confidence interval never crosses the
+prediction horizon of each of the three cases on a single                           lower threshold and hence the upper EoL estimate is very
+axis for ease of comparison. This can be attributed to the                          large or infinite (extending beyond the upper limit of the
+fact that the additive kernels are capable of handling the                          y-axis in this plot). This is an unfortunate consequence of
+processes of different scales – with the short term variation                       the fact that the model is not restricted to be monotonic,
+being handled by one of the constituent kernels and the                             as we discuss in Section 6. However, it is promising that
+long-term downward trend by the other.                                              from about a third of the training data onwards, the true
+                                                                                    EoL estimate always remains within the lower confidence
+                                                                                    interval.
+3.4               Remaining useful life prediction
+ Depending on the requirements of the system, predicting
+future capacity 10 cycles ahead with reasonable accuracy                            4         Encoding exponential degrada-
+may be sufficient to facilitate corrective action. In some                                    tion via EMFs – Results
+cases, however, it may be desirable to accurately estimate
+the remaining useful life (RUL) from the earliest stage                              In order to improve the long term predictive forecasts, we
+possible, in which case accurate long-term prediction is                            now consider a single-output GP with an explicit mean
+important.                                                                          function based on a battery degradation model from the
+   Fig. 6 shows the performance of the method for esti-                             literature. The dataset in this case consists of capacity
+mating the end of life (EoL) at three different current cycle                       vs. cycle data extracted from [13] (see Appendix A, and
+values. The method shows some desirable properties, such                            Fig. 2b). Here, we apply the method to Cell B3 since
+as converging to the correct EoL estimate as more train-                            this exhibits the greatest deviation from the exact expo-
+
+
+                                                                                7
+       a
+                           1                                             1                                                             1                                                     1
+
+
+
+            Capacity                                         Capacity                                                   Capacity                                                 Capacity
+                       0.9                                              0.9                                                        0.9                                                      0.9
+
+                       0.8                                              0.8                                                        0.8                                                      0.8
+
+                       0.7                                              0.7                                                        0.7                                                      0.7
+                                   ny=y5                                          ny=y10                                                       ny=y20                                                 ny=y40
+                       0.6                                              0.6                                                        0.6                                                      0.6
+                               0        50      100   150                     0         50        100   150                                0            50      100   150                         0         50       100      150
+                                             Cycles                                          Cycles                                                          Cycles                                              Cycles
+
+       b                                                                                                            d 0.4
+                               yMa5+Ma3                                                                                                    yAR
+             0.08
+                                                                                                                              0.3
+
+
+Absyerror                                                                                                         Absyerror
+             0.06
+                                                                                                                              0.2
+             0.04
+             0.02                                                                                                             0.1
+
+                       0                                                                                                           0
+
+                                   2y      6y    10   14    18          22         26        30    34    38                                    2y        6y      10   14    18              22         26      30        34   38
+                                                      Predictionyhorizon                                                                                              Predictionyhorizon
+       c                                                                                                            e
+                               yMa5                                                                                           0.08
+             0.15
+                                                                                                                              0.06
+
+
+Absyerror                                                                                                         RMSE
+                 0.1                                                                                                          0.04
+
+             0.05                                                                                                                                                                                                          Ma5+Ma3
+                                                                                                                              0.02
+                                                                                                                                                                                                                           MA5
+                       0                                                                                                                                                                                                   AR
+
+                                   2y      6y    10   14    18          22         26        30    34    38                                         5           10     15            20                25           30        35
+                                                      Predictionyhorizon                                                                                               Predictionyhorizon
+
+Figure 5: Short term lookahead prediction performance. a, Posterior distribution of the Ma5+Ma3 GP for a range of
+different prediction horizons as indicated. b-d, Box-plot of capacity prediction errors for b, the Ma5+Ma3 GP, c, the singleton
+Ma5 GP and d, an autoregressive moving average of order 10. e, RMSEQ of each method plotted on the same axis with the
+y-axis in log scale for ease of comparison.
+
+
+nential decay behaviour of the model, and hence bene-           Fig. 7 shows the posterior predictions at two arbitrarily
+fits most from the additional non-parametric contributions   chosen cycles (top) and the estimated EoL (bottom) for
+provided by the GP.                                          each of the three cases.
+   We use an explicit mean function of the form m(x) =          It can be seen from this figure that model (c) performs
+a1 + a2 exp (a3 x). The model parameters are thus given      poorly in the region of ∼60 cycles, where the capacity
+by θdeg = [a1 , a2 , a3 ]. This function is equivalent to thetemporarily levels off. This is because the model has
+degradation model used by Goebel et. al [6]. It could also   no prior assumption encoded about the degradation be-
+be viewed as a special case of the three-parameter degra-    haviour (other than the smoothness assumptions encoded
+dation model used by Wang et al. [13] with the “empirical    by the covariance) and hence, when only the data up until
+factor” set to zero (i.e. g = 0 in Eq. (21) of [13]).        this time step are used for training, it predicts a subse-
+   We consider three different GP models:                    quent upwards trend in the capacity. This can be seen
+  a. y = f (x) + m(x), where f (x) ∼ GP (0, κMa3 )           from the bottom plot of Fig. 7c in the same region, which
+                                                             shows that the EoL prediction extends beyond the upper
+  b. y = f (x) + m(x), where f (x) = ε ∼ GP (0, κnoise )     limit of the y-axis. In contrast, models (a) and (b) cope
+                                                             with this temporary stationary behaviour and correctly
+  c. y ∼ GP (0, κMa5+Ma3 )                                   predict a continuing exponential degradation for subse-
+   Model (a) assumes that the response consists of the quent time steps. As a result of this, models (a) and (b)
+specified exponential mean function plus a GP with Ma3 also have lower overall RMSEEoL values than model (c).
+covariance. Model (b) is identical to (a) but with a noise Hence, these results show that the use of an explicit mean
+covariance; since the covariance is simply white noise, this function improves the overall accuracy of the EoL predic-
+is essentially just a parametric model. Model (c) is the ba- tions.
+sic GP that gave best results in the previous section (i.e.     Comparing model (a) against model (b), we can see the
+with a zero mean function but with a covariance function advantage of using a GP model over a purely paramet-
+consisting of a sum of Ma5 and Ma3 terms).                   ric model. Since model (b) assumes that any deviation
+
+
+                                                                                                              8
+          a                      Ma5+Ma3g(cycleg50)g                    b                 Ma5+Ma3g(cycleg81)g                             c                     Ma5+Ma3g(cycleg141)g                                      d
+                 1                                                          1                                                                   1
+                                                                                                                                                                                                                          300
+                0.9                                                     0.9                                                                    0.9
+
+
+
+                                                                                                                                                                                                           EoLg(cycles)
+ Capacity                                                    Capacity                                                               Capacity
+                                                                                                                                                                                                                          200
+                0.8                                                     0.8                                                                    0.8
+
+                0.7                                                     0.7                                                                    0.7                                                                        100
+                                                                                                                                                                                                                                              Ma5+Ma3g(RMSEEoL:g56.1)
+                0.6                                                     0.6                                                                    0.6                                                                                            ARg(RMSEEoL:g96.2)
+                                                                                                                                                                                                                              0
+                      0     50        100     150     200                       0   50               100       150        200                        0         50      100     150               200                                    0.4         0.6          0.8
+                                   Cycles                                                          Cycles                                                             Cycles                                                        Proportiongofgtraininggdata
+
+Figure 6: End of life (EoL) estimation performance. a-c, Posterior distribution of the Ma5+Ma3 GP at 3 different
+proportions of the training data. The horizontal black line indicates the capacity at the EoL. d, Predicted cycle no. at EoL
+vs. training data proportion for the GP and AR methods. The shaded region indicates the confidence interval in the EoL
+prediction. Note that there is no green shaded area since the AR does not provide confidence bounds. The horizontal black
+line indicates the true EoL.
+
+
+   a                                                  EMFf+fMA3f                     b                                                               EMFf+fNoisef               c                                                                         MA5+MA3f
+                  1                                                                                 1
+                                                                                                                                                                                                1
+
+                0.9                                                                                0.9
+
+
+ Capacity                                                                           Capacity
+                                                                                                                                                                                               0.9
+
+
+                                                                                                                                                                                Capacity
+                0.8                                                                                0.8
+                                                                                                                                                                                               0.8
+
+                0.7                                                                                0.7
+                                                                                                                                                                                               0.7
+
+
+                      0          50          100       150                  200                          0           50             100                  150           200
+                                                                                                                                                                                                     0                        50              100         150          200
+                                            Cycles                                                                              Cycles
+                                                                                                                                                                                                                                         Cycles
+
+
+
+
+ EoLf:cyclesN                                                                       EoLf:cyclesN                                                                                EoLf:cyclesN
+                200                                                                                200                                                                                         200
+
+
+                100                                                                                100                                                                                         100
+
+                                               RMSEEoL:f47.1fcycles                                                                       RMSEEoL:f50.2fcycles                                                                                 RMSEEoL:f76.5fcycles
+                  0                                                                                  0                                                                                           0
+                      0.2          0.4          0.6          0.8                                         0.2          0.4                      0.6              0.8                                  0.2                          0.4           0.6             0.8
+                            Proportionfofftrainingfdata                                                         Proportionfofftrainingfdata                                                                               Proportionfofftrainingfdata
+
+Figure 7: Explicit mean function GP results. a-c, (top) Posterior distribution at 2 different proportions of the training
+data for a, EMF+Ma3, b, EMF+Noise and c, Ma5+Ma3. The horizontal black line indicates the capacity at the EoL. (bottom)
+Predicted cycle no. at EoL vs. training data proportion for the corresponding methods. The shaded region indicates the credible
+interval in the EoL prediction. The horizontal black line indicates the true EoL cycle.
+
+
+from the exponential model must be noise (since the ker-                                                                            data.
+nel function is defined to be white noise), the optimised
+noise parameter becomes quite large and the credible in-
+terval increases to encompass the spread in observed ca-                                                                            5                    Capturing cell-to-cell correla-
+pacities. In contrast, model (a) models the deviations with
+an Ma3 kernel, and hence can fit the non-exponential trend                                                                                               tions via multi-output GPs –
+quite well, whilst maintaining a sensible assumption for                                                                                                 Results
+the noise levels.
+   Lastly, it should be noted that models (a) and (b) are                                                                           The final example we consider is a multi-output GP. The
+both overconfident in their predictions (the credibility in-                                                                        dataset in this case consists of capacity vs. time data
+tervals in the EoL estimation in the bottom plots are too                                                                           from three cells with randomised load profiles (see A, and
+narrow and do not encompass the true EoL for most of the                                                                            Fig. 2c). Since the cell cycling is randomised, a parametric
+training proportions). Moreover, in some cases the uncer-                                                                           degradation model (which is a function of the number of
+tainty is seen to decrease with increasing cycle number, in                                                                         cycles) would be unsuitable. Hence, we rely on exploiting
+particular in model (b). This is obviously not desirable                                                                            data from existing cells to improve the long-term forecast.
+behaviour and is an indication that the assumption of the                                                                           We apply the method to cell C3 using data from cells C1
+functional form of the underlying model (i.e. the expo-                                                                             and/or C2 for training as follows.
+nential degradation model) is not entirely valid for this                                                                              We considered four different models:
+
+
+                                                                                                                                9
+ a. A multi-output GP with 3-outputs: the capacity data              It is perhaps even more interesting to note that model a
+    for cells C1-C3. The model is trained on all capacity         (which has 3-outputs) is not negatively affected by the
+    data for cells C1 and C2, along with data up until the        inclusion of data from Cell 1. Rather, the model naturally
+    current cycle for cell C3, in the same manner as the          puts more weight on the data from cell C2 (than from
+    previous test cases.                                          cell C1) since this shows a stronger correlation with cell
+                                                                  C3. As a result, the performance of model a turns out
+ b. A multi-output GP with 2-outputs: the capacity data           to be superior to either model b or model c in this case
+    for cells C1 and C3 (omitting C2). The model is               (Figs. 8f-g).
+    trained on all of the capacity data for cell C1, along           There are a number of obvious caveats to be aware of in
+    with data up until the current cycle for cell C3 as           the present case: the method has performed particularly
+    before.                                                       well here because the dataset consists of cells cycled under
+                                                                  the same thermal conditions with statistically equivalent
+ c. A multi-output GP with 2-outputs as in (b) but pro-           applied current profiles2 . Hence, there were strong corre-
+    vided with data from C2 instead of C1.                        lations between the data for these cells. Whilst this could
+                                                                  occur in practice in some limited cases (for instance, mul-
+ d. A standard single-output GP trained using just data           tiple cells in a pack could experience the same conditions),
+    up to the current cycle for C3.                               in most cases of interest we would wish to use data from
+                                                                  identical cells but cycled under differing conditions. The
+   The multi-output models were defined as described in           method could of course be extended to account for such
+Section 2.3, with the κMOGP = κl × κx where κl is the             differences by including additional inputs, such as temper-
+label covariance matrix (Eq. 15), and κx = κMa5+Ma3 .             ature or depth of discharge, although this would require
+The covariance of the single output model was simply κ =          data from many more cells to cover a broad range of oper-
+κx = κMa5+Ma3 .                                                   ating conditions. For such (larger) datasets, more efficient
+   The training data and results for these four cases are         implementation methods must be used, such as those dis-
+shown in Fig. 8. Figs. 8a-d show the data used for training       cussed in Section 2.3.
+at a selected time step (top), the posterior predictions at          However, the present results indicate that the multi-
+the corresponding time step (middle), and the estimated           output method has promise. In particular, it is favourable
+EoL as a function of the number of cycles of cell C3 train-       over previous GP capacity estimation methods that use
+ing data used (bottom) for each of the four cases. Figs. 8e-      data from identical cells, which merely identify an optimal
+g show summary statistics for all four cases: Fig. 8e shows       prior estimate for the parameters of a parametric model,
+RMSEQ as a function of the proportion of the training             which are then updated sequentially [10]. In such a setting
+data (for cell C3) used. Fig. 8f shows a boxplot of the           the advantage of the prior information is quickly lost. In
+same data. Fig. 8g shows a bar plot of RMSEEoL .                  contrast, the present method exploits correlations in cell
+   It can be seen from these results that the multi-output        behaviour over the duration of the cell life, which leads to
+models (a-c) have better predictive performance than the          the improved results obtained here.
+single output model (d). For instance, in the middle sub-
+plots in Fig. 8a-d (which show the posterior prediction at
+75 days), all of the multi-output models accurately track         6     Conclusions
+the future capacity up until the predicted EoL, whereas
+the single output method does not anticipate the sudden           This paper has demonstrated the applicability of GPs to
+drop in capacity at ∼125 days, and hence over-predicts the        battery capacity forecasting, and highlighted some of their
+subsequent capacity. Indeed, the estimates of the EoL of          key advantages for this application. We have shown the
+cell C3 are quite accurate throughout the entire range of         advantage of using compound kernel functions for captur-
+training data (bottom subplots) for the multi-ouput meth-         ing complex behaviour and highlighted the importance of
+ods, but are shown to fluctuate significantly as additional       proper kernel function selection by means of optimising
+training data are received in the single-output case. This        w.r.t. the NLML. We have shown that using an explicit
+is also reflected in the overall RMSEQ and RMSEEoL val-           mean function based on known degradation models, it is
+ues depicted in Figs. 8e-g.                                       possible to improve the predictive performance of the base-
+   Interestingly, there are significant differences in the per-   line GP. Indeed, we argue that one should never just con-
+formance of models b and c (which are both two out-               sider a purely data-driven approach if prior information
+put models); for instance, model b, which is trained on           on the functional form of the underlying model is avail-
+cell C1, has an RMSEEoL of 18.1, whereas model c, which           able; or a purely parametric approach if the model infor-
+is trained on cell C2, has an RMSEEoL of 4.86. Likewise,          mation is not known with certainty, since in either case
+there is greater uncertainty (larger error bounds) in the
+                                                                      2 Note that the applied current profiles are generated by a stochas-
+posterior predictions of model b than those of model c (see
+                                                                  tic algorithm [29] and hence they are not identical from cell to cell.
+e.g. middle subplots of Fig.8b and c). This indicates that        However, since the algorithm is the same for each cell, the global
+the capacity trend of cell C3 shares a stronger correlation       properties of these current profiles are the same, and so they mani-
+with that of cell C2 than that of cell C1.                        fest similar degradation behaviour.
+
+
+                                                              10
+     a                                                                              b                                                                                               c                                                                                                    d
+                                1                                                                                1                                                                                      1                                                                                          1
+
+
+             Cycles                                                                          Cycles                                                                                    Cycles                                                                              Cycles
+                           0.5                                                                              0.5                                                                                     0.5                                                                                           0.5
+
+
+                                0                                                                                0                                                                                      0                                                                                          0
+                                0                                                                                0                                                                                      0                                                                                          0
+                                      50                                                                             50                                                                                     50                                                                                                50
+                                           100                     2     3                                                  100                    2    3                                                             100                                 2   3                                                    100                       2     3
+                 TimeE(days)                                 1                                   TimeE(days)                               1                                               TimeE(days)                                          1                              TimeE(days)                                               1
+                                                                   Cell                                                                             Cell                                                                                                   Cell                                                                              Cell
+
+                           1                             3-output                                           1                       2-outputE(i)                                                    1                       2-outputE(ii)                                                           1                                 1-output
+
+                         0.8                                                                               0.8                                                                                 0.8                                                                                                0.8
+
+
+   Capacity                                                                        Capacity                                                                                Capacity                                                                                        Capacity
+                         0.6                                                                               0.6                                                                                 0.6                                                                                                0.6
+
+                         0.4                                                                               0.4                                                                                 0.4                                                                                                0.4
+
+                         0.2                                                                               0.2                                                                                 0.2                                                                                                0.2
+                                0                100                   200                                       0                100               200                                                 0                   100                            200                                           0                      100              200
+                                           TimeE(days)                                                                    TimeE(days)                                                                             TimeE(days)                                                                                          TimeE(days)
+
+                         300                                                                               300                                                                                 300                                                                                                300
+
+
+
+
+  PredictedEEoLE(days)                                                              PredictedEEoLE(days)                                                                PredictedEEoLE(days)                                                                               PredictedEEoLE(days)
+                         200                                                                               200                                                                                 200                                                                                                200
+
+
+                         100                                                                               100                                                                                 100                                                                                                100
+
+                                                         3-output                                                                   2-outputE(i)                                                                            2-outputE(ii)                                                                                             1-output
+                            0                                                                                0                                                                                      0                                                                                               0
+                             0.2           0.4         0.6       0.8                                          0.2         0.4        0.6        0.8                                                  0.2         0.4         0.6                     0.8                                             0.2               0.4        0.6        0.8
+                                ProportionEofEtrainingEdata                                                      ProportionEofEtrainingEdata                                                         ProportionEofEtrainingEdata                                                                        ProportionEofEtrainingEdata
+
+ e                       10 0                                                                                         f                                                                                                            g
+                                                                             3-output                                       0.25                                                                                                                     50                                                                               46.2
+                                                                             2-output (ii)
+
+
+
+
+                                                                                                                                                                                                                                   EoLERMSEE(days)
+                                                                             2-output (i)                                    0.2                                                                                                                     40
+                                                                             1-output
+                           -1                                                                                               0.15
+                    10
+                                                                                                                     RMSE
+                                                                                                                                                                                                                                                     30
+ RMSE                                                                                                                        0.1                                                                                                                                                                    18.1
+                                                                                                                                                                                                                                                     20
+
+                                                                                                                            0.05                                                                                                                     10
+                    10 -2                                                                                                                                                                                                                                               4.57                                           4.86
+                                                                                                                                0                                                                                                                     0
+                                                                                                                                          ut               (i)              (i                 i)
+                                                                                                                                                                                                               tpu
+                                                                                                                                                                                                                  t                                                      ut                             (i)              (ii)           ut
+                                0.2              0.4              0.6            0.8                                                   utp             utE              utE                                u                                                         utp                           ut               ut             utp
+                                                                                                                                    3-o             utp             u tp                                1-o                                                       3-o             tp                              tp            1-o
+                                           ProportionEofEtrainingEdata                                                                         2 -o              2-o                                                                                                       2  -ou                         2   -ou
+
+
+Figure 8: Multi-output GP results. a-d, Data and results for a, 3-output, b, 2-output (i), c 2-output (ii), and d single-
+output GPs. (top) Battery data; black markers indicate training data and red line indicates unseen testing data. (middle)
+Posterior distribution using 40% of the training data and (bottom) Predicted cycle no. at EoL vs. training data proportion. e,
+RMSE vs. proportion of training data; f, Box-plot of RMSE data; and g, Bar plot of RMSE on EoL prediction. Note that the
+colours of the lines/shaded regions in a-d correspond to the colours of the lines and bars in e and g.
+
+
+one would be neglecting a valuable source of information.                                                                                                                                      work, this is not enforced and at times the GP may
+Lastly, we have shown that multi-output models can ef-                                                                                                                                         predict values outside of this range (in particular for
+fectively exploit data from multiple cells to significantly                                                                                                                                    single-output GPs with limited training data). One
+improve forecasting performance. The main bottleneck of                                                                                                                                        way to enforce positive values is to apply a logit-
+this approach is the computational cost of handling large                                                                                                                                      transform to the data as a pre-processing step and
+numbers of outputs; although we applied this method to                                                                                                                                         apply a GP to the resulting data, then reverse trans-
+a small dataset of just 3 cells in the present case, efficient                                                                                                                                 form the result.
+approaches exist which allow scaling to very large numbers
+of outputs.                                                                                                                                                             • The notion that the future capacity depends only
+   The present work aims to highlight just some of the                                                                                                                    on the past values is naı̈ve. A more comprehensive
+advantages of GPs. Several extensions/variations on this                                                                                                                  study could include DoD, temperature, idle time etc.
+work are also possible. For instance:                                                                                                                                     as inputs. Whilst such dependencies have been con-
+                                                                                                                                                                          sidered in a parametric framework in previous works
+  • We know a-priori that the normalised cell capacity                                                                                                                    (e.g. [5]), the application in a GP framework has not
+    must take a value between 0 and 1. In the present                                                                                                                     yet been considered, Such an approach would require
+
+
+                                                                                                                                                               11
+      data from many more cells to cover a broad range of           Dataset B was obtained by manually extracting the
+      operating conditions.                                    data from the capacity vs. cycle plots in Fig. 1 of Ref. [8],
+                                                               using Matlab GRABIT (a tool for extracting raw data
+   • Cells often exhibit regime changes during aging (e.g. from plot images). These data were originally obtained
+      a transition from a linear capacity vs. cycle trend from charge-discharge experiments on a 0.9 Ah lithium-
+      to a non-linear regime with accelerated aging [30]). ion cell. The discharge rate was 0.45 A and the currents
+      GPs have the capability to account for such transi- were cut off at the upper and lower voltage limits specified
+      tions; specifically, change-point kernels [31, 32] could by the battery manufacturer. Further details of the exper-
+      be used to locate change points in an online manner, iments are available in Ref. [8]. These cells are denoted
+      and hence more accurately model the regimes before B1, B2, B3 and B4 in the present paper (Fig. 2b). The
+      and after a transition than would be possible with a results for Cell B3 are presented in Section 4.
+      single model over the entire domain.                         Dataset C is obtained from the NASA Ames Prognos-
+   • The GP framework could also be applied using higher       tics Center of Excellence Randomized Battery Usage Data
+      dimensional input data, such as open circuit voltage     Set  [29].  The experiments consisted of applying random-
+      curves or electrochemical impedance spectra acquired     ized  sequences  of current loads ranging from 0.5 A to 4 A
+      at periodic cycles.                                      to  a  number   of LG Chem. 18650 lithium-ion cells at a
+                                                               range of environmentally controlled temperatures in order
+   We hope that the present study has provided motiva- to achieve accelerated aging. The sequence was random-
+tion for further study of GPs applied to battery capacity ized in order to better represent practical battery usage.
+forecasting.                                                   After every fifty randomized discharging cycles, the ca-
+                                                               pacity was measured via a low-rate charge-discharge cy-
+                                                               cle, and the electrochemical impedance were measured via
+A Data                                                         an EIS sweep. The experiments are described in detail in
+                                                               Ref. [34].
+The datasets (Fig. 1) consist of capacity vs. cycle data ob-      The first three cells from Dataset 1, denoted RW9,
+tained from either open-access NASA repositories or ex- RW10 and RW11 (in the numbering and labelling of the
+tracted directly from the plots in previous papers. In each online repository) were chosen for analysis. These cells
+of these cases, the results obtained from a single selected were cycled at room temperature and express highly non-
+cell were presented in this paper; similar results were ob- linear and non-parametric behaviour. The cells are la-
+tained for the other cells in each dataset, but for brevity belled as C1, C2 and C3 in the present paper (Fig. 2c).
+these were not presented.                                      The results for Cell C1 are presented in Section 5.
+    Dataset A is obtained from the NASA Ames Prognos-
+tics Center of Excellence Battery Data Set[33]. The exper-
+iments consisted of applying several charge-discharge cy- References
+cles to a number of commercially available 18650 lithium-
+ion cells at room temperature in order to achieve accel- [1] E. Cabrera-Castillo, F. Niedermeier, A. Jossen, Cal-
+erated aging. Charging was carried out via a constant-               culation of the state of safety (sos) for lithium ion
+current, constant-voltage regime: charging at constant               batteries, Journal of Power Sources 324 (2016) 509–
+current at 1.5 A until the voltage reached the cell upper            520.
+voltage limit of 4.2 V, then applying a constant voltage
+until the the current dropped to 20 mA. Discharging was          [2] J. Neubauer, A. Pesaran, The ability of battery sec-
+carried out at a constant current of 2 A until the cell volt-        ond use strategies to impact plug-in electric vehicle
+age fell to 2.7 V, 2.5 V, 2.2 V, and 2.5 V for batteries 5,          prices and serve utility energy storage applications,
+6, 7, and 18, respectively. The experiments were stopped             Journal of Power Sources 196 (23) (2011) 10351–
+when the batteries had lost 30% of the initial capacity.             10358.
+Additional data (including temperature and electrochem-
+                                                                 [3] C. R. Birkl, D. F. Frost, A. M. Bizeray, R. R. Richard-
+ical impedance) are also provided in the online repository,
+                                                                     son, D. A. Howey, Modular converter system for low-
+although these were not used in the present study. Full
+                                                                     cost off-grid energy storage using second life li-ion
+details of the experiments are available in Ref. [7].
+                                                                     batteries, in: Global Humanitarian Technology Con-
+   Batteries 5, 6, 7, and 18 (in the numbering of the on-
+                                                                     ference (GHTC), 2014 IEEE, IEEE, 2014, pp. 192–
+line repository) were chosen to be analysed in the present
+                                                                     199.
+work, since these have the most data-points; and because
+they have previously been chosen for analysis in earlier         [4] C. R. Birkl, M. R. Roberts, E. McTurk, P. G. Bruce,
+works [8, 10], and hence the present selection facilitates           D. A. Howey, Degradation diagnostics for lithium ion
+a comparison with those works. For consistency, these                cells, Journal of Power Sources 341 (2017) 373–386.
+cells are labelled as A1, A2, A3 and A4 respectively in
+the present paper (Fig. 2a). The results for Cell A1 are         [5] J. Wang, P. Liu, J. Hicks-Garner, E. Sherman,
+presented in Section 3.                                              S. Soukiazian, M. Verbrugge, H. Tataria, J. Musser,
+
+
+                                                            12
+    P. Finamore, Cycle-life model for graphite-LiFePO 4      [16] K. P. Murphy, Machine learning: a probabilistic per-
+    cells, Journal of Power Sources 196 (8) (2011) 3942–          spective, MIT press, 2012.
+    3948.
+                                                              [17] C. E. Rasmussen, Gaussian processes for machine
+ [6] K. Goebel, B. Saha, A. Saxena, J. R. Celaya,                  learning.
+     J. P. Christophersen, Prognostics in battery health
+     management, IEEE instrumentation & measurement [18] M. L. Stein, Interpolation of spatial data: some the-
+     magazine 11 (4) (2008) 33.                                    ory for kriging, Springer Science & Business Media,
+                                                                   2012.
+ [7] B. Saha, K. Goebel, Uncertainty management for di-
+     agnostics and prognostics of batteries using Bayesian [19] D. K. Duvenaud, J. R. Lloyd, R. B. Grosse, J. B.
+     techniques, in: Aerospace Conference, 2008 IEEE,              Tenenbaum, Z. Ghahramani, Structure discovery in
+     IEEE, 2008, pp. 1–8.                                          nonparametric regression through compositional ker-
+                                                                   nel search., in: ICML (3), 2013, pp. 1166–1174.
+ [8] W. He, N. Williard, M. Osterman, M. Pecht, Prog-
+     nostics of lithium-ion batteries based on Dempster– [20] C. E. Rasmussen, H. Nickisch, Gaussian processes
+     Shafer theory and the Bayesian Monte Carlo method,            for machine learning (GPML) toolbox, J. Mach.
+     Journal of Power Sources 196 (23) (2011) 10314–               Learn. Res. 11 (2010) 3011–3015.
+     10321.                                                        URL          http://dl.acm.org/citation.cfm?id=
+                                                                   1756006.1953029
+ [9] A. Farmann, W. Waag, A. Marongiu, D. U. Sauer,
+     Critical review of on-board capacity estimation tech- [21] R. L. Iman, Latin hypercube sampling, Encyclopedia
+     niques for lithium-ion batteries in electric and hybrid       of Quantitative Risk Analysis and Assessment.
+     electric vehicles, Journal of Power Sources 281 (2015)
+     114–130.                                                 [22] M. Osborne, Bayesian Gaussian processes for sequen-
+                                                                   tial prediction, optimisation and quadrature, Oxford
+[10] D. Liu, J. Pang, J. Zhou, Y. Peng, M. Pecht, Prognos-         University New College, 2010.
+     tics for state of health estimation of lithium-ion bat-
+     teries based on combination Gaussian process func- [23] R. Dürichen, M. A. Pimentel, L. Clifton,
+     tional regression, Microelectronics Reliability 53 (6)        A. Schweikard, D. A. Clifton, Multitask Gaus-
+     (2013) 832–839.                                               sian processes for multivariate physiological time-
+                                                                   series analysis, IEEE Transactions on Biomedical
+[11] X. Hu, J. Jiang, D. Cao, B. Egardt, Battery                   Engineering 62 (1) (2015) 314–322.
+     health prognosis for electric vehicles using sample en-
+     tropy and sparse Bayesian predictive modeling, IEEE [24] M. A. Alvarez, N. D. Lawrence, Computationally ef-
+     Transactions on Industrial Electronics 63 (4) (2016)          ficient convolved multiple output gaussian processes,
+     2645–2656.                                                    Journal of Machine Learning Research 12 (May)
+                                                                   (2011) 1459–1500.
+[12] M. A. Patil, P. Tagade, K. S. Hariharan, S. M. Ko-
+     lake, T. Song, T. Yeo, S. Doo, A novel multistage [25] A. G. Wilson, H. Nickisch, Kernel interpolation for
+     Support Vector Machine based approach for li ion              scalable structured Gaussian processes (KISS-GP),
+     battery remaining useful life estimation, Applied En-         arXiv preprint arXiv:1503.01057.
+     ergy 159 (2015) 285–297.
+                                                              [26] G. Pillonetto, F. Dinuzzo, G. De Nicolao, Bayesian
+[13] D. Wang, Q. Miao, M. Pecht, Prognostics of lithium-           online multitask learning of gaussian processes, IEEE
+     ion batteries based on relevance vectors and a condi-         Transactions on Pattern Analysis and Machine Intel-
+     tional three-parameter capacity degradation model,            ligence 32 (2) (2010) 193–205.
+     Journal of Power Sources 239 (2013) 253–264.
+                                                              [27] Y.-L. K. Samo, S. J. Roberts, p-markov Gaussian
+[14] A. Nuhic, T. Terzimehic, T. Soczka-Guth, M. Buch-             processes for scalable and expressive online Bayesian
+     holz, K. Dietmayer, Health diagnosis and remaining            nonparametric time series forecasting, arXiv preprint
+     useful life prognostics of lithium-ion batteries using        arXiv:1510.02830.
+     data-driven methods, Journal of Power Sources 239
+     (2013) 680–688.                                          [28] D. Duvenaud, Automatic model construction with
+                                                                   Gaussian processes, Ph.D. thesis, University of Cam-
+[15] F. Li, J. Xu, A new prognostics method for state of           bridge (2014).
+     health estimation of lithium-ion batteries based on
+     a mixture of Gaussian process models and particle [29] B. Bole, C. Kulkarni, M. Daigle, Randomized bat-
+     filter, Microelectronics Reliability 55 (7) (2015) 1035–      tery usage data set, NASA AMES prognostics data
+     1045.                                                         repository.
+
+
+                                                           13
+[30] G.-w. You, S. Park, D. Oh, Diagnosis of electric ve-
+     hicle batteries using recurrent neural networks, IEEE
+     Transactions on Industrial Electronics.
+[31] Y. Saatçi, R. D. Turner, C. E. Rasmussen, Gaussian
+     process change point models, in: Proceedings of the
+     27th International Conference on Machine Learning
+     (ICML-10), 2010, pp. 927–934.
+[32] R. Garnett, M. A. Osborne, S. Reece, A. Rogers, S. J.
+     Roberts, Sequential Bayesian prediction in the pres-
+     ence of changepoints and faults, The Computer Jour-
+     nal 53 (9) (2010) 1430. doi:doi:10.1093/comjnl/
+     bxq003.
+
+[33] B. Saha, K. Goebel, Battery data set, NASA AMES
+     prognostics data repository.
+[34] B. Bole, C. S. Kulkarni, M. Daigle, Adaptation of
+     an electrochemistry-based li-ion battery model to ac-
+     count for deterioration observed under randomized
+     use, in: Proceedings of Annual Conference of the
+     Prognostics and Health Management Society, Fort
+     Worth, TX, USA, Vol. 29, 2014.
+
+
+Acknowledgments
+This work was funded by an RCUK Engineering and Phys-
+ical Sciences Research Council grant, ref. EP/K002252/1.
+
+
+
+
+                                                             14
+

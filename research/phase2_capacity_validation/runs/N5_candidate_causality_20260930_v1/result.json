@@ -1,0 +1,17 @@
+{
+  "run_id": "N5_candidate_causality_20260930_v1",
+  "started_utc": "2026-09-29T22:58:05Z",
+  "duration_s": 5.836,
+  "python": "3.12.14",
+  "free_disk_GiB": 104.02,
+  "cpu_count": 8,
+  "source_sha256": "0d46d1a0aa079057eddf3b8d1188314930ec26c80dd06aa9ae09c10a7dd4cf59",
+  "config_sha256": "e4d8f49cc13d5c6410ad9c19f8e2967d2d56a5f98f1a99efd4b659e5bcbd53f9",
+  "total_operation_rows": 1572894,
+  "n_checkpoints": 8,
+  "all_checkpoints_have_future": true,
+  "ck7_future_rows": 90310,
+  "n_mutation_cases": 96,
+  "all_passed": true,
+  "n_failures": 0
+}

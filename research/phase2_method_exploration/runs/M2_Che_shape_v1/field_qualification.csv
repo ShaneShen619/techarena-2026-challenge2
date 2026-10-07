@@ -1,0 +1,12 @@
+cell_id,cycles,all_partial_Q_101_points,all_capacity_finite,all_partial_Q_finite
+C1,3024,True,True,True
+C2,3010,True,True,True
+C3,1794,True,True,True
+C4,1695,True,True,True
+C5,1794,True,True,True
+C6,2398,True,True,True
+C7,2391,True,True,True
+C8,2405,True,True,True
+C9,1781,True,True,True
+C10,1708,True,True,True
+C11,1853,True,True,True

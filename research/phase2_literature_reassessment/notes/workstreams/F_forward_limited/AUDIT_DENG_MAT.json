@@ -1,0 +1,167 @@
+{
+  "file": "sources/BatPackdata.mat",
+  "interpretation": "one MAT entry per tested vehicle, one SOH field per vehicle; blocks/windows are not independent capacity labels",
+  "vehicle_count": 10,
+  "total_rows_across_blocks": 318351,
+  "vehicles": [
+    {
+      "vehicle": 1,
+      "rated_capacity_Ah_MAT": 234.0,
+      "n_series_cells_MAT": 96,
+      "SOH_percent_MAT": 94.30405982905823,
+      "charging_blocks": 11,
+      "raw_rows_across_blocks": 12115,
+      "fields_per_block": [
+        "I_load",
+        "Q",
+        "Vmax",
+        "Vmean"
+      ],
+      "sum_Q_block_ends_Ah": 220.67150000000004
+    },
+    {
+      "vehicle": 2,
+      "rated_capacity_Ah_MAT": 174.0,
+      "n_series_cells_MAT": 104,
+      "SOH_percent_MAT": 93.84849936144842,
+      "charging_blocks": 4,
+      "raw_rows_across_blocks": 34129,
+      "fields_per_block": [
+        "I_load",
+        "Q",
+        "Vmax",
+        "Vmean"
+      ],
+      "sum_Q_block_ends_Ah": 163.29638888889403
+    },
+    {
+      "vehicle": 3,
+      "rated_capacity_Ah_MAT": 100.0,
+      "n_series_cells_MAT": 84,
+      "SOH_percent_MAT": 78.91386111116988,
+      "charging_blocks": 3,
+      "raw_rows_across_blocks": 34615,
+      "fields_per_block": [
+        "I_load",
+        "Q",
+        "Vmax",
+        "Vmean"
+      ],
+      "sum_Q_block_ends_Ah": 78.91386111113866
+    },
+    {
+      "vehicle": 4,
+      "rated_capacity_Ah_MAT": 115.0,
+      "n_series_cells_MAT": 100,
+      "SOH_percent_MAT": 87.77473429950906,
+      "charging_blocks": 7,
+      "raw_rows_across_blocks": 32561,
+      "fields_per_block": [
+        "I_load",
+        "Q",
+        "Vmax",
+        "Vmean"
+      ],
+      "sum_Q_block_ends_Ah": 100.94088888890167
+    },
+    {
+      "vehicle": 5,
+      "rated_capacity_Ah_MAT": 147.0,
+      "n_series_cells_MAT": 96,
+      "SOH_percent_MAT": 97.30765306123448,
+      "charging_blocks": 4,
+      "raw_rows_across_blocks": 28631,
+      "fields_per_block": [
+        "I_load",
+        "Q",
+        "Vmax",
+        "Vmean"
+      ],
+      "sum_Q_block_ends_Ah": 143.04224999998885
+    },
+    {
+      "vehicle": 6,
+      "rated_capacity_Ah_MAT": 100.0,
+      "n_series_cells_MAT": 88,
+      "SOH_percent_MAT": 92.87458333333237,
+      "charging_blocks": 3,
+      "raw_rows_across_blocks": 35856,
+      "fields_per_block": [
+        "I_load",
+        "Q",
+        "Vmax",
+        "Vmean"
+      ],
+      "sum_Q_block_ends_Ah": 92.87458333333146
+    },
+    {
+      "vehicle": 7,
+      "rated_capacity_Ah_MAT": 110.0,
+      "n_series_cells_MAT": 90,
+      "SOH_percent_MAT": 96.98348484844335,
+      "charging_blocks": 5,
+      "raw_rows_across_blocks": 35580,
+      "fields_per_block": [
+        "I_load",
+        "Q",
+        "Vmax",
+        "Vmean"
+      ],
+      "sum_Q_block_ends_Ah": 106.6818333333259
+    },
+    {
+      "vehicle": 8,
+      "rated_capacity_Ah_MAT": 152.0,
+      "n_series_cells_MAT": 108,
+      "SOH_percent_MAT": 90.80751096489394,
+      "charging_blocks": 10,
+      "raw_rows_across_blocks": 29378,
+      "fields_per_block": [
+        "I_load",
+        "Q",
+        "Vmax",
+        "Vmean"
+      ],
+      "sum_Q_block_ends_Ah": 137.82680555555604
+    },
+    {
+      "vehicle": 9,
+      "rated_capacity_Ah_MAT": 150.0,
+      "n_series_cells_MAT": 84,
+      "SOH_percent_MAT": 101.71072222223883,
+      "charging_blocks": 6,
+      "raw_rows_across_blocks": 35501,
+      "fields_per_block": [
+        "I_load",
+        "Q",
+        "Vmax",
+        "Vmean"
+      ],
+      "sum_Q_block_ends_Ah": 152.56608333335376
+    },
+    {
+      "vehicle": 10,
+      "rated_capacity_Ah_MAT": 100.0,
+      "n_series_cells_MAT": 90,
+      "SOH_percent_MAT": 99.07905555550404,
+      "charging_blocks": 3,
+      "raw_rows_across_blocks": 39985,
+      "fields_per_block": [
+        "I_load",
+        "Q",
+        "Vmax",
+        "Vmean"
+      ],
+      "sum_Q_block_ends_Ah": 99.07905555555308
+    }
+  ],
+  "vehicle_5_paper_and_README_vs_MAT": {
+    "paper_and_README_Cn_Ah": 174,
+    "paper_and_README_SOH_percent": 82.21,
+    "MAT_Cn_Ah": 147.0,
+    "MAT_SOH_percent": 97.30765306123448,
+    "Q_Ah_sum_blocks": 143.04224999998885,
+    "Q_over_174_percent": 82.20818965516601,
+    "Q_over_147_percent": 97.3076530612169
+  }
+}

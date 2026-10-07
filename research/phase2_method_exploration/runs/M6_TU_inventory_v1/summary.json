@@ -1,0 +1,9 @@
+{
+  "local_systems": 28,
+  "total_file_rows": 132777059,
+  "total_sample_rows": 3920000,
+  "sampled_eligible_unbalanced_rows": 46692,
+  "systems_with_sampled_eligible_rows": 25,
+  "sample_design": "stratified byte positions, contiguous rows within block; not uniform random independent rows",
+  "literature": "Schaeffer et al. BattGP arxiv v3 says 29/232/131M; local Zenodo release has 28 systems; no capacity labels; warranty-return bias"
+}

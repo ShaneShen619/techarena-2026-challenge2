@@ -1,0 +1,11 @@
+{
+  "version": "2026-09-29-v1",
+  "frozen_at": "before_V1_event_coverage",
+  "official_capacity": {"value": "first pack-voltage 11.2 V after full charge at 5.1 A; Ah/102*100", "unit": "SOH_percent", "source": "CHALLENGE2_DESCRIPTION.pdf; data/DATA_DESCRIPTION.md", "status": "official", "hash": "data/checkups/checkup_capacities_released.csv sha256:3e925e2f6afb4d6c27cbf749938eba493685176525f8c8775686816aff6fdda7"},
+  "prefix_cutoff": {"value": "timestamp <= checkpoint date at 00:00:00", "unit": "timestamp", "source": "framework/data.py current code behavior", "status": "frozen_code_fact", "hash": null},
+  "D1_primary": {"value": "v1.5 20 Ah first measured 3.50 V crossing; 180 targets, six reused P1 physical single cells, 30 each", "unit": "proxy targets", "source": "D1 generation script and panel", "status": "frozen_development", "hash": "sha256:7188b662900f84312292a7062d6023e5eeb4f2e32798b6d61a3547ed40cdc59c"},
+  "D1_outer_split": {"value": "leave one physical cell out; inner entity-only selection", "unit": "cell", "source": "preregistered protocol", "status": "frozen_before_V1", "hash": null},
+  "D1_late": {"value": "target_ordinal >= 21", "unit": "ordinal", "source": "prior frozen 30-target panel", "status": "frozen_before_V1", "hash": null},
+  "D3_capacity_status": {"value": "CK0 only released; CK1-CK7 hidden", "unit": "label availability", "source": "official CSV", "status": "official", "hash": "data/checkups/checkup_capacities_released.csv sha256:3e925e2f6afb4d6c27cbf749938eba493685176525f8c8775686816aff6fdda7"},
+  "T_ref": {"value": null, "unit": "degC", "source": "not present in CK0 CSV or official text reviewed", "status": "unknown_requires_external_spec", "hash": null}
+}

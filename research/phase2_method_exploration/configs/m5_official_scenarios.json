@@ -1,0 +1,15 @@
+{
+  "created_before_scenario_run": "2026-09-28",
+  "source": "M4_deep_charge_audit_v1 strict_prefix_deep_charge_proxy.csv",
+  "draws_per_checkup": 2000,
+  "seed": 20261001,
+  "common_Q_proxy_Ah": "latest completed deep charge before checkpoint plus public CK0 offset; not a measured capacity",
+  "common_Q_proxy_uncertainty_Ah": 4.0,
+  "per_cell_Q_spread_standard_deviation_Ah": 3.0,
+  "initial_SOC_range": [0.97,1.0],
+  "delta_R_ohm_range": [0,0.001],
+  "unmodelled_shape_mV_range": [-20,20],
+  "output": "5/50/95% assumption-driven scenario quantiles, not calibrated 90% predictive interval",
+  "CK0": "public true capacity 100.41Ah, no synthetic prediction needed",
+  "selection_notice": "These priors are analytic stress assumptions after inspecting official unlabeled campaign, not estimated from hidden capacity labels. No official accuracy computed."
+}

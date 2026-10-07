@@ -1,0 +1,11 @@
+{
+  "registered_before_M9_temperature_history_run": "2026-09-28",
+  "source": "M3 static initial-ten temperature signal 2.708pp in a larger full-event budget; test only causal temperatures measured inside the same D1 20Ah native fragments",
+  "same_targets_and_split": "180 P1 D1 targets, six outer whole-cell folds, same M9 scalar model architecture and seeds",
+  "additional_features": ["mean_T_first10_allowed_fragments_C", "mean_T_recent5_allowed_fragments_C", "current_T_minus_initial10_C"],
+  "missing_rule": "NaN for no permitted event; train-fold median imputation and standardization",
+  "inner_RBF_grid": "unchanged from m9_scalar_models.json; refit on inner four cells",
+  "prediction_rule": "bounded +/-10pp residual relative to fixed-alpha100 age ridge",
+  "hypothesis": "prefix-limited early thermal context reduces cross-cell aging-rate extrapolation error without full-event temperature privilege",
+  "claim_limit": "six P1 development cells, high-rate single-cell proxy; temperature correlated with cell and rate; not independent or causal confirmation"
+}

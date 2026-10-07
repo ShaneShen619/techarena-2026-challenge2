@@ -1,0 +1,62 @@
+{
+  "temperature_fields": [
+    "chamber_temperature_C",
+    "temp_mean_C",
+    "temp_min_C",
+    "temp_max_C"
+  ],
+  "missing_temperature_cells": 0,
+  "any_missing_temperature_rows": 0,
+  "nonfinite_temperature_cells": 0,
+  "unexpected_setpoint_rows": 0,
+  "zero_measured_temperature_cells": 0,
+  "measured_temperature_range_C": {
+    "temp_mean_C": [
+      24.89,
+      47.61
+    ],
+    "temp_min_C": [
+      23.9,
+      47.0
+    ],
+    "temp_max_C": [
+      25.2,
+      48.3
+    ]
+  },
+  "adjacent_jump_eligible_pairs": 1572694,
+  "jump_sensitivity": [
+    {
+      "threshold_C": 0.5,
+      "any_temperature_rows": 9,
+      "temp_mean_C": 0,
+      "temp_min_C": 9,
+      "temp_max_C": 0
+    },
+    {
+      "threshold_C": 1,
+      "any_temperature_rows": 0,
+      "temp_mean_C": 0,
+      "temp_min_C": 0,
+      "temp_max_C": 0
+    },
+    {
+      "threshold_C": 2,
+      "any_temperature_rows": 0,
+      "temp_mean_C": 0,
+      "temp_min_C": 0,
+      "temp_max_C": 0
+    }
+  ],
+  "over_2C_spread_rows": 63,
+  "over_3C_spread_rows": 18,
+  "review_candidate_union_rows": 67,
+  "duplicate_timestamp_groups": 181,
+  "duplicate_timestamp_temperature_conflict_groups": 119,
+  "largest_temperature_difference_at_same_timestamp_C": 0.20000000000000284,
+  "within_file_gap_over_30s_count": 6,
+  "within_file_gap_over_30s_elapsed_hours": 20.8075,
+  "within_file_gap_over_30s_excess_over_10s_hours": 20.79083333333333,
+  "within_file_gap_over_30s_max_s": 59909.0,
+  "observed_weight_hours": 4368.3886111111115
+}

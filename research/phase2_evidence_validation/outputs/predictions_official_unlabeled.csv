@@ -1,0 +1,9 @@
+checkup,evidence_tier,protocol,C_scale_estimate,Q_ref_estimate_Ah,prediction_Ah,prediction_soh_percent,fallback,capacity_update_qualified,reason,true_capacity_Ah
+CK0,D3,official_5p1A_pack_first_11p2V,,,100.41,98.44117647058825,R01_CK0_constant,False,reference_temperature/full_charge_initial_state_unknown; zero strict >=5Ah qualified operational windows,100.41
+CK1,D3,official_5p1A_pack_first_11p2V,,,100.41,98.44117647058825,R01_CK0_constant,False,reference_temperature/full_charge_initial_state_unknown; zero strict >=5Ah qualified operational windows,
+CK2,D3,official_5p1A_pack_first_11p2V,,,100.41,98.44117647058825,R01_CK0_constant,False,reference_temperature/full_charge_initial_state_unknown; zero strict >=5Ah qualified operational windows,
+CK3,D3,official_5p1A_pack_first_11p2V,,,100.41,98.44117647058825,R01_CK0_constant,False,reference_temperature/full_charge_initial_state_unknown; zero strict >=5Ah qualified operational windows,
+CK4,D3,official_5p1A_pack_first_11p2V,,,100.41,98.44117647058825,R01_CK0_constant,False,reference_temperature/full_charge_initial_state_unknown; zero strict >=5Ah qualified operational windows,
+CK5,D3,official_5p1A_pack_first_11p2V,,,100.41,98.44117647058825,R01_CK0_constant,False,reference_temperature/full_charge_initial_state_unknown; zero strict >=5Ah qualified operational windows,
+CK6,D3,official_5p1A_pack_first_11p2V,,,100.41,98.44117647058825,R01_CK0_constant,False,reference_temperature/full_charge_initial_state_unknown; zero strict >=5Ah qualified operational windows,
+CK7,D3,official_5p1A_pack_first_11p2V,,,100.41,98.44117647058825,R01_CK0_constant,False,reference_temperature/full_charge_initial_state_unknown; zero strict >=5Ah qualified operational windows,

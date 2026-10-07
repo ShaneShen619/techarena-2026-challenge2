@@ -1,0 +1,7 @@
+COMMAND: /Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_validation/.venv/bin/python -m pytest /Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_temperature_improvement/tests -q
+STDOUT:
+...........                                                              [100%]
+11 passed in 0.38s
+
+STDERR:
+

@@ -1,0 +1,9 @@
+question_id,question_cn,support_ids,limiting_ids,unresolved,minimal_discriminating_experiment
+Q1,单 CK0 锚点+运行前缀可识别什么,Lin2015_Fisher_identifiability;B_card_Yi2024;A_Zhou2025,B_card_Schaeffer2024;B_card_Cornejo2026,四芯绝对容量、SOC 初值、OCV 漂移、偏置/极化的联合独立性未证,"固定 CK0/OCV 先验后做 Q,z0,b,R 剖面似然与奇异值；再以独立多标签四串组验证"
+Q2,LFP 局部窗口何时有容量信息,A_Deng2022;A_Krupp2021;A_Wang2025,A_Figgener2024;A_Yi2025;Lin2015_Fisher_identifiability,完整曲线裁剪与真实浅循环、未知初始 SOC 尚未等价,同一电芯配对自然浅充与后验裁窗，锁温度/方向/窗和实体留出
+Q3,分离即时温度、热老化、工况和时间,A_Ruiz2018;A_Aeppli2025;Yagci2025_large_LFP_aging,A_Ovejas2019;A_Yi2025,本竞赛 CK1–7 参考测温和传感器误差规格未知,跨温路径交叉、共同 25°C RPT、实际芯温积分与固定模型消融
+Q4,脉冲/恢复何时提供容量而非代理,B_card_Gasper2025;B_card_Zhang2011,B_card_Schaeffer2024;A_Zhou2025;B_R3_cluster_audit,官方脉冲无配对真实容量，10s 采样与静置状态限制 R0,同 SOC/T/静置匹配脉冲，以组级多标签 D2 对年龄/温度/Ah 强基线作增量
+Q5,四串组容量由何决定,A_Krupp2021;B_card_Cornejo2026,B_card_Schaeffer2024;OFFICIAL_CONSTRAINTS,逐芯触限和组端 11.2V 首次触限非同一协议；均衡动作未全知,固定满充起点，以逐芯模型求 sum(V_i)=11.2V 首次根，与独立组 C/20 RPT 比较
+Q6,低标签迁移/物理约束增加什么,C_Richardson2017_GP;C_Arunan2025_SSL;C_Che2023_Continual,C_Ispizua2026_PINN;C_Schaeffer2024_BattGP;C_Silva2026_Conformal,标签预算/未来目标分布/寿命代理和组拓扑迁移收益未分开,相同输入预算、组级封存、目标一锚和严格前缀；消除年龄/温度/掩码代理
+Q7,最差芯与末期高估可能来自什么,A_Aeppli2025;Zhang2024_knee_curvature;A_Zhou2025,B_card_Cornejo2026;A_Ovejas2019,无多时间容量不能确认容量 knee 或限制芯变化原因,冻结早期趋势，对残差/触限身份做顺序检验，触发独立容量复测与同温诊断
+Q8,隐藏标签下何种验证与测量最有价值,OFFICIAL_CONSTRAINTS;Yagci2025_large_LFP_aging;C_Richardson2019_GPTransition,C_DATA_QUALIFICATION;B_card_Schaeffer2024,D1 多次开发、D3 只有 CK0；无协议相符 D2,同协议 25°C 四串 5.1A 至 11.2V 重复容量，按物理组封存并测功效

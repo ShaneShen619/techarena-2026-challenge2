@@ -1,0 +1,11 @@
+{
+  "physical_cells": 11,
+  "cycles": 23853,
+  "three_stages_per_cell": 33,
+  "same_charge_process_proxy_mae_pp": 5.8887634652545975,
+  "explicit_voltage_grid_in_local_file": false,
+  "raw_time_current_voltage_in_local_file": false,
+  "target_label": "full charge capacity in same charging process",
+  "official_4S_C20_capacity_compatible": false,
+  "interpretation": "Only field/shape qualification; shared same-charge input-label process is not independent forward capacity validation."
+}

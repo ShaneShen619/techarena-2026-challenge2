@@ -1,0 +1,25 @@
+{
+  "source": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_method_exploration/runs/M1_voltage_forecast_v1/forward_voltage_predictions.csv",
+  "source_sha256": "6227923420017adec5fa2dbb419c599fc15121f6475339d13862e38d96a9338e",
+  "published_scores_source": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_next_round/outputs/r3_voltage_scores_all.csv",
+  "published_scores_sha256": "8e9f7d5e570d7fd6cf005c6312db66415a2a125f20efa8ae0ab083ee75cf3075",
+  "physical_pack_pulses": 37,
+  "cell_events": 148,
+  "cell_events_per_pack_pulse": {
+    "4": 37
+  },
+  "mean_advantage_mV": 10.04233136181842,
+  "naive_cell_event_bootstrap_95pct_mV": [
+    9.361869951645339,
+    10.768741731356311
+  ],
+  "pack_pulse_cluster_bootstrap_95pct_mV": [
+    9.568496653674563,
+    10.517826912930621
+  ],
+  "naive_interval_width_mV": 1.406871779710972,
+  "cluster_interval_width_mV": 0.9493302592560582,
+  "bootstrap_replicates": 10000,
+  "seed": 20260929,
+  "interpretation": "Shared current and same pulse start make four cell events one physical pack pulse. Existing R3 summary already bootstrapped pulse starts, which is the appropriate unit. Neither interval concerns capacity SOH."
+}

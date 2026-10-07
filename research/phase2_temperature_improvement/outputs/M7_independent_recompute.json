@@ -1,0 +1,37 @@
+{
+  "development_data_only": true,
+  "panel_sha256": "7188b662900f84312292a7062d6023e5eeb4f2e32798b6d61a3547ed40cdc59c",
+  "scope": "independent formula replay over cached features; full packaged online input replay checked",
+  "formula_replay_max_abs_diff_pp": 1.4210854715202004e-14,
+  "online_replay_max_abs_diff_pp": 4.263256414560601e-14,
+  "macro_mae_pp": 1.0386628968934812,
+  "macro_rmse_pp": 1.2190006289213922,
+  "worst_cell_mae_pp": 1.7372707389318662,
+  "p95_abs_error_pp": 2.6801097645352097,
+  "max_abs_error_pp": 3.889631118621942,
+  "old_a_macro_mae_pp": 11.31688743115023,
+  "fixed_noT_macro_mae_pp": 1.3841315135692982,
+  "old_a_reduction_fraction": 0.9082200911502826,
+  "coverage": {
+    "overall": 0.9555555555555556,
+    "per_cell": {
+      "102Ah_25degC_0p5C_cell3": 0.9,
+      "102Ah_25degC_1C_cell3": 1.0,
+      "102Ah_35degC_1C_cell1": 0.8666666666666667,
+      "102Ah_45degC_0p5C_cell3": 0.9666666666666667,
+      "102Ah_45degC_1C_cell1": 1.0,
+      "102Ah_55degC_1C_cell3": 1.0
+    },
+    "distinct_event_ids": 853
+  },
+  "stress": {
+    "bias_+1C": {
+      "macro_mae_pp": 1.035875472724059,
+      "increase_over_clean_pp": -0.002787424169422126
+    },
+    "bias_-1C": {
+      "macro_mae_pp": 1.0439235175394956,
+      "increase_over_clean_pp": 0.005260620646014402
+    }
+  }
+}

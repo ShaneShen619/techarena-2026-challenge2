@@ -1,0 +1,44 @@
+{
+  "version": "2026-09-29",
+  "official_constraints_verified": true,
+  "search_protocol_completed": true,
+  "search_scope": "12 preregistered method families and 8 research questions; 117 deduplicated broad-search metadata candidates plus targeted and citation-follow-up records; non-exhaustive evidence review, not a systematic-review claim",
+  "coverage_gaps": [
+    "Bilfinger2026 and Jiang2023 full text unavailable; metadata/abstract only and not used for detailed claims",
+    "Some public large datasets were qualified from publisher README and representative files but not fully downloaded or model-reproduced",
+    "No new independent D2 four-series same-protocol capacity labels; CK1–CK7 ground truth hidden"
+  ],
+  "fulltext_review_count": 33,
+  "deep_card_count": 33,
+  "duplicate_version_or_workstream_cards_excluded": 5,
+  "core_claims_verified": true,
+  "core_claims_verification_basis": "Independent source audits and addenda, original PDF/page/table/formula checks, D2/E/F targeted source and data checks, corrections log; source-internal unresolved ambiguities are stated rather than silently settled",
+  "dataset_claims_verified": true,
+  "dataset_claims_limit": "Dataset target, identity, availability and representative fields checked; not a claim that every entire data bundle was downloaded or can validate official capacity",
+  "contradictions_addressed": true,
+  "route_decisions_traceable": true,
+  "light_checks_completed": true,
+  "light_checks": [
+    "CK0 integration, timestamps, pack/cell-voltage consistency and assumed current-offset sensitivity",
+    "CK0 26-window assumed plus/minus 2 mV displacement sensitivity and Yagci table arithmetic",
+    "R3 same-pack-pulse cluster-level re-analysis; no capacity outcome",
+    "Author-code/data static checks and Deng MAT read-only field/denominator recalculation"
+  ],
+  "independent_audit_status": "passed",
+  "independent_audit_records": [
+    "notes/INDEPENDENT_EVIDENCE_AUDIT.md",
+    "notes/INDEPENDENT_EVIDENCE_AUDIT_ADDENDUM.md",
+    "notes/INDEPENDENT_EVIDENCE_AUDIT_FINAL_ADDENDUM.md",
+    "notes/AUDIT_CORRECTIONS.md"
+  ],
+  "reader_test_status": "passed",
+  "reader_test_limit": "Twelve questions answered by an agent with no research-chat context; follow-up verified implementation contract. Prototype entry passes; final numeric blind-test thresholds and D2 labels remain unavailable",
+  "word_render_verified": true,
+  "word_render_record": "notes/DOCX_VISUAL_QA.md; both Word files exported with Microsoft Word and all 12 main/31 annex pages individually inspected",
+  "research_review_complete": true,
+  "replacement_status": "complete_7_files_hash_verified",
+  "replacement_manifest": "outputs/replacement_manifest.json",
+  "backup_archive": "archive/phase2_literature_before_20260929T230323/",
+  "capacity_performance_newly_verified": false,
+  "performance_note": "No official CK1–CK7 ground truth and no new same-protocol independent D2 group-capacity labels; D1 proxy performance is historical, not newly improved or official verification"
+}

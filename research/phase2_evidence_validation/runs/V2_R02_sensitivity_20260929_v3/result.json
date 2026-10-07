@@ -1,0 +1,15 @@
+{
+  "run_id": "V2_R02_sensitivity_20260929_v3",
+  "supersedes": "V2_R02_sensitivity_20260929_v2 for paired sparse noise and no heldout extrapolation",
+  "frozen_grid_Ah": [
+    70.0,
+    105.0,
+    0.5
+  ],
+  "dimensionless_scale": "apparent_axis_Ah / CK0 released 100.41 Ah",
+  "profiles": 270,
+  "synthetic_heldout_events": 18,
+  "heldout_rejected": 0,
+  "official_capacity_identifiable": false,
+  "interval_type": "illustrative 1mV RMSE sensitivity, not confidence interval"
+}

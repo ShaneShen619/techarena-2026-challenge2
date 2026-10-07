@@ -1,0 +1,143 @@
+{
+  "scenarios": 600,
+  "fraction_below_2p5V": 0.16166666666666665,
+  "scores": [
+    {
+      "quality": "M4_unidentified",
+      "method": "explicit_four_cell",
+      "n": 600,
+      "MAE_Ah": 2.6266905696472147,
+      "P95_abs_Ah": 6.303091292554405,
+      "max_abs_Ah": 10.646673120068002,
+      "bias_Ah": -1.7170311588342626
+    },
+    {
+      "quality": "M4_unidentified",
+      "method": "minimum_cell_usable_Ah",
+      "n": 600,
+      "MAE_Ah": 6.104813278763527,
+      "P95_abs_Ah": 12.17272355658943,
+      "max_abs_Ah": 18.88984655388117,
+      "bias_Ah": -5.987798041916995
+    },
+    {
+      "quality": "M4_unidentified",
+      "method": "uniform_mean_cell",
+      "n": 600,
+      "MAE_Ah": 2.0106864764641994,
+      "P95_abs_Ah": 5.135154633610722,
+      "max_abs_Ah": 8.536931930287224,
+      "bias_Ah": -0.3568809064297573
+    },
+    {
+      "quality": "high_quality",
+      "method": "explicit_four_cell",
+      "n": 600,
+      "MAE_Ah": 0.46131238924099893,
+      "P95_abs_Ah": 1.094961795781402,
+      "max_abs_Ah": 1.6328423134187204,
+      "bias_Ah": -0.08089749547521106
+    },
+    {
+      "quality": "high_quality",
+      "method": "minimum_cell_usable_Ah",
+      "n": 600,
+      "MAE_Ah": 2.2089772523714206,
+      "P95_abs_Ah": 4.217525681377839,
+      "max_abs_Ah": 5.843876560217069,
+      "bias_Ah": -2.20513583014017
+    },
+    {
+      "quality": "high_quality",
+      "method": "uniform_mean_cell",
+      "n": 600,
+      "MAE_Ah": 0.45422725791969837,
+      "P95_abs_Ah": 1.1373984292193478,
+      "max_abs_Ah": 1.599125792084692,
+      "bias_Ah": 0.10448544950585462
+    },
+    {
+      "quality": "low_quality",
+      "method": "explicit_four_cell",
+      "n": 600,
+      "MAE_Ah": 1.4714184350546402,
+      "P95_abs_Ah": 3.6170317306557056,
+      "max_abs_Ah": 6.349888412821997,
+      "bias_Ah": -0.7776950113263018
+    },
+    {
+      "quality": "low_quality",
+      "method": "minimum_cell_usable_Ah",
+      "n": 600,
+      "MAE_Ah": 4.095473918712279,
+      "P95_abs_Ah": 7.892790811064855,
+      "max_abs_Ah": 12.963401812591897,
+      "bias_Ah": -4.044782097136937
+    },
+    {
+      "quality": "low_quality",
+      "method": "uniform_mean_cell",
+      "n": 600,
+      "MAE_Ah": 1.2708357210026273,
+      "P95_abs_Ah": 3.1124177004172493,
+      "max_abs_Ah": 5.067295231222971,
+      "bias_Ah": -0.17123086414600425
+    },
+    {
+      "quality": "moderate_quality",
+      "method": "explicit_four_cell",
+      "n": 600,
+      "MAE_Ah": 0.9044875671475463,
+      "P95_abs_Ah": 2.246958540431907,
+      "max_abs_Ah": 3.715104726452225,
+      "bias_Ah": -0.3454081860999055
+    },
+    {
+      "quality": "moderate_quality",
+      "method": "minimum_cell_usable_Ah",
+      "n": 600,
+      "MAE_Ah": 3.04598190471797,
+      "P95_abs_Ah": 5.6535906167351415,
+      "max_abs_Ah": 9.889044311154962,
+      "bias_Ah": -3.0026408893774703
+    },
+    {
+      "quality": "moderate_quality",
+      "method": "uniform_mean_cell",
+      "n": 600,
+      "MAE_Ah": 0.8553674004577723,
+      "P95_abs_Ah": 2.101675338310504,
+      "max_abs_Ah": 3.155237668843668,
+      "bias_Ah": -0.028178181661106243
+    },
+    {
+      "quality": "oracle",
+      "method": "explicit_four_cell",
+      "n": 600,
+      "MAE_Ah": 0.026728877529977216,
+      "P95_abs_Ah": 0.06737920133848689,
+      "max_abs_Ah": 0.10362614179894081,
+      "bias_Ah": 0.013984556405657973
+    },
+    {
+      "quality": "oracle",
+      "method": "minimum_cell_usable_Ah",
+      "n": 600,
+      "MAE_Ah": 1.846043023746509,
+      "P95_abs_Ah": 3.3382678061928637,
+      "max_abs_Ah": 5.209003006442927,
+      "bias_Ah": -1.846043023746509
+    },
+    {
+      "quality": "oracle",
+      "method": "uniform_mean_cell",
+      "n": 600,
+      "MAE_Ah": 0.14597008059940123,
+      "P95_abs_Ah": 0.41789579823311596,
+      "max_abs_Ah": 0.9145155212397782,
+      "bias_Ah": 0.1434924357622303
+    }
+  ],
+  "selection_notice": "supplemental sensitivity, not replacement for pre-frozen broad stress",
+  "interpretation": "Explicit model structural merit requires sufficiently precise per-cell state. Same CK0 base and synthetic truth only."
+}

@@ -1,0 +1,726 @@
+{
+  "meta": {
+    "count": 809,
+    "db_response_time_ms": 34,
+    "page": 1,
+    "per_page": 100,
+    "groups_count": null,
+    "x_query": {
+      "oql": "works where it cites (W4224947065)",
+      "oqo": {
+        "get_rows": "works",
+        "filter_rows": [
+          {
+            "column_id": "referenced_works",
+            "value": "W4224947065"
+          }
+        ]
+      },
+      "url": "/works?filter=referenced_works:W4224947065&per_page=100"
+    },
+    "cost_usd": 0.0001
+  },
+  "results": [
+    {
+      "id": "https://openalex.org/W4398164319",
+      "title": "Physics-informed neural network for lithium-ion battery degradation stable modeling and prognosis",
+      "doi": "https://doi.org/10.1038/s41467-024-48779-z",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4283790508",
+      "title": "Flexible battery state of health and state of charge estimation using partial charging data and deep learning",
+      "doi": "https://doi.org/10.1016/j.ensm.2022.06.053",
+      "publication_year": 2022,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4385392059",
+      "title": "A comprehensive insight into the thermal runaway issues in the view of lithium-ion battery intrinsic safety performance and venting gas explosion hazards",
+      "doi": "https://doi.org/10.1016/j.apenergy.2023.121651",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4321793275",
+      "title": "Data-driven lithium-ion batteries capacity estimation based on deep transfer learning using partial segment of charging/discharging data",
+      "doi": "https://doi.org/10.1016/j.energy.2023.127033",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4391018556",
+      "title": "Battery safety: Machine learning-based prognostics",
+      "doi": "https://doi.org/10.1016/j.pecs.2023.101142",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4406928475",
+      "title": "Multi-modal framework for battery state of health evaluation using open-source electric vehicle data",
+      "doi": "https://doi.org/10.1038/s41467-025-56485-7",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4401618791",
+      "title": "Advancing flexible thermoelectrics for integrated electronics",
+      "doi": "https://doi.org/10.1039/d4cs00361f",
+      "publication_year": 2024,
+      "type": "review"
+    },
+    {
+      "id": "https://openalex.org/W4390221570",
+      "title": "Challenges and opportunities for second-life batteries: Key technologies and economy",
+      "doi": "https://doi.org/10.1016/j.rser.2023.114191",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4381548048",
+      "title": "All-temperature area battery application mechanism, performance, and strategies",
+      "doi": "https://doi.org/10.1016/j.xinn.2023.100465",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4406633870",
+      "title": "Regulating interfacial kinetics boosts the durable A h-level zinc-ion batteries",
+      "doi": "https://doi.org/10.1039/d4ee04372c",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4302010805",
+      "title": "Semi-supervised estimation of capacity degradation for lithium ion batteries with electrochemical impedance spectroscopy",
+      "doi": "https://doi.org/10.1016/j.jechem.2022.09.045",
+      "publication_year": 2022,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4399920688",
+      "title": "State of charge estimation of lithium batteries: Review for equivalent circuit model methods",
+      "doi": "https://doi.org/10.1016/j.measurement.2024.115148",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4390755578",
+      "title": "Accurate and efficient remaining useful life prediction of batteries enabled by physics-informed machine learning",
+      "doi": "https://doi.org/10.1016/j.jechem.2023.12.043",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4387353319",
+      "title": "Data-driven capacity estimation for lithium-ion batteries with feature matching based transfer learning method",
+      "doi": "https://doi.org/10.1016/j.apenergy.2023.121991",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W3215804120",
+      "title": "Forecasting battery capacity and power degradation with multi-task learning",
+      "doi": "https://doi.org/10.1016/j.ensm.2022.09.013",
+      "publication_year": 2022,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4392610907",
+      "title": "Machine learning for battery systems applications: Progress, challenges, and opportunities",
+      "doi": "https://doi.org/10.1016/j.jpowsour.2024.234272",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4397007553",
+      "title": "Advances in emerging digital technologies for energy efficiency and energy integration in smart cities",
+      "doi": "https://doi.org/10.1016/j.enbuild.2024.114289",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4402599626",
+      "title": "Recent advances in model-based fault diagnosis for lithium-ion batteries: A comprehensive review",
+      "doi": "https://doi.org/10.1016/j.rser.2024.114922",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4320351978",
+      "title": "Experimental degradation study of a commercial lithium-ion battery",
+      "doi": "https://doi.org/10.1016/j.jpowsour.2022.232498",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4388562864",
+      "title": "Rapid health estimation of in-service battery packs based on limited labels and domain adaptation",
+      "doi": "https://doi.org/10.1016/j.jechem.2023.10.056",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4306907102",
+      "title": "An adaptive capacity estimation approach for lithium-ion battery using 10-min relaxation voltage within high state of charge range",
+      "doi": "https://doi.org/10.1016/j.energy.2022.125802",
+      "publication_year": 2022,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4387424462",
+      "title": "Advances in COFs for energy storage devices: Harnessing the potential of covalent organic framework materials",
+      "doi": "https://doi.org/10.1016/j.ensm.2023.103014",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4293051411",
+      "title": "An improvement of equivalent circuit model for state of health estimation of lithium-ion batteries based on mid-frequency and low-frequency electrochemical impedance spectroscopy",
+      "doi": "https://doi.org/10.1016/j.measurement.2022.111795",
+      "publication_year": 2022,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4390086807",
+      "title": "Towards machine-learning driven prognostics and health management of Li-ion batteries. A comprehensive review",
+      "doi": "https://doi.org/10.1016/j.rser.2023.114224",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4311774868",
+      "title": "State of health estimation of lithium-ion battery with automatic feature extraction and self-attention learning mechanism",
+      "doi": "https://doi.org/10.1016/j.jpowsour.2022.232466",
+      "publication_year": 2022,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4309595898",
+      "title": "Battery capacity estimation using 10-second relaxation voltage and a convolutional neural network",
+      "doi": "https://doi.org/10.1016/j.apenergy.2022.120308",
+      "publication_year": 2022,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4282962192",
+      "title": "Bridging Multiscale Characterization Technologies and Digital Modeling to Evaluate Lithium Battery Full Lifecycle",
+      "doi": "https://doi.org/10.1002/aenm.202200889",
+      "publication_year": 2022,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4383653172",
+      "title": "Mechanical strain signal based early warning for failure of different prismatic lithium-ion batteries",
+      "doi": "https://doi.org/10.1016/j.jpowsour.2023.233397",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4386022761",
+      "title": "Light‐Assisted Energy Storage Devices: Principles, Performance, and Perspectives",
+      "doi": "https://doi.org/10.1002/aenm.202301143",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4407685301",
+      "title": "A lightweight two-stage physics-informed neural network for SOH estimation of lithium-ion batteries with different chemistries",
+      "doi": "https://doi.org/10.1016/j.jechem.2025.01.057",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4412427294",
+      "title": "Physics-informed neural network for co-estimation of state of health, remaining useful life, and short-term degradation path in Lithium-ion batteries",
+      "doi": "https://doi.org/10.1016/j.apenergy.2025.126427",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4383749458",
+      "title": "Battery Cross-Operation-Condition Lifetime Prediction via Interpretable Feature Engineering Assisted Adaptive Machine Learning",
+      "doi": "https://doi.org/10.1021/acsenergylett.3c01012",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4320015883",
+      "title": "Ensemble Method With Heterogeneous Models for Battery State-of-Health Estimation",
+      "doi": "https://doi.org/10.1109/tii.2023.3240920",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4320517130",
+      "title": "Capacity estimation of lithium-ion batteries based on data aggregation and feature fusion via graph neural network",
+      "doi": "https://doi.org/10.1016/j.apenergy.2023.120808",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4402666327",
+      "title": "Multi-model ensemble learning for battery state-of-health estimation: Recent advances and perspectives",
+      "doi": "https://doi.org/10.1016/j.jechem.2024.09.021",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4366779435",
+      "title": "Data-driven-aided strategies in battery lifecycle management: Prediction, monitoring, and optimization",
+      "doi": "https://doi.org/10.1016/j.ensm.2023.102785",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4405194697",
+      "title": "Dynamic cycling enhances battery lifetime",
+      "doi": "https://doi.org/10.1038/s41560-024-01675-8",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4366134566",
+      "title": "Parallel State Fusion LSTM-based Early-cycle Stage Lithium-ion Battery RUL Prediction Under Lebesgue Sampling Framework",
+      "doi": "https://doi.org/10.1016/j.ress.2023.109315",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4412711766",
+      "title": "A comprehensive review of machine learning-based state of health estimation for lithium-ion batteries: data, features, algorithms, and future challenges",
+      "doi": "https://doi.org/10.1016/j.rser.2025.116125",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4386700202",
+      "title": "A novel state of health estimation method for lithium-ion batteries based on constant-voltage charging partial data and convolutional neural network",
+      "doi": "https://doi.org/10.1016/j.energy.2023.129103",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4390534410",
+      "title": "Quantitative Diagnosis of Internal Short Circuit for Lithium-Ion Batteries Using Relaxation Voltage",
+      "doi": "https://doi.org/10.1109/tie.2023.3342289",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4381432489",
+      "title": "A method to prolong lithium-ion battery life during the full life cycle",
+      "doi": "https://doi.org/10.1016/j.xcrp.2023.101464",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4407242316",
+      "title": "Physics-informed machine learning for accurate SOH estimation of lithium-ion batteries considering various temperatures and operating conditions",
+      "doi": "https://doi.org/10.1016/j.energy.2025.134937",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4327970383",
+      "title": "Potential and Limitations of Research Battery Cell Types for Electrochemical Data Acquisition",
+      "doi": "https://doi.org/10.1002/batt.202300080",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4402215684",
+      "title": "Optimized XGBoost modeling for accurate battery capacity degradation prediction",
+      "doi": "https://doi.org/10.1016/j.rineng.2024.102786",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4386301103",
+      "title": "Voltage relaxation-based state-of-health estimation of lithium-ion batteries using convolutional neural networks and transfer learning",
+      "doi": "https://doi.org/10.1016/j.est.2023.108579",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4386122724",
+      "title": "Selecting the appropriate features in battery lifetime predictions",
+      "doi": "https://doi.org/10.1016/j.joule.2023.07.021",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4384501593",
+      "title": "Lithium-ion battery degradation trajectory early prediction with synthetic dataset and deep learning",
+      "doi": "https://doi.org/10.1016/j.jechem.2023.06.036",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4387587694",
+      "title": "Remaining Useful Life Prediction of Lithium-Ion Batteries With Limited Degradation History Using Random Forest",
+      "doi": "https://doi.org/10.1109/tte.2023.3323976",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4317786890",
+      "title": "Reversible lithium plating on working anodes enhances fast charging capability in low-temperature lithium-ion batteries",
+      "doi": "https://doi.org/10.1016/j.ensm.2023.01.035",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4385462860",
+      "title": "Nonlinear aging knee-point prediction for lithium-ion batteries faced with different application scenarios",
+      "doi": "https://doi.org/10.1016/j.etran.2023.100270",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4313531219",
+      "title": "Deep learning enhanced lithium-ion battery nonlinear fading prognosis",
+      "doi": "https://doi.org/10.1016/j.jechem.2022.12.028",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4385718746",
+      "title": "Long Short-Term Memory Network with Transfer Learning for Lithium-ion Battery Capacity Fade and Cycle Life Prediction",
+      "doi": "https://doi.org/10.1016/j.apenergy.2023.121660",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4393938525",
+      "title": "Integrating mechanism and machine learning based capacity estimation for LiFePO4 batteries under slight overcharge cycling",
+      "doi": "https://doi.org/10.1016/j.energy.2024.131208",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4402167774",
+      "title": "Advanced data-driven techniques in AI for predicting lithium-ion battery remaining useful life: a comprehensive review",
+      "doi": "https://doi.org/10.1016/j.gce.2024.09.001",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4311833440",
+      "title": "Capacity estimation of lithium-ion batteries based on optimized charging voltage section and virtual sample generation",
+      "doi": "https://doi.org/10.1016/j.apenergy.2022.120516",
+      "publication_year": 2022,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4403589123",
+      "title": "Predictive pretrained transformer (PPT) for real-time battery health diagnostics",
+      "doi": "https://doi.org/10.1016/j.apenergy.2024.124746",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4409158049",
+      "title": "Application-oriented design of machine learning paradigms for battery science",
+      "doi": "https://doi.org/10.1038/s41524-025-01575-9",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4407955317",
+      "title": "Big data-driven prognostics and health management of lithium-ion batteries:A review",
+      "doi": "https://doi.org/10.1016/j.rser.2025.115522",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4386023816",
+      "title": "Accurate Model Parameter Identification to Boost Precise Aging Prediction of Lithium‐Ion Batteries: A Review",
+      "doi": "https://doi.org/10.1002/aenm.202301452",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4411507392",
+      "title": "A generic physics-informed neural network framework for lithium-ion batteries state of health estimation",
+      "doi": "https://doi.org/10.1016/j.energy.2025.137215",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4388788100",
+      "title": "A feature fusion-based convolutional neural network for battery state-of-health estimation with mining of partial voltage curve",
+      "doi": "https://doi.org/10.1016/j.energy.2023.129690",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4408283465",
+      "title": "Stochastic state of health estimation for lithium-ion batteries with automated feature fusion using quantum convolutional neural network",
+      "doi": "https://doi.org/10.1016/j.jechem.2025.02.030",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4399152857",
+      "title": "Comprehensive performance comparison among different types of features in data-driven battery state of health estimation",
+      "doi": "https://doi.org/10.1016/j.apenergy.2024.123555",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4402731330",
+      "title": "AI enabled fast charging of lithium-ion batteries of electric vehicles during their life cycle: review, challenges and perspectives",
+      "doi": "https://doi.org/10.1039/d4ee03063j",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4389985393",
+      "title": "Using tens of seconds of relaxation voltage to estimate open circuit voltage and state of health of lithium ion batteries",
+      "doi": "https://doi.org/10.1016/j.apenergy.2023.122488",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4378895006",
+      "title": "In-situ battery life prognostics amid mixed operation conditions using physics-driven machine learning",
+      "doi": "https://doi.org/10.1016/j.jpowsour.2023.233246",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4391717891",
+      "title": "Machine learning models for prediction of electrochemical properties in supercapacitor electrodes using MXene and graphene nanoplatelets",
+      "doi": "https://doi.org/10.1016/j.cej.2024.149502",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4362696213",
+      "title": "Battery health prognostic with sensor-free differential temperature voltammetry reconstruction and capacity estimation based on multi-domain adaptation",
+      "doi": "https://doi.org/10.1016/j.etran.2023.100245",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4402041632",
+      "title": "Enhancing capacity estimation of retired electric vehicle lithium-ion batteries through transfer learning from electrochemical impedance spectroscopy",
+      "doi": "https://doi.org/10.1016/j.etran.2024.100362",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4382940595",
+      "title": "Battery State of Health Estimate Strategies: From Data Analysis to End-Cloud Collaborative Framework",
+      "doi": "https://doi.org/10.3390/batteries9070351",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4387369476",
+      "title": "Adaptive state of health estimation for lithium-ion batteries using impedance-based timescale information and ensemble learning",
+      "doi": "https://doi.org/10.1016/j.energy.2023.129283",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4401476882",
+      "title": "Machine learning enables rapid state of health estimation of each cell within battery pack",
+      "doi": "https://doi.org/10.1016/j.apenergy.2024.124165",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4363651729",
+      "title": "Model-free reconstruction of capacity degradation trajectory of lithium-ion batteries using early cycle data",
+      "doi": "https://doi.org/10.1016/j.etran.2023.100243",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4404552228",
+      "title": "Lithium-ion battery remaining useful life prediction based on interpretable deep learning and network parameter optimization",
+      "doi": "https://doi.org/10.1016/j.apenergy.2024.124713",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4389305267",
+      "title": "Large-scale field data-based battery aging prediction driven by statistical features and machine learning",
+      "doi": "https://doi.org/10.1016/j.xcrp.2023.101720",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4392373381",
+      "title": "Prediction of nonlinear degradation knee-point and remaining useful life for lithium-ion batteries using relaxation voltage",
+      "doi": "https://doi.org/10.1016/j.energy.2024.130900",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4400887339",
+      "title": "Machine Learning in Lithium-Ion Battery: Applications, Challenges, and Future Trends",
+      "doi": "https://doi.org/10.1007/s42979-024-03046-2",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4310266387",
+      "title": "Machine learning utilized for the development of proton exchange membrane electrolyzers",
+      "doi": "https://doi.org/10.1016/j.jpowsour.2022.232389",
+      "publication_year": 2022,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4406053386",
+      "title": "Enhancing electric vehicle battery lifespan: integrating active balancing and machine learning for precise RUL estimation",
+      "doi": "https://doi.org/10.1038/s41598-024-82778-w",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4408859582",
+      "title": "Robust Health Monitoring for Lithium-Ion Batteries Under Guidance of Proxy Labels: A Deep Multitask Learning Approach",
+      "doi": "https://doi.org/10.1109/tpel.2025.3553956",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4380925035",
+      "title": "State of charge estimation for Li-ion batteries based on iterative Kalman filter with adaptive maximum correntropy criterion",
+      "doi": "https://doi.org/10.1016/j.jpowsour.2023.233282",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4390151013",
+      "title": "Deep learning model for state of health estimation of lithium batteries based on relaxation voltage",
+      "doi": "https://doi.org/10.1016/j.est.2023.110189",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4390640228",
+      "title": "Co-estimation of state-of-charge and state-of-temperature for large-format lithium-ion batteries based on a novel electrothermal model",
+      "doi": "https://doi.org/10.1016/j.geits.2024.100152",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4389076593",
+      "title": "Degradation Pattern Recognition and Features Extrapolation for Battery Capacity Trajectory Prediction",
+      "doi": "https://doi.org/10.1109/tte.2023.3336618",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4400520842",
+      "title": "Physical knowledge guided state of health estimation of lithium-ion battery with limited segment data",
+      "doi": "https://doi.org/10.1016/j.ress.2024.110325",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4394687313",
+      "title": "Deep learning of experimental electrochemistry for battery cathodes across diverse compositions",
+      "doi": "https://doi.org/10.1016/j.joule.2024.03.010",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4401158447",
+      "title": "Specialized convolutional transformer networks for estimating battery health via transfer learning",
+      "doi": "https://doi.org/10.1016/j.ensm.2024.103668",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4397000552",
+      "title": "Towards real-world state of health estimation, Part 1: Cell-level method using lithium-ion battery laboratory data",
+      "doi": "https://doi.org/10.1016/j.etran.2024.100338",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4398164480",
+      "title": "Investigating explainable transfer learning for battery lifetime prediction under state transitions",
+      "doi": "https://doi.org/10.1016/j.esci.2024.100280",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4399898794",
+      "title": "An adaptive and interpretable SOH estimation method for lithium-ion batteries based-on relaxation voltage cross-scale features and multi-LSTM-RFR2",
+      "doi": "https://doi.org/10.1016/j.energy.2024.132167",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4406289232",
+      "title": "Transfer learning to estimate lithium-ion battery state of health with electrochemical impedance spectroscopy",
+      "doi": "https://doi.org/10.1016/j.est.2025.115345",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4409113666",
+      "title": "RUL-Mamba: Mamba-based remaining useful life prediction for lithium-ion batteries",
+      "doi": "https://doi.org/10.1016/j.est.2025.116376",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4324057811",
+      "title": "A novel aging characteristics-based feature engineering for battery state of health estimation",
+      "doi": "https://doi.org/10.1016/j.energy.2023.127169",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4393385286",
+      "title": "Capacity estimation of lithium-ion batteries with uncertainty quantification based on temporal convolutional network and Gaussian process regression",
+      "doi": "https://doi.org/10.1016/j.energy.2024.131154",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4415901155",
+      "title": "Towards real-world battery health intelligence: A review of machine learning advances and challenges in SOH estimation",
+      "doi": "https://doi.org/10.1016/j.etran.2025.100509",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4320479304",
+      "title": "Insights on the degradation mechanism for large format prismatic graphite/LiFePO4 battery cycled under elevated temperature",
+      "doi": "https://doi.org/10.1016/j.est.2023.106624",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4365520052",
+      "title": "A hybrid approach to predict battery health combined with attention-based transformer and online correction",
+      "doi": "https://doi.org/10.1016/j.est.2023.107365",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4390296011",
+      "title": "Online data-driven battery life prediction and quick classification based on partial charging data within 10 min",
+      "doi": "https://doi.org/10.1016/j.jpowsour.2023.234007",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4391384282",
+      "title": "Battery State-of-Health Estimation: A Step towards Battery Digital Twins",
+      "doi": "https://doi.org/10.3390/electronics13030587",
+      "publication_year": 2024,
+      "type": "article"
+    }
+  ],
+  "group_by": []
+}

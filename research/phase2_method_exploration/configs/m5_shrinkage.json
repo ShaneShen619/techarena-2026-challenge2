@@ -1,0 +1,18 @@
+{
+  "designed_after_M5_state_quality_v1": "2026-09-28",
+  "status": "adaptive follow-up on a new synthetic seed; still synthetic development, not empirical validation",
+  "seed": 20260930,
+  "scenarios": 600,
+  "truth_generation": "same milder ranges as m5_state_quality.json; independent random seed",
+  "shrinkage_rule": "for each Q/SOC/deltaR channel separately w=max(sample_variance(noisy)-known_noise_variance,0)/sample_variance(noisy), clipped [0,1]; state_i=mean+w*(state_i-mean); no target cutoff labels used",
+  "quality_levels": [
+    {"name":"oracle","Q_noise_Ah":0,"SOC_noise":0,"R_noise_ohm":0},
+    {"name":"ultra_quality","Q_noise_Ah":0.25,"SOC_noise":0.001,"R_noise_ohm":0.00005},
+    {"name":"high_quality","Q_noise_Ah":1,"SOC_noise":0.005,"R_noise_ohm":0.0002},
+    {"name":"moderate_quality","Q_noise_Ah":2,"SOC_noise":0.01,"R_noise_ohm":0.0003},
+    {"name":"low_quality","Q_noise_Ah":3,"SOC_noise":0.015,"R_noise_ohm":0.0004},
+    {"name":"M4_unidentified","Q_noise_Ah":5,"SOC_noise":0.02,"R_noise_ohm":0.0005}
+  ],
+  "methods": ["uniform_mean_cell","explicit_four_cell","noise_aware_shrunk_four_cell","minimum_cell_usable_Ah"],
+  "claim_limit": "Noise standard deviation is known because it is injected in synthetic data; a real estimator must first calibrate it from independent capacity labels."
+}

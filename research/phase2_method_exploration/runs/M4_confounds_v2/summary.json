@@ -1,0 +1,108 @@
+{
+  "multi_start_Q_range_by_window_case": [
+    {
+      "window_Ah": 1.0,
+      "case": "Q_SOC_free_offset",
+      "Q_min_Ah": 70.00017384935288,
+      "Q_max_Ah": 119.99999999999999,
+      "best_voltage_RMSE_mV": 0.04848128931659037,
+      "worst_Q_abs_error_Ah": 25.999999999999986
+    },
+    {
+      "window_Ah": 1.0,
+      "case": "Q_SOC_offset_and_R",
+      "Q_min_Ah": 70.06168223531094,
+      "Q_max_Ah": 119.99999999996047,
+      "best_voltage_RMSE_mV": 0.048481289361457,
+      "worst_Q_abs_error_Ah": 25.999999999960465
+    },
+    {
+      "window_Ah": 1.0,
+      "case": "Q_only_known_SOC_and_offset",
+      "Q_min_Ah": 119.99735857308265,
+      "Q_max_Ah": 119.99978437643476,
+      "best_voltage_RMSE_mV": 0.18428561684053707,
+      "worst_Q_abs_error_Ah": 25.99978437643476
+    },
+    {
+      "window_Ah": 10.0,
+      "case": "Q_SOC_free_offset",
+      "Q_min_Ah": 73.91809360441363,
+      "Q_max_Ah": 119.99998701861435,
+      "best_voltage_RMSE_mV": 0.5420371859779402,
+      "worst_Q_abs_error_Ah": 25.99998701861435
+    },
+    {
+      "window_Ah": 10.0,
+      "case": "Q_SOC_offset_and_R",
+      "Q_min_Ah": 73.91809080880618,
+      "Q_max_Ah": 119.99999387250176,
+      "best_voltage_RMSE_mV": 0.5420371859779429,
+      "worst_Q_abs_error_Ah": 25.99999387250176
+    },
+    {
+      "window_Ah": 10.0,
+      "case": "Q_only_known_SOC_and_offset",
+      "Q_min_Ah": 70.00000031484333,
+      "Q_max_Ah": 70.00000057440185,
+      "best_voltage_RMSE_mV": 0.9684320270510244,
+      "worst_Q_abs_error_Ah": 23.999999685156666
+    },
+    {
+      "window_Ah": 30.0,
+      "case": "Q_SOC_free_offset",
+      "Q_min_Ah": 91.43097507907397,
+      "Q_max_Ah": 119.99999999999999,
+      "best_voltage_RMSE_mV": 0.9858891860016394,
+      "worst_Q_abs_error_Ah": 25.999999999999986
+    },
+    {
+      "window_Ah": 30.0,
+      "case": "Q_SOC_offset_and_R",
+      "Q_min_Ah": 91.43097509296643,
+      "Q_max_Ah": 119.99999999999999,
+      "best_voltage_RMSE_mV": 0.9858891860016442,
+      "worst_Q_abs_error_Ah": 25.999999999999986
+    },
+    {
+      "window_Ah": 30.0,
+      "case": "Q_only_known_SOC_and_offset",
+      "Q_min_Ah": 90.1501704907688,
+      "Q_max_Ah": 90.1501706714162,
+      "best_voltage_RMSE_mV": 2.3685110439947583,
+      "worst_Q_abs_error_Ah": 3.849829509231199
+    },
+    {
+      "window_Ah": 90.0,
+      "case": "Q_SOC_free_offset",
+      "Q_min_Ah": 93.94146510184659,
+      "Q_max_Ah": 93.94146523726819,
+      "best_voltage_RMSE_mV": 1.222143092341175,
+      "worst_Q_abs_error_Ah": 0.058534898153411064
+    },
+    {
+      "window_Ah": 90.0,
+      "case": "Q_SOC_offset_and_R",
+      "Q_min_Ah": 93.94146511921949,
+      "Q_max_Ah": 93.94146518025448,
+      "best_voltage_RMSE_mV": 1.2221430923411756,
+      "worst_Q_abs_error_Ah": 0.058534880780513276
+    },
+    {
+      "window_Ah": 90.0,
+      "case": "Q_only_known_SOC_and_offset",
+      "Q_min_Ah": 93.87673093874041,
+      "Q_max_Ah": 93.87673093893258,
+      "best_voltage_RMSE_mV": 2.959552817405362,
+      "worst_Q_abs_error_Ah": 0.1232690612595917
+    }
+  ],
+  "sensitivity_after_all_nuisance_mV_for_10Ah": {
+    "1.0": 0.020971407403318893,
+    "10.0": 0.11360245764560828,
+    "30.0": 1.6062406145027863,
+    "90.0": 6.89443765601843
+  },
+  "bias_R_identification": "exactly rank deficient for a single constant-current pulse; only bias - I*R is identified",
+  "truth_model_limit": "synthetic CK0 cell2 shape plus dynamic polarization differs from fitted median-cell static quasi-OCV; no real capacity confirmation"
+}

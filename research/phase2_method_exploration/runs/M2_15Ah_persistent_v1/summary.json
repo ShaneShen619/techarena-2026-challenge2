@@ -1,0 +1,116 @@
+{
+  "protocol": "v1.4",
+  "condition": {
+    "budget_Ah": 15,
+    "history_mode": "persistent",
+    "crop_position": "first_3p50V_crossing_tail",
+    "prefix_count_allowed": true
+  },
+  "n_targets": 180,
+  "n_physical_cells": 6,
+  "metrics": [
+    {
+      "method": "age_ridge",
+      "macro_mae_pp": 3.679522215162683,
+      "worst_cell_mae_pp": 7.588341196256828,
+      "max_absolute_error_pp": 19.966615863048162,
+      "p95_absolute_error_pp": 12.110213976251265,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 4.671028487747433,
+        "102Ah_25degC_1C_cell3": 1.7908921750301252,
+        "102Ah_35degC_1C_cell1": 3.481430560626184,
+        "102Ah_45degC_0p5C_cell3": 4.156065753993996,
+        "102Ah_45degC_1C_cell1": 0.38937511732153307,
+        "102Ah_55degC_1C_cell3": 7.588341196256828
+      },
+      "w01_visible_target_count": 7,
+      "w03_visible_target_count": 166
+    },
+    {
+      "method": "anchor_constant",
+      "macro_mae_pp": 14.454790849673202,
+      "worst_cell_mae_pp": 20.203437254901974,
+      "max_absolute_error_pp": 41.118803921568635,
+      "p95_absolute_error_pp": 31.63606960784314,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 5.664839215686279,
+        "102Ah_25degC_1C_cell3": 16.382423529411756,
+        "102Ah_35degC_1C_cell1": 15.215329411764692,
+        "102Ah_45degC_0p5C_cell3": 20.203437254901974,
+        "102Ah_45degC_1C_cell1": 11.250798039215685,
+        "102Ah_55degC_1C_cell3": 18.01191764705883
+      },
+      "w01_visible_target_count": 7,
+      "w03_visible_target_count": 166
+    },
+    {
+      "method": "fixed_window_ridge",
+      "macro_mae_pp": 3.662913221812468,
+      "worst_cell_mae_pp": 8.116894369494476,
+      "max_absolute_error_pp": 19.98622129450483,
+      "p95_absolute_error_pp": 12.320684721774423,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 4.28852246938179,
+        "102Ah_25degC_1C_cell3": 1.8406474731712161,
+        "102Ah_35degC_1C_cell1": 3.063942226133617,
+        "102Ah_45degC_0p5C_cell3": 4.156065753993996,
+        "102Ah_45degC_1C_cell1": 0.5114070386997142,
+        "102Ah_55degC_1C_cell3": 8.116894369494476
+      },
+      "w01_visible_target_count": 7,
+      "w03_visible_target_count": 166
+    },
+    {
+      "method": "mask_ridge",
+      "macro_mae_pp": 5.541969285767226,
+      "worst_cell_mae_pp": 11.42826851144788,
+      "max_absolute_error_pp": 22.78424326253058,
+      "p95_absolute_error_pp": 15.858714658931873,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 11.42826851144788,
+        "102Ah_25degC_1C_cell3": 1.6143200294326927,
+        "102Ah_35degC_1C_cell1": 2.8348146978147364,
+        "102Ah_45degC_0p5C_cell3": 7.133004568202824,
+        "102Ah_45degC_1C_cell1": 0.4479361221467097,
+        "102Ah_55degC_1C_cell3": 9.793471785558511
+      },
+      "w01_visible_target_count": 7,
+      "w03_visible_target_count": 166
+    },
+    {
+      "method": "rbf_residual",
+      "macro_mae_pp": 4.326773912814396,
+      "worst_cell_mae_pp": 8.735623755034636,
+      "max_absolute_error_pp": 20.36833910530848,
+      "p95_absolute_error_pp": 12.175856834520408,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 5.32222994309178,
+        "102Ah_25degC_1C_cell3": 1.92310625943071,
+        "102Ah_35degC_1C_cell1": 5.446837693870024,
+        "102Ah_45degC_0p5C_cell3": 3.4697195007504904,
+        "102Ah_45degC_1C_cell1": 1.063126324708738,
+        "102Ah_55degC_1C_cell3": 8.735623755034636
+      },
+      "w01_visible_target_count": 7,
+      "w03_visible_target_count": 166
+    },
+    {
+      "method": "within_cell_ratio_ridge",
+      "macro_mae_pp": 4.734463987632704,
+      "worst_cell_mae_pp": 10.712084303042912,
+      "max_absolute_error_pp": 19.99207816210182,
+      "p95_absolute_error_pp": 15.396759799832065,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 10.712084303042912,
+        "102Ah_25degC_1C_cell3": 1.842267383055797,
+        "102Ah_35degC_1C_cell1": 3.059747569857936,
+        "102Ah_45degC_0p5C_cell3": 4.156065753993996,
+        "102Ah_45degC_1C_cell1": 0.5133872073949703,
+        "102Ah_55degC_1C_cell3": 8.123231708450614
+      },
+      "w01_visible_target_count": 7,
+      "w03_visible_target_count": 166
+    }
+  ],
+  "note": "Same six P1 cells used in development; cropped deep-charge proxy, not official 4S C/20 or independent D2."
+}

@@ -1,0 +1,475 @@
+                                                             Journal of Power Sources 196 (2011) 1513–1520
+
+
+
+                                                              Contents lists available at ScienceDirect
+
+
+                                                            Journal of Power Sources
+                                            journal homepage: www.elsevier.com/locate/jpowsour
+
+
+
+
+Cycling degradation of an automotive LiFePO4 lithium-ion battery
+Yancheng Zhang a , Chao-Yang Wang a,∗ , Xidong Tang b
+a
+  Electrochemical Engine Center (ECEC), Department of Materials Science and Engineering, and Department of Mechanical and Nuclear Engineering,
+The Pennsylvania State University, University Park, PA 16802, USA
+b
+  GM R&D and Planning, General Motors, Mail Code: 480-106-390, 30500 Mound Road, Warren, MI 48090-9055, USA
+
+
+
+
+a r t i c l e        i n f o                           a b s t r a c t
+
+Article history:                                       Degradation of a high capacity prismatic LiFePO4 cell with deep cycling at elevated temperature of 50 ◦ C
+Received 9 July 2010                                   is studied by electrochemical impedance spectroscopy as well as capacity and power fading characteri-
+Received in revised form 20 August 2010                zation at different test temperatures (45, 25, 0 and −10 ◦ C). Capacity fade after 600 cycles is 14.3% at 45 ◦ C
+Accepted 23 August 2010
+                                                       and 25.8% at −10 ◦ C. There is little power fade at 45 ◦ C after 600 cycles, whereas the power fade after 600
+Available online 22 September 2010
+                                                       cycles is 61.6% and 77.2%, respectively, at 0 and −10 ◦ C. The capacity and power fade evidently becomes
+                                                       more severe at lower temperature. In particular, the power fade at low temperatures (e.g., 0 and −10 ◦ C)
+Keywords:
+                                                       rather than capacity loss is a major limitation of the LiFePO4 cell. The primary mechanism for capacity fade
+LiFePO4
+Lithium-ion battery
+                                                       is loss of cyclable lithium in the cell resulting from lithium-consuming solid electrolyte interphase (SEI)
+Cycling degradation                                    layer growth and side reactions. The increased interfacial resistance (Rw ) due to the catalytic growth of
+Electrochemical impedance spectroscopy                 SEI layer on the graphite anode and increased electrolyte resistance are the main sources for power fade.
+Electric-only range                                                                                                          © 2010 Elsevier B.V. All rights reserved.
+
+
+
+
+1. Introduction                                                                              Excellent long-term cycling stability was demonstrated for C-
+                                                                                         LiFePO4 /graphite prismatic cells with capacity loss of only 14% after
+    Lithium insertion and extraction in a LiFePO4 cathode involve                        6000 charge–discharge cycles [21], where the cells were cycled at
+a ﬁrst-order phase transition between two phases (FePO4 and                              20 ◦ C and around 1C rate. However, high-temperature cycling sig-
+LiFePO4 ) [1], even though the two-phase reaction theory was chal-                       niﬁcantly accelerated capacity fading [22]. Amine et al. reported
+lenged at high temperatures (for instance, heating up to 200 ◦ C                         that there was little capacity fade at 25 ◦ C, but approximately 70%
+[2]) and for nano-particles (<50 nm [3]). Both FePO4 and LiFePO4                         capacity loss at 55 ◦ C after 100 charge–discharge cycles at C/3 rate
+phases have low electronic conductivity [4,5], and slow diffusion of                     [22]. The fast fading at high temperatures was found to result from
+lithium ions through the two-phase interface limits the charge and                       formation and growth of thick interfacial ﬁlm and concomitant
+discharge current density [1]. These cause poor power capability                         large impedance rise on the graphite anode which was catalyzed
+and low capacity of LiFePO4 batteries. The electronic conductiv-                         by iron deposition on the graphite anode subsequent to iron disso-
+ity has been signiﬁcantly increased from 10−9 –10−10 S cm−1 to                           lution from the LiFePO4 cathode [22–24]. As per this mechanism,
+10−2 S cm−1 since 2002 [5] but the mechanism for the enhance-                            using Li4 Ti5 O12 anode instead of graphite anode slowed down
+ment is under debate [6–8]. Extensive literature demonstrates that                       iron deposition on the anode with a high potential of ca. 1.5 V
+carbon-coating and decreasing particle size (or increasing speciﬁc                       versus Li+ /Li [22], and ion-sieving metal coating (30–50 nm Au
+surface area) are effective approaches to overcome the problem of                        or Cu coating) on graphite anode reduced solid electrolyte inter-
+low electronic and ionic conductivities in LiFePO4 cathode [9–20].                       phase (SEI) formation on the graphite surface [24]. Both approaches
+In particular, carbon-coated LiFePO4 (C-LiFePO4 ) was claimed to                         greatly improved the cycling performance of LiFePO4 cells at 55 ◦ C.
+achieve high capacity (e.g., 90% or above of the 170 mAh g−1 theo-                       Another solution was to signiﬁcantly suppress the iron dissolu-
+retical capacity) and excellent cycling performance [10–12]. The                         tion from the LiFePO4 cathode, for example, by substituting lithium
+attractive properties of C-LiFePO4 as a cathode material have                            bis(oxalato)borate (LiBOB) for LiPF6 salt [22,25], or introducing an
+enabled a high-power lithium-ion battery with high safety, low                           additive of vinylene carbonate (VC) (2 wt%) into the electrolyte [23].
+cost and long life, and its commercialization can offer wide applica-                        In the present work, a prismatic LiFePO4 -based cell with high
+tions especially to hybrid electric vehicles (HEVs) and plug-in HEVs                     capacity (16.4 Ah) is explored to study cell degradation through
+(PHEVs).                                                                                 accelerated cycling under a typical PHEV condition (high current
+                                                                                         rate and deep depth of discharge at elevated temperature). This
+                                                                                         research provides an improved understanding of the degradation
+ ∗ Corresponding author. Tel.: +1 814 863 4762; fax: +1 814 863 4848.                    and cycle life of high capacity battery in automotive applications.
+    E-mail address: cxw31@psu.edu (C.-Y. Wang).                                          The cycling degradation was examined through characterization
+
+0378-7753/$ – see front matter © 2010 Elsevier B.V. All rights reserved.
+doi:10.1016/j.jpowsour.2010.08.070
+1514                                            Y. Zhang et al. / Journal of Power Sources 196 (2011) 1513–1520
+
+
+tests on capacity fade, power fade, electrochemical impedance
+spectroscopy (EIS), and electric-only range under the US Envi-
+ronmental Protection Agency (EPA) Urban Dynamometer Driving
+Schedule (UDDS) at different test temperatures (45, 25, 0 and
+−10 ◦ C). Our goal is to employ the in situ experiments to investigate
+the possible degradation mechanisms of a LiFePO4 -based battery
+after accelerated cycling. These in situ characterizations provide
+little direct physical examination like postmortem analysis, but are
+powerful and convenient diagnostic analysis of the degradation of
+an automotive battery. Furthermore, these experimental data and
+degradation analysis are needed to ultimately develop a model-
+based estimator of state of health (SOH) and state of life (SOL) of an
+automotive LiFePO4 battery.
+
+
+2. Experimental
+
+    A prismatic LiFePO4 -based cell, consisting of C-LiFePO4 cath-
+ode and graphite anode, had a nominal capacity of 16.4 Ah with
+cell dimensions of 232 mm long, 150 mm wide, 6.8 mm thick,
+and a weight of 500 g. The cell was cycled at 3C rate (for both
+charge and discharge) between 2.0 and 3.6 V at 50 ◦ C. The cycling
+was interrupted every 300 cycles for characterization tests at
+different temperatures (in the order of 45, 25, 0 and −10 ◦ C).
+The characterization tests at each temperature were performed
+in the following sequence: capacity measurement, electrochem-
+ical impedance spectroscopy (EIS), pulse discharge/charge, and
+electric-only range over the US EPA UDDS driving schedule.
+Solartron SI 1287 electrochemical interface and Solartron SI 1255B
+frequency response analyzer (FRA) were coupled for EIS measure-
+ment. All the other characterization tests and cycling tests were                 Fig. 1. Cycling performance at 3C rate between 3.6 and 2.0 V at 50 ◦ C: (a) cycling
+completed utilizing an Arbin BT-2000 battery cycler. A Tenney                     capacity versus cycle number; (b) charge–discharge loops for the beginning and
+Environmental Chamber (with Watlow Series 942 Controller) was                     last cycles of the 1st 300 cycles (1st and 300th cycles) and the 2nd 300 cycles (301st
+adopted to provide constant temperature environment for all the                   and 600th cycles).
+tests. In order for the cell to reach a thermal equilibrium before
+testing, the cell was kept for 4 h rest at each temperature except at
+                                                                                  scaled power proﬁle with driving time was extracted. The cell was
+25 ◦ C for at least 1 h.
+                                                                                  tested over the power proﬁle from 80% SOC to 30% SOC (with
+    Before and after the cycling test (every 300 cycles), capacity
+                                                                                  respect to the present full capacity) and thus electric-only range
+characterization was performed at different temperatures (45, 25,
+                                                                                  was obtained.
+0 and −10 ◦ C) to investigate the capacity fade. The capacity at 1C
+rate was measured in four steps: (1) charging to 3.6 V at constant
+current of 1C rate (16.4 A); (2) holding a constant voltage at 3.6 V              3. Results and discussion
+until the current dropped to C/20 (0.82 A); (3) 10–40 min rest; (4)
+discharging at 1C rate to a cell cut-off voltage of 2.0 V. Rest time              3.1. Capacity fade
+between the charging and discharging was 10 min at 50 and 25 ◦ C,
+20 min at 0 ◦ C, and 40 min at −10 ◦ C in order for the cell to approach              Accelerated cycling test (charging to 3.6 V and discharging to
+a diffusion equilibrium state.                                                    2.0 V continuously, both at 3C rate) was performed at 50 ◦ C. The
+    Electrochemical impedance spectroscopy (EIS) and pulse dis-                   cycling capacity slowly fades with cycle number, as shown in
+charge/charge were carried out at 70% state of charge (SOC) after                 Fig. 1(a), but declines quickly near the end of the 2nd 300 cycles
+removing 30% of the present full capacity at 1C rate. After 1-h rest              with 74.4% capacity retention after totally 600 cycles. There is 2.8%
+at 70% SOC, the impedance spectra were then measured at the                       capacity loss between the 300th and 301st cycles, which arises from
+open-circuit voltage (OCV) with an AC amplitude of 2 mV over a                    a number of characterization tests between them. Fig. 1(b) shows
+frequency range from 5000 to 0.005 Hz (10 points per decade of fre-               the charge–discharge loops in the cycling test for the beginning and
+quency). The low AC amplitude (2 mV) was experimentally selected                  last cycles of the 1st and 2nd 300 cycles. It is clearly seen that the
+to accommodate very small impedance in the cell. Then after at                    discharge capacity in the cycling test is very close to the charge
+least 10-min rest, pulse discharge/charge was performed consec-                   capacity. The coulombic efﬁciency is kept between 99.8% and 100%
+utively at 2C rate for different pulse durations: 2 s discharge/2 s               for the entire 600 cycles; and correspondingly, the energy efﬁciency
+rest/2 s charge/30 s rest, and directly 10 s discharge/10 s rest/10 s             declines from 94.1% to 89.6% with cycling.
+charge/30 s rest, and then 30 s discharge/30 s rest/30 s charge/30 s                  Charge–discharge curves at 1C rate measured at different tem-
+rest. The cut-off voltages were 3.8 and 1.6 V. The 2C rate here                   peratures (45, 25, 0 and −10 ◦ C) for a fresh cell (before cycling)
+was appropriately chosen for all the testing temperatures down                    are shown in Fig. 2(a). The discharge curves present quick volt-
+to −10 ◦ C in order to compare the inﬂuence of temperature. Vari-                 age decrease at the beginning and near the end, but a ﬂat voltage
+ation of the pulse response with cycling is aimed to assess power                 portion (with a voltage decrease by less than 0.2 V) for a broad
+fade.                                                                             capacity range in the middle part. The ﬂat voltage portion is the dif-
+    The US EPA UDDS driving schedule provides a typical speed                     ference between the voltage plateau at the LiFePO4 cathode (3.5 V
+proﬁle representative of city driving conditions, from which a cell-              corresponding to the Fe3+ /Fe2+ redox energy in LiFePO4 below the
+                                                      Y. Zhang et al. / Journal of Power Sources 196 (2011) 1513–1520                                                1515
+
+
+
+
+Fig. 2. (a) Charge–discharge curves at 1C rate measured at different temperatures       Fig. 3. (a) Discharge curves at 1C rate measured at 45 and −10 ◦ C after different
+for a fresh cell and (b) the corresponding differential voltage (−Qo dV/dQ) versus      cycles and (b) the corresponding differential voltage (−Qo dV/dQ) with respect to
+discharge capacity.                                                                     discharge capacity.
+
+
+
+
+Fermi level of lithium [26]) and the voltage plateaus at the graphite                   the close-to-zero plateaus. The differential voltage curves at 45
+anode [27], in addition to interfacial polarization and ohmic voltage                   and 25 ◦ C also depart, but steeply, from the close-to-zero plateaus
+drop. Staging voltage plateaus at the graphite anode theoreti-                          with further lithium insertion into the cathode. This may be
+cally exist between 0.22 and 0.1 V versus Li corresponding to the                       explained with depletion of cyclable lithium in the anode and/or
+coexistence of two phases (e.g., LiC6 –Li0.5 C6 , Li0.5 C6 –Li0.33 C6 etc.)             of available intercalation sites in the cathode near the end of
+[28], but are not distinctively observed in Fig. 2(a) due to small                      discharge so that further lithium transport to the cathode may
+difference between staging voltages and plateau sloping caused                          be largely suppressed and thus the differential voltage increases
+by various overpotentials [28] at 1C rate. The cathode plateau is                       abruptly.
+characteristic of the coexistence of two phases inside the LiFePO4                          As seen in Fig. 3(a), the discharge capacity measured at 45 ◦ C
+particles where the two-phase interface moves during the lithium                        clearly shows capacity fade with cycling, for example, 7.3% capac-
+extraction/insertion processes [1,21,29,30]. Strong temperature                         ity loss after 300 cycles and 14.3% capacity loss after 600 cycles. The
+dependence of the ﬂat voltage portion in Fig. 2(a) for a fresh cell                     main source for the capacity fade at 45 ◦ C is narrowing of the close-
+is apparently related to interfacial polarization and ohmic voltage                     to-zero plateau in the differential voltage curves (Fig. 3(b)), which
+drop. It is also seen from Fig. 2(a) that lowering temperature largely                  suggests loss of cyclable lithium during the cycling test. This agrees
+decreases the discharge capacity.                                                       with loss of lithium inventory as the main capacity fade mecha-
+    The voltage plateaus are exhibited as the minimal (absolute val-                    nism in earlier reports on LiFePO4 cells [27,32]. The loss of cyclable
+ues) of differential voltage (−Qo dV/dQ) [30], as shown in Fig. 2(b).                   lithium is supposed to result from lithium-consuming SEI layer
+The derivative of voltage versus capacity (dV/dQ) was calculated as                     growth and side reactions that also consume electrolyte lithium
+an average of two slopes (V/Q) at the both sides of each data                         and increase the electrolyte resistance with cycling as proved from
+point followed by smoothing as a 3-point moving average, where                          the EIS results below.
+V and Q are the changes in voltage and capacity within a data                             The discharge capacity measured at −10 ◦ C shows 25.8% loss
+logging interval. The factor −Qo is used to normalize the dV/dQ                         after 600 cycles but 1.9% gain after 300 cycles from the initial capac-
+based on the cell capacity [31].                                                        ity at −10 ◦ C (Fig. 3(a)). The discharge curves show much larger
+    When the cell is discharged at lC rate, differential voltage curves                 voltage drop with cycling at the beginning of discharge, which is
+plunge to the close-to-zero plateaus (less than 0.5 V in Fig. 2(b)),                    a reason for the capacity fade at −10 ◦ C. Another reason is nar-
+and then the close-to-zero plateaus contribute to about 90% of the                      rowing of close-to-zero plateau in the differential voltage curves
+full discharge capacity measured at 45 and 25 ◦ C. On the other                         (Fig. 3(b)) with an exception at 300 cycles. This exception possibly
+hand, at 0 and −10 ◦ C, the close-to-zero plateaus contribute to                        comes from the thermal effect (mainly resistive heating within the
+approximately 60% of the full discharge capacity because sluggish                       cell [33]) as a consequence of considerable resistance rise at −10 ◦ C
+lithium diffusion at low temperature causes diffusion overpoten-                        after 300 cycles. The temperature rise from the thermal effect has
+tial to make the differential voltage curves slowly depart from                         delayed the imposition of diffusion overpotential and made the
+1516                                                    Y. Zhang et al. / Journal of Power Sources 196 (2011) 1513–1520
+
+
+
+
+Fig. 4. Discharge capacity measured at different temperatures varying with cycle
+number.
+
+
+close-to-zero plateau after 300 cycles be eccentrically longer than
+the counterpart of a fresh cell at −10 ◦ C.
+   While capacity test temperature decreases, so does the dis-
+charge capacity (Fig. 4). Furthermore, the capacity loss after 600
+cycles is found to increase with decrease in capacity test tempera-
+ture: 14.3% at 45 ◦ C, 15.5% at 25 ◦ C, 20.3% at 0 ◦ C and 25.8% at −10 ◦ C
+with regard to their respective initial capacity at each temperature.
+
+3.2. Power fade
+
+   Pulse discharge and charge at 70% SOC and 2C rate was per-
+formed consecutively for different pulse durations: 2, 10 and
+30 s. The corresponding voltage responses for a fresh cell at dif-
+ferent temperatures are shown in Fig. 5. Discharge resistance
+(Rdischarge ) and discharge pulse power capability (PPCdischarge ) are
+                                                                                          Fig. 6. Discharge resistance (Rdischarge ) changes with pulse duration after different
+calculated by borrowing the following equations ((1)–(3)) from                            cycles (a) at 45 and 25 ◦ C, and (b) at 0 and −10 ◦ C.
+hybrid pulse power characterization (HPPC) typically for HEV appli-
+cations [34,35]. The PPCdischarge may be used to evaluate power fade
+with cycling.                                                                             OCV is the open-circuit voltage right before the discharge pulse.
+             V  Vt − Vt1                                                                 The OCV before 2 s discharge pulse is a stable measurement value,
+Rdischarge =    = 0                                                             (1)       and is also used as the OCV before 10 and 30 s discharge pulses that
+             I   It0 − It1
+                                                                                          is unavailable experimentally due to the lack of relaxation time but
+                  Vmin (OCV − Vmin )                                                      may be assumed unchanging after the discharging and charging
+PPCdischarge =                                                                  (2)
+                      Rdischarge                                                          pulses for each same pulse duration. It is noted that the cell has a
+                                                                                          limited maximum discharge current at each temperature since seri-
+PPClimit = Vmin × high current limit                                            (3)
+                                                                                          ous degradation and even damage may occur above the maximum
+In Eq. (1), t0 is the time point just before each discharge pulse, and                    discharge current. The PPClimit in Eq. (3) determines the possible
+t1 is the time point at the end of each discharge pulse. In Eq. (2),                      maximum value for PPCdischarge . In other words, the PPCdischarge is
+Vmin is the low cut-off voltage for the discharge current pulse and                       the lower value in the calculation results from Eqs. (2) and (3).
+                                                                                              The variation of Rdischarge with pulse duration and cycle number
+                                                                                          at different temperatures is shown in Fig. 6(a) and (b). The Rdischarge
+                                                                                          drastically increases with cycle number and decreasing tempera-
+                                                                                          ture, and slowly increases with pulse duration from 2 to 30 s though
+                                                                                          thermal effect and possible temperature rise from the former pulses
+                                                                                          may slightly underestimate the resistance for the later pulses owing
+                                                                                          to the short rest time between pulses. The Rdischarge for 30 s pulse
+                                                                                          at 45 ◦ C is, respectively, 2.4, 2.7, and 4.8 m after 0, 300 and 600
+                                                                                          cycles, but such resistance increase does not decrease the pulse
+                                                                                          power capability that is restricted by the PPClimit from 0 to 600
+                                                                                          cycles (Fig. 7). Similarly, at 25 ◦ C, the Rdischarge increases from 3.5 to
+                                                                                          4.3 m after 0–300 cycles, and does not decrease the pulse power
+                                                                                          capability. However, the Rdischarge increases to 9.2 m after 600
+                                                                                          cycles and leads to 16.2% power fade from 300 to 600 cycles. The
+                                                                                          PPCdischarge obtained at 0 and −10 ◦ C is seen to signiﬁcantly decrease
+                                                                                          with cycling. The power fade at 0 ◦ C is 42.1% and 61.6%, respec-
+                                                                                          tively, after 300 and 600 cycles in comparison with the initial pulse
+Fig. 5. Cell voltage response to current pulses for different pulse durations (2, 10      power capability. The power fade at −10 ◦ C is 49.6% and 77.2% after
+and 30 s consecutively) at different temperatures for a fresh cell.                       300 and 600 cycles. Such severe power degradation at low tem-
+                                                          Y. Zhang et al. / Journal of Power Sources 196 (2011) 1513–1520                                                     1517
+
+
+
+
+Fig. 7. Discharge pulse power capability (PPCdischarge ) for 30 s pulse as a function of
+cycle number at different temperatures.
+
+
+peratures is directly pertinent to greatly increasing Rdischarge with
+cycling. For example, the Rdischarge for 30 s pulse at −10 ◦ C is 11.2,
+22.2, and 48.9 m after 0, 300 and 600 cycles, respectively.
+                                                                                            Fig. 9. Nyquist plots of electrochemical impedance spectra measured at 70% SOC
+                                                                                            after different cycles (a) at 0 ◦ C and (b) −10 ◦ C.
+3.3. Impedance rise
+
+    Electrochemical impedance spectroscopy (EIS) is a powerful                              when measured at 45 ◦ C, it is only 1.8, 2.0 and 3.3 m after 0,
+in situ characterization technique that is able to probe spe-                               300 and 600 cycles, and these apparently show rising tendency
+ciﬁc processes in electrochemical systems from the characteristic                           with cycle number. It is notable that a special design of screw-tight
+impedance behaviors along certain frequency ranges. For example,                            and surface-to-surface contact was used for excellent connection
+in Fig. 8(a), the impedance spectra present an induction behav-                             between the cell terminals and instrument leads that contributed
+ior at high frequency, a semi-circular arc at middle frequency and                          to negligible resistance. Consequently, the EIS measurement is able
+a sloped line like diffusion behavior at low frequency. Further-                            to accurately detect such small ohmic resistance (such as 1.8 m)
+more, their changes with cycling can characterize main degradation                          without the disturbance of connection resistance.
+mechanisms for capacity and power fade.
+    It is seen from Figs. 8 and 9 that high frequency intercept with
+the real axis (Z ), representing the ohmic resistance of the cell (Ro ),
+clearly rises with cycle number and lowering temperature. It may
+be attributable to electrolyte resistance, electronic resistance of
+electrode particles and current collectors, and connection resis-
+tance between the cell terminals and instrument leads [36]. The
+value of Ro can be as low as a few milliohms (m). For instance,
+
+
+
+
+Fig. 8. Nyquist plots of electrochemical impedance spectra measured at 70% SOC              Fig. 10. (a) Lg(1/Ro ) and (b) lg(1/Rw ) follows linear relationship with 1/T after dif-
+after different cycles (a) at 25 ◦ C and (b) at 45 ◦ C.                                     ferent cycles.
+1518                                           Y. Zhang et al. / Journal of Power Sources 196 (2011) 1513–1520
+
+
+    The temperature dependence of 1/Ro is analyzed by the Arrhe-
+nius equation in the form of (1/Ro ) ∝ exp(−Ea /T). Lg(1/Ro ) follows
+a linear relationship with 1/T (Fig. 10(a)) and from the linear slope
+the activation energy (Ea ) is obtained as 4.3 kJ mol−1 (or 45 meV) for
+a fresh cell, and increases radically to 20.9 kJ mol−1 after 300 cycles
+but decreases slightly to 18.8 kJ mol−1 after 600 cycles. The very
+low activation energy (45 meV) for a fresh cell is in close agreement
+with the activation energy of high conductivity of LiFePO4 particles
+in the literature, such as 60–80 meV in [5] and 30–40 meV in [8],
+and this may suggest that the electronic resistance of electrode par-
+ticles (mainly LiFePO4 cathode particles since the anode graphite
+particles have much higher electronic conductivity) is a dominant
+factor in the ohmic resistance (Ro ) for a fresh cell. The remarkable
+increase (from 4.3 to 20.9 kJ mol−1 ) of the activation energy from
+0 to 300 cycles implies that increasing electrolyte resistance has
+                                                                                 Fig. 11. Speed proﬁle and cell-scaled power proﬁle under the UDDS driving schedule
+become dominant in Ro due to lithium loss in the electrolyte that                and the harvested power proﬁles at different temperatures after 300 cycles.
+was consumed in the SEI layer growth and other side reactions.
+The implied high activation energy for the electrolyte resistance (or
+ionic conductivity of the electrolyte) is consistent with the typical            ing temperature by 1.0% at 25 ◦ C, 13.8% at 0 ◦ C and 25.7% at −10 ◦ C
+data in the literature (∼15 or ∼20 kJ mol−1 [37,38]).                            in comparison with that at 45 ◦ C (30.82 mile) for a fresh cell. Also,
+    The depressed semi-circular arc at the middle frequency is                   the electric-only range at 45 ◦ C decreases with cycling, and is 96.6%
+related to the capacitive behavior with a parallel resistance on the             after 300 cycles and 86.2% after 600 cycles. At 0 and −10 ◦ C, the
+electrode/electrolyte interface, for instance, double-layer capaci-              UDDS test labeled as an asterisk (*) in Table 1 was terminated very
+tance with a parallel charge transfer resistance and capacitance of              early because large resistance brought very low voltage and high
+SEI layer in parallel with its resistance [36]. The middle frequency             discharge current to reach a preset high discharge peak power (for
+arc width (Rw ), as labeled in Fig. 8(a), signiﬁcantly increases with            example, the test at −10 ◦ C in Fig. 12). Fig. 12 shows the current
+cycle number and lowering temperature (Figs. 8 and 9). Lg(1/Rw )                 and voltage proﬁles corresponding to the beginning 300 s of the
+reduces linearly with 1/T, as shown in Fig. 10(b). Fitting with                  harvested power proﬁles in Fig. 11 at different temperatures after
+the Arrhenius equation yields the activation energy of 61.1, 67.3                300 cycles.
+and 61.3 kJ mol−1 after 0, 300 and 600 cycles, respectively. Their                   The UDDS tests obey the same power proﬁle with time at all
+small difference suggests that the nature of interfacial impedance               the experimental conditions, and hence the energy (an integra-
+changes little with cycling. The mid-frequency arc width (Rw ) does              tion of power with respect to time) per mile is closely comparable
+not greatly increase (0.9–1.5 times at different temperatures) from              (0.84–0.87 Wh mile−1 in Table 1 except the early termination occa-
+0 to 300 cycles, but evidently increases (2.5–6 times at different               sions) for different cycle numbers and at different temperatures.
+temperatures) from 300 to 600 cycles. The large increase of Rw from                  The electric-only range is mainly dependent on the cell capac-
+300 to 600 cycles can be interpreted as the increase of interfacial              ity since the electric-only range is directly proportional to the used
+resistance that is induced by the catalytic growth of SEI layer on
+the graphite anode due to iron impurities that deposit on the anode
+after chemical dissolution of iron from the LiFePO4 cathode react-
+ing with HF present in LiPF6 solutions [22–24,27,32,39]. In contrast,
+the small change of Rw from 0 to 300 cycles shows that the catalytic
+effect of iron deposition on the anode is not yet enforced on the SEI
+layer growth on the anode.
+    The low frequency 45◦ -sloped line is characteristic of Warburg
+impedance spectrum corresponding to semi-inﬁnite diffusion. The
+sloped lines in Figs. 8 and 9 may deviate from 45◦ due to the effect
+of porous structure and particle size distribution on the diffusion-
+related impedance in the active particles. The diffusion impedance
+appears from the length of the sloped lines to slightly increase from
+0 to 300 cycles and modestly increase from 300 to 600 cycles, which
+is likely related to a decrease of diffusion active area rather than a
+decrease of diffusion coefﬁcient due to bulk change in the active
+particles [39].
+
+3.4. Electric-only range
+
+    A cell-scaled power proﬁle under the UDDS driving schedule
+and the harvested power proﬁles at different temperatures after
+300 cycles are shown in Fig. 11. The harvested proﬁles with sam-
+pling rate of 5 Hz comply with the set UDDS power proﬁle except
+for a few spikes as labeled in pink ovals in Fig. 11. Such power pro-
+ﬁle was carried out from 80% SOC, and repetitively run until 30%
+SOC. The driving distance can be obtained by integrating from the
+speed proﬁle under the UDDS driving schedule. This driving dis-
+                                                                                 Fig. 12. (a) Current proﬁles and (b) voltage proﬁles corresponding to the beginning
+tance is called electric-only range over the 50% SOC window, as                  300 s of the harvested power proﬁles in Fig. 11 at different temperatures after 300
+shown in Table 1. The electric-only range decreases with lower-                  cycles.
+                                                         Y. Zhang et al. / Journal of Power Sources 196 (2011) 1513–1520                                                        1519
+
+Table 1
+Electric-only range, used capacity and consumed energy under the UDDS driving schedule from 80% to 30% SOC after 0, 300 and 600 cycles (The percentages below are all
+relative to the value in bold at 45 ◦ C for a fresh cell, and the asterisks symbolize the tests were terminated very early due to power capability too low to surmount a high peak
+power.).
+
+                                  Temperature (◦ C)
+
+                                  45                                          25                                           0                                         −10
+
+  Electric-only range (mile)
+     0                            30.82 (100%)                                30.50 (99.0%)                                26.57 (86.2%)                             22.89 (74.3%)
+  300                             29.78 (96.6%)                               29.20 (94.7%)                                24.22 (78.6%)                              0.85*
+  600                             26.56 (86.2%)                               23.67 (76.8%)                                 0.84*                                     –
+
+  Used capacity (Ah)
+    0                               8.157                                      8.071                                           7.372                                   6.581
+  300                               7.713                                      7.637                                           7.188                                   0.300*
+  600                               7.126                                      6.749                                           0.305*                                  –
+
+  Used capacity per mile (Ah mile−1 )
+    0                             0.265                                        0.265                                           0.277                                   0.288
+  300                             0.259                                        0.262                                           0.297                                   0.353*
+  600                             0.268                                        0.285                                           0.363*                                  –
+
+  Consumed energy (Wh)
+    0                             26.586                                      26.035                                       22.643                                    19.261
+  300                             25.072                                      24.485                                       20.922                                     0.840*
+  600                             22.709                                      20.622                                        0.812*                                    –
+
+  Consumed energy per mile (Wh mile−1 )
+    0                          0.863                                           0.854                                           0.852                                   0.841
+  300                          0.842                                           0.839                                           0.864                                   0.988*
+  600                          0.855                                           0.871                                           0.967*                                  –
+
+  Consumed energy/used capacity (V)
+    0                           3.259                                          3.226                                           3.071                                   2.927
+  300                           3.251                                          3.206                                           2.911                                   2.800*
+  600                           3.187                                          3.056                                           2.662*                                  –
+
+
+
+capacity (the used capacity per mile is 0.26–0.30 Ah mile−1 except                            tance (Ro ) with cycling comes mainly from increase in electrolyte
+the values with an asterisk in Table 1). However, the electric-only                           resistance resulting from the lithium loss within the electrolyte
+range per Ah (mile A−1 h−1 ) is reduced by increasing cell resistance                         due to lithium-consuming SEI layer growth and side reactions
+because the used capacity per mile (Ah mile−1 ) exhibits an increas-                          that also lead to loss of cyclable lithium. Therefore, the loss of
+ing trend with lowering temperature due to increase in the cell                               cyclable lithium is the primary mechanism for capacity fade, as
+resistance. The inﬂuence of cell resistance is extremely exempliﬁed                           supported by the narrowing of close-to-zero plateaus in the dif-
+by very small electric-only range with an asterisk in Table 1 that is                         ferential voltage curves. Mid-frequency arc width (Rw ) evidently
+due to cell resistance too high (power capability too low) to sur-                            increases (2.5–6 times) from 300 to 600 cycles due to SEI layer
+mount a high discharge peak power. The consumed energy divided                                growth on the graphite anode with a catalytic effect from iron
+by the used capacity is the average voltage under the UDDS tests.                             impurities that deposit from the dissolved iron on the LiFePO4 cath-
+The average voltage descends with lowering temperature, which is                              ode, but does not greatly increase (0.9–1.5 times) from 0 to 300
+elucidated by more voltage drop with higher cell resistance.                                  cycles because there is no catalytic effect of iron deposition in this
+                                                                                              period. Consequently, the increased interfacial resistance (Rw ) due
+                                                                                              to the catalytic growth of SEI layer on the anode and increased elec-
+4. Conclusions                                                                                trolyte resistance in Ro are the main sources for power fade, leading
+                                                                                              to very poor discharge pulse power capability at low temperatures
+    Degradation of a high capacity LiFePO4 cell with deep cycling at                          (0 and −10 ◦ C) after cycling and even very small electric-only range
+elevated temperature of 50 ◦ C is studied by characterizing capacity                          due to power capability too low to surmount a high discharge peak
+fade, power fade and impedance rise at different test temperatures                            power under the UDDS driving schedule.
+(45, 25, 0 and −10 ◦ C). Capacity fade after 600 cycles is 14.3% at
+45 ◦ C and 25.8% at −10 ◦ C. The discharge pulse power capability                             Acknowledgments
+(PPCdischarge ) at 45 ◦ C does not decrease with cycling (namely, there
+is little power fade) from 0 to 600 cycles, whereas the power fade                               Financial support from General Motors is gratefully acknowl-
+after 600 cycles is 61.6% and 77.2%, respectively, at 0 and −10 ◦ C. The                      edged. The authors are thankful to Dr. Richard Steinberger for
+capacity and power fade evidently becomes more severe at lower                                designing the cell holder and Dr. Christopher D. Rahn for valuable
+temperature due to greatly increasing cell resistance. In particular,                         discussions.
+the power fade at low temperatures (e.g., 0 and −10 ◦ C) rather than
+capacity loss is a major limitation of the LiFePO4 cell.                                      References
+    It is found from the variation of the impedance spectra that
+ohmic resistance (Ro ) clearly rises with lowering temperature                                [1] A.K. Padhi, K.S. Nanjundaswamy, J.B. Goodenough, J. Electrochem. Soc. 144
+                                                                                                  (1997) 1188.
+and upon cycling. The activation energy from the relationship of
+                                                                                              [2] C. Delacourt, P. Poizot, J.-M. Tarascon, C. Masquelier, Nat. Mater. 4 (2005) 254.
+lg(1/Ro ) with 1/T remarkably increases from 4.3 kJ mol−1 for a fresh                         [3] N. Meethong, Y.-H. Kao, M. Tang, H.-Y. Huang, W.C. Carter, Y.-M. Chiang, Chem.
+cell to 20.9 kJ mol−1 after 300 cycles, which suggests that the elec-                             Mater. 20 (2008) 6189.
+tronic resistance of electrode particles is dominant in Ro for a fresh                        [4] M. Thackeray, Nat. Mater. 1 (2002) 81.
+                                                                                              [5] S.-Y. Chung, J.T. Bloking, Y.-M. Chiang, Nat. Mater. 1 (2002) 123.
+cell and increasing electrolyte resistance has become dominant                                [6] K. Striebel, J. Shim, V. Srinivasan, J. Newman, J. Electrochem. Soc. 152 (2005)
+in Ro after 300 cycles. Accordingly, the increase of ohmic resis-                                 A664.
+1520                                                      Y. Zhang et al. / Journal of Power Sources 196 (2011) 1513–1520
+
+
+ [7] N. Ravet, A. Abouimrane, M. Armand, Nat. Mater. 2 (2003) 702.                          [24] H.-H. Chang, H.-C. Wu, N.-L. Wu, Electrochem. Commun. 10 (2008) 1823.
+ [8] P.S. Herle, B. Ellis, N. Coombs, L.F. Nazar, Nat. Mater. 3 (2004) 147.                 [25] K. Xu, S. Zhang, T.R. Jow, W. Xu, C.A. Angell, Electrochem. Solid-State Lett. 5
+ [9] Z. Chen, J.R. Dahn, J. Electrochem. Soc. 149 (2002) A1184.                                  (2002) A26.
+[10] A. Yamada, S.C. Chung, K. Hinokuma, J. Electrochem. Soc. 148 (2001) A224.              [26] A.K. Padhi, K.S. Nanjundaswamy, C. Masquelier, S. Okada, J.B. Goodenough, J.
+[11] H. Huang, S.-C. Yin, L.F. Nazar, Electrochem. Solid-State Lett. 4 (2001) A170.              Electrochem. Soc. 144 (1997) 1609.
+[12] A.D. Spong, G. Vitins, J.R. Owen, J. Electrochem. Soc. 152 (2005) A2376.               [27] M. Dubarry, B.Y. Liaw, J. Power Sources 194 (2009) 541.
+[13] M. Maccario, L. Croguennec, B. Desbat, M. Couzi, F. Le Cras, L. Servant, J. Elec-      [28] M. Winter, J.O. Besenhard, M.E. Spahr, P. Novak, Adv. Mater. 10 (1998) 725.
+     trochem. Soc. 155 (2008) A879.                                                         [29] C.V. Ramana, A. Mauger, F. Gendron, C.M. Julien, K. Zaghib, J. Power Sources 187
+[14] A. Ait Salah, A. Mauger, K. Zaghib, J.B. Goodenough, N. Ravet, M. Gauthier, F.              (2009) 555.
+     Gendron, C.M. Julien, J. Electrochem. Soc. 153 (2006) A1692.                           [30] M.A. Roscher, J. Vetter, D.U. Sauer, J. Power Sources 191 (2009) 582.
+[15] A.V. Murugan, T. Muraliganth, A. Manthiram, J. Electrochem. Soc. 156 (2009)            [31] I. Bloom, A.N. Jansen, D.P. Abraham, J. Knuth, S.A. Jones, V.S. Battaglia, G.L.
+     A79.                                                                                        Henriksen, J. Power Sources 139 (2005) 295.
+[16] J.D. Wilcox, M.M. Doeff, M. Marcinek, R. Kostecki, J. Electrochem. Soc. 154 (2007)     [32] K. Striebel, J. Shim, A. Sierra, H. Yang, X. Song, R. Kostecki, K. McCarthy, J. Power
+     A389.                                                                                       Sources 146 (2005) 33.
+[17] P.P. Prosini, M. Carewska, S. Scaccia, P. Wisniewski, M. Pasquali, Electrochim.        [33] C. Forgez, D.V. Do, G. Friedrich, M. Morcrette, C. Delacourt, J. Power Sources 195
+     Acta 48 (2003) 4205.                                                                        (2010) 2961.
+[18] Y. Xia, M. Yoshio, H. Noguchi, Electrochim. Acta 52 (2006) 240.                        [34] J. Shim, K.A. Striebel, J. Power Sources 122 (2003) 188.
+[19] M. Maccario, L. Croguennec, F. Le Cras, C. Delmas, J. Power Sources 183 (2008)         [35] I. Bloom, S.A. Jones, V.S. Battaglia, G.L. Henriksen, J.P. Christophersen, R.B.
+     411.                                                                                        Wright, C.D. Ho, J.R. Belt, C.G. Motloch, J. Power Sources 124 (2003) 538.
+[20] B. Wang, Y. Qiu, L. Yang, Electrochem. Commun. 8 (2006) 1801.                          [36] Y. Zhang, C.-Y. Wang, J. Electrochem. Soc. 156 (2009) A527.
+[21] M. Takahashi, H. Ohtsuka, K. Akuto, Y. Sakurai, J. Electrochem. Soc. 152 (2005)        [37] M. Morita, Y. Niida, N. Yoshimoto, K. Adachi, J. Power Sources 146 (2005)
+     A899.                                                                                       427.
+[22] K. Amine, J. Liu, I. Belharouak, Electrochem. Commun. 7 (2005) 669.                    [38] W. Fang, O.J. Kwon, C.-Y. Wang, Int. J. Energy Res. 34 (2010) 107.
+[23] H.-C. Wu, C.-Y. Su, D.-T. Shieh, M.-H. Yang, N.-L. Wu, Electrochem. Solid-State        [39] M. Koltypin, D. Aurbach, L. Nazar, B. Ellis, J. Power Sources 174 (2007) 1241.
+     Lett. 9 (2006) A537.
+

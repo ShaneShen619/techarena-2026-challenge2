@@ -1,0 +1,4 @@
+run_id,method,cell_id,target_ordinal,target_cycle,target_discharge_start,input_end,prediction_soh_pp,prediction_Ah,fallback,carried_forward,updates_total,updates_recent,reference_count,rejections_json,runtime_s,evidence
+M2_smoke_A_bugfix,A_bugfix,102Ah_45degC_1C_cell1,1,118,2021-05-16T05:18:48,2021-05-16T05:18:18,105.79050834997786,107.90631851697741,False,False,114,114,2,{},0.033992292010225356,E3-P1 developmental holdout; target labels stored only in frozen panel
+M2_smoke_A_bugfix,A_bugfix,102Ah_45degC_1C_cell1,2,190,2021-05-25T12:39:01,2021-05-25T12:38:31,104.98720839010547,107.08695255790757,False,False,184,184,4,{},0.05196545901708305,E3-P1 developmental holdout; target labels stored only in frozen panel
+M2_smoke_A_bugfix,A_bugfix,102Ah_45degC_1C_cell1,3,262,2021-06-03T13:28:20,2021-06-03T13:27:50,103.92326755712507,106.00173290826757,False,False,256,223,4,{},0.06231483398005366,E3-P1 developmental holdout; target labels stored only in frozen panel

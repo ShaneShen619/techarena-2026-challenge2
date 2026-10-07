@@ -1,0 +1,966 @@
+                                                                        eTransportation 22 (2024) 100356
+
+
+                                                                   Contents lists available at ScienceDirect
+
+
+                                                                           eTransportation
+                                                  journal homepage: www.journals.elsevier.com/etransportation
+
+
+
+
+Battery pack diagnostics for electric vehicles: Transfer of differential voltage
+and incremental capacity analysis from cell to vehicle level
+Philip Bilfinger ∗, Philipp Rosner, Markus Schreiber, Thomas Kröger, Kareem Abo Gamra,
+Manuel Ank, Nikolaos Wassiliadis, Brian Dietermann, Markus Lienkamp
+Technical University of Munich, School of Engineering & Design, Department of Mobility Systems Engineering, Institute of Automotive Technology, Boltzmannstr.
+15, Garching, 85748, Bavaria, Germany
+
+
+
+ARTICLE               INFO                                ABSTRACT
+
+Dataset link: mediaTUM, FTM Github                        Aging of lithium-ion battery cells reduces a battery electric vehicle’s achievable range, power capabilities and
+                                                          resale value. Therefore, suitable characterization methods for monitoring the battery pack’s state of health are
+Keywords:
+                                                          of high interest to academia and industry and are subject to current research. On cell level under laboratory
+Battery electric vehicles
+Lithium-ion battery                                       conditions, differential voltage and incremental capacity analysis are established characterization methods for
+Battery pack diagnostics                                  analyzing battery aging. In this article, experiments are conducted on the battery electric vehicles Volkswagen
+Differential voltage analysis                             ID.3 and Tesla Model 3, examining the transferability of differential voltage and incremental capacity analysis
+Incremental capacity analysis                             from cell to vehicle level. Hereby, the vehicles are monitored during AC charging, ensuring applicability in
+Battery aging                                             real-life scenarios. Overall, transferability from cell to vehicle level is given as aging-related characteristics
+                                                          can be detected in vehicle measurements. Hereby, loss of lithium inventory is identified as the primary cause
+                                                          for capacity loss in the usage time of these vehicles. Both methods have limitations, such as data quality
+                                                          restrictions or vehicle specific behavior, but are suitable as diagnostics tools that can enable a vehicle level
+                                                          state of health estimation.
+
+
+
+
+1. Introduction                                                                                BEVs will also be available for sale second hand after their first usage
+                                                                                               phase. Potential buyers of second hand cars might refrain from pur-
+    The market share of battery electric vehicles (BEVs) is exponentially                      chase due to an unknown SOH [10,11]. Also, insurance companies are
+increasing, with the European Union ambitiously aiming to reach 30                             interested in the SOH to determine premiums or the payout in case of a
+million zero-emission vehicles by the year 2030 to further electrify the                       battery failure, especially regarding warranty claims [8]. Furthermore,
+mobility sector [1]. In these BEVs, the energy storage is mostly made
+                                                                                               business decisions on either keeping, selling, replacing or recycling a
+up of heavy, voluminous and expensive lithium-ion battery (LIB) packs
+                                                                                               BEV can be taken based on the current SOH [8]. Hence, as the battery
+to satisfy range and power requirements [2]. However, throughout a
+vehicle’s lifetime, the condition of the battery pack deteriorates due to                      pack in BEVs is a significant driver of costs, knowledge about its present
+aging, usually expressed by the battery pack’s state of health (SOH) [3].                      SOH is mandatory and methods for vehicle level battery back diagnosis
+Hereby, a SOH decrease can be measured as a reduced capacity and an                            necessary [8].
+increase of the battery cells’ inner resistance [4]. Aging is divided into                         There are many approaches for an in-situ and non-invasive charac-
+calendar aging during resting periods of the battery and cycle aging                           terization of individual LIB cells under laboratory conditions through
+when under load [4–6]. In real life applications both aging mechanisms                         established diagnostic load cycles. The most common are the galvanos-
+occur simultaneously leading to complex aging patterns [7]. From a                             tatic intermittent titration technique (GITT), electrochemical impedance
+customer’s point of view, aging materializes in reduced range and                              spectroscopy (EIS), hybrid pulse power characterization (HPPC) and
+power capabilities [4]. Therefore, regular status updates of the battery                       voltage-capacity analysis [12]. The latter encompasses differential volt-
+pack are relevant for the driver or fleet operator [8]. Furthermore,
+                                                                                               age analysis (DVA) [13–16] and incremental capacity analysis (ICA)
+operators of a BEV fleet are interested in the vehicles’ individual SOH to
+                                                                                               [17–19] both analyzing full charge or discharge cycles at low currents.
+detect outliers and utilize predictive maintenance methods like schedul-
+                                                                                               Both DVA and ICA have proven valuable for the characterization
+ing visits at the workshop for increased dispatchability [9]. Moreover,
+
+
+  ∗ Corresponding author.
+     E-mail address: philip.bilfinger@tum.de (P. Bilfinger).
+
+https://doi.org/10.1016/j.etran.2024.100356
+Received 19 March 2024; Received in revised form 2 August 2024; Accepted 5 August 2024
+Available online 6 August 2024
+2590-1168/© 2024 The Author(s). Published by Elsevier B.V. This is an open access article under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-
+nc-nd/4.0/).
+P. Bilfinger et al.                                                                                                              eTransportation 22 (2024) 100356
+
+
+of battery cells, i.e. for aging studies [20–22], cell-to-cell classifica-        battery pack models or examined by few inter-connected cells in the
+tion [23,24] or for SOH estimation by machine learning methods [25].              lab. Very few publications perform actual measurements on BEVs and
+On the vehicle level, however, there are few approaches to characterize           either investigate by DVA or ICA. Especially FOI from IC curves are
+aging in battery packs of BEVs [9]. This paper aims at examining the              often subject to pure statistical analysis. Furthermore, data quality
+transferability of DVA and ICA onto the vehicle level.                            constraints in BEVs have not been examined, and a comparison of
+                                                                                  whether DVA or ICA is more suitable for vehicle level aging diagnosis
+1.1. Literature review
+                                                                                  is pending. Therefore, this paper addresses these research gaps by
+                                                                                  examining the transferability and applicability of both DVA and ICA on
+    The following section summarizes publications in literature that in-
+                                                                                  the vehicle level by focusing on standardized AC charging procedures
+vestigate differential voltage (DV) and incremental capacity (IC) curves
+                                                                                  and data quality constraints. Experiments are set up to compare cell
+from charging cycles as a suitable method for vehicle level battery
+diagnosis. Schmitt et al. [26] reconstruct the voltage curve from partial         level FOI associated with aging in LIBs to FOI on the vehicle level
+charge cycles and perform DVA in different state of charge (SOC) ranges           for two state of the art BEVs – the 2021 VW ID.3 and 2020 Tesla
+and varying C-rates. The study tests cells under laboratory conditions,           Model 3. Aging is assessed for both vehicles by DVA and ICA after a
+simulating charging at an 11 kW alternating current (AC) charger moti-            utilization period of two years. The overall goal is to further progress
+vating applicability on the vehicle level. With this method, degradation          the technological readiness level of both DVA and ICA as vehicle level
+modes and the cell capacity can be estimated accurately going through             battery pack diagnosis methods.
+a range of 20-70 % SOC and a low current of 𝐶∕30 enabling a SOH esti-
+mation. Weng et al. [27] develop a battery simulation environment to
+                                                                                  1.2. Contributions
+examine the applicability of an ICA peak tracking method on a module
+with three parallel connected cells for SOH monitoring. Furthermore,
+they vary the capacities and inner resistances of these cells in the model            The scientific contributions of the underlying article are summa-
+to analyze their effect on features of interest (FOIs) in the IC curves.          rized as follows:
+The method is validated using 30 modules in a laboratory environment.
+Krupp et al. [28] analytically and experimentally examine ICA in a                  (a) Applicability of DVA and ICA on vehicle level
+module with series-connected cells. They conclude that features on                      The process of applying DVA and ICA on vehicle level is exten-
+cell level dilute on the module level, particularly when single cells in                sively investigated by two BEVs, with different energy levels, cell
+the module have strongly aged. Hence, outliers in the module can be                     chemistries, cell formats and battery pack configurations. Data
+detected. The results show that there can be differences in module level                quality constraints, as well as the influence of charging profiles
+IC curves determined by the terminal voltage to superposed voltages                     on the utilization of both methods are examined.
+measured for each cell on the battery management system (BMS).
+    Further publications analyze data from charging events in BEVs to               (b) Transfer of DVA and ICA from cell to vehicle level
+derive vehicle level DV and IC curves. Wassiliadis et al. [2] overlay                   Additional cells from the vehicles under study are acquired and
+a DV curve from a small current lab measurement of a Volkswagen                         measured in a battery lab. A comparison is drawn by mapping
+(VW) ID.3 cell onto an AC charging cycle on vehicle level. They
+                                                                                        DV and IC curves from cell to vehicle level measurements and
+notice that the vehicles’ BMS restricts voltage limits, presumably for
+                                                                                        analyzing the transferability of characteristic features.
+capacity retention, compared to cell measurements in the laboratory.
+Therefore, shifting is necessary to align the vehicle to cell DV curve.
+                                                                                    (c) Aging diagnostics on vehicle level by DVA and ICA
+Characteristics from the cell DVA then match adequately to the vehicle
+DVA, enabling the estimation of the cell’s chemistry by comparison to                   The vehicles under study are compared by an initial measure-
+literature findings. The same test set up was applied by Rosenberger                    ment after purchase, to a state after two years of utilization. The
+et al. [29] with a Tesla Model 3 comparing the DV curves shortly after                  objective is to evaluate FOIs that correlate with aging on cell
+purchase to a measurement conducted after two years of utilization.                     level on their suitability as FOIs on vehicle level.
+Shifts of peak positions in the cell DV curves are observable, possibly
+due to increasingly deviating aging states of the cells. Furthermore, it            (d) Open access to all experimental data and code
+is estimated that the measurable capacity loss of the battery pack is                   A repository with data from the examinations is published
+attributable to the loss of lithium inventory (LLI). Schaltz et al. [10,11]             openly with this article. This includes all time series of the mea-
+transfer ICA from cell to pack level for a BMW i3 and Nissan Leaf.                      surements from the vehicles, as well as the code for processing
+In their study, characteristics from cell level ICA such as peaks and                   the data.
+valleys generally match with measurements from the vehicle level, with
+small differences notable. A SOH definition is proposed by calculating
+a charged capacity within a fixed voltage range, due to BMS voltage               1.3. Layout of the article
+limits prohibiting full capacity measurement. Furthermore, FOIs from
+the cell level ICA are correlated with the SOH and evaluated by                       The further structure of the article is as follows: Section 2 briefly de-
+FOIs from the vehicle ICA, showing a suitable match. She et al. [30]              scribes both principles of DVA and ICA. Section 3 describes the vehicles
+analyze partial charging cycles from 14 electric buses with a lithium
+                                                                                  under study and the measurement procedures for obtaining data from
+iron phosphate (LFP) chemistry over a period of 14 months. Hereby,
+                                                                                  small current charging cycles on vehicle and cell level. Section 4 shows
+they extract the height of an IC peak as a FOI for each cycle that
+                                                                                  the examination results of the following aspects, as shown in Fig. 1,
+declines with increasing mileage. A radial basis function neural network
+                                                                                  with Section 4.1 investigating the effect of charging protocols on DV
+is trained to predict the peak value from statistical features derived
+from the charging cycles. In a subsequent publication She et al. [31]             and IC curves from cell level measurements. The data quality of vehicle
+extract the same IC peak for 12 BEVs and match this FOI with cell                 level measurements is analyzed in Section 4.2. The transfer of DVA
+measurements. Furthermore, this vehicle level feature is evaluated by             and ICA from cell to vehicle level is portrayed in Section 4.3. Based
+a cell level SOH estimator.                                                       on this, Section 4.4 discusses vehicle level degradation diagnostics to
+    The excerpt of publications demonstrates that research increasingly           estimate the vehicles’ SOH and Section 4.5 the influence of different
+focuses on battery diagnostics for BEVs. However, vehicle level di-               BMS software versions. Section 5 summarizes the findings and Section 6
+agnostics is often a motivation for cell level studies, simulated by              provides an outlook for further research.
+
+                                                                              2
+P. Bilfinger et al.                                                                                                                 eTransportation 22 (2024) 100356
+
+
+                                                                                       electrodes’ DV curves equates to the full cell (FC) DV curve, defined
+                                                                                       in Eq. (2).
+
+                                                                                       DVFC = DVPE − DVNE                                                       (2)
+
+                                                                                       Detecting characteristic peaks in DV curves indicate the presence of
+                                                                                       a single phase inside one of the electrodes that can mostly be unam-
+                                                                                       biguously assigned to either the PE or NE [13–16]. This is exemplary
+                                                                                       shown with halfcell data from the VW ID.3 (nickel-cobalt-manganese-
+                                                                                       oxide (NMC)/graphite) cell under study in Fig. 2(b). The peaks 4L,
+                                                                                       3L and 2L are associated with liquid-like (L) intercalation stages of
+                                                                                       graphite electrodes and are named according to the number of empty
+                                                                                       graphite layers between fully lithiated layers [33]. Another dominant
+                                                                                       graphite characteristic is the stage 2 peak with no assumed in-plane
+                                                                                       order [26,33]. These graphite peaks are apparent in all cell chemistries
+                                                                                       with graphite in the NE which make up around 90 % of all LIBs [34].
+                                                                                       Characteristic FOIs in this specific NMC chemistry are peaks H1, H2,
+                                                                                       and M, where the former two denote to a hexagonal and the latter
+                                                                                       a monolithic lattice structure. [35,36]. These features are less pro-
+                                                                                       nounced, due to the relatively low nickel content in this composition
+                                                                                       (LiNi0.65 Mn0.2 Co0.15 O2 ) [37]. Ank et al. [38] provide a DV curve of
+                                                                                       a nickel rich NMC cell, where these characteristics are visible more
+                                                                                       clearly. Other PE chemistries, e.g. LFP do not exhibit any explicit
+                                                                                       features for DVA [39]. For deeper insights into phase transitions of
+                                                                                       common LIB active material compositions, the interested reader is
+                                                                                       referred to further publications [33,35].
+                                                                                           Throughout their lifetime, cells progressively age leading to a re-
+                                                                                       duced capacity [4]. The origin of the capacity loss can furthermore be
+                                                                                       divided into the degradation modes loss of active material (LAM) and
+                                                                                       LLI. The former summarizes aging mechanisms taking place at the pos-
+                                                                                       itive and negative electrode leading to a reduced capacity of lithiation,
+                                                                                       while the latter corresponds to the loss of cyclable lithium no longer
+                                                                                       available for charge transfer between the electrodes [4,40]. Tracking
+Fig. 1. Layout of the examined experiments in this article. The examinations are       peaks by DVA throughout aging makes it possible to identify degrada-
+comprised of cell level as well as vehicle level measurements.
+                                                                                       tion modes by evaluating the electrode capacities at the NE (QNE ) and
+                                                                                       PE (QPE ) to determine LAM as shown in Fig. 2(b). LLI can be observed
+                                                                                       by the balancing between electrode capacities (QB ). These FOIs are
+2. Fundamentals                                                                        often integrated into SOH estimation techniques [41]. Further FOIs,
+                                                                                       such as the height of the 4L or stage 2 peak can indicate inhomogenities
+    Battery diagnosis with DVA and ICA analyzes the gradients of                       in the distribution of intercalated lithium in the NE [20].
+the voltage U and capacity Q signals from dis-/charging cycles by                          For practical applications, the differentiation of voltage and ca-
+differentiation. Here, only charging is considered, as it is simpler to                pacity signals is often implemented using numerical approximation
+apply on the vehicle level and more reproducible, compared to draining                 (illustrated by 𝛥 in Eq. (1)), by either forward, backward or central
+the battery by driving on a chassis dynamometer. Furthermore, a                        difference schemes [42]. Alternatively, the current signal I can directly
+small charging current or power is applied to reduce the excitation of                 be inserted in the denominator, due to dQ∕dt = I [2]. Here, the DV
+overpotentials [32]. Depending on how the voltage and capacity signals                 curves are normalized by the nominal capacity Qn , scaling the DV curve
+are set into relation, results either in DV (Section 2.1) or IC (Section 2.2)          into a regime along the 𝑦-axis around 1 V independent of the nominal
+curves. Both methods are widespread tools for in-situ characterization                 capacity. In a battery pack the DV curve is accordingly scaled by
+of battery cells with the main objective of extracting and analyzing                   the number of series-connected cells. Normalization can therefore sim-
+insightful FOIs correlating with the SOH [18].                                         plify the comparability between different cell sizes. During continuous
+                                                                                       charging, the absolute charge signal increases monotonically, so that
+2.1. Differential voltage analysis                                                     𝛥Q ≠ 0 holds and there is no division by zero. Typically, the DV curve
+                                                                                       is plotted against the transferred charge signal from a full charging
+    DV curves, as per Eq. (1), relate the differentiated voltage signal                measurement [13]. Alternatively, DV curves can be plotted against the
+to the differentiated capacity signal. In other words, DVA enables the                 SOC, which is the charge signal normalized by the maximum capacity
+analysis on how the voltage changes due to an increase in transferred                  available according to the present SOH. A disadvantage of these signals
+charge.                                                                                is that both are secondary quantities not directly measurable by a
+        dU∕dt
+                                                                                       sensor, but are rather calculated through integration of the current
+                      𝛥U
+DV =            ≈                                                           (1)        signal as shown in Eq. (3).
+        dQ∕dt         𝛥Q
+                                                                                              t1
+DVA enables insights into the stage transitions of the cells’ electrodes               Q=          I dt + Qoffset                                               (3)
+                                                                                            ∫t0
+at different lithiation levels [13]. Lithiation during charging describes
+the intercalation of lithium-ions into the negative electrode (NE), re-                Hereby, a full charging cycle reflects the transferred charge from 0-
+spective deintercalation from the positive electrode (PE), changing the                100 % SOC and is evaluated from the lower to the upper cut-off volt-
+electrodes’ potential [13]. By definition, the open circuit voltage (OCV)              age at a predefined current which is generally specified in the cell’s
+of a LIB is the difference between the electrodes’ open circuit potentials             datasheet. Hence, the capacity of a cell can reproducibly be calculated
+(OCPs) shown in Fig. 2(a). Accordingly, the difference between the                     and the charge signal begins at zero. On the contrary, the transferred
+
+                                                                                   3
+P. Bilfinger et al.                                                                                                                     eTransportation 22 (2024) 100356
+
+
+charge in a partial charging scenario does not cover the same full SOC
+range. It can therefore be necessary to estimate an offset Qoffset in
+order to align (partial) charge measurements, e.g. by using a reference.
+Plotting the DV curves against the SOC signal is equally not optimal,
+as determining an absolute SOC is not trivial. Depending on the SOC
+estimation method, operational conditions (e.g. extreme temperatures
+or dynamic current loads), and differences in relaxation times can lead
+to estimation errors [43].
+
+2.2. Incremental capacity analysis
+
+    The IC curve is defined as the inverse of the DV curve relat-
+ing the differentiated charge to the differentiated voltage shown in
+Eq. (4) [18]. Thus, identified valleys in DV curves are peaks in IC
+curves, and vice versa, serving as FOIs. IC peaks give insights into the
+transition between electrode lithiation phases. IC curves are commonly
+plotted against the voltage signal which is a directly measured property,
+so that alignment is not necessary, which is an application advantage
+for vehicles under real operation conditions [18,44].
+       dQ∕dt       𝛥Q    1
+IC =           ≈      =                                               (4)
+       dU∕dt       𝛥U   DV
+Inserting Eq. (2) into Eq. (4) makes clear that FOIs from the FC ICA
+are not additively superimposed characteristics from electrode ICAs,
+but rather result from convolution. Therefore, findings from ICA are
+harder to disaggregate and interpret [18]. Nevertheless, peak A in
+Fig. 2(a) can be associated with stage transitions at the NE, peak C from
+both electrodes and characteristics B and D with the PE [35,45,46].
+The position of these peaks and plateaus (e.g. A–D) can be tracked as
+FOIs, as well as differences in peak heights (𝛥ℎ), peak widths (𝛥𝑤)
+or integrals between voltage boundaries (∫ ) schematically shown in
+Fig. 2(c). Clear statements regarding aging are often only possible by
+jointly analyzing multiple FOI and their relation to another [18].
+    During aging, the internal resistance of the cell gradually increases,
+e.g. through solid electrolyte interphase (SEI) formation. Following
+Ohm’s law, a resistance increase leads to a voltage increase. Assuming
+a homogeneous resistance increase over the whole SOC range shifts
+the IC curve accordingly, as it is plotted against the voltage signal.
+This property can be detected as a FOI by ICA, e.g. by tracking peak
+positions throughout the aging process [41].
+    Normalizing IC curves by the nominal capacity as for DV curves is            Fig. 2. Schematic half-cell measurements from three electrode cells [37] (a) Full-
+possible, but is omitted here as the unit 1∕𝑉 is less intuitive. Some LIB        cell (FC) voltage curve from a 𝐶∕50 charging cycle with a NMC cell resulting from the
+                                                                                 difference in positive electrode (PE) and negative electrode (NE) OCPs. (b) Full-cell and
+chemistries (e.g. LFP) inhibit minimal voltage increases over broad SOC          half-cell DV curves. Peaks associated with single phases in the electrodes are labeled,
+intervals. Differentiating the voltage signal at these plateaus leads to         as well as the NE, PE and balancing (B) capacity. (c) The FC IC curve results from the
+small differences in the denominator (1∕𝛥U) yielding steep gradients in          convolution of electrode IC curves. Peaks are associated with stage transitions in the
+IC curves [18,47]. In turn, this imposes high demands on the data qual-          electrodes. Typical FOIs for aging analysis by ICA are visualized.
+ity and sampling rate in order to capture the relevant characteristics for
+further interpretation.
+                                                                                    The examined 2021 VW ID.3 Pro (abbreviated as VW) is equipped
+3. Methodology                                                                   with a 58 kW h battery pack. The battery pack architecture consists
+                                                                                 of nine modules connected in series, each of which contains 24 cells
+    An introduction to the BEVs under study is presented in Section 3.1.         in a 12s2p configuration. On pack level, the voltage ranges from
+Further, the test procedure (Section 3.2) and data acquisition (Sec-             approx. 360-450 V [2]. The NMC pouch cells contain a PE composition
+tion 3.3) are explained in detail. For a comparison, cell level measure-         with LiNi0.65 Mn0.2 Co0.15 O2 and pure graphite (without silicon) for the
+ments are conducted and described in Section 3.4.                                NE [37].
+                                                                                    The 2020 Tesla Model 3 Standard Range Plus, referenced as Tesla,
+3.1. Vehicles under test                                                         comes with a 55 kW h battery pack and a voltage range of approx.
+                                                                                 330-380 V [48]. This particular specimen is assembled with prismatic
+    The experimental vehicles in this paper include a VW ID.3 Pro and            LFP cells in a 106s1p configuration [48]. The NE is composed of pure
+Tesla Model 3 Standard Range Plus. The exact specimens of the VW                 graphite without any silicon content [49].
+ID.3 was comprehensively investigated by Wassiliadis et al. [2] with
+an in-depth teardown of the powertrain and battery pack. All presented           3.2. Measurement procedure
+vehicles were purchased from a dealership so that they are unmodified
+mass-production vehicles and ensure an unbiased examination. The                    To enable a fair comparison, it is necessary to set up the vehicle
+vehicles under study are briefly described with focus on battery pack            level measurements as similarly as possible to the cells measured in
+specifications summarized in the Appendix in Table 1.                            laboratory conditions, regarding both the testing procedure or ambient
+
+                                                                             4
+P. Bilfinger et al.                                                                                                            eTransportation 22 (2024) 100356
+
+
+conditions. Here, the small current measurement is set in the charging            to query individual values in a frequency of 1000 ms. Responses from
+direction, as the procedure is simpler and reproducible during standard-          the gateway board are requested by addressing the unique message
+ized AC charging. Discharging the vehicles on a chassis dynamometer               identifiers (IDs) of the packs’ voltage, current and SOC, additional to
+in a continuous manner is also possible, but cumbersome.                          all cell voltages. The response frequency slightly deviates during and
+    The vehicles are fully discharged to 0 % SOC before the measure-              between measurements, presumably due to bandwidth limitations in
+ment. In the VW however, the SOC displayed in the user interface                  the gateway board for handling requests. Practically, a sample of each
+(UI) is offset by about 4 % compared to the SOC read from the BMS,                requested signal is logged in a time span of approx. 10 s, leading to
+presumably due to reserved capacity margins. Therefore, 0 % UI SOC is             a sample frequency of 0.1 Hz. By analyzing the signals’ discretization,
+equivalent to 4 % BMS SOC. For the Tesla, the shift between BMS and               an estimated resolution can be given for the pack voltage (±0.25 V)
+UI equals 0.2 %. In the following, the SOC is solely based on the BMS             and pack current (±0.01 A). After completion of the measurement, the
+data. Discharging the vehicles is a lengthy procedure, especially for the         signals are synchronized onto a single time vector by interpolation.
+VW as driving is disabled at 4 % SOC. Full discharge is achieved using            The interested reader is referred to Merkle et al. [56] for an in-depth
+the heating, ventilation and air conditioning system similarly to Schaltz         descriptions of the data acquisition process.
+et al. [10,11] and Wassiliadis et al. [50], which takes multiple hours.
+    The vehicle level measurements are performed with the commer-                 3.4. Cell measurements
+cially available charging device Juice Booster 2 (Juice Technology,
+Switzerland [51]). Depending on the socket type (single/triple phase)                 Additional battery cells from the vehicles under study are acquired
+and the current selection on the charger an AC power in the range                 for comparative cell level measurements. It is unknown how these
+of 1.4-22 kW is supplied. Here, a low charging current is preferred               modules were stressed beforehand, as they are not pristine specimens.
+to achieve a quasi-stationary charging measurements and reduce the                Both cells are connected to channels in the MRS 6 V battery cycler
+effect of inhomogeneity in the NE that can dilute FOIs for DVA and                manufactured by BaSyTec GmbH (Germany, ±600 A per channel) with
+ICA [18,20]. Therefore, a maximum single phase charging current of                a current and voltage resolution of ±300 mA and ±0.3 mV, respectively.
+8 A is set by the Juice booster limiting the power supply to 1.84 kW. The         During measurements, the cells are placed inside a VC3 4100 thermal
+vehicles are then fully charged in a temperature controlled environment           chamber by Vötsch GmbH (Germany) to ensure a constant ambient
+at 20 °C until the vehicle terminates the charging session. Both vehicles         temperature during testing. The cell teardown and preparation for
+offer power reduction options in the UI to reduce the stress on the               laboratory measurements is described closely by Wassiliadis et al. [2].
+battery which is additionally selected for all measurements. The energy           It is noted that the pouch cells in the VW are not disassembled from
+content of the battery pack is evaluated by integrating the charging              the module housing to sustain the original cell compression.
+power as defined in Eq. (5).                                                          The cells are initially discharged to the lower cut-off voltage by
+         t1              t1                                                       a constant current constant voltage (CCCV) profile and subsequently
+E=            P dt =          U I dt                                   (5)        relaxed for 2 h prior to the small current charging measurements for
+     ∫t0               ∫t0
+                                                                                  acclimation and relaxation effects to fade away. The cells are then
+   It is common in the literature to express currents by the C-rate for           charged until the upper cut-off voltage is reached either by a CC or
+a better comparability between cell formats. The C-rate is defined as             CP pattern, depending on the examination. Furthermore, the charging
+the current I related to the nominal capacity Cn as shown in Eq. (6)              current or power is chosen to match the vehicle level measurements.
+and often given in the unit 1∕h [52]. For constant current (CC) profiles          Datapoints are sampled at a rate of 1 s (1 Hz), or when a voltage delta
+the C-rate is constant and its reciprocal indicates the time span of a full       of 4 mV is detected.
+charging cycle.
+               I                                                                  4. Results and discussions
+C-rate =                                                               (6)
+              Cn
+                                                                                      Firstly, CC and CP charging profiles are compared on the cell level in
+However, in many vehicle applications not the current, but rather the
+                                                                                  Section 4.1. In Section 4.2, data quality of vehicle level measurements
+power is the set property, e.g. for the demanded power in driving
+                                                                                  are examined. The transferability of the voltage curves, DVA and ICA
+scenarios or when charging the vehicle using a constant power (CP)
+                                                                                  from cell level to vehicle level is investigated in Section 4.3. Lastly,
+profile. The latter means that electrical power (P = U I) is held constant
+                                                                                  aging of the BEVs under study is examined in Section 4.4 and the
+throughout the charging cycle. Hence, as the voltage in the battery pack
+                                                                                  influence of BMS software versions in Section 4.5.
+increases, the current is reduced accordingly. In this case, the C-rate
+is not constant with the standard definition. Therefore, the E-rate is
+                                                                                  4.1. Charging profiles
+defined by Eq. (7) based on the charging power P in relation to the
+battery pack’s net energy En [53].
+                                                                                      A CC profile is a typical charging profile for LIBs in lab tests
+              P                                                                   holding the current constant throughout the entire charging session.
+E-rate =                                                               (7)
+              En                                                                  Furthermore, the CC phase is often followed by a constant voltage (CV)
+For simplicity and as both definitions express the same property,                 phase to further charge the cell without exceeding the upper cut-off
+namely the time for a full charging cycle, the nomenclature here is               voltage limit. Out of necessity, e.g. energy conservation, however, a
+reduced to the more custom C-rate. Hence, when comparing CC to CP                 CP profile is common when charging BEVs at AC chargers. In terms
+measurements, it is made sure that the charging time (inverse of the              of the calculation of DV and IC curves (Section 2), pure CC charging
+C-rate or E-rate) is equal. Following this definition results in C-rates of       is favorable, as the derivative of the charge signal is constant (𝑑𝑄∕𝑑𝑡 =
+𝐶∕45 for the VW and 𝐶∕57 for the Tesla with the given charging power.             𝐼 = 𝑐𝑜𝑛𝑠𝑡.), while only the voltage signal changes significantly. Distinct
+                                                                                  FOIs can therefore be unambiguously attributed to thermodynamic
+3.3. Data acquisition                                                             voltage changes only. Furthermore, dynamic effects due to changes in
+                                                                                  the current are mitigated. Here, the aim is to investigate effects on FOIs
+    For the Tesla, a controller area network (CAN) logger is connected            for DVA and ICA from CP charging data.
+to the vehicle, recording all bus traffic for later conversion to physical            Fig. 3 compares CC and CP protocols for a single VW NMC pouch
+values through a .dbc file available on GitHub [54]. For the ID.3,                cell in the battery lab. Fig. 3(a) depicts the current profiles of a 𝐶∕45
+however, unified diagnostic services (UDS) requests are sent through a            full range CC (1.7 A) and CP (6.6 W) charge with the current/power
+self-built data logger [55] connected to the OBD II diagnostic interface          determined by Eq. (6) and Eq. (7). A second 𝐶∕6 measurement with
+
+                                                                              5
+P. Bilfinger et al.                                                                                                                        eTransportation 22 (2024) 100356
+
+
+                                                                                                 In Fig. 3(c), the corresponding 𝐶∕45 and 𝐶∕6 voltage curves are
+                                                                                             visualized. The effect of the higher current can be seen in the 𝐶∕6
+                                                                                             measurement as higher overpotentials shift the curve towards higher
+                                                                                             voltages. Therefore, the cut-off voltage termination criterion is reached
+                                                                                             sooner leading to a delta of 4 A h between measurements. However, CP
+                                                                                             and CC pseudo open circuit voltage (pOCV) data generally aligns well
+                                                                                             for both current levels evaluated by the voltage difference shown in
+                                                                                             Fig. 3(d). Overall, an absolute average difference of 1.1 mV, respective
+                                                                                             1.3 mV is measured. The largest deviation between voltage signals is
+                                                                                             visible at the start and end of charge in the 𝐶∕6 measurement following
+                                                                                             the CP current load.
+                                                                                                 To elaborate distinct differences in the charging protocols, DVA of-
+                                                                                             fers deeper insights shown in Fig. 3(e). The effects of higher C-rates can
+                                                                                             be seen more clearly in the close up plots where the 𝐶∕6 measurement
+                                                                                             shows a dilution of features [57,58]. Especially the graphite peaks (4L,
+                                                                                             3L, 2L and stage 2) dilute due to increased inhomogeneity of the lithium
+                                                                                             distribution in the NE, as diffusion processes take longer to equate for
+                                                                                             local lithium concentration gradients [20]. Similar findings can be seen
+                                                                                             in the IC plot in Fig. 3(f), where additionally the 𝐶∕6 curve shifts to
+                                                                                             higher voltages due to more significant overpotentials from the higher
+                                                                                             C-rate.
+                                                                                                 With the insights from DVA and ICA, it seems as if neither the 𝐶∕45,
+                                                                                             nor the 𝐶∕6 CP measurement deviates strongly to their respective CC
+                                                                                             counterparts. When examining the close-ups, marginal differences can
+                                                                                             be seen between CP and CC measurements around areas where the
+                                                                                             voltage differentiates the most. For instance, the CP DV curve is below
+                                                                                             the CC DV curve in the 𝐶∕6 measurement between 60-78 A h due to
+                                                                                             the decreasing current at this SOC interval. Nonetheless, both charging
+                                                                                             profiles make it possible to distinguish insightful FOIs from DVA and
+                                                                                             ICA so that CP measurements on vehicle level are not necessarily a
+                                                                                             drawback. Further measurements can be conducted at higher C-rates,
+                                                                                             but it is doubtful that the effect of a CP charging profile exceeds the
+                                                                                             influence of inhomogeneity imposed by increased C-rates.
+
+                                                                                             4.2. Data analysis
+
+                                                                                                 The differentiation of sensor data, as necessary for DVA and ICA,
+                                                                                             amplifies noise in the derived signal, hampering the extraction of in-
+                                                                                             sightful features. Prefiltering the voltage and charge signals is therefore
+                                                                                             necessary to smooth the signals and reduce noise. Postfiltering DV and
+                                                                                             IC curves is often also required to enhance the visibility of FOIs. Care
+                                                                                             must be taken when smoothing the signals, as characteristics can be
+                                                                                             altered leading to false interpretations [18,44,59].
+                                                                                                 Fig. 4 depicts the vehicle level DV and IC curves from a 𝐶∕57 charging
+                                                                                             measurement with the Tesla. The LFP cell in the Tesla is known for
+                                                                                             its flat voltage profile, i.e. showing small voltage increases over broad
+                                                                                             SOC intervals [60,61]. Capturing changes in the voltage and current
+                                                                                             signal is essential for calculating both methods, placing high quality
+                                                                                             demands on the sensors, especially for LFP cells, to provide sufficient
+                                                                                             resolution, precision and suppression of noise [18,47]. However, the
+                                                                                             data recorded from the vehicles under study originates from on-board
+                                                                                             sensors with unknown specifications. Therefore, the results shown for
+                                                                                             the LFP cell demonstrate an edgecase demanding high data quality and
+                                                                                             aims at investigating vehicle sensor requirements.
+                                                                                                 In Fig. 4(a), the raw DV curve is plotted where neither the volt-
+Fig. 3. Comparison of the effect of CC and CP protocols on FOIs for DVA and ICA. The         age nor the capacity signal is prefiltered. For the sake of visibility
+measurements are conducted on the same VW NMC pouch cell in the battery laboratory.          only every 100th datapoint is shown and it is clear that no charac-
+(a)/(b) Current and power profiles for a 𝐶∕45 and 𝐶∕6 charging measurement. (c) CC and       teristics can be extracted out of this signal. The noise is visualized
+CP voltage curves for both C-rates. (d) Voltage error between CC and CP measurements.
+                                                                                             in a Bode plot in Fig. 4(b) up to the highest resolvable (Nyquist)
+(e)/(f) Associated CC/CP DV and IC curves.
+                                                                                             frequency (fnyquist = 2 ⋅ fsample ), where the majority of high amplitude
+                                                                                             disturbances are discernible in the higher frequency regime (≥ 1 mHz)
+                                                                                             of the signal. The same statements holds for the raw IC curve, calculated
+a higher current/power (13 A/49.2 W) is shown in Fig. 3(b). All mea-                         by the inverse of the DV curve, showing similar effects in Fig. 4(c) and
+surements are conducted between the voltage range from 2.8-4.2 V. The                        (d). Hence, filtering vehicle data is essential and cannot be omitted.
+difference of the applied currents is the greatest at the beginning and                          A moving mean filter is applied to the charge and voltage signal in
+end of charge with and maximum of 0.6 A and 3.1 A, respectively.                             forward direction. The filter induced shift acts on the same timescale of
+
+                                                                                         6
+P. Bilfinger et al.                                                                                                                                  eTransportation 22 (2024) 100356
+
+
+
+
+Fig. 4. Influence of filtering vehicle level DV and IC curves shown for a 𝐶∕57 charging measurements with the Tesla. Tesla’s LFP cells have a characteristic flat voltage profile
+placing high demands on the data quality. (a)/(c) DV and IC curves without filtering, prefiltering the voltage and capacity signals and additional postfiltering. (b)/(d) Corresponding
+Bode plots plotted against the frequency.
+
+
+
+
+both signals which eventually cancels out deriving the DV or IC curves.                       close-up plot focuses on the stage 2 peak which is relevant for cal-
+It is noted that other authors directly filter the current signal instead                     culating electrode capacities and evaluating lithiation in-homogeneity
+of the charge signal [2]. However, numerically integrating the current                        of the NE (Section 2.1). The sample rate is sufficiently high for a
+to calculate the charge signal suppresses noise which in turn increases                       precise reconstruction, if this peak can be captured without distortion.
+the effectiveness of the applied filter.                                                      Qualitatively, sample rates below 300 s (3.3 mHz) seem workable before
+    The window size of the filter is set to 1 % of datapoints, to stan-                       the smooth curvature becomes edgy and reduces in height. A rule of
+dardize the filtering over measurements, C-rates and capacities. Such                         thumb can be postulated by generalizing this sample rate with the
+preprocessing already improves the effectiveness of DVA/ICA signif-                           applied C-rate that a sample point is necessary for a delta change in
+icantly reducing the influence of high frequency noise visible in the                         the capacity (CC charging) or energy (CP charging) of approx. 0.2 %.
+Bode plots. However, remaining amplified noise still makes extraction                         The distorted peak in Fig. 5(a) might exclude exact statements about
+of distinct FOIs difficult. Furthermore, it becomes clear why extracting                      battery internal processes, but the x-position of the peak can still be
+the IC curve from LFP cells is difficult, as the flat intervals in the                        approximated as a FOI for all evaluated sample rates. Therefore, DVA
+voltage profile leads to sharp extrema. Additionally, a low voltage                           is insensitive against these examined sample rates when examining the
+resolution yields unclear peaks as the voltage difference is close to                         peak’s x-position.
+zero and noise leads to dU∕dt ± 0. Postfiltering finally yields a DV                              Fig. 5(b) and (c) depict the IC curves for sample rates 10-300 s
+curve suitable for FOI extraction further suppressing high frequency                          and 900 s, respectively. As for DVA, a sample rate of 300 s is sufficient
+noise. To achieve that, the DV curve is again filtered by a moving                            for resolving the curve. Lower sample rates however induce noise so
+mean filter with a window size of 1 % of datapoints in forward and                            that identifying peaks is ambiguous indicating that (LFP) ICA is more
+backward direction to equalize filter induced shifts. Other filters, such                     susceptible to the sample rate than DVA. Further IC curves are omitted,
+as Gaussian filtering or Savitzky–Golay filters are examined in other                         due to extreme noise.
+publications [44,59]. The reason for calculating the IC curve from the                            As described above, these results show an edgecase of vehicle level
+inverse of the (postfiltered) DV curve is because filtering works more                        DVA and ICA with LFP cells, due to the flat voltage profile. Nonetheless,
+effective with smoother gradients, as steep gradients can falsely be                          the findings indicate that not necessarily the sample rate, but rather
+evened out. Undefined values in the IC curve are subsequently deleted                         noise and the resolution of the sensors are limiting. It is shown that
+and outliers omitted through an interquartile range filter. The latter                        a sample point every 10 s is sufficient and even sample rates as low
+deletes datapoints with values outside the 5th to 95th percentile of                          as 300 s between samples are possible for this C-rate. Overall, care
+ordered IC values.                                                                            must be taken when extracting FOIs, especially for ICA, as filtering
+    Concerning data sampling, the sample rate is the only variable                            is indispensable. Furthermore, DVA is more robust, as peaks identify
+parameter during the vehicle measurements and is fixed to 10 s (sample                        voltage changes which are easier to resolve. Also, DV curves exhibit
+frequency of 100 mHz). Undersampling a signal can lead to temporal                            more moderate gradients, which are more forgiving in sampling and
+aliasing which can distort and filter out FOIs [62]. This effect is                           filtering requirements. Lower data quality does not hamper the ap-
+examined by reducing the sample rate of the 𝐶∕57 measurement above.                           proximation of peak position, e.g. for determining electrode capacities,
+Fig. 5(a) shows the DV curve with sample rates between 10-3600 s. The                         whereas in-depth insights become difficult to examine. In contrast,
+
+                                                                                          7
+P. Bilfinger et al.                                                                                                                         eTransportation 22 (2024) 100356
+
+
+                                                                                              the VW’s DV curve is difficult to detect on cell level and completely
+                                                                                              blurs out in the vehicle DV curve. The same holds for the 2L peak in
+                                                                                              both vehicles’ DV curves. In VW’s DV curve, stage 2 peak, important for
+                                                                                              determining the NE and balancing capacity, is not only lower in height,
+                                                                                              but also significantly shifted towards the left. The shift could indicate
+                                                                                              a lower amount of active material or overhang effects in the passive
+                                                                                              parts of the NE leading to shifts of FOIs [63,64]. The lower maxima is
+                                                                                              also observed by Reiter et al. [65] from DVA with cells in a module
+                                                                                              where they conclude that varying NE capacities between cells results
+                                                                                              in a module level stage 2 peak decrease. Furthermore, the distribution
+                                                                                              of the current between parallel cells induces inhomogeneity leading to
+                                                                                              the decrease and widening of this maxima [66,67]. As the Tesla has no
+                                                                                              parallel connections, this effect does nor occur. This could mean that
+                                                                                              battery packs with many parallel connected cells can be a disadvantage
+                                                                                              for diagnosis with DVA, where further measurements are necessary to
+                                                                                              underline this assumption.
+                                                                                                  Concerning PE features, the H2 peak in VW’s DV curve is not
+                                                                                              precisely identifiable in height or position and can only be roughly
+                                                                                              estimated, similar as in the cell level DVA. No statements about PE FOIs
+                                                                                              can be made from DVA of the Tesla, as its LFP cell has no significant
+                                                                                              PE feature.
+                                                                                                  As IC curves are generally plotted against the directly measured
+                                                                                              voltage, shifting between cell and vehicle should not be necessary.
+                                                                                              VW’s cell and vehicle IC curves in Fig. 6(e) align well and similar
+                                                                                              observations can be given as from DVA. Peak A and C are influenced by
+                                                                                              stage transitions in the graphite electrode showing a similar decrease
+                                                                                              of the extrema like the NE features from DVA. The maximum of peak B
+Fig. 5. Influence of reducing the sample rate of a 𝐶∕57 Tesla measurement. (a) DV             is difficult to resolve precisely due to the voltage resolution in this SOC
+curves with sample rates 10-3600 s. A sample rate of 300 s (3.33 mHz) is sufficient for       regime but matches well with the cell level peak. Plateau D indicates
+capturing the stage 2 peak smoothly. (b)/ (c) IC curves for sample rates 10-300 s and
+                                                                                              processes in the PE matching well in position and height.
+900 s, respectively.
+                                                                                                  The IC curve of the Tesla in Fig. 6(f) exhibits a constant shift
+                                                                                              over the entire voltage signal. The cause of this offset is unknown,
+                                                                                              but could be due to summed measuring errors from the cells’ voltage
+peaks in IC curves resemble plateaus in the voltage curve requiring a                         sensors or due to Ohmic resistances in the battery pack, e.g. connectors
+high resolution by appropriate sensors where noise further complicates                        between the cells [50]. The latter can be estimated by a pseudo-
+the calculation. IC curves can nevertheless be calculated and yield clear                     resistance calculated by dividing the voltage difference of the peaks
+results, especially for cell chemistries with no flat voltage intervals                       B by the applied current. This would result to approx. 200 mΩ on
+like the NMC cells in the VW shown in Fig. 2(c). Hence, knowing a                             pack level or, considering two connectors per cells and two terminal
+BEVs cell chemistry and/or sensor specifications can determine if ICA                         connectors, a resistance of 0.95 mΩ between cells across laser welded
+is suitable for vehicle level diagnostics or not. If high quality data                        aluminum bus bar connectors [49]. However, this value is higher than
+cannot be ensured, it is recommended to rather observe trends in peak                         typical contact resistances for this manufacturing process [50] and
+movement instead of absolute FOIs and extract secondary features, such                        presumably further resistances exist in the system. Canceling the shift
+as integrals between a voltage interval or focus on DVA only.                                 leads to matching peak positions in the IC curves, except for peak A
+                                                                                              in the close-up showing differences in the NE which is comparable
+4.3. Transfer from cell to vehicle                                                            to the described effects discussed above for the VW. Comparing the
+                                                                                              heights of the remaining peaks is vacuous due to low data quality (see
+    In this section, transferability of DVA and ICA from cell to vehicle                      Section 4.2). The VW does not show this constant shift possibly due
+level application is examined. Hereby, a similar charging process and                         to lower Ohmic resistances of the connectors and a lower voltage drop
+C-rate is set up for a fair comparison between cell to vehicle level                          across the parallel cell assembly.
+measurements. In Fig. 6(a) and (d) the vehicles’ voltage curves are                               From the findings above it can be concluded that it is possible to
+overlaid onto the voltage curves of the respective cells and additionally                     transfer both DVA and ICA onto the vehicle level which is the basis
+shifted by matching the vehicles’ lowest sampled voltage value. The                           for potentially enabling battery pack SOH assessment similar to aging
+shift is necessary for a direct comparison of FOIs, as most notably                           studies on the cell level, but limitations must be accepted. From DVA,
+the lower cut-off voltage differs between the vehicles and cells. Safety                      insights into the electrodes are more accessible enabling the extraction
+functions running on the BMS presumably limit the voltage to fall                             of FOIs for deeper analysis of the battery’s internal state. Peaks are
+below a threshold of approx. 360 V for the VW and approx. 330 V for                           detectable, but generally less pronounced. Nonetheless, the important
+the Tesla to possibly mitigate deep discharging. The constant shift can                       stage 2 peak feature is clearly identifiable in both vehicles. Here, PE
+be used to quantify the amount of retained charge which turns out to be                       features from the VW DVA are difficult to extract due to this particular
+6.4 A h for the VW and 4.4 A h for the Tesla. The overlaid signals exhibit                    NMC composition. It is assumed that nickel-rich NMC compositions
+similar behaviors, although minor deviations are visible. Furthermore,                        with generally more pronounced PE features leads to more visible
+the initial constant shift does not correct for any differences in the total                  FOIs on the vehicle level. Furthermore, parallel cells in battery packs
+capacity which is larger for the cell measurements in the laboratory.                         dilute characteristics, with further experiments necessary to quantify
+    The DV curves in Fig. 6(c) and (d) enable the examination of                              this observation.
+differences between the cell and vehicle level more closely. The FOIs in                          Furthermore, cell level measurements in the lab can be operated
+the shifted vehicle DV curves mostly coincide well in their positioning,                      between larger voltage ranges than the cells in BEVs so that shifting
+but with less pronounced extrema. In terms of NE features, peak 3L in                         is necessary to enables a comparison between BEV and cell level DV
+
+                                                                                          8
+P. Bilfinger et al.                                                                                                                            eTransportation 22 (2024) 100356
+
+
+
+
+Fig. 6. Comparison of cell level to vehicle level measurements for both the VW (left column) and Tesla (right column). (a)/(b) Vehicle and cell level measurements with C-rates
+𝐶∕45 and 𝐶∕57, respectively. (c)/(d) Vehicle and cell DV curves with labeled single phase stages. (e)/(f) Vehicle and cell IC curves with labeled stage transitions.
+
+
+
+
+curves. For this, a reference must be defined, especially in prospect of                       The initial battery pack of the VW contains 60.6 kW h, whereas
+deviations between measurements of multiple vehicles or for aligning                       the aged measurement yields 55.0 kW h. Based on the net energy from
+DV curves from partial charging events. FOIs from ICA show similar                         Table 1, the SOH decreases from 104.4 % to 94.9 %. In terms of capacity
+findings as for DVA and matches well for the VW and Tesla. Alignment                       this yields a loss of 12.1 A h which appears to be extreme considering
+should not be required for IC curves as they are generally plotted                         the mileage. The energy storage capability of the Tesla reduces from
+against the voltage signal. However, the voltage can be influenced                         57.0 kW h to 55.1 kW h, equivalent to 108.6 % and 105.0 % SOH, respec-
+by secondary effects such as Ohmic resistances in the battery pack,                        tively. This yields a capacity loss of 4.9 A h. It can be seen that even
+that can lead to shifts which must be canceled out. All in all, there                      after this short time of usage, aging is present.
+is no generally favorable method for BEV diagnostics, as both have                             In Fig. 7(a) and (b), capacity loss is visible as a contraction of
+their (dis-)advantages and should jointly be examined for analyzing the                    the aged DV curves. The electrode capacities are calculated as FOIs
+battery pack and extracting FOIs.                                                          for DVA from the initial and aged measurement as shown in Fig. 2.
+                                                                                           The differences in electrode capacities are labeled in these figures and
+4.4. Aging                                                                                 arrows indicate the shift direction to identify acting degradation modes.
+                                                                                               The NE capacities QNE slightly change in both vehicles and even
+   For analyzing vehicle level aging, the VW and Tesla are measured                        increases for the VW. Therefore, no significant loss of NE capacity or
+shortly after purchase and again after two years of usage with mileages                    loss of active material at the negative electrode (LAMNE ) is assumed
+of approx. 32 600 km and approx. 26 300 km, respectively. Despite the                      at these mileages which fits cell level aging studies with comparable
+short period of time between the measurements, aging effects are                           stress factors [21,68]. The wider stage 2 peak can be due to different
+captured as shown in Fig. 7. Hereby, the aged DV curve is aligned to                       inhomogeneity levels of the NE [20]. It can also be an indicator for
+the initial DV curve by the lowest recorded voltage.                                       calendar aging effects [69], which generally fits the usage of private
+
+                                                                                       9
+P. Bilfinger et al.                                                                                                                               eTransportation 22 (2024) 100356
+
+
+
+
+Fig. 7. Comparison of an initial measurement from the VW (left column) and Tesla (right column) with a measurement after two years of usage. (a)/(b) Comparison of vehicle
+DVAs from the initial and aged vehicle state. The difference in the capacities 𝛥QNE , 𝛥QPE and 𝛥QB are labeled and the direction of the peak shifts indicated. (c)/(d) Comparison
+of vehicle IC curves from the initial and aged vehicle state. The stage transitions are labeled. The close up plots magnify the only changing FOI. The upper cut-off voltage in the
+VW was restricted during the aged measurement, which is indicated by the vertical arrow. The lower part of the voltage signal is cropped for better visibility, due to numerical
+oscillations.
+
+
+
+
+passenger cars that are mostly parked [70]. Hereby, the PE’s M phase                         similar findings from ICA can be compared to a LFP degradation
+shifts towards the left below the stage 2 peak increasing its height, as                     map [18]. LAMPE can be excluded as peak A shifts to the right and
+a result of LLI. Coherently, this cannot be observed for the Tesla with                      upwards while peaks B and C stay the same [18].
+no PE FOI.                                                                                       The most significant change within both vehicles can be assigned
+    A change of the PE capacity observed from the VW DVA is difficult                        to the electrode balancing capacity QB associated with loss of active
+to extract as the H2 peak is not clearly pronounced and superimposed                         lithium, either reversibly due to overhang effects in the NE and inho-
+by numerically caused oscillations. The peak is evaluated to the best                        mogeneous lithiation or irreversibly by LLI, which are discussed more
+of our ability indicating loss of active material at the positive electrode                  closely in the following.
+(LAMPE ) of 𝛥QPE ≈ 4.7 A h. However, the voltage window of the VW                                During charging it can occur that charge is stored in the NE’s
+measurement, seen in Fig. 7(c), shows that the upper cut-off voltage is                      overhang, unless the overhang is already full prior to the measurement.
+restricted compared to the initial measurement indicated by the vertical                     Comparing measurements with full and empty overhangs then falsely
+arrow, presumably by the BMS and possibly as a safety measure to
+                                                                                             appears as a loss/gain of capacity [67]. The share of overhang effects
+restrict impermissible operating conditions. This restriction could also
+                                                                                             in the NE on the total loss of active lithium can only be estimated,
+be seen in repeated measurements and is likely also responsible for
+                                                                                             but is assumed to play a minor role as the passive area of the NE only
+a decrease of available capacity. This in turn would also affect the
+                                                                                             makes up 2.5 % in the VW [37] and 7.3 % in the Tesla [49] whereas
+extraction of the capacity feature QPE . Cross-validating by additionally
+                                                                                             the overhang is furthermore only partially lithiated [64]. It remains
+considering FOIs from ICA provides clarity. Hereby, degradation maps
+                                                                                             unclear if overhang effects are measurable on vehicle level as it acts on
+from Dubarry and Ansean [18] give insight of peak evolution from
+a graphite/NMC532 cell comparable to the cell chemistry in the VW                            a significantly smaller scale than the active electrode area in these large
+that gives the following interpretation. LAMPE can be excluded as                            format LIB cells. Further vehicle measurements are therefore necessary
+the valley feature D stays the same. Hence, 𝛥QPE ≈ 0 A h is more                             to quantify this statement.
+realistic, meaning this feature is falsely altered due to BMS interference.                      This means the majority of irreversible capacity loss is attributable
+It is more probable, but can only be assumed, that the shift 𝛥QPE                            to LLI. The same statement can be given by tracking the evolution of
+actually resembles LLI but falsely indicates LAMPE given the QPE feature                     peaks by ICA. Peak A in VW’s IC curve is sensitive to LLI and LAMPE ,
+definition. Hence, the VW most likely lost 3.5 A h (+1.2 A h–4.7 A h),                       whereas the latter is already excluded from the previous findings.
+which is in a similar range as the Tesla. This yields a more realistic                       Therefore, the slight shift of the peak towards higher voltages indicates
+SOH estimate of 101.6 %, and 8.6 A h could have been further charged                         LLI. If LAMNE can be excluded, e.g. here by DVA, then the shift of
+if the same upper cut-off voltage had been reached.                                          feature C in VW’s IC curve towards higher voltages is also attributable
+    The voltage limits do not change in the Tesla, but a PE capacity                         to LLI. The ICA of the Tesla shows that only the first peak shifts towards
+cannot be evaluated from DVA, due to the lack of a PE feature. Though                        higher voltages which strongly correlates with LLI. Furthermore, the
+
+                                                                                        10
+P. Bilfinger et al.                                                                                                                   eTransportation 22 (2024) 100356
+
+
+inner resistance increase can be neglected for both vehicles as no
+constant shift between IC curves is detectable.
+    All in all, it can be assumed that LLI is the main degradation mode
+for actual irreversible capacity loss. This aligns well with cell aging
+studies in literature [21,68], as the growth of passivation layers like
+SEI predominantly takes place at an early stage of aging and directly
+causes LLI. However, here, LLI is not the sole reason for the total loss
+of capacity.
+    This examination shows that it is possible to extract FOIs from
+vehicle level DVA and ICA that have thoroughly been investigated
+by cell level aging studies in literature. However, secondary influence
+superimpose irreversible aging such as interference of the BMS that
+can alter FOIs, as shown for the capacity feature QPE . Therefore, it
+is challenging to precisely disaggregate all effects of capacity loss
+especially when only examining either DVA or ICA. Here, a coherent
+picture could be created by a joint analysis of both DVA and ICA.
+    In the case of the VW, the estimated SOH might be close to the
+actual net energy of the battery pack but no longer coincides with the
+achievable range of the vehicle due to the voltage restrictions. The
+latter is, however, the more relevant parameter for a vehicle operator          Fig. 8. Charged energy from measurements with different software versions. The SOH
+                                                                                estimation technique explained in Section 4.4 yields a similar result as the measurement
+or fleet manager. Nonetheless, vehicle level battery diagnosis with
+                                                                                without a restricted upper cut-off voltage showing the robustness of a vehicle level SOH
+DVA and ICA holds great potential for battery pack diagnosis during             estimation with DVA and ICA.
+charging and further research is necessary, especially for evaluating
+reproducible FOIs which might only be suitable for statistical SOH
+models, e.g. machine learning.
+                                                                                deviation of 0.5 %, showing that a realistic SOH can be determined using
+    Despite the disadvantages and limitations of vehicle level DVA              vehicle level DVA and ICA despite external influences.
+and ICA, a diagnostic charging cycle is proposed. Assuming LLI is
+the dominant degradation mode in BEVs, which is likely throughout               5. Summary and conclusion
+the first years of usage, then it is sufficient to partially charge the
+vehicles with a low C-rate from a mid-range SOC around 50 % SOC                     This study investigates the transferability of differential voltage and
+to the upper cut-off voltage at 100 % SOC (assuming the upper cut-              incremental capacity analysis from cell to vehicle level as an in-situ
+off voltage does not change). Capturing the voltage curve in this               diagnostic method during charging. Both cell level, as well as vehicle
+interval and performing DVA makes it possible to extract the balancing          measurements are conducted to compare similarities and differences in
+feature QB which correlates with LLI. An advantage of partial charging          DVA and ICA. For the vehicle measurements, the two BEVs VW ID.3
+sessions is the simple implementation and applicability in real world           and a Tesla Model 3 are measured during AC charging to capture
+usage scenarios as BEVs must regularly be charged, often many hours             the vehicle’s voltage curve. Overall, DVA and ICA can successfully be
+over night. Performing this diagnostic charging procedure in periodic           performed on the vehicle level from charging measurements, however
+                                                                                with limitations.
+intervals makes it possible to quantify and track the evolution of
+                                                                                    The data quality from the vehicles’ on-board sensors is lower than
+QB over time from DVA, as the stage 2 peak has been detectable
+                                                                                in laboratory environments so that noise and the sensor resolution
+throughout all measurements. In addition, ICA can be used for cross
+                                                                                impede vehicle level DVA and ICA. Special care must be taken when
+validation, especially when voltage boundaries change. Nevertheless,            filtering out noise from the signals so that FOI are not altered. ICA
+if LAM occurs, it must be ensured that both a NE and PE feature can             can be challenging, especially for LIBs with flat voltage profiles, as
+be detected, and charging through a wider SOC range is necessary.               peaks in the IC curves stem from plateaus in the voltage curve that
+                                                                                must be resolvable by the voltage sensor. It could be shown by lab
+                                                                                measurements that a CP charging profile, common during AC charging
+4.5. BMS software versions
+                                                                                of BEVs, does not prevent the use of DVA and ICA but marginally alters
+                                                                                FOIs. The transferability of cell to vehicle level application is shown, as
+    After the charging measurements discussed in Section 4.4 were               characteristic FOIs, such as peaks and valleys, are reproducible on the
+conducted, VW announced that the ID.3 under test would be updated to            vehicle level, however less pronounced. This is especially visible for the
+ID.Software version 3.2. The General German Automobile Association              battery pack of the VW, where the parallel connection of two cells in the
+(ADAC) conducted experiments with this software version, observing              battery pack dilute features, due to variations of NE capacities between
+a different behavior in battery pack applications so that it can be             cells in the battery pack and an inhomogeneous current distribution. A
+                                                                                constant shift is notable between the IC curves of the Tesla compared
+assumed that the BMS software is also updated [71]. VW themselves
+                                                                                to the cell level, possibly due to Ohmic resistances in the battery pack.
+do not disclose precise changes made [72]. The proposed measurement
+                                                                                    Vehicle measurements are performed shortly after purchase and
+procedure was repeated after the update to analyze potential effects on
+                                                                                again after a period of two years to analyze aging by DVA and ICA.
+the battery pack. A chronology of the VW’s software versions and un-
+                                                                                Despite the rather short period of time, a significant reduction in SOH
+derlying measurement dates are given in the Appendix in Table 2. From           is detected. LLI, e.g. through SEI growth, seems to be the dominant
+this measurement, it could be seen that the upper voltage restriction           aging mechanism in both vehicles, whereas overhang effects and BMS
+discussed in Section 4.4 was lifted, and more capacity could be charged         interference potentially also lead to a capacity reduction. Care must
+into the battery pack, shown in Fig. 8, yielding a transferred energy of        also be taken when BMS software versions are updated that can alter
+59.40 kW h or an SOH of 102.5 %. Comparing this value to the derived            the behavior of the battery pack. Nonetheless, the evolution FOIs
+SOH estimate from the joint assessment with DVA and ICA gives a                 behaves similarly to findings in cell level aging studies. A diagnostic
+
+                                                                           11
+P. Bilfinger et al.                                                                                                                     eTransportation 22 (2024) 100356
+
+
+cycle is proposed as it could be sufficient to detect LLI by partial              Appendix A. Vehicle specifications
+charging between the stage 2 peak and the upper cut-off voltage
+between 50-100 % SOC to calculate the balancing feature QB for a SOH              Table 1
+estimation.                                                                       Overview of battery pack and cell specifications from the VW and Tesla under study.
+                                                                                      Domain            Attribute            VW              Tesla             Unit
+6. Outlook                                                                                              Gross energy         62a             55a               kW h
+                                                                                                        Net energy           58a             52.5a             kW h
+                                                                                      Battery pack      Voltage range        360–450b        330–380e          V
+    Further measurements are necessary to examine the robustness and
+                                                                                                        Serial cells         108b            106a              –
+generality of vehicle level DVA and ICA, e.g. by repeated measurements                                  Parallel cells       2b              1a                –
+of the same vehicle or by conducting measurements in a fleet of a single                                Energy density       268c            163d              W h kg−1
+vehicle model. Furthermore, LIBs are strongly influenced by external                                    Nom. capacity        78c             161.5d            Ah
+parameters, such as high C-rates and low temperatures which could be                  Battery cell      Voltage range        2.8–4.2c        2.6–3.6d          V
+further examined on their effect on both methods.                                                       Cell format          pouchc          prismaticd        –
+                                                                                                        Chemistry            C/NMCc          C/LFPd            –
+    The voltage across each serial cell in the battery pack assembly was
+additionally recorded during the measurements. Hence, it is also possi-           a
+                                                                                    EV Database (VW [77], Tesla [48]).
+                                                                                  b
+ble to calculate the DV and IC curves for each serial cell assembly inside          Wassiliadis et al. [2].
+                                                                                  c Günter and Wassiliadis [37].
+the pack. This can enable an outlier detection for predictive main-
+                                                                                  d Stock et al. [49].
+tenance use cases, e.g. locating faulty cells and scheduling workshop
+                                                                                  e Measured data.
+repairs [73].
+    In perspective of the next generation communication norms, open
+charge point protocol (OCPP) 2.0.1 [74] and ISO 15118-20 [75] will
+provide closer interaction between direct current (DC) charging stations          Appendix B. VW ID.3 software updates
+and BEVs enabling the development of tailored diagnostic cycles [74,
+76]. Thinkable are adapted charging cycles, e.g. sections of reduced                        Table 2
+power around certain FOIs or vehicle level HPPC to precisely extract                        Chronology of the VW ID.3’s software updates and measurement dates.
+FOI for an accurate SOH estimate.                                                           The software updates were applied during scheduled workshop stays.
+                                                                                             Software version            Update                   Measurement
+CRediT authorship contribution statement                                                     ID.Software 2.0             2020-12-01               2021-02-08
+                                                                                             ID.Software 2.1             2021-04-08               –
+                                                                                             ID.Software 2.3             2021-11-04               –
+   Philip Bilfinger: Writing – review & editing, Writing – original
+                                                                                             ID.Software 2.4             2022-12-06               2023-06-16
+draft, Visualization, Methodology, Investigation, Formal analysis, Con-                      ID.Software 3.2             2023-09-27               2024-05-22
+ceptualization. Philipp Rosner: Writing – review & editing, Methodol-
+ogy, Formal analysis. Markus Schreiber: Writing – review & editing,
+Methodology, Formal analysis. Thomas Kröger: Writing – review &
+editing, Methodology. Kareem Abo Gamra: Writing – review & editing,
+Methodology. Manuel Ank: Writing – review & editing, Methodol-                    References
+ogy. Nikolaos Wassiliadis: Writing – review & editing, Methodol-
+ogy. Brian Dietermann: Writing – review & editing, Methodology.                    [1] European Commission. A fundamental transport transformation: Commission
+Markus Lienkamp: Writing – review & editing, Supervision, Resources,                   presents its plan for green, smart and affordable mobility. 2020, visited on
+Funding acquisition.                                                                   05.12.2023, https://ec.europa.eu/commission/presscorner/detail/en/ip_20_2329.
+                                                                                   [2] Wassiliadis N, Steinsträter M, Schreiber M, Rosner P, Nicoletti L, Schmid F, et
+                                                                                       al. Quantifying the state of the art of electric powertrains in battery electric
+Declaration of competing interest
+                                                                                       vehicles: Range, efficiency, and lifetime from component to system level of the
+                                                                                       Volkswagen ID.3. eTransportation 2022;12:100167. http://dx.doi.org/10.1016/j.
+    The authors declare that they have no known competing finan-                       etran.2022.100167.
+cial interests or personal relationships that could have appeared to               [3] Stroe D-I, Schaltz E. SOH estimation of LMO/NMC-based electric vehicle
+influence the work reported in this paper.                                             lithium-ion batteries using the incremental capacity analysis technique. IEEE En-
+                                                                                       ergy Convers Congr Expo 2018;2720–5. http://dx.doi.org/10.1109/ECCE.2018.
+                                                                                       8557998.
+Data availability                                                                  [4] Birkl CR, Roberts MR, McTurk E, Bruce PG, Howey DA. Degradation diagnostics
+                                                                                       for lithium ion cells. J Power Sources 2017;341:373–86. http://dx.doi.org/10.
+   We want to give any researcher access to our results without any                    1016/j.jpowsour.2016.12.011.
+limits. The data of all measurements can be found at mediaTUM. The                 [5] Vetter J, Novák P, Wagner MR, Veit C, Möller K-C, Besenhard JO, et al.
+                                                                                       Ageing mechanisms in lithium-ion batteries. J Power Sources 2005;147:269–81.
+code for processing the data is available at FTM Github.
+                                                                                       http://dx.doi.org/10.1016/j.jpowsour.2005.01.006.
+                                                                                   [6] Broussely M, Biensan P, Bonhomme F, Blanchard P, Herreyre S, Nechev K, et
+Acknowledgments                                                                        al. Main aging mechanisms in Li ion batteries. J Power Sources 2005;146:90–6.
+                                                                                       http://dx.doi.org/10.1016/j.jpowsour.2005.03.172.
+    This research received funding by the Bavarian Ministry of Eco-                [7] Keil P, Jossen A. Aging of lithium-ion batteries in electric vehicles: Impact of
+                                                                                       regenerative braking. World Electr Veh J 2015;7:41–51. http://dx.doi.org/10.
+nomic Affairs, Regional Development and Energy, Germany within
+                                                                                       3390/wevj7010041.
+the project ‘charge.COM’ under the grant number DIK-0262/02 and                    [8] Sulzer V, Mohtat P, Aitio A, Lee S, Yeh YT, Steinbacher F, et al. The
+‘KiBaTest’ under the grant number DIK-0123/01. Furthermore, this                       challenge and opportunity of battery lifetime prediction from field data. Joule
+work was partly funded by the German Federal Ministry for Eco-                         2021;5:1934–55. http://dx.doi.org/10.1016/j.joule.2021.06.005.
+nomic Affairs and Climate Action (BMWK) within the project ‘ultraBatt’             [9] Peng J, Meng J, Chen D, Liu H, Hao S, Sui X, et al. A review of lithium-ion
+under grant number 01MV21015D and German Federal Ministry of                           battery capacity estimation methods for onboard battery management systems:
+                                                                                       Recent progress and perspectives. Batteries 2022;8:229. http://dx.doi.org/10.
+Education and Research (BMBF) within the projects ‘OptiPro’ under                      3390/batteries8110229.
+grant number 03XP0364B, ‘BALd’ under grant number 03XP0320B and                   [10] Schaltz E, Stroe D-I, Norregaard K, Kofod L, Christensen A. Incremental capacity
+ComfficientShare under grant number 03ZU1105CA.                                        analysis for electric vehicle battery state-of-health estimation. Piscataway, NJ:
+                                                                                       IEEE; 2019, http://dx.doi.org/10.1109/EVER.2019.8813678.
+
+
+                                                                             12
+P. Bilfinger et al.                                                                                                                                      eTransportation 22 (2024) 100356
+
+
+[11] Schaltz E, Stroe D-I, Norregaard K, Ingvardsen LS, Christensen A. Incremental                 [33] Schweidler S, de Biasi L, Schiele A, Hartmann P, Brezesinski T, Janek J. Volume
+     capacity analysis applied on electric vehicles for battery state-of-health estima-                 changes of graphite anodes revisited: A combined operando X-ray diffraction
+     tion. IEEE Trans Ind Appl 2021;57:1810–7. http://dx.doi.org/10.1109/TIA.2021.                      and in situ pressure analysis study. J Phys Chem C 2018;122:8829–35. http:
+     3052454.                                                                                           //dx.doi.org/10.1021/acs.jpcc.8b01873.
+[12] Barai A, Uddin K, Dubarry M, Somerville L, McGordon A, Jennings P, et al. A                   [34] Dühnen S, Betz J, Kolek M, Schmuch R, Winter M, Placke T. Toward green
+     comparison of methodologies for the non-invasive characterisation of commercial                    battery cells: Perspective on materials and technologies. Small Methods 2020;4.
+     Li-ion cells. Prog Energy Combust Sci 2019;72:1–31. http://dx.doi.org/10.1016/                     http://dx.doi.org/10.1002/smtd.202000039.
+     j.pecs.2019.01.001.                                                                           [35] Jung R, Metzger M, Maglia F, Stinner C, Gasteiger HA. Oxygen release and
+[13] Bloom I, Jansen AN, Abraham DP, Knuth J, Jones SA, Battaglia VS, et al.                            its effect on the cycling stability of LiNixMnyCozO2 (NMC) cathode materials
+     Differential voltage analyses of high-power lithium-ion cells – 1. Technique and                   for li-ion batteries. J Electrochem Soc 2017;164:A1361–77. http://dx.doi.org/
+     application. J Power Sources 2005;139:295–303. http://dx.doi.org/10.1016/j.                        10.1149/2.0021707jes.
+     jpowsour.2004.07.021.                                                                         [36] Dolotko O, Senyshyn A, Mühlbauer M, Nikolowski K, Ehrenberg H. Understand-
+[14] Bloom I, Christophersen J, Gering K. Differential voltage analyses of high-                        ing structural changes in NMC Li-ion cells by in situ neutron diffraction. J Power
+     power lithium-ion cells – 2. Applications. J Power Sources 2005;139:304–13.                        Sources 2014;255:197–203. http://dx.doi.org/10.1016/j.jpowsour.2014.01.010.
+     http://dx.doi.org/10.1016/j.jpowsour.2004.07.022.                                             [37] Günter FJ, Wassiliadis N. State of the art of lithium-ion pouch cells in automotive
+[15] Bloom I, Christophersen JP, Abraham DP, Gering KL. Differential voltage analyses                   applications: Cell teardown and characterization. J Electrochem Soc 2022. http:
+     of high-power lithium-ion cells – 3. Another anode phenomenon. J Power Sources                     //dx.doi.org/10.1149/1945-7111/ac4e11.
+     2006;157:537–42. http://dx.doi.org/10.1016/j.jpowsour.2005.07.054.                            [38] Ank M, Sommer A, Abo Gamra K, Schöberl J, Leeb M, Schachtl J, et al.
+[16] Bloom I, Walker LK, Basco JK, Abraham DP, Christophersen JP, Ho CD.                                Lithium-ion cells in automotive applications: Tesla 4680 cylindrical cell teardown
+     Differential voltage analyses of high-power lithium-ion cells – 4. Cells containing                and characterization. J Electrochem Soc 2023;170:120536. http://dx.doi.org/10.
+     NMC. J Power Sources 2010;195:877–82. http://dx.doi.org/10.1016/j.jpowsour.                        1149/1945-7111/ad14d0.
+     2009.08.019.                                                                                  [39] Simolka M, Heger J-F, Traub N, Kaess H, Friedrich KA. Influence of cycling
+[17] Fly A, Chen R. Rate dependency of incremental capacity analysis (dQ/dV) as                         profile, depth of discharge and temperature on commercial LFP/C cell ageing:
+     a diagnostic tool for lithium-ion batteries. J Energy Storage 2020;29:101329.                      Cell level analysis with ICA, DVA and OCV measurements. J Electrochem Soc
+     http://dx.doi.org/10.1016/j.est.2020.101329.                                                       2020;167:110502. http://dx.doi.org/10.1149/1945-7111/ab9cd1.
+[18] Dubarry M, Anseán D. Best practices for incremental capacity analysis. Front                  [40] Dubarry M, Devie A, Liaw BY. The value of battery diagnostics and prognostics.
+     Energy Res 2022;10. http://dx.doi.org/10.3389/fenrg.2022.1023555.                                  J Energy Power Sources 2014. visited on 15.02.2024.
+[19] Berecibar M, Garmendia M, Gandiaga I, Crego J, Villarreal I. State of health                  [41] Dubarry M, Truchot C, Liaw BY. Synthesize battery degradation modes via
+     estimation algorithm of LiFePO4 battery packs based on differential voltage                        a diagnostic and prognostic model. J Power Sources 2012;219:204–16. http:
+     curves for battery management system application. Energy 2016;103:784–96.                          //dx.doi.org/10.1016/j.jpowsour.2012.07.016.
+     http://dx.doi.org/10.1016/j.energy.2016.02.163.                                               [42] Smith AJ, Dahn JR. Delta differential capacity analysis. J Electrochem Soc
+[20] Lewerenz M, Marongiu A, Warnecke A, Sauer DU. Differential voltage analysis                        2012;159:290–3. http://dx.doi.org/10.1149/2.076203jes.
+     as a tool for analyzing inhomogeneous aging: A case study for LiFePO4|Graphite                [43] Danko M, Adamec J, Taraba M, Drgona P. Overview of batteries State of Charge
+     cylindrical cells. J Power Sources 2017;368:57–67. http://dx.doi.org/10.1016/j.                    estimation methods. Transp Res Procedia 2019;40:186–92. http://dx.doi.org/10.
+     jpowsour.2017.09.059.                                                                              1016/j.trpro.2019.07.029.
+[21] Wildfeuer L, Karger A, Aygül D, Wassiliadis N, Jossen A, Lienkamp M. Experi-                  [44] Li Y, Abdel-Monem M, Gopalakrishnan R, Berecibar M, Nanini-Maury E, Omar N,
+     mental degradation study of a commercial lithium-ion battery. J Power Sources                      et al. A quick on-line state of health estimation method for Li-ion battery
+     2023;560:232498. http://dx.doi.org/10.1016/j.jpowsour.2022.232498.                                 with incremental capacity curves processed by Gaussian filter. J Power Sources
+[22] Wang L, Zhao X, Liu L, Pan C. State of health estimation of battery modules via                    2018;373:40–53. http://dx.doi.org/10.1016/j.jpowsour.2017.10.092.
+     differential voltage analysis with local data symmetry method. Electrochim Acta               [45] Carter R, Kingston TA, Atkinson RW, Parmananda M, Dubarry M, Fear C, et
+     2017;256:81–9. http://dx.doi.org/10.1016/j.electacta.2017.10.025.                                  al. Directionality of thermal gradients in lithium-ion batteries dictates diverging
+[23] Baumann M, Wildfeuer L, Rohr S, Lienkamp M. Parameter variations within Li-                        degradation modes. Cell Rep Phys Sci 2021;2:100351. http://dx.doi.org/10.
+     Ion battery packs – Theoretical investigations and experimental quantification. J                  1016/j.xcrp.2021.100351.
+     Energy Storage 2018;18:295–307. http://dx.doi.org/10.1016/j.est.2018.04.031.                  [46] Guo J, Li Y, Meng J, Pedersen K, Gurevich L, Stroe D-I. Understanding the mech-
+[24] Ank M, Stock S, Wassiliadis N, Burger T, Daub R, Lienkamp M. Influence                             anism of capacity increase during early cycling of commercial NMC/graphite
+     analysis of production defects of lithium-ion cells using single-cell and multi-cell               lithium-ion batteries. J Energy Chem 2022;74:34–44. http://dx.doi.org/10.1016/
+     characterization. J Energy Storage 2023;62:106938. http://dx.doi.org/10.1016/                      j.jechem.2022.07.005.
+     j.est.2023.106938.                                                                            [47] Jenu S, Hentunen A, Haavisto J, Pihlatie M. State of health estimation of cycle
+[25] Sun S, Zhang H, Ge J, Che L. State-of-health estimation for lithium-ion battery                    aged large format lithium-ion cells based on partial charging. J Energy Storage
+     using model-based feature optimization and deep extreme learning machine. J                        2022;46:103855. http://dx.doi.org/10.1016/j.est.2021.103855.
+     Energy Storage 2023;72:108732. http://dx.doi.org/10.1016/j.est.2023.108732.                   [48] Electric Vehicle Database. Tesla Model 3 Standard Plus LFP. visited
+[26] Schmitt J, Rehm M, Karger A, Jossen A. Capacity and degradation mode                               on 14.02.2024, https://ev-database.org/de/pkw/1320/Tesla-Model-3-Standard-
+     estimation for lithium-ion batteries based on partial charging curves at different                 Plus-LFP.
+     current rates. J Energy Storage 2023;59:106517. http://dx.doi.org/10.1016/j.est.              [49] Stock S, Hagemeister J, Grabmann S, Kriegler J, Keilhofer J, Ank M, et al.
+     2022.106517.                                                                                       Cell teardown and characterization of an automotive prismatic LFP battery.
+[27] Weng C, Feng X, Sun J, Peng H. State-of-health monitoring of lithium-ion                           Electrochim Acta 2023;471:143341. http://dx.doi.org/10.1016/j.electacta.2023.
+     battery modules and packs via incremental capacity peak tracking. Appl Energy                      143341.
+     2016;180:360–8. http://dx.doi.org/10.1016/j.apenergy.2016.07.126.                             [50] Wassiliadis N, Ank M, Wildfeuer L, Kick MK, Lienkamp M. Experimental
+[28] Krupp A, Ferg E, Schuldt F, Derendorf K, Agert C. Incremental capacity                             investigation of the influence of electrical contact resistance on lithium-ion
+     analysis as a state of health estimation method for lithium-ion battery mod-                       battery testing for fast-charge applications. Appl Energy 2021;295:117064. http:
+     ules with series-connected cells. Batteries 2020. http://dx.doi.org/10.3390/                       //dx.doi.org/10.1016/j.apenergy.2021.117064.
+     batteries7010002.                                                                             [51] Juice Technology AG. Juice Booster 2. visited on 14.02.2024, https://juice.
+[29] Rosenberger N, Rosner P, Bilfinger P, Schöberl J, Teichert O, Schneider J, et al.                  world/produkte/juice-booster-2/.
+     Quantifying the state of the art of electric powertrains in battery electric vehicles:        [52] Jossen A, Weydanz W. Moderne Akkumulatoren richtig einsetzen. 2nd ed.
+     Comprehensive analysis of the tesla model 3 on the vehicle level. World Electr                     Göttingen: MatrixMedia Verlag; 2021, isbn: 978-3-946891-18-5.
+     Veh J 2024;15(6):268. http://dx.doi.org/10.3390/wevj15060268.                                 [53] Iurilli P, Brivio C, Merlo M. SoC management strategies in battery energy
+[30] She C, Wang Z, Sun F, Liu P, Zhang L. Battery aging assessment for real-world                      storage system providing primary control reserve. Sustain Energy Grids Netw
+     electric buses based on incremental capacity analysis and radial basis function                    2019;19:100230. http://dx.doi.org/10.1016/j.segan.2019.100230.
+     neural network. IEEE Trans Ind Inf 2020;16:3345–54. http://dx.doi.org/10.1109/                [54] Wardell J. Tesla Model 3 .dbc file, github repository. 2021, visited on
+     TII.2019.2951843.                                                                                  15.02.2024, https://github.com/joshwardell/model3dbc.
+[31] She C, Zhang L, Wang Z, Sun F, Liu P, Song C. Battery state of health estimation              [55] Schmid F. UDS Decoder, GitHub repository. 2022, visited on 14.02.2024, https:
+     based on incremental capacity analysis method: Synthesizing from cell-level                        //github.com/TUMFTM/uds-decoder/.
+     test to real-world application. IEEE J Emerg Sel Top Power Electron 2021.                     [56] Merkle L, Pöthig M, Schmid F. Estimate E-golf battery state using diagnos-
+     http://dx.doi.org/10.1109/JESTPE.2021.3112754.                                                     tic data and a digital twin. Batteries 2021;7:15. http://dx.doi.org/10.3390/
+[32] Dubarry M, Svoboda V, Hwu R, Yann Liaw B. Incremental capacity analysis and                        batteries7010015.
+     close-to-equilibrium OCV measurements to quantify capacity fade in commercial                 [57] Kalogiannis T, Stroe DI, Nyborg J, Nø rregaard K, Christensen AEr, Schaltz E.
+     rechargeable lithium batteries. Electrochem Solid-State Lett 2006;9:A454. http:                    Incremental capacity analysis of a lithium-ion battery pack for different charging
+     //dx.doi.org/10.1149/1.2221767.                                                                    rates. ECS Trans 2017;77:403–12. http://dx.doi.org/10.1149/07711.0403ecst.
+
+
+                                                                                              13
+P. Bilfinger et al.                                                                                                                                 eTransportation 22 (2024) 100356
+
+
+[58] Anseán D, Dubarry M, Devie A, Liaw BY, García VM, Viera JC, et al. Fast                   [68] Schreiber M, Abo Gamra K, Bilfinger P, Teichert O, Schneider J, Kröger T,
+     charging technique for high power LiFePO4 batteries: A mechanistic analysis of                 et al. Understanding lithium-ion battery degradation in vehicle applications:
+     aging. J Power Sources 2016;321:201–9. http://dx.doi.org/10.1016/j.jpowsour.                   Insights from realistic and accelerated aging tests using Volkswagen ID.3 pouch
+     2016.04.140.                                                                                   cells. 2024, preprint available https://papers.ssrn.com/sol3/papers.cfm?abstract_
+[59] Liu P, Wu Y, She C, Wang Z, Zhang Z. Comparative study of incremental capacity                 id=4911103.
+     curve determination methods for lithium-ion batteries considering the real-world          [69] Keil P, Jossen A. Calendar aging of NCA lithium-ion batteries investigated
+     situation. IEEE Trans Power Electron 2022;37:12563–76. http://dx.doi.org/10.                   by differential voltage analysis and Coulomb tracking. J Electrochem Soc
+     1109/TPEL.2022.3173464.                                                                        2017;164:6066–74. http://dx.doi.org/10.1149/2.0091701jes.
+[60] Koltypin M, Aurbach D, Nazar L, Ellis B. On the stability of LiFePO olivine cath-         [70] Leibling JBD, Bayliss D. Spaced out-perspectives on parking policy. 2012, vis-
+     odes under various conditions (electrolyte solutions, temperatures). Electrochem               ited on 15.02.2024, https://www.racfoundation.org/wp-content/uploads/2017/
+     Solid-State Lett 2007;10:A40. http://dx.doi.org/10.1149/1.2403974.                             11/spaced_out-bates_leibling-jul12.pdf.
+[61] Koltypin M, Aurbach D, Nazar L, Ellis B. More on the performance of LiFePO4               [71] Wieler J. ID.Software 3.2 Test, ADAC. 2024, visited on 09.07.2024,
+     electrodes—The effect of synthesis route, solution composition, aging, and                     https://www.adac.de/rund-ums-fahrzeug/ausstattung-technik-zubehoer/
+     temperature. J Power Sources 2007;174:1241–50. http://dx.doi.org/10.1016/j.                    assistenzsysteme/vw-id3-software-update/.
+     jpowsour.2007.06.045.                                                                     [72] VW. ID.Software 3.2. 2023, visited on 09.07.2024, https://www.vw.com/en/
+[62] Smith SW. The scientist and engineer’s guide to digital signal processing.                     owners-and-services/connectivity-and-apps/vehicle-software-updates/electric-
+     California Technical Pub; 1997, isbn: 978-0-966017-63-2.                                       vehicle-software-updates/electric-vehicle-software-update-3-2.html.
+[63] Fath JP, Dragicevic D, Bittel L, Nuhic A, Sieg J, Hahn S, et al. Quantification of        [73] Ank M, Brehler T, Lienkamp M. Wire bond contact defect identification in
+     aging mechanisms and inhomogeneity in cycled lithium-ion cells by differential                 battery modules of electric vehicles using pulses and differential voltage anal-
+     voltage analysis. J Energy Storage 2019;25:100813. http://dx.doi.org/10.1016/                  ysis. eTransportation 2023;18:100284. http://dx.doi.org/10.1016/j.etran.2023.
+     j.est.2019.100813.                                                                             100284.
+[64] Fath JP, Alsheimer L, Storch M, Stadler J, Bandlow J, Hahn S, et al. The                  [74] Buve F, Klapwijk P, de Leeuw R. OCPP 2.0.1 Protocol Description. 2020,
+     influence of the anode overhang effect on the capacity of lithium-ion cells –                  visited on 14.02.2024, https://openchargealliance.org/protocols/open-charge-
+     a 0D-modeling approach. J Energy Storage 2020;29:101344. http://dx.doi.org/                    point-protocol/.
+     10.1016/j.est.2020.101344.                                                                [75] Heinrich A, Schwaiger M. ISO 15118 – charging communication between
+[65] Reiter A, Lehner S, Bohlen O, Sauer DU. Electrical cell-to-cell variations within              plug-in electric vehicles and charging infrastructure. 2017, p. 213–27,
+     large-scale battery systems — A novel characterization and modeling approach.                  isbn: 978-3-658-15443-1,
+     J Energy Storage 2023;57:106152. http://dx.doi.org/10.1016/j.est.2022.106152.             [76] Nationale Plattform Zukunft der Mobilität. Roadmap zur Implementierung
+[66] Lewerenz M, Sauer DU. Evaluation of cyclic aging tests of prismatic automotive                 der ISO 15118: Standardisierte Kommunikation zwischen Fahrzeug und
+     LiNiMnCoO2-graphite cells considering influence of homogeneity and anode                       Ladepunkt. 2020, visited on 14.02.2024, https://www.plattform-zukunft-
+     overhang. J Energy Storage 2018;18:421–34. http://dx.doi.org/10.1016/j.est.                    mobilitaet.de/2download/roadmap-zur-implementierung-der-iso-15118-
+     2018.06.003.                                                                                   standardisierte-kommunikation-zwischen-fahrzeug-und-ladepunkt/,
+[67] Lewerenz M, Fuchs G, Becker L, Sauer DU. Irreversible calendar aging and                  [77] Electric Vehicle Database. Volkswagen ID.3 Pro Performance. visited on
+     quantification of the reversible capacity loss caused by anode overhang. J Energy              14.02.2024, https://ev-database.org/de/pkw/1831/Volkswagen-ID3-Pro.
+     Storage 2018;18:149–59. http://dx.doi.org/10.1016/j.est.2018.04.029.
+
+
+
+
+                                                                                          14
+

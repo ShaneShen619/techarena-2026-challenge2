@@ -1,0 +1,11 @@
+evidence_tier,input,source_or_window,availability,consumer,decision
+D3,CK0_capacity_Ah,released CK0 only,initial,R01/R02,allowed
+D3,CK0_loaded_pack_and_cell_voltage,CK0 reference curve,initial,R02,allowed_loaded_not_OCV
+D3,operation_voltage_current_temperature,timestamp <= until,per_checkup,R02/quality,allowed_but_unqualified_for_capacity
+D3,CK1_CK7_true_capacity,hidden,any,none,forbidden
+D1,anchor_SOH_pp,first P1 discharge anchor per cell,initial,R05,allowed
+D1,age_days_event_count,strict prefix,target,R05,allowed_not_true_Ah
+D1,selected_event_temperature,first/recent/current 20Ah cropped event,target,R05,allowed_sampled_not_continuous
+D1,cell_id_target_ordinal,grouping/scoring only,target,none,forbidden_as_predictor
+D1,target_capacity_and_future_source_rows,target or later,future,none,forbidden
+S,synthetic_capacity_and_voltage,generated,mechanism,R02,not_official_validation

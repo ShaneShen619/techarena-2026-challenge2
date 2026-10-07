@@ -1,0 +1,498 @@
+{
+  "protocol_version": "v1",
+  "goal_achieved": true,
+  "metrics": {
+    "A_bugfix": {
+      "n": 180,
+      "macro_mae_pp": 9.754979213151342,
+      "macro_rmse_pp": 10.507009856503567,
+      "pooled_rmse_pp": 11.863070773673666,
+      "p95_abs_error_pp": 20.819840424394958,
+      "max_abs_error_pp": 23.541996114941014,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.5070463301866477,
+        "102Ah_25degC_1C_cell3": 6.629855399013716,
+        "102Ah_35degC_1C_cell1": 10.514231404714241,
+        "102Ah_45degC_0p5C_cell3": 14.50401245357572,
+        "102Ah_45degC_1C_cell1": 7.416405287026354,
+        "102Ah_55degC_1C_cell3": 17.958324404391373
+      },
+      "per_cell_rmse_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.5806863880849078,
+        "102Ah_25degC_1C_cell3": 7.766881042371285,
+        "102Ah_35degC_1C_cell1": 13.277914757161259,
+        "102Ah_45degC_0p5C_cell3": 14.695766226197467,
+        "102Ah_45degC_1C_cell1": 7.45101255708048,
+        "102Ah_55degC_1C_cell3": 18.269798168126005
+      }
+    },
+    "A_disagreement_gate": {
+      "n": 180,
+      "macro_mae_pp": 14.522008586394518,
+      "macro_rmse_pp": 15.053741774492897,
+      "pooled_rmse_pp": 22.571067341307852,
+      "p95_abs_error_pp": 54.70487235383777,
+      "max_abs_error_pp": 63.154304809031885,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 4.057735460181409,
+        "102Ah_25degC_1C_cell3": 5.875149188823993,
+        "102Ah_35degC_1C_cell1": 6.162981103868926,
+        "102Ah_45degC_0p5C_cell3": 11.564528165913345,
+        "102Ah_45degC_1C_cell1": 7.44687161443613,
+        "102Ah_55degC_1C_cell3": 52.0247859851433
+      },
+      "per_cell_rmse_pp": {
+        "102Ah_25degC_0p5C_cell3": 4.365794797290386,
+        "102Ah_25degC_1C_cell3": 6.714372279879753,
+        "102Ah_35degC_1C_cell1": 7.252248076413736,
+        "102Ah_45degC_0p5C_cell3": 12.20487647509471,
+        "102Ah_45degC_1C_cell1": 7.488463872992874,
+        "102Ah_55degC_1C_cell3": 52.296695145285916
+      }
+    },
+    "A_no_carry": {
+      "n": 180,
+      "macro_mae_pp": 10.05268849824781,
+      "macro_rmse_pp": 10.794418916171118,
+      "pooled_rmse_pp": 12.200838412833251,
+      "p95_abs_error_pp": 21.74393069066742,
+      "max_abs_error_pp": 23.541996114941014,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.5070463301866477,
+        "102Ah_25degC_1C_cell3": 6.629855399013716,
+        "102Ah_35degC_1C_cell1": 12.30048711529305,
+        "102Ah_45degC_0p5C_cell3": 14.50401245357572,
+        "102Ah_45degC_1C_cell1": 7.416405287026354,
+        "102Ah_55degC_1C_cell3": 17.958324404391373
+      },
+      "per_cell_rmse_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.5806863880849078,
+        "102Ah_25degC_1C_cell3": 7.766881042371285,
+        "102Ah_35degC_1C_cell1": 15.00236911516656,
+        "102Ah_45degC_0p5C_cell3": 14.695766226197467,
+        "102Ah_45degC_1C_cell1": 7.45101255708048,
+        "102Ah_55degC_1C_cell3": 18.269798168126005
+      }
+    },
+    "A_no_cc_trim": {
+      "n": 180,
+      "macro_mae_pp": 9.754979213151342,
+      "macro_rmse_pp": 10.507009856503567,
+      "pooled_rmse_pp": 11.863070773673666,
+      "p95_abs_error_pp": 20.819840424394958,
+      "max_abs_error_pp": 23.541996114941014,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.5070463301866477,
+        "102Ah_25degC_1C_cell3": 6.629855399013716,
+        "102Ah_35degC_1C_cell1": 10.514231404714241,
+        "102Ah_45degC_0p5C_cell3": 14.50401245357572,
+        "102Ah_45degC_1C_cell1": 7.416405287026354,
+        "102Ah_55degC_1C_cell3": 17.958324404391373
+      },
+      "per_cell_rmse_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.5806863880849078,
+        "102Ah_25degC_1C_cell3": 7.766881042371285,
+        "102Ah_35degC_1C_cell1": 13.277914757161259,
+        "102Ah_45degC_0p5C_cell3": 14.695766226197467,
+        "102Ah_45degC_1C_cell1": 7.45101255708048,
+        "102Ah_55degC_1C_cell3": 18.269798168126005
+      }
+    },
+    "A_no_quality_ref": {
+      "n": 180,
+      "macro_mae_pp": 9.754979213151342,
+      "macro_rmse_pp": 10.507009856503567,
+      "pooled_rmse_pp": 11.863070773673666,
+      "p95_abs_error_pp": 20.819840424394958,
+      "max_abs_error_pp": 23.541996114941014,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.5070463301866477,
+        "102Ah_25degC_1C_cell3": 6.629855399013716,
+        "102Ah_35degC_1C_cell1": 10.514231404714241,
+        "102Ah_45degC_0p5C_cell3": 14.50401245357572,
+        "102Ah_45degC_1C_cell1": 7.416405287026354,
+        "102Ah_55degC_1C_cell3": 17.958324404391373
+      },
+      "per_cell_rmse_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.5806863880849078,
+        "102Ah_25degC_1C_cell3": 7.766881042371285,
+        "102Ah_35degC_1C_cell1": 13.277914757161259,
+        "102Ah_45degC_0p5C_cell3": 14.695766226197467,
+        "102Ah_45degC_1C_cell1": 7.45101255708048,
+        "102Ah_55degC_1C_cell3": 18.269798168126005
+      }
+    },
+    "A_no_true_pair": {
+      "n": 180,
+      "macro_mae_pp": 11.640890004535663,
+      "macro_rmse_pp": 12.833915277774588,
+      "pooled_rmse_pp": 14.07284334784318,
+      "p95_abs_error_pp": 23.095840523905864,
+      "max_abs_error_pp": 31.771293984620755,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.5070463301866477,
+        "102Ah_25degC_1C_cell3": 9.600286016008338,
+        "102Ah_35degC_1C_cell1": 10.514231404714241,
+        "102Ah_45degC_0p5C_cell3": 19.018342951343623,
+        "102Ah_45degC_1C_cell1": 11.250798039215699,
+        "102Ah_55degC_1C_cell3": 17.954635285745425
+      },
+      "per_cell_rmse_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.5806863880849078,
+        "102Ah_25degC_1C_cell3": 12.714540988171825,
+        "102Ah_35degC_1C_cell1": 13.277914757161259,
+        "102Ah_45degC_0p5C_cell3": 19.359863634049166,
+        "102Ah_45degC_1C_cell1": 11.803602806690366,
+        "102Ah_55degC_1C_cell3": 18.26688309249001
+      }
+    },
+    "A_old": {
+      "n": 180,
+      "macro_mae_pp": 11.31688743115023,
+      "macro_rmse_pp": 12.175002078099618,
+      "pooled_rmse_pp": 13.382129134894031,
+      "p95_abs_error_pp": 22.531803710916886,
+      "max_abs_error_pp": 36.35480392156863,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.5070463301866477,
+        "102Ah_25degC_1C_cell3": 7.7985312899290165,
+        "102Ah_35degC_1C_cell1": 12.30048711529305,
+        "102Ah_45degC_0p5C_cell3": 15.41016309138209,
+        "102Ah_45degC_1C_cell1": 12.930461474365162,
+        "102Ah_55degC_1C_cell3": 17.954635285745425
+      },
+      "per_cell_rmse_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.5806863880849078,
+        "102Ah_25degC_1C_cell3": 8.82544155110507,
+        "102Ah_35degC_1C_cell1": 15.00236911516656,
+        "102Ah_45degC_0p5C_cell3": 16.086723904707654,
+        "102Ah_45degC_1C_cell1": 13.287908417043512,
+        "102Ah_55degC_1C_cell3": 18.26688309249001
+      }
+    },
+    "A_order_only": {
+      "n": 180,
+      "macro_mae_pp": 10.734729206620996,
+      "macro_rmse_pp": 11.677159655484749,
+      "pooled_rmse_pp": 12.878887414764337,
+      "p95_abs_error_pp": 22.531803710916886,
+      "max_abs_error_pp": 36.35480392156863,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.5070463301866477,
+        "102Ah_25degC_1C_cell3": 7.7985312899290165,
+        "102Ah_35degC_1C_cell1": 12.30048711529305,
+        "102Ah_45degC_0p5C_cell3": 14.280164802068008,
+        "102Ah_45degC_1C_cell1": 10.567510416503819,
+        "102Ah_55degC_1C_cell3": 17.954635285745425
+      },
+      "per_cell_rmse_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.5806863880849078,
+        "102Ah_25degC_1C_cell3": 8.82544155110507,
+        "102Ah_35degC_1C_cell1": 15.00236911516656,
+        "102Ah_45degC_0p5C_cell3": 15.181907417348226,
+        "102Ah_45degC_1C_cell1": 11.205670368713715,
+        "102Ah_55degC_1C_cell3": 18.26688309249001
+      }
+    },
+    "B0": {
+      "n": 180,
+      "macro_mae_pp": 14.454790849673202,
+      "macro_rmse_pp": 15.74589949108801,
+      "pooled_rmse_pp": 16.67492620871768,
+      "p95_abs_error_pp": 31.636069607843154,
+      "max_abs_error_pp": 41.118803921568635,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 5.664839215686266,
+        "102Ah_25degC_1C_cell3": 16.382423529411742,
+        "102Ah_35degC_1C_cell1": 15.215329411764692,
+        "102Ah_45degC_0p5C_cell3": 20.203437254901974,
+        "102Ah_45degC_1C_cell1": 11.250798039215699,
+        "102Ah_55degC_1C_cell3": 18.011917647058844
+      },
+      "per_cell_rmse_pp": {
+        "102Ah_25degC_0p5C_cell3": 5.941558133615502,
+        "102Ah_25degC_1C_cell3": 17.858926892712386,
+        "102Ah_35degC_1C_cell1": 16.462155695265988,
+        "102Ah_45degC_0p5C_cell3": 22.701213840049387,
+        "102Ah_45degC_1C_cell1": 11.803602806690366,
+        "102Ah_55degC_1C_cell3": 19.707939578194445
+      }
+    },
+    "B_age": {
+      "n": 180,
+      "macro_mae_pp": 1.4291941948883684,
+      "macro_rmse_pp": 1.8154272241317455,
+      "pooled_rmse_pp": 2.081514673493572,
+      "p95_abs_error_pp": 4.883238335073796,
+      "max_abs_error_pp": 8.095282735745315,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 0.7230996418338766,
+        "102Ah_25degC_1C_cell3": 1.199020800829944,
+        "102Ah_35degC_1C_cell1": 2.6530599445390597,
+        "102Ah_45degC_0p5C_cell3": 2.1564216408699273,
+        "102Ah_45degC_1C_cell1": 1.1964709638092066,
+        "102Ah_55degC_1C_cell3": 0.6470921774481966
+      },
+      "per_cell_rmse_pp": {
+        "102Ah_25degC_0p5C_cell3": 0.727001188984449,
+        "102Ah_25degC_1C_cell3": 1.7164485009554582,
+        "102Ah_35degC_1C_cell1": 3.520133701783646,
+        "102Ah_45degC_0p5C_cell3": 2.757453486638678,
+        "102Ah_45degC_1C_cell1": 1.3763137658149596,
+        "102Ah_55degC_1C_cell3": 0.7952127006132831
+      }
+    },
+    "B_multi_noT": {
+      "n": 180,
+      "macro_mae_pp": 1.3841315135692982,
+      "macro_rmse_pp": 1.5316298543582434,
+      "pooled_rmse_pp": 1.65653344077315,
+      "p95_abs_error_pp": 2.8925094329327283,
+      "max_abs_error_pp": 4.706376725343077,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.6512368882302415,
+        "102Ah_25degC_1C_cell3": 0.7730662252027998,
+        "102Ah_35degC_1C_cell1": 0.722485204730809,
+        "102Ah_45degC_0p5C_cell3": 1.9414201111163432,
+        "102Ah_45degC_1C_cell1": 0.9818147582126111,
+        "102Ah_55degC_1C_cell3": 2.234765893922985
+      },
+      "per_cell_rmse_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.7478132450162196,
+        "102Ah_25degC_1C_cell3": 0.9647113039888323,
+        "102Ah_35degC_1C_cell1": 0.862048136406942,
+        "102Ah_45degC_0p5C_cell3": 2.0173005843525442,
+        "102Ah_45degC_1C_cell1": 1.026292818543927,
+        "102Ah_55degC_1C_cell3": 2.5716130378409945
+      }
+    },
+    "B_multi_noT_efc": {
+      "n": 180,
+      "macro_mae_pp": 1.1367539201933579,
+      "macro_rmse_pp": 1.2984661190006443,
+      "pooled_rmse_pp": 1.617472991383718,
+      "p95_abs_error_pp": 3.8406129839988608,
+      "max_abs_error_pp": 5.306325245301117,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 0.699998417833991,
+        "102Ah_25degC_1C_cell3": 0.5589406574272308,
+        "102Ah_35degC_1C_cell1": 0.5347561535194681,
+        "102Ah_45degC_0p5C_cell3": 2.6746373605460145,
+        "102Ah_45degC_1C_cell1": 0.484448564921432,
+        "102Ah_55degC_1C_cell3": 1.8677423669120108
+      },
+      "per_cell_rmse_pp": {
+        "102Ah_25degC_0p5C_cell3": 0.7767677258903808,
+        "102Ah_25degC_1C_cell3": 0.7106342384946372,
+        "102Ah_35degC_1C_cell1": 0.6149720670375053,
+        "102Ah_45degC_0p5C_cell3": 3.1579828194321187,
+        "102Ah_45degC_1C_cell1": 0.5453813855600059,
+        "102Ah_55degC_1C_cell3": 1.9850584775892182
+      }
+    },
+    "M4_multi_efc_T": {
+      "n": 180,
+      "macro_mae_pp": 1.0386628968934815,
+      "macro_rmse_pp": 1.2190006289213924,
+      "pooled_rmse_pp": 1.297298762778896,
+      "p95_abs_error_pp": 2.6801097645352097,
+      "max_abs_error_pp": 3.889631118621942,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.1068115201992532,
+        "102Ah_25degC_1C_cell3": 0.5424419245024519,
+        "102Ah_35degC_1C_cell1": 1.0966984433254894,
+        "102Ah_45degC_0p5C_cell3": 1.1115876487975782,
+        "102Ah_45degC_1C_cell1": 0.6371671056042477,
+        "102Ah_55degC_1C_cell3": 1.7372707389318671
+      },
+      "per_cell_rmse_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.15097330404653,
+        "102Ah_25degC_1C_cell3": 0.702306991693424,
+        "102Ah_35degC_1C_cell1": 1.271754760599212,
+        "102Ah_45degC_0p5C_cell3": 1.6492973311668098,
+        "102Ah_45degC_1C_cell1": 0.6709105766378908,
+        "102Ah_55degC_1C_cell3": 1.8687608093844874
+      }
+    },
+    "M4_wave_T": {
+      "n": 180,
+      "macro_mae_pp": 1.3804424764574488,
+      "macro_rmse_pp": 1.7710652570421639,
+      "pooled_rmse_pp": 2.074299972463523,
+      "p95_abs_error_pp": 4.700296902153811,
+      "max_abs_error_pp": 7.681025631855405,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 0.5075629653501215,
+        "102Ah_25degC_1C_cell3": 2.087931515887001,
+        "102Ah_35degC_1C_cell1": 2.3952315277826646,
+        "102Ah_45degC_0p5C_cell3": 2.045186645166768,
+        "102Ah_45degC_1C_cell1": 0.7303793335767712,
+        "102Ah_55degC_1C_cell3": 0.5163628709813665
+      },
+      "per_cell_rmse_pp": {
+        "102Ah_25degC_0p5C_cell3": 0.5128404476284751,
+        "102Ah_25degC_1C_cell3": 2.685748224123274,
+        "102Ah_35degC_1C_cell1": 3.16942410494709,
+        "102Ah_45degC_0p5C_cell3": 2.637898535844553,
+        "102Ah_45degC_1C_cell1": 0.9182620491959382,
+        "102Ah_55degC_1C_cell3": 0.7022181805136533
+      }
+    },
+    "M4_wave_noT": {
+      "n": 180,
+      "macro_mae_pp": 1.3408730301409761,
+      "macro_rmse_pp": 1.7630151273842891,
+      "pooled_rmse_pp": 2.091685393141063,
+      "p95_abs_error_pp": 4.55889131704929,
+      "max_abs_error_pp": 8.092203019269306,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 0.4446619799435221,
+        "102Ah_25degC_1C_cell3": 2.0413814337119445,
+        "102Ah_35degC_1C_cell1": 2.7099206305570296,
+        "102Ah_45degC_0p5C_cell3": 1.763666326986127,
+        "102Ah_45degC_1C_cell1": 0.5751734744446945,
+        "102Ah_55degC_1C_cell3": 0.5104343352025391
+      },
+      "per_cell_rmse_pp": {
+        "102Ah_25degC_0p5C_cell3": 0.46026367021451964,
+        "102Ah_25degC_1C_cell3": 2.7413668959925763,
+        "102Ah_35degC_1C_cell1": 3.394861461629395,
+        "102Ah_45degC_0p5C_cell3": 2.3953635343675383,
+        "102Ah_45degC_1C_cell1": 0.7541963016939781,
+        "102Ah_55degC_1C_cell3": 0.8320389004077257
+      }
+    },
+    "final": {
+      "n": 180,
+      "macro_mae_pp": 1.0386628968934815,
+      "macro_rmse_pp": 1.2190006289213924,
+      "pooled_rmse_pp": 1.297298762778896,
+      "p95_abs_error_pp": 2.6801097645352097,
+      "max_abs_error_pp": 3.889631118621942,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.1068115201992532,
+        "102Ah_25degC_1C_cell3": 0.5424419245024519,
+        "102Ah_35degC_1C_cell1": 1.0966984433254894,
+        "102Ah_45degC_0p5C_cell3": 1.1115876487975782,
+        "102Ah_45degC_1C_cell1": 0.6371671056042477,
+        "102Ah_55degC_1C_cell3": 1.7372707389318671
+      },
+      "per_cell_rmse_pp": {
+        "102Ah_25degC_0p5C_cell3": 1.15097330404653,
+        "102Ah_25degC_1C_cell3": 0.702306991693424,
+        "102Ah_35degC_1C_cell1": 1.271754760599212,
+        "102Ah_45degC_0p5C_cell3": 1.6492973311668098,
+        "102Ah_45degC_1C_cell1": 0.6709105766378908,
+        "102Ah_55degC_1C_cell3": 1.8687608093844874
+      }
+    }
+  },
+  "gates": {
+    "macro_mae": {
+      "actual": 1.0386628968934815,
+      "operator": "<=",
+      "threshold": 2.0,
+      "passed": true,
+      "evidence": "outputs/predictions.csv; outputs/panel_main.csv"
+    },
+    "macro_rmse": {
+      "actual": 1.2190006289213924,
+      "operator": "<=",
+      "threshold": 3.0,
+      "passed": true,
+      "evidence": "outputs/predictions.csv; outputs/panel_main.csv"
+    },
+    "per_cell_mae": {
+      "actual": 1.7372707389318671,
+      "operator": "<=",
+      "threshold": 4.0,
+      "passed": true,
+      "evidence": "outputs/predictions.csv; outputs/panel_main.csv"
+    },
+    "p95_abs_error": {
+      "actual": 2.6801097645352097,
+      "operator": "<=",
+      "threshold": 5.0,
+      "passed": true,
+      "evidence": "outputs/predictions.csv; outputs/panel_main.csv"
+    },
+    "max_abs_error": {
+      "actual": 3.889631118621942,
+      "operator": "<=",
+      "threshold": 8.0,
+      "passed": true,
+      "evidence": "outputs/predictions.csv; outputs/panel_main.csv"
+    },
+    "old_a_mae_reduction": {
+      "actual": 0.9082200911502826,
+      "operator": ">=",
+      "threshold": 0.5,
+      "passed": true,
+      "evidence": "outputs/predictions.csv; outputs/panel_main.csv"
+    },
+    "old_a_per_cell_noninferiority": {
+      "actual": 6,
+      "operator": ">=",
+      "threshold": 5,
+      "passed": true,
+      "evidence": "outputs/predictions.csv; outputs/panel_main.csv"
+    },
+    "strongest_fixed_baseline": {
+      "actual": 1.0386628968934815,
+      "operator": "<=",
+      "threshold": 1.3841315135692982,
+      "passed": true,
+      "evidence": "outputs/predictions.csv; outputs/panel_main.csv"
+    },
+    "coverage": {
+      "actual": 0.9555555555555556,
+      "operator": ">=",
+      "threshold": 0.9,
+      "passed": true,
+      "evidence": "outputs/evidence_events.csv"
+    },
+    "per_cell_coverage": {
+      "actual": 0.8666666666666667,
+      "operator": ">=",
+      "threshold": 0.8,
+      "passed": true,
+      "evidence": "outputs/evidence_events.csv"
+    },
+    "temperature_mae_bias_-1C": {
+      "actual": 0.00526062064601418,
+      "operator": "<=",
+      "threshold": 0.5,
+      "passed": true,
+      "evidence": "outputs/temperature_stress.csv"
+    },
+    "temperature_coverage_bias_-1C": {
+      "actual": 0.0,
+      "operator": "<=",
+      "threshold": 0.1,
+      "passed": true,
+      "evidence": "outputs/temperature_stress_evidence.csv"
+    },
+    "temperature_mae_bias_+1C": {
+      "actual": -0.002787424169422348,
+      "operator": "<=",
+      "threshold": 0.5,
+      "passed": true,
+      "evidence": "outputs/temperature_stress.csv"
+    },
+    "temperature_coverage_bias_+1C": {
+      "actual": 0.0,
+      "operator": "<=",
+      "threshold": 0.1,
+      "passed": true,
+      "evidence": "outputs/temperature_stress_evidence.csv"
+    },
+    "hard_tests": {
+      "actual": true,
+      "operator": "==",
+      "threshold": true,
+      "passed": true,
+      "evidence": "outputs/hard_tests.json"
+    }
+  },
+  "unmet_or_unverified": []
+}

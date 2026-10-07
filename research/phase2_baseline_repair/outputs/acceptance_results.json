@@ -1,0 +1,20 @@
+{
+  "version": "2026-09-30-final-v1",
+  "research_completion_status": "complete_B0_B8",
+  "B0": "passed",
+  "B1": "passed",
+  "B2": "passed_35_future_mutations",
+  "B3": "passed_mechanism_stress_not_capacity",
+  "B4": "passed_unlabeled_fair_comparison",
+  "B5": "passed_clean_extraction_fresh_venv_official_validator_and_all_8_CK",
+  "B6": "no_go_for_capacity_superiority_claim; go_for_causal_repair_research_candidate",
+  "B7": "passed_independent_read_only_audit",
+  "B8": "passed_docx_pdf_3_pages_visual_QA_reader_12_of_12",
+  "official_capacity_MAE_pp": null,
+  "D1_capacity_MAE_pp": null,
+  "independent_D2_capacity_MAE_pp": null,
+  "performance_target_status": "not_testable_without_CK1_CK7_or_matched_independent_D2",
+  "competition_upload_status": "not_authorized_not_done",
+  "independent_reader_status": "passed_12_questions_with_navigation_edits",
+  "document_visual_status": "passed_Word_native_PDF_all_3_pages"
+}

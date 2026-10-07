@@ -1,0 +1,11 @@
+{
+  "source_sha256": "80cbb1af77be4266cff46b539ba5fa25b5489094b480c6e0080edb7b3569686d",
+  "full_six_cell_theta_diagnostic_only": [
+    35.70605082983881,
+    3.7297891482585364,
+    4.489227329921432
+  ],
+  "full_six_cell_anchor_rmse_C_diagnostic_only": 0.455696847444755,
+  "folds_do_not_use_heldout_temperature_or_labels": true,
+  "warning": "Lifetime mean target temperature is diagnostic truth, never an online feature."
+}

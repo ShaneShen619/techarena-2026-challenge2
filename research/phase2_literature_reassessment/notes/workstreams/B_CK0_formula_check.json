@@ -1,0 +1,30 @@
+{
+  "source": "/Users/shane/Desktop/Arena 阶段 2 官方材料/data/checkups/CK0_reference_discharge.csv.gz",
+  "sha256": "fe244391b1a492dce4909b087f3ee196bd6edf91bf3f8c05abd177c31b3a377a",
+  "rows": 70876,
+  "last_discharged_Ah": 100.412,
+  "last_pack_V": 11.2,
+  "last_cell_V": {
+    "cell1_V": 2.8,
+    "cell2_V": 2.8,
+    "cell3_V": 2.802,
+    "cell4_V": 2.801
+  },
+  "last_rounded_cell_sum_V": 11.203,
+  "pack_minus_sum_mV_quantiles": {
+    "0.0": -7.0000000000014495,
+    "0.5": -3.0000000000001137,
+    "0.95": -0.9999999999994458,
+    "1.0": 2.000000000000668
+  },
+  "first_pack_le_11_2_Ah": 100.412,
+  "first_any_rounded_cell_le_2_8_Ah": 100.408,
+  "group_slope_20_40_mV_per_Ah": -8.691533314037256,
+  "one_Ah_Q_perturbation_at_30.0_mV_approx": 2.596813060662461,
+  "group_slope_40_60_mV_per_Ah": -1.732907283404858,
+  "one_Ah_Q_perturbation_at_50.0_mV_approx": 0.862915687384154,
+  "group_slope_80_90_mV_per_Ah": -18.56001047299293,
+  "one_Ah_Q_perturbation_at_85.0_mV_approx": 15.711591377396664,
+  "group_slope_95_100_mV_per_Ah": -221.8129763559299,
+  "one_Ah_Q_perturbation_at_97.5_mV_approx": 215.38457518875774
+}

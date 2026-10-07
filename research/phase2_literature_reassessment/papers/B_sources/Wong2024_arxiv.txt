@@ -1,0 +1,405 @@
+                                                                     Differential Voltage Analysis and Patterns in
+                                                                     Parallel-Connected Pairs of Imbalanced Cells
+                                             Clement Wong1 , Andrew Weng1 , Sravan Pannala1 , Jeesoon Choi2 , Jason B. Siegel1 , Anna Stefanopoulou1
+
+
+                                              Abstract— Diagnosing imbalances in capacity and resistance       cell. By comparing the dV/dQ and dQ/dV peaks of different
+                                           within parallel-connected cells in battery packs is critical for    cells, one can identify variability in degradation among cells
+                                           battery management and fault detection, but it is challenging       [5], [6], [7], [8], [9].
+                                           given that individual currents flowing into each cell are often
+                                                                                                                  While methods exist for assessing degradation in a single
+
+
+
+
+arXiv:2405.17754v1 [eess.SY] 28 May 2024
+                                           unmeasured. This work introduces a novel method useful for
+                                           identifying imbalances in capacity and resistance within a          cell and can be used to evaluate variations in degradation
+                                           pair of parallel-connected cells using only voltage and current     among cells, these methods often require individual sensors
+                                           measurements from the pair. Our method utilizes differential        for each cell. Manufacturers of battery modules often limit
+                                           voltage analysis (DVA) when the pair is under constant cur-         the number of sensors in a battery module to reduce cost[10].
+                                           rent discharge and demonstrates that features of the pair’s
+                                           differential voltage curve (dV/dQ), namely its mid-to-high SOC      In particular, for parallel-connected cells, manufacturers use
+                                           dV/dQ peak’s height and skewness, are sensitive to imbalances       only a single current sensor for each group of parallel-
+                                           in capacity and resistance. We analyze and explain how and          connected cells, leaving the individual cell currents unknown
+                                           why these dV/dQ peak shape features change in response              [11], [12]. Due to this constraint, existing methods are
+                                           to these imbalances, highlighting that the underlying current       generally not directly applicable for identifying variability
+                                           imbalance dynamics resulting from these imbalances contribute
+                                           to these changes. Ultimately, we demonstrate that dV/dQ peak        in degradation among parallel-connected cells.
+                                           shape features can identify the product of capacity imbalance
+                                           and resistance imbalance, but cannot uniquely identify the
+                                           imbalances. This work lays the groundwork for identifying
+                                           imbalances in capacity and resistance in parallel-connected cell
+                                           groups in battery packs, where commonly only a single current
+                                           sensor is placed for each parallel cell group.
+
+                                                                I. INTRODUCTION
+                                              Individual batteries that make up battery modules in
+                                           parallel or in series can degrade at different rates, due
+                                           to factors such as manufacturing process variations that
+                                           can affect the fabrication of the batteries’ electrodes [1],
+                                           [2] or module-level environmental variations in the wiring
+                                           resistance, welding process, and connectors [3]. Such varia-
+                                           tions in degradation among the individual batteries within a
+                                           module can compound and jeopardize the entire module’s
+                                           safety and performance [4]. Thus, for maintaining safety
+                                           and performance, it is important to gauge the variability in
+                                           degradation across batteries within a module.
+                                              Existing literature outlines various methods for assessing
+                                           degradation of Li-ion batteries. Two widely-used techniques
+                                           are Differential Voltage Analysis (DVA) and Incremental
+                                           Capacity Analysis (ICA), which leverage differential voltage
+                                           (dV/dQ) and differential capacity (dQ/dV) measurements to
+                                           gain insights into half-cell behavior and understand degra-
+                                           dation mechanisms. Features from the dV/dQ and dQ/dV
+                                           curves, particularly their peaks, can be harnessed as quanti-
+                                           tative metrics for assessing the extent of degradation within a     Fig. 1.     Flow diagram of our proposed method useful for identifying
+                                                                                                               imbalances in capacity and resistance within a parallel-connected cell pair
+                                              *This work was supported by LG Energy Solutions.                 using only the pair’s voltage, Vt (t), and current, I(t). The method leverages
+                                              1 Clement  Wong, Andrew Weng, Sravan Pannala, Jason B.           the relationship between features of the pair’s dV/dQ peak and imbalances
+                                           Siegel, Anna Stefanopoulou are with Department of Mechanical        in capacity and resistance.
+                                           Engineering, University of Michigan, Ann Arbor, Michigan, 48105.
+                                           {clemwong,asweng,spannala,                                            This work introduces a novel method useful for identifying
+                                           siegeljb,annastef}@umich.edu
+                                             2 Jeesoon   Choi   is   with   LG   Energy   Solutions,   Korea   imbalances in capacity and resistance within a parallel-
+                                           jeesoonchoi@lgensol.com                                             connected cell pair using only the pair’s voltage and cur-
+rent measurements. Our method utilizes differential voltage         of the phase transitions in graphite, provide insight into
+analysis (DVA) when the pair is under constant current              the individual cells’ state of lithiation during discharge. In
+                                                                                    dV
+(CC) discharge and demonstrate that the features derived            this work, the dQt,ii peaks from individual cells assist in
+from the pair’s differential voltage curve (dV/dQ), namely          explaining the changes in the parallel cell group’s mid-
+the mid-to-high SOC dV/dQ peak’s height and skewness,               to-high SOC dV /dQ peak shape caused by imbalances in
+are sensitive to imbalances in capacity and resistance. We          parallel-connected cells.
+establish the relationship between parallel-connected cell
+pair’s dV/dQ peak shape features and imbalances in capacity
+and resistance by running various numerical simulations of a
+model parallel-connected cell pair undergoing a C/3 constant
+current (CC) discharge, where in each simulation the model
+parallel-connected cell pair has a unique combination of
+individual cell capacities and resistances. Ultimately, from
+this relationship, we demonstrate that dV/dQ peak shape
+features can identify the product of capacity imbalance
+and resistance imbalance but cannot uniquely identify the
+imbalances. (Fig. 1)
+                  II. M ODEL D ESCRIPTION
+   Our model parallel-connected pair used in our simulations
+integrates equivalent circuit modeling with the intra-cycle
+dynamics of two parallel-connected cells. Subsection II-A
+outlines the model for the individual cells in a 2P cell
+pair, where the capacity and resistance of each individual
+cell are its parameters. Subsection II-B describes the intra-
+                                                                    Fig. 2.    (Top) Full Cell Open Circuit Voltage (OCVi ) and Half-Cell
+cycle dynamics of two parallel-connected cells, presenting          Potentials (Upi , Uni ) of NMC/graphite. (Bottom) Differential Voltage of
+how differences in capacities and resistances among the cells       the Full Cell and Half Cells with respect to Discharge Coulomb Counting,
+affect each cell’s voltage and current.                             Qi . Figure adapted from [1]
+
+A. Model for Individual Cells in 2P Group
+  Each individual cell, i, is modeled as an OCV-R model.            B. Current Split Dynamics in Parallel Imbalanced Groups
+                                                                      This subsection outlines the intra-cycle dynamics of two
+             Vt,i (t) = OCVi (zi (t)) + Ii (t) · Ri .        (1)    parallel-connected cells implemented in the simulations. The
+Vt,i is the cell’s output terminal voltage. OCVi is the cell’s      dynamics are derived by Weng et al. [11]. Given that each
+open circuit voltage with respect to zi (t), the cell’s SOC.        cell within the 2P cell pair follows the OCV-R dynamics
+Ii (t) is the cell’s input current, which is defined to be          outlined in Eqs. 1- 3, the intra-cycle dynamics are as follows:
+negative on discharge. Ri is the cell’s Ohmic resistance. The                       R1 · OCV2 (z2 (t)) + R2 · OCV1 (z1 (t))
+cell’s SOC dynamics are described as follows:                              Vt (t) =
+                                                                                                     Rtot
+                                                                                                                                         (4)
+                                 1                                                    R1 R2 I(t)
+                       żi (t) =    Ii (t).                  (2)                    +
+                                 Ci                                                      Rtot
+where Ci is the cell’s capacity. Ri and Ci are constant over                I(t) = I1 (t) + I2 (t)                                       (5)
+the course of a single cycle.                                                       −∆OCV (t) − R2 I(t)
+                                                                           I1 (t) =                                                      (6)
+   OCVi is equal to the potential difference between the                                     Rtot
+positive electrode (Up ) and the negative electrode (Un ):                          +∆OCV (t) − R1 I(t)
+                                                                           I2 (t) =                                                      (7)
+          OCVi (zi (t)) = Up,i (zi (t)) − Un,i (zi (t))      (3)                             Rtot
+                                                                    where Vt is the 2P cell pair’s output terminal voltage,
+   In this work, the model for individual cells is based
+                                                                    I is the 2P cell pair’s input current, Rtot ≜ R1 + R2 ,
+on NMC/graphite chemistry. The NMC positive electrode
+                                                                    and ∆OCV (t) ≜ OCV (z2 (t)) − OCV (z1 (t)). Eqs. 4-
+potential Up,i (zi (t)) and graphite negative electrode potential
+                                                                    7 show how imbalances in capacity and resistance within
+Un,i (zi (t)) are shown in Fig. 2A and are written in Appendix
+                                                                    two parallel-connected cells affect the terminal voltage and
+B. Their corresponding differential voltages with respect to
+                                                                    current of the individual cells in a 2P cell pair.
+discharge coulomb counting, Qi , are in Fig. 2B.
+   Phase transitions occur in graphite and cause sharp                 III. S IMULATIONS OF 2P CELL PAIR WITH CAPACITY
+changes in Un,i (zi (t)), which more evidently result in peaks               IMBALANCE AND RESISTANCE IMBALANCE
+   dU
+in dQn,i
+       i
+          . These phase transitions consequently cause peaks in        In this section, we present various numerical simulations
+dVt,i                                     dV
+ dQi  when    Ii (t) is low dynamic. The dQt,ii peaks, indicative   of a 2P cell pair undergoing a C/3 CC discharge to show the
+relationship between features derived the pair’s differential           pair with balanced cells—those having identical capacity and
+voltage curve (dV/dQ), namely its mid-to-high SOC dV/dQ                 resistance—to a simulation of 2P cell pair whose individual
+peak’s height and skewness, and imbalances in capacity and              cells vary in capacity by a ratio of 0.5 (C2 /C1 = 0.5) but
+resistance within parallel-connected cells.                             have the same resistance (Fig. 3).
+   In Subsections III-A and III-B, we first examine the effects
+of capacity imbalance and resistance imbalance, respectively,
+on the dynamics of a 2P cell pair and its individual cells. We
+highlight that the effects of the imbalances are observable
+at the pair’s dV/dQ peak, demonstrating the potential to
+identify imbalances within 2P cell pair through the pair’s
+voltage and current measurements. We analyze and explain
+how and why the dV/dQ peak changes in response to these
+imbalances, highlighting that underlying current imbalance
+dynamics contribute to these changes. In Subsection III-C,
+we present the sensitivity of the dV/dQ peak’s height and
+skewness to capacity imbalance and resistance imbalance,
+independently. Finally, in Subsection III-D, we study the re-
+lationship between dV/dQ peak shape features with capacity
+imbalance and resistance imbalance jointly.
+   In this paper, we focus on the mid-to-high SOC parallel
+cell group dV/dQ peak. This peak typically occur in the
+voltage range of 3.7 - 3.9 V for NMC/graphite. To capture
+features of this peak, our initial step involves downselecting
+the voltage and current data corresponding to the 3.7 - 3.9 V
+range. The dV/dQ peak height can be estimated using MAT-
+LAB’s findpeaks function applied to the downselected
+dV/dQ data. Subsequently, the dV/dQ peak skewness can be
+estimated following the algorithm described in Appendix A.
+   Table I lists the model parameters of the individual cells
+for the simulations presented in this section.
+                              TABLE I
+           M ODEL PARAMETERS FOR F IGURES 3-6
+                     α = (C2 /C1 ), β = (R2 /R1 )
+
+                                                                        Fig. 3. Simulation of a Balanced 2P Cell Group and of an Imbalanced 2P
+Figure   Group     Individual Cell    Capacity (Ah)   Resistance (mΩ)   cell group with capacity imbalance (C2 /C1 =.5) under C/3 constant current
+  3      Bal. 2P        Bal                60               2           (CC) discharge. A) Individual Cell Current (Ii ) vs Time, B) 2P Voltage (Vt )
+         Imb. 2P       Weak                40               2           vs Time, C) Individual Cell Discharge Coulomb Counting (Qi ) vs Time, D)
+                       Strong              80               2           Individual Cell dV/dQ ( dV
+                                                                                                dQ
+                                                                                                    ) vs Time, E) 2P dV/dQ ( dVdQ
+                                                                                                                                   ) vs 2P Discharge
+                                                                                                    i
+  4      Bal. 2P        Bal                60                2          Coulomb Counting (Q), F) 2P dV/dQ ( dV
+                                                                                                            dQ
+                                                                                                               ) vs 2P Voltage (Vt )
+         Imb. 2P       Weak                60                3
+                       Strong              60               1.5
+ 5,6     Imb. 2P       Weak          60 ∗ α/(α + 1)    2 ∗ (β + 1)
+                                                                           Figure 3 presents the dynamics of 2P cell pairs and their
+                       Strong          60/(α + 1)     2 ∗ (β + 1)/β     individual cells for these simulations when the pairs are
+                                                                        under C/3 constant current (CC) discharge. The comparison
+   For each simulation of an imbalanced 2P cell group, a                of the solid lines, representing the 2P cell pairs’ dynamics,
+strong cell (with higher capacity or lower resistance) is               reveals that the effect of capacity imbalance within parallel-
+connected in parallel with a weak cell (with lower capacity             connected cells is particularly observable at the peak of the
+or high resistance). Taking Cell 1 to be the strong cell and            pair’s dV/dQ curves, as illustrated in Fig. 3E & F. This
+Cell 2 to be the weak cell, we thus impose the constraint               indicates that the pair’s dV/dQ peak provides an opportunity
+that C2 < C1 and R2 > R1 .                                              estimate capacity imbalance using only the pair’s voltage and
+   In every simulation, the model 2P cell group has a total             current measurements.
+capacity of 120 Ah and a total resistance of 1 mΩ. These                   The pair’s dV/dQ peak can be characterized by its height
+values for capacity and resistance are realistic in real-world          and skewness, and these simulations show that capacity
+applications, particularly in energy storage systems.                   imbalance causes the dV/dQ peak height to decrease and
+                                                                        skew toward lower voltages (Fig. 3F). The effect of capacity
+A. Effect of capacity imbalance on 2P cell pair’s dynamics              imbalance on the pair’s dV/dQ peak stems from individual
+  To illustrate the effect of capacity imbalance on the dy-             cell current imbalances in the mid-to-high SOC graphite
+namics of a 2P cell pair, we compare a simulation of 2P cell            phase transition region. In this region, sharp changes in the
+slope of the individual cells’ OCV with respect to their SOC
+drive non-linear oscillations in current. As the cells discharge
+through this SOC region, the strong cell with higher capacity
+experiences an increase in current, while the weak cell with
+lower capacity experiences a decrease in current (Fig. 3A).
+These oscillations affect the parallel cell group Vt (Fig. 3B)
+and individual cell coulomb counting (Fig. 3C), but most
+                                         dV
+evidently affect the individual cell dQ     i
+                                              peaks (Fig. 3D).
+                                                      dV
+The current oscillations cause the individual cell dQ    i
+                                                           peaks
+to occur at different times during discharge. The timing of
+these peaks ultimately causes the pair’s dV/dQ peak height
+to reduce and skew towards lower voltages.
+
+B. Effect of resistance imbalance on 2P cell pair’s dynamics
+   We next demonstrate the effect of resistance imbalance on
+the dynamics of a 2P cell pair by comparing a simulation
+of a 2P cell group with balanced cells to simulation of a
+2P group with imbalanced cells that vary in resistance by a
+ratio of 2 (R2 /R1 = 2) but have the same capacity. Figure 3
+presents the dynamics of 2P cell pairs and their individual
+cells for these simulations when the pairs are under C/3
+CC discharge. Similarly to subsection III-A, the effect of
+resistance imbalance is particularly observable at the peak
+of the pair’s dV/dQ curves, as illustrated in Fig. 4 E & F.
+   Resistance imbalance causes the pair’s dV/dQ peak to
+decrease, similar to capacity imbalance; however, unlike
+capacity imbalance, it causes the peak to skew toward
+higher voltages (Fig. 4F) The changes in the dV/dQ peak            Fig. 4. Simulation of a Balanced 2P Cell Group and of an Imbalanced 2P
+                                                                   Cell Group with resistance imbalance (R2 /R1 =2) under C/3 CC discharge.
+are again driven by current oscillations near in mid-to-high       A) Individual Cell Current (Ii ) vs Time, B) 2P Voltage (Vt ) vs Time, C)
+SOC graphite phase transition region. However, the current         Individual Cell Discharge Coulomb Counting (Qi ) vs Time, D) Individual
+oscillations differ: the weak cell with greater resistance         Cell dV/dQ ( dV
+                                                                                dQ
+                                                                                    ) vs Time, E) 2P dV/dQ ( dV
+                                                                                                              dQ
+                                                                                                                 ) vs 2P Discharge Coulomb
+                                                                                   i
+experiences a decrease in current, while the strong cell with      Counting (Q), F) 2P dV/dQ ( dV
+                                                                                               dQ
+                                                                                                  ) vs 2P Voltage (Vt )
+less resistance has an increase (Fig. 4A). These differing
+current oscillations consequently cause individual cell dV/dQ
+peaks to behave differently. As shown in Fig. 4D, a time           D. Sensitivity of 2P dV/dQ peak shape features to the joint
+gap still exists between the individual cell dV/dQ peaks,          effect of capacity imbalance and resistance imbalance
+contributing to the group’s dV/dQ peak broadening and a
+reduction in height. However, both individual dV/dQ peaks             From III-A to III-C, we have shown how capacity im-
+occur earlier, which means they arise at a higher 2P group         balance and resistance imbalance each independently affect
+voltage, ultimately causing the group’s dV/dQ peak to skew         2P cell pair’s dynamics and the sensitivity of specific fea-
+toward higher voltages (Fig. 4F).                                  tures derived from the 2P dV/dQ curves, namely the mid-
+                                                                   to-high SOC dV/dQ peak height and skewness, to these
+                                                                   imbalances. In reality, however, parallel cell groups have
+C. Sensitivity of 2P dV/dQ peak shape features to capacity
+                                                                   capacity imbalance and resistance imbalance concurrently. In
+imbalance and resistance imbalance, independently
+                                                                   this subsection, we study the combined effects of capacity
+   Fig. 5 presents the sensitivity of 2P dV/dQ peak shape          imbalance and resistance imbalance on mid-to-high SOC
+features to capacity imbalances and resistance imbalances,         dV/dQ peak height and skewness.
+independently. It presents the 2P dV/dQ peak shape features           Fig. 6 A & B illustrates the combined effects of capacity
+as the capacity ratio (C2 /C1 ) varies from 1 to 0.5 with the      and resistance imbalance on 2P mid-to-high SOC dV/dQ
+resistance ratio held constant, and as the resistance ratio        peak height and skewness, respectively. It aligns with ob-
+(R2 /R1 ) changes from 1 to 2 with the capacity ratio held         servations in III-A, III-B, and III-C. However, it additionally
+constant. It indicates that as capacity imbalance increases, the   highlights that combinations of capacity ratio and resistance
+2P dV/dQ peak proportionally reduces in height and skews           ratio cannot be uniquely identified based on mid-to-high SOC
+toward higher voltages. Meanwhile, as resistance imbalance         dV/dQ peak shape features. This is particularly evident when
+increases, the 2P dV/dQ peak proportionally reduces in             the product of the capacity ratio and resistance ratio is 1.
+height but skews toward higher voltages.                           In such cases, the non-linear oscillations in current, which
+                                                                                  Fig. 6. Heatmaps of the sensitivity of the height (A) and skewness (B) of the
+Fig. 5.    (Top) Comparison of 2P mid-to-high SOC dV/dQ peak vs 2P                2P mid-to-high SOC dV/dQ Peak to the joint effect of capacity imbalance
+Voltage for varying capacity ratios (C2 /C1 ) on the left and resistance ratios   and resistance imbalance. Scatter plots of the sensitivity of height (C) and
+(R2 /R1 ) on the right. (Middle) Height of 2P mid-to-high SOC dV/dQ vs            skewness (D) of the 2P mid-to-high SOC dV/dQ Peak to the product of
+C2 /C1 on the left and R2 /R1 on the right. (Bottom) Skewness of 2P mid-          capacity ratio (C2 /C1 ) and resistance ratio (R2 /R1 ). C2 /C1 varies from .5
+to-high SOC dV/dQ vs C2 /C1 on the left and vs R2 /R1 on the right.               to 1 and R2 /R1 varies from 1 to 2.
+
+
+
+primarily drive the changes in the mid-to-high SOC dV/dQ
+peak shape, are nullified [11] and there are no changes in                        pair by leveraging features of the pair’s dV/dQ, namely the
+the mid-to-high SOC dV/dQ peak shape.                                             height and skewness of the mid-to-high SOC dV/dQ peak.
+   The product of capacity ratio and resistance ratio can                         We establish the relationship between parallel-connected cell
+be uniquely identified from the mid-to-high SOC dV/dQ                             pair’s dV/dQ peak shape features and imbalances in capacity
+peak shape features. Fig. 6 C & D shows the sensitivity                           and resistance by running various numerical simulations
+of dV/dQ peak shape features to the product of capacity                           of a model parallel-connected cell pair undergoing a C/3
+ratio and resistance ratio. These figures illustrate that dV/dQ                   constant current discharge, where in each simulation the
+peak shape features can uniquely identify the product of                          model parallel-connected cell pair has a unique combination
+capacity ratio and resistance ratio, particularly when the                        of individual cell capacities and resistances. We first present
+product deviates significantly from 1. As indicated in Figure                     the effects of capacity imbalance and resistance imbalance,
+6 C, for a given value of dV/dQ Peak Height, there are                            respectively, on the 2P cell pair’s dynamics to demonstrate
+two possible values for the product of capacity ratio and                         how the effects of imbalances are particularly observable at
+resistance ratio. The dV/dQ peak skewness differentiates the                      the pair’s dV/dQ peak. We analyze and explain how and why
+two potential values; a higher skewness value identifies the                      the dV/dQ peak changes in response to these imbalances,
+higher product of capacity ratio and resistance ratio, while a                    highlighting that underlying current imbalance dynamics
+lower skewness value identifies the lower product of capacity                     contribute to these changes. We then quantify the sensitivity
+ratio and resistance ratio. It is important to note, however,                     of the mid-to-high SOC dV/dQ peak features, its height and
+that when the product of capacity ratio and resistance ratio                      skewness, to capacity and resistance imbalances indepen-
+is close to 1, the dV/dQ skewness is not highly sensitive to                      dently. Results show that as capacity imbalance increases, the
+the changes in the product of capacity ratio and resistance                       2P dV/dQ peak proportionally reduces in height and skews
+ratio, which prevents the unique identification of the product                    toward higher voltages. Similarly, as resistance imbalance
+of the capacity ratio and resistance ratio.                                       increases, the 2P dV/dQ peak also proportionally reduces in
+                                                                                  height but skews toward higher voltages. We finally studied
+       IV. CONCLUSIONS AND FUTURE WORK                                            the relationship between dV/dQ peak shape features and
+   This paper presents how imbalances in capacity and resis-                      the joint effects of capacity and resistance imbalance. We
+tance within a pair of parallel-connected cells can be identi-                    demonstrate that dV/dQ peak shape features can identify the
+fied using only voltage and current measurements from the                         product of capacity imbalance and resistance imbalance but
+cannot uniquely identify the imbalances.
+   In future work, we will investigate incorporating informa-
+                                                                                                                                            
+tion about the relationship between capacity and resistance                                                                        z − 0.15
+                                                                             Un,i (z) =0.063 + 0.8e−75(0.83z+0.007) − 0.012 tanh
+for the two cells based on their degradation mechanisms.                                                                             0.019
+Adding this information has the potential to identify the im-
+                                                                                                                                        
+                                                                                                      z − 0.19                   z − 0.27
+                                                                                       − 0.012 tanh               − 0.004 tanh
+balances in capacity and resistance within parallel-connected                                           0.019                      0.024
+cells and detect risky degradation in parallel-connected cells.
+                                                                                                                                          
+                                                                                                      z − 0.23                     z − 0.59
+                                                                                       − 0.009 tanh               − 0.0145 tanh
+   Additionally, we will study the sensitivity of dV/dQ shape                                           0.016                        0.024
+features to noise typical in field data to understand how                                           
+                                                                                                      z − 1.24
+                                                                                                                
+uncertainties in dV/dQ shape features can affect estimations                           − 0.080 tanh
+                                                                                                        0.066
+of imbalances. We will investigate methods to reduce uncer-                                                                                (9)
+tainty in dV/dQ shape features to enable the practical appli-                                      ACKNOWLEDGMENT
+cation of our methods to accurately and precisely estimate                      This work was supported by LG Energy Solutions.
+capacity and resistance imbalances within parallel-connected
+pairs in real-world battery modules.                                                                      R EFERENCES
+   Lastly, we will investigate whether our methods leveraging                 [1] A. Weng, J. B. Siegel, and A. Stefanopoulou, “Differential voltage
+the dV/dQ peak shape features can be used to identify                             analysis for battery manufacturing process control,” Frontiers in En-
+                                                                                  ergy Research, vol. 11, 2023.
+imbalances in capacity and resistance within parallel cell                    [2] B. Kenney, K. Darcovich, D. D. MacNeil, and I. J. Davidson, “Mod-
+configurations larger than two cells.                                             elling the impact of variations in electrode manufacturing on lithium-
+                                                                                  ion battery modules,” J. Power Sources, vol. 213, pp. 391–401, 2012.
+A. dV/dQ Peak Skewness Calculation                                            [3] S. Ma, M. Jiang, P. Tao, C. Song, J. Wu, J. Wang, T. Deng, and
+                                                                                  W. Shang, “Temperature effect and thermal impact in lithium-ion
+                                                                                  batteries: A review,” Progress in Natural Science: Materials Inter-
+Algorithm 1 dV/dQ Peak Skewness Calculation                                       national, vol. 28, no. 6, pp. 653–666, 2018.
+  Data: Discharge Amp-hours Q and Vt that includes mid-to-high                [4] D. Beck, P. Dechent, M. Junker, D. U. Sauer, and M. Dubarry,
+  SOC dV /dQ                                                                      “Inhomogeneities and Cell-to-Cell Variations in Lithium-Ion Batteries,
+  Procedure:                                                                      a Review,” Energies, vol. 14, no. 11, 2021.
+  1. Downselect 2P Cell Group Voltage, Vt , to 3.7 − 3.9 V.                   [5] C. Weng, Y. Cui, J. Sun, and H. Peng, “On-board state of health
+                                                                                  monitoring of lithium-ion batteries using incremental capacity analysis
+  2. Estimate 2P positive electrode potential corresponding mid-
+                                                                                  with support vector regression,” Journal of Power Sources, vol. 235,
+  to-high SOC dV /dQ, P (Q) = â + [b̂ · Q + ĉ · Q2 ], by solving                pp. 36–44, 2013.
+                                                               ˆ ê, fˆ}
+  for the following optimization problem for θ̂ = {â, b̂, ĉ, d,             [6] M. Berecibar, F. Devriendt, M. Dubarry, I. Villarreal, N. Omar,
+                                                                       2      W. Verbeke, and J. Van Mierlo, “Online state of health estimation on
+                                                   Q−e                            NMC cells based on predictive analytics,” Journal of Power Sources,
+  θ̂ = arg min a + [b · Q + c · Q2 ] − d · tanh                   − Vt
+           θ                                          f                           vol. 320, pp. 239–250, 2016.
+                                                                              [7] J. Sieg, M. Storch, J. Fath, A. Nuhic, J. Bandlow, B. Spier, and D. U.
+  3. Estimate 2P negative electrode potential corresponding mid-                  Sauer, “Local degradation and differential voltage analysis of aged
+  to-high SOC dV /dQ, N (Q), by computing the difference P (Q)                    lithium-ion pouch cells,” Journal of Energy Storage, vol. 30, no. May,
+  and Vt                                                                          p. 101582, 2020.
+                      N (Q) = P (Q) − Vt                                      [8] M. Lewerenz, A. Marongiu, A. Warnecke, and D. U. Sauer, “Differen-
+                                                                                  tial voltage analysis as a tool for analyzing inhomogeneous aging: A
+  4. Differentiate: Apply Savitzky-Golay filter to N (Q) and                      case study for LiFePO4—Graphite cylindrical cells,” Journal of Power
+  differentiate filtered N (Q) to estimate dN
+                                           dQ
+                                              (Q).                                Sources, vol. 368, pp. 57–67, 2017.
+  5. Normalize                                                                [9] X. Feng, Y. Merla, C. Weng, M. Ouyang, X. He, B. Y. Liaw,
+                                                                                  S. Santhanagopalan, X. Li, P. Liu, L. Lu, X. Han, D. Ren, Y. Wang,
+                                   dN
+                 dN                dQ
+                                      (Q)                                         R. Li, C. Jin, P. Huang, M. Yi, L. Wang, Y. Zhao, Y. Patel, and
+                         (Q) = Pn dN                                              G. Offer, “A reliable approach of differentiating discrete sampled-data
+                 dQ norm        i=1 dQ (Qi ) dQ                                   for battery diagnosis,” eTransportation, vol. 3, p. 100051, 2020.
+                                                                             [10] X. Lin, H. E. Perez, J. B. Siegel, and A. G. Stefanopoulou, “Robust
+  6. Filter regions where dN
+                           dQ norm
+                                   (Q) < 0.005 to excludes regions                estimation of battery system temperature distribution under sparse
+  not associated with mid-to-high SOC dV /dQ peak                                 sensing and uncertainty,” IEEE Trans. Control Syst. Technol., 2020.
+  7. Calculate skewness of the filtered dNdQ norm
+                                                  (Q) using Fisher’s         [11] A. Weng, S. Pannala, J. B. Siegel, and A. G. Stefanopoulou, “Parallel-
+  moment coefficient of skewness:                                                 connected battery current imbalance dynamics,” IFAC-PapersOnLine,
+                               Pn                                                 vol. 55, no. 37, pp. 37–43, 2022.
+                                              3 dN
+                       µ3        i=1 (Qi − µ) dQ norm (Qi )                  [12] D. Zhang, L. D. Couto, S. Benjamin, W. Zeng, D. F. Coutinho,
+          Skewness = 3 =                                                          and S. J. Moura, “State of charge estimation of parallel connected
+                       σ                     σ3                                   battery cells via descriptor system theory,” in 2020 American Control
+               Pn         dN
+  where µ = i=1 Qi · dQ            (Qi ),                                         Conference (ACC), pp. 2207–2212, 2020.
+       qP                     norm
+             n              dN
+             i=1 (Qi − µ) dQ
+  σ=                     2          (Qi ),
+                               norm
+
+
+
+B. Half-cell Potential Functions
+
+      Up,i (z) =3.6674 − 0.0225z + 0.5619z 2 + 0.6329z 3
+                  − 0.1957z 4 + 0.1016z 5                           (8)
+                  − 0.5623 exp(95.102(1 − z) − 97.036).
+

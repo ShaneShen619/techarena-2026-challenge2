@@ -1,0 +1,12 @@
+module,run_id,status,evidence_level,config_path,input_manifest,code_path,output_path,notes
+B0,B0_preflight_20260930_v1,complete,environment_and_provenance,configs/frozen_manifest.json,data_manifests/input_manifest.csv,scripts/b0_preflight.py,runs/B0_preflight_20260930_v1/result.json,21 fresh hashes and environment
+B0,B0_example_20260930_v1,complete,D3_official_unlabeled,configs/protocol.json,data_manifests/input_manifest.csv,my_model/model_example.py,runs/B0_example_20260930_v1/output.csv,original ExampleModel full framework replay
+B0,B0_ck0_constant_20260930_v1,complete,D3_official_unlabeled,configs/protocol.json,data_manifests/input_manifest.csv,research/phase2_evidence_validation/candidates/official_gated/my_model/research_candidate.py,runs/B0_ck0_constant_20260930_v1/output.csv,frozen CK0 conservative comparator
+B1,B1_event_causality_20260930_v1,complete,D3_official_unlabeled,configs/protocol.json,data_manifests/input_manifest.csv,scripts/,outputs/event_audit.csv,41 exact original windows and per-CK future leak
+B2,B2_candidate_comparison_20260930_v4,complete,D3_official_unlabeled,configs/protocol.json,data_manifests/input_manifest.csv,scripts/,outputs/per_ck_predictions.csv,5 candidates by 8 CK; 35 future mutation groups pass
+B3,B3_mechanism_stress_20260930_v3,complete,synthetic_mechanism,configs/protocol.json,data_manifests/input_manifest.csv,scripts/,outputs/stress_results.csv,voltage/current/gap/counter/temperature controls
+B4,B4_same_condition_matrix_20260930_v1,complete,D3_official_unlabeled,configs/protocol.json,data_manifests/input_manifest.csv,scripts/,outputs/baseline_comparison_matrix.csv,original constant causal and quality gates; no MAE
+B5,B5_clean_extract_20260930_v2,complete,official_interface,configs/protocol.json,data_manifests/input_manifest.csv,scripts/,runs/B5_clean_extract_20260930_v2/official_full/output.csv,fresh venv validator and eight CK
+B6,B6_decision_20260930_v1,complete,decision,configs/protocol.json,data_manifests/input_manifest.csv,scripts/,outputs/acceptance_results.json,causal/interface GO; capacity superiority not testable
+B7,B7_independent_audit_20260930_v1,complete,independent_read_only,configs/protocol.json,data_manifests/input_manifest.csv,scripts/,notes/INDEPENDENT_AUDIT.md,CK1 CK2 raw recheck and caveats
+B8,B8_report_reader_20260930_v1,complete,report_and_reader,configs/protocol.json,data_manifests/input_manifest.csv,scripts/,outputs/LFP_SOH_官方基线修复与下一步决策报告.pdf,Word native render 3 pages; reader 12 of 12

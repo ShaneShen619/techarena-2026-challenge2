@@ -1,0 +1,46 @@
+{
+  "all_future_invariance_passed": true,
+  "n_tests": 28,
+  "candidates": [
+    {
+      "candidate": "combined",
+      "n_checkpoints": 8,
+      "n_fallback": 1,
+      "n_eligible_events_final": 32,
+      "max_abs_delta_pp": 0.2776831055682578,
+      "causal_mutations_passed": true,
+      "capacity_MAE_pp": null,
+      "capacity_status": "not_testable_CK1_CK7_hidden"
+    },
+    {
+      "candidate": "gap",
+      "n_checkpoints": 8,
+      "n_fallback": 1,
+      "n_eligible_events_final": 32,
+      "max_abs_delta_pp": 0.2776831055682578,
+      "causal_mutations_passed": true,
+      "capacity_MAE_pp": null,
+      "capacity_status": "not_testable_CK1_CK7_hidden"
+    },
+    {
+      "candidate": "none",
+      "n_checkpoints": 8,
+      "n_fallback": 1,
+      "n_eligible_events_final": 39,
+      "max_abs_delta_pp": 0.012183660554086373,
+      "causal_mutations_passed": true,
+      "capacity_MAE_pp": null,
+      "capacity_status": "not_testable_CK1_CK7_hidden"
+    },
+    {
+      "candidate": "range",
+      "n_checkpoints": 8,
+      "n_fallback": 1,
+      "n_eligible_events_final": 32,
+      "max_abs_delta_pp": 0.2776831055682578,
+      "causal_mutations_passed": true,
+      "capacity_MAE_pp": null,
+      "capacity_status": "not_testable_CK1_CK7_hidden"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "registered_before_M9_scalar_runs": "2026-09-28",
+  "reason": "M7 no-voltage and all-signal ablations show TCN gains can arise without the charge waveform; test simpler scalar nonlinear models under exactly the same outer-cell split",
+  "D1_targets": 180,
+  "outer_split": "leave one whole P1 cell out",
+  "scalar_features": ["anchor_pp", "age_days", "age_log1p", "history_count", "last_gap_days", "prefix_prequalified_charge_count", "current_A", "current_temp_C"],
+  "age_prior": "fixed-alpha=100 age/count ridge; all six M7 outer folds had previously selected 100, fit anew within each outer or inner training split",
+  "MLP": {"hidden": [32, 16], "bounded_residual_pp": 10, "epochs": 80, "learning_rate": 0.001, "weight_decay": 0.01, "batch_targets": 32, "seeds": [20260928, 20260929, 20260930]},
+  "RBF": {"features": "same eight scalar features, fold-standardized", "length_scales": [0.5, 1, 2], "penalties": [0.1, 1, 10], "select": "inner leave-one-training-cell-out macro MAE", "bounded_residual_pp": 10},
+  "hypothesis": "nonlinear scalar aging/workpoint map explains the TCN numerical improvement; if it matches or beats TCN, no waveform capacity evidence remains",
+  "claim_limit": "same six P1 development cells and high-rate single-cell capacity proxy; cannot confirm official 4S C/20 accuracy"
+}

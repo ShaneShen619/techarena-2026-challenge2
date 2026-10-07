@@ -1,0 +1,4 @@
+citing_paper_id,cited_paper_id,direction_from_citing,original_location,reason_for_followup
+A_Aeppli2025,A_Krupp2021,backward,reference [100] p20 of publisher PDF,Krupp used as module ICA precedent
+A_Aeppli2025,A_Ruiz2018,backward,reference [167] p21 of publisher PDF,Ruiz temperature cycling precedent
+A_Cornejo2026,A_Zhou2025,backward,Introduction paragraph on fixed OCV and resistance,Zhou motivates OCV drift treatment

@@ -1,0 +1,180 @@
+{
+  "checked_at": "2026-09-28T06:31:27.711515+00:00",
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "executable": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_validation/.venv/bin/python",
+  "platform": "macOS-15.7.4-arm64-arm-64bit",
+  "cpu_count": 8,
+  "free_disk_GiB": 135.39,
+  "packages": {
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2",
+    "pytest": "9.1.1",
+    "h5py": "3.16.0",
+    "python-docx": "1.2.0",
+    "pypdf": "6.19.0",
+    "pillow": "12.3.0"
+  },
+  "numeric_io_plot_probes": "passed",
+  "data": {
+    "segments": 13,
+    "operation_rows": 1572894,
+    "duplicates": 181,
+    "gaps_gt_60s_within_segment": 3,
+    "missing_required_values": 0,
+    "checkup_labels": [
+      {
+        "checkup": "CK0",
+        "date": "2025-01-14",
+        "capacity_Ah": 100.41,
+        "SOH_pct": 98.44
+      }
+    ],
+    "eval_points": [
+      {
+        "checkup": "CK0",
+        "date": "2025-01-14",
+        "released": true
+      },
+      {
+        "checkup": "CK1",
+        "date": "2025-02-08",
+        "released": false
+      },
+      {
+        "checkup": "CK2",
+        "date": "2025-03-11",
+        "released": false
+      },
+      {
+        "checkup": "CK3",
+        "date": "2025-04-14",
+        "released": false
+      },
+      {
+        "checkup": "CK4",
+        "date": "2025-05-16",
+        "released": false
+      },
+      {
+        "checkup": "CK5",
+        "date": "2025-06-16",
+        "released": false
+      },
+      {
+        "checkup": "CK6",
+        "date": "2025-07-25",
+        "released": false
+      },
+      {
+        "checkup": "CK7",
+        "date": "2025-08-28",
+        "released": false
+      }
+    ],
+    "reference_rows": 70876,
+    "reference_columns": [
+      "timestamp",
+      "current_A",
+      "voltage_V",
+      "cell1_V",
+      "cell2_V",
+      "cell3_V",
+      "cell4_V",
+      "discharged_Ah"
+    ],
+    "reference_discharge_Ah_range": [
+      0.0,
+      100.412
+    ]
+  },
+  "sample_validation": {
+    "exit_code": 0,
+    "seconds": 0.609,
+    "command": [
+      "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_validation/.venv/bin/python",
+      "validate_submission.py"
+    ],
+    "cwd": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_validation/preflight/baseline_template"
+  },
+  "full_train": {
+    "exit_code": 0,
+    "seconds": 1.383,
+    "command": [
+      "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_validation/.venv/bin/python",
+      "run_model.py",
+      "--model",
+      "train",
+      "--input",
+      "/Users/shane/Desktop/Arena 阶段 2 官方材料/data",
+      "--output-dir",
+      "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_validation/preflight/baseline_full"
+    ],
+    "cwd": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_validation/preflight/baseline_template"
+  },
+  "full_test": {
+    "exit_code": 0,
+    "seconds": 9.572,
+    "command": [
+      "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_validation/.venv/bin/python",
+      "run_model.py",
+      "--model",
+      "test",
+      "--input",
+      "/Users/shane/Desktop/Arena 阶段 2 官方材料/data",
+      "--state-dir",
+      "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_validation/preflight/baseline_full",
+      "--output-dir",
+      "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_validation/preflight/baseline_full",
+      "--eval-point",
+      "all"
+    ],
+    "cwd": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_validation/preflight/baseline_template"
+  },
+  "baseline_predictions": [
+    {
+      "checkup": "CK0",
+      "date": "2025-01-14",
+      "SOH_est": 98.44
+    },
+    {
+      "checkup": "CK1",
+      "date": "2025-02-08",
+      "SOH_est": 98.416
+    },
+    {
+      "checkup": "CK2",
+      "date": "2025-03-11",
+      "SOH_est": 98.878
+    },
+    {
+      "checkup": "CK3",
+      "date": "2025-04-14",
+      "SOH_est": 97.612
+    },
+    {
+      "checkup": "CK4",
+      "date": "2025-05-16",
+      "SOH_est": 97.634
+    },
+    {
+      "checkup": "CK5",
+      "date": "2025-06-16",
+      "SOH_est": 97.207
+    },
+    {
+      "checkup": "CK6",
+      "date": "2025-07-25",
+      "SOH_est": 95.718
+    },
+    {
+      "checkup": "CK7",
+      "date": "2025-08-28",
+      "SOH_est": 95.148
+    }
+  ],
+  "original_files_unchanged": true,
+  "duration_seconds": 12.993,
+  "status": "ENGINEERING_PREFLIGHT_PASSED_NOT_SOH_ACCURACY_VALIDATION"
+}

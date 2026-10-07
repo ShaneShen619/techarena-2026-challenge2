@@ -1,0 +1,19 @@
+{
+  "version": "2026-09-30-v1",
+  "frozen_at": "before_B1_event_and_model_results",
+  "original_example": {
+    "V_LO_V": {"value": 13.4, "unit": "V", "source": "my_model/model_example.py", "status": "code_fact"},
+    "V_FULL_V": {"value": 13.95, "unit": "V", "source": "my_model/model_example.py", "status": "code_fact"},
+    "I_END_A": {"value": 1.5, "unit": "A", "source": "my_model/model_example.py", "status": "code_fact"},
+    "MAX_BACK_rows": {"value": 2160, "unit": "rows", "source": "my_model/model_example.py", "status": "code_fact"},
+    "large_dt_zeroed_s": {"value": 600, "unit": "s", "source": "my_model/model_example.py", "status": "code_fact"},
+    "end_spacing_rows": {"value": 60, "unit": "rows", "source": "my_model/model_example.py", "status": "code_fact"}
+  },
+  "exploratory_quality_gate": {
+    "Q_relative_to_prefix_BOL_median": {"value": [0.5, 1.5], "unit": "fraction", "source": "predeclared outlier sensitivity; not instrument tolerance", "status": "exploratory"},
+    "maximum_within_event_gap_s": {"value": 60, "unit": "s", "source": "six nominal 10 s intervals; sensitivity needed", "status": "exploratory"},
+    "minimum_event_rows": {"value": 30, "unit": "rows", "source": "my_model/model_example.py", "status": "code_fact"},
+    "aggregation": {"value": "median of latest 3 qualified completed events; anchor q_ref from eligible BOL prefix only", "unit": "rule", "source": "predeclared simple quality-gate candidate", "status": "exploratory"}
+  },
+  "no_true_capacity_based_tuning": {"value": true, "unit": "boolean", "source": "CK1-CK7 hidden", "status": "frozen"}
+}

@@ -1,0 +1,105 @@
+{
+  "official_forward_cell_events": 148,
+  "official_capacity_updates_accepted": 0,
+  "official_median_capacity_profile_width_Ah": 50.0,
+  "synthetic_median_Q_error_by_window_Ah": {
+    "10.0": 12.5,
+    "30.0": 11.0,
+    "90.0": 0.0
+  },
+  "capacity_profile_width_by_window_case": [
+    {
+      "window_Ah": 1.0,
+      "case": "Q_SOC_free_offset",
+      "Q_profile_width_Ah": 49.99982615064711,
+      "best_voltage_RMSE_mV": 0.04848128931659037
+    },
+    {
+      "window_Ah": 1.0,
+      "case": "Q_SOC_offset_and_R",
+      "Q_profile_width_Ah": 49.938317764649526,
+      "best_voltage_RMSE_mV": 0.048481289361457
+    },
+    {
+      "window_Ah": 1.0,
+      "case": "Q_only_known_SOC_and_offset",
+      "Q_profile_width_Ah": 0.0024258033521107336,
+      "best_voltage_RMSE_mV": 0.18428561684053707
+    },
+    {
+      "window_Ah": 10.0,
+      "case": "Q_SOC_free_offset",
+      "Q_profile_width_Ah": 46.08189341420072,
+      "best_voltage_RMSE_mV": 0.5420371859779402
+    },
+    {
+      "window_Ah": 10.0,
+      "case": "Q_SOC_offset_and_R",
+      "Q_profile_width_Ah": 46.08190306369558,
+      "best_voltage_RMSE_mV": 0.5420371859779429
+    },
+    {
+      "window_Ah": 10.0,
+      "case": "Q_only_known_SOC_and_offset",
+      "Q_profile_width_Ah": 2.5955851867820456e-07,
+      "best_voltage_RMSE_mV": 0.9684320270510244
+    },
+    {
+      "window_Ah": 30.0,
+      "case": "Q_SOC_free_offset",
+      "Q_profile_width_Ah": 28.56902492092601,
+      "best_voltage_RMSE_mV": 0.9858891860016394
+    },
+    {
+      "window_Ah": 30.0,
+      "case": "Q_SOC_offset_and_R",
+      "Q_profile_width_Ah": 28.56902490703355,
+      "best_voltage_RMSE_mV": 0.9858891860016442
+    },
+    {
+      "window_Ah": 30.0,
+      "case": "Q_only_known_SOC_and_offset",
+      "Q_profile_width_Ah": 1.8064740459067252e-07,
+      "best_voltage_RMSE_mV": 2.3685110439947583
+    },
+    {
+      "window_Ah": 90.0,
+      "case": "Q_SOC_free_offset",
+      "Q_profile_width_Ah": 1.354216010440723e-07,
+      "best_voltage_RMSE_mV": 1.222143092341175
+    },
+    {
+      "window_Ah": 90.0,
+      "case": "Q_SOC_offset_and_R",
+      "Q_profile_width_Ah": 6.103499572418514e-08,
+      "best_voltage_RMSE_mV": 1.2221430923411756
+    },
+    {
+      "window_Ah": 90.0,
+      "case": "Q_only_known_SOC_and_offset",
+      "Q_profile_width_Ah": 1.921733883136767e-10,
+      "best_voltage_RMSE_mV": 2.959552817405362
+    }
+  ],
+  "CK0_rebuilt_capacity_Ah": 100.41748439952204,
+  "CK0_reference_capacity_Ah": 100.412,
+  "permutation_passed": true,
+  "explicit_advantage_vs_uniform_by_quality_Ah": {
+    "M4_unidentified": -0.6160040931830153,
+    "high_quality": -0.007085131321300564,
+    "low_quality": -0.2005827140520129,
+    "moderate_quality": -0.049120166689774036,
+    "oracle": 0.11924120306942401
+  },
+  "shrinkage_advantage_vs_uniform_by_quality_Ah": {
+    "M4_unidentified": -0.1041184996579041,
+    "high_quality": 0.013411685324928813,
+    "low_quality": -0.041309194308227104,
+    "moderate_quality": -0.006316326169640396,
+    "oracle": 0.10515675192511773,
+    "ultra_quality": 0.061997137183013154
+  },
+  "decision": "keep official capacity-update gate closed; use explicit four-cell cutoff only when independently calibrated per-cell state quality reaches the synthetic ultra/oracle regime",
+  "source_status": "compiled from frozen phase2_method_exploration runs; upstream hashes are in r4_upstream_sources.csv",
+  "capacity_validation": "not testable on CK1-CK7; all quality thresholds are synthetic mechanism evidence"
+}

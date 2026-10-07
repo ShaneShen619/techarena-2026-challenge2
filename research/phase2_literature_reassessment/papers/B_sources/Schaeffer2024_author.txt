@@ -1,0 +1,1490 @@
+                                                                                                                             ll
+                                                                                                                      OPEN ACCESS
+
+
+
+Article
+Gaussian process-based online health
+monitoring and fault analysis of lithium-ion
+battery systems from field data
+                                                                                         Joachim Schaeffer, Eric Lenz,
+                                                                                         Duncan Gulla, Martin Z. Bazant,
+                                                                                         Richard D. Braatz, Rolf Findeisen
+
+                                                                                         rolf.findeisen@iat.tu-darmstadt.de
+
+                                                                                         Highlights
+                                                                                         Recursive spatiotemporal
+                                                                                         Gaussian processes are applied to
+                                                                                         lithium-ion battery field data
+
+                                                                                         Online fault probabilities based
+                                                                                         on the resistance estimates are
+                                                                                         developed
+
+                                                                                         The results provide insights into
+                                                                                         how battery systems degrade and
+                                                                                         fail in the field
+
+                                                                                         We publish the BattGP Python
+                                                                                         library and the dataset comprising
+                                                                                         28 battery systems
+
+
+
+
+Improving battery safety is important to safeguard life and strengthen trust in
+lithium-ion batteries. Schaeffer et al. develop fault probabilities based on recursive
+spatiotemporal Gaussian processes, showing how batteries degrade and fail while
+publishing code and field data from 28 battery systems to benefit the community.
+
+
+
+
+                                                                                         Schaeffer et al., Cell Reports Physical Science 5,
+                                                                                         102258
+                                                                                         November 20, 2024 ª 2024 The Author(s).
+                                                                                         Published by Elsevier Inc.
+                                                                                         https://doi.org/10.1016/j.xcrp.2024.102258
+ Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+ tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+                                                                                                                                              ll
+                                                                                                                                     OPEN ACCESS
+
+
+
+Article
+Gaussian process-based online health monitoring
+and fault analysis of lithium-ion
+battery systems from field data
+Joachim Schaeffer,1,2 Eric Lenz,1 Duncan Gulla,1 Martin Z. Bazant,2,3 Richard D. Braatz,2
+and Rolf Findeisen1,4,*
+
+
+SUMMARY
+Health monitoring, fault analysis, and detection methods are impor-
+tant to operate battery systems safely. We apply Gaussian process
+resistance models on lithium-iron-phosphate (LFP) battery field
+data to separate the time-dependent and operating-point-depen-
+dent resistances. The dataset contains 28 battery systems returned
+to the manufacturer for warranty, each with eight cells in series,
+totaling 224 cells and 133 million data rows. We develop probabi-
+listic fault detection rules using recursive spatiotemporal Gaussian
+processes. These processes scale linearly with the number of data
+points, allowing online monitoring. The fault analysis underlines
+that often, only a single cell shows abnormal behavior or a knee
+point, consistent with weakest-link failure for cells connected in
+series, amplified by local resistive heating. The results further the
+understanding of how battery packs degrade and fail in the field
+and demonstrate the potential of online monitoring. We open
+source the code and publish the dataset with this article.
+
+INTRODUCTION
+Lithium-ion batteries (LIBs) are essential for electric vehicles (EVs), grid storage,
+mobile applications, consumer electronics, and more. Over the last 30 years,
+remarkable advances have led to long-lasting cells with high energy efficiency and
+density.1 The growth of production volume over the last decade is projected to
+continue2,3 mainly due to EVs and stationary storage, both needed for the transition
+to a sustainable future. Safe operation of LIBs is vital to protect life and property and
+strengthen trust in LIBs. In the past, LIB fires erupted in many different applications,
+including EVs,4 stationary storage,5 and electric bicycles.6 Monitoring batteries dur-
+ing operation is important to have a chance of detecting electrical or mechanical
+abuse of the system or the onset of accelerated cell degradation, which is critical
+to reducing the potential of such fires.                                                                 1Control and Cyber-Physical Systems Laboratory
+
+                                                                                                         Technical, University of Darmstadt, 64289
+                                                                                                         Darmstadt, Germany
+This article considers the design of Gaussian process (GP)-based health monitoring                       2Department of Chemical Engineering,
+from battery field data, which are time series data consisting of noisy temperature,                     Massachusetts Institute of Technology,
+current, and voltage measurements corresponding to the system, module, and cell                          Cambridge, MA 02139, USA
+levels.7 In real-world applications, the operational conditions are usually uncon-                       3Department of Mathematics, Massachusetts
+
+                                                                                                         Institute of Technology, Cambridge, MA 02139,
+trolled, i.e., the device is in the hands of the customer, who can use and potentially                   USA
+abuse the battery system. From a high level, the key task for the battery manage-                        4Lead contact
+
+ment system (BMS) is to ensure the safe operation of the battery system,8 either                         *Correspondence:
+onboard or potentially also leveraging the cloud9 if further investigations                              rolf.findeisen@iat.tu-darmstadt.de
+or compute power are needed. Field data are critical for improving BMSs,                                 https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+                                      Cell Reports Physical Science 5, 102258, November 20, 2024 ª 2024 The Author(s). Published by Elsevier Inc.         1
+                                              This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/).
+    Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+    tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+              ll
+        OPEN ACCESS
+                                                                                                                                              Article
+
+understanding how batteries age in the field, and detecting faults early under
+realistic battery operating conditions.7,10 Furthermore, openly available health
+monitoring algorithms and software are important for regulation. One example is
+the battery passport.2 A critical bottleneck in pushing the field of battery monitoring
+forward has been the lack of published battery field data.11 Open sourcing of the
+code and data is a key contribution of this article.
+
+Many methods are available for modeling the cycling and degradation behavior of
+battery cells and systems.12–14 Roughly, these battery models can be categorized
+as empirical models,15,16 machine learning models,17–22 first-principles models
+(also known as [aka] physics-based aka mechanistic),23–25 and hybrid models, which
+combine first-principles and machine learning models.26,27 Choosing an appro-
+priate model is essential to optimally using the available data.12 Physics-based bat-
+tery models such as pseudo-two-dimensional (P2D) and single-particle models
+(SPMs) are challenging to parameterize with field data where often no or only a
+few physical cell parameters are known in combination with sensor noise and bias
+as well as low time resolution. Equivalent circuit models (ECMs) are an alternative
+because they are easier to parameterize with limited data13 and are applicable to
+field data.28
+
+Faults are abnormal events that cause the system to behave in an unintended way or
+stop operating. Battery system faults can be auxiliary, sensor, or battery faults.
+Furthermore, faults can potentially cause safety threats to a system and its environ-
+ment, emphasizing the importance of monitoring and early fault detection. Fault
+detection methods can be categorized as signal based or model based. Much
+research considers fast signal-based fault detection for battery systems.29–31 A few
+examples of commonly used methods include normalized voltage-based
+methods,32 analysis of correlation coefficients of cell voltages,33,34 and sample en-
+tropy-based methods.35
+
+Model-based fault detection methods are complementary to signal-based fault
+detection. While model-based fault detection methods are usually computationally
+more complex and slower, they can potentially detect certain faults earlier and
+improve robustness.36–42 In particular, battery system faults, which are often due
+to slow processes, such as battery degradation, can be addressed by a model to es-
+timate the state of health (SOH) of batteries.28,43,44 It is commonly observed that
+slow capacity decay is followed by accelerated degradation, yielding a knee-shaped
+capacity decay curve as a function of charge throughput.45 Consequently, the cell
+will behave very differently from the remaining cells.
+
+In this work, we analyze and model the resistance of each cell in LIB systems based on
+field data. We build on a hybrid approach of using GPs and ECMs developed by Aitio
+et al. for single-cell lead-acid batteries28 and adapt the model to lithium-iron-phos-
+phate (LFP) battery systems. This hybrid approach approximates two decoupled
+series resistances, i.e., an operational point-dependent resistance and a tempera-
+ture-dependent resistance.28 First, we show exact GP results using 40,000 data
+points for each cell. Next, we show recursive spatiotemporal GP28,46–48 results based
+on all selected data points, resulting in millions of analyzed data points in total. We
+then develop fault probabilities, allowing us to monitor the homogeneity of cell re-
+sistances and the probability of a single cell exceeding a maximum resistance
+threshold, which are important for detecting the onset of different types of battery
+system faults. The derivations are motivated by field data from 28 portable LIB
+systems consisting of eight cells in series, totaling 224 cells that were in use for up
+
+
+2       Cell Reports Physical Science 5, 102258, November 20, 2024
+ Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+ tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+                                                                                                                                           ll
+                                                                                                                                     OPEN ACCESS
+Article
+
+                                             BMS
+
+
+
+
+Figure 1. Battery system
+Sketch of 8 prismatic cells in gray, with temperature sensors in red. The temperature sensors are
+shared by two cells.
+
+
+
+to 5 years. All analyzed systems were returned to the manufacturer for warranty
+claims, where the data were recovered. Analyzing the dataset and modeling results
+furthers the understanding of how these battery packs fail. This article makes the
+field data and associated Python package BattGP available as open source. This da-
+taset can be used to develop and test approaches for SOH estimation, fault detec-
+tion, and health monitoring. We hope the battery modeling community will use this
+dataset for further development. To the authors’ knowledge, this is one of the first
+large publicly available LIB field dataset containing data from many independent
+systems and multiple years of operation that allows us to study faults. Recently,
+another large battery field data set was published by Figgener et al.49 The study
+by Figgener et al. focuses on capacity fade, whereas this article’s data set is from bat-
+tery systems that degraded and had faulty behavior. The two data sets thus comple-
+ment each other.
+
+RESULTS AND DISCUSSION
+Battery system and field dataset
+The dataset contains data from 28 portable 24 V LFP battery systems with approxi-
+mately 160 Ah nominal capacity. Each system’s specific use case is unknown, but
+battery systems of this size are typically used as power sources for recreational vehi-
+cles, solar energy storage, and more.
+
+All battery systems in this dataset showed some form of unsatisfactory behavior and
+were returned to the manufacturer. Many reasons can cause a consumer to return a
+battery to the manufacturer for maintenance. The user’s individual decisions may be
+motivated by personal judgment, BMS warnings, or customer support advice. This
+dataset comprises a very small fraction of batteries sold of this version. Therefore,
+this dataset is biased and not representative of the operational data of the entire
+population of this system version. This article’s battery system type was replaced
+with an improved version. The battery system manufacturer provided the dataset
+for this study and allowed its open-source release under the condition of anonymity.
+
+Some time series contain data gaps, either because the system was fully switched
+off, the user tampered with it and its data storage unit, or for other unknown reasons.
+Furthermore, the exact manufacturing and shipping dates are unavailable, making it
+impossible to precisely reconstruct charge throughput and rest period durations for
+all systems.
+
+
+                                                                                      Cell Reports Physical Science 5, 102258, November 20, 2024          3
+    Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+    tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+               ll
+        OPEN ACCESS
+                                                                                                                                              Article
+
+Table 1. System and data specifications
+Technical specification
+Nominal voltage                                                                          24 V
+Nominal capacity                                                                         z160 Ah
+No. of cells                                                                             8 (series)
+No. of current sensors                                                                   1
+No. of voltage sensors                                                                   9
+No. of temperature sensors                                                               4
+No. of cell balancing current sensors                                                    8
+Dataset
+No. of systems                                                                           28
+Total number of cells                                                                    224
+Total rows of data                                                                       133 M
+Median of measurement intervals                                                          5s
+
+
+
+Each battery system consists of 8 prismatic cells in series. Each system has one load
+current sensor, and each cell has one voltage sensor. The four temperature sensors
+are placed between adjacent cells, i.e., each temperature sensor is shared by two
+cells (Figure 1). Furthermore, the battery systems have active cell balancing. The
+available measurements for the systems vary from a single month to 5 years. Conse-
+quently, the number of data rows per system varies from several thousand to mil-
+lions, depending on the duration of battery operation. The dataset contains a total
+of 133 million rows of measurements (Table 1).
+
+The estimated probability densities of usage conditions (Figure 2) demonstrate the
+widely varying operational conditions. For example, many temperature measure-
+ments are below room temperature, suggesting that some systems were operated
+outdoors or in unheated environments. The observed depth of discharges (DODs)
+are predominantly limited to the upper half of the state of charge (SOC) range,
+and much time was spent fully charged for most systems. The distribution of voltage
+shows that some batteries were overcharged (>3.6 V), undercharged (<2.0 V), or
+both at some point. Furthermore, battery systems 3, 4, and 16 have discharge cur-
+rent outliers >1,000 A, suggesting a shortcut or inrush current due to improper
+installation, abuse, or a sensor error. It is not possible to further disentangle the rea-
+sons for these abnormally high discharge currents and over-/undercharging. There is
+a lot of uncertainty associated with how the user installed the system and which
+equipment was connected because the systems are portable and suitable for
+many different applications.
+
+Exemplary data visualization and analysis
+We analyze 24.2 million rows of data associated with battery system 8, which
+was operated for approximately 5 years (Figure 3). The system was switched on in
+November 2016, but frequent usage only started about a year later. The end of
+continuous usage is around December 2021. However, the system kept logging
+data for a couple more months afterward. The temperature profile shows
+seasonal variations, with higher temperatures during the Northern hemisphere’s
+summer months. Furthermore, voltage measurements and estimated SOC show
+that the system was primarily operated between 60% to 100% SOC, with occasional
+discharges below 40%. Around September 2020, the usage pattern changes, as can
+be seen by the current and SOC patterns. The mean subtracted cell voltages,
+
+                                                        1 X    n
+                                 u~i ðtÞ = ui ðtÞ                uj ðtÞ;               (Equation 1)
+                                                      n  1 j;jsi
+
+
+
+4       Cell Reports Physical Science 5, 102258, November 20, 2024
+ Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+ tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+                                                                                                                                           ll
+                                                                                                                                     OPEN ACCESS
+Article
+
+          A                                                                   B
+
+
+
+
+          C                                                                   D
+
+
+
+
+Figure 2. PDF estimates for each system
+Log probability density function (log-PDF) of current (A), log-PDF of cell voltages (B), log-PDF of SOC (C), and PDF of temperatures (D).
+
+
+
+where ui(t) is the voltage of cell i at time t and n is the number of cells, show
+average deviations below 0.1 V for the first 2 years of operation (Figure 3B).
+With increasing usage, i.e., increasing charge throughput and time and therefore
+also degradation, the average mean subtracted voltages increase, an indicator
+that individual cells age differently, likely due to cell-to-cell variations,50,51 and
+as a consequence, the system is less balanced. Similarly, the voltage standard
+deviations,
+               sﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+                     1 X         n                                      X
+                                                                      1 n
+      su ðtÞ =                        ðui ðtÞ  mðtÞÞ2 ; where mðtÞ =       ui ðtÞ; (Equation 2)
+                 n  1 i=1                                            n i=1
+
+are below 0.05 V for the first years; however, toward the end of use, the standard de-
+viation of cell voltages increases significantly.
+
+
+
+
+                                                                                      Cell Reports Physical Science 5, 102258, November 20, 2024          5
+    Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+    tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+              ll
+        OPEN ACCESS
+                                                                                                                                              Article
+
+
+
+
+Figure 3. Data visualization of battery system 8
+(A) Cell voltages.
+(B) Cell voltages with mean of other cells subtracted.
+(C) Cell voltage standard deviation.
+(D) Battery system current.
+(E) Cell balancing converter current.
+(F) State of charge.
+(G) Temperatures (each temperature sensor neighbors two cells; see Figure 1).
+(H) Data availability.
+Figures S10–S37 show the data visualization for all systems.
+
+
+
+To summarize, the data analysis of system 8 shows heavy usage over a 5-year period,
+totaling about 1,531 equivalent full cycles. However, based on the data visualization,
+it is challenging to further understand how cells degraded, whether certain cells
+
+
+6       Cell Reports Physical Science 5, 102258, November 20, 2024
+ Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+ tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+                                                                                                                                           ll
+                                                                                                                                     OPEN ACCESS
+Article
+
+
+
+
+Figure 4. Visualization of the ECM and GP kernels
+ECM with two series resistors and illustrations of random draws from the corresponding kernel
+functions. The radial basis function kernel depends on current, SOC, and temperature, and the
+Wiener velocity kernel depends on time, as suggested by Aitio et al. 28
+
+
+
+degraded more than others, or when the system might fail. Next, we explore how to
+use the battery data for internal state estimation suitable for tracking the aging
+behavior of the individual cells.
+
+GP equivalent circuit battery systems modeling
+GPs are suitable for modeling the time- and operating point behavior of batteries.28
+GPs, f ðxÞ  GPðmðxÞ;kðx;x 0 ÞÞ, are nonparametric probabilistic models defining a dis-
+tribution of functions. GPs are defined by a mean function mðxÞ and a covariance func-
+tion kðx; x 0 Þ, where x; x 0 ˛ X D and X D is the input space with dimension D. The
+modeled response y follows a Gaussian distribution, as does any marginal distribu-
+tion.52 GPs are a flexible modeling framework excelling in the case of limited data by
+making a point estimate and modeling the covariance associated with the prediction.
+
+We base our analysis on a GP-ECM model that uses an ECM consisting of two series
+resistors modeled by two additive kernels (Figure 4).28 For simplicity, we do not
+include resistor-capacitor (RC) circuit elements in the model; however, extending
+GP-ECM models to include RC circuit elements is an active research area.48 Here,
+the first resistor is modeled by a radial basis function (RBF) kernel taking the current,
+SOC, and temperature as inputs and is, therefore, only dependent on the operating
+point of the battery. The resulting RBF function estimates are infinitely many times
+differentiable and thus smooth, in agreement with what is expected experimentally
+(see Anseán et al.53 and Figure S1). A non-stationary Wiener velocity (WV) kernel
+models the second series resistor and depends only on time, based on the assump-
+tion that the time-dependent resistance will only increase due to degradation. See
+Duvenaud54 for more information on kernels. The underlying assumption of this
+‘‘R-R’’ model is that the operating-point-dependent equivalent circuit internal resis-
+tance and time-dependent resistance are additive. This assumption, while not
+exactly fulfilled by LIBs, is reasonable, allowing us to approximate and extract the
+equivalent circuit time-dependent resistance, i.e., a proxy of degradation.
+
+In addition, the open-circuit voltage (OCV) curve is needed. However, no precise OCV
+curve was available for the battery cells under consideration. Therefore, we linearly
+approximate the OCV plateau region of LFP (Figure S2). Physically, the linear OCV
+model approximates the distribution of particle-size-dependent nucleation barriers55
+for a porous electrode with a particular distribution of LFP particle sizes.56 In practice,
+any deviation from the true OCV will lead to a biased resistance; however, this bias is
+only a function of SOC and will, therefore, affect mainly the SOC dimension of the RBF
+kernel (Figure S1). Furthermore, even if a precisely measured OCV would be available
+at the beginning of life, the OCV is expected to change with degradation.
+
+
+                                                                                      Cell Reports Physical Science 5, 102258, November 20, 2024          7
+    Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+    tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+              ll
+        OPEN ACCESS
+                                                                                                                                              Article
+
+
+
+
+8       Cell Reports Physical Science 5, 102258, November 20, 2024
+ Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+ tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+                                                                                                                                            ll
+                                                                                                                                      OPEN ACCESS
+Article
+
+Figure 5. Time-dependent resistance estimates from Wiener velocity kernel
+Evaluation of the time-dependent Wiener velocity kernel equivalent circuit resistance for up to 40,000 randomly selected data points after
+downselection. Only systems for which >2,000 data points after downselection are available are shown (21 systems). Each subplot shows the equivalent
+circuit resistance for each cell, with the reference operating point set to 15 A, 90% SOC, and 25  C (top); the average daily temperature of all sensors
+(middle); and a logarithmically scaled bar plot in red visualizing the available data (bottom). The results are described in more detail in Table 2.
+
+
+An advantage of using a GP in comparison to other ways of filtering or smoothing
+the resistances is that the GP framework allows separating the time-dependent resis-
+tance from the operating-point-dependent resistance. The GP estimated resis-
+tances might not be identical to the internal cell resistance; see Islam et al.57 for a
+discussion. However, here we are mainly concerned with monitoring changes in
+the time-dependent battery resistance.
+
+The GP-ECM algorithm consists of the following steps for a single cell. First, voltage,
+current, SOC, and time are extracted and downselected. The aim is to select data
+points with significant information for the learning tasks and to avoid sparse extreme
+conditions where few data are available or the simple R-R model is less suitable. We
+use discharging sections only because, in the dataset, there are more dynamics dur-
+ing discharging. Further selection criteria outlined in the experimental procedures
+section are applied to limit the considered SOC window, discharge current range,
+and temperature conditions (Table 3). We selected the latest section with no gaps
+longer than 100 days and required at least 2000 valid data points, resulting in a se-
+lection of 21 systems for modeling.
+
+Based on the pack layout, eight cells in series, and one parallel string (8s1p), we
+generate a model for each cell, resulting in eight models for each battery system.
+We use exact GPs to get an overview of the dataset but move to recursive spatio-
+temporal GPs in the next section for online monitoring (see the experimental pro-
+cedures section for more details). To keep the space and computational
+complexity feasible for the exact GP, we further downselect each cell to a
+maximum of 40,000 measurements by selecting data with linearly spaced indices
+of the preselected data. The hyperparameters are optimized as outlined in the
+experimental procedures section. Identical hyperparameters are used for all bat-
+tery systems because the hyperparameters characterize the system behavior,
+and all systems are identical in construction. Even though the batteries were oper-
+ated in different applications with different average operating points, GPs can
+handle these differences. The GP inference takes, on average, 11 s per cell on
+an NVIDIA A100 GPU using 40,000 data points.
+
+The GP modeling results (Figure 5) show the time-dependent resistance modeled by
+the WV kernel at the same reference operating point for all systems (15 A, 90%
+SOC, 25 C). Table 2 gives an overview of the equivalent full cycle count, available
+data, section length modeled by the GP, and intriguing cells. In addition, Table 2 de-
+scribes the modeling results for each system in more detail. Further modeling results
+that use the mean of each system’s selected data as a reference operating point (Fig-
+ure S9) support the conclusions in Table 2.
+
+Systems 6, 8, and 21 show a high range of operating temperatures, likely due
+to seasonal temperature variations. These variations pose challenges for the
+GP framework because the WV kernel resistance estimates are affected by the
+temperature variations, with lower temperatures leading to higher resistance
+estimates.53,58 Consequently, using the resistance time derivative for fore-
+casting as suggested by Aitio et al.28 for lead-acid batteries appears challenging
+for LIBs.
+
+
+                                                                                       Cell Reports Physical Science 5, 102258, November 20, 2024         9
+     Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+     tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+               ll
+         OPEN ACCESS
+                                                                                                                                                      Article
+
+Table 2. Overview of GP modeling results
+Subplot,            Equivalent       Max age        GP section        Intriguing
+system ID           full cycles      (days)         (days)            cells            Comments
+a, 1                14               1,402          580               7                cell 7 behaves differently from the other cells
+b, 2                6                982            204               6, 8             cells 6 and 8 show a slightly higher resistance than the other cells
+c, 3                11               160            54                7                cell 7 shows an upward resistance trend, while other cells have fairly
+                                                                                       constant resistances
+d, 4                185              528            176               1                cell 1 shows an upward resistance trend, while other cells have fairly
+                                                                                       constant resistances
+e, 5                29               2,166          44                –                flat resistances; cell 1 shows a slightly higher resistance than the other
+                                                                                       cells when the mean of the selected data is used as a reference point
+                                                                                       (see Figure S9)
+f, 6a               1,446a           1,352a         1,113a            8a               cell 8 has a slightly higher resistance than the other cells and shows a
+                                                                                       resistance knee after 3 yearsa
+g, 7                15               428            122               5, 7, 8          cells 5, 7, and 8 show different trends in comparison to the other cells
+h, 8a               1,531a           1,923a         1,476a            –                all cells show a resistance increase close to the end of the available
+                                                                                       data; seasonal temperature variations are affecting resistance
+                                                                                       estimatesa
+i, 9a               489a             534a           322a              2a               after approximately 230 days, cell 2 shows a knee-shaped resistance
+                                                                                       increasea
+j, 10a              211a             417a           241a              7, 8a            cell 8 shows an increasing resistance after 100 days; cell 7 behaves
+                                                                                       slightly differently from the other cellsa
+k, 11               15               997            185               –                lower average current than most other systems; unclear interpretation
+l, 12               93               320            71                8, 7             cells 8 and 7 show different behavior (see also Figure S9); significantly
+                                                                                       higher temperatures were measured by temperature sensor 4 (see
+                                                                                       Figure S21)
+m, 13               23               724            183               –                lower average current than most other systems; unclear interpretation
+n, 14               23               376            117               1                cell 1 shows a lower resistance to the other cells
+o, 15               17               1,217          187               –                many data gaps; unclear interpretation
+p, 16               34               408            332               4                cell 4 shows a lower resistance to the other cells
+q, 17               21               889            218               3                cell 3 shows a much higher resistance to the other cells
+r, 18a              453a             301a           182a              –                all cells show increasing resistance toward the end of use; unclear
+                                                                                       interpretationa
+s, 19               28               712            185               –                lower average current than most other systems; unclear interpretation
+t, 20               22               724            183               –                lower average current than most other systems; unclear interpretation
+u, 21a              1,088a           779a           377a              –                all cells show increasing resistance toward the end of use; unclear
+                                                                                       interpretation; temperature variations affect resistance estimatesa
+a
+    These systems have the highest equivalent full cycle count and are analyzed further.
+
+
+
+For ten systems (1, 2, 3, 4, 6, 9, 10, 12, 14, 16, 17), a single cell or two cells
+behave differently than the remaining cells (Figure 5; Table 2). A single cell shows
+a knee-shaped resistance behavior for four systems (3, 4, 6, 9). Battery system 8
+shows an increasing resistance trajectory for all cells at roughly the same time. Sys-
+tems 6, 8, and 9 have a high equivalent full cycle count (1,446, 1,531, and 489). Their
+resistance trajectories suggest that these systems were healthy for most of their
+operation, with degradation accelerating toward the end of use.
+
+These resistance patterns can have a wide variety of root causes. To further under-
+stand the cause of individual degradation, a mechanical inspection of the systems
+would be needed, which cannot be done because the returned battery systems
+are not physically available to the authors. Furthermore, the model cannot distin-
+guish between battery degradation, external degradation, or faults such as
+connector loss, corrosion, connector resistance increase, etc. Learning the battery
+operating-point-dependent equivalent resistance can be challenging with few
+data, resulting in larger uncertainty bands. In addition, the output scale parameter
+of the WV kernel was optimized to track battery degradation (cf., experimental pro-
+cedures section). Therefore, it can be challenging for the GP to quickly capture sud-
+den faults such as connector loss or others (see Note S4 and Figures S5–S7 for more
+
+
+10       Cell Reports Physical Science 5, 102258, November 20, 2024
+ Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+ tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+                                                                                                                                           ll
+                                                                                                                                     OPEN ACCESS
+Article
+
+details), emphasizing that this method is complementary to faster signal-based fault
+detection methods.
+
+The operating characteristics, i.e., R(I, SOC, T), modeled by the RBF kernel
+(Figure S1), are consistent with physical expectations and experimental data from
+Anseán et al.53 The current-dependent resistance shows a downward trend with
+increasing discharge current.59,60 The SOC-dependent resistance is fairly flat.
+Some unexpected small upward and downward trends can be attributed to the
+linear pseudo-OCV (Figure S2). The temperature characteristics show increasing
+resistance at low and very high temperatures, in line with physical expectations.
+For a more detailed discussion, see Note S1.
+
+
+Fault probabilities
+Based on the observations on the entire dataset, we investigate how the six systems
+with the highest equivalent full cycle count (systems 6, 8, 9, 10, 18, and 21)
+degraded.
+
+Often, only a single cell deviates from the remaining cells (see Table 2; Figure 5).
+Therefore, we propose defining a battery pack consisting of cells in series to have
+an acceptable resistance distribution if the internal resistances of each cell are within
+a resistance band centered around a robust estimate of the mean of the other cells.
+We use the Hodge-Lehman estimator61 to estimate the location (i.e., the mean) of
+cell resistances. The Hodge-Lehman estimator is defined as the median of the
+mean of all possible pairs of cell resistances, including self-pairs,
+
+                                      Si = f1; 2; .; ng\fig                          (Equation 3)
+
+
+                    b                   Rj ðtÞ+Rk ðtÞ
+                    q Ri ðtÞ = medj % k              ; j; k ˛ Si ;                   (Equation 4)
+                                              2
+where n = 8, the number of cells. The probability of a cell i to be outside a resistance
+band that is 2b wide is
+
+         pðFRi ðtÞÞ = pðRi ðtÞ > b
+                                 q Ri ðtÞ + bÞ + pðRi ðtÞ < b
+                                                            q Ri ðtÞ  bÞ:           (Equation 5)
+The GP provides the mean and probabilities needed to calculate pðFRi ðtÞÞ. We pro-
+pose defining the probability of a pack resistance fault, pðFRp Þ, as
+                                 Y                  
+                p FRp ðtÞ = 1        1  pðFRi ðtÞðiÞÞ               (Equation 6)
+                                           i
+
+according to the true ‘‘weakest link’’ failure statistics for cells connected in se-
+ries.62–64 In the limit of failures dominated by a single cell, the pack resistance fault
+can be approximated by
+                                          
+                                  p FRp ðtÞ zmaxi pðFRi ðtÞÞ:               (Equation 7)
+
+Similarly, battery packs can be faulty or at the end of their life if cells exceed an upper
+resistance threshold,
+
+                                  pðFRmi ðtÞÞ = pðRi ðtÞ > cÞ                        (Equation 8)
+
+                                         Y                   
+                    pðFRm ðtÞÞ = 1            1  pðFRmi ðtÞÞ :                     (Equation 9)
+                                           i
+
+However, in the following analysis, we only focus on the resistance distribution because
+the resistance at t = 0 differs significantly between systems (Figure 5). The different use
+cases, with different operating conditions of the systems, can affect the operational
+
+
+                                                                                      Cell Reports Physical Science 5, 102258, November 20, 2024      11
+ Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+ tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+            ll
+      OPEN ACCESS
+                                                                                                                                               Article
+
+ A                                                                              B
+
+
+
+
+ C                                                                              D
+
+
+
+
+ E                                                                              F
+
+
+
+
+Figure 6. Online forward fault probabilities
+Resistance distribution-based fault probabilities for each cell in different colors. Variance of the GP resistance mean in black. Systems 6, 8, 9, 10, 18, and
+21 are shown. These systems have the highest equivalent full cycle count. The GP fault probabilities after applying the Rauch-Tung-Striebel smoother
+are shown in Figure S8.
+
+
+characteristics learned by the RBF kernel (Figure S1) and lead to such variations. How to
+address this issue remains an open question for further research.
+
+In an online setting, the ECM-GP needs to be updated continuously as new data arrive.
+The computational complexity of exact GPs scale with Oðn3 Þ, where n is the number of
+data points, making it computationally infeasible to update the model continuously us-
+ing all selected data. Therefore, we use a recursive spatiotemporal GP, which scales lin-
+early with the number of data points,28,46,47 allowing the processing of millions of data
+points on a laptop computer suitable for use in embedded BMS systems or efficient cal-
+culations in the cloud for thousands of systems. Our approach is motivated by the
+approach developed by Aitio et al.28 but is not identical. A detailed description of the
+approach, as well as details on computation time, are given in the experimental proced-
+ures section. The spatiotemporal GP walks forward in time using a Kalman filter.
+
+We use the estimate of the Kalman filter at time tk, which only depends on data up to
+time tk to calculate the fault probabilities (Figure 6; see Figure S6 for the correspond-
+ing spatiotemporal GP resistance estimates). We set b = 0:55 mU based on the
+resistance spread observed at the beginning of the life of the batteries for the inves-
+tigated systems. The forward fault probabilities (Figure 6) fluctuate more than the GP
+fault probabilities (Figure S8), which is expected because they only depend on past
+data. In particular, the forward fault probabilities need a certain amount of data to
+settle in, here in the order of 30–200 days, depending on the usage of the system.
+During this initial period, the GP learns the operating point characteristics of the sys-
+tems (Figure S1). Pre-initializing the matrices of the spatiotemporal GP based on lab-
+oratory test data could mitigate this issue. However, here we do not have access to
+the physical systems, and the systems were operated in very different ways; there-
+fore, pre-initialization is an open question for future work.
+
+
+12    Cell Reports Physical Science 5, 102258, November 20, 2024
+ Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+ tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+                                                                                                                                           ll
+                                                                                                                                     OPEN ACCESS
+Article
+
+System 6: the fault probability of cell 8 is significantly higher than that of the other
+cells even after the Kalman filter settled in after approximately 200 days. After
+500 days, the fault probability of cell 8 starts increasing and crosses 0.5 shortly
+before 800 days. The remaining cells have a very low fault probability. After
+900 days, the fault probabilities of cell 3, the cell with the lowest estimated resis-
+tance, increases, too.
+
+System 8: the mean resistances associated with system 8 show seasonal variations
+(Figure 5H) with higher resistance estimates at lower temperatures despite having
+a fixed temperature to the operating point. Around 1,100–1,200 days, multiple
+cell resistance fault probabilities and the weakest link statistic increase sharply,
+coinciding with the lower temperatures. Around 1,300 days, the weakest link statistic
+reaches values close to 1, agreeing with the increasing spread between cell
+resistances. To summarize, system 8 reached an equivalent full cycle count of
+1,531 cycles, with seasonal temperature variations but a long-term upward resis-
+tance trend with increasingly inhomogeneous resistance as commonly observed
+by cell-to-cell variability.50
+
+System 9: the fault probabilities increase quickly around day 250 for cell 2. In
+contrast, the other cells have a low fault probability, except for cell 1, which might
+be affected because it shares a temperature sensor with cell 2.
+
+System 10: the fault probabilities do not settle in. In particular, the resistance prob-
+ability of cell 8 increases again after 120 days. The fault probabilities suggest that
+there was an issue early on, in line with the end of use after 211 equivalent full cycles
+(Table 2).
+
+System 18: the fault probabilities settle in after around 30 days, with only minor
+fluctuations afterward and some peaks for cell 8 toward the end of use. No clear
+conclusion is reached by this analysis. .
+
+System 21: the fault probabilities settle in after 50 days. The fault probabilities of
+cells 1, 2, and 3 increase temporarily around 100–140 days. The fault probabilities
+of cell 1 increase again after 330. Given the mostly flat and only slightly increasing
+resistance trend toward the end of use for this system (Figures 5 and S6), no clear
+conclusion can be reached from it.
+
+The proposed fault probabilities are suitable for analyzing field data and online
+monitoring. However, a couple of challenges remain, in particular how to mitigate
+the influence of seasonal temperature variations on the WV kernel and reduce the
+time it takes for the Kalman filter to settle in. Further investigations are needed to
+determine how suitable the proposed approach is for the early detection of specific
+fault types. For example, thermal runaway, the most safety-critical fault, can have
+different causes. If the cause is abrupt physical damage to the battery, a GP-based
+approach might struggle to capture it quickly. For such a case, purely signal-based
+approaches are more suitable because speed is the most important factor. However,
+if the cause of thermal runaway is slow degradation with partial electrode dry-out
+and dendrite growth, then there is a chance that such a thermal runaway trigger
+can be picked up in the resistance change and resistance distribution. The proposed
+fault probabilities can be used for fault detection; this would require the following:
+first, a reference operating point; second, a fault probability threshold; third, a
+band b; and fourth, an upper threshold c. These values should be chosen based
+on the application and system characteristics, such as cell balancing design, pack
+
+
+                                                                                      Cell Reports Physical Science 5, 102258, November 20, 2024      13
+ Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+ tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+              ll
+      OPEN ACCESS
+                                                                                                                                           Article
+
+Table 3. Data selection criteria
+Charging/discharging                                                            Discharge only
+Temperature ( C)                                                               10 < x < 100
+Current (A)                                                                       80 < x <  5
+SOC (%)                                                                         40 < x < 95
+
+
+layout, and cell-to-cell variability. We did not carry out fault detection because the
+specific fault types and times are unknown for this dataset.
+
+To summarize, health monitoring, fault analysis, and detection methods are
+important for the safe operation of battery systems. We use a recursive and exact
+GP electrical circuit modeling pipeline to analyze faults from field data with measure-
+ment noise without precise knowledge of the OCV. The estimated time-dependent
+equivalent circuit internal resistance is one possible SOH metric for LIB packs.
+Furthermore, we developed resistance fault probabilities using the individual cell
+resistance of the cells in a pack, which is suitable for early online monitoring and
+could be extended into a fault detection framework. The methods are motivated
+and tested on a large field dataset comprising 28 battery systems and 133 million
+data rows. The results show that often, a single cell with abnormal performance
+can cause the end of a system’s use and suggest that such faults can be detected
+with the proposed GP electrical circuit modeling approach. Such an occurrence
+can be caused after heavy use due to degradation or other issues. Furthermore,
+the results support that if a cell has a higher resistance early on, then this can already
+be an indicator that this cell will age faster than the remaining cells. Physically, this
+could occur by enhanced resistive heating of the most degraded cell, thereby accel-
+erating its degradation,65 which has been observed in the case of LIBs connected in
+series.66 Last, the results suggest that, for larger battery packs, advanced pack
+layouts that allow the permanent bypass of a more strongly degraded cell can be
+advantageous in prolonging the life of a system. We outlined several remaining
+research challenges. To conclude, this analysis furthers the understanding of how
+batteries degrade and fail in the field and demonstrates the potential of online moni-
+toring. We publish the dataset associated with this article and the software, BattGP,
+making data and tools for analyzing and modeling battery field data available to the
+community.
+
+EXPERIMENTAL PROCEDURES
+Data selection
+The data selection criteria (Table 3) are applied to each cell individually.
+
+GPs
+GPs are a flexible modeling framework excelling in the case of limited data by mak-
+ing a point estimate and modeling the covariance associated with the prediction.
+GPs are nonparametric probabilistic models fully defined by a mean function mðxÞ
+and a covariance function kðx; x 0 Þ, where x; x 0 ˛ X D . A GP is usually written as
+
+                                   f ðxÞ  GPðmðxÞ; kðx; x 0 ÞÞ;                   (Equation 10)
+making it explicit that GPs describe a distribution of functions. The GP posterior
+predictions are normally distributed, i.e., any marginal distribution of the GP is
+Gaussian. Furthermore, all joint distributions associated with a finite number of
+elements of the index set are multivariate normal distributions. See Williams and
+Rasmussen52 for further information. Assuming that we have no noisy observations
+ðxo;i ; yo;i Þ with yo;i = f ðxo;i Þ + ei , where ei is Gaussian noise with variance s2n , the
+predictive GP equations are
+
+
+14    Cell Reports Physical Science 5, 102258, November 20, 2024
+ Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+ tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+                                                                                                                                           ll
+                                                                                                                                     OPEN ACCESS
+Article
+                                                           1
+                  mjo ðX Þ = KðX ; Xo Þ KðXo ; Xo Þ+s2n I yo                     (Equation 11)
+
+                                                             1
+      Sjo ðX Þ = KðX ; X Þ  KðX ; Xo Þ KðXo ; Xo Þ+s2n I KðXo ; X Þ;         (Equation 12)
+
+where X = ½x;1 /x;n  denotes the n test locations, Xo = ½xo;1 /xo;no  denotes the
+training locations with responses yoT = ½yo;1 /yo;no , and K(X1,X2) denotes the covari-
+ance matrix that is constructed by applying the kernel function to all pairs of column
+vectors from X1 and X2 (for a full derivation, see Williams and Rasmussen52).
+
+The training of a GP refers to the choice of kernel function and the optimization of
+associated hyperparameters, usually based on optimizing the marginal likelihood
+of the training data. Subsequently, the posterior distribution can be calculated for
+points of interest by inference using Equations 11 and 12.
+
+SE kernel
+The squared exponential (SE) kernel is a smooth, infinitely many times differentiable
+kernel that only depends on the distance of data points and is given for 1D x by
+                                                          !
+                                                        2
+                                            jx  x 0 j
+                  kSE ðx; x 0 Þ = s2SE exp                  :          (Equation 13)
+                                               2l2
+
+We use three input dimensions—current, SOC, and temperature—and combine
+three 1D RBF kernels to
+                                                 !                            !
+                      Y3
+                                     xd  xd0
+                                               2
+                                                               X  xd  xd0 2
+                                                                3
+                 0
+   kSE;3ARD ðx; x Þ =     sSE;d exp
+                           2
+                                                   = sSE;3 exp
+                                                      2
+                                                                               ;
+                      d=1
+                                        2ld2                   d=1
+                                                                     2ld2
+                                                                                   (Equation 14)
+which is known as the SE-ARD kernel (ARD denotes ‘‘automatic relevance
+detection’’ because each length scale represents the importance of its associated di-
+rection; for more information, see Duvenaud54). There are four hyperparameters
+associated with the 3D SE-ARD kernel: the output scale s2SE;3 , the length scale asso-
+ciated with the current dimension l1 = lI, the length scale associated with the SOC
+dimension l2 = lSOC, and the length scale associated with the temperature dimension
+l3 = lT.
+
+WV kernel
+The WV model corresponds to the integrated Wiener process.67 The WV covariance
+function or kernel is defined by
+
+                                   min3 ft; t 0 g              min2 ft; t 0 g
+           kWV ðt; t 0 Þ = s2WV                   + jt  t 0 j                :    (Equation 15)
+                                       3                           2
+The WV kernel has one hyperparameter: the WV output scale, s2WV .
+
+The resulting kernel is
+
+                  kðx; t; x 0 ; t 0 Þ = kSE;3ARD ðx; x 0 Þ + kWV ðt; t 0 Þ:        (Equation 16)
+Including the noise variance s2n , there are six hyperparameters that define the char-
+acteristics of the GP used in this article.
+
+
+Spatiotemporal GPs
+A large number of data points are recorded during the operation of a battery.
+Ideally, all samples that fulfill the data selection criteria are used, but a classical exact
+GP prevents this due to the unfavorable scaling of compute and memory usage. To
+
+
+
+                                                                                      Cell Reports Physical Science 5, 102258, November 20, 2024      15
+ Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+ tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+           ll
+     OPEN ACCESS
+                                                                                                                                           Article
+
+address this issue, we follow Huber47 and Solin67 and leverage the fact that we can
+interpret the GP as a spatiotemporal GP. For lead-acid batteries, a spatiotemporal
+GP approach has been shown by Aitio et al.28
+
+A temporal GP, i.e., a GP that depends on only one variable, can be written as a Kal-
+man filter,46,67 which makes it scale linearly with the number of data points, with the
+restriction that the data points must be given in a sorted manner. Here, the variable is
+actually time; therefore, this does not impose further restrictions.
+
+A spatiotemporal GP67 is a GP that depends on multiple variables, one of which can
+be regarded as the time variable and the others being the spatial variables,
+
+                                                    t
+                                            x =        :
+                                                    xs
+
+This concept leads to an infinite-dimensional Kalman filter that propagates the
+mean and variance functions over the time points. When using only a finite num-
+ber of spatial vectors, this eventually leads to a classical, finite-dimensional Kal-
+man filter.67
+
+We cannot restrict the actual measured data locations to a finite set. Therefore, we
+combine the spatiotemporal approach with the recursive approach from Huber.47 In
+this approach, the spatial part of the GP is not represented exactly but is represented
+by nb predefined basis vectors xs,b,i that are collected into
+                                                          
+                           Xb = xs;b;1 xs;b;2 / xs;b;nb :
+
+Combining these two approaches leads to the following procedure, which is similar
+but not identical to the method used by Aitio et al.28 The difference is mentioned
+below.
+
+The state z of the Kalman filter,
+
+                                                    zt
+                                            z =        ;
+                                                    zs
+
+comprises two parts. zt corresponds to the representation of the temporal kernel. In
+the case of the WV kernel, it contains two scalar values: the first represents the mean
+value, and the second is the time derivative of the mean value.67 zs corresponds to
+the spatial kernel, and for the Huber approach,47 these are the mean values at the
+specified basis vectors Xb.
+
+Evaluation
+Given the state zkjk and its covariance matrix Pkjk at the time tk and built with all in-
+formation available until tk, the mean and covariance at this time point can be calcu-
+lated by
+                                             
+                                   mjk Xq ; tk = Hzkjk                   (Equation 17)
+
+                           
+                 Sjk Xq ; tk = Kqq + HPkjk HT  Hs Kbb HTs :                       (Equation 18)
+
+The mean and the covariance of the GP at nq spatial vectors xs;q;i are collected into Xq
+similar to Xb. Furthermore, we use the abbreviations
+
+                        Kbb                                              
+                               ˛ Rnb 3 nb ; ðKbb Þi;j = ks xs;b;i ; xs;b;j and
+                        Kqq                                              
+                                 ˛ Rnq 3 nq ; Kqq i;j = ks xs;q;i ; xs;q;j
+
+
+
+
+16   Cell Reports Physical Science 5, 102258, November 20, 2024
+ Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+ tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+                                                                                                                                                ll
+                                                                                                                                           OPEN ACCESS
+Article
+
+for the covariance at the basis vectors and the covariance at the queried locations,
+respectively.
+
+The measurement matrix
+
+                                         H = ½ Ht         Hs                           (Equation 19)
+is partitioned according to z. The temporal part
+                                         2     3
+                                           1 0
+                                    Ht = 4 « « 5                                        (Equation 20)
+                                           1 0
+
+reflects that for the WV kernel with the chosen representation, the first associated
+state corresponds to the mean. The spatial part is
+                                                   1
+                                         Hs = Kqb Kbb ;                                 (Equation 21)
+
+with
+                                                                      
+                           Kqb ˛ Rnq 3 nb ; Kqb i;j = ks xs;q;i ; xs;b;j
+
+given by Huber.47 Here, our approach differs from the approach described by Aitio
+et al.28 In Equation 21, only the inverse of Kbb is needed, which is known a priori and
+can be calculated offline. The corresponding term used by Aitio et al.28 includes an
+additional part that depends on the current state; thus, the inverse must be calcu-
+lated in each step anew.
+
+Prediction step
+The prediction step of the Kalman filter is performed identically to Aitio et al.,28
+
+                                    zkjk  1 = AðTs Þzk 1jk  1
+
+                          Pkjk  1 = AðTs ÞPk 1jk  1 AT ðTs Þ + QðTs Þ;
+
+with
+
+                Pt ð0Þ     0                   At ðTs Þ     0                      Qt ðTs Þ     0
+       Pð0Þ =                   ; AðTs Þ =                    ; and QðTs Þ =                      ;
+                  0      Ps ð0Þ                   0         I                         0         0
+
+where Ts = tk  tk  1 is the length of the time step that may be different for each
+prediction step. The structure of these matrices shows the decoupling of the two
+parts, i.e., the spatial state is not influenced by the time step. However, due to the
+correction step, the covariance matrix will not retain its initial block diagonal
+structure.
+
+For the WV kernel (Equation 15), which is used as temporal kernel, the correspond-
+ing matrices are
+                                                             ""          ##
+              0 0                1 Ts                          Ts3 3 Ts2 2
+    Pt ð0Þ =        ; At ðTs Þ =       and Qt ðTs Þ = s2WV =                 :
+              0 0                0 1                           T2 2     Ts     s
+
+The initial value for the spatial covariance matrix is Ps ð0Þ = Kbb .          28,67
+
+
+
+Correction step
+When new measurements (Xm,k, ym,k) arrive, the Kalman filter performs a correc-
+tion step
+                                                          
+                   zkjk = zkjk  1 + Kk ym;k  Hk zkjk  1
+                   Pkjk = Pkjk  1  Kk Hk Pkjk  1 :
+
+
+
+                                                                                              Cell Reports Physical Science 5, 102258, November 20, 2024   17
+ Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+ tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+           ll
+     OPEN ACCESS
+                                                                                                                                           Article
+
+Xm,k is a matrix that contains the locations of the nm,k measurements, ym,k is a vec-
+tor giving the measured output for each location in Xm,k, and Hk is the measure-
+ment matrix build as in Equation 19 with Xq = Xm,k. The Kalman gain Kk is calcu-
+lated by
+                                                         1
+                      Kk = Pkjk  1 HTk Sjk ðXm;k Þ+s2n I ;                        (Equation 22)
+
+where Sjk ðXm;k Þ is given by Equation 18 with Xq = Xm,k. This step differs from Aitio
+et al.28 by the different evaluation mentioned above and another measurement
+model.
+
+Remark 1
+If nm,k = 0, i.e., no measurement data were acquired within the last time step, the
+correction step can be skipped, and the algorithm proceeds with the next prediction
+step. Alternatively, the algorithm could wait until new data are available and then
+perform a larger prediction step.
+
+Remark 2
+In a standard Kalman filter setup, the correction step can be performed iteratively
+for each group of measurements that is not correlated with measurements outside
+this group. Consequently, for the case here, where we model the measurement
+noise with the covariance matrix s2n I, i.e., all measurements are uncorrelated, each
+measurement could be processed individually, thus rendering the matrix inverse
+in Equation 22 a scalar inversion. However, due to some simplifications in the
+approach of Huber47 that led to the filter equations, processing each measurement
+individually or multiple measurements together in a minibatch is not analytically
+equivalent for this application. Based on case studies, it seems to be advantageous
+to add measurements in larger groups.
+
+RTS smoother
+The Rauch-Tung-Striebel (RTS) smoother allows for the calculation of the state
+and covariance and, thus, the estimates mjn ðXq ; tk Þ and Sjn ðXq ; tk Þ at all time points
+tk under consideration of the complete measured data of the n time points. This
+smoother starts with the variables znjn and Pnjn of the last Kalman filter correction
+step and iterates backward68 using
+                                                           
+                           zkjn = zkjk + Gk zk+1jn  zk+1jk                   (Equation 23)
+
+                                                    
+                     Pkjn = Pkjk + Gk Pk+1jn  Pk+1jk GTk                          (Equation 24)
+
+for k = n  1; n  2; . with
+                                                         1
+                                 Gk = Pkjk Aðtk+1  tk ÞPk+1jk :                   (Equation 25)
+
+The output values mjn ðXq ; tk Þ and their variances Sjn ðXq ; tk Þ for each time point tk can
+be calculated by Equations 17 and 18 by replacing zkjk with zkjn and Pkjk with Pkjn .
+
+To evaluate Equations 23, 24, and 25, the values zkjk and Pkjk calculated by the for-
+ward pass of the Kalman filter are needed. Thus, these values must be stored while
+performing the forward filtering pass. zk+1jk and Pk+1jk could be either stored also or
+calculated anew from zkjk and Pkjk by reevaluating the prediction step.
+
+Implementation
+The batteries are mostly sampled with 5 s, which, with the very small magnitude of
+sensible parameters for the output scale of the WV kernel, leads to numerical issues
+in performing the prediction steps.
+
+
+18    Cell Reports Physical Science 5, 102258, November 20, 2024
+ Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+ tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+                                                                                                                                           ll
+                                                                                                                                     OPEN ACCESS
+Article
+
+Therefore, we define a sampling time for the updates (1 h) and process all
+data captured within this interval at the same update time point. If no data
+were recorded within this hour, then we only performed a new prediction step
+without the update to set an evaluation point for the later backward smooth-
+ing pass.
+
+Selection of basis vectors
+The selection of basis vectors can be done in different ways. Similar to Aitio et al.,28
+we found that using k-means to select the basis vectors is effective, i.e., the
+results and confidence intervals of the spatiotemporal GP with 36 basis vectors
+selected by k-means as well as the reference operating point, resulting in 37
+basis vectors, resemble fairly closely the results of the full GP with up to 40,000
+data points (compare Figures S4 and 5). To calculate the fault probabilities, we
+use 60 basis vectors selected with k-means. However, in an online setting, there
+will be no data available at the beginning. Therefore, as an alternative, we propose
+placing vectors linearly within the range of the data selection criteria and setting a
+constraint based on the length scale of the associated measurement (see Note S3
+for more details).
+
+Hyperparameter tuning
+All battery systems contain the same prismatic cell type with the same specifications.
+Therefore, the aim is to find a single hyperparameter set that can be used for all
+cells. We optimized the marginal likelihood for all cells of systems 6 and 8 individu-
+ally using an exact GP and 20,000 data points for each cell. Systems 6 and 8 have the
+highest equivalent full cycle counts and were operated over a large temperature
+range. Subsequently, we chose the median of each hyperparameter, assuming
+that the parameters are mutually independent. We do not formulate an optimization
+problem for the spatiotemporal GP but use the hyperparameters found by the
+exact GP.
+
+Software and hardware details
+The full GP is solved on an NVIDIA A100 GPU with 80 GB RAM. We use the Python
+GPytorch framework, allowing us to solve an exact GP with 40,000 data points in 11 s
+on average. The recursive GP is solved on a MacBook Pro with a 10-core M1 chip,
+taking approximately 22 s for the forward Kalman filter and 6 s for the RTS smoother
+for a single cell of system 8 with 35,000 time steps, 320,000 data points, and 61 basis
+points.
+
+RESOURCE AVAILABILITY
+Lead contact
+Requests for further information and resources should be directed to and will be fulfilled by the lead
+contact, Rolf Findeisen (rolf.findeisen@iat.tu-darmstadt.de).
+
+
+Materials availability
+This study did not generate new unique reagents.
+
+
+Data and code availability
+    The latest version of the associated Python software BattGP is available on GitHub (https://
+     github.com/JoachimSchaeffer/BattGP).
+    The dataset is available on Zenodo (https://zenodo.org/records/13715694).
+
+
+ACKNOWLEDGMENTS
+We would like to thank numerous people from the data provider for their outstanding support
+throughout this project; however, we cannot name them due to the condition of anonymity from
+the data provider. In particular, we are truly grateful for the outstanding support from our initial
+
+
+
+                                                                                        Cell Reports Physical Science 5, 102258, November 20, 2024    19
+  Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+  tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+            ll
+      OPEN ACCESS
+                                                                                                                                                         Article
+
+contact person at the data provider; without you, this work would not have been possible. The work
+was financed through base funding from the Technical University of Darmstadt.
+
+
+AUTHOR CONTRIBUTIONS
+Conceptualization, J.S.; methodology, J.S., E.L., and D.G.; software, J.S., E.L., and D.G.; validation,
+J.S.; formal analysis, J.S. and E.L.; investigation, J.S. and D.G.; data curation, J.S. and D.G.; writing –
+original draft, J.S.; writing – review & editing, J.S., E.L., D.G., M.Z.B., R.D.B., and R.F.; visualization,
+J.S. and E.L.; supervision, R.D.B. and R.F.; resources, R.F.; funding acquisition, R.F.
+
+
+DECLARATION OF INTERESTS
+The authors declare no competing interests.
+
+
+SUPPLEMENTAL INFORMATION
+Supplemental information can be found online at https://doi.org/10.1016/j.xcrp.2024.102258.
+
+
+Received: May 28, 2024
+Revised: August 21, 2024
+Accepted: September 28, 2024
+Published: October 25, 2024
+
+
+REFERENCES
+ 1. Blomgren, G.E. (2016). The development and            9. Li, W., Rentemeister, M., Badeda, J., Jöst, D.,      16. Samadani, E., Farhad, S., Scott, W., Mastali, M.,
+    future of lithium ion batteries. J. Electrochem.         Schulte, D., and Sauer, D.U. (2020). Digital twin         Gimenez, L.E., Fowler, M., and Fraser, R.A.
+    Soc. 164, A5019–A5025. https://doi.org/10.               for battery systems: Cloud battery                        (2015). Empirical modeling of lithium-ion
+    1149/2.0251701jes.                                       management system with online state-of-                   batteries based on electrochemical impedance
+                                                             charge and state-of-health estimation.                    spectroscopy tests. Electrochim. Acta 160,
+ 2. European Union (2023). Regulation (eu) 2023/             J. Energy Storage 30, 101557. https://doi.org/            169–177. https://doi.org/10.1016/j.electacta.
+    1542 of the european parliament and of the               10.1016/j.est.2020.101557.                                2015.02.021.
+    council of 12 july 2023 concerning concerning
+    batteries and waste batteries, amending              10. Pozzato, G., Allam, A., Pulvirenti, L., Negoita,      17. Severson, K.A., Attia, P.M., Jin, N., Perkins, N.,
+    directive 2008/98/ec and regulation (eu) 2019/           G.A., Paxton, W.A., and Onori, S. (2023).                 Jiang, B., Yang, Z., Chen, M.H., Aykol, M.,
+    1020 and repealing directive 2006/66/ec. O.J. L          Analysis and key findings from real-world                 Herring, P.K., Fraggedakis, D., et al. (2019).
+    191/1 66, 1–117. https://eur-lex.europa.eu/eli/          electric vehicle field data. Joule 7, 2035–2053.          Data-driven prediction of battery cycle life
+    reg/2023/1542/oj.                                        https://doi.org/10.1016/j.joule.2023.07.018.              before capacity degradation. Nat. Energy 4,
+                                                                                                                       383–391. https://doi.org/10.1038/s41560-019-
+ 3. Hanicke, M., Ibrahim, D., Jautelat, S., Torscht,     11. Ward, L., Babinec, S., Dufek, E.J., Howey, D.A.,          0356-8.
+    L., van de Rijt, A., Linder, M., and Schaufuss, P.       Viswanathan, V., Aykol, M., Beck, D.A., Blaiszik,
+    (2023). Battery demand is growing–and so is              B., Chen, B.-R., Crabtree, G., et al. (2022).         18. Jones, P.K., Stimming, U., and Lee, A.A. (2022).
+    the need for better solutions along the value            Principles of the battery data genome. Joule 6,           Impedance-based forecasting of lithium-ion
+    chain. https://www.mckinsey.com/industries/              2253–2271. https://doi.org/10.1016/j.joule.               battery performance amid uneven usage. Nat.
+    automotive-and-assembly/our-insights/                    2022.08.008.                                              Commun. 13, 4806. https://doi.org/10.1038/
+    battery-2030-resilient-sustainable-and-circular.                                                                   s41467-022-32422-w.
+                                                         12. Schaeffer, J., Galuppini, G., Rhyu, J., Asinger,
+ 4. Sun, P., Bisschop, R., Niu, H., and Huang, X.            P.A., Droop, R., Findeisen, R., and Braatz, R.D.      19. Schaeffer, J., Gasper, P., Garcia-Tamayo, E.,
+    (2020). A review of battery fires in electric            (2024). Cycle life prediction for lithium-ion             Gasper, R., Adachi, M., Pablo Gaviria-Cardona,
+    vehicles. Fire Technol. 56, 1361–1410. https://          batteries: Machine learning and more. arXiv.              J., Montoya-Bedoya, S., Bhutani, A., Schiek, A.,
+    doi.org/10.1007/s10694-020-00958-2.                      https://arxiv.org/abs/2404.04049                          Goodall, R., et al. (2023). Machine learning
+                                                                                                                       benchmarks for the classification of equivalent
+ 5. Im, D.-H., and Chung, J.-B. (2023). Social           13. Krewer, U., Röder, F., Harinath, E., Braatz, R.D.,       circuit models from solid-state electrochemical
+    construction of fire accidents in battery energy         Bedürftig, B., and Findeisen, R. (2018). Dynamic         impedance spectra. J. Electrochem. Soc. 170,
+    storage systems in korea. J. Energy Storage 71,          models of li-ion batteries for diagnosis and              060512. https://doi.org/10.1149/1945-7111/
+    108192. https://doi.org/10.1016/j.est.2023.              operation: A review and perspective.                      acd8fb.
+    108192.                                                  J. Electrochem. Soc. 165, A3656–A3673.
+                                                             https://doi.org/10.1149/2.1061814jes.                 20. Schaeffer, J., Lenz, E., Chueh, W.C., Bazant,
+ 6. Hu, W. (2023). How New York plans to regulate                                                                      M.Z., Findeisen, R., and Braatz, R.D. (2024).
+    e-bikes in the wake of deadly fires. The New         14. Ramadesigan, V., Northrop, P.W.C., De, S.,                Interpretation of high-dimensional linear
+    York Times. September 15, 2023. https://www.             Santhanagopalan, S., Braatz, R.D., and                    regression: Effects of nullspace and
+    nytimes.com/article/ebike-laws-nyc.html.                 Subramanian, V.R. (2012). Modeling and                    regularization demonstrated on battery data.
+                                                             simulation of lithium-ion batteries from a                Comput. Chem. Eng. 180, 108471. https://doi.
+ 7. Sulzer, V., Mohtat, P., Aitio, A., Lee, S., Yeh,         systems engineering perspective.                          org/10.1016/j.compchemeng.2023.108471.
+    Y.T., Steinbacher, F., Khan, M.U., Lee, J.W.,            J. Electrochem. Soc. 159, R31–R45. https://doi.
+    Siegel, J.B., Stefanopoulou, A.G., and Howey,            org/10.1149/2.018203jes.                              21. Richardson, R.R., Osborne, M.A., and Howey,
+    D.A. (2021). The challenge and opportunity of                                                                      D.A. (2017). Gaussian process regression for
+    battery lifetime prediction from field data.         15. Petit, M., Prada, E., and Sauvant-Moynot, V.              forecasting battery state of health. J. Power
+    Joule 5, 1934–1955. https://doi.org/10.1016/j.           (2016). Development of an empirical aging                 Sources 357, 209–219. https://doi.org/10.1016/
+    joule.2021.06.005.                                       model for li-ion batteries and application to             j.jpowsour.2017.05.004.
+                                                             assess the impact of vehicle-to-grid strategies
+ 8. Plett, G.L. (2015). Battery Management                   on battery lifetime. Appl. Energy 172, 398–407.       22. Richardson, R.R., Birkl, C.R., Osborne, M.A.,
+    Systems: Equivalent-Circuit Methods, 2 (Artech           https://doi.org/10.1016/j.apenergy.2016.                  and Howey, D.A. (2019). Gaussian process
+    House).                                                  03.119.                                                   regression for in situ capacity estimation of
+
+
+
+
+20     Cell Reports Physical Science 5, 102258, November 20, 2024
+  Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+  tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+                                                                                                                                                            ll
+                                                                                                                                                      OPEN ACCESS
+Article
+
+    lithium-ion batteries. IEEE Trans. Ind. Inf. 15,      35. Li, X., Dai, K., Wang, Z., and Han, W. (2020).         47. Huber, M.F. (2014). Recursive
+    127–138. https://doi.org/10.1109/TII.2018.                Lithium-ion batteries fault diagnostic for                 Gaussian process: On-line regression
+    2794997.                                                  electric vehicles using sample entropy analysis            and learning. Pattern Recogn. Lett. 45, 85–91.
+                                                              method. J. Energy Storage 27, 101121. https://             https://doi.org/10.1016/j.patrec.2014.03.004.
+23. Newman, J., and Tiedemann, W. (1975).                     doi.org/10.1016/j.est.2019.101121.
+    Porous-electrode theory with battery                                                                             48. Aitio, A., Jöst, D., Sauer, D.U., and Howey,
+    applications. AIChE J. 21, 25–41. https://doi.        36. Chen, Z., Xiong, R., Tian, J., Shang, X., and Lu,          D.A. (2023). Learning battery model
+    org/10.1002/aic.690210103.                                J. (2016). Model-based fault diagnosis                     parameter dynamics from data with recursive
+                                                              approach on external short circuit of lithium-             gaussian process regression. arXiv. https://
+24. Doyle, M., Fuller, T.F., and Newman, J. (1993).           ion battery used in electric vehicles. Appl.               doi.org/10.48550/arXiv.2304.13666.arXiv.
+    Modeling of galvanostatic charge and                      Energy 184, 365—–374. https://doi.org/10.                  preprint.
+    discharge of the lithium/polymer/insertion cell.          1016/j.apenergy.2016.10.026.
+    J. Electrochem. Soc. 140, 1526–1533. https://                                                                    49. Figgener, J., van Ouwerkerk, J., Haberschusz,
+    doi.org/10.1149/1.2221597.                            37. Zhang, K., Hu, X., Liu, Y., Lin, X., and Liu, W.           D., Bors, J., Woerner, P., Mennekes, M.,
+                                                              (2022). Multi-fault detection and isolation for            Hildenbrand, F., Hecht, C., Kairies, K.P.,
+25. Jokar, A., Rajabloo, B., Désilets, M., and               lithium-ion battery systems. IEEE Trans. Power             Wessels, O., and Sauer, D.U. (2024). Multi-year
+    Lacroix, M. (2016). Review of simplified                  Electron. 37, 971–989. https://doi.org/10.1109/            field measurements of home storage systems
+    Pseudo-two-Dimensional models of lithium-                 TPEL.2021.3098445.                                         and their use in capacity estimation. Nat.
+    ion batteries. J. Power Sources 327, 44–55.                                                                          Energy, 1–10. https://doi.org/10.1038/s41560-
+    https://doi.org/10.1016/j.jpowsour.2016.              38. Sadhukhan, C., Mitra, S.K., Bhattacharyya, S.,             024-01620-9.
+    07.036.                                                   Almatrafi, E., Saleh, B., and Naskar, M.K. (2022).
+                                                              Modeling and simulation of high energy                 50. Beck, D., Dechent, P., Junker, M., Sauer, D.U.,
+26. Aykol, M., Gopal, C.B., Anapolsky, A.,                                                                               and Dubarry, M. (2021). Inhomogeneities and
+                                                              density lithium-ion battery for multiple fault
+    Herring, P.K., van Vlijmen, B., Berliner, M.D.,
+                                                              detection. Sci. Rep. 12, 9800. https://doi.org/            cell-to-cell variations in lithium-ion batteries, a
+    Bazant, M.Z., Braatz, R.D., Chueh, W.C., and                                                                         review. Energies 14, 3276. https://doi.org/10.
+                                                              10.1038/s41598-022-13771-4.
+    Storey, B.D. (2021). Perspective—Combining                                                                           3390/en14113276.
+    physics and machine learning to predict               39. Zhao, Y., Liu, P., Wang, Z., Zhang, L., and
+    battery lifetime. J. Electrochem. Soc. 168,               Hong, J. (2017). Fault and defect diagnosis            51. Barbers, E., Hust, F.E., Hildenbrand, F.E.A.,
+    030525. https://doi.org/10.1149/1945-7111/                of battery for electric vehicles based on big              Frie, F., Quade, K.L., Bihn, S., Sauer, D.U., and
+    abec55.                                                   data analysis methods. Appl. Energy 207,                   Dechent, P. (2024). Exploring the effects of cell-
+                                                              354–362. https://doi.org/10.1016/j.apenergy.               to-cell variability on battery aging through
+27. Nascimento, R.G., Corbetta, M., Kulkarni, C.S.,                                                                      stochastic simulation techniques. J. Energy
+                                                              2017.05.139.
+    and Viana, F.A. (2021). Hybrid physics-informed                                                                      Storage 84, 110851. https://doi.org/10.1016/j.
+    neural networks for lithium-ion battery               40. Samanta, A., Chowdhuri, S., and Williamson,                est.2024.110851.
+    modeling and prognosis. J. Power Sources 513,             S.S. (2021). Machine learning-based data-
+    230526. https://doi.org/10.1016/j.jpowsour.               driven fault detection/diagnosis of lithium-           52. Williams, C.K.I., and Rasmussen, C.E. (2006).
+    2021.230526.                                              ion battery: A critical review. Electronics 10,            Gaussian Processes for Machine Learning, 2
+                                                              1309. https://doi.org/10.3390/                             (MIT Press).
+28. Aitio, A., and Howey, D.A. (2021). Predicting
+    battery end of life from solar off-grid system            electronics10111309.
+                                                                                                                     53. Anseán, D., Garcı́a, V.M., González, M., Viera,
+    field data using machine learning. Joule 5,           41. Schmid, M., Kneidinger, H.-G., and Endisch, C.             J.C., Blanco, C., and Antuña, J.L. (2013). DC
+    3204–3220. https://doi.org/10.1016/j.joule.               (2021). Data-driven fault diagnosis in battery             internal resistance during charge: Analysis and
+    2021.11.006.                                              systems through cross-cell monitoring. IEEE                study on LiFePO 4batteries. World Electric
+                                                              Sens. J. 21, 1829–1837. https://doi.org/10.                Vehicle Symposium and Exhibition (EVS27),
+29. Hu, X., Zhang, K., Liu, K., Lin, X., Dey, S., and                                                                    1–11. https://doi.org/10.1109/EVS.2013.
+    Onori, S. (2020). Advanced fault diagnosis for            1109/JSEN.2020.3017812.
+                                                                                                                         6914746.
+    lithium-ion battery systems: A review of fault
+                                                          42. Zhao, J., Ling, H., Wang, J., Burke, A.F., and
+    mechanisms, fault features, and diagnosis                                                                        54. Duvenaud, D. (2014). Automatic Model
+                                                              Lian, Y. (2022). Data-driven prediction of
+    procedures. EEE. Ind. Electron. Mag. 14,                                                                             Construction with Gaussian Processes (Ph.D.
+                                                              battery failure for electric vehicles. iScience 25,
+    65–91. https://doi.org/10.1109/MIE.2020.                                                                             thesis University of Cambridge UK).
+                                                              104172. https://doi.org/10.1016/j.isci.2022.
+    2964814.
+                                                              104172.                                                55. Cogswell, D.A., and Bazant, M.Z. (2013). Theory
+30. Wang, Q., Mao, B., Stoliarov, S.I., and Sun, J.                                                                      of coherent nucleation in phase-separating
+                                                          43. Xiong, R., Li, L., and Tian, J. (2018). Towards
+    (2019). A review of lithium ion battery failure
+                                                              a smarter battery management system: A                     nanoparticles. Nano Lett. 13, 3036–3041.
+    mechanisms and fire prevention strategies.                                                                           https://doi.org/10.1021/nl400497t.
+                                                              critical review on battery state of health
+    Prog. Energy Combust. Sci. 73, 95–131. https://
+                                                              monitoring methods. J. Power Sources 405,              56. Ferguson, T.R., and Bazant, M.Z. (2014). Phase
+    doi.org/10.1016/j.pecs.2019.03.002.
+                                                              18–29. https://doi.org/10.1016/j.jpowsour.                 transformation dynamics in porous battery
+31. Tran, M.-K., and Fowler, M. (2020). A review of           2018.10.019.                                               electrodes. Electrochim. Acta 146, 89–97.
+    lithium-ion battery fault diagnostic algorithms:                                                                     https://doi.org/10.1016/j.electacta.2014.08.083.
+    Current progress and future challenges.               44. Berecibar, M., Gandiaga, I., Villarreal, I., Omar,
+    Algorithms 13, 62. https://doi.org/10.3390/               N., Van Mierlo, J., and Van den Bossche, P.            57. Islam, S.M.R., Park, S.-Y., and Balasingam, B.
+    a13030062.                                                (2016). Critical review of state of health                 (2020). Unification of internal resistance
+                                                              estimation methods of li-ion batteries for real            estimation methods for li-ion batteries using
+32. Jiang, L., Deng, Z., Tang, X., Hu, L., Lin, X., and       applications. Renew. Sustain. Energy Rev. 56,              hysteresis-free equivalent circuit models.
+    Hu, X. (2021). Data-driven fault diagnosis and            572–587. https://doi.org/10.1016/j.rser.2015.              Batteries 6, 32. https://doi.org/10.3390/
+    thermal runaway warning for battery packs                 11.042.                                                    batteries6020032.
+    using real-world vehicle data. Energy 234,
+    121266. https://doi.org/10.1016/j.energy.2021.        45. Attia, P.M., Bills, A., Brosa Planella, F., Dechent,   58. Ludwig, S., Zilberman, I., Horsche, M.F.,
+    121266.                                                   P., dos Reis, G., Dubarry, M., Gasper, P.,                 Wohlers, T., and Jossen, A. (2021). Pulse
+                                                              Gilchrist, R., Greenbank, S., Howey, D., et al.            resistance based online temperature
+33. Kang, Y., Duan, B., Zhou, Z., Shang, Y., and              (2022). Review—‘‘knees’’ in lithium-ion battery            estimation for lithium-ion cells. J. Power
+    Zhang, C. (2020). Online multi-fault detection            aging trajectories. J. Electrochem. Soc. 169,              Sources 490, 229523. https://doi.org/10.1016/j.
+    and diagnosis for battery packs in electric               060517. https://doi.org/10.1149/1945-7111/                 jpowsour.2021.229523.
+    vehicles. Appl. Energy 259, 114170. https://doi.          ac6d13.
+    org/10.1016/j.apenergy.2019.114170.                                                                              59. Bai, P., and Bazant, M.Z. (2014). Charge transfer
+                                                          46. Särkkä, S., Solin, A., and Hartikainen, J. (2013).       kinetics at the solid–solid interface in porous
+34. Li, X., and Wang, Z. (2018). A novel fault                Spatiotemporal learning via infinite-dimensional           electrodes. Nat. Commun. 5, 3585. https://doi.
+    diagnosis method for lithium-ion battery packs            Bayesian filtering and smoothing: A look at                org/10.1038/ncomms4585.
+    of electric vehicles. Measurement 116,                    Gaussian process regression through Kalman
+    402–411. https://doi.org/10.1016/j.                       filtering. IEEE Signal Process. Mag. 30, 51–61.        60. Bazant, M.Z. (2023). Unified quantum
+    measurement.2017.11.034.                                  https://doi.org/10.1109/MSP.2013.2246292.                  theory of electrochemical kinetics by
+
+
+
+                                                                                                 Cell Reports Physical Science 5, 102258, November 20, 2024              21
+  Please cite this article in press as: Schaeffer et al., Gaussian process-based online health monitoring and fault analysis of lithium-ion battery sys-
+  tems from field data, Cell Reports Physical Science (2024), https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+             ll
+       OPEN ACCESS
+                                                                                                                                                      Article
+
+     coupled ion–electron transfer. Faraday              64. Le, J.-L., Bazant, Z.P., and Bazant, M.Z. (2009).      ion batteries with temperature difference.
+     Discuss 246, 60–124. https://doi.org/10.                Lifetime of high-k gate dielectrics and analogy         J. Power Sources 263, 75–84. https://doi.org/
+     1039/D3FD00108C.                                        with strength of quasibrittle structures. J. Appl.      10.1016/j.jpowsour.2014.04.034.
+                                                             Phys. 106, 104119. https://doi.org/10.1063/1.
+61. Jr, J.L.H., and Lehmann, E.L. (1963). Estimates          3256225.                                             67. Solin, A. (2016). Stochastic
+    of location based on rank tests. Ann. Math.                                                                       Differential Equation Methods for
+    Stat. 34, 598–611. https://doi.org/10.1214/          65. Gogoana, R., Pinson, M.B., Bazant, M.Z., and             Spatio-Temporal Gaussian
+    aoms/1177704172.                                         Sarma, S.E. (2014). Internal resistance                  Process Regression (Ph.D.
+                                                             matching for parallel-connected                          thesis Aalto University). https://aaltodoc.
+62. Gumbel, E.J. (1958). Statistics of Extremes
+                                                             lithium-ion cells and impacts on battery pack            aalto.fi/handle/123456789/
+    (Columbia University Press).
+                                                             cycle life. J. Power Sources 252, 8–13. https://         19842AaltoUniversitypublicationseries
+63. Fisher, R.A., and Tippett, L.H.C. (1928). Limiting       doi.org/10.1016/j.jpowsour.2013.11.101.                  DoctoralDissertations, 50/2016.
+    forms of the frequency distribution of the
+    largest or smallest member of a sample. Math.        66. Chiu, K.-C., Lin, C.-H., Yeh, S.-F., Lin, Y.-H.,     68. Särkkä, S., and Solin, A. (2019). Applied
+    Proc. Camb. Phil. Soc. 24, 180–190. https://doi.         Huang, C.-S., and Chen, K.-C. (2014).                    Stochastic Differential Equations (Cambridge
+    org/10.1017/S0305004100015681.                           Cycle life analysis of series connected lithium-         University Press).
+
+
+
+
+22     Cell Reports Physical Science 5, 102258, November 20, 2024
+

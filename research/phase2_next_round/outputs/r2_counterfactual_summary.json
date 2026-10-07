@@ -1,0 +1,80 @@
+{
+  "truth_adjacent_change_median_pp": 0.6129999999999924,
+  "truth_adjacent_change_p95_pp": 2.092849999999998,
+  "sensitivity": [
+    {
+      "axis": "crop_endpoint",
+      "method": "age_ridge",
+      "median_prediction_span_pp": 0.6375053663616939,
+      "p95_prediction_span_pp": 4.721570977343603,
+      "max_prediction_span_pp": 6.209367141511947,
+      "span_error_spearman": -0.07399816866775723,
+      "targets": 180
+    },
+    {
+      "axis": "crop_endpoint",
+      "method": "fixed_window_ridge",
+      "median_prediction_span_pp": 0.7206782306610009,
+      "p95_prediction_span_pp": 6.856180847968049,
+      "max_prediction_span_pp": 8.079244054253834,
+      "span_error_spearman": 0.2874780085805117,
+      "targets": 180
+    },
+    {
+      "axis": "crop_endpoint",
+      "method": "rbf_residual",
+      "median_prediction_span_pp": 2.641787393485778,
+      "p95_prediction_span_pp": 5.663048624887406,
+      "max_prediction_span_pp": 6.698177001180667,
+      "span_error_spearman": 0.1671265574040351,
+      "targets": 180
+    },
+    {
+      "axis": "crop_endpoint",
+      "method": "within_cell_ratio_ridge",
+      "median_prediction_span_pp": 0.9908631692981018,
+      "p95_prediction_span_pp": 4.7215709773436165,
+      "max_prediction_span_pp": 6.209367141511947,
+      "span_error_spearman": -0.15097379548751505,
+      "targets": 180
+    },
+    {
+      "axis": "visible_Ah_budget",
+      "method": "age_ridge",
+      "median_prediction_span_pp": 0.001109723425990694,
+      "p95_prediction_span_pp": 0.009200920608301282,
+      "max_prediction_span_pp": 0.013390288561168973,
+      "span_error_spearman": 0.14594483368828257,
+      "targets": 180
+    },
+    {
+      "axis": "visible_Ah_budget",
+      "method": "fixed_window_ridge",
+      "median_prediction_span_pp": 0.14587927435615455,
+      "p95_prediction_span_pp": 5.675765702145929,
+      "max_prediction_span_pp": 5.804136972205782,
+      "span_error_spearman": -0.5299299361091392,
+      "targets": 180
+    },
+    {
+      "axis": "visible_Ah_budget",
+      "method": "rbf_residual",
+      "median_prediction_span_pp": 1.6686230464176077,
+      "p95_prediction_span_pp": 4.7971153768138235,
+      "max_prediction_span_pp": 7.312463734682012,
+      "span_error_spearman": -0.23177464325030606,
+      "targets": 180
+    },
+    {
+      "axis": "visible_Ah_budget",
+      "method": "within_cell_ratio_ridge",
+      "median_prediction_span_pp": 0.954663261075865,
+      "p95_prediction_span_pp": 13.74653327238674,
+      "max_prediction_span_pp": 16.243047490002354,
+      "span_error_spearman": 0.04262477236951758,
+      "targets": 180
+    }
+  ],
+  "interpretation": "same target truth with changed crop endpoint/budget; prediction span is state/crop sensitivity, not capacity response",
+  "claim_limit": "D1 strict-prefix development proxy; no true shallow-cycle or official capacity confirmation"
+}

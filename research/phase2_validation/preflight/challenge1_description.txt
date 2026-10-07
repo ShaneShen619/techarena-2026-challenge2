@@ -1,0 +1,71 @@
+Huawei Tech Arena 2026 – Grid-Forming BESS Battery Lifetime Early Prediction
+Challenge 1: Predicting Battery Lifetime
+1. The Task
+Whether open battery data plus a handful of in-house tests can replace years of aging is one of the most practical open
+questions in battery development. Your task: pre-train an aging model on open-source LFP datasets, fine-tune it with the small
+provided dataset of our prismatic 102 Ah LFP cell, and predict its aging trajectory down to 70% SOH, including operating
+conditions the model have not seen before. If the test condition does not provide SOH down to 70%, the last available SOH can
+be counted for testing and validation. Only 102 Ah predictions are scored, for this a hold-out dataset will be used, that will not
+provided to you. The SOH throughout the challenge is considered as the full available discharge capacity divided by the
+nominal capacity.
+   1. Access and process. You receive a dataset containing different aging conditions of a 102 Ah LFP cell. This dataset is the
+      target data, where the final validation and reporting needs to be done from your side. Get familiar with the dataset.
+      The data contains some challenges that need to be handled, like missing data or outliers. In addition, there is a list of
+      links to public LFP aging datasets that can be used to pre-train your model.
+   2. Pre-train on open data. Build your pre-training corpus from the linked datasets and optionally any additional publicly
+      available.
+   3. Fine-tune on target data. Adapt your model to the 102 Ah cell using only the provided target data set. You can utilize
+      different techniques, like transfer learning, domain adaptation, few-shot methods, physics-informed constraints, etc. –
+      your choice.
+   4. Predict to end of life. The overall goal is to predict SOH over cycle number down to 70% SOH, including the knee-point,
+      for the 102 Ah cell, the data was provided for, within the following operating boundaries: from 25 to 55 °C and from
+      0.5C to 1C.
+   5. Do more with less (bonus). Every submission is additionally evaluated in a reduced-budget run, in which the pipeline
+      provides only a subset of the fine-tuning data (fewer cells and early-life cycles only; exact budget in the Submission &
+      Validation Guide). Models that keep their accuracy with less proprietary data earn a data-efficiency bonus on top of
+      their score.
+   6. Package and submit as often as you like. Standardized command-line interface and output CSV (Submission &
+      Validation Guide will be shared during the Webinar); a public leaderboard will be generated; only submissions that run
+      successfully through the automated pipeline are scored.
+Given: (a) a list of public LFP aging datasets for pre-training, (b) the target data set of the 102 Ah cell: with different aging
+conditions
+Wanted: for every condition of the full test matrix, the predicted SOH-over-cycle trajectory from cycle 1 down to 70% SOH
+including the knee-point, one trajectory per evaluation cell for the fine-tuning conditions (the withheld sibling cells), and one
+trajectory per condition for the six unseen conditions. Predictions are evaluated against a hidden ground truth of cells cycled
+deep through the knee and, at several conditions.
+Relevance of the problem: the transfer is hard on every axis. Public LFP datasets are dominated by small cylindrical cells under
+fast-charge protocols and different voltage windows; our product cell is a 102 Ah prismatic format under symmetric CC-CV
+cycling. Formats differ, thermal behaviour differs, knee mechanisms may differ. A naive model transfers noise; a good one
+transfers physics. Whether open data plus minimal proprietary testing can predict the lifetime of a new cell is a genuinely open
+research question and a relevant question for product development.
+
+2. Data
+2.1 Open-source pre-training data
+A list of public LFP aging datasets is provided. Participants may additionally use any other battery dataset that satisfies the
+following two rules: (1) documented with citation and license in the final report; (2) reproducible by the pipeline (download
+scripts or declared cached copies). Private or proprietary external data is not allowed. Performance on open data is not scored.
+[1] - Wheeler, William, et al. "Aging study on twenty A123 18650 Graphite/LFP 1.1 Ah cells." (2025). Data: Aging study on twenty
+A123 18650 Graphite/LFP 1.1 Ah cells - UMR AMPERE
+[2] - Che, Yunhong, et al. "Increasing generalization capability of battery health estimation using continual learning." Cell Reports
+Physical Science 4.12 (2023). Link: https://data.mendeley.com/datasets/n3b54nsw8m/9
+[3] – Catenaro, Edoardo, and Simona Onori. "Experimental data of lithium-ion batteries under galvanostatic discharge tests at
+different rates and temperatures of operation." Data in Brief 35 (2021): 106894. Data: Experimental data of three lithium-ion
+batteries under galvanostatic discharge tests at different C-rates and operating temperatures - Mendeley Data
+
+2.2 The 102 Ah fine-tuning set (provided as download)
+Every cell was aged under different operating conditions and the log data are provided as CSV files, per cell (cell_id =
+102Ah_<T>degC_<rate>_cell<n>).
+
+               File                                                              Content (one row per …)
+                                    30 s record: cycle_number, step_type (rest / cccv_charge / cc_charge / cc_discharge / other), time_in_cycle_s,
+ <cell_id>_time_series_partNN.csv   voltage_V, current_A, temperature_C (empty where no valid sensor), step_capacity_Ah, absolute_time. Split at cycle
+                                    boundaries into numbered parts of at most 100 MB each; concatenating the parts in order restores the full series.
+
+Protocol: continuous symmetric full cycling at fixed ambient temperature — 30 min rest, CC-CV charge to 3.649 V, 30 min rest, CC discharge to
+2.5 V; 30 s sampling; voltage window 2.5–3.65 V. Real lab data means real imperfections: partial boundary cycles are flagged (not silently
+dropped), verification-protocol segments are marked logic_test, and temperature availability varies by cell.
+
+2.3 Hidden evaluation data
+Please note you only received a portion of the overall dataset. There are conditions and aged cell that will be only used for
+evaluating your model.
+

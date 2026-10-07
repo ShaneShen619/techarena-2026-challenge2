@@ -1,0 +1,18 @@
+{
+  "smoke": false,
+  "outer_cells": 6,
+  "seeds": [
+    20260928,
+    20260929,
+    20260930
+  ],
+  "mean_scores_by_method": {
+    "TCN_finetune": 2.9821981854428334,
+    "TCN_from_scratch": 3.127291089284951,
+    "TCN_frozen_ridge": 5.430122128702653,
+    "age_count_ridge": 3.8369069455589724
+  },
+  "mean_unseen_event_next_voltage_RMSE_mV": 5.798739160133948,
+  "pretrain_entity_isolation": "entire held cell excluded for each fold, including future unlabeled events",
+  "claim_limit": "same six development cells used in prior exploration; no independent D2 confirmation"
+}

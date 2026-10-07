@@ -1,0 +1,10 @@
+ppt/slides/slide1.xml: Team Name | : | Team Members and University: | TechArena |  2026 – Final Presentation  | Challenge 1 & Challenge 2
+ppt/slides/slide2.xml: Summary | <Main approach and strongest results across both challenges> | Presentation Guidelines | The final presentation must cover the team's methods and key results from both Challenge 1 and Challenge 2.  | The total presentation time must not exceed 15 minutes.  | Teams may organize the presentation according to their own technical story. The slide structure provided in this template is recommended and may be adapted where appropriate.  | Focus on the most important methodology, quantitative results, technical innovation, key insights, and limitations.  | Keep detailed supporting material in backup slides if needed.  | Remove this instruction slide before final submission.
+ppt/slides/slide3.xml: Challenge 1 – Methodology | <Dataset, approach, features, model/method, important technical decisions>
+ppt/slides/slide4.xml: Challenge 1 – Results | <Main results including all training, validation and testing, key findings>
+ppt/slides/slide5.xml: Challenge 2 – Methodology | <Dataset, approach, features, model/method, important technical decisions>
+ppt/slides/slide6.xml: Challenge 2 – Results | <Main results including all training, validation and testing, key findings>
+ppt/slides/slide7.xml: Innovation & Technical Contribution | <What is technically innovative, what is the advantage/strength of your approach among other methods>
+ppt/slides/slide8.xml: Interpretability & Key Insights | <Why the method works, lessons learned, limitations>
+ppt/slides/slide9.xml: Final Summary | <Main achievements and takeaways>
+ppt/slides/slide10.xml: 

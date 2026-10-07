@@ -1,0 +1,49 @@
+{
+  "protocol": "v1.4",
+  "n_targets": 180,
+  "metrics": [
+    {
+      "method": "spline_age",
+      "macro_mae_pp": 5.160013877100751,
+      "worst_cell_mae_pp": 8.578946904879576,
+      "max_abs_error_pp": 20.41948731901013,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 8.578946904879576,
+        "102Ah_25degC_1C_cell3": 3.9842129725543804,
+        "102Ah_35degC_1C_cell1": 5.387098730551078,
+        "102Ah_45degC_0p5C_cell3": 3.630036212411504,
+        "102Ah_45degC_1C_cell1": 0.9932697696841671,
+        "102Ah_55degC_1C_cell3": 8.386518672523797
+      }
+    },
+    {
+      "method": "spline_age_rate",
+      "macro_mae_pp": 4.929254115746186,
+      "worst_cell_mae_pp": 7.810715963866746,
+      "max_abs_error_pp": 23.553456429331057,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 5.722914472245121,
+        "102Ah_25degC_1C_cell3": 2.233926561581014,
+        "102Ah_35degC_1C_cell1": 4.736978093780213,
+        "102Ah_45degC_0p5C_cell3": 7.810715963866746,
+        "102Ah_45degC_1C_cell1": 1.5800508693809727,
+        "102Ah_55degC_1C_cell3": 7.490938733623053
+      }
+    },
+    {
+      "method": "spline_age_temp_rate",
+      "macro_mae_pp": 4.271643265113245,
+      "worst_cell_mae_pp": 5.465781402395166,
+      "max_abs_error_pp": 17.061740113878862,
+      "per_cell_mae_pp": {
+        "102Ah_25degC_0p5C_cell3": 4.072451759274645,
+        "102Ah_25degC_1C_cell3": 5.465781402395166,
+        "102Ah_35degC_1C_cell1": 5.062875863518185,
+        "102Ah_45degC_0p5C_cell3": 4.397324368499036,
+        "102Ah_45degC_1C_cell1": 2.2870533624790226,
+        "102Ah_55degC_1C_cell3": 4.344372834513414
+      }
+    }
+  ],
+  "claim_limit": "Held nominal temperature group; directory used only for split. Same six P1 development cells."
+}

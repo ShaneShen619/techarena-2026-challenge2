@@ -1,0 +1,806 @@
+                                                                                                                                                                                     1
+
+
+
+
+                                             Bias-Compensated State of Charge and State of
+                                            Health Joint Estimation for Lithium Iron Phosphate
+                                                                 Batteries
+                                               Baozhao Yi, Xinhao Du, Jiawei Zhang, Xiaogang Wu, Member, IEEE, Qiuhao Hu, Weiran Jiang, Xiaosong
+                                                                    Hu, Senior Member, IEEE, and Ziyou Song, Member, IEEE
+
+
+
+
+arXiv:2401.08136v2 [eess.SY] 12 Mar 2024
+                                              Abstract—Accurate estimation of the state of charge (SOC)                crucial for ensuring the safety of EVs. Two primary battery
+                                           and state of health (SOH) is crucial for the safe and reliable              states are estimated by the BMS: State of Charge (SOC) and
+                                           operation of batteries. Voltage measurement bias highly affects             State of Health (SOH). Specifically, SOC represents the ratio
+                                           state estimation accuracy, especially in Lithium Iron Phosphate
+                                           (LFP) batteries, which are susceptible due to their flat open-              between the remaining capacity of the battery and its total
+                                           circuit voltage (OCV) curves. This work introduces a bias-                  available capacity [2], while SOH refers to the proportion
+                                           compensated algorithm to reliably estimate the SOC and SOH                  of the battery’s maximum available capacity to its nominal
+                                           of LFP batteries under the influence of voltage measurement                 capacity [3]. Besides the undeniable importance of SOC and
+                                           bias. Specifically, SOC and SOH are estimated using the Dual                SOH estimation, it is imperative to accurately estimate the
+                                           Extended Kalman Filter (DEKF) in the high-slope SOC range,
+                                           where voltage measurement bias effects are weak. Besides, the               parameters of the battery model. This confirms the reliability
+                                           voltage measurement biases estimated in the low-slope SOC                   of model-based algorithms, especially in light of parameter
+                                           regions are compensated in the following joint estimation of                variations across diverse operational conditions and aging
+                                           SOC and SOH to enhance the state estimation accuracy fur-                   phases [4].
+                                           ther. Experimental results indicate that the proposed algorithm                Various model-based battery models have been proposed,
+                                           significantly outperforms the traditional method, which does
+                                           not consider biases under different temperatures and aging                  including the Equivalent Circuit Model (ECM) [5] and the
+                                           conditions. Additionally, the bias-compensated algorithm can                electrochemical model [6]. Moreover, several data-driven bat-
+                                           achieve low estimation errors of below 1.5% for SOC and 2%                  tery models have also been introduced, including the Convolu-
+                                           for SOH, even with a 30mV voltage measurement bias. Finally,                tional Neural Network (CNN) model [7], the Long Short-Term
+                                           even if the voltage measurement biases change in operation, the             Memory (LSTM) model [8], etc.
+                                           proposed algorithm can remain robust and keep the estimated
+                                           errors of states around 2%.                                                    In addition to various battery models, many advanced es-
+                                                                                                                       timation algorithms have also been proposed. The Coulomb
+                                              Index Terms—Voltage measurement bias, bias-compensated                   Counting method [9] is an open-loop approach to SOC
+                                           algorithm, Lithium Iron Phosphate batteries, state estimation.
+                                                                                                                       estimation. However, its performance is dependent on the
+                                                                                                                       accuracy of the initial SOC. With its burgeoning popularity,
+                                                                                                                       The Extended Kalman Filter (EKF) [10] stands as a promi-
+                                                                    I. I NTRODUCTION                                   nent tool for SOC estimation. While EKF’s reputation in
+                                                 S the global energy crisis intensifies, electric vehicles
+                                           A     (EVs) are emerging as a crucial solution [1]. Lithium-
+                                           ion batteries (LIBs) are the primary power sources for EVs,
+                                                                                                                       SOC estimation is well-acknowledged, the Jacobian matrix
+                                                                                                                       computation poses challenges, especially when simultaneously
+                                                                                                                       estimating states and parameters. To address these problems, a
+                                           with their high energy density and long cycle lives. How-                   novel sequential algorithm is designed in [11]. By employing
+                                           ever, the heedless operation of LIBs without rigorous battery               high-pass filters and injecting signals of varying frequencies,
+                                           management can lead to significant performance degradation                  battery parameters are estimated sequentially using EKFs. This
+                                           and increased safety risks. As a result, accurate battery state             approach refines computational processes and enhances the
+                                           estimation within battery management systems (BMSs) is                      precision of estimating parameters and states. There are other
+                                                                                                                       estimation techniques, such as unscented Kalman filter [12],
+                                             This work was supported by the Singapore MOE Tier 1 project under Grant
+                                           A-8001187-00-00 (Corresponding authors: Xiaogang Wu and Ziyou Song).        adaptive filter [13], etc. Given the intertwined nature of SOC
+                                             B. Yi, J. Zhang and Z. Song are with Department of Mechanical En-         and SOH estimation processes, a multi-scale EKF has been
+                                           gineering, National University of Singapore, 117575, Singapore (emails:     proposed in [14], [15]. Furthermore, a dual fractional-order
+                                           e1010669@u.nus.edu, jiawei.zhang@u.nus.edu and ziyou@nus.edu.sg).
+                                             X. Du is with School of Electrical and Electronic Engineering, Harbin     EKF is proposed for the estimation of both SOC and SOH
+                                           University of Science and Technology, Harbin, 150080, China (email:         simultaneously, which not only improves the convergence
+                                           hpudxh@163.com).                                                            speed but also improves the precision of the estimation [16].
+                                             X. Wu is with School of Electrical Engineering, Hebei University of
+                                           Technology, Tianjin, 300130, China (email: 2023051@hebut.edu.cn).              While research into both battery models and estimation
+                                             Q. Hu and W. Jiang are with Farasis Energy USA, Inc., Hayward, 94545,     algorithms is essential, the significance of data quality must
+                                           CA, USA (emails: qhhu@umich.edu and wjiang@farasis.com).                    be addressed. Three critical benchmarks for data evaluation
+                                             X. Hu is with Department of Mechanical and Vehicle Engineer-
+                                           ing, Chongqing University, Chongqing, 400030, China (email: xi-             emerge—the sensitivity analysis [17], the Fisher information
+                                           aosonghu@ieee.org).                                                         matrix [18] and the Cramér-Rao (CR) bound [19]. A data
+                                                                                                                                   2
+
+
+
+selection strategy in [20] aims to enhance the precision of
+                                                                                                  +       Vc       −
+battery parameter estimation by exclusively selecting high-
+sensitivity data. The CR bound, derived from the inversion
+of the Fisher information matrix [21], sets the stage in [22]                                            Rt
+for the designs of optimal current profiles. Besides, academic
+investigations have validated that the accuracy achieved in                            Rs                                +
+estimating a single parameter often exceeds that achieved
+when estimating all states and parameters simultaneously                                                  Ct
+based on the theory of CR bound [23].                                       +
+   Although current estimation algorithms, such as the EKF,                        Vocv                                 V
+and data evaluation techniques, such as the CR bound, have                  −
+helped mitigate estimation errors of battery states, they still
+have some limitations, primarily based on their assumptions.
+These methods assume that voltage measurement errors are                                                       I         −
+solely attributable to variance and tend to overlook the po-
+tential impact of measurement bias. For instance, the CR
+bound represents the smallest variance of estimation error               Fig. 1. The first-order equivalent circuit model.
+achievable when measurement bias is absent. Meanwhile, the
+                                                                  to improve the state estimation accuracy further. Experimental
+EKF assumes that measurement error follows a Gaussian dis-
+                                                                  results in Section IV prove the superiority of the proposed
+tribution centered around zero. In reality, voltage measurement
+                                                                  algorithm, compared to the traditional method, without con-
+bias, often caused by the sensor drift, can also compromise
+                                                                  sidering different SOC intervals and bias compensation. Even
+the accuracy of SOC estimation [24], especially for Lithium
+                                                                  if the voltage measurement bias is 30mV, the estimated errors
+Iron Phosphate (LFP) batteries, which display relatively flat
+                                                                  from the bias-compensated algorithm are still low, with below
+OCV-SOC curves within the mid-SOC range. Since the EKF
+                                                                  1.5% for SOC and 2% for capacity. Moreover, the proposed
+assumes its estimation results are unbiased, it suggests that
+                                                                  algorithm can maintain its stability, keeping the errors of states
+estimated error includes only estimation variance, without
+                                                                  at approximately 2% when the voltage biases change during
+considering estimation bias. Nevertheless, when there is a
+                                                                  operation. Finally, the conclusion can be found in Section V.
+bias in the voltage measurement, it is important to understand
+whether the estimated SOC is biased. In general, the flat OCV-                   II. BATTERY SYSTEM MODELING
+SOC curve observed in LFP cells within the mid-SOC range
+                                                                  A. Battery system description
+is often described as an “error amplifier” [25], as it makes
+state estimation highly sensitive to noise and bias.                 The first-order ECM [26] is adopted in this study to strike
+   To address the challenges associated with voltage measure-     a balance between estimation fidelity and computational effi-
+ment bias, this study introduces a bias-compensated algorithm     ciency. According to Fig.1, the dynamic of the battery system
+that aims to ensure accurate estimation of SOC and SOH,           is given as:
+                                                                                     V̇ = − 1 V + 1 I
+                                                                                     
+focusing on mitigating the effects of voltage measurement bias                          c           c
+                                                                                              Rt Ct      Ct ,                (1)
+on LFP batteries. The contents of this paper are as follows.
+                                                                                       Vb = Vocv − Rs I − Vc
+                                                                                     
+In Section II, the battery system dynamic is introduced. After
+that, the estimation processes of battery parameters can be       where Rs , Rt , and Ct represent the ohmic resistance, dif-
+separated by adding high-pass filters and injecting signals       fusion resistance, and capacitance, respectively. The voltage
+with different frequencies [23], which prevents the parameter     term generated by the RC pair is symbolized as Vc , and Vb
+estimation process from being influenced by voltage mea-          represents the battery terminal voltage. Furthermore, Vocv is
+surement bias. In Section III, first, we examine how voltage      the OCV. The relationship between Vocv and SOC can be
+measurement bias affects the estimation process of SOC.           represented by polynomial:
+Based on the analysis, the estimated error of SOC caused           Vocv = A12 SOC 12 + A11 SOC 11 + · · · + A1 SOC + A0 . (2)
+by voltage measurement bias is negligible if the slope of
+the OCV-SOC curve is high. According to this finding, the         In this paper, we use 12th polynomial to fit the OCV-SOC
+framework of the “bias-compensated algorithm” is proposed         curve, and A0−12 are polynomial coefficients. For small SOC
+to improve the estimation accuracy of SOC and SOH in              changes, the relationship between Vocv and SOC can be
+the presence of voltage measurement bias. The core of the         linearized as follows [27]:
+proposed algorithm is estimating SOC and capacity using                                 Vocv = aSOC + b,                        (3)
+a Dual Extended Kalman Filter (DEKF) only in the high-
+slope SOC regions. Alternatively, for the SOC range with          where a and b are linearization coefficients to be fitted. The
+a relatively small slope, capacity is not updated and SOC         linearized function of the OCV-SOC curve will be used to
+is calculated by ampere-hour integration method. Besides,         simplify the analysis in the following sections, and (2) will be
+the voltage measurement biases are estimated in the low-          applied for estimation. The SOC dynamic is given as follows:
+                                                                                                    Z t
+slope SOC intervals, and their estimated values are then                                                 η
+compensated in the next joint estimation of SOC and capacity                      SOC = SOC0 −             I(t)dt,             (4)
+                                                                                                     t0 Qb
+                                                                                                                                     3
+
+
+
+where SOC0 , η, Qb , and t0 refer to initial SOC,                    filtered system and need to be estimated. In our previous study
+charge/discharge efficiency, battery capacity, and initial time,     [23], these three parameters can be estimated sequentially
+respectively.                                                        by introducing high-frequency and medium-frequency signals
+   In addition to SOC and capacity, the model parameters             sequentially, and applying the high-pass filters can shield
+should also be estimated online, including Rs , Rt , and time        the effects of voltage measurement bias on the estimation
+constant τ , which refers to the product of Rt and Ct . Two          processes based on the analysis above.
+assumptions are made in the estimation process:
+   • The initial Vc is zero.                                           III. T HE B IAS - COMPENSATED ALGORITHM FOR JOINT
+   • Rs , Rt and τ are constant in the short term (e.g., 20                        ESTIMATION OF SOC AND SOH
+      mins).                                                         A. The effect of voltage measurement bias on SOC estimation
+   If the voltage sensor includes a measurement bias, ∆V , that
+                                                                        While high-pass filters can eliminate the effect of voltage
+is caused by extreme operation conditions like violent temper-
+                                                                     measurement bias on parameter estimation, they are inacces-
+ature changes, then the output voltage V will be destroyed.
+                                                                     sible to be used in SOC and capacity estimation due to the
+The compromise voltage can be expressed as:
+                                                                     low-frequency nature of the initial SOC term and Qb term.
+                          V = Vb + ∆V.                         (5)   Due to the coupled estimation processes of SOC and Qb , the
+                                                                     latter process mainly relies on the voltage changes resulting
+In this work, ∆V represents the mean of the voltage mea-             from SOC changes. Therefore, in this section, we only analyze
+surement error [24] and is assumed to be constant in a period        how ∆V affects the SOC estimation accuracy by assuming the
+[28].                                                                capacity is known.
+   Combining (1) and (3), the Laplace function of (5) is given          The estimation results from the EKF are typically con-
+as:                                                                  sidered unbiased, assuming a zero-mean measurement noise.
+                                       
+              aSOC0      b      a η                                  Now, we will explore whether the estimation result of SOC can
+    V (s) =            +     −        I(s) − [Rs I(s)]
+                 s       s      s Qb                                 remain unbiased in the presence of a constant measurement
+                                                        (6)      bias in the voltage data. The discrete state-space equation at
+                Rt             ∆V                                    this time can be expressed as:
+          −          I(s) +         ,
+              1 + τs            s
+                                                                     SOC(k) = SOC(k − 1) − ηTs I(k) + w(k − 1)
+                                                                     
+where s is a complex Laplace variable. From (6), it can be                                             Qb                         ,
+seen that there are five voltage terms, including the initial SOC
+                                                                        V (k) = a[SOC(k)] + b − Rs I(k) − Vc (k) + ∆V + v(k)
+                                                                     
+term, SOC change term (Qb term), Rs term, RC pair term, and                                                                      (9)
+∆V term.                                                             where w and v are process noise and measurement noise. k
+                                                                     is time step and Ts refers to sampling period. Vc (k) can be
+B. The analysis of battery system dynamics                           calculated as:
+                                                                                    Ts                               Ts
+                                                                                                                        
+  In (6), both the initial SOC term and ∆V term remain                 Vc (k) = e− τ (k) Vc (k − 1) + Rt (k) 1 − e− τ (k) I(k). (10)
+constant. If a high-pass filter is applied to the battery system
+over time, these two voltage terms will gradually decay to              Since the estimated values of Rt , τ are known and the initial
+zeros. The filtered system can be written as:                        Vc is assumed to be zero, the value of Vc (k) can be confirmed.
+               (aSOC0 + b)Tc   a η                                   The estimated outcome of SOC at k th time step is calculated
+    Vf (s) =                 −      If (s) − Rs If (s)               as:
+                  1 + Tc s     s Qb
+                                                               (7)                      ˆ − (k) + K(k) V (k) − V̂ − (k) ,
+                                                                                                           h              i
+                                                                            ˆ
+                                                                         SOC(k) = SOC                                            (11)
+              Rt             ∆V Tc
+          −        If (s) +          ,
+            1 + τs          1 + Tc s
+                                                                     where K(k) is Kalman gain at k th time step. The subscript
+where 1/Tc is the cut-off frequency of the high-pass filter. Vf      ˆand − represent the estimation and prior value, respectively.
+and If are given as:                                                   ˆ − (k) is given as:
+                                                                     SOC
+                   Tc s                          Tc s                                                  ηTs
+      Vf (s) =            V (s),    If (s) =            I(s)                     ˆ − (k) = ˆ
+                                                                                SOC       SOC(k − 1) −     I(k).                 (12)
+                 1 + Tc s                      1 + Tc s                                                Qb
+where Vf and If are voltage and current after filtering,
+                                                                     V̂ − (k) of (11) is expressed as:
+respectively. When changing (7) into the time domain, the
+initial SOC term and ∆V term will become as follows:                                    ˆ − (k)] + b − Rs I(k) − Vc (k).
+                                                                          V̂ − (k) = a[SOC                                       (13)
+                          
+       −1 (aSOC0 + b)Tc
+  
+                                              t
+  
+    L                       = (aSOC0 + b)e− Tc → 0                     By taking (12) into (11) and subtracting (11) from the
+              1 + Tc s
+                                                 , (8)             state function of (9), we can get the estimated error e(k) of
+            (∆V )Tc             t
+  L−1                 = ∆V e− Tc → 0                                SOC(k):
+  
+  
+            1 + Tc s
+                                                                      e(k) = [1 − K(k)a] e(k − 1) + [1 − K(k)a] w(k − 1)
+which will be removed from the battery system over time.                                                                         (14)
+Consequently, only Rs , RC pair, and Qb terms exist in the                  − K(k) [∆V + v(k)] .
+                                                                                                                                     4
+
+
+
+   Next, we will calculate the expectation of (14), E [e(k)], to       Moreover, when SOC lies within the “High-slope zone” (or
+check whether the estimation error of SOC remains unbiased.         “H zone”)—a region characterized by a steep slope in the
+If E [e(k)] equals zero, the estimation error is unbiased.          OCV-SOC curve, the DEKF is employed to estimate both
+Conversely, any other value indicates that the estimation error     SOC and Qb . A comprehensive description of the DEKF’s
+becomes biased. As the means of w(k − 1) and v(k) are               estimation process can be found in our prior work [11]. The
+assumed to be zero [29], and ∆V is a constant, E [e(k)] can         “H zone” is not arbitrarily defined; it is intended to confine the
+be transformed as follows:                                          estimation of SOC and Qb in the high-slope region of SOC.
+                                                                    This approach is supported by the insights from Section III-A,
+    E [e(k)] = [1 − K(k)a] E [e(k − 1)] − K(k)∆V.           (15)    revealing that the estimated errors of SOC caused by ∆V are
+  When the initial estimated error of SOC is e(0), E [e(k)]         smaller if the slope of OCV-SOC curve is large. Typically,
+can be changed into:                                                for most LFP batteries, the SOC range of 0-10% can be
+                                                                    categorized as the “H zone”. Besides, within this zone, the
+                     E [e(k)] = E1 − E2 ,                   (16)    slope of OCV-SOC increases as the SOC declines. When
+                                                                    the SOC equals 0, the slope is greater than 15V. ∆V is not
+where E1 and E2 refers to:                                          estimated at this time.
+            ( k
+              Y
+                               )                                       Conversely, when the SOC is in the “Low-slope zone”
+      
+      
+      
+       E1 =      [1 − K(i)a] E [e(0)]                              (or “L zone”), characterized by a gentle slope in the OCV-
+      
+      
+             i=1                                                   SOC curve below 0.05V, the EKF is used to estimate the
+                                           .                    voltage measurement bias, ∆V . This estimated value is then
+               k      k
+      
+            X       Y                                            compensated in the subsequent combined estimation process
+      E2 = 
+      
+                         (1 − K(j)a)K(i) ∆V
+                                                                  for SOC and Qb . The formulation of the “L zone” is primarily
+                  i=1   j=i+1
+                                                                    geared towards the precise estimation of ∆V . The rationale
+   There are two non-zero terms in E [e(k)], in which the first     is grounded in the minimal discrepancy in OCV, attributed
+term E1 is related to the expectation of e(0) and the second        to SOC estimation errors, thereby increasing the precision of
+component E2 is decided by ∆V . As k tends towards infinity,        the deduced ∆V value. Predominantly, for LFP batteries, the
+E1 will converge to zero because [1 − K(i)a] is consistently        SOC range of 40% to 50% qualifies the “L zone”. Within this
+less than 1. Moreover, the Kalman gain K converges to a             interval, SOC is calculated via the ampere-hour integration
+constant because of the linear relationship between SOC and         method, and Qb remains unestimated.
+OCV [30]. When time is infinite, the (16) can be expressed             SOC intervals are not from the “H zone” or “L zone” are
+as follows:                                                         considered as the “Medium-slope zone” (or “M zone”), dis-
+                                     ∆V                             tinguished by an intermediate OCV-SOC curve slope. Within
+                       E [e(k)] →         .                  (17)
+                                      a                             the “M zone”, SOC is estimated through the ampere-hour
+   In conclusion, we have proved that the estimation error of       integration method, and both Qb and ∆V remain unchanged.
+SOC is biased since E [e(k)] is non-zero. Our analysis findings     The detailed process of the bias-compensated algorithm is
+align with those presented in [31]. Based on the information in     described as follows.
+(17), the estimated SOC obtained by the EKF cannot converge            Step 1: The first step is estimating Rs , Rt and τ . This
+to the true SOC since there is an error term related to the slope   estimation process can be divided into two distinct stages. The
+of OCV-SOC curve and the voltage measurement bias. When             first stage introduces a high-pass filter and injecting the high-
+the slope of the OCV-SOC curve is steep, E [e (k)] tends to be      frequency signal to estimate Rs . By doing so, the terminal
+small, resulting in more accurate SOC estimation. However,          voltage is dominated only by Rs dynamic [11]. The battery
+for LFP batteries, there is a flat zone in the OCV-SOC curve        terminal voltage can be simplified as:
+from 10% to 95% SOC with a small slope. Therefore, in this
+particular scenario, it is not advisable to estimate SOC and                              Vf (s) = −Rs If (s).                   (18)
+Qb since the value of E [e(k)] is large, indicating a significant
+error in SOC estimation.                                               With this simplification, we can now write the discrete-time
+                                                                    state-space function as follows:
+                                                                                  (
+B. The framework of the bias-compensated algorithm                                  Rs (k) = Rs (k − 1) + r(k − 1)
+                                                                                                                    ,          (19)
+   In Section III-A, we have proved that a measurement bias in                      Vf (k) = −Rs (k)If (k) + v(k)
+voltage data inevitably introduces an estimation bias in SOC
+estimation, impairing its accuracy. To mitigate the adverse         where r(k) is the process noise for parameters. v(k) is the
+effects of voltage measurement bias on the estimation of            voltage measurement noise. The second stage of this step
+battery parameters and states, we propose a bias-compensated        is adding another high-pass filter and injecting a medium-
+algorithm. This approach combines the high-pass filters and         frequency signal to estimate Rt and τ . Currently, The voltage
+the injections of signals with different frequencies to estimate    is governed by dynamics of Rs and RC pair terms. Therefore,
+Rs , Rt , and τ through the EKFs. Subsequently, these estimated     the (7) can be simplified as:
+results will be used as the foundation for further estimating of                                            Rt
+SOC, Qb , and ∆V .                                                               Vf (s) = −Rs If (s) −           If (s).         (20)
+                                                                                                          1 + τs
+                                                                                                                                                                              5
+
+
+
+
+                                                                      Step 1: Estimate Rs , Rt and 
+
+
+                                                                                        High-frequency current
+
+                                                           V, I                         High-pass          Vf , If Estimate R
+                                                                                                                              s              Rˆ s        Estimate Rt ,
+                                                                                           filter                    by EKF                                 by EKF
+
+
+                                                                                                      Medium-frequency current
+
+
+
+                                 V, I                                                                                      Rˆ s , Rˆ t ,ˆ
+
+         Step 2: Estimate SOC, Qb and ΔV
+
+
+                       ˆ (k
+                      SOC        1) in "H zone "                ˆ (k
+                                                               SOC               1) in "M zone "                     ˆ (k
+                                                                                                                    SOC               1) in "L zone "
+
+
+
+
+                          ΔVˆ (k )      ΔVˆ (k      1)                ΔVˆ (k )     ΔVˆ (k    1)                     Estimate ΔVˆ (k ) by EKF
+
+                                         ΔVˆ (k )                                                                                             ˆ (k ),Qˆ (k )
+                                                                                                                                             SOC       b
+
+
+                                 ˆ (k ),Qˆ (k )           Qˆ b (k )     Qˆ b (k    1)                          Qˆ b (k )    Qˆ b (k          1)
+                       Estimate SOC       b
+                                                           ˆ (k )           ˆ (k               Ts I (k )        ˆ (k )           ˆ (k                       Ts I (k )
+                               by DEKF                    SOC              SOC          1)                     SOC              SOC                 1)
+                                                                                              Qˆ (k )
+                                                                                                  b                                                        Qˆ b (k )
+
+
+
+
+                                         ˆ (k
+                                        SOC          1)
+                                                                         ˆ (k ),Qˆ (k )
+                                                                        SOC       b
+
+
+
+
+                                         Fig. 2. The framework of the bias-compensated algorithm.
+
+   The estimated Rs is used in this process, and the bilinear                       where OCV [·] is the OCV-SOC function in (2). Vc (k) is
+transformation is applied to discretize (20). At this time, the                     calculated by (10) and ∆V (k) is not updated during this time.
+state-space function is changed to:                                                 w(k−1) is the process noise for battery states. The initial value
+     (                                                                              of ∆V is assumed to be unknown and set to 0.
+       θ 2 (k) = θ 2 (k − 1) + r(k − 1)                                                When S ÔC(k − 1) is in “M zone” or “L zone”, SOC(k)
+                                                     ,     (21)
+       Vf (k) = −Rs (k)If (k) − Rt (k)I2 (k) + v(k)                                 will be calculated by the ampere-hour integration method that
+                                                                                    is written as follows:
+where
+                                                                                                                                                             ηTs
+
+θ 2 (k) = [Rt (k) τ (k)]
+                         T                                                                            SOC(k) = SOC(k − 1) −                                        I(k).   (23)
+                                                                                                                                                            Qb (k)
+              Ts                            Ts − 2τ            ,
+I2 (k) =           [If (k) + If (k − 1)] −         I2 (k − 1)                      During this process, Qb (k) is not updated.
+           Ts + 2τ                          Ts + 2τ
+                                                                                       In addition, if S ÔC(k − 1) is in “L zone”, ∆V (k) is
+and Ts is set to 1s. The estimated values of Rs , Rt , and τ                        estimated by the EKF. The state-space function is given as
+will be used in the following step.                                                 follows.
+   Step 2: This step can be divided into multiple parts, each                        (
+corresponding to three SOC intervals with different slopes of                          ∆V (k) = ∆V (k − 1) + w(k − 1)
+                                                                                                                                                 .
+the OCV-SOC curve. First, if S ÔC(k − 1) is in the “H zone”,                          V (k) = OCV [SOC(k)] − Rs (k)I(k) − Vc (k) + ∆V (k)
+SOC and Qb at k th time step are estimated by the DEKF. The                                                                                    (24)
+state-space function is given as follows:                                              With time goes on, when S ÔC(k −1) is in “H zone” again,
+                                                                                    the estimated ∆V is taken into the (22) to update the state-
+   Qb (k) = Qb (k − 1) + r(k − 1)
+
+
+                                                                                   space function for estimating SOC and Qb . The compensation
+                                ηTs                                                of ∆V can enhance the accuracy of the state-space function
+   SOC(k) = SOC(k − 1) −                I(k) + w(k − 1)     ,
+
+                              Q  b (k)                                             used for estimating SOC and Qb . This, in turn, leads to a more
+                                                                                    precise estimation of SOC and Qb . Moreover, the improved
+
+   V (k) = OCV [SOC(k)] − Rs (k)I(k) − Vc (k) + ∆V (k)
+                                                         (22)                       accuracy in estimating SOC contributes to a more precise
+                                                                                                                                                                                                        6
+
+
+
+                                                                                                                            TABLE I
+estimation of ∆V . Finally, the accuracy of estimation for SOC,                                 S PECIFICATION FOR TWO CELLS AT DIFFERENT TEMPERATURES .
+Qb , and ∆V continues to improve as the algorithm iterates.
+                                                                                                  Conditions          Qb (Ah)          Rs (mΩ)                 Rt (mΩ)                     τ (s)
+   It should be noted that the bias-compensated algorithm                                       Cell 1 at 25◦ C        1.935             69                       47                        33
+necessitates the flexible adjustment of SOC zones according                                     Cell 2 at 25◦ C        1.896             95                       50                        33
+to the specific battery chemistry. In spite of that, the bias-                                  Cell 1 at 5◦ C         1.881             127                      87                        30
+compensated algorithm can be considered an approach for                                         Cell 2 at 5◦ C         1.811             144                      90                        30
+accurate state and parameter estimation of batteries with the                When S ÔC(k − 1) is in “H zone”, the DEKF is
+influence of voltage measurement bias. The framework of the                  applied to estimate SOC(k) and Qb (k). Conversely, if
+bias-compensated algorithm is shown in Fig.2.                                the S ÔC(k − 1) occupies other zones, the SOC(k) is
+                                                                             calculated by the ampere-hour integration method while
+                 IV. E XPERIMENTAL RESULTS                                   Qb (k) is not updated. Furthermore, as S ÔC(k − 1)
+A. Experimental setup                                                        enters the “L zone” in the discharging stage of each
+                                                                             cycle, the EKF will be used to estimate ∆V (k). And
+   To evaluate the practical performance of the proposed                     then, the estimated ∆V will be compensated to the
+algorithm, a series of experiments are conducted. Two LFP                    subsequent joint estimation process of SOC(k) and
+batteries, which differ in terms of aging conditions, are used               Qb (k). In other SOC domains, barring the “L zone”,
+for experimental verification. Experiments are carried out                   ∆V (k) is not estimated. The value of ∆V ˆ (0) is set to
+under standard temperatures (25◦ C) and lower temperatures                   0.
+(5◦ C). The whole experimental verification is divided into four
+                                                                          To show the excellent performance of the bias-compensated
+small experiments, which include Cell 1 at 25◦ C, Cell 1 at
+                                                                       algorithm, a comparison is conducted using the same current
+5◦ C, Cell 2 at 25◦ C, and Cell 2 at 5◦ C. All details about the
+                                                                       and voltage data. In this comparison, the SOC and Qb are
+parameters of two batteries under different temperatures are
+                                                                       continuously estimated by the DEKF without considering
+presented in Table I. The capacities of two LFP batteries at
+                                                                       SOC ranges and bias compensation, i.e., termed continuous
+different temperatures are obtained from the capacity tests,
+                                                                       estimation in this paper. To better show the superiority of
+and the “ true values” of Rs , Rt and τ are the results
+                                                                       the bias-compensated algorithm, the true values of Rs , Rt ,
+from Hybrid Pulse Power Characterization (HPPC) tests. The
+                                                                       and τ are used for estimating SOC and Qb in the continuous
+experimental bench includes an ARBIN BT2000 tester that
+                                                                       estimation method.
+generates current and voltage and a temperature chamber that
+                                                                          To evaluate the estimation performance, the Root Mean
+provides constant temperature environments for batteries. Each
+                                                                       Square Error (RMSE) of SOC and relative error (RE) of
+experiment includes an initial stage (the initial charging stage)
+                                                                       capacity are used, as calculated via (25) and (26):
+followed by four discharging/charging cycles. Throughout the                            v
+process, the SOC ranges from 1% to 70%, including the “H                                uP        h                     i2
+                                                                                        u N
+zone”, “L zone” and “M zone”. A 0.1C constant current                                   t k=1 SOCt (k) − S ÔC(k)
+                                                                             RM SE =                                       ,    (25)
+is applied to charge and discharge the battery model. After                                               N
+obtaining the voltage data, we intentionally introduce a 10mV
+                                                                       where the SOCt and S ÔC represent the true and estimated
+measurement bias into the voltage data to represent the voltage
+                                                                       SOC, respectively. N is the number of data points.
+bias in practice.
+   Within all experiments, the “H zone” associated with the                                                               |Q̂b − Qb,t |
+                                                                                                                  RE =                  × 100%,                                                    (26)
+bias-compensated algorithm is from 0 to 10% SOC, aligning                                                                     Qb,t
+with the peak of the OCV-SOC curve’s slope. In contrast, the
+                                                                       where Q̂b and Qb,t represent the estimated and true values of
+SOC range of 40% to 50% can be considered the “L zone”,
+                                                                       battery capacity, respectively.
+reflecting the SOC region with the gentle slope. Other SOC
+                                                                                                 1 .5
+intervals are ascribed to the “M zone”. The estimation process
+                                                                                                 1 .0
+is as follows:
+                                                                            C u rre n t (A )
+                                                                                                 0 .5
+   1) First, the main task in the initial stage is estimating Rs ,                               0 .0
+       Rt , and τ . As given in [11], 0.5C signals of high (0.5Hz)                             -0 .5
+       and medium (0.01Hz) frequencies and high-pass filters                                   -1 .0                                              D a ta fo r R s e s tim a tio n
+                                                                                                        4 .2       4 .4      4 .6              4 D . 8 a t a f o r R C 5 e . 0s t i m a t i o n 5 . 2
+       are applied to estimate Rs , Rt and τ at around 14400s                                                                                      D a ta fo r S O C , Q b a n d Δ V e s tim a tio n
+       in the initial stage. A piece of data used for estimating                               3 .4 0
+
+       these three parameters in one experiment is shown in                                    3 .3 6
+
+
+                                                                        V o lta g e ( V )
+       Fig.3. Initial conjectures of R̂s (0), R̂t (0) and τ̂ (0) are                           3 .3 2
+                                                                                               3 .2 8
+       80% of their own “true values”. In addition, there is also
+                                                                                               3 .2 4
+       a joint estimation of SOC and Qb before estimating these
+       three parameters since S ÔC(k − 1) is in the “H zone”                                           4 .2       4 .4      4 .6              4 .8              5 .0               5 .2
+                                                                                                                                T im e ( h )
+       at the beginning of the stage. The values of S ÔC(0)
+                                              T
+       and Q̂b (0) are posited as [10% 8 0] .                          Fig. 3. A piece of experimental data used for the estimation
+   2) The estimated Rs , Rt , and τ will be used in the                process.
+       following estimation processes of SOC, Qb , and ∆V .
+                                                                                                                                  7
+
+
+
+                         al
+                       uev
+                      Tr   ue    -
+                                 --
+                                  -Est
+                                     imat
+                                        edv ue(
+                                           al bias-
+                                                  compens
+                                                        atedal
+                                                             gor
+                                                               it   -
+                                                                hm) --Estimatedvalue(continuousestimation)
+                                                                     -
+
+
+
+
+                (
+                a)                                (
+                                                  b)                                (
+                                                                                    c)                                 (
+                                                                                                                       d)
+Fig. 4. Estimated results of SOC after adding voltage bias of 10mV. (a) Cell 1 at 25 C. (b) Cell 2 at 25 C. (c) Cell 1 at 5◦ C.
+                                                                                         ◦                  ◦
+
+(d) Cell 2 at 5◦ C.
+                                                                    Capac
+                                                                        it
+                                                                         yrel
+                                                                            ati
+                                                                              veer
+                                                                                 ror(
+                                                                                    %)
+
+
+
+
+            (
+            a)                              (
+                                            b)                                (
+                                                                              c)                                   (
+                                                                                                                   d)
+                                                                                                                   ◦
+Fig. 5. Estimated errors of SOC and capacity in different stages after adding 10mV bias. (a) Cell 1 at 25 C. (b) Cell 2 at
+25◦ C. (c) Cell 1 at 5◦ C. (d) Cell 2 at 5◦ C.
+
+B. Results and discussion                                          SOC with negligible errors by the third discharging/charging
+                                                                   cycle. Fig.5 provides more detailed information on the estima-
+   Fig.4 shows the estimation results of SOC after adding          tion errors of SOC and capacity in each discharging/charging
+10mV bias into voltage measurement. It can be observed             cycle from the bias-compensated algorithm. It becomes evi-
+that the continuous estimation method’s output appears to          dent that as the algorithm progresses, the estimation inaccura-
+struggle to estimate the true SOC accurately, particularly         cies of SOC and Qb are gradually reduced. In the final stage
+within certain SOC ranges where significant discrepancies          of estimation in each experiment, the estimated error of SOC
+are apparent. These observations show that the continuous          (i.e., SOC RMSE) is below 1%. Furthermore, the estimated
+estimation method’s efficacy deteriorates significantly with the   accuracy of Qb is also commendable, with all estimated errors
+mere introduction of a 10mV bias, although the true values         of less than 2%.
+of Rs , Rt , and τ are used in its estimation process of SOC          Beyond the mere addition of a 10mV bias, we further
+and capacity. Table II presents estimated results of Rs , Rt ,     challenge our algorithm by introducing biases of 30mV to
+and τ obtained using the bias-compensated algorithm. It can        assess its estimation prowess further. Please note that 30mV is
+be found that the estimated values of parameters differ from       far more than the common voltage bias in practice proposed in
+their “true values”. Regarding the Rs , the ”true values” are      [24]. Given that the bias-compensated algorithm’s estimation
+identified from HPPC tests and represent the values at 1Hz.        of SOC and Qb progressively track their true values over
+Conversely, in our experiments, the estimated values for Rs        time, our analysis is refined to focus solely on the RMSE
+are estimated upon a sine current operating at the frequency       between the estimated and true SOC during the terminal
+of 0.5Hz. The Electrochemical Impedance Spectroscopy (EIS)         discharging/charging cycle. Fig.6 shows the estimated errors
+in [32] shows the differences of Rs across different current       of SOC and capacity when adding biases of 10mV and 30mV.
+frequencies. These differences become more pronounced as           As the bias in voltage measurements increases, the estimation
+the temperature diminishes. Additionally, the estimated results    inaccuracies for both SOC and Qb correspondingly amplify.
+of Rt and τ also differ from their “true values”. The primary
+error source is from Rs , which is necessary for estimating Rt                                TABLE II
+and τ .                                                            E STIMATION RESULTS OF Rs , Rt AND τ FROM THE BIAS - COMPENSATED
+                                                                                              ALGORITHM .
+   Nevertheless, the bias-compensated algorithm can overcome
+                                                                              Conditions      Rs (mΩ)    Rt (mΩ)       τ (s)
+the model errors from inaccuracies of three parameters and                  Cell 1 at 25◦ C     64.3        47         23.52
+achieve a more accurate estimation of SOC. Compared to the                  Cell 2 at 25◦ C     90.4       49.8        25.05
+divergent results of continuous estimation, the estimated SOC               Cell 1 at 5◦ C     120.4       74.4        22.92
+from the bias-compensated algorithm has converged to the true               Cell 2 at 5◦ C     138.5       77.2        22.85
+                                                                                                                                                                                                                                                                                 8
+
+
+
+                                      1 .5
+                                                                                                                                                                                            1 0 m V                            SOC RMSE (%)       Capacity relative error (%)
+                                      1 .2                                                                                                                                                   3 0 m V
+
+
+
+
+       S O C R M S E (% )
+                                      0 .9                                                                                                                                                                       10mV bias       30mV bias         10mV bias         30mV bias
+
+
+                                      0 .6
+
+                                      0 .3
+
+                                      0 .0
+                                             C   e    l l   1   a       t   2   5   ℃   C   e    l l   2   a       t   2   5   ℃   C   e   l l   1   a   t   5   ℃    C   e   l l   2   a    t   5   ℃
+
+
+
+
+                                                                                                                       (a)
+
+                                      2 .0
+                                                                                                                                                                                        1 0 m V                          (a)
+                                                                                                                                                                                         3 0 m V
+                                                                                                                                                                                                                                                             (b)
+
+
+
+       r e la tiv e e r r o r ( % )
+                                      1 .5                                                                                                                                                                       10mV bias       30mV bias        10mV bias          30mV bias
+
+
+                                      1 .0
+
+
+                      b               0 .5
+       Q
+
+                                      0 .0
+                                             C   e   l l    1   a   t       2   5   ℃   C   e   l l    2   a   t       2   5   ℃   C   e   l l   1   a   t   5   ℃    C   e   l l   2   a   t    5   ℃
+
+
+
+
+                                                                                                                       (b)
+Fig. 6. SOC and capacity estimation errors. (a) RMSE of
+                                                                                                                                                                                                                       (c)                                    (d)
+estimated SOC as compared to its true value. (b) RE between
+estimated Qb and its true value.                                                                                                                                                                         Fig. 7. SOC and capacity estimation errors under the sudden
+                                                                                                                                                                                                         bias change. (a) Cell 1 at 25◦ C. (b) Cell 2 at 25◦ C. (c) Cell
+However, in the face of these challenges, the bias-compensated                                                                                                                                           1 at 5◦ C. (d) Cell 2 at 5◦ C.
+algorithm consistently shows excellent estimation prowess. All
+                                                                                                                                                                                                         the estimated errors of biases are also caused by model errors,
+RMSE of SOC are beneath 1.5%, and the relative estimation
+                                                                                                                                                                                                         including inaccuracy of ECM, fitting and measured errors
+errors for Qb are below 2%.
+                                                                                                                                                                                                         of OCV curves, and the estimated errors of Rs , Rt , and τ .
+   In practice, the measurement bias is not always constant dur-
+                                                                                                                                                                                                         Since the absolute values of ∆V are relatively small, such
+ing operation. The bias of the voltage sensor may increase if it
+                                                                                                                                                                                                         error sources can easily affect the estimation process of ∆V .
+is suddenly exposed to an extreme operating condition. Next,
+                                                                                                                                                                                                         Although the estimated results of ∆V are inaccurate, their
+we will check whether our proposed algorithm can maintain
+                                                                                                                                                                                                         impacts on the joint estimation of SOC and capacity in the
+robustness when bias changes during operation. Assuming the
+                                                                                                                                                                                                         bias-compensated algorithm are minimal. For example, the
+voltage measurement bias is 10mV between the initial stage
+                                                                                                                                                                                                         estimated error for ∆V at the condition of “Cell 1 at 25◦ C”
+and the second discharging/charging cycle. And then, the bias
+                                                                                                                                                                                                         is -9.846mV when adding 10mV bias. In this condition, the
+will change to 30mV from the third to the fourth cycle. Fig.7
+                                                                                                                                                                                                         slope of the OCV-SOC curve at 1% SOC is 14.39V. When
+shows the estimated errors of the SOC and capacity through
+                                                                                                                                                                                                         using DEKF to estimate the SOC, the estimated bias of the
+the whole process in each experiment. It is evident that the
+                                                                                                                                                                                                         SOC caused by the inaccuracy of ∆V is just -0.07% based on
+estimation accuracy of the SOC and capacity does not reduce
+                                                                                                                                                                                                         the calculation of (17), which can be ignored.
+due to the “bias mutation”. Conversely, Three experiments,
+                                                                                                                                                                                                            Although the estimated biases have errors, the proposed
+except “ Cell 1 at 25◦ C” with slight error growths, still remain
+                                                                                                                                                                                                         algorithm can track the bias changes quickly. When the
+error decreases and the errors of SOC and capacity are around
+                                                                                                                                                                                                         measurement bias changes from 10mV to 30mV, the estimated
+2% after the bias change.
+                                                                                                                                                                                                         bias in the third cycle also increases around 20mV compared
+   The robustness of the bias-compensated algorithm in this
+                                                                                                                                                                                                         to the previously estimated value in the second cycle. This is
+scenario benefits from the quick response to the bias variation.
+                                                                                                                                                                                                         the real reason why the bias-compensated algorithm maintains
+Table III gives the estimation values of ∆V before and after
+                                                                                                                                                                                                         its robustness under the scenario of bias mutation.
+the bias change. It can be found that the estimated biases
+have constant errors compared to their true values in each
+                                                                                                                                                                                                                                     V. C ONCLUSIONS
+experiment. There are a few possible reasons to express this
+discovery. The first one is that the voltage sensor in the ARBIN                                                                                                                                            The voltage measurement bias can reduce the accuracy of
+BT2000 tester has inherent measurement biases. In addition,                                                                                                                                              battery state estimation by generating an estimated bias for
+                            TABLE III                                                                                                                                                                    SOC. As a result of the analysis presented in this paper,
+ E STIMATED RESULTS OF ∆V BEFORE AND AFTER THE BIAS MUTATION .                                                                                                                                           this estimated bias becomes smaller when the slope of the
+                                                                                                                                                                                                         OCV-SOC curve is larger. Following this insight, a bias-
+                                                                                  Estimated values in                                                             Estimated values in
+     Conditions
+                                                                                the second cycle (mV)                                                            the third cycle (mV)
+                                                                                                                                                                                                         compensated algorithm has been proposed to reduce estimated
+   Cell 1 at 25◦ C                                                                                     0.154                                                              20.225
+                                                                                                                                                                                                         errors related to SOC and SOH under the influence of voltage
+   Cell 2 at 25◦ C                                                                                     -1.514                                                             19.13                          measurement bias. First, current signals at different frequen-
+   Cell 1 at 5◦ C                                                                                      -2.745                                                             16.875                         cies and high-pass filters will be applied to estimate ohmic
+   Cell 2 at 5◦ C                                                                                      -3.709                                                             17.303                         resistance, diffusion resistance, and time constant by the EKFs.
+                                                                                                                                                                9
+
+
+
+After that, the estimated values of three parameters are used in                  [17] Q. Lai, S. Jangra, H. J. Ahn, G. Kim, W. T. Joe, and X. Lin, “Analytical
+the following estimation processes of battery states and voltage                       sensitivity analysis for battery electrochemical parameters,” in 2019
+                                                                                       American Control Conference (ACC), Jul. 2019, pp. 890–896.
+measurement bias. In the state estimation, DEKF estimates                         [18] A. Sharma and H. K. Fathy, “Fisher identifiability analysis for a
+SOC and capacity only within the high-slope SOC region.                                periodically-excited equivalent-circuit lithium-ion battery model,” in
+Except for battery states, the voltage measurement bias is                             2014 American Control Conference, Jun. 2014, pp. 274–280.
+                                                                                  [19] L. L. Scharf and L. McWhorter, “Geometry of the cramer-rao bound,”
+estimated in the SOC range with a low slope and then the                               Signal Processing, vol. 31, no. 3, pp. 301–311, 1993.
+estimated value will be compensated into the subsequent joint                     [20] X. Lin, “A data selection strategy for real-time estimation of battery
+estimation of SOC and capacity to reduce the estimated errors                          parameters,” in 2018 Annual American Control Conference (ACC), Jun.
+                                                                                       2018, pp. 2276–2281.
+of battery states further. The experimental results underscore                    [21] X. Lin, “On the analytic accuracy of battery SOC, capacity and resis-
+the effectiveness of the proposed algorithm. Despite the large                         tance estimation,” in 2016 American Control Conference (ACC), Jul.
+bias (30mV) in the voltage measurement and the bias mutation,                          2016, pp. 4006–4011.
+                                                                                  [22] Z. Song, H. Hofmann, X. Lin, X. Han, and J. Hou, “Parameter
+the proposed algorithm is still robust and can accurately                              identification of lithium-ion battery pack for different applications based
+estimate battery states.                                                               on cramer-rao bound analysis and experimental study,” Applied Energy,
+                                                                                       vol. 231, pp. 1307–1318, Dec. 2018.
+                                                                                  [23] Z. Song, H. Wang, J. Hou, H. F. Hofmann, and J. Sun, “Combined
+                              R EFERENCES                                              state and parameter estimation of lithium-ion battery with active current
+                                                                                       injection,” IEEE Trans. Power Electron., vol. 35, no. 4, pp. 4439–4447,
+                                                                                       Apr. 2020.
+ [1] G. E. Blomgren, “The development and future of lithium ion batteries,”
+                                                                                  [24] Y. Zheng, M. Ouyang, X. Han, L. Lu, and J. Li, “Investigating the error
+     J. Electrochem. Soc., vol. 164, no. 1, pp. A5019–A5025, 2017.
+                                                                                       sources of the online state of charge estimation methods for lithium-ion
+ [2] C. Truchot, M. Dubarry, and B. Y. Liaw, “State-of-charge estimation
+                                                                                       batteries in electric vehicles,” Journal of Power Sources, vol. 377, pp.
+     and uncertainty for lithium-ion battery strings,” Applied Energy, vol.
+                                                                                       161–188, 2018.
+     119, pp. 218–227, 2014.
+                                                                                  [25] Y. Zheng, M. Ouyang, L. Lu, J. Li, X. Han, L. Xu, H. Ma, T. A.
+ [3] X. Liu, J. Li, Z. Yao, Z. Wang, R. Si, and Y. Diao, “Research on battery
+                                                                                       Dollmeyer, and V. Freyermuth, “Cell state-of-charge inconsistency esti-
+     SOH estimation algorithm of energy storage frequency modulation
+                                                                                       mation for LiFePO4 battery pack in hybrid electric vehicles using mean-
+     system,” Energy Reports, vol. 8, pp. 217–223, May 2022.
+                                                                                       difference model,” Applied Energy, vol. 111, pp. 571–580, Nov. 2013.
+ [4] R. Xiong, Y. Pan, W. Shen, H. Li, and F. Sun, “Lithium-ion battery           [26] M.-K. Tran, A. DaCosta, A. Mevawalla, S. Panchal, and M. Fowler,
+     aging mechanisms and diagnosis method for automotive applications:                “Comparative study of equivalent circuit models performance in four
+     Recent advances and perspectives,” Renewable and Sustainable Energy               common lithium-ion batteries: LFP, NMC, LMO, NCA,” Batteries,
+     Reviews, vol. 131, p. 110048, Oct. 2020.                                          vol. 7, no. 3, p. 51, Jul. 2021.
+ [5] X. Hu, S. Li, and H. Peng, “A comparative study of equivalent circuit        [27] G. Dong, J. Wei, and Z. Chen, “Kalman filter for onboard state of charge
+     models for li-ion batteries,” Journal of Power Sources, vol. 198, pp.             estimation and peak power capability analysis of lithium-ion batteries,”
+     359–367, Jan. 2012.                                                               Journal of Power Sources, vol. 328, pp. 615–626, Oct. 2016.
+ [6] R. Klein, N. A. Chaturvedi, J. Christensen, J. Ahmed, R. Findeisen, and      [28] A. Vemuri, “Sensor bias fault diagnosis in a class of nonlinear systems,”
+     A. Kojic, “Electrochemical model based observer design for a lithium-             IEEE Trans. Automat. Contr., vol. 45, no. 6, pp. 949–954, Jun. 2001.
+     ion battery,” IEEE Trans. Contr. Syst. Technol., vol. 21, no. 2, pp. 289–    [29] R. E. Kalman, “A New Approach to Linear Filtering and Prediction
+     301, Mar. 2013.                                                                   Problems,” Journal of Basic Engineering, vol. 82, no. 1, pp. 35–45, 03
+ [7] S. Shen, M. Sadoughi, X. Chen, M. Hong, and C. Hu, “A deep learning               1960.
+     method for online capacity estimation of lithium-ion batteries,” Journal     [30] X. Lin, “Analytic derivation of battery SOC estimation error under
+     of Energy Storage, vol. 25, p. 100817, Oct. 2019.                                 sensor noises,” IFAC-PapersOnLine, vol. 50, no. 1, pp. 2175–2180, Jul.
+ [8] K. Liu, Y. Shang, Q. Ouyang, and W. D. Widanage, “A data-driven                   2017.
+     approach with uncertainty quantification for predicting future capacities    [31] X. Lin, “Theoretical analysis of battery SOC estimation errors under
+     and remaining useful life of lithium-ion battery,” IEEE Transactions on           sensor bias and variance,” IEEE Trans. Ind. Electron., vol. 65, no. 9,
+     Industrial Electronics, vol. 68, no. 4, pp. 3170–3180, 2021.                      pp. 7138–7148, Sep. 2018.
+ [9] K. S. Ng, C.-S. Moo, Y.-P. Chen, and Y.-C. Hsieh, “Enhanced coulomb          [32] J. Zhu, Z. Sun, X. Wei, and H. Dai, “A new lithium-ion battery
+     counting method for estimating state-of-charge and state-of-health of             internal temperature on-line estimate method based on electrochemical
+     lithium-ion batteries,” Applied Energy, vol. 86, no. 9, pp. 1506–1511,            impedance spectroscopy measurement,” Journal of Power Sources, vol.
+     Sep. 2009.                                                                        274, pp. 990–1004, Jan. 2015.
+[10] G. L. Plett, “Extended kalman filtering for battery management systems
+     of LiPB-based HEV battery packs,” Journal of Power Sources, vol. 134,
+     no. 2, pp. 277–292, Aug. 2004.
+[11] Z. Song, J. Hou, X. Li, X. Wu, X. Hu, H. Hofmann, and J. Sun, “The
+     sequential algorithm for combined state of charge and state of health
+     estimation of lithium-ion battery based on active current injection,”
+     Energy, vol. 193, p. 116732, Feb. 2020.
+[12] W. He, N. Williard, C. Chen, and M. Pecht, “State of charge estimation
+     for electric vehicle batteries using unscented kalman filtering,” Micro-
+     electronics Reliability, vol. 53, no. 6, pp. 840–847, Jun. 2013.
+[13] Hongwen He, Rui Xiong, Xiaowei Zhang, Fengchun Sun, and JinXin
+     Fan, “State-of-charge estimation of the lithium-ion battery using an
+     adaptive extended kalman filter based on an improved thevenin model,”
+     IEEE Trans. Veh. Technol., vol. 60, no. 4, pp. 1461–1469, May 2011.
+[14] C. Hu, B. D. Youn, and J. Chung, “A multiscale framework with
+     extended kalman filter for lithium-ion battery SOC and capacity esti-
+     mation,” Applied Energy, vol. 92, pp. 694–704, Apr. 2012.
+[15] R. Xiong, F. Sun, Z. Chen, and H. He, “A data-driven multi-scale
+     extended kalman filtering based parameter and state estimation approach
+     of lithium-ion polymer battery in electric vehicles,” Applied Energy, vol.
+     113, pp. 463–476, Jan. 2014.
+[16] X. Hu, H. Yuan, C. Zou, Z. Li, and L. Zhang, “Co-estimation of state of
+     charge and state of health for lithium-ion batteries based on fractional-
+     order calculus,” IEEE Trans. Veh. Technol., vol. 67, no. 11, pp. 10 319–
+     10 329, Nov. 2018.
+

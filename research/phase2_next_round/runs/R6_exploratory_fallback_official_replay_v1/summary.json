@@ -1,0 +1,8 @@
+{
+  "candidate": "exploratory_fallback",
+  "checkpoints": 8,
+  "strict_prefix_pass": true,
+  "hidden_truth_count": 7,
+  "official_capacity_accuracy_verified": false,
+  "model_sha256": "83096a6b9281e11c2a59f885a96cc7eb285716d559196e72300a1524ffa930ce"
+}

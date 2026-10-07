@@ -1,0 +1,25 @@
+{
+  "crossing_events": 18612,
+  "old_whitelisted_crossing_events": 16901,
+  "eligible_by_budget": {
+    "15": 18570,
+    "20": 18566,
+    "30": 18558
+  },
+  "new_eligible_but_old_full_event_rejected_by_budget": {
+    "15": 1702,
+    "20": 1701,
+    "30": 1701
+  },
+  "targets_with_changed_allowed_by_budget": {
+    "15": 180,
+    "20": 180,
+    "30": 180
+  },
+  "targets_with_changed_current_by_budget": {
+    "15": 10,
+    "20": 10,
+    "30": 10
+  },
+  "status": "audit only; old frozen D1 manifests and scores are not overwritten"
+}

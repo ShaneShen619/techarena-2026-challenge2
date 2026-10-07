@@ -1,0 +1,8 @@
+{
+  "scenarios": 100,
+  "max_abs_group_Ah_delta": 1.4210854715202004e-14,
+  "max_abs_sum_voltage_delta_V": 7.105427357601002e-15,
+  "lowest_cell_identity_matches": true,
+  "passed": true,
+  "reason": "M5_pack_v1 script checked only commutativity of summing one voltage vector; this recheck permutes reference curves, states and truth shapes together."
+}

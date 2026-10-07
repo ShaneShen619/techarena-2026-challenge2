@@ -1,0 +1,320 @@
+{
+  "selected_summaries": {
+    "regular_topup_charge": {
+      "count": 33,
+      "start_loaded_V": {
+        "min": 13.407,
+        "median": 13.413,
+        "max": 13.439
+      },
+      "end_loaded_V": {
+        "min": 14.008,
+        "median": 14.009,
+        "max": 14.01
+      },
+      "pre_voltage_V": {
+        "min": 13.347,
+        "median": 13.356,
+        "max": 13.363
+      },
+      "post_voltage_V": {
+        "min": 13.979,
+        "median": 13.985,
+        "max": 13.986
+      },
+      "Q_Ah": {
+        "min": 20.6372625,
+        "median": 21.232736666666664,
+        "max": 21.75831694444444
+      },
+      "duration_min": {
+        "min": 62.36666666666667,
+        "median": 64.03333333333333,
+        "max": 65.71666666666667
+      },
+      "mean_temp_C": {
+        "min": 26.12511627906977,
+        "median": 46.357915567282326,
+        "max": 46.62272020725389
+      }
+    },
+    "deep_charge": {
+      "count": 8,
+      "start_loaded_V": {
+        "min": 11.617,
+        "median": 11.922,
+        "max": 12.037
+      },
+      "end_loaded_V": {
+        "min": 14.009,
+        "median": 14.009,
+        "max": 14.01
+      },
+      "pre_voltage_V": {
+        "min": 11.57,
+        "median": 11.843499999999999,
+        "max": 11.953
+      },
+      "post_voltage_V": {
+        "min": 13.98,
+        "median": 13.981,
+        "max": 13.987
+      },
+      "Q_Ah": {
+        "min": 91.97487638888889,
+        "median": 94.216134375,
+        "max": 100.14339402777776
+      },
+      "duration_min": {
+        "min": 275.3333333333333,
+        "median": 281.5,
+        "max": 294.95
+      },
+      "mean_temp_C": {
+        "min": 26.32828828828829,
+        "median": 26.424094541990158,
+        "max": 46.723664596273295
+      }
+    }
+  },
+  "regular_comparisons": [
+    {
+      "setpoint_C": 25,
+      "count": 9,
+      "early3_median_Ah": 21.445058055555556,
+      "late3_median_Ah": 20.944995277777778,
+      "change_pct": -2.331832240706999,
+      "early_dates": [
+        "2025-02-16 22:57:24",
+        "2025-03-19 18:01:08",
+        "2025-04-22 16:06:36"
+      ],
+      "late_dates": [
+        "2025-08-02 17:44:23",
+        "2025-08-07 13:48:18",
+        "2025-09-06 22:39:00"
+      ],
+      "early_start_rest_V": [
+        13.363,
+        13.362,
+        13.359
+      ],
+      "late_start_rest_V": [
+        13.358,
+        13.358,
+        13.359
+      ],
+      "early_mean_temp_C": 26.33255949335908,
+      "late_mean_temp_C": 26.171282058121125
+    },
+    {
+      "setpoint_C": 45,
+      "count": 19,
+      "early3_median_Ah": 21.407476666666664,
+      "late3_median_Ah": 20.702999999999996,
+      "change_pct": -3.2907973117803357,
+      "early_dates": [
+        "2025-01-24 19:36:11",
+        "2025-01-29 15:39:53",
+        "2025-02-03 11:43:51"
+      ],
+      "late_dates": [
+        "2025-08-17 18:00:36",
+        "2025-08-22 14:02:53",
+        "2025-08-27 10:04:58"
+      ],
+      "early_start_rest_V": [
+        13.358,
+        13.359,
+        13.359
+      ],
+      "late_start_rest_V": [
+        13.349,
+        13.347,
+        13.354
+      ],
+      "early_mean_temp_C": 46.45791393876103,
+      "late_mean_temp_C": 46.202945267660105
+    }
+  ],
+  "window_comparisons": [
+    {
+      "V_lo": 13.5,
+      "V_hi": 13.9,
+      "setpoint_C": 25,
+      "count": 9,
+      "early3_median_Ah": 20.383270833333253,
+      "late3_median_Ah": 19.893685761571195,
+      "change_pct": -2.4018965148685956,
+      "early_start": "2025-02-16 22:57:24",
+      "early_end": "2025-04-22 16:06:36",
+      "late_start": "2025-08-02 17:44:23",
+      "late_end": "2025-09-06 22:39:00",
+      "early_temp_mean_C": 26.33255949335908,
+      "late_temp_mean_C": 26.171282058121125
+    },
+    {
+      "V_lo": 13.5,
+      "V_hi": 13.9,
+      "setpoint_C": 45,
+      "count": 19,
+      "early3_median_Ah": 20.596328038284238,
+      "late3_median_Ah": 19.666594894558106,
+      "change_pct": -4.5140723239499465,
+      "early_start": "2025-01-24 19:36:11",
+      "early_end": "2025-02-03 11:43:51",
+      "late_start": "2025-08-17 18:00:36",
+      "late_end": "2025-08-27 10:04:58",
+      "early_temp_mean_C": 46.45791393876103,
+      "late_temp_mean_C": 46.202945267660105
+    },
+    {
+      "V_lo": 13.6,
+      "V_hi": 13.9,
+      "setpoint_C": 25,
+      "count": 9,
+      "early3_median_Ah": 10.84329068627447,
+      "late3_median_Ah": 10.649736100260416,
+      "change_pct": -1.7850170360097173,
+      "early_start": "2025-02-16 22:57:24",
+      "early_end": "2025-04-22 16:06:36",
+      "late_start": "2025-08-02 17:44:23",
+      "late_end": "2025-09-06 22:39:00",
+      "early_temp_mean_C": 26.33255949335908,
+      "late_temp_mean_C": 26.171282058121125
+    },
+    {
+      "V_lo": 13.6,
+      "V_hi": 13.9,
+      "setpoint_C": 45,
+      "count": 19,
+      "early3_median_Ah": 1.7834083054699683,
+      "late3_median_Ah": 1.5615667695581057,
+      "change_pct": -12.439189344999846,
+      "early_start": "2025-01-24 19:36:11",
+      "early_end": "2025-02-03 11:43:51",
+      "late_start": "2025-08-17 18:00:36",
+      "late_end": "2025-08-27 10:04:58",
+      "early_temp_mean_C": 46.45791393876103,
+      "late_temp_mean_C": 46.202945267660105
+    },
+    {
+      "V_lo": 13.7,
+      "V_hi": 13.9,
+      "setpoint_C": 25,
+      "count": 9,
+      "early3_median_Ah": 2.0800027777777,
+      "late3_median_Ah": 2.0447159625770506,
+      "change_pct": -1.6964792344340118,
+      "early_start": "2025-02-16 22:57:24",
+      "early_end": "2025-04-22 16:06:36",
+      "late_start": "2025-08-02 17:44:23",
+      "late_end": "2025-09-06 22:39:00",
+      "early_temp_mean_C": 26.33255949335908,
+      "late_temp_mean_C": 26.171282058121125
+    },
+    {
+      "V_lo": 13.7,
+      "V_hi": 13.9,
+      "setpoint_C": 45,
+      "count": 19,
+      "early3_median_Ah": 0.5437792638590088,
+      "late3_median_Ah": 0.5183897063118286,
+      "change_pct": -4.669092632734739,
+      "early_start": "2025-01-24 19:36:11",
+      "early_end": "2025-02-03 11:43:51",
+      "late_start": "2025-08-17 18:00:36",
+      "late_end": "2025-08-27 10:04:58",
+      "early_temp_mean_C": 46.45791393876103,
+      "late_temp_mean_C": 46.202945267660105
+    },
+    {
+      "V_lo": 13.8,
+      "V_hi": 13.9,
+      "setpoint_C": 25,
+      "count": 9,
+      "early3_median_Ah": 0.5176158163265944,
+      "late3_median_Ah": 0.5055128194895065,
+      "change_pct": -2.3382200572965695,
+      "early_start": "2025-02-16 22:57:24",
+      "early_end": "2025-04-22 16:06:36",
+      "late_start": "2025-08-02 17:44:23",
+      "late_end": "2025-09-06 22:39:00",
+      "early_temp_mean_C": 26.33255949335908,
+      "late_temp_mean_C": 26.171282058121125
+    },
+    {
+      "V_lo": 13.8,
+      "V_hi": 13.9,
+      "setpoint_C": 45,
+      "count": 19,
+      "early3_median_Ah": 0.19298580546952848,
+      "late3_median_Ah": 0.19294552467751308,
+      "change_pct": -0.020872411790806567,
+      "early_start": "2025-01-24 19:36:11",
+      "early_end": "2025-02-03 11:43:51",
+      "late_start": "2025-08-17 18:00:36",
+      "late_end": "2025-08-27 10:04:58",
+      "early_temp_mean_C": 46.45791393876103,
+      "late_temp_mean_C": 46.202945267660105
+    }
+  ],
+  "deep_window_comparisons": [
+    {
+      "V_lo": 12.2,
+      "V_hi": 13.9,
+      "setpoint_C": 25,
+      "count": 7,
+      "first_date": "2025-02-11 23:08:25",
+      "last_date": "2025-09-01 22:34:43",
+      "first_Ah": 94.99494227721087,
+      "last_Ah": 89.95057542735042,
+      "first_to_last_change_pct": -5.310142549631913,
+      "early3_median_Ah": 93.6122489405864,
+      "late3_median_Ah": 90.61168767538263,
+      "early3_to_late3_change_pct": -3.2053083855598463
+    },
+    {
+      "V_lo": 12.4,
+      "V_hi": 13.9,
+      "setpoint_C": 25,
+      "count": 7,
+      "first_date": "2025-02-11 23:08:25",
+      "last_date": "2025-09-01 22:34:43",
+      "first_Ah": 94.33324681994591,
+      "last_Ah": 89.36590398148147,
+      "first_to_last_change_pct": -5.2657392869617015,
+      "early3_median_Ah": 92.95963130246912,
+      "late3_median_Ah": 90.00962294013958,
+      "early3_to_late3_change_pct": -3.1734294994468004
+    },
+    {
+      "V_lo": 12.6,
+      "V_hi": 13.9,
+      "setpoint_C": 25,
+      "count": 7,
+      "first_date": "2025-02-11 23:08:25",
+      "last_date": "2025-09-01 22:34:43",
+      "first_Ah": 93.42061064084723,
+      "last_Ah": 88.50079255555556,
+      "first_to_last_change_pct": -5.266309063431152,
+      "early3_median_Ah": 92.05984407540045,
+      "late3_median_Ah": 89.13365539336102,
+      "early3_to_late3_change_pct": -3.1785722770101166
+    },
+    {
+      "V_lo": 13.0,
+      "V_hi": 13.9,
+      "setpoint_C": 25,
+      "count": 7,
+      "first_date": "2025-02-11 23:08:25",
+      "last_date": "2025-09-01 22:34:43",
+      "first_Ah": 90.59755205498863,
+      "last_Ah": 85.7128606111111,
+      "first_to_last_change_pct": -5.391637337963329,
+      "early3_median_Ah": 89.24609808641974,
+      "late3_median_Ah": 86.3362248732993,
+      "early3_to_late3_change_pct": -3.2605046892948963
+    }
+  ]
+}

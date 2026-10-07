@@ -1,0 +1,822 @@
+     Degradation mode estimation using reconstructed
+       open circuit voltage curves from multi-year
+                 home storage field data
+                   Jan Figgener*a,b,c,d,e, Jakob Borsb,c,d,e, Matthias Kuipersb,c,d,e, Felix Hildenbranda,b,c,d,
+                   Mark Junkera,b,c,d, Lucas Koltermanna,b,c,d, Philipp Woernerb,c,d, Marc Mennekesb,c,d,e,
+                       David Haberschusza,b,c,d,e, Kai-Philipp Kairiesb,c,d,e, Dirk Uwe Sauera,b,c,d,e,f
+
+a Center for Ageing, Reliability and Lifetime Prediction of Electrochemical and Power Electronic (CARL), RWTH Aachen University, Germany
+
+
+                    b Institute for Power Electronics and Electrical Drives (ISEA), RWTH Aachen University, Germany
+
+
+               c Institute for Power Generation and Storage Systems (PGS), E.ON ERC, RWTH Aachen University, Germany
+
+
+                                       d Juelich Aachen Research Alliance, JARA-Energy, Germany
+
+
+                                            e ACCURE Battery Intelligence GmbH, Germany
+
+
+                             f Helmholtz Institute Münster (HI MS), IMD 4, Forschungszentrum Jülich, Germany
+
+
+                          *Corresponding author at Institute for Power Electronics and Electrical Drives (ISEA)
+
+
+                              Mathieustraße 10, Aachen, Germany | Mail: jan.figgener@isea.rwth-aachen.de
+
+
+
+ Abstract
+ A battery's open circuit voltage (OCV) curve can be seen as its electrochemical signature. Its shape and
+ age-related shift provide information on aging processes and material composition on both electrodes.
+ However, most OCV analyses have to be conducted in laboratories or specified field tests to ensure
+ suitable data quality. Here, we present a method that reconstructs the OCV curve continuously over the
+ lifetime of a battery using the operational data of home storage field measurements over eight years.
+ We show that low-dynamic operational phases, such as the overnight household supply with electricity,
+ are suitable for recreating quasi OCV curves. We apply incremental capacity analysis and differential
+ voltage analysis and show that known features of interest from laboratory measurements can be tracked
+ to determine degradation modes in field operation. The dominant degradation mode observed for the
+ home storage systems under evaluation is the loss of lithium inventory, while the loss of active material
+ might be present in some cases. We apply the method to lithium nickel manganese cobalt oxide (NMC),
+ a blend of lithium manganese oxide (LMO) and NMC, and lithium iron phosphate (LFP) batteries. Field
+ capacity tests validate the method.
+
+
+ 1     Introduction
+ This paper builds upon our previously presented capacity estimation method in Figgener et al. [1] and
+ its corresponding field dataset comprising 21 home storage systems over up to eight years [2]. With this
+ substantial extension, we publish a method for estimating open circuit voltage (OCV) curves and discuss
+ the observed capacity loss by degradation mode investigation using incremental capacity analysis (ICA)
+ and differential voltage analysis (DVA).
+ OCV curve. A battery's OCV curve describes the relation between state of charge (SOC) and cell volt-
+ age at an open circuit and can be seen as its electrochemical signature. It enables deducing the SOC
+ from the OCV and vice versa and is therefore often used as a simple method to estimate SOC [3–5].
+ The OCV curve is a characteristic of the active material in both anode and cathode, cell balancing, and
+ temperature [6,7]. As active material and balancing changes over battery lifetime, the OCV curve shifts.
+ Tracking the OCV curve is a widespread approach to gaining insights into degradation modes [8,9].
+
+                                                                                                                                   1
+OCV measurements. Measuring OCV requires the battery to be in a relaxed state, excluding all influ-
+ence of kinetic overvoltage on measured battery voltage. Hence, it cannot be measured directly during
+operation. Two standard techniques to determine OCV curves are low-current and incremental OCV
+measurements [10]. With a focus on investigating changes in OCV curves, most researchers use low-
+current OCV tests, where cell voltage is measured at low current rates (C-rates) down to C/20 [11–16].
+Both approaches require high measuring precision and controlled temperature conditions and, thus, are
+usually conducted under laboratory conditions. The resulting curves are called quasi-OCV (qOCV)
+curves. Other publications use higher C-rates, some of which intend to mimic real-life scenarios, at C-
+rates between C/3 and 1C [17–24]. The impact of C-rates on these measurements is investigated in [10]
+and [25]. Instead of monitoring battery aging by repeating these measurements, the development of
+OCV curves for artificial scenarios can be simulated using models based on initial open circuit potential
+measurements of the electrodes, as shown in [8] and [26].
+OCV analysis. OCV curve tracking to analyze field data would improve state of health (SOH) estimation
+and prediction of battery systems by using knowledge gained in laboratory tests. Only a few publications
+exist to this date discussing the creation of OCV curves directly from monitoring field operation. In [27],
+EV driving voltage data is transformed into an OCV curve by selecting voltage measurements at low
+current rates (< C/20) and mapping them to an SOC. The resulting curve, however, does not show the
+level of detail required for in-depth aging analyses and is only used for battery modeling. EV charging
+data can also be used to analyze the OCV [28,29] and is suitable as charging conditions are similar.
+Other publications present concepts to create OCV curves from field data using load profiles in labora-
+tory tests [30]. Some use partial charging data at varying C-rates representing a realistic charging pro-
+cess to reconstruct the OCV curve using a battery model [31,32] or neural network [33]. In [34,35], the
+OCV curve is reconstructed by determining the length of individual voltage plateaus in the curve from
+normal charging or discharging processes. One of the main challenges to overcome when recreating
+OCV curves from field data is the high noise level in these measurements, which can be adjusted using
+Gaussian filtering [15]. The impact of noise and different approaches to reduce its influence on these
+measurements are presented in [36]. Once the battery OCV curves are available over the lifetime of an
+aging battery, their development can be analyzed directly or by ICA or DVA.
+Incremental capacity analysis. The ICA is a method to investigate the derivation of the OCV curve,
+which contains information about the electrochemical properties of the materials and can be analyzed
+during aging to obtain information about their changes [17,37]. By differentiating the capacity towards
+the voltage, voltage plateaus of the OCV curve are translated into clearly identifiable peaks in the ICA
+curve [17,37]. The development of the intensity and position of these peaks contain information regard-
+ing the battery's aging and the underlying degradation modes [18,37,38]. The ICA curve is determined
+as the deviation of the charge concerning the voltage [15,37]. Since the OCV curve is often only availa-
+ble as discrete values, the ICA is usually computed as the gradient using Equation (1-1) [39].
+                                          dQ ∆Q
+                                            ≈                                 (1-1)
+                                          dV ∆V
+
+Differential voltage analysis. The DVA can be used to investigate the utilization and balancing be-
+tween the electrodes [40]. Here, the OCV curve is differentiated concerning SOC using the gradient
+function in Equation (1-2) [39]. Peaks in the DVA curve represent transitions between two voltage plat-
+eaus in the OCV, and their positions can be used to investigate cathode and anode degradation sepa-
+rately, as well as shifts in the electrode balancing [40,41].
+                                          dV ∆V
+                                            ≈                                 (1-2)
+                                          dQ ∆Q
+
+Degradation modes. The three commonly investigated degradation modes (DMs) across the presented
+literature are loss of lithium inventory (LLI) and loss of active material of both the anode and cathode
+(LAMNE and LAMPE, respectively) [37]. In the case of blended cathodes, the losses of the different active
+materials can be investigated individually [37]. In [8] (laboratory data) and [34] (EV charging data), bat-
+tery models based on initial half-cell measurements are fitted to the measured OCV curves, quantifying
+the number of different DMs inside the battery. Many publications use ICA for aging analyses, with
+[21,25,28,29,36,42–46] focusing on SOH estimation and [14,16–20,26,38,47–51] using it as a method
+to identify DMs in varying scenarios. Publications using DVA generally investigate electrode degradation
+                                                                                                          2
+and changes in electrode balancing [11,13,41,52–55]. Since ICA and DVA allow varying insights into
+battery aging, they can also be combined to gather additional information about DMs, as done in
+[12,15,23,24,56,57].
+Features of interest. A recent addition to these methods is investigating varying features of interest
+(FOIs) within the characteristic IC and DV curves and their correlations with individual DMs. In the case
+of the ICA, FOIs usually are the position or intensity of specific features like minima or maxima. In the
+case of the DVA, the distances between different characteristic peaks are usually used as FOIs. Their
+choice depends on the technology of the investigated battery, which determines the shape of IC and DV
+curves. A large study examining such correlations of several FOIs in both the IC and DV curves of
+different battery chemistries can be found in [37,56].
+Scientific contribution. While many publications focus on ICA, DVA, and the way DMs can be quanti-
+fied using them, these findings have not yet been applied to home storage system field data to the best
+of our knowledge. Two publications at the time of writing are presented by Dubarry et al. in [58] and their
+extended analysis [59]. In their studies, they successfully apply ICA to synthetic data of HSSs, identify
+clear sky conditions as suitable for the analysis of charging curves, and state that there is a lack of field
+data [58]. Using our previously published dataset of HSS operational data in private homes over up to
+eight years [1,2], this work contributes to recreating OCV curves from real-world field data. The method
+developed helps to gain insights into the battery aging of HSSs in field operation by applying laboratory-
+proven knowledge to field data analytics. It can be used by battery storage operators, battery analytic
+companies, and researchers to analyze battery aging using existing field data.
+
+
+2     Methodology
+The methodology of this work is displayed in Figure 1. The OCV curves from home storage systems are
+reconstructed from eight years of field data published with our previous publication in Figgener et al.
+[1,2] using several filters and voltage correction. The obtained qOCV curves are analyzed and used for
+both ICA and DVA to determine the occurring DMs by tracking FOIs derived from literature. The qOCV
+curves are validated by field capacity tests conducted in [1].
+
+2.1    Dataset and measurement
+The measurements have been conducted over a period of up to eight years, from 2015 to 2022 and the
+dataset comprises 21 home storage systems, 106 system years and around 14 billion datapoints. The
+measured quantities are the system-level battery voltage, current, power, and housing temperature. All
+quantities are measured with a sample rate of one second. [1,2]
+
+
+
+                                      HSS field measurements over eight years                                         Data
+                                             (input from Figgener et al., 2024)                                       Pre methods
+                                                                                                                      Core methods
+                     Filters                                                                   SOC estimation         Validation
+                                                    DCR                      Voltage
+        (Charge / discharge direction, low                                                     (input from Figgener   Results
+          dynamic, charge throughput)
+                                                 estimation                 correction             et al., 2024)
+
+
+
+                                                  qOCV estimation
+
+
+                                                    Field capacity
+                                                    tests (input from
+       Incremental capacity analysis              Figgener et al., 2024)
+                                                                                  Differential voltage analysis
+            and tracking of FOI                                                        and tracking of FOI
+                                                  Literature review
+                                                  for FOI selection
+
+
+                                                Degradation modes
+
+ Figure 1: Methodology to estimate the qOCV curve and identify the degradation modes through the incremental capacity
+ analysis and the differential voltage analysis.
+                                                                                                                                     3
+The dataset comprises many different HSS products. The main differences are the system design in
+terms of energy and power ratings and the battery chemistry used. To account for both, the nomencla-
+ture is a combination of system size and chemistry, according to [1]. The smallest HSSs have a battery
+energy of around 2 kWh and use a blend of lithium manganese oxide (LMO) and lithium nickel manga-
+nese cobalt (NMC). These systems are referred to as “SmallLMO” HSSs, as the average home storage
+system was about 9 kWh in 2022 [60]. There are other systems in the range of around 8 kWh to 13 kWh.
+These systems are divided into HSSs with different NMC and different lithium iron phosphate (LFP)
+batteries, referred to as “MediumNMC” and “MediumLFP” HSSs, respectively.
+
+2.2     qOCV curve estimation
+The algorithm used in this work to derive qOCV curves from field data is based on detecting low dynamic
+dis-/charging phases to have as little overvoltage variation as possible. An additional overvoltage cor-
+rection is developed by estimating the direct current resistance (DCR). Suitable operational phases can
+be combined to form a complete qOCV curve. In the following, the individual steps of the algorithm will
+be presented in detail.
+
+2.2.1    Direct current resistance estimation
+The DCR is needed for overvoltage correction. It is calculated according to Equation (2-1) with V1 and
+I1 being the voltage and current values at the beginning of the pulse, and V2 and I2 at its end. This
+calculation is similar to EV battery analyses done in [61]. As the DCR is dependent on temperature and
+SOC, both values are considered. The C-rate dependency is neglected because the applied dynamics
+filter automatically accounts for similar C-rates (see Chapter 2.2.2).
+                                                         𝑉2 −𝑉1        ∆𝑉
+                                         𝐷𝐶𝑅(𝑆𝑂𝐶, 𝑇) =             =
+                                                          𝐼2 −𝐼1       ∆𝐼
+                                                                                               (2-1)
+                                 𝑓𝑜𝑟 𝑎𝑙𝑙 values of SOC and temperature (T)
+
+Figure 2 presents the resulting DCR estimation for an exemplary system. It showcases how the DCR
+tends to increase at low SOCs and low temperatures, which aligns with findings in the literature [62].
+
+                            a                                               b
+
+
+
+
+ Figure 2: a) Identified current pulse and voltage response to calculate the DCR by dividing the voltage delta by the current
+ delta. b) Estimated DCR values for an exemplary SmallLMO system (cell level) according to SOC and temperature.
+
+Throughout most operating conditions, the DCR values of the shown system remain around 5 mΩ, but
+they can reach up to 9 mΩ at low temperatures and low SOC levels. The DCR and its dependency on
+SOC change over time, while the temperature influence stays approximately similar [62]. Thus, the DCR
+look-up tables must be recalculated regularly. Appendix, Figure 6, shows the long-term trend for one
+exemplary system. To give a simplified overview, Appendix, Figure 7, depicts the linear gradients of
+yearly DCR values for different SOC ranges in a defined temperature range. The DCR increases are
+higher at the SOC ranges and there are substantial differences between the three system types. While
+the mean increase for SmallLMO systems is 24.6 percentage points per year (pp/a) for an SOC below
+10 %, the mean values are around 15 pp/a for the SOC ranges of 40 % to 60 % and above 90 %. The
+                                                                                                                                4
+MediumNMC HSSs show increased aging both for low (mean 5.2 pp/a) and high SOCs (mean 4.4 pp/a),
+while the aging is less for medium SOCs (1.7 pp/a). The MediumLFP HSSs show only small mean DCR
+increases from 0.8 pp/a to 1.8 pp/a with higher gradients for higher SOCs.
+
+2.2.2   Operational phase detection
+Charge / discharge filter. The qOCV curves are created both for charge and discharge direction. A
+charge phase is identified by finding periods during which the current sign is strictly positive. In contrast,
+the discharge phase current needs to be strictly negative. This filter accounts for overvoltage direction
+and hysteresis.
+Charge throughput filter. The charge throughput filter reduces the charge and discharge phases to
+those containing voltage information over a predefined minimum SOC range. The SOC range covered
+by an individual phase is determined by the absolute difference in SOC from the beginning of the phase
+to the end of the phase. The limit is set to a percentage value of 5 % of the battery capacity.
+Dynamics filter. A dynamics filter is implemented to avoid ripples in the qOCV curve caused by high-
+dynamic operation. The dynamic is defined as the absolute short-term change in current, which can be
+directly determined from the measurement data. By setting an upper limit of 10 % of the C-rate to this
+dynamic, the data can be reduced to periods consisting of low-dynamic data only. Figure 3a shows the
+identified voltage phases at low-dynamic C-rates overnight.
+
+                               a                                                             b
+
+
+
+
+ Figure 3: a) Identified low-dynamic current phases represent partial qOCV curves. b) Exemplary overvoltage correction. The
+ corrected voltage is quite smooth, especially for low-dynamic phases.
+
+Overvoltage correction. Figure 3b shows an exemplary overvoltage correction according to Equation
+(2-2). The voltage correction is not perfect, but it leads to smoother voltage courses, especially in low-
+dynamic operational phases.
+
+                            𝑉corrected (t, SOC, T) = 𝑉𝑏𝑎𝑡 (𝑡) − I𝑏𝑎𝑡 (t) ∙ DCR(SOC, T)            (2-2)
+
+
+
+
+                                                                                                                              5
+2.2.3    Combination of partial qOCV curves
+A detected low-dynamic phase represents a partial qOCV curve on its own if the corrected voltage is
+plotted against the corresponding SOC. Combining many of these partial qOCV curves leads to an
+overall qOCV curve for the whole cell, which can be updated continuously. Figure 4a visualizes this
+process for a limited number of exemplary discharge phases. Sometimes, SOC errors occur, leading to
+a horizontal deferral of single identified phases. In this case, the SOC values are shifted horizontally to
+the mean value of all partial qOCV curves. This way, the voltage course is maintained as only the SOC
+values are adjusted.
+The resulting qOCV curves from individual operational phases cover different SOC and voltage ranges.
+The overall qOCV curve is computed by taking the mean SOC of all available phases at small voltage
+steps, resulting in a high-resolution qOCV curve (see Figure 4b). The qOCV curves are created sepa-
+rately from the discharging or charging phases to account for remaining overvoltage and hysteresis
+effects. The actual OCV curve of the battery lies between the charge and discharge qOCV curves.
+
+                                    a                                                 b
+
+
+
+
+ Figure 4: a) Combination of partial qOCV curves from low-dynamic discharge current phases. Their mean is taken as the
+ estimated qOCV curve of a specific period. b) Resulting qOCV curves for charge and discharge. The discharge curves have
+ higher quality.
+
+The discharge phases show lower dynamics and lower C-rates (see Figure 3a and [1]) than the charge
+phases, which lead to higher-quality qOCV curves. Thus, only the discharging qOCV curves are used
+from here on. However, acceptable results can be obtained from the charge phases as well.
+The investigations performed on the qOCV curves are focused on analyzing aging behavior. For this
+reason, the data is split into periods so that independent continuous qOCV curves are created for each
+of them. Depending on the data quality and operation of the system, a different minimum period is
+required to acquire enough phases to create a qOCV curve. To illustrate the methodology, the continu-
+ous qOCV curves in this work are created yearly. Note that this interval could be shorter, and sometimes,
+a month is enough to recreate a qOCV curve using this methodology if the HSS is cycled regularly.
+
+2.3     Application of ICA and DVA
+IC and DV curves. To analyze the qOCV curves’ characteristics, both the incremental capacity analysis
+(ICA) and differential voltage analysis (DVA) are applied. The IC and DV curves are obtained by numer-
+ically differentiating the continuous qOCV curve concerning the voltage and SOC using Equation (1-1)
+and (1-2). Before determining the derivative, the qOCV curve is smoothed using a Gaussian filter, which
+has been proven to be a good method according to literature [15,37]. This smoothing is required since
+the investigated features, such as voltage plateaus in the qOCV curve, are quite sensitive to noise and
+trembling [15,37].
+
+
+
+                                                                                                                           6
+FOI tracking. To determine the contribution of different DMs to battery aging, FOIs are selected from
+literature, for which a correlation between their development and specific DMs could be determined.
+These are tracked automatically by identifying the corresponding extrema in specified voltage ranges.
+Since different chemistries show different characteristic features in their IC and DV curves, FOIs are
+chosen individually for each technology. While the selected ICA FOIs are mainly based on Dubarry and
+Anseán [37] with additional information from references [15,19,20,24,26,38,56,63], the DVA FOIs are
+selected from various literature [13,15,24,41,55,63–67].
+Correlation of FOI and SOH. The tracked change in FOI for ICA (intensity and position), and for DVA
+(distance) is correlated with the capacity decrease obtained from Figgener et al. [1] to investigate a
+possible relationship between capacity fade and FOI shift. In this context, the so-called “p-values” are
+calculated. In correlation analysis, the p-value is a statistical metric that helps assess the significance
+of the observed correlation coefficient between two variables [68]. It quantifies the probability of obtain-
+ing a similar correlation as the one observed in the data, assuming no true correlation exists. A low p-
+value of typically less than 0.05 indicates that the correlation is statistically significant, suggesting that
+the relationship between the variables is not due to random chance [68]. In contrast, a high p-value
+indicates that the observed correlation could have occurred by chance alone and is not statistically
+significant [68]. Thus, the p-values are used to make informed decisions about the strength and validity
+of correlations.
+
+
+3     Results and discussion
+This chapter discusses the development of the qOCV discharge curves using ICA and DVA. For con-
+ciseness, this chapter limits the method presentation to the SmallLMO systems while the appendix pre-
+sents its functionality on MediumNMC and MediumLFP systems. This focus is set, as all six SmallLMO sys-
+tems use exactly the same battery type while the medium systems consist of different products with
+varying cells. From here onward, the terms qOCV and OCV are used as synonyms for simplification.
+
+3.1    Detailed analysis of SmallLMO systems with LMO/NMC blend
+Figure 5 shows the OCV, IC, and DV curves of an exemplary SmallLMO system, and the FOI tracking of
+all six of these systems.
+OCV. The LMO/NMC OCV curve (see Figure 5a) shows the characteristic of an approximately linear
+voltage increase with a steeper beginning. To illustrate the capacity fade, this chapter normalizes the
+state of charge by the nominal capacity, which is why OCV values of aged systems do not reach 100 %
+of SOCNominal. With ongoing aging, the curves show a horizontal shift to lower SOC values as the re-
+maining capacity decreases. The capacity fade is quantified by the difference of the SOC from year one
+to year seven at the EOC charge voltage of around 4.15 V. This capacity decrease amounts to 17 %
+over the measurement period. The voltage at low SOC values decreases from about 3.4 V to 3.3 V. This
+effect is not due to aging and can be attributed to the decrease of EOD voltage controlled by the BMS,
+showing real-world diagnostic challenges [1]. It leads to a slight shift of the OCV curves to the right,
+showing the gain in capacity due to EOD voltage reduction.
+ICA. Figure 5b shows the determined IC curves of the same SmallLMO system over the monitored time
+span. FOI 1 shows a shift toward higher voltages from 3.5 V to 3.55 V and a decrease in intensity from
+225 %Q/V to 150 %Q/V. The shift corresponds to capacity loss, indicating LLI [9,20,37,39]. The intensity
+of FOI 2 is declining over time, which can be attributed mainly to LLI, but could also include LAMNE and
+LAMPE [37]. FOI 3 shifts to higher voltages and slightly higher intensity, confirming the occurrence of LLI
+[37]. In addition, the intensity decrease of FOI 4 could indicate the presence of LAMNE and LAMPE [37].
+Overall, LLI seems to be the dominant DM based on the ICA conducted.
+
+
+
+
+                                                                                                            7
+                              a                                                              b
+
+                                                                                                               4
+
+
+
+
+                                                                                                          3
+
+
+                                                                                                           2
+
+
+                                                                                                                   1
+
+
+
+
+                             c                                                               d
+
+
+                         5
+
+
+                                        6
+
+
+
+
+ Figure 5: LMO/NMC analyses. a) qOCV, b) ICA, c) DVA of one exemplary SmallLMO system, and d) FOI tracking of all six
+ SmallLMO systems. SOC values normalized by nominal capacity. FOI change is a linear fit of FOI shift over the lifetime in
+ percentage points per year (pp/a). For ICA: Intensity normalized by highest peak and position normalized by voltage range.
+ For DVA: Distance normalized by SOC range. Note that the SmallLMO systems lower their EOD voltage, leading to slightly
+ different voltage values for the same SOC. Peaks chosen from literature are clearly observable.
+
+DVA. The steep rise at both ends of the DV represents the fully charged and discharged states (see
+Figure 5c). The LMO/NMC DV curve shows three characteristic peaks resulting from peaks in the un-
+derlying electrode DVs [63,64]. The peak starting at around 65 % to 70 % SOC represents the transition
+from the medium to the low voltage plateau of the anode potential [64]. The sharp peak at middle SOCs
+results from the cathode potential and allows conclusions about the cathode state [64]. FOI 5 is the
+distance from the graphite peak at around 65 % to the first peak at 10 % to 20 % SOC. It is reduced
+slightly, indicating a small decrease in storage capability of the anode in the form of LAMNE [41,56]. The
+cathode feature, represented by FOI 6, would indicate LAMPE if the distance decreased between the
+peak around 45 % SOC and the steep DV at the fully charged state [63]. However, the 45 % SOC peak
+changes in shape and becomes difficult to track. The assumed distance stays approximately constant
+and does not lead to clear findings. Overall, the DVA supports the assumption originating from the ICA
+that LLI is the dominant DM. The capacity loss of the anode does not correspond to the loss of battery
+capacity since the electrodes usually have excess active material, especially on the anode side [8].
+Rather, the loss of capacity seen in the OCV curve can mainly be attributed to LLI.
+
+
+                                                                                                                              8
+FOI tracking all SmallLMO systems. Figure 5d shows the aggregated FOI tracking for all six SmallLMO
+systems. These systems show predominately LLI, while LAMNE and LAMPE could also occur in notably
+lower quantities. The detection of LLI is supported through three FOIs: the shift from FOI 1 and FOI 2 to
+lower intensities and higher voltages, and the shift of FOI 3 to higher intensities and higher voltages.
+Concerning the anode, small amounts of LAMNE may be detected through FOI 2 and the distance shrink
+of FOI 5. Regarding the cathode, the development of FOI 4 to a lower intensity and higher voltage could
+indicate LAMPE. However, FOI 6 leads to the assumption that LAMPE is likely not prominent.
+Correlation of FOI and SOH. In the following, the individual FOI shifts of all SmallLMO systems are
+correlated with their respective SOH values from Figgener et al. [1]. In addition to the correlation coeffi-
+cient, the corresponding p-values are shown in Table 1, representing the probability of the estimated
+correlation being wrong. In the case of SmallLMO systems, all p-values except for FOI 3’s position are
+smaller than 0.05, showing high confidence in the correlation coefficients. Using these, the highest cor-
+relation with SOH development can be seen for FOI 1 (0.91, -0.95). FOI 2 strongly correlates with SOH,
+especially its intensity (0.91). FOI 3’s position has with correlation coefficient of -0.89. Overall, FOI 1 to
+FOI 3 depict a correlation of LLI with SOH. FOI 4 also suggests a correlation between LAM and SOH.
+FOI 5 and FOI 6 do not show a high correlation with SOH.
+                    Table 1: Correlations of LMO FOIs with SOH development.
+                    FOI                  1                     2                    3                   4            5        6
+                    Tracking     Int          Pos      Int          Pos      Int         Pos      Int       Pos     Dist     Dist
+                    Corr.
+                                0.91         -0.95    0.91         -0.78    -0.03       -0.89    0.85       -0.74   0.34     -0.42
+                    SOH
+                    p-value     < 0.05       < 0.05   < 0.05       < 0.05   0.85        < 0.05   < 0.05 < 0.05      < 0.05   < 0.05
+
+
+3.2    Summary of NMC and LFP systems
+Figure 8 and Figure 9 in the appendix show that the method also works for MediumNMC and MediumLFP
+systems, respectively. For the MediumNMC system, LLI shows the strongest correlation with SOH devel-
+opment. For the MediumLFP system, the method does not reach high certainty, even though the results
+indicate that the occurrence of LLI is most likely. The less accurate LFP analysis is probably due to
+slightly inaccurate SOC and OCV estimates due to its flat voltage curve. Although the FOIs presented
+in literature are obtained, the method’s accuracy combined with the curves' smoothing is insufficient to
+use the minimal shifts in FOIs for statistically meaningful identification of correlations between DMs and
+SOH development.
+
+3.3    Validation by field capacity tests
+Appendix, Figure 10, shows that the conducted field capacity tests from [1,2] can be used to validate
+the obtained IC and DV curves. However, ICA and DVA are quite sensitive to small noise in measure-
+ment data. Thus, the qOCV curve obtained through the presented method is considered more reliable
+than the field capacity tests that rely on a single measurement at the systems’ highest possible C-rate.
+
+
+4     Conclusion
+This paper presents a method to identify the degradation modes responsible for capacity loss and in-
+crease in internal resistance from multi-year home storage field measurements. The developed method
+first reconstructs the qOCV curves from field data. For this purpose, partial low-dynamic operational
+phases such as clear-sky conditions during charge or steady overnight electricity supply of households
+during discharge are combined. Both charge and discharge phases show reasonable results, although
+the resulting curves from discharge phases show higher accuracy than those from the charge phases.
+After reconstructing the annual qOCV curves, the change of the curves over time is analyzed. Purely
+from the qOCV curves, it can be seen that the capacity is decreasing. The methods of incremental
+capacity analysis and differential voltage analysis are applied for degradation mode estimation. Here,
+features of interest derived from literature can be identified in the obtained curves for all three technol-
+ogies studied (blend of LMO/NMC, NMC, and LFP). While the method shows good accuracy for
+LMO/NMC and NMC systems, the detailed analysis of LFP systems is challenging due to the flat voltage
+curve. The degradation mode LLI is dominant for the analyzed systems, while LAMNE and LAMPE could
+be present in some cases. Conducted field capacity tests serve as validation of the method.
+
+                                                                                                                                      9
+5   Acknowledgment
+Parts of the results were obtained within the research projects “WMEP PV-Speicher” (funding number
+0325666) and “WMEP PV-Speicher 2.0 (KfW 275)” (funding number 03ET6117)”, both funded by the
+German Federal Ministry for Economic Affairs and Climate Action (BMWK), and “Betterbat” (funding
+number 03XP0362B), funded by the Federal Ministry of Education and Research (BMBF).
+
+
+6   Competing interests
+As stated in the paper, the authors J.F., J.B., M.K., M.M, D.H., K.-P.K., and D.U.S. are shareholders
+and/or employees of ACCURE Battery Intelligence GmbH, which offers commercial battery diagnostics.
+The company is a spin-off of RWTH Aachen University, where the research was conducted. The other
+authors declare no competing interests.
+
+
+7   Author contributions
+Overall, J.F. led the research during his dissertation on home storage. J.F. and D.U.S. conceptualized
+the research. J.F., J.B., and M.K. developed the methodology, while F.H., M.J., L.K., and D.U.S. sup-
+ported this task. J.F. and J.B. developed software to analyze and evaluate the data, while P.W., M.M.,
+and D.H. supported this task. J.F. wrote the original paper draft and created the figures and tables with
+support from J.B., while M.K., F.H., M.J., L.K., D.H., K.-P.K., and D.U.S. reviewed and edited the paper.
+J.F. and D.U.S. supervised the research. J.F., K.-P.K., and D.U.S. did the main funding acquisition and
+project administration for RWTH Aachen University.
+
+
+
+
+                                                                                                       10
+8      Appendix
+
+
+
+
+Figure 6: Development of the DCR of an exemplary MediumNMC (system level). The effect of different SOC and temperature
+values is visible. In the summer, high temperatures and elevated SOCs lead to a low DCR. In the winter, low temperatures
+and small SOCs lead to an increased DCR. The fit accounts for all estimates and is mainly influenced by estimates during
+summer due to the higher operational hours. Overall, the trend increases by less than 1 mΩ/a in the case shown, which
+corresponds to a relative increase of around 2.5 pp/a. Thus, the HSS does not come close to its EOL, which is defined as a
+doubling in internal resistance. Note that other systems do not show such a strong dependency on temperature.
+
+
+
+
+                                   a                                                         b
+
+
+
+
+    Figure 7: a) SOC-dependent DCR development for exemplary an exemplary SmallLMO system (system level and mean
+    values) plus the average annual increase in percentage points. Temperature range is 20 °C to 25 °C. The legend contains
+    information about the system age. b) Linear gradients of DCR increase to simplify the influence of battery aging. The
+    SmallLMO systems show significantly larger DCR increases than the MediumNMC and MediumLFP systems.
+
+
+
+
+                                                                                                                          11
+                            a                                                          b
+
+                                                                             5
+
+
+                                                                                   4
+
+
+
+
+                                                                         3
+
+                                                                                                            2
+
+
+
+
+                                                                        1
+
+
+
+
+                            c
+
+
+                        6
+
+
+
+
+Figure 8: NMC OCV analysis of an exemplary MediumNMC system. Year six is missing due to measurement
+problems. SOC values normalized by nominal capacity.
+a) OCV. SOC values normalized by nominal capacity. The capacity fade is observed by a horizontal shift of
+the curves toward lower SOC values. This capacity fade amounts to approximately 15 %.
+b) ICA. FOI 1 shifts towards higher voltages (position) and higher ICs (intensity), indicating LLI and possibly
+LAMPE. FOI 2, the main peak, decreases in intensity from 380 %Q/V to 300 %Q/V, which supports occurring
+LLI [20,37]. The position of FOI 3 shifts to higher voltages, indicating LLI [37]. The intensity of FOI 4 at higher
+voltages decreases with LLI [19,20]. Analogously, FOI 5 is decreasing, possibly due to occurring LAMPE.
+c) DVA. The NMC DV consists of a large valley over a wide SOC range, with two characteristic peaks at its
+sides. These characteristics mainly originate from the graphite anode since the phase transition of the NMC
+cathode is not reached within the voltage range [40,65]. Therefore, the distance between the two characteristic
+peaks indicates the storage capability of the anode [40] and is defined as FOI 6. With increasing age, this
+distance gets slightly smaller, indicating possibly LAMNE.
+
+
+
+
+                                                                                                                      12
+                          a                                                            b
+
+                                                                                       3
+
+                                                                                                             2
+
+
+
+
+                                                                                1
+
+
+
+
+                          c
+
+                          4
+                                        5
+
+
+
+
+Figure 9: LFP OCV analysis of an exemplary MediumLFP system. The measurements started one year after the
+HSS installation and ended after four years in 2022.
+a) OCV. SOC values normalized by nominal capacity. Overall, the LFP curves show very subtle changes over
+time. With ongoing aging, the curves slightly drop in voltage, following each other closely. Additionally, a small
+change in curvature can be identified at the beginning and end of the OCV.
+b) ICA. FOI 1 does not show significant changes, and no conclusion can be drawn. FOI 2 results from the large
+flat voltages plateau, which can be seen in the OCV curve. It does not show clear trends indicating LLI [37,56].
+FOI 3 shows a decline in intensity, which symbolizes LLI [37].
+c) DVA. The LFP cathode itself does not have clear features in the DV curve due to its flat open circuit potential
+curve [55]. Therefore, the shape and characteristics seen in the DVA originate mainly from the graphite anode,
+and the distance between its characteristic peaks allows direct conclusions about its capacity content [66]. The
+distance of the two peaks represented by FOI 4 stays approximately constant, and does not allow for conclu-
+sions [66,67]. FOI 5 possibly indicates LLI as the peak's distance to the steep rise at the EOC voltage slightly
+decreases.
+
+
+
+
+                                                                                                                 13
+                LMO/NMC ICA                                           LMO/NMC DVA
+
+
+
+
+Figure 10: ICA and DVA of exemplary HSSs compared to capacity test.
+
+
+                                                                                    14
+9      References
+[1]    Figgener J, van Ouwerkerk J, Haberschusz D, Bors J, Woerner P, Mennekes M, Hildenbrand F, Hecht C, Kairies K-P,
+       Wessels O, Sauer DU. Multi-year field measurements of home storage systems and their use in capacity estimation. In:
+       Nat Energy 2024. https://doi.org/10.1038/s41560-024-01620-9.
+[2]    Figgener J, Haberschusz D, Wessels O, Kai-Philipp Kairies, Bors J, van Ouwerkerk J, Sauer DU. Data for: Multi-year
+       field measurements of home storage systems used for capacity estimation. In: Zenodo 2024. https://doi.org/10.5281/ze-
+       nodo.12091223.
+[3]    Wang Z, Feng G, Zhen D, Gu F, Ball A. A review on online state of charge and state of health estimation for lithium-ion
+       batteries in electric vehicles. In: Energy Reports 2021. 7:5141–61. https://doi.org/10.1016/j.egyr.2021.08.113.
+[4]    Yu Q-Q, Xiong R, Wang L-Y, Lin C. A Comparative Study on Open Circuit Voltage Models for Lithium-ion Batteries. In:
+       Chin. J. Mech. Eng. 2018. 31(1). https://doi.org/10.1186/s10033-018-0268-8.
+[5]    Ren Z, Du C, Wu Z, Shao J, Deng W. A comparative study of the influence of different open circuit voltage tests on
+       model‐based state of charge estimation for lithium‐ion batteries. In: International Journal of Energy Research 2021.
+       45(9):13692–711. https://doi.org/10.1002/er.6700.
+[6]    Birkl CR, McTurk E, Roberts MR, Bruce PG, Howey DA. A Parametric Open Circuit Voltage Model for Lithium Ion Bat-
+       teries. In: J. Electrochem. Soc. 2015. 162(12):A2271-A2280. https://doi.org/10.1149/2.0331512jes.
+[7]    Farmann A, Sauer DU. A study on the dependency of the open-circuit voltage on temperature and actual aging state of
+       lithium-ion batteries. In: Journal of Power Sources 2017. 347:1–13. https://doi.org/10.1016/j.jpowsour.2017.01.098.
+[8]    Birkl CR, Roberts MR, McTurk E, Bruce PG, Howey DA. Degradation diagnostics for lithium ion cells. In: Journal of
+       Power Sources 2017. 341:373–86. https://doi.org/10.1016/j.jpowsour.2016.12.011.
+[9]    Pastor-Fernández C, Yu TF, Widanage WD, Marco J. Critical review of non-invasive diagnosis techniques for quantifi-
+       cation of degradation modes in lithium-ion batteries. In: Renewable and Sustainable Energy Reviews 2019. 109:138–
+       59. https://doi.org/10.1016/j.rser.2019.03.060.
+[10]   Petzl M, Danzer MA. Advancements in OCV Measurement and Analysis for Lithium-Ion Batteries. In: IEEE Trans. En-
+       ergy Convers. 2013. 28(3):675–81. https://doi.org/10.1109/TEC.2013.2259490.
+[11]   Gantenbein S, Schönleber M, Weiss M, Ivers-Tiffée E. Capacity Fade in Lithium-Ion Batteries and Cyclic Aging over
+       Various State-of-Charge Ranges. In: Sustainability 2019. 11(23):6697. https://doi.org/10.3390/su11236697.
+[12]   Schindler S, Danzer MA. A novel mechanistic modeling framework for analysis of electrode balancing and degradation
+       modes in commercial lithium-ion cells. In: Journal of Power Sources 2017. 343:226–36. https://doi.org/10.1016/j.jpow-
+       sour.2017.01.026.
+[13]   Zhu J, Dewi Darma MS, Knapp M, Sørensen DR, Heere M, Fang Q, Wang X, Dai H, Mereacre L, Senyshyn A, Wei X,
+       Ehrenberg H. Investigation of lithium-ion battery degradation mechanisms by combining differential voltage analysis
+       and alternating current impedance. In: Journal of Power Sources 2020. 448:227575. https://doi.org/10.1016/j.jpow-
+       sour.2019.227575.
+[14]   Gao Y, Jiang J, Zhang C, Zhang W, Ma Z, Jiang Y. Lithium-ion battery aging mechanisms and life model under differ-
+       ent charging stresses. In: Journal of Power Sources 2017. 356:103–14. https://doi.org/10.1016/j.jpowsour.2017.04.084.
+[15]   Li Y, Abdel-Monem M, Gopalakrishnan R, Berecibar M, Nanini-Maury E, Omar N, van den Bossche P, van Mierlo J. A
+       quick on-line state of health estimation method for Li-ion battery with incremental capacity curves processed by Gauss-
+       ian filter. In: Journal of Power Sources 2018. 373:40–53. https://doi.org/10.1016/j.jpowsour.2017.10.092.
+[16]   Ouyang M, Ren D, Lu L, Li J, Feng X, Han X, Liu G. Overcharge-induced capacity fading analysis for large format lith-
+       ium-ion batteries with LiyNi1/3Co1/3Mn1/3O2+ LiyMn2O4 composite cathode. In: Journal of Power Sources 2015. 279:626–
+       35. https://doi.org/10.1016/j.jpowsour.2015.01.051.
+[17]   Dubarry M, Svoboda V, Hwu R, Yann Liaw B. Incremental Capacity Analysis and Close-to-Equilibrium OCV Measure-
+       ments to Quantify Capacity Fade in Commercial Rechargeable Lithium Batteries. In: Electrochem. Solid-State Lett.
+       2006. 9(10):A454. https://doi.org/10.1149/1.2221767.
+[18]   Dubarry M, Liaw BY. Identify capacity fading mechanism in a commercial LiFePO 4 cell. In: Journal of Power Sources
+       2009. 194(1):541–9. https://doi.org/10.1016/j.jpowsour.2009.05.036.
+[19]   Plattard T, Barnel N, Assaud L, Franger S, Duffault J-M. Combining a Fatigue Model and an Incremental Capacity Anal-
+       ysis on a Commercial NMC/Graphite Cell under Constant Current Cycling with and without Calendar Aging. In: Batter-
+       ies 2019. 5(1):36. https://doi.org/10.3390/batteries5010036.
+[20]   Berecibar M, Dubarry M, Villarreal I, Omar N, van Mierlo J. Degradation Mechanisms Detection for HP and HE NMC
+       Cells Based on Incremental Capacity Curves. In: 2016 IEEE Vehicle Power and Propulsion Conference (VPPC): Pro-
+       ceedings 17-20 October 2016, Hangzhou, China. Piscataway, NJ: IEEE. 2016, p. 1–5.
+       https://doi.org/10.1109/VPPC.2016.7791648.
+[21]   Wu Y, Xue Q, Shen J, Lei Z, Chen Z, Liu Y. State of Health Estimation for Lithium-Ion Batteries Based on Healthy Fea-
+       tures and Long Short-Term Memory. In: IEEE Access 2020. 8:28533–47. https://doi.org/10.1109/AC-
+       CESS.2020.2972344.
+[22]   Dubarry M, Truchot C, Cugnet M, Liaw BY, Gering K, Sazhin S, Jamison D, Michelbacher C. Evaluation of commercial
+       lithium-ion cells based on composite positive electrode for plug-in hybrid electric vehicle applications. Part I: Initial char-
+       acterizations. In: Journal of Power Sources 2011. 196(23):10328–35. https://doi.org/10.1016/j.jpowsour.2011.08.077.
+[23]   Han X, Ouyang M, Lu L, Li J, Zheng Y, Li Z. A comparative study of commercial lithium ion battery cycle life in electrical
+       vehicle: Aging mechanism identification. In: Journal of Power Sources 2014. 251:38–54. https://doi.org/10.1016/j.jpow-
+       sour.2013.11.029.
+
+
+                                                                                                                                   15
+[24] Severson KA, Attia PM, Jin N, Perkins N, Jiang B, Yang Z, Chen MH, Aykol M, Herring PK, Fraggedakis D, Bazant MZ,
+     Harris SJ, Chueh WC, Braatz RD. Data-driven prediction of battery cycle life before capacity degradation. In: Nat En-
+     ergy 2019. 4(5):383–91. https://doi.org/10.1038/s41560-019-0356-8.
+[25] Maures M, Capitaine A, Delétage J-Y, Vinassa J-M, Briat O. Lithium-ion battery SoH estimation based on incremental
+     capacity peak tracking at several current levels for online application. In: Microelectronics Reliability 2020. 114:113798.
+     https://doi.org/10.1016/j.microrel.2020.113798.
+[26] Dubarry M, Truchot C, Liaw BY. Synthesize battery degradation modes via a diagnostic and prognostic model. In: Jour-
+     nal of Power Sources 2012. 219:204–16. https://doi.org/10.1016/j.jpowsour.2012.07.016.
+[27] Samadani E, Farhad S, Panchal S, Fraser R, Fowler M. Modeling and Evaluation of Li-Ion Battery Performance Based
+     on the Electric Vehicle Field Tests. In: SAE International 2014. https://doi.org/10.4271/2014-01-1848.
+[28] Xu Z, Wang J, Lund PD, Zhang Y. Estimation and prediction of state of health of electric vehicle batteries using discrete
+     incremental capacity analysis based on real driving data. In: Energy 2021. 225:120160. https://doi.org/10.1016/j.en-
+     ergy.2021.120160.
+[29] Wang Q, Wang Z, Liu P, Zhang L, Sauer DU, Li W. Large-scale field data-based battery aging prediction driven by sta-
+     tistical features and machine learning. In: Cell Reports Physical Science 2023:101720.
+     https://doi.org/10.1016/j.xcrp.2023.101720.
+[30] Li W, Demir I, Cao D, Jöst D, Ringbeck F, Junker M, Sauer DU. Data-driven systematic parameter identification of an
+     electrochemical model for lithium-ion batteries with artificial intelligence. In: Energy Storage Materials 2022. 44:557–70.
+     https://doi.org/10.1016/j.ensm.2021.10.023.
+[31] Weng C, Cui Y, Sun J, Peng H. On-board state of health monitoring of lithium-ion batteries using incremental capacity
+     analysis with support vector regression. 2013.
+[32] Weng C, Sun J, Peng H. A unified open-circuit-voltage model of lithium-ion batteries for state-of-charge estimation and
+     state-of-health monitoring. In: Journal of Power Sources 2014. 258:228–37. https://doi.org/10.1016/j.jpow-
+     sour.2014.02.026.
+[33] Tian J, Xiong R, Shen W, Sun F. Electrode ageing estimation and open circuit voltage reconstruction for lithium ion bat-
+     teries. In: Energy Storage Materials 2021. 37:283–95. https://doi.org/10.1016/j.ensm.2021.02.018.
+[34] Marongiu A, Sauer DU. On-board aging estimation using half-cell voltage curves for LiFePO4 cathode-based lithium-ion
+     batteries for EV applications. In: Int.J Automot. Technol. 2016. 17(3):465–72. https://doi.org/10.1007/s12239-016-0048-
+     3.
+[35] Marongiu A, Nlandi N, Rong Y, Sauer DU. On-board capacity estimation of lithium iron phosphate batteries by means
+     of half-cell curves. In: Journal of Power Sources 2016. 324:158–69. https://doi.org/10.1016/j.jpowsour.2016.05.041.
+[36] Tang X, Wang Y, Liu Q, Gao F. Reconstruction of the incremental capacity trajectories from current-varying profiles for
+     lithium-ion batteries. In: iScience 2021. 24(10):103103. https://doi.org/10.1016/j.isci.2021.103103.
+[37] Dubarry M, Anseán D. Best practices for incremental capacity analysis. In: Front. Energy Res. 2022. 10.
+     https://doi.org/10.3389/fenrg.2022.1023555.
+[38] Dubarry M, Liaw BY, Chen M-S, Chyan S-S, Han K-C, Sie W-T, Wu S-H. Identifying battery aging mechanisms in large
+     format Li ion cells. In: Journal of Power Sources 2011. 196(7):3420–5. https://doi.org/10.1016/j.jpowsour.2010.07.029.
+[39] Pastor-Fernández C, Uddin K, Chouchelamane GH, Widanage WD, Marco J. A Comparison between Electrochemical
+     Impedance Spectroscopy and Incremental Capacity-Differential Voltage as Li-ion Diagnostic Techniques to Identify and
+     Quantify the Effects of Degradation Modes within Battery Management Systems. In: Journal of Power Sources 2017.
+     360:301–18. https://doi.org/10.1016/j.jpowsour.2017.03.042.
+[40] Keil P, Schuster SF, Wilhelm J, Travi J, Hauser A, Karl RC, Jossen A. Calendar Aging of Lithium-Ion Batteries. In: J.
+     Electrochem. Soc. 2016. 163(9):A1872-A1880. https://doi.org/10.1149/2.0411609jes.
+[41] Keil P, Jossen A. Calendar Aging of NCA Lithium-Ion Batteries Investigated by Differential Voltage Analysis and Cou-
+     lomb Tracking. In: J. Electrochem. Soc. 2017. 164(1):A6066-A6074. https://doi.org/10.1149/2.0091701jes.
+[42] Tian J, Xiong R, Yu Q. Fractional-Order Model-Based Incremental Capacity Analysis for Degradation State Recognition
+     of Lithium-Ion Batteries. In: IEEE Trans. Ind. Electron. 2019. 66(2):1576–84. https://doi.org/10.1109/TIE.2018.2798606.
+[43] He J, Wei Z, Bian X, Yan F. State-of-Health Estimation of Lithium-Ion Batteries Using Incremental Capacity Analysis
+     Based on Voltage–Capacity Model. In: IEEE Trans. Transp. Electrific. 2020. 6(2):417–26.
+     https://doi.org/10.1109/TTE.2020.2994543.
+[44] Torai S, Nakagomi M, Yoshitake S, Yamaguchi S, Oyama N. State-of-health estimation of LiFePO4/graphite batteries
+     based on a model using differential capacity. In: Journal of Power Sources 2016. 306:62–9.
+     https://doi.org/10.1016/j.jpowsour.2015.11.070.
+[45] Tang X, Zou C, Yao K, Chen G, Liu B, He Z, Gao F. A fast estimation algorithm for lithium-ion battery state of health. In:
+     Journal of Power Sources 2018. 396:453–8. https://doi.org/10.1016/j.jpowsour.2018.06.036.
+[46] Tang X, Liu K, Lu J, Liu B, Wang X, Gao F. Battery incremental capacity curve extraction by a two-dimensional Luen-
+     berger–Gaussian-moving-average filter. In: Applied Energy 2020. 280:115895. https://doi.org/10.1016/j.apen-
+     ergy.2020.115895.
+[47] Dubarry M, Truchot C, Liaw BY, Gering K, Sazhin S, Jamison D, Michelbacher C. Evaluation of commercial lithium-ion
+     cells based on composite positive electrode for plug-in hybrid electric vehicle applications. Part II. Degradation mecha-
+     nism under 2C cycle aging. In: Journal of Power Sources 2011. 196(23):10336–43. https://doi.org/10.1016/j.jpow-
+     sour.2011.08.078.
+
+
+
+                                                                                                                             16
+[48] Dubarry M, Baure G, Devie A. Durability and Reliability of EV Batteries under Electric Utility Grid Operations: Path De-
+     pendence of Battery Degradation. In: J. Electrochem. Soc. 2018. 165(5):A773-A783.
+     https://doi.org/10.1149/2.0421805jes.
+[49] Eddahech A, Briat O, Vinassa J-M. Performance comparison of four lithium–ion battery technologies under calendar
+     aging. In: Energy 2015. 84:542–50. https://doi.org/10.1016/j.energy.2015.03.019.
+[50] Dubarry M, Svoboda V, Hwu R, Liaw BY. Capacity and power fading mechanism identification from a commercial cell
+     evaluation. In: Journal of Power Sources 2007. 165(2):566–72. https://doi.org/10.1016/j.jpowsour.2006.10.046.
+[51] Dubarry M, Tun M, Baure G, Matsuura M, Rocheleau RE. Battery Durability and Reliability under Electric Utility Grid
+     Operations: Analysis of On-Site Reference Tests. In: Electronics 2021. 10(13):1593. https://doi.org/10.3390/electro-
+     nics10131593.
+[52] Shafiei Sabet P, Warnecke AJ, Meier F, Witzenhausen H, Martinez-Laserna E, Sauer DU. Non-invasive yet separate
+     investigation of anode/cathode degradation of lithium-ion batteries (nickel–cobalt–manganese vs. graphite) due to ac-
+     celerated aging. In: Journal of Power Sources 2020. 449:227369. https://doi.org/10.1016/j.jpowsour.2019.227369.
+[53] Goldammer MS, Kowal J. Investigation of degradation mechanisms in lithium-ion batteries by incremental open-circuit-
+     voltage characterization and impedance spectra. In: 2020 IEEE Vehicle Power and Propulsion Conference (VPPC).
+     IEEE. 2020, p. 1–8. https://doi.org/10.1109/VPPC49601.2020.9330948.
+[54] Svens P, Behm M, Lindbergh G. Lithium-Ion Battery Cell Cycling and Usage Analysis in a Heavy-Duty Truck Field
+     Study. In: Energies 2015. 8(5):4513–28. https://doi.org/10.3390/en8054513.
+[55] Keil P, Schuster SF, Wilhelm J, Travi J, Hauser A, Karl RC, Jossen A. Calendar Aging of Lithium-Ion Batteries: I. Im-
+     pact of the Graphie Anode on Capacity Fade. In: J. Electrochem. Soc. 2016. 163(9):A1872-A1880.
+[56] Dubarry M, Beck D. Analysis of Synthetic Voltage vs. Capacity Datasets for Big Data Li-ion Diagnosis and Prognosis.
+     In: Energies 2021. 14(9):2371. https://doi.org/10.3390/en14092371.
+[57] Petzl M, Danzer MA. Nondestructive detection, characterization, and quantification of lithium plating in commercial lith-
+     ium-ion batteries. In: Journal of Power Sources 2014. 254:80–7. https://doi.org/10.1016/j.jpowsour.2013.12.060.
+[58] Dubarry M, Costa N, Matthews D. Data-driven direct diagnosis of Li-ion batteries connected to photovoltaics. In: Nat
+     Commun 2023. 14(1):3138. https://doi.org/10.1038/s41467-023-38895-7.
+[59] Dubarry M, Yasir F, Costa N, Matthews D. Data-Driven Diagnosis of PV-Connected Batteries: Analysis of Two Years of
+     Observed Irradiance. In: Batteries 2023. 9(8):395. https://doi.org/10.3390/batteries9080395.
+[60] Figgener J, Hecht C, Haberschusz D, Bors J, Spreuer KG, Kairies K-P, Stenzel P, Sauer DU. The development of bat-
+     tery storage systems in Germany: A market review (status 2023). 2023. http://arxiv.org/pdf/2203.06762v3.
+[61] Pozzato G, Allam A, Pulvirenti L, Negoita GA, Paxton WA, Onori S. Analysis and key findings from real-world electric
+     vehicle field data. In: Joule 2023. https://doi.org/10.1016/j.joule.2023.07.018.
+[62] Waag W, Käbitz S, Sauer DU. Experimental investigation of the lithium-ion battery impedance characteristic at various
+     conditions and aging states and its influence on the application. In: Applied Energy 2013. 102:885–97.
+     https://doi.org/10.1016/j.apenergy.2012.09.030.
+[63] Smith AJ, Svens P, Varini M, Lindbergh G, Lindström RW. Expanded In Situ Aging Indicators for Lithium-Ion Batteries
+     with a Blended NMC-LMO Electrode Cycled at Sub-Ambient Temperature. In: J. Electrochem. Soc. 2021.
+     168(11):110530. https://doi.org/10.1149/1945-7111/ac2d17.
+[64] Mao Z, Farkhondeh M, Pritzker M, Fowler M, Chen Z. Calendar Aging and Gas Generation in Commercial Graph-
+     ite/NMC-LMO Lithium-Ion Pouch Cell. In: J. Electrochem. Soc. 2017. 164(14):A3469-A3483.
+     https://doi.org/10.1149/2.0241714jes.
+[65] Ecker M, Nieto N, Käbitz S, Schmalstieg J, Blanke H, Warnecke A, Sauer DU. Calendar and cycle life study of
+     Li(NiMnCo)O2-based 18650 lithium-ion batteries. In: Journal of Power Sources 2014. 248:839–51.
+     https://doi.org/10.1016/j.jpowsour.2013.09.143.
+[66] Meinert Lewerenz. Dissection and Quantitative Description of Aging of Lithium-Ion Batteries Using Non-Destructive
+     Methods Validated by Post-Mortem-Analyses [Doctors thesis]. Aachen. RWTH Aachen. 2018.
+[67] Li D, Danilov DL, Gao L, Yang Y, Notten PH. Degradation Mechanisms of the Graphite Electrode in C6/LiFePO4 Batter-
+     ies Unraveled by a Non-Destructive Approach. In: J. Electrochem. Soc. 2016. 163(14):A3016-A3021.
+     https://doi.org/10.1149/2.0821614jes.
+[68] Whitley E, Ball J. Statistics review 3: hypothesis testing and P values. In: Crit Care 2002. 6(3):222–5.
+     https://doi.org/10.1186/cc1493.
+
+
+
+
+                                                                                                                            17
+

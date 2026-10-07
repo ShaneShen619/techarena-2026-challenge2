@@ -1,0 +1,13 @@
+{
+  "frozen_before_run": "2026-09-28",
+  "protocol": "v1.4",
+  "condition": "D1 20Ah first3.50V persistent 180 targets",
+  "knots": "training-row 25/50/75% quantiles of prefix eligible charge count, recomputed within each inner/outer training fold",
+  "models": ["spline_age", "spline_age_rate", "spline_age_temp_rate"],
+  "ridge_alpha": [0.1, 1.0, 10.0, 100.0, 1000.0],
+  "rate_indicator": "current fragment median charge current >=75A",
+  "temperature": "current fragment median temperature C; retained only as exploratory M3 bridge",
+  "outer": "6 physical-cell leave one out",
+  "inner": "5 remaining physical-cell leave one out",
+  "claim_limit": "post-M2-v1 exploratory on same six P1 developer cells; not hidden official validation"
+}

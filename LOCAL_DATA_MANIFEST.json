@@ -1,0 +1,530 @@
+{
+  "description": "Files retained locally and excluded from the initial Git upload. This is an inventory, not a backup; byte sizes were recorded on 2026-10-07.",
+  "files": [
+    {
+      "path": "Che-Dataset3.mat",
+      "bytes": 56020784,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_1.csv",
+      "bytes": 993816767,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_10.csv",
+      "bytes": 608241652,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_11.csv",
+      "bytes": 499200346,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_12.csv",
+      "bytes": 204505914,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_13.csv",
+      "bytes": 748301068,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_14.csv",
+      "bytes": 340555007,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_15.csv",
+      "bytes": 813111566,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_16.csv",
+      "bytes": 457475737,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_17.csv",
+      "bytes": 770588718,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_18.csv",
+      "bytes": 492335936,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_19.csv",
+      "bytes": 750146723,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_2.csv",
+      "bytes": 377831531,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_20.csv",
+      "bytes": 747816373,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_21.csv",
+      "bytes": 1055248372,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_22.csv",
+      "bytes": 421925849,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_23.csv",
+      "bytes": 229198294,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_24.csv",
+      "bytes": 149852553,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_25.csv",
+      "bytes": 65092426,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_26.csv",
+      "bytes": 78060627,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_27.csv",
+      "bytes": 193966743,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_28.csv",
+      "bytes": 39813382,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_3.csv",
+      "bytes": 137687310,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_4.csv",
+      "bytes": 690633709,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_5.csv",
+      "bytes": 1454926692,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_6.csv",
+      "bytes": 2889184963,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_7.csv",
+      "bytes": 327748004,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_8.csv",
+      "bytes": 3622009420,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "TU Darmstadt/data_sys_9.csv",
+      "bytes": 746318877,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_0p5C_cell3/102Ah_25degC_0p5C_cell3_time_series_part01.csv",
+      "bytes": 9211484,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_0p5C_cell3/102Ah_25degC_0p5C_cell3_time_series_part02.csv",
+      "bytes": 9710554,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_0p5C_cell3/102Ah_25degC_0p5C_cell3_time_series_part03.csv",
+      "bytes": 9720063,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_0p5C_cell3/102Ah_25degC_0p5C_cell3_time_series_part04.csv",
+      "bytes": 9738409,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_0p5C_cell3/102Ah_25degC_0p5C_cell3_time_series_part05.csv",
+      "bytes": 2174382,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_0p5C_cell3/102Ah_25degC_0p5C_cell3_time_series_part06.csv",
+      "bytes": 154338,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part01.csv",
+      "bytes": 9680447,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part02.csv",
+      "bytes": 9688553,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part03.csv",
+      "bytes": 9721924,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part04.csv",
+      "bytes": 9757845,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part05.csv",
+      "bytes": 9782241,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part06.csv",
+      "bytes": 9737017,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part07.csv",
+      "bytes": 9749657,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part08.csv",
+      "bytes": 9690482,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part09.csv",
+      "bytes": 9644427,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part10.csv",
+      "bytes": 10065681,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part11.csv",
+      "bytes": 4380863,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part12.csv",
+      "bytes": 5208794,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part13.csv",
+      "bytes": 10168705,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part14.csv",
+      "bytes": 6653832,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part01.csv",
+      "bytes": 9890091,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part02.csv",
+      "bytes": 9948413,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part03.csv",
+      "bytes": 10002299,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part04.csv",
+      "bytes": 10057407,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part05.csv",
+      "bytes": 10058622,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part06.csv",
+      "bytes": 10045349,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part07.csv",
+      "bytes": 10032325,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part08.csv",
+      "bytes": 10041120,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part09.csv",
+      "bytes": 10051079,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part10.csv",
+      "bytes": 9728328,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part11.csv",
+      "bytes": 9383089,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part12.csv",
+      "bytes": 9643433,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part13.csv",
+      "bytes": 4925393,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part01.csv",
+      "bytes": 9746533,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part02.csv",
+      "bytes": 9830062,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part03.csv",
+      "bytes": 9867578,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part04.csv",
+      "bytes": 9859587,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part05.csv",
+      "bytes": 9928035,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part06.csv",
+      "bytes": 10007018,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part07.csv",
+      "bytes": 9974428,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part08.csv",
+      "bytes": 9944416,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part09.csv",
+      "bytes": 9928208,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part10.csv",
+      "bytes": 9919823,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part11.csv",
+      "bytes": 9909907,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part12.csv",
+      "bytes": 9849707,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part13.csv",
+      "bytes": 10015470,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part14.csv",
+      "bytes": 9929314,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part15.csv",
+      "bytes": 9957498,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part16.csv",
+      "bytes": 9838987,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part17.csv",
+      "bytes": 9990793,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part18.csv",
+      "bytes": 9115647,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part19.csv",
+      "bytes": 5781192,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part20.csv",
+      "bytes": 9734977,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_1C_cell1/102Ah_45degC_1C_cell1_time_series_part01.csv",
+      "bytes": 9679469,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_1C_cell1/102Ah_45degC_1C_cell1_time_series_part02.csv",
+      "bytes": 9722113,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_1C_cell1/102Ah_45degC_1C_cell1_time_series_part03.csv",
+      "bytes": 9779014,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_1C_cell1/102Ah_45degC_1C_cell1_time_series_part04.csv",
+      "bytes": 9849856,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_1C_cell1/102Ah_45degC_1C_cell1_time_series_part05.csv",
+      "bytes": 9849174,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_45degC_1C_cell1/102Ah_45degC_1C_cell1_time_series_part06.csv",
+      "bytes": 6769130,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_55degC_1C_cell3/102Ah_55degC_1C_cell3_time_series_part01.csv",
+      "bytes": 9605038,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_55degC_1C_cell3/102Ah_55degC_1C_cell3_time_series_part02.csv",
+      "bytes": 9626895,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_55degC_1C_cell3/102Ah_55degC_1C_cell3_time_series_part03.csv",
+      "bytes": 9745065,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_55degC_1C_cell3/102Ah_55degC_1C_cell3_time_series_part04.csv",
+      "bytes": 9740192,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_55degC_1C_cell3/102Ah_55degC_1C_cell3_time_series_part05.csv",
+      "bytes": 9677951,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/102Ah_55degC_1C_cell3/102Ah_55degC_1C_cell3_time_series_part06.csv",
+      "bytes": 482025,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "dataset original/TechArena_2026_Topic_1_Challenge1.pdf",
+      "bytes": 201694,
+      "reason": "raw_dataset"
+    },
+    {
+      "path": "research/phase2_evidence_validation/outputs/event_eligibility.csv",
+      "bytes": 24068486,
+      "reason": "large_generated_output"
+    },
+    {
+      "path": "research/phase2_evidence_validation/runs/V1_event_coverage_20260929/event_eligibility_v1.csv",
+      "bytes": 21842230,
+      "reason": "large_generated_output"
+    },
+    {
+      "path": "research/phase2_method_exploration/outputs/predictions_long.csv",
+      "bytes": 252570677,
+      "reason": "large_generated_output"
+    },
+    {
+      "path": "research/phase2_method_exploration/runs/M6_TU_steps_v1/system_06_events.csv",
+      "bytes": 16134744,
+      "reason": "large_generated_output"
+    },
+    {
+      "path": "research/phase2_method_exploration/runs/M6_TU_steps_v1/system_08_events.csv",
+      "bytes": 13768068,
+      "reason": "large_generated_output"
+    },
+    {
+      "path": "research/phase2_method_exploration/runs/M6_threshold_common_v1/matched_event_predictions.csv",
+      "bytes": 227005169,
+      "reason": "large_generated_output"
+    },
+    {
+      "path": "research/phase2_method_exploration/runs/M6_workpoint_time_20A_v1/LOSO_online_predictions.csv",
+      "bytes": 158569127,
+      "reason": "large_generated_output"
+    },
+    {
+      "path": "research/phase2_method_exploration/runs/M6_workpoint_time_v3/LOSO_online_predictions.csv",
+      "bytes": 90074095,
+      "reason": "large_generated_output"
+    },
+    {
+      "path": "research/phase2_method_exploration/runs/M6_workpoint_time_v4/LOSO_online_predictions.csv",
+      "bytes": 127965121,
+      "reason": "large_generated_output"
+    },
+    {
+      "path": "research/phase2_method_exploration/runs/M6_workpoint_time_v5/LOSO_online_predictions.csv",
+      "bytes": 165605941,
+      "reason": "large_generated_output"
+    }
+  ]
+}

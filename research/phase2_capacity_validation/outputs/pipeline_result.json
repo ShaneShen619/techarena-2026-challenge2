@@ -1,0 +1,45 @@
+{
+  "official_hidden_targets": 35,
+  "official_MAE_pp": null,
+  "same_protocol_independent_MAE_pp": null,
+  "late_MAE": null,
+  "transfer_comparison": [
+    {
+      "source_id": "Ji_second_life_23",
+      "tier": "different_protocol_single_cell",
+      "candidate": "median",
+      "n_entities": 8,
+      "n_targets": 8,
+      "macro_MAE_Ah": 0.7633750000000004,
+      "point_MAE_Ah": 0.7633750000000004,
+      "worst_entity_MAE_Ah": 1.4490000000000003,
+      "max_absolute_error_Ah": 1.4490000000000003,
+      "signed_bias_Ah": 0.40112500000000056,
+      "overestimate_fraction": 0.75,
+      "late_MAE_Ah": null,
+      "SOH_MAE_pp": null,
+      "reject_fraction": 0,
+      "fallback_fraction": 0,
+      "performance_scope": "exploratory_nonblind_author_labels_one_stage"
+    },
+    {
+      "source_id": "Ji_second_life_23",
+      "tier": "different_protocol_single_cell",
+      "candidate": "q_window",
+      "n_entities": 8,
+      "n_targets": 8,
+      "macro_MAE_Ah": 0.1380913073880914,
+      "point_MAE_Ah": 0.1380913073880914,
+      "worst_entity_MAE_Ah": 0.25872712511490237,
+      "max_absolute_error_Ah": 0.25872712511490237,
+      "signed_bias_Ah": -0.12750127151663637,
+      "overestimate_fraction": 0.125,
+      "late_MAE_Ah": null,
+      "SOH_MAE_pp": null,
+      "reject_fraction": 0,
+      "fallback_fraction": 0,
+      "performance_scope": "exploratory_nonblind_author_labels_one_stage"
+    }
+  ],
+  "selected_transfer_improvement_fraction_vs_median": 0.8191042313566841
+}

@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "count": 12,
+    "db_response_time_ms": 14,
+    "page": 1,
+    "per_page": 100,
+    "groups_count": null,
+    "x_query": {
+      "oql": "works where it cites (W4410979023)",
+      "oqo": {
+        "get_rows": "works",
+        "filter_rows": [
+          {
+            "column_id": "referenced_works",
+            "value": "W4410979023"
+          }
+        ]
+      },
+      "url": "/works?filter=referenced_works:W4410979023&per_page=100"
+    },
+    "cost_usd": 0.0001
+  },
+  "results": [
+    {
+      "id": "https://openalex.org/W7157318184",
+      "title": "Artificial intelligence for battery reuse, recycling and remanufacturing",
+      "doi": "https://doi.org/10.1038/s44359-026-00167-0",
+      "publication_year": 2026,
+      "type": "review"
+    },
+    {
+      "id": "https://openalex.org/W4412791125",
+      "title": "Fine-tuning for rapid capacity estimation of lithium-ion batteries",
+      "doi": "https://doi.org/10.1016/j.ensm.2025.104425",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7151784662",
+      "title": "Electric-vehicle battery second-life and recycling pathways: How economics depend on chemistry, processing, and application",
+      "doi": "https://doi.org/10.1016/j.apenergy.2026.127809",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7151798569",
+      "title": "Limits of electrochemical data for predicting battery lifetime and failure",
+      "doi": "https://doi.org/10.1016/j.joule.2026.102423",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7118235868",
+      "title": "State of charge estimation and elucidation of sodium-ion batteries based on electrochemical impedance spectroscopy characteristics",
+      "doi": "https://doi.org/10.1016/j.energy.2026.139955",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7131875607",
+      "title": "Impact of Sustained Hemispherical Indentation on Electrochemical Performance Degradation and Thermal Safety of Lithium-ion Batteries",
+      "doi": "https://doi.org/10.2139/ssrn.6314961",
+      "publication_year": 2026,
+      "type": "preprint"
+    },
+    {
+      "id": "https://openalex.org/W7148263137",
+      "title": "Visualization and Detection of Internal Damage Caused by External Mechanical Loads in Cylindrical Li-Ion Batteries",
+      "doi": "https://doi.org/10.1149/1945-7111/ae5b2a",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7162319630",
+      "title": "Polarization Recovery-Based Screening of Lithium-Ion Cells After Pulse Multisine Loading",
+      "doi": "https://doi.org/10.3390/electronics15112291",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7171328341",
+      "title": "SOC-agnostic rapid state-of-health estimation of lithium-ion batteries",
+      "doi": "https://doi.org/10.1016/j.apenergy.2026.128451",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7202185029",
+      "title": "Rapid state of charge and state of health estimation of heterogeneous retired lithium-ion batteries via direct current pulse test and multi-stage deep transfer learning",
+      "doi": "https://doi.org/10.1016/j.est.2026.123860",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7202355985",
+      "title": "Multimodal metrology for sustainable lithium-ion battery formation: From baseline electrical measurements to intelligent, adaptive process control",
+      "doi": "https://doi.org/10.1016/j.rser.2026.117395",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7204119608",
+      "title": "Pulse-based state-of-charge and state-of-health estimation of randomly retired lithium-ion batteries for second-life applications",
+      "doi": "https://doi.org/10.1016/j.apenergy.2026.128702",
+      "publication_year": 2026,
+      "type": "article"
+    }
+  ],
+  "group_by": []
+}

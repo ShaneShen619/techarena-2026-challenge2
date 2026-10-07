@@ -1,0 +1,15 @@
+{
+  "protocol": "v1.4",
+  "evidence": "D1 P1 six-cell development proxy only",
+  "strongest_eligible_primary_baseline": "age_ridge",
+  "baseline_macro_mae_pp": 3.6797731933930904,
+  "best_exploratory_candidate": "spline_age_temp_rate",
+  "candidate_macro_mae_pp": 3.6160548824889283,
+  "candidate_relative_improvement": 0.01731582561081923,
+  "required_relative_improvement": 0.2,
+  "d1_target_met": false,
+  "official_capacity_accuracy_verified": false,
+  "d2_confirmation_status": "not_available",
+  "research_closed": false,
+  "basis": "Independent recomputation from 180 row predictions; candidate remains above macro/worst/max thresholds. More modules remain."
+}

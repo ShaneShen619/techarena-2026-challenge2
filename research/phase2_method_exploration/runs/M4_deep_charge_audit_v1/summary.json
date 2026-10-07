@@ -1,0 +1,10 @@
+{
+  "deep_candidate_count_all_time": 8,
+  "first_deep_charge_Ah": 100.01641111111223,
+  "public_CK0_capacity_Ah": 100.41,
+  "CK0_offset_Ah": 0.3935888888877628,
+  "deep_candidate_after_CK7_excluded_from_CK7": 1,
+  "uncertainty_note": "Charge Ah from unknown initial SOC at 20.4A and terminal CV is not 5.1A discharge capacity. A prior checkup may have set initial SOC but checkup process is hidden; bias/efficiency, depth, temperature and month lag remain.",
+  "selection_notice": "80Ah and <3.1V thresholds chosen after retrospective audit, so diagnostic only and not blind validation.",
+  "capacity_validation": "CK1-CK7 labels hidden; no official error computed"
+}

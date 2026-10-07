@@ -1,0 +1,16 @@
+paper_id,source_url,fulltext_status,decision,reason,physical_entity_and_target,evidence_card
+Schaeffer2024,https://web.mit.edu/braatzgroup/Schaeffer_CellRepPhysSci_2024.pdf,full_pdf_reviewed,include_core,official TU BattGP 8s LFP field resistance and fault,28 packs; resistance/fault not capacity,B_card_Schaeffer2024.md
+Yi2024,https://arxiv.org/pdf/2401.08136,full_pdf_reviewed,include_core,LFP SOC-capacity joint estimator with voltage bias,2 single LFP cells; capacity relative error,B_card_Yi2024.md
+Krupp2021,https://elib.dlr.de/140003/1/batteries-07-00002.pdf,full_pdf_reviewed,include_core,four series LFP cell heterogeneity and cutoff,one 4s module; ICA/classification,B_card_Krupp2021.md
+ZhouAitioHowey2025,https://arxiv.org/pdf/2407.06639,full_pdf_reviewed,include_core,capacity and OCV-resistance confounding,2 non-LFP cells; RPT capacity,B_card_ZhouAitioHowey2025.md
+Aitio2023,https://arxiv.org/pdf/2304.13666,full_pdf_reviewed,include_core,recursive GP capacity prior and split,2 NCA cells; 0.3C capacity,B_card_Aitio2023.md
+Gasper2025,https://www.osti.gov/pages/servlets/purl/2584011,full_pdf_reviewed,include_core,pulse-to-capacity supervised evidence plus split caution,Table I rows sum 75 entities but totals row says 79; 4 chemistries; capacity/BMS targets,B_card_Gasper2025.md
+Zhang2011,https://ecec.me.psu.edu/Pubs/2010-Zhang-JPS.pdf,full_pdf_reviewed,include_core,LFP pulse capacity temperature separation,1 prismatic LFP cell; 1C capacity and power,B_card_Zhang2011.md
+Cornejo2026,https://arxiv.org/pdf/2609.04487,full_pdf_reviewed,include_core,cell heterogeneity and capacity-scale caveat,27 MMC modules 324 logical LMO cells; estimated usable SOH,B_card_Cornejo2026.md
+Shi2026,https://arxiv.org/pdf/2507.01173,full_pdf_reviewed,include_mechanism,SOC Fisher gate but known capacity,1 LFP cell; SOC not capacity,B_card_Shi2026.md
+Wong2024,https://arxiv.org/pdf/2405.17754,pdf_downloaded_not_full_reviewed,exclude_from_core,parallel pair topology and capacity-resistance product ambiguity; related counterexample,parallel pairs; DVA imbalance,
+Zhu2022,https://www.nature.com/articles/s41467-022-29837-w,open_html_methods_and_results_seen,exclude_from_B_core,full-charge relaxation supervised model with NCA/NCM cells and transfer; lower B priority,130 non-LFP cells; capacity,
+Berecibar2016,https://doi.org/10.1016/j.energy.2016.02.163,metadata_or_abstract_only,do_not_claim,older LFP pack DVA but full text not secured,pack; capacity,
+Wang2021PackOCV,https://www.sciencedirect.com/science/article/pii/S0360544221031315,abstract_only,do_not_claim,partial OCV pack result needs full methods and cutoff,pack; capacity,
+Waag2016HalfCell,https://www.sciencedirect.com/science/article/pii/S0378775316305778,abstract_only,do_not_claim,half-cell curves require additional data; full methods not secured,LFP cell; capacity,
+Shi2026Publisher,https://research.chalmers.se/publication/551220/file/551220_Fulltext.pdf,full_pdf_available_version_crosscheck,merge_with_Shi2026,same work final author version not independent evidence,1 LFP cell; SOC,B_card_Shi2026.md

@@ -1,0 +1,66 @@
+{
+  "synthetic_scenarios": 45,
+  "synthetic_gate_accept_by_window_sigma": [
+    {
+      "window_Ah": 10.0,
+      "assumed_effective_sigma_mV": 1.0,
+      "gate_accept": 0.0
+    },
+    {
+      "window_Ah": 10.0,
+      "assumed_effective_sigma_mV": 5.0,
+      "gate_accept": 0.0
+    },
+    {
+      "window_Ah": 10.0,
+      "assumed_effective_sigma_mV": 20.0,
+      "gate_accept": 0.0
+    },
+    {
+      "window_Ah": 30.0,
+      "assumed_effective_sigma_mV": 1.0,
+      "gate_accept": 0.3333333333333333
+    },
+    {
+      "window_Ah": 30.0,
+      "assumed_effective_sigma_mV": 5.0,
+      "gate_accept": 0.0
+    },
+    {
+      "window_Ah": 30.0,
+      "assumed_effective_sigma_mV": 20.0,
+      "gate_accept": 0.0
+    },
+    {
+      "window_Ah": 90.0,
+      "assumed_effective_sigma_mV": 1.0,
+      "gate_accept": 1.0
+    },
+    {
+      "window_Ah": 90.0,
+      "assumed_effective_sigma_mV": 5.0,
+      "gate_accept": 1.0
+    },
+    {
+      "window_Ah": 90.0,
+      "assumed_effective_sigma_mV": 20.0,
+      "gate_accept": 0.3333333333333333
+    }
+  ],
+  "synthetic_median_Q_error_by_window_Ah": {
+    "10.0": 12.5,
+    "30.0": 11.0,
+    "90.0": 0.0
+  },
+  "official_forward_cell_events": 148,
+  "official_gate_accepted": 0,
+  "official_median_profile_width_Ah": 50.0,
+  "official_voltage_MAE_mV_by_method": {
+    "CK0_fixed_shape": 13.860589102545351,
+    "early_gated_Q_fixed_SOC": 13.860589102545351,
+    "early_ungated_Q_SOC": 9.582131206944297,
+    "last_same_temp_shift": 0.6798344103129438
+  },
+  "capacity_validation": "not_testable: CK1-CK7 capacity labels hidden; synthetic truth is mechanism test only",
+  "reference_limit": "CK0 is 5.1A finite-rate 4S discharge; not equilibrium OCV or unique cell Q; 20.4A pulses have rate/thermal mismatch"
+}

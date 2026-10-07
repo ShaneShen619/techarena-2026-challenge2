@@ -1,0 +1,376 @@
+{
+  "meta": {
+    "count": 50,
+    "db_response_time_ms": 43,
+    "page": 1,
+    "per_page": 100,
+    "groups_count": null,
+    "x_query": {
+      "oql": "works where it cites (W4223621951)",
+      "oqo": {
+        "get_rows": "works",
+        "filter_rows": [
+          {
+            "column_id": "referenced_works",
+            "value": "W4223621951"
+          }
+        ]
+      },
+      "url": "/works?filter=referenced_works:W4223621951&per_page=100"
+    },
+    "cost_usd": 0.0001
+  },
+  "results": [
+    {
+      "id": "https://openalex.org/W4383617503",
+      "title": "Perspectives and challenges for future lithium-ion battery control and management",
+      "doi": "https://doi.org/10.1016/j.etran.2023.100260",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4321019951",
+      "title": "An overview of data-driven battery health estimation technology for battery management system",
+      "doi": "https://doi.org/10.1016/j.neucom.2023.02.031",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4389512212",
+      "title": "Open access dataset, code library and benchmarking deep learning approaches for state-of-health estimation of lithium-ion batteries",
+      "doi": "https://doi.org/10.1016/j.est.2023.109884",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4323033404",
+      "title": "State of Health Estimation Methods for Lithium-Ion Batteries",
+      "doi": "https://doi.org/10.1155/2023/4297545",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4386700202",
+      "title": "A novel state of health estimation method for lithium-ion batteries based on constant-voltage charging partial data and convolutional neural network",
+      "doi": "https://doi.org/10.1016/j.energy.2023.129103",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4388822425",
+      "title": "Electric vehicle battery capacity degradation and health estimation using machine-learning techniques: a review",
+      "doi": "https://doi.org/10.1093/ce/zkad054",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4389076593",
+      "title": "Degradation Pattern Recognition and Features Extrapolation for Battery Capacity Trajectory Prediction",
+      "doi": "https://doi.org/10.1109/tte.2023.3336618",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4367682444",
+      "title": "Data-driven battery capacity estimation based on partial discharging capacity curve for lithium-ion batteries",
+      "doi": "https://doi.org/10.1016/j.est.2023.107549",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4392673007",
+      "title": "A self-attention knowledge domain adaptation network for commercial lithium-ion batteries state-of-health estimation under shallow cycles",
+      "doi": "https://doi.org/10.1016/j.est.2024.111197",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4366824677",
+      "title": "Joint modeling for early predictions of Li-ion battery cycle life and degradation trajectory",
+      "doi": "https://doi.org/10.1016/j.energy.2023.127633",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4386697001",
+      "title": "A fast data-driven battery capacity estimation method under non-constant current charging and variable temperature",
+      "doi": "https://doi.org/10.1016/j.ensm.2023.102967",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4389613901",
+      "title": "Increasing generalization capability of battery health estimation using continual learning",
+      "doi": "https://doi.org/10.1016/j.xcrp.2023.101743",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4400871231",
+      "title": "Adaptable capacity estimation of lithium-ion battery based on short-duration random constant-current charging voltages and convolutional neural networks",
+      "doi": "https://doi.org/10.1016/j.energy.2024.132541",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4385870361",
+      "title": "Li-ion battery state-of-health estimation based on the combination of statistical and geometric features of the constant-voltage charging stage",
+      "doi": "https://doi.org/10.1016/j.est.2023.108647",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4405611350",
+      "title": "Health status estimation of Lithium-ion battery under arbitrary charging voltage information using ensemble learning framework",
+      "doi": "https://doi.org/10.1016/j.ress.2024.110782",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4410846884",
+      "title": "Enhanced CNN-based state-of-health estimation framework for lithium-ion batteries using variable-length charging segments and transfer learning",
+      "doi": "https://doi.org/10.1016/j.est.2025.117214",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4319302816",
+      "title": "Multi-Segment State of Health Estimation of Lithium-ion Batteries Considering Short Partial Charging",
+      "doi": "https://doi.org/10.1109/tec.2023.3242876",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4360938307",
+      "title": "Feature–target pairing in machine learning for battery health diagnosis and prognosis: A critical review",
+      "doi": "https://doi.org/10.1002/eom2.12345",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4391956474",
+      "title": "Identification of the aging state of lithium-ion batteries via temporal convolution network and self-attention mechanism",
+      "doi": "https://doi.org/10.1016/j.est.2024.110999",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4386323156",
+      "title": "Voltage and temperature information ensembled probabilistic battery health evaluation via deep Gaussian mixture density network",
+      "doi": "https://doi.org/10.1016/j.est.2023.108587",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4401546591",
+      "title": "How battery capacities are correctly estimated considering latent short-circuit faults",
+      "doi": "https://doi.org/10.1016/j.apenergy.2024.124190",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4410638398",
+      "title": "A lithium-ion batteries SOH estimation method based on extracting new features during the constant voltage charging stage and improving BPNN",
+      "doi": "https://doi.org/10.1371/journal.pone.0324868",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7124132638",
+      "title": "A sparse SOH estimation framework based on clustered voltage segments and multi-head CNN under arbitrary charging condition",
+      "doi": "https://doi.org/10.1016/j.energy.2026.140057",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4412615744",
+      "title": "Cycling-Induced Degradation Analysis of Lithium-Ion Batteries Under Static and Dynamic Charging: A Physical Testing Methodology Using Low-Cost Equipment",
+      "doi": "https://doi.org/10.3390/wevj16080411",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4417526659",
+      "title": "Relaxation voltage-based dual-stream transfer attention network for state of health estimation of lithium-ion batteries",
+      "doi": "https://doi.org/10.1016/j.est.2025.119917",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4390699620",
+      "title": "A novel time series forecasting model for capacity degradation path prediction of lithium-ion battery pack",
+      "doi": "https://doi.org/10.1007/s11227-023-05859-z",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4387866980",
+      "title": "Li‐Ion Battery State of Health Estimation Based on Short Random Charging Segment and Improved Long Short‐Term Memory",
+      "doi": "https://doi.org/10.1049/2023/8839034",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4402988354",
+      "title": "Accurate Prediction of Electrochemical Degradation Trajectory for Lithium‐Ion Battery Using Self‐Discharge",
+      "doi": "https://doi.org/10.1155/2024/1758578",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7123342359",
+      "title": "Representation learning accelerates the development of models for Li-ion battery health diagnostics and prognostics",
+      "doi": "https://doi.org/10.1016/j.ensm.2026.104897",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7127633682",
+      "title": "Multi-model fusion methods with strong generalization capability for online SOH estimation of lithium-ion batteries",
+      "doi": "https://doi.org/10.1016/j.est.2026.120879",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7129572138",
+      "title": "A temporal convolutional network model with attention mechanisms and quantile regression for state of health estimation of lithium batteries",
+      "doi": "https://doi.org/10.1016/j.est.2026.121000",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4416214905",
+      "title": "State of Health Estimation for Lithium-Ion Batteries Based on Mechanism Fundamental Learning Under Variable Charging Strategies",
+      "doi": "https://doi.org/10.1109/tie.2025.3621679",
+      "publication_year": 2025,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4379534521",
+      "title": "Robustness enhanced capacity estimation method for lithium-ion batteries based on multi-voltage-interval incremental capacity peaks",
+      "doi": "https://doi.org/10.3389/fenrg.2023.1207194",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4366200618",
+      "title": "Data‐driven snapshot methods leveraging data fusion to estimate state of health for maritime battery systems",
+      "doi": "https://doi.org/10.1002/est2.476",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4307716641",
+      "title": "A Data-Driven Snapshot Method for State of Health Modelling and Diagnostics of Maritime Battery Systems",
+      "doi": "https://doi.org/10.36001/phmconf.2022.v14i1.3154",
+      "publication_year": 2022,
+      "type": "conference-paper"
+    },
+    {
+      "id": "https://openalex.org/W4362501392",
+      "title": "Data-driven SOH Estimation of Lithium-ion Batteries Based on Savitzky-Golay Filtering and SSA-SVR Model",
+      "doi": "https://doi.org/10.1109/spies55999.2022.10082139",
+      "publication_year": 2022,
+      "type": "conference-paper"
+    },
+    {
+      "id": "https://openalex.org/W4380204331",
+      "title": "State of health estimation of lithium-ion batteries based on the regional triangle",
+      "doi": "https://doi.org/10.1016/j.est.2023.107918",
+      "publication_year": 2023,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4405599694",
+      "title": "Research on Life Attenuation of Lithium-Ion Batteries Based on IC Curves and Voltage Hybrid Evaluation Algorithm",
+      "doi": "https://doi.org/10.1109/access.2024.3520250",
+      "publication_year": 2024,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W4380837477",
+      "title": "A Novel State of Health Estimation Method for Lithium-Ion Batteries Based on Constant-Voltage Charging Partial Data and Convolutional Neural Network",
+      "doi": "https://doi.org/10.2139/ssrn.4479437",
+      "publication_year": 2023,
+      "type": "preprint"
+    },
+    {
+      "id": "https://openalex.org/W4388399127",
+      "title": "State of Health Estimation for Lithium-ion Batteries Based on Mechanism Fundamental Learning under Variable Charging Strategies",
+      "doi": "https://doi.org/10.21203/rs.3.rs-3486377/v1",
+      "publication_year": 2023,
+      "type": "preprint"
+    },
+    {
+      "id": "https://openalex.org/W4399456079",
+      "title": "A Lithium-Ion Batteries Soh Estimation Method Based on Extracting New Features During the Constant Voltage Charging Stage and Improving Bpnn",
+      "doi": "https://doi.org/10.2139/ssrn.4858278",
+      "publication_year": 2024,
+      "type": "preprint"
+    },
+    {
+      "id": "https://openalex.org/W4400232217",
+      "title": "Graph Convolutional Networks for Lithium-Ion Battery Health Estimation",
+      "doi": "https://doi.org/10.1109/ipemc-ecceasia60879.2024.10567374",
+      "publication_year": 2024,
+      "type": "conference-paper"
+    },
+    {
+      "id": "https://openalex.org/W7131233097",
+      "title": "State-of-Health Estimation of Lithium-Ion Batteries Using Partial Constant-Voltage Charging Data",
+      "doi": "https://doi.org/10.1109/icnepe67923.2025.11384461",
+      "publication_year": 2025,
+      "type": "conference-paper"
+    },
+    {
+      "id": "https://openalex.org/W7135179863",
+      "title": "Investigating the Aging Mechanisms of Lithium-Ion Batteries under CLTC-P Cycling at Low Temperature",
+      "doi": "https://doi.org/10.1109/ei268505.2025.11425731",
+      "publication_year": 2025,
+      "type": "conference-paper"
+    },
+    {
+      "id": "https://openalex.org/W7167801274",
+      "title": "A synergistic sequence–feature fusion framework for robust battery SOH estimation across real-world random charging profiles",
+      "doi": "https://doi.org/10.1016/j.etran.2026.100621",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7203602337",
+      "title": "Ultra-fast battery health estimation from random 100 mV charging fragments using conditional generative diffusion",
+      "doi": "https://doi.org/10.1016/j.xcrp.2026.103496",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7203664562",
+      "title": "Physics-informed lithium-ion battery SOH estimation from multi-source partial charging segments",
+      "doi": "https://doi.org/10.2139/ssrn.7308998",
+      "publication_year": 2026,
+      "type": "preprint"
+    },
+    {
+      "id": "https://openalex.org/W7203750417",
+      "title": "Rapid lithium-ion battery health estimation from short initial charging data",
+      "doi": "https://doi.org/10.1016/j.est.2026.124250",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7204869385",
+      "title": "Online Health Estimation of Batteries with Moderate to High Degradation Utilizing LSTM-Ensembled Learning Framework from Consecutive CC Charging Segments",
+      "doi": "https://doi.org/10.3390/batteries12090331",
+      "publication_year": 2026,
+      "type": "article"
+    },
+    {
+      "id": "https://openalex.org/W7212491463",
+      "title": "State of Health Estimation for Lithium-Ion Batteries Using Machine Learning and Pseudo-Synthetic Data",
+      "doi": "https://doi.org/10.2139/ssrn.7459814",
+      "publication_year": 2026,
+      "type": "preprint"
+    }
+  ],
+  "group_by": []
+}

@@ -1,0 +1,24 @@
+{
+  "qualified_charge_events_all_time": 41,
+  "shallow_lt50_Ah_events_all_time": 33,
+  "shallow_cc_Ah_median": 20.791983333333384,
+  "shallow_cell_v_start_median_V": {
+    "cell1": 3.339,
+    "cell2": 3.339,
+    "cell3": 3.339,
+    "cell4": 3.339
+  },
+  "shallow_cell_v_end_median_V": {
+    "cell1": 3.497,
+    "cell2": 3.468,
+    "cell3": 3.523,
+    "cell4": 3.48
+  },
+  "shallow_window_3p38_3p42_support": {
+    "cell1": 33,
+    "cell2": 33,
+    "cell3": 33,
+    "cell4": 33
+  },
+  "note": "Retrospective input support only; later strict-online modeling cannot tune early predictions using future campaign distributions."
+}

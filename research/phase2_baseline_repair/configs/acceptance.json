@@ -1,0 +1,11 @@
+{
+  "version": "2026-09-30-v1",
+  "frozen_at": "before_B1_event_and_model_results",
+  "B1_event_reconstruction": {"value": "exact official example event end and Q values; independently documented start/quality", "unit": "test", "source": "START_PROMPT B1", "status": "frozen"},
+  "causal_invariance": {"value": "earlier prediction exactly invariant after future-only operation mutation and fresh fit", "unit": "boolean", "source": "START_PROMPT B1/B3", "status": "frozen"},
+  "all_checkpoints": {"value": 8, "unit": "CK", "source": "data/checkups/evaluation_points.csv", "status": "official"},
+  "D1_macro_MAE_max": {"value": 1.0, "unit": "pp", "source": "phase2_evidence_validation/configs/acceptance.json", "status": "historical_target_if_D1_adapter_qualified"},
+  "D1_worst_MAE_max": {"value": 2.0, "unit": "pp", "source": "phase2_evidence_validation/configs/acceptance.json", "status": "historical_target_if_D1_adapter_qualified"},
+  "D1_point_max": {"value": 5.0, "unit": "pp", "source": "phase2_evidence_validation/configs/acceptance.json", "status": "historical_target_if_D1_adapter_qualified"},
+  "official_accuracy_target": {"value": null, "unit": "pp", "source": "CK1-CK7 truth hidden and metric set unpublished", "status": "not_locally_testable"}
+}

@@ -1,0 +1,55 @@
+{
+  "run_id": "B0_ck0_constant_20260930_v1",
+  "output_rows": 8,
+  "state": {
+    "pickle_literal_values": [
+      [
+        "SHORT_BINUNICODE",
+        "my_model.research_candidate"
+      ],
+      [
+        "SHORT_BINUNICODE",
+        "ResearchCandidate"
+      ],
+      [
+        "SHORT_BINUNICODE",
+        "anchor_capacity_Ah"
+      ],
+      [
+        "BINFLOAT",
+        "100.41"
+      ],
+      [
+        "SHORT_BINUNICODE",
+        "nominal_capacity_Ah"
+      ],
+      [
+        "BINFLOAT",
+        "102.0"
+      ],
+      [
+        "SHORT_BINUNICODE",
+        "r02_capacity_update_qualified"
+      ],
+      [
+        "NEWFALSE",
+        "None"
+      ],
+      [
+        "SHORT_BINUNICODE",
+        "r05_group_prior_qualified"
+      ],
+      [
+        "NEWFALSE",
+        "None"
+      ]
+    ]
+  },
+  "model_class": "ResearchCandidate_in_isolated_package",
+  "model_pickle_bytes": 195,
+  "source_code_path": "research/phase2_evidence_validation/candidates/official_gated/my_model/research_candidate.py",
+  "source_code_sha256": "6d7c11411fa975a2c6714cb857df5e6bb68db461ba6941de2474e1453f4ba66b",
+  "output_sha256": "c227b519e687eac2d4e0a2ba15dbcd05db51494e34013e47e9f807eaa764c0ec",
+  "input_manifest_sha256": "db300208ac20f3b61895a3d321bac59c721bd23f2aff34caf5fe06032515bf68",
+  "capacity_truth_CK1_CK7": "hidden_not_scored"
+}

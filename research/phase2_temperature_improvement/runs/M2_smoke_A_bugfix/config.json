@@ -1,0 +1,10 @@
+{
+  "run_id": "M2_smoke_A_bugfix",
+  "method": "A_bugfix",
+  "variant": {},
+  "panel_sha256": "7188b662900f84312292a7062d6023e5eeb4f2e32798b6d61a3547ed40cdc59c",
+  "code_sha256": "2e6df765ec783e3ee6c0320cd715f783108c523b5c2c41ea27bbe98cd22f9611",
+  "cell": "102Ah_45degC_1C_cell1",
+  "limit": 3,
+  "training_cells_used": "none in M2 bug-fix baseline"
+}

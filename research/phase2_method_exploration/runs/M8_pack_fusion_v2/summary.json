@@ -1,0 +1,613 @@
+{
+  "weight_selection_scenarios": 200,
+  "interval_calibration_scenarios": 100,
+  "development_test_scenarios": 300,
+  "selected_explicit_weights_by_quality": {
+    "M4_unidentified": 0,
+    "high_quality": 0.25,
+    "low_quality": 0,
+    "moderate_quality": 0,
+    "oracle": 1,
+    "ultra_quality": 1
+  },
+  "quality_gate_uses_injected_noise_oracle": true,
+  "scores": [
+    {
+      "quality": "M4_unidentified",
+      "method": "explicit",
+      "n_scenarios": 300,
+      "MAE_Ah": 2.820811097842793,
+      "P95_abs_Ah": 7.206026826545456,
+      "max_abs_Ah": 12.203989635318806,
+      "bias_Ah": -1.9597819445547984
+    },
+    {
+      "quality": "M4_unidentified",
+      "method": "explicit_missing_fallback",
+      "n_scenarios": 300,
+      "MAE_Ah": 2.123858740270317,
+      "P95_abs_Ah": 5.00829572275164,
+      "max_abs_Ah": 9.255937392823284,
+      "bias_Ah": -0.48952587853755913
+    },
+    {
+      "quality": "M4_unidentified",
+      "method": "gate_with_explicit_plus3Ah",
+      "n_scenarios": 300,
+      "MAE_Ah": 2.123858740270317,
+      "P95_abs_Ah": 5.00829572275164,
+      "max_abs_Ah": 9.255937392823284,
+      "bias_Ah": -0.48952587853755913
+    },
+    {
+      "quality": "M4_unidentified",
+      "method": "half_blend",
+      "n_scenarios": 300,
+      "MAE_Ah": 2.378149460273886,
+      "P95_abs_Ah": 5.9079566599129665,
+      "max_abs_Ah": 10.729963514071045,
+      "bias_Ah": -1.2246539115461788
+    },
+    {
+      "quality": "M4_unidentified",
+      "method": "oracle_quality_gate",
+      "n_scenarios": 300,
+      "MAE_Ah": 2.123858740270317,
+      "P95_abs_Ah": 5.00829572275164,
+      "max_abs_Ah": 9.255937392823284,
+      "bias_Ah": -0.48952587853755913
+    },
+    {
+      "quality": "M4_unidentified",
+      "method": "selected_blend",
+      "n_scenarios": 300,
+      "MAE_Ah": 2.123858740270317,
+      "P95_abs_Ah": 5.00829572275164,
+      "max_abs_Ah": 9.255937392823284,
+      "bias_Ah": -0.48952587853755913
+    },
+    {
+      "quality": "M4_unidentified",
+      "method": "shrunk",
+      "n_scenarios": 300,
+      "MAE_Ah": 2.2627799295040987,
+      "P95_abs_Ah": 5.568355296690934,
+      "max_abs_Ah": 9.951207891654875,
+      "bias_Ah": -0.7915074312610697
+    },
+    {
+      "quality": "M4_unidentified",
+      "method": "uniform",
+      "n_scenarios": 300,
+      "MAE_Ah": 2.123858740270317,
+      "P95_abs_Ah": 5.00829572275164,
+      "max_abs_Ah": 9.255937392823284,
+      "bias_Ah": -0.48952587853755913
+    },
+    {
+      "quality": "high_quality",
+      "method": "explicit",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.45254491440232536,
+      "P95_abs_Ah": 1.0618063037278553,
+      "max_abs_Ah": 1.9278236719038944,
+      "bias_Ah": -0.09692115633441943
+    },
+    {
+      "quality": "high_quality",
+      "method": "explicit_missing_fallback",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.46680862740904255,
+      "P95_abs_Ah": 1.1076031164963533,
+      "max_abs_Ah": 1.7127826972519387,
+      "bias_Ah": 0.06460557414827353
+    },
+    {
+      "quality": "high_quality",
+      "method": "gate_with_explicit_plus3Ah",
+      "n_scenarios": 300,
+      "MAE_Ah": 1.4859775634707797,
+      "P95_abs_Ah": 2.301717630135024,
+      "max_abs_Ah": 2.9097940967565705,
+      "bias_Ah": 1.483842208906927
+    },
+    {
+      "quality": "high_quality",
+      "method": "half_blend",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.45030117010326287,
+      "P95_abs_Ah": 1.0833665051727597,
+      "max_abs_Ah": 1.8203031845779094,
+      "bias_Ah": -0.016157791093072877
+    },
+    {
+      "quality": "high_quality",
+      "method": "oracle_quality_gate",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.45030117010326287,
+      "P95_abs_Ah": 1.0833665051727597,
+      "max_abs_Ah": 1.8203031845779094,
+      "bias_Ah": -0.016157791093072877
+    },
+    {
+      "quality": "high_quality",
+      "method": "selected_blend",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.4564932050670286,
+      "P95_abs_Ah": 1.1049204632479988,
+      "max_abs_Ah": 1.7665429409149311,
+      "bias_Ah": 0.024223891527599337
+    },
+    {
+      "quality": "high_quality",
+      "method": "shrunk",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.44854091301297955,
+      "P95_abs_Ah": 1.0567726757089784,
+      "max_abs_Ah": 1.8950923820241172,
+      "bias_Ah": -0.030632281639514786
+    },
+    {
+      "quality": "high_quality",
+      "method": "uniform",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.46680862740904255,
+      "P95_abs_Ah": 1.1076031164963533,
+      "max_abs_Ah": 1.7127826972519387,
+      "bias_Ah": 0.06460557414827353
+    },
+    {
+      "quality": "low_quality",
+      "method": "explicit",
+      "n_scenarios": 300,
+      "MAE_Ah": 1.501713887572864,
+      "P95_abs_Ah": 3.6978198320348463,
+      "max_abs_Ah": 5.461659419503718,
+      "bias_Ah": -0.7786298547383171
+    },
+    {
+      "quality": "low_quality",
+      "method": "explicit_missing_fallback",
+      "n_scenarios": 300,
+      "MAE_Ah": 1.2800362053925602,
+      "P95_abs_Ah": 2.9644728778792153,
+      "max_abs_Ah": 3.755479820439021,
+      "bias_Ah": -0.1976358134724707
+    },
+    {
+      "quality": "low_quality",
+      "method": "gate_with_explicit_plus3Ah",
+      "n_scenarios": 300,
+      "MAE_Ah": 1.2800362053925602,
+      "P95_abs_Ah": 2.9644728778792153,
+      "max_abs_Ah": 3.755479820439021,
+      "bias_Ah": -0.1976358134724707
+    },
+    {
+      "quality": "low_quality",
+      "method": "half_blend",
+      "n_scenarios": 300,
+      "MAE_Ah": 1.3630139169682578,
+      "P95_abs_Ah": 3.178310345187359,
+      "max_abs_Ah": 4.030267655352063,
+      "bias_Ah": -0.48813283410539365
+    },
+    {
+      "quality": "low_quality",
+      "method": "oracle_quality_gate",
+      "n_scenarios": 300,
+      "MAE_Ah": 1.2800362053925602,
+      "P95_abs_Ah": 2.9644728778792153,
+      "max_abs_Ah": 3.755479820439021,
+      "bias_Ah": -0.1976358134724707
+    },
+    {
+      "quality": "low_quality",
+      "method": "selected_blend",
+      "n_scenarios": 300,
+      "MAE_Ah": 1.2800362053925602,
+      "P95_abs_Ah": 2.9644728778792153,
+      "max_abs_Ah": 3.755479820439021,
+      "bias_Ah": -0.1976358134724707
+    },
+    {
+      "quality": "low_quality",
+      "method": "shrunk",
+      "n_scenarios": 300,
+      "MAE_Ah": 1.3362050698592656,
+      "P95_abs_Ah": 3.1293379872818536,
+      "max_abs_Ah": 4.267794714174457,
+      "bias_Ah": -0.33392292956736613
+    },
+    {
+      "quality": "low_quality",
+      "method": "uniform",
+      "n_scenarios": 300,
+      "MAE_Ah": 1.2800362053925602,
+      "P95_abs_Ah": 2.9644728778792153,
+      "max_abs_Ah": 3.755479820439021,
+      "bias_Ah": -0.1976358134724707
+    },
+    {
+      "quality": "moderate_quality",
+      "method": "explicit",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.9105754831279359,
+      "P95_abs_Ah": 2.1998014928146126,
+      "max_abs_Ah": 3.3657058755638474,
+      "bias_Ah": -0.38920185065198104
+    },
+    {
+      "quality": "moderate_quality",
+      "method": "explicit_missing_fallback",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.8374410017755336,
+      "P95_abs_Ah": 2.012552978050768,
+      "max_abs_Ah": 2.9147759747957593,
+      "bias_Ah": -0.08801706916037166
+    },
+    {
+      "quality": "moderate_quality",
+      "method": "gate_with_explicit_plus3Ah",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.8374410017755336,
+      "P95_abs_Ah": 2.012552978050768,
+      "max_abs_Ah": 2.9147759747957593,
+      "bias_Ah": -0.08801706916037166
+    },
+    {
+      "quality": "moderate_quality",
+      "method": "half_blend",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.8576849157733676,
+      "P95_abs_Ah": 2.029206515591064,
+      "max_abs_Ah": 2.9803819580672553,
+      "bias_Ah": -0.23860945990617627
+    },
+    {
+      "quality": "moderate_quality",
+      "method": "oracle_quality_gate",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.8374410017755336,
+      "P95_abs_Ah": 2.012552978050768,
+      "max_abs_Ah": 2.9147759747957593,
+      "bias_Ah": -0.08801706916037166
+    },
+    {
+      "quality": "moderate_quality",
+      "method": "selected_blend",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.8374410017755336,
+      "P95_abs_Ah": 2.012552978050768,
+      "max_abs_Ah": 2.9147759747957593,
+      "bias_Ah": -0.08801706916037166
+    },
+    {
+      "quality": "moderate_quality",
+      "method": "shrunk",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.8532327937700255,
+      "P95_abs_Ah": 2.0256319636028004,
+      "max_abs_Ah": 2.9508419820912337,
+      "bias_Ah": -0.18003817089910645
+    },
+    {
+      "quality": "moderate_quality",
+      "method": "uniform",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.8374410017755336,
+      "P95_abs_Ah": 2.012552978050768,
+      "max_abs_Ah": 2.9147759747957593,
+      "bias_Ah": -0.08801706916037166
+    },
+    {
+      "quality": "oracle",
+      "method": "explicit",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.02669173857700784,
+      "P95_abs_Ah": 0.06504418217882844,
+      "max_abs_Ah": 0.08892710622741617,
+      "bias_Ah": 0.012644757765536904
+    },
+    {
+      "quality": "oracle",
+      "method": "explicit_missing_fallback",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.12762545676712692,
+      "P95_abs_Ah": 0.34749874776918693,
+      "max_abs_Ah": 0.7016716582594,
+      "bias_Ah": 0.12464966311707272
+    },
+    {
+      "quality": "oracle",
+      "method": "gate_with_explicit_plus3Ah",
+      "n_scenarios": 300,
+      "MAE_Ah": 3.012644757765537,
+      "P95_abs_Ah": 3.0650441821788283,
+      "max_abs_Ah": 3.088927106227416,
+      "bias_Ah": 3.012644757765537
+    },
+    {
+      "quality": "oracle",
+      "method": "half_blend",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.07239142458837099,
+      "P95_abs_Ah": 0.189951971349538,
+      "max_abs_Ah": 0.38193002998059455,
+      "bias_Ah": 0.06864721044130467
+    },
+    {
+      "quality": "oracle",
+      "method": "oracle_quality_gate",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.02669173857700784,
+      "P95_abs_Ah": 0.06504418217882844,
+      "max_abs_Ah": 0.08892710622741617,
+      "bias_Ah": 0.012644757765536904
+    },
+    {
+      "quality": "oracle",
+      "method": "selected_blend",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.02669173857700784,
+      "P95_abs_Ah": 0.06504418217882844,
+      "max_abs_Ah": 0.08892710622741617,
+      "bias_Ah": 0.012644757765536904
+    },
+    {
+      "quality": "oracle",
+      "method": "shrunk",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.02669173857700784,
+      "P95_abs_Ah": 0.06504418217882844,
+      "max_abs_Ah": 0.08892710622741617,
+      "bias_Ah": 0.012644757765536904
+    },
+    {
+      "quality": "oracle",
+      "method": "uniform",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.12762545676712692,
+      "P95_abs_Ah": 0.34749874776918693,
+      "max_abs_Ah": 0.7016716582594,
+      "bias_Ah": 0.12464966311707272
+    },
+    {
+      "quality": "ultra_quality",
+      "method": "explicit",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.10954104115538617,
+      "P95_abs_Ah": 0.2585793674104714,
+      "max_abs_Ah": 0.36292899566920767,
+      "bias_Ah": 0.01949716115538119
+    },
+    {
+      "quality": "ultra_quality",
+      "method": "explicit_missing_fallback",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.17374116850201943,
+      "P95_abs_Ah": 0.45463180344865045,
+      "max_abs_Ah": 0.8187352428618198,
+      "bias_Ah": 0.1352604566601108
+    },
+    {
+      "quality": "ultra_quality",
+      "method": "gate_with_explicit_plus3Ah",
+      "n_scenarios": 300,
+      "MAE_Ah": 3.0194971611553814,
+      "P95_abs_Ah": 3.222769067733735,
+      "max_abs_Ah": 3.3629289956692077,
+      "bias_Ah": 3.0194971611553814
+    },
+    {
+      "quality": "ultra_quality",
+      "method": "half_blend",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.13214989839774213,
+      "P95_abs_Ah": 0.3267485071038763,
+      "max_abs_Ah": 0.492240772184914,
+      "bias_Ah": 0.07737880890774629
+    },
+    {
+      "quality": "ultra_quality",
+      "method": "oracle_quality_gate",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.10954104115538617,
+      "P95_abs_Ah": 0.2585793674104714,
+      "max_abs_Ah": 0.36292899566920767,
+      "bias_Ah": 0.01949716115538119
+    },
+    {
+      "quality": "ultra_quality",
+      "method": "selected_blend",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.10954104115538617,
+      "P95_abs_Ah": 0.2585793674104714,
+      "max_abs_Ah": 0.36292899566920767,
+      "bias_Ah": 0.01949716115538119
+    },
+    {
+      "quality": "ultra_quality",
+      "method": "shrunk",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.11035423218425748,
+      "P95_abs_Ah": 0.2587290878625695,
+      "max_abs_Ah": 0.3676651441512462,
+      "bias_Ah": 0.024425251603145976
+    },
+    {
+      "quality": "ultra_quality",
+      "method": "uniform",
+      "n_scenarios": 300,
+      "MAE_Ah": 0.17374116850201943,
+      "P95_abs_Ah": 0.45463180344865045,
+      "max_abs_Ah": 0.8187352428618198,
+      "bias_Ah": 0.1352604566601108
+    }
+  ],
+  "interval": [
+    {
+      "quality": "M4_unidentified",
+      "method": "oracle_quality_gate",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 4.153457763571879,
+      "test_coverage": 0.8966666666666666
+    },
+    {
+      "quality": "M4_unidentified",
+      "method": "selected_blend",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 4.153457763571879,
+      "test_coverage": 0.8966666666666666
+    },
+    {
+      "quality": "M4_unidentified",
+      "method": "uniform",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 4.153457763571879,
+      "test_coverage": 0.8966666666666666
+    },
+    {
+      "quality": "high_quality",
+      "method": "oracle_quality_gate",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 1.0974396705740048,
+      "test_coverage": 0.95
+    },
+    {
+      "quality": "high_quality",
+      "method": "selected_blend",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 1.0979880796105874,
+      "test_coverage": 0.9466666666666667
+    },
+    {
+      "quality": "high_quality",
+      "method": "uniform",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 1.0573960826401105,
+      "test_coverage": 0.9333333333333333
+    },
+    {
+      "quality": "low_quality",
+      "method": "oracle_quality_gate",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 2.7876893948132278,
+      "test_coverage": 0.9266666666666666
+    },
+    {
+      "quality": "low_quality",
+      "method": "selected_blend",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 2.7876893948132278,
+      "test_coverage": 0.9266666666666666
+    },
+    {
+      "quality": "low_quality",
+      "method": "uniform",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 2.7876893948132278,
+      "test_coverage": 0.9266666666666666
+    },
+    {
+      "quality": "moderate_quality",
+      "method": "oracle_quality_gate",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 2.045495612183913,
+      "test_coverage": 0.9533333333333334
+    },
+    {
+      "quality": "moderate_quality",
+      "method": "selected_blend",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 2.045495612183913,
+      "test_coverage": 0.9533333333333334
+    },
+    {
+      "quality": "moderate_quality",
+      "method": "uniform",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 2.045495612183913,
+      "test_coverage": 0.9533333333333334
+    },
+    {
+      "quality": "oracle",
+      "method": "oracle_quality_gate",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 0.05205052741187899,
+      "test_coverage": 0.88
+    },
+    {
+      "quality": "oracle",
+      "method": "selected_blend",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 0.05205052741187899,
+      "test_coverage": 0.88
+    },
+    {
+      "quality": "oracle",
+      "method": "uniform",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 0.28194293961264805,
+      "test_coverage": 0.8966666666666666
+    },
+    {
+      "quality": "ultra_quality",
+      "method": "oracle_quality_gate",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 0.2115581103948756,
+      "test_coverage": 0.8766666666666667
+    },
+    {
+      "quality": "ultra_quality",
+      "method": "selected_blend",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 0.2115581103948756,
+      "test_coverage": 0.8766666666666667
+    },
+    {
+      "quality": "ultra_quality",
+      "method": "uniform",
+      "calibration_scenarios": 100,
+      "test_scenarios": 300,
+      "rank": 91,
+      "half_width_Ah": 0.3227762670147314,
+      "test_coverage": 0.84
+    }
+  ],
+  "claim_limit": "Corrected v2 separates weight selection and calibration after independent audit found v1 reused the same 300 scenarios for both; injection noise class remains an unvalidated oracle and scenario distribution was adapted during M5 research"
+}

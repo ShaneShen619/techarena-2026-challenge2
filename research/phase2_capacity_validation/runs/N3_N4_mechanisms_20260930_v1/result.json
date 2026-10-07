@@ -1,0 +1,28 @@
+{
+  "event_classes": {
+    "idle_0A": {
+      "n": 33,
+      "q_min": 20.621755555555556,
+      "q_median": 21.217265,
+      "q_max": 21.737167777777778,
+      "temp_min": 25.81,
+      "temp_max": 46.43,
+      "first_segment": 5,
+      "mean_start_current": 0.0
+    },
+    "loaded_20A": {
+      "n": 8,
+      "q_min": 44.022503055555546,
+      "q_median": 56.383263055555545,
+      "q_max": 58.52078333333333,
+      "temp_min": 26.05,
+      "temp_max": 47.2,
+      "first_segment": 8,
+      "mean_start_current": 20.399875
+    }
+  },
+  "n_counter_pieces": 2701,
+  "discharge_pieces": 933,
+  "long_event_selector_boundary_all_first": true,
+  "source_sha256": "310b5c04cd2cfe00f6692f9bb7ccdabd967825542e0f281fca83e02b49fc61aa"
+}

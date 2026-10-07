@@ -1,0 +1,27 @@
+[
+  {
+    "heldout_cell": "102Ah_45degC_0p5C_cell3",
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "n_training_cells": 5,
+    "temperature_theta_train_only": [
+      35.64847988486268,
+      3.689414250434678,
+      4.710448574032758
+    ],
+    "shape_train_only": [
+      104.10597007297476,
+      15.92314641470807,
+      0.33985128780884516,
+      72.83322266051204,
+      0.4397615282966124
+    ],
+    "anchor_shift_pp": -0.03153258153747629,
+    "fit_seconds": 9.569098124979064
+  }
+]

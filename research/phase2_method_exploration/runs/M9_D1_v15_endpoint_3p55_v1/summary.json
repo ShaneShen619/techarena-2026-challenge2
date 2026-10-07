@@ -1,0 +1,15 @@
+{
+  "endpoint_V": 3.55,
+  "first_crossings": 18958,
+  "eligible_by_budget": {
+    "15": 16996,
+    "20": 16992,
+    "30": 16985
+  },
+  "target_views": 1080,
+  "crop_rows": 2856,
+  "zero_event_views": 0,
+  "selection_uses_post_endpoint": false,
+  "visibility_sha256": "cdd469f5ff3ff16932729818bc0d613f9730abcdec55ce298a1689eb646c7117",
+  "crop_sha256": "a2a05c221ab0bc657c3354859846671d2ebbe01aa706fd0ebecc213b332d6bd6"
+}

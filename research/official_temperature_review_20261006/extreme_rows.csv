@@ -1,0 +1,5 @@
+metric,direction,value_C,tied_rows,timestamp,segment,chamber_temperature_C,current_A,temp_mean_C,temp_min_C,temp_max_C,source_file
+mean_minus_set_C,min,-0.8999999999999986,1,2025-07-11 13:54:32,11,45,8.232,44.1,42.5,45.8,segment_11_45degC.csv.gz
+mean_minus_set_C,max,2.6099999999999994,1,2025-01-19 22:57:51,1,45,20.4,47.61,46.9,48.1,segment_01_45degC.csv.gz
+spread_C,min,0.5,1,2025-04-25 12:22:45,6,25,6.339,26.12,25.9,26.4,segment_06_25degC.csv.gz
+spread_C,max,3.6000000000000014,1,2025-07-11 13:52:02,11,45,7.396,44.49,42.4,46.0,segment_11_45degC.csv.gz

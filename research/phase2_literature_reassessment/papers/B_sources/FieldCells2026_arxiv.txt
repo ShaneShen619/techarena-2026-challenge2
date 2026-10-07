@@ -1,0 +1,1949 @@
+                                          Estimating the Health and State of Charge of Each Cell in a Second-Life Battery System
+                                          from Field Data
+                                          Martı́n Cornejo1,* , Julian Meyer-Schwickerath2 , Juan Victor Sandalinas1 , and Andreas Jossen1
+                                          1
+                                            Technical University of Munich, TUM School of Engineering and Design, Department of
+                                          Energy and Process Engineering, Chair of Electrical Energy Storage Technology, Arcisstr. 21,
+                                          80333 Munich, Germany
+                                          2
+                                            STABL Energy GmbH, Baierbrunner Str. 30, 81379 Munich, Germany
+                                          *
+                                            Correspondence: martin.cornejo@tum.de
+
+
+                                          SUMMARY
+                                          Effective use of battery storage depends on reliable estimation of its state of health (SOH) and
+
+
+
+
+arXiv:2609.04487v1 [eess.SY] 3 Sep 2026
+                                          state of charge (SOC). Model-based state estimation requires the open-circuit voltage (OCV)
+                                          curve, which is typically unknown for second-life batteries. We present a framework that jointly
+                                          estimates the states and parameters of an equivalent circuit model solely from field operation
+                                          data, using Gaussian process regression to reconstruct the OCV curve. Applied to a real second-
+                                          life battery system of 27 modules and 324 cells, it reveals SOH heterogeneity, a systematic SOC
+                                          imbalance, and two faulty cells, all validated against a reference measurement. We aggregate
+                                          the cell SOH and SOC to module level and benchmark them against a lumped-module model
+                                          fitted without the individual cell voltages. The lumped-module model follows the average behavior
+                                          and cannot capture the limiting cells, overestimating SOH by up to 31 % and SOC by up to 23 %.
+
+
+                                          KEYWORDS
+                                          lithium-ion batteries, second-life batteries, field data, data-driven, equivalent circuit model, Gaus-
+                                          sian processes, extended Kalman filter, state of health, state of charge, open-circuit voltage
+
+
+                                          INTRODUCTION
+                                          Decarbonizing the power grid requires flexible and cost-effective energy storage at scale. At
+                                          the same time, the rapid electrification of transport is generating a growing supply of retired
+                                          battery packs with significant residual capacity. Second-life batteries have long been proposed
+                                          as a sustainable solution for stationary storage, yet their widespread adoption remains limited
+                                          by challenges related to cost competitiveness, safety, and reliability 1,2 . Among these, a central
+                                          difficulty is that cells entering a second-life system carry heterogeneous degradation states. Dif-
+                                          fering usage histories, combined with intra-pack thermal gradients and manufacturing tolerances
+                                          during first life, lead to divergent degradation trajectories 3–5 .
+                                               This heterogeneity adds complexity to the monitoring and operation of second-life storage
+                                          systems. Weaker cells reach their operational limits sooner and constrain the full pack, reducing
+                                          overall system capability 6,7 . Beyond capacity and resistance, cells also drift apart in their state
+                                          of charge (SOC), and this SOC imbalance further reduces the usable capacity of the pack.
+                                          Modules and packs are commonly modeled as a single large cell, which is adequate as long
+                                          as the cells behave alike 8 . For second-life batteries, however, the system-level SOC and state
+                                          of health (SOH) may no longer be adequately represented by an average cell model. Ignoring
+                                          this cell-to-cell variation may lead either to unexpected capacity shortfalls or, if the system is
+                                          operated conservatively, to underutilization of available energy 9 . In practice, neither the prior
+
+                                                                                            1
+usage history nor the current degradation state of individual cells is typically known at the time
+of repurposing, and even a known state would not remain valid, as the cells continue to diverge
+in their second life.
+    Battery management systems (BMS) continuously collect voltage, current, and temperature
+during operation, providing limited and noisy measurements from which SOC and SOH must
+be estimated. A range of data-driven and model-based methods has been proposed for this
+purpose. Purely data-driven approaches, particularly deep learning, have attracted significant
+attention but rely on large labeled datasets and offer limited physical interpretability, restricting
+their use outside controlled laboratory conditions 10 . Model-based approaches pair a cell model
+with a state estimator that fuses model predictions with incoming measurements. Kalman filter
+variants are the most established class, with benchmark studies confirming their accuracy under
+proper tuning 11,12 .
+    Estimator accuracy depends directly on model quality: a model that no longer reflects the
+cell’s true behavior produces biased state estimates regardless of filter design. The equiva-
+lent circuit model (ECM) is the standard choice for battery state estimation due to its physical
+interpretability and computational efficiency. It models the terminal voltage as the sum of the
+open-circuit voltage (OCV), an internal resistance drop, and one or more resistance-capacitance
+(RC) pairs to describe transient polarization. This captures the main electrical behavior of a cell
+with a small number of identifiable parameters. The parameters, however, drift with degradation.
+Capacity fades and resistance grows, so a fixed parameter set produces growing estimation
+errors. A dual filter addresses this by augmenting the state vector with parameters and up-
+dating them alongside SOC 13 . A further complication is that ECM parameters are functions of
+the operating conditions rather than scalar constants. Internal resistance depends on SOC and
+temperature, and the OCV is a nonlinear function of SOC. Conventional parametric forms can
+only approximate these dependencies 14 . This rigidity can be addressed by embedding data-
+driven components within the ECM structure, replacing selected parametric terms with neural
+networks 15 or non-parametric Gaussian processes (GPs) 16–18 . Yet Zhou et al. expose a limi-
+tation: in an aging-aware GP-ECM designed to estimate capacity and resistance from cycling
+data, aging-induced changes in the OCV curve are absorbed into the learned resistance, biasing
+its estimate 18 . A beginning-of-life OCV curve cannot be relied upon as the cell ages and must
+be adapted alongside the other parameters.
+    Recovering the OCV from operational data has therefore attracted growing interest. The most
+straightforward approaches fit OCV points to a parametric form such as a polynomial 19–21 , but
+can only coarsely approximate the detailed shape of the OCV curve. More accurate methods
+typically require specific operating conditions such as rest periods or low-current phases 22–24 ,
+and additionally depend on chemistry-specific calibration 22 or prior laboratory half-cell measure-
+ments 23 , neither of which is generally available for second-life cells. In prior work, we treated the
+OCV curve and the SOC-dependent resistance as Gaussian processes identified jointly from
+arbitrary cycling data, requiring no pre-measured reference curve and achieving below 10 mV
+terminal voltage RMSE on NMC cells across SOH 72 % to 100 % 25 . However, the approach was
+only validated on individual cells under laboratory conditions.
+    In this work, we present a recursive GP-ECM framework that jointly estimates SOC and ECM
+parameters while reconstructing the OCV curve directly from field operation data, requiring no
+prior cell characterization. To capture how the differences between cells constrain the system
+capability, we describe every cell with its own model and aggregate the cell models to module
+and system level. We demonstrate the framework on a real second-life battery energy storage
+system (BESS) of 27 modules and 324 cells. From a 12.5 h measurement window, we estimate
+the SOH heterogeneity and the SOC imbalance across all cells, and validate these estimates,
+together with the reconstructed OCV curves, against a dedicated reference measurement. As
+a benchmark, we compare the cell-based system model against the simpler alternative of a
+
+                                                  2
+lumped-module model, a single model per module fitted without the individual cell voltages. We
+evaluate both on voltage prediction accuracy and on the estimated module SOH and SOC.
+
+
+RESULTS
+Battery system and dataset
+The system under study is a second-life BESS research prototype developed and operated by
+STABL Energy GmbH. It comprises 27 battery modules arranged in three phases and delivers a
+peak power of 67.5 kW. The system employs a modular multilevel converter (MMC) topology, in
+which each module incorporates its own H-bridge power electronics and is switched individually
+into and out of the series string to synthesize the AC output. The switching order across modules
+can be set freely and is used here for SOC balancing: modules with a higher SOC, as estimated
+by the onboard BMS, are assigned a larger share of the load. Each module consequently alter-
+nates between periods of full load, partial load, and rest even during continuous system power
+delivery. In conventional series-connected systems, by contrast, all modules share a common
+current and the weakest module limits usable capacity. The MMC’s flexibility therefore makes it
+well suited to second-life battery systems, where remaining capacity and resistance vary across
+cells 26,27 .
+    Each of the 27 modules contains 12 logical cells in series, for a total of 324 logical cells across
+the system. Each logical cell consists of two LEV50N physical cells connected in parallel (2P
+configuration), sharing a common terminal voltage and forming a single observable unit with a
+nominal capacity of 100 Ah. Throughout this paper, “cell” refers to a logical cell unless otherwise
+specified. The LEV50N is a prismatic LMO/graphite cell rated at 50 Ah, introduced by GS Yuasa
+in 2012 28 and widely deployed in electric vehicles such as the Mitsubishi i-MiEV and Peugeot
+iOn during the first half of the 2010s 29,30 . The cells were sourced without any record of prior
+usage, capacity, or degradation state, so their condition was unknown at the time of integration.
+    For this study, the system was operated over a 12.5 h window comprising two charge/discharge
+cycles at an approximately constant power of 35 kW, corresponding to a phase current of about
+50 A. Although the phase current was held approximately constant, individual module currents
+vary dynamically as the MMC continuously adjusts its switching sequence, producing a load
+profile representative of field operation (Figure 1). Cycles were bounded by cell-level voltage
+limits of 3.4 V and 4.07 V, set conservatively within the manufacturer-specified range of 2.75 V
+to 4.10 V 28 to protect cells whose degradation state is unknown. As individual cells approach
+these thresholds, the maximum current of their module is progressively reduced (derating) until
+the module drops out. The system halts once the number of active modules falls below the min-
+imum required to form the AC waveform. Data were acquired from each module’s onboard Cell
+Monitoring Unit (CMU) via the system’s telemetry infrastructure. Cell voltages were logged at
+10 s intervals, module current and voltage at 1 s intervals, and module temperature at 15 s inter-
+vals (Figures S1 and S2 in the supplementary material show the recorded data for all modules).
+These nominal intervals are not always met (Figure S3), since the data were recorded by the
+system’s telemetry during normal operation rather than by dedicated measurement equipment.
+For module P1M9 (Phase 1, Module 9), an external current probe was used in addition to the on-
+board sensors, enabling independent Coulomb counting and providing a reference for evaluating
+SOC estimation accuracy.
+    The dataset exhibits heterogeneity across cells and modules, as illustrated in Figure 1. All
+modules show voltage deviations between cells (Figure S1), most evident near the end of dis-
+charge, where the OCV curve is steeper and individual cells reach voltage limits earlier. Two
+cells, P1M6C1 and P3M5C12 (cell 1 of P1M6 and cell 12 of P3M5), diverge strongly from the
+
+                                                  3
+                                  Module P3M7                           Module P3M5
+
+       Cell
+                  4.00
+                  3.75
+   voltages / V   3.50
+
+
+
+        Module
+                     48
+                     45
+       voltage / V   42
+
+                   100
+   Module           50
+                     0
+  current / A      −50
+                  −100
+
+                     30
+         Module
+                     25
+       temp. / °C
+                     20
+                          0   4                8       12   0       4                8       12
+                                    Time / h                              Time / h
+
+
+Figure 1: Operation of two example modules over the measurement window: P3M7, whose cell
+voltages spread apart only near the end of discharge, and P3M5, which contains the divergent
+cell P3M5C12 (light blue). From top to bottom: the twelve cell voltages, module voltage, module
+current, and module temperature. Dashed lines mark the cell and module voltage limits, and the
+current limits set by derating. In P3M5, the divergent cell reaches the voltage limits earlier than
+the rest, which triggers derating earlier and reduces the module’s charge throughput.
+
+rest of their modules, each alone constraining the usable capacity of its module (see also P3M5
+in Figure 1). The charge throughput over the window reflects this: most modules reach 217 Ah
+to 238 Ah, whereas P1M6 and P3M5 reach only 95 Ah and 129 Ah. The raw data alone, however,
+cannot distinguish how much of the observed voltage spread originates from SOH differences
+between cells, and how much from SOC imbalance.
+
+
+Battery model and parametrization
+We combine a first-order ECM with recursive Gaussian process regression (RGP-ECM) to re-
+construct the OCV curve and extract the ECM parameters from field operation data alone. Each
+cell is characterized individually, using only its own measurements. The battery state and all
+model parameters are estimated simultaneously via an extended Kalman filter (EKF), producing
+physically interpretable estimates together with their uncertainties.
+    Two sets of models are fitted: one at the cell level, using individual cell voltage measure-
+ments (324 cell models), and one at the module level, using only the module terminal voltage (27
+lumped-module models). Both model sets share the same structure: an OCV source, an ohmic
+resistance R0 , and an RC branch with resistance R1 and time constant τ to capture transient
+behavior. OCV and R1 are each modeled as GPs, capturing their dependence on SOC. Since
+cell capacity and initial SOC are unknown, the model is parametrized on cumulative charge q,
+
+                                                   4
+                                   Cell level                                                  Module level
+
+            4.00
+                    A                                                       48
+                                                                                 B
+
+
+  OCV / V                                                         OCV / V
+            3.75                                                            45
+
+
+            3.50                                                            42
+
+
+
+               15                                                        180
+                    C                                                            D
+               10                                                        120
+     RΣ / mΩ                                                   RΣ / mΩ
+                5                                                           60
+
+
+                0                                                            0
+                    −60   −50 −40 −30 −20 −10          0                         −60   −50 −40 −30 −20 −10         0
+                             Cumulative charge / Ah                                       Cumulative charge / Ah
+
+                    Module ID      M1       M2        M3       M4                M5       M6       M7         M8   M9
+
+
+
+Figure 2: Reconstructed OCV curves and steady-state resistance RΣ at both model levels. (A, C)
+All 324 cell models. (B, D) All 27 module models. Curves are drawn against cumulative charge,
+colored by module position M1–M9 within each phase. Cumulative charge is counted from the
+start of the measurement window, so negative values indicate net discharge. RΣ is evaluated
+at the reference temperature of 25 ◦ C using the fitted Arrhenius factor. All cells show the same
+characteristic OCV shape, but each covers a different segment, depending on its capacity and
+initial SOC. Each module curve is fitted to twelve cells at once, so the variation within the module
+is lost.
+
+the integrated charge since the start of the measurement window, rather than normalized SOC.
+The ohmic resistance R0 and the time constant τ are estimated as scalars, neglecting their com-
+paratively weak SOC dependence. Temperature varies across modules (Figure S2), introducing
+differences in measured resistance unrelated to cell degradation. All resistance parameters are
+therefore corrected via an Arrhenius factor estimated jointly with the other parameters.
+    Across all 324 cells, the reconstructed OCV curves share the same qualitative shape, char-
+acteristic of an LMO/graphite cell (Figure 2A). The curves differ, however, in the window each
+cell covers, in both position and span along the charge and voltage axes. This variation indi-
+cates a spread in SOH and SOC imbalance between cells, although the contributions of each
+cannot be separated from the reconstructed curves directly. The spread is most evident in the
+modules containing the cells with distinctive behavior (P1M6C1, P3M5C12). The OCV curve of
+P3M5C12 spans most of the operational voltage range. The cell therefore reaches both voltage
+limits before any other cell in the module, confining the remaining cells to only a fraction of their
+own voltage window. The two cells stand out in the reconstructed resistances as well. Figure 2C
+shows the cell-level steady-state resistance RΣ , corrected to a reference temperature of 25 ◦ C
+via the Arrhenius fit:
+                             RΣ (q) = R0 (T = 25 ◦ C) + R1 (q, T = 25 ◦ C)                        (1)
+
+
+                                                           5
+              20
+                   A                               Cell-level                                  20
+                                                                                                              B
+                                                   Module-level
+
+
+  Share / %   10                                                          Share / %            10
+
+                                         P3M5C12             P1M6C1
+
+               0                                                                                      0
+                       1        2                     3                                                           720    750     780     810    840
+                            R1 (3.9 V) / mΩ                                                                                     τ/s
+
+
+
+
+                                                                              Arrhenius factor k(T)
+              40
+                   C                                                                                          D                  Cell-level median
+                                                                                                      2                          Module-level median
+
+
+  Share / %   20
+                           P1M6C1                                                                     1
+                           P3M5C12
+               0
+                       1             2                3                                                   5       10    15   20    25     30   35      40
+                                     R0 / mΩ                                                                              Temperature / °C
+
+
+Figure 3: Fitted ECM parameters of all 324 cells (orange) and 27 modules (blue). Distributions of
+(A) the RC-branch resistance R1 evaluated at an OCV of 3.9 V, (B) the time constant τ , and (C)
+the ohmic resistance R0 . (D) Arrhenius correction factor k(T ), one line per cell and module, with
+the medians as thick lines and k(T ) = 1 at the reference temperature of 25 ◦ C. Resistances are
+corrected to that temperature and module values divided by the twelve series-connected cells,
+so both levels are directly comparable.
+
+Most cells cluster within a moderate spread and show only a mild charge dependence: RΣ
+increases toward both ends of each cell’s operating window, consistent with the expected be-
+havior at low and high SOC 31,32 . The two outlier cells display substantially higher resistance,
+with a more pronounced charge dependence.
+    At the module level, the terminal voltage alone cannot resolve the cell-level heterogeneity
+(Figure 2B and D). Expressed per cell equivalent, the module OCV curves span a narrower
+voltage range than the individual cell curves, since operation stops once any cell in the module
+reaches its voltage limit. Modules containing the outlier cells remain identifiable only from their
+reduced charge coverage. The module-level RΣ shows the same effect, with the variation across
+the twelve cells absorbed into a single aggregate curve (Figure 2D).
+    Figure 3 shows the distributions of the fitted ECM parameters R1 , τ , R0 , and the Arrhenius
+factor over all 324 cells and 27 modules, with the module resistances expressed per cell equiv-
+alent for direct comparison. Since R1 varies with charge, it is evaluated where the OCV reaches
+3.9 V, which serves as a common reference in the absence of a known SOC. Both levels agree
+over the bulk of the R1 distribution, but the lumped-module models do not reproduce the ex-
+treme values of P1M6C1 and P3M5C12, which reach 2.1 and 1.4 times the population median
+(Figure 3A). The same holds for R0 , where both outlier cells reach about 1.7 times the pop-
+ulation median (Figure 3C). Unlike R1 , however, the two distributions are also offset, with the
+module-level median approximately 0.4 mΩ above the cell-level one. The offset likely reflects the
+resistance of the module’s contacts and busbars, which the cell voltage measurement does not
+include.
+
+
+                                                                      6
+    The fitted Arrhenius factors are comparable at cell and module level. Over 15 ◦ C to 35 ◦ C,
+which spans the operating temperatures in the dataset, the fitted dependence changes the re-
+sistance by about 50 % to 60 %, more than the spread of the resistances across the population
+(Figure 3D). Without this correction, differences in operating temperature would be indistinguish-
+able from differences in degradation.
+    Each module-level resistance averages over the twelve cells in series, so a single degraded
+cell shifts it only slightly. The module-level distributions therefore describe the average condition
+of each module rather than that of its weakest cell.
+
+
+SOH heterogeneity and SOC imbalance
+The reconstructed OCV curves are parametrized on cumulative charge q, each starting from an
+unknown initial SOC. To disentangle SOH differences from SOC imbalance, they must be aligned
+to a common SOC axis. Since each cell covers a partial window of the full OCV range, how-
+ever, neither capacity nor initial SOC can be read from any single curve. We instead scale and
+shift all curves simultaneously to minimize disagreement over shared voltage ranges, recovering
+capacity and initial SOC for each cell from the joint fit.
+    Figure 4A shows the resulting alignment of the 324 cell OCV curves. Also shown is the com-
+posite OCV curve, assembled by averaging the aligned partial curves into a single reference.
+Spanning 3.43 V to 4.06 V, the composite covers a wider voltage range than any individual cell,
+whose median voltage span over the measurement window is only 0.36 V. Despite being recon-
+structed independently, the aligned OCV curves agree with the composite to a median per-cell
+RMSE of 1.95 mV, with a 95th percentile of 3.97 mV. P1M6C1 and P3M5C12 show the highest
+RMSE in the population, at 9.0 mV and 7.0 mV respectively. The dV /dSOC of the composite OCV
+shows two distinct peaks and an intermediate plateau, which most aligned cell curves reproduce.
+    The estimated cell SOH shows substantial cell-to-cell variation (Figure S4). Most cells are
+tightly grouped around a median of 75.4 %, with 50 % of cells between 74.3 % to 76.2 %, but the
+distribution has a pronounced lower tail. Figure 4B reveals the structure behind this variation:
+cells within the same module tend to share similar SOH levels, with within-module standard
+deviations typically below 1 %, while the module average differs noticeably between modules. In
+P1M6 and P3M5, however, a single cell departs sharply from the rest of its module: P1M6C1
+at (47.8 ± 1.4) % and P3M5C12 at (38.0 ± 0.4) %, 16 % and 32 % below the second-lowest cell in
+their respective modules (uncertainties denote one standard deviation). The remaining cells of
+P1M6 also fall below the population, but their estimates are less certain: P1M6C1 confines the
+module to a narrow voltage window, which leaves the other cells’ curves less constrained in the
+alignment.
+    In addition to cell capacity, the OCV curve alignment recovers each cell’s initial SOC, reveal-
+ing a systematic SOC imbalance of 6 % to 11 % between the lowest and highest cell of each
+module. The imbalance follows the same pattern in every module, with cells C1, C2, and C3
+consistently below the remaining cells, which points to a systematic origin rather than random
+drift. These cells, however, show no corresponding deviation in capacity. The resulting SOC
+offset directly reduces each module’s available capacity (Figure 5B), leaving 3.5 Ah to 6.5 Ah in-
+accessible in most modules. Although most of this inaccessible capacity could in principle be
+recovered through cell balancing, balancing is triggered only by extended rest periods, which the
+measurement window does not contain. Even after balancing, the SOH heterogeneity between
+cells leaves a residual 0.5 Ah to 1.6 Ah per module inaccessible, which cannot be recovered. In
+P1M6 and P3M5, however, the outlier cell in each module is so severely degraded that it con-
+strains both the charge and discharge limits. The inaccessible capacity of 15.4 Ah and 30.1 Ah is
+therefore entirely irreversible, and cell balancing provides no benefit. By capturing this cell-level
+
+
+                                                 7
+                  A                                                               B
+                       4.1
+                                                                                                              80
+                       3.9                                                        P3M6
+
+
+  Voltage / V          3.7
+                                                                                  P3M1                        75
+
+
+
+
+                                                                                                                   Cell Capacity / Ah
+                                                Cell OCV
+                       3.5                      Composite OCV
+
+                                                                      Module ID
+                                                                                  P2M6
+                       60                                                                                     70
+
+
+
+
+    dV/dSOC / (mV/%)
+                                                                                  P2M1
+                       40
+                                                                                                              65
+                                                                                  P1M6
+                       20
+
+
+                                                                                  P1M1                        60
+                        0
+                             0   25     50          75          100                      3    6      9   12
+                                      SOC / %                                                Cell ID
+
+
+Figure 4: Alignment of the reconstructed OCV curves and the resulting cell capacities. (A) The
+324 reconstructed OCV curves aligned on a common SOC axis, together with the composite
+OCV curve averaged from them (black), and the corresponding dV /dSOC below. (B) Estimated
+capacity of every cell, arranged by cell position within each module. Curves in (A) and tiles in (B)
+are colored by the estimated cell capacity on a shared scale, with capacities below 60 Ah drawn
+in black in (B). Capacity varies less within a module than between modules, with P1M6C1 and
+P3M5C12, the black tiles in (B), as the exceptions.
+
+heterogeneity, we evaluate the usable capacity of each module, set by the first cell to reach ei-
+ther voltage limit (Figure 5A). The module SOH is determined by the smallest chargeable and
+dischargeable capacity among its cells (subsection OCV curve alignment and SOH estimation
+in Methods). For 25 of the 27 modules, the resulting SOH ranges from 64 % to 73 %, consis-
+tently below the mean cell SOH and dominated by the recoverable SOC imbalance. In P1M6
+and P3M5, the module SOH collapses to that of the single outlier cell, far below the range of the
+remaining modules.
+    Without access to individual cell voltages, the lumped-module model cannot resolve the intra-
+module heterogeneity that determines usable capacity. Applying the same OCV curve alignment
+to the 27 lumped-module models yields a direct SOH estimate for each module. The lumped-
+module and cell models achieve comparable fit quality, with a median RMSE of 2.28 mV and
+1.95 mV per cell equivalent respectively. The fit residuals of P1M6 and P3M5, at 2.76 mV and
+2.80 mV per cell equivalent, lie only slightly above this median. The fit quality alone does not,
+however, guarantee accurate SOH estimation. The lumped-module SOH estimates exceed the
+cell-aggregated values by 4 % to 16 % for 25 of the 27 modules and by 24 % and 31 % for P1M6
+and P3M5 (Figure 5A). The larger divergence in P1M6 and P3M5 arises because the outlier cell,
+despite setting the usable capacity of the entire module, contributes only a fraction of the module
+terminal voltage signal. How much the lumped-module model overestimates usable capacity
+depends directly on the degree of intra-module heterogeneity.
+
+
+
+                                                            8
+                   90
+                        A
+                   80
+
+
+
+
+  Module SOH / %
+                   70
+                   60
+                   50                           Module-based
+                                                Cell-based
+                   40
+
+
+                   30   B                        Irreversible
+
+
+
+  SOH loss / %
+                                                 Reversible
+                   20
+
+                   10
+
+                    0
+                        P1M1   P1M6   P2M1          P2M6          P3M1            P3M6
+                                                Module ID
+
+
+Figure 5: Estimated module SOH from the cell models and the lumped-module model. (A) SOH
+of each module aggregated from its twelve cell estimates (orange) and estimated directly by the
+lumped-module model (blue), with the gray connector marking the gap between them. (B) The
+corresponding capacity loss per module, split into a reversible part, caused by SOC imbalance
+and recoverable by balancing, and an irreversible part set by the spread in cell capacity. Whiskers
+give the ±2σ uncertainty of each estimate. The lumped-module model reports a consistently
+higher SOH than the cell-based aggregate, most severely in P1M6 and P3M5.
+
+Validation against reference measurements
+We validate the reconstructed OCV curves, together with the estimated cell capacity and the
+SOC imbalance, against a dedicated reference measurement. For the reference measurement,
+a dedicated data logger recorded the CMU measurements of the nine modules of phase P3
+locally. Module P3M5 is excluded from the comparison since its faulty cell (P3M5C12) was fixed
+between the two experiments (see Discussion), so the module state differs between the two
+measurements. The validation therefore covers eight of the 27 modules with 96 cells, roughly a
+third of the system. Apart from the two divergent cells, the validated subset spans the capacity
+range and the SOC imbalance observed across the system and is therefore representative of
+the population.
+    The reference measurement consists of one discharge and one subsequent charge, per-
+formed by the system itself at a constant power setpoint of 3.8 kW, corresponding to cell currents
+of roughly C/25. For this measurement the lower cell voltage limit was reduced to 3.2 V, ex-
+tending the coverage of the OCV curve into its steep low-SOC region. Cell voltage and module
+current come from the same onboard CMU sensors as in the cycling experiment, and charge
+is obtained by integrating the module current. The MMC modulation alternates each module
+between load pulses and rest intervals at zero current. From each rest interval we keep the final
+sample, where the voltage has relaxed closest to the OCV, and assemble these samples into
+one charge and one discharge curve per cell. The rest intervals last about 60 s, short compared
+to the slow relaxation of the cells, so both curves retain residual polarization in addition to OCV
+hysteresis. We therefore take the pseudo-OCV of each cell as the average of its charge and
+discharge curve, which cancels the symmetric part of both effects.
+
+
+                                                9
+                4.0       A                                                           80   C
+                                                                                      78
+
+
+
+                                                                     Model Q / Ah
+                3.8
+
+      OCV / V
+                                                                                      76
+                3.6                                                                   74
+                                                  Reference
+                3.4                                                                   72
+                                                  Model
+                                                                                      70
+
+                      0       20     40      60    80         100                          70 72 74 76 78 80
+                                      SOC / %                                                Reference Q / Ah
+                 15
+                 10       B                                                            5
+                                                                                           D
+
+
+
+                                                                     Model ΔSOC / %
+                  5
+
+
+    ΔOCV / mV
+                  0
+                 −5                                                                    0
+                −10
+                −15
+                                                                                      −5
+                −20
+                −25
+                      0       20     40      60    80         100                           −5      0    5
+                                      SOC / %                                              Reference ΔSOC / %
+
+                          P3M1     P3M2   P3M3    P3M4        P3M6       P3M7                  P3M8   P3M9
+
+
+
+Figure 6: Validation of the reconstructed OCV curves, estimated cell capacities, and SOC im-
+balance. The model estimates are compared with the reference measurement for the 96 cells
+of the eight validated modules. (A) Reconstructed OCV curves (dashed, colored by module)
+and reference pseudo-OCV curves (gray), aligned pairwise and normalized to SOC. (B) Voltage
+residual between the aligned curves of each cell. (C) Estimated cell capacity, model against
+reference. (D) Estimated SOC imbalance, the deviation of each cell’s initial SOC from its module
+mean, model against reference. Error bars give ±1σ uncertainty intervals.
+
+     To compare the reconstructed OCV curves with the pseudo-OCV references, we align each
+pair by a constant shift in charge, since the charge origin of the two experiments is arbitrary.
+Both the shape and the capacity scale of the curves are preserved by this alignment (Figure 6A).
+We quantify the agreement by the RMSE of the voltage residual between the aligned curves,
+evaluated over each cell’s own overlap window. The median RMSE across the 96 cells is 4.0 mV,
+with a 90th percentile of 8.5 mV and a maximum of 14.3 mV (Figure S5). The largest deviations
+occur in the cells with the lowest SOC, whose curves cover the steep knee of the OCV curve,
+where small charge errors translate into large voltage residuals. The residual shares a common
+shape across all cells, following a wave-like pattern with an amplitude of up to 10 mV over the
+mid-SOC range (Figure 6B). This systematic residual may originate from a combination of the
+model reconstruction and the reference itself, where the pseudo-OCV can be skewed by the
+asymmetric part of polarization and hysteresis.
+     From the pseudo-OCV curves we also extract a reference capacity and initial SOC for each
+cell, using the same curve alignment as for the reconstructed curves. The same SOC-voltage
+anchor points as for the model estimates scale the reference capacities to the full voltage window.
+The SOC imbalance is compared as the deviation of each cell from its module mean, since the
+initial SOC differed between the two experiments.
+
+                                                        10
+    Figure 6C compares the estimated cell capacities with their reference values. In absolute
+terms, the two agree closely, with an RMSE of 1.25 Ah. However, the capacity estimates of the
+cells within a module tend to deviate from the reference in a common direction, most visibly in
+P3M8. A plausible origin for this bias is the current measurement, which all twelve cells of a
+module share. An error in the integrated charge then shifts their capacities together, in either of
+the two experiments. When each cell’s capacity is instead expressed as the deviation from its
+module mean, the estimates agree to an RMSE of 0.55 Ah. This remaining error lies within the
+uncertainties of both the model and the reference estimates.
+    Figure 6D compares the SOC imbalance between the two datasets. Model and reference
+capture the same pattern: cells C1–C3 typically lie 4 % to 5 % below the module mean, while
+the remaining cells sit slightly above it. The cell deviations agree with an RMSE of 1.1 % and
+a maximum difference of 2.6 %. These differences are larger than the uncertainties of both
+estimates. However, the experiments took place about seven weeks apart, during which the
+relative charge of the cells could have drifted, for example through uneven self-discharge.
+
+
+Voltage prediction accuracy and SOC estimation
+The parametrized models can also serve as online state estimators: fixing the parameters con-
+verts the joint estimator into a pure state observer that tracks the charge state by correcting
+its voltage prediction against measurements. The accuracy of the state estimates depends on
+how well the model predicts the voltage response. We characterize this by running both the cell
+and lumped-module models in open loop, without measurement updates. Figure 7A shows cell
+P3M4C2 as a representative example. The model closely tracks the measured voltage over the
+full 12.5 h window. Across the full population, the median per-cell RMSE is 5.09 mV, with 95 % of
+cells below 6.89 mV, P1M6C1 being the sole outlier at 24.0 mV. When cell-model predictions are
+combined per module, the resulting virtual voltage has a median RMSE of 4.98 mV per cell equiv-
+alent, against 4.80 mV for the lumped-module model (Figure 7B). The lumped-module model thus
+matches the module voltage at least as well as the cell models, yet it substantially overestimates
+SOH. Individual cell differences contribute only a small fraction of the aggregate terminal voltage
+signal, so the lumped-module model fits it accurately without resolving the internal distribution,
+and therefore cannot determine which cell first approaches its voltage limit.
+     With measurement updates restored, the EKF tracks the charge of each cell in real time.
+We validate its charge estimate against the independent Coulomb-counting reference from the
+external current probe on P1M9. For the twelve cells of the module, the estimation error stays
+below 1 Ah for every cell over the full 12.5 h window (Figure S6). To test the case of an unknown
+initial state and a drifting sensor, we additionally ran a synthetic scenario with a charge offset and
+a current bias injected into the onboard current. Coulomb counting with that current then drifts
+substantially, whereas the EKF corrects both faults through the voltage feedback (Figure S7).
+These cell-level trajectories are the basis for the module SOC estimates that follow.
+     To reduce all twelve cells in a module to a single SOC value, we aggregate their charge
+trajectories (subsection Simulation and SOC estimation in Methods). The aggregation preserves
+the limiting cell in each direction, which an average over the twelve would obscure. In P3M7, as in
+most modules, this estimate closely tracks the discharge-limiting cell at low SOC and the charge-
+limiting cell at high SOC, blending between the limiting cells through the mid-range (Figure 8B).
+Which cell limits charge or discharge is not fixed over the course of the run: in a module with
+evenly degraded cells such as P3M7, this role shifts between several cells. In the two outlier
+modules, by contrast, one cell sets both limits, so the module SOC estimate reduces to the SOC
+of that single cell. Figure 8C shows module P3M5 as an example.
+     We compare this cell-based estimate against the direct estimate of the lumped-module model,
+
+
+                                                 11
+                        A                                             Cell P3M4C2
+                        4.0
+
+
+
+          Voltage / V
+                        3.8
+                                                                                                               Model
+                        3.6
+                                                                                                               Measured
+
+
+
+
+     Error / mV
+                                                                                                             RMSE = 5.1 mV
+                         25
+                          0
+                        −25
+
+                              0.0        2.5                    5.0                  7.5             10.0               12.5
+                                                                        Time / h
+                      B
+                                               P1M6C1: 24 mV
+                      10.0
+
+
+
+
+  Voltage RMSE / mV
+                        7.5
+
+
+                        5.0
+
+
+                               P1M1     P1M6            P2M1               P2M6              P3M1           P3M6
+                                                                       Module ID
+
+                                      Cell-level (individual)         Cell-level (virtual module)   Module-level
+
+
+
+Figure 7: Voltage prediction accuracy of the fitted models, run in open loop without correction
+steps. (A) Measured (gray) and predicted (orange) terminal voltage of cell P3M4C2 over the
+measurement window, with the prediction error below. (B) Voltage RMSE of every cell (orange
+points), of the cell models combined per module (orange ticks), and of the lumped-module mod-
+els (blue), all per cell equivalent. P1M6C1 lies above the axis range and is labeled in place. Both
+model sets reproduce the module voltage with comparable accuracy.
+
+obtained by applying the same EKF to the lumped-module ECM instead of the twelve cell mod-
+els. In P3M7, the lumped-module estimate reaches (82.5 ± 0.5) % SOC at the charge peak,
+against (93.7 ± 0.6) % for the cell-based estimate, underestimating SOC by (11.2 ± 0.7) %. At
+the discharge minimum, it instead overestimates SOC by (2.5 ± 1.1) %. Across all 27 modules,
+the maximum deviation ranges from (4.0 ± 0.7) % (P2M1) to (23.1 ± 1.2) % (P3M5), as shown in
+Figure 8A. As with the discrepancies in SOH estimation, this pattern of overestimating SOC at
+low charge and underestimating it at high charge follows from the lumped-module model tracking
+the average of the cells rather than whichever cell is currently closest to its limit.
+
+
+DISCUSSION
+Second-life battery systems are difficult to characterize, due to cell-to-cell variation in capacity
+and resistance caused by years of uneven degradation. Furthermore, model-based SOC and
+
+                                                                      12
+                                  A
+
+
+
+  Module − cell SOC / %
+                           10
+
+                            0
+
+                          −10
+
+                          −20
+
+                                 P1M1         P1M6           P2M1           P2M6          P3M1             P3M6
+                                                                        Module ID
+
+                                              Module P3M7                                   Module P3M5
+                          100
+                                 B                                           C
+
+
+
+  SOC / %
+                           50
+
+
+
+
+                            0
+                                0.0     2.5   5.0      7.5     10.0     12.50.0     2.5     5.0      7.5      10.0   12.5
+                                                Time / h                                      Time / h
+
+                                                         Module-based       Cell-based      Cells
+
+
+
+Figure 8: SOC estimation from the cell models and the lumped-module model. (A) Difference
+between the lumped-module and cell-based SOC estimates, each box summarizing the distribu-
+tion over all time steps of one module. (B, C) SOC trajectories of two example modules, P3M7
+and P3M5, showing the twelve individual cell estimates (gray), their aggregate (orange), and the
+lumped-module estimate (blue), all with ±2σ uncertainty bands. The lumped-module estimate
+follows the module’s average behavior rather than the limiting cell, and therefore overstates the
+usable range.
+
+SOH estimation requires a parametrized cell model, and in particular an OCV curve, which is
+not available for cells of unknown provenance and degradation state. We adopt a battery model
+that embeds Gaussian-process components in an ECM. An extended Kalman filter recursively
+estimates its state and parameters, reconstructing the OCV curve from the voltage, current, and
+temperature measured during field operation. Each cell covers only part of its OCV curve during
+the measurement window. Aligning the reconstructed curves across the population recovers the
+capacity and initial SOC of every cell. In the case study, the model is fitted individually to each
+of the 324 cells from a 12.5 h measurement window. In open loop, the fitted models predict the
+measured voltage to a median RMSE of 5.09 mV. Against a dedicated reference measurement,
+the reconstructed OCV curves agree to a median RMSE of 4.0 mV, the estimated cell capacities
+to 1.25 Ah, and the SOC imbalance to 1.1 %.
+    Across the 324 cells, the estimated capacities vary substantially, with two cells falling far
+below the rest of the population. The alignment also reveals a systematic SOC imbalance in
+every module. Aggregating the cell estimates yields the usable capacity and effective SOC of
+
+                                                                      13
+each module, determined by whichever cell reaches its voltage limit first. For comparison, we
+apply the same procedure to a lumped-module model, fitting a single ECM to each module and
+estimating its SOH and SOC without access to the individual cell voltages. Both the cell models
+and the lumped-module ECM predict voltage with comparable accuracy. However, since the
+lumped-module model follows the average condition of its cells, it cannot identify the limiting
+cells, and consequently overestimates SOH by up to 31 % and SOC by up to 23 %. Voltage
+accuracy alone is therefore no indication that the internal state of a module has been resolved.
+    From the raw cell voltage data alone, P1M6C1 and P3M5C12 stand out, deviating clearly from
+the rest of their modules. Our characterization shows that both have roughly half the capacity and
+twice the resistance of the population median. Since each logical cell consists of two physical
+cells in parallel, the loss of one of them would produce this behavior. Inspection after the study
+traced both faults to the busbar contacts, which were subsequently fixed. Because the model is
+parametrized for every cell from field data alone, it quantifies how much usable capacity remains
+when such a fault is present, and how the fault constrains system operation.
+
+
+Limitations of the study
+The OCV curve alignment recovers the capacity of each cell over the voltage range the data
+covers. In practice, battery systems are generally operated within conservative limits, so field
+data rarely reaches the rated voltage window. Obtaining SOH relative to the nominal capacity
+therefore requires an extrapolation beyond the measured range, which is prone to systematic
+error. The validation is subject to similar constraints: the reference measurement stems from the
+same onboard sensors and shares the extrapolated reference points, leaving the absolute ca-
+pacity scale unverified. A conclusive assessment would require characterizing cells individually
+in the laboratory.
+    In this study, the parametrization rests on a short measurement window and returns a snap-
+shot of the system state and parameters. A natural next step is long-term monitoring, tracking
+resistance increase and capacity loss over months and years 16 . Since the reconstructed curves
+already resolve the characteristic dV /dSOC features of the LMO/graphite cell, tracking them over
+time would additionally give access to degradation mode analysis 18,24 .
+    The cell-level models require every cell voltage to be transmitted, stored, and processed.
+Over years of operation, the cost of telemetry and computing infrastructure can become sub-
+stantial. Cheaper approaches, such as tracking only the limiting cells, offer a trade-off between
+cost and accuracy that is worth exploring 33 .
+
+
+METHODS
+Hybrid battery model
+We reconstruct the OCV curve and identify the remaining ECM parameters from field data, since
+no pre-measured curve is available for second-life cells. The OCV curve and an SOC-dependent
+resistance are modeled as GPs, which recover their shape directly from the data instead of fitting
+them to a predetermined equation. To estimate the GPs together with the ECM parameters
+as measurements arrive, we follow the recursive formulation of GP regression introduced by
+Huber 34 . The recursive GP (RGP) represents each function by a fixed set of m basis points, a
+vector of the corresponding function values, and their covariance matrix, which a Kalman filter
+updates. The function can then be evaluated at any input from these basis point values, with an
+uncertainty estimate that reflects how well the observed data support the prediction. In contrast
+
+
+                                               14
+with standard GP regression, which retains the full history of observations, the RGP carries the
+fitted function in its state, allowing it to update online and to handle large datasets. Because
+each function is reduced to a finite vector of values, the curves and the ECM parameters can be
+estimated in a single filter. Note S1 in the supplementary material gives a detailed mathematical
+description of GP regression and its recursive formulation.
+     We model each cell (and battery module) with a first-order ECM: an OCV source, an ohmic
+resistance R0 , and an RC branch with resistance R1 and time constant τ . The OCV curve and
+R1 are modeled as functional parameters, each represented by a recursive GP. As a simplifying
+assumption, we treat R0 and τ as constant with respect to the SOC. While both could be ex-
+tended and modeled as GPs to also capture SOC dependency, too many degrees of freedom
+in the model may cause an ill-conditioned estimation problem without necessarily improving the
+model accuracy 35,36 . τ is generally the ECM parameter to which terminal voltage is least sen-
+sitive 37,38 , and some studies report a comparatively small SOC dependence for R0 relative to
+R1 31,32,39 . Rather than
+                       R t normalized SOC, both the OCV curve and R1 are parametrized on cumu-
+lative charge q(t) = 0 i(t′ ) dt′ , since neither the cell’s capacity nor its initial SOC is known ahead
+of the fit. The mapping back to SOC is recovered only once each cell’s capacity and initial SOC
+are identified from the ensemble of reconstructed OCV curves, described in the subsection OCV
+curve alignment and SOH estimation.
+     Both R0 and R1 are also dependent on temperature, which varies considerably both across
+modules and over the course of the measurement window. We assume both R0 (T ) = R0 k(T )
+and R1 (q, T ) = R1 (q) k(T ) share the same correction factor k(T ) with Arrhenius temperature
+dependence,                                                     
+                                                          1     1
+                                        k(T ) = exp κ        −                                        (2)
+                                                          T    T0
+with reference temperature T0 = 25 ◦ C, and where κ, an activation-energy-like coefficient, is
+estimated jointly with the other parameters. Although R0 and R1 likely have different activation
+energies in practice 40 , both respond to the same temperature change in the same voltage signal,
+so separate values of κ are difficult to resolve 41 . We therefore share κ between them.
+    An EKF jointly estimates all the ECM parameters and the hidden states q and vrc , combined
+into a single state vector (Figure 9),
+                                                                   ⊤
+                               xt = qt vrc,t ztocv ztR1 R0,t τt κt                                   (3)
+                                   
+
+
+The basis-point values ztocv and ztR1 of the recursive GPs OCV(q) and R1 (q) are ordinary entries
+of this vector, alongside the scalar parameters R0 , τ , and κ.
+    The state evolves from step to step with the model dynamics xt = f (xt−1 , ut−1 ) + ηt , with
+                                                   ⊤
+process noise ηt ∼ N (0, Qt ), where ut = it Tt is the input vector of measured current and
+                                             
+
+temperature. f combines a distinct update rule for each state component: the internal charge
+accumulation is updated with Coulomb counting,
+
+                                           qt = qt−1 + it−1 Ts                                       (4)
+
+with Ts the filter’s time step (Ts = 1 s in this case). The RC-branch voltage evolves with the
+standard zero-order-hold discretization,
+
+                  vrc,t = vrc,t−1 exp(−Ts /τ ) + R1 (qt−1 , Tt−1 ) it−1 (1 − exp(−Ts /τ ))           (5)
+
+Every other state, both the GPs’ basis-point values and the three scalars, follows identity dynam-
+ics with zero process noise and is refined only through the correction step.
+
+
+
+                                                    15
+   The correction step uses this prediction together with the observation model yt = g(xt , ut )+ϵt ,
+where ϵt ∼ N (0, Rt ) is the sensor noise and g(xt , ut ) predicts the terminal voltage v̂t , combining
+the OCV voltage source with the ohmic and dynamic voltage drops,
+
+                                    v̂t = OCV(qt ) + R0 (Tt ) it + vrc,t                             (6)
+
+f and g are nonlinear in xt : q enters through the recursive GPs R1 (q) and OCV(q), while τ and
+κ enter through the exponential terms. The filter therefore linearizes both functions at each step
+via their Jacobians, computed via forward-mode automatic differentiation 42 :
+                                          ∂f                       ∂g
+                                   Ft =           ,         Ct =                                     (7)
+                                          ∂x xt−1                  ∂x xt|t−1
+
+The prediction step propagates the state and covariance,
+
+                         xt|t−1 = f (xt−1 , ut−1 ),        Σt|t−1 = Ft Σt−1 Ft⊤ + Qt                 (8)
+
+and the correction step updates them using the Kalman gain,
+                                                                         −1
+                                  Gt = Σt|t−1 Ct⊤ Ct Σt|t−1 Ct⊤ + Rt                                 (9)
+                                                                                                    (10)
+                                                                       
+                                  xt = xt|t−1 + Gt yt − g(xt|t−1 , ut )
+                                  Σt = Σt|t−1 − Gt Ct Σt|t−1                                        (11)
+
+Rt combines the voltage sensor noise with the conditional variance of the OCV GP at qt . It is
+therefore not fixed, but grows wherever the OCV reconstruction is less certain.
+     At each time step each GP is evaluated at the current charge qt , where its value is a weighted
+sum of the basis-point values, with the weights determined by the kernel. Because this de-
+pendence is linear, these weights form the corresponding entries of the Jacobians Ft and Ct ,
+through which the filter adjusts the basis-point values to bring the predicted voltage closer to the
+measurement. Each correction step therefore reshapes OCV(q) and R1 (q).
+     Missing data in the current and temperature measurements are filled by linear interpolation,
+so ut is always available. Gaps in the voltage measurements, by contrast, are handled by the
+filter itself: it predicts at every step, propagating the state and its uncertainty forward, but corrects
+only when a measurement is available.
+
+
+Filter parametrization and initialization
+Fitting the filter to data requires concrete choices for each GP’s kernel and hyperparameters, the
+process and observation noise covariances, and the initial conditions for every state.
+    The joint state combines quantities of different physical scale (volts, amperes, ohms, sec-
+onds, kelvin), which can leave the filter’s covariance matrix poorly conditioned and make it hard
+to choose GP kernel hyperparameters that generalize across cells. Before fitting, voltages, cur-
+rents, and charges are z-score normalized against a fixed nominal range, matching the system’s
+operating window: 3.3 V to 4.1 V (3.7 V midpoint) for voltage, −50 A to 50 A for current, and
+−50 Ah to 50 Ah for charge. For lumped-module models, the voltage normalization is adjusted to
+the number of series-connected cells (s = 12).
+    The recursive GPs for both OCV(q) and R1 (q) use a squared-exponential kernel kSE (x, x′ )
+with a constant prior mean. The prior mean of the OCV GP is set to 3.7 V and that of the R1
+GP to 1 mΩ (12 mΩ for the lumped-module model to reflect the series-connected cells), each an
+informed initial estimate. Each GP is represented by 21 basis points, equally spaced over the
+charge range observed in that cell’s fit. Since voltage, current, and charge are normalized to
+
+                                                      16
+       measured input
+                                                                                                                   observation model
+       ut = [ it Tt ]>
+                                                             joint state vector xt                            OCV(q)             R1 (q)
+
+
+                                             hidden states                   model parameters
+                                                                                                                   ztocv                zt 1
+                                                                                                                                             R
+           predict                          qt         vrc,t         ztocv        ztR1      R0 , τ, κ
+                                xt|t−1
+   xt|t−1 = f (xt−1 , ut−1 )             cumulative        RC      OCV GP        R1 GP          scalar                              R1 (q, T )
+  Σt|t−1 = Ft Σt−1 Ft> + Qt               charge      voltage       basis         basis     params.
+                                                                                                                       R0 (T )
+                                                                                                                −+
+
+
+
+                                                                                                            v̂t = OCV(qt ) + R0 (Tt ) it + vrc,t
+                                                                   correct
+                                                                                   −1
+                                                 Gt = Σt|t−1 Ct> Ct Σt|t−1 Ct> + Rt                                                              v̂t
+                                                                                                         innovation et = vt − v̂t
+                      t←t + 1                         xt = xt|t−1 + Gt et
+                                                                                                                                             −
+                                                      Σt     =   Σt|t−1 − Gt Ct Σt|t−1                                              +
+                                                 Rt : sensor noise + OCV GP variance at qt
+                                                                                                                                 measurement
+                                                                                                                                        vt
+
+
+
+Figure 9: Joint state and parameter estimation with the RGP-ECM. The state vector xt carries
+the hidden states alongside the ECM parameters, so the EKF updates them jointly at each step.
+The GPs recover OCV(q) and R1 (q) as functions of charge, while both resistances additionally
+depend on temperature through a shared Arrhenius factor. Ft and Ct are the Jacobians of the
+process model f and the observation model g, evaluated at xt−1 and xt|t−1 .
+
+comparable scales, the GP kernel hyperparameters default to ℓOCV = 0.5, σOCV = 0.5, ℓR1 = 0.5
+and σR1 = 0.5. This choice aims for a level of smoothing that avoids both losing real features
+and capturing noise. These are then rescaled by that cell’s own observed voltage and charge
+span, so hyperparameters reflect how much of the normalized range that cell’s data actually
+covers. For some cells and modules, however, the default hyperparameters do not yield a con-
+sistent OCV reconstruction. For these cases, a population-based procedure selects better-fitting
+hyperparameters instead, described in Note S2.
+     Beyond the GPs, the filter’s scalar parameters and states also need priors, process noise, and
+initial conditions. Table 1 provides an overview of the cell model parameters. For the lumped-
+module model, quantities related to voltage or resistance are scaled to reflect the number of
+series-connected cells. The sensor’s voltage noise vσ sets how much the filter trusts each voltage
+measurement. Together with the OCV GP’s uncertainty, it forms Rt . Parameters R0 , τ , and κ
+each start from an informed initial value, with an uncertainty set by how much that parameter
+could plausibly vary from this guess. They are treated as static over the measurement window,
+so their process noise is set to zero. vrc is assumed to start at rest, with an initial uncertainty and
+a small process noise that tolerates mismatch from both the zero-order-hold approximation and
+an initially imprecise parametrization.
+     The filter is initialized with q0 = 0 Ah and zero uncertainty, reflecting the known charge state
+at the start of the measurement window. The process noise for q is also set to zero in this first
+parametrization run, so the filter follows Coulomb counting alone. While in this first run q is
+computed directly from measured current rather than estimated, it is still useful to keep it in the
+state vector instead of treating it as an external input. When merging additional measurement
+windows, the initial charge is no longer known with certainty, so a nonzero initial uncertainty
+is needed to let the filter correct the initial guess. Similarly, for longer runs where Coulomb-
+counting error can accumulate, a nonzero process noise lets the filter correct for it. Correcting q
+from voltage only becomes reliable once the model, in particular the OCV curve, is characterized.
+
+
+                                                                        17
+Without that, as in this first run, the filter would “correct” q toward a wrong estimate that would
+then degrade the parameter estimation itself.
+
+Table 1: EKF tuning parameters for the cell model. Starred (*) values are scaled by the number
+of series-connected cells for the lumped-module model (s = 12).
+                                                                         Process/observation
+     State                       Initial value Initial uncertainty (σ0 ) noise (σ1 , per step)
+     Charge q                         0 Ah                     0 Ah                         0 Ah
+     RC voltage vrc *                  0V                     0.1 mV                      0.05 mV
+     Resistance R0 *                  1 mΩ                    0.5 mΩ                      0 (static)
+     Time constant τ                  800 s                     5s                        0 (static)
+     Arrhenius coefficient κ         2000 K                    100 K                      0 (static)
+     Sensor voltage noise vσ *          –                        –                  3 mV (measurement)
+
+
+
+OCV curve alignment and SOH estimation
+Cell capacity and SOH are not parameters in our model. Instead, the OCV curve of each cell
+and module is reconstructed based on its own cumulative charge q, with an unknown initial SOC
+and no shared reference between them. Capacity could be read directly off a reconstructed
+curve if it spanned the full cell voltage window, which defines 0 % and 100 % SOC. But since the
+curves cover only a partial voltage and SOC window, we recover the capacity and initial SOC of
+every cell (or module) by aligning its reconstructed OCV curve against the rest of the population.
+Because the curves overlap, cells inform one another, and every capacity estimate benefits from
+the voltage range the population covers as a whole.
+   To align a pair of curves, one is scaled and shifted so that it agrees with the other wherever
+their voltages overlap. The OCV GP reconstructs each curve as voltage over charge, v(q).
+Before alignment, each curve is inverted into charge over voltage, q(v). Each pair of cells (or
+modules) is compared at 50 evenly spaced points across their shared voltage range:
+                                    αi qi (v) + βi ≈ αj qj (v) + βj ,                                    (12)
+where αi and βi rescale and shift the charge axis of cell i. Because qi (v) and qj (v) are known,
+the equation is linear in the four alignment parameters of the pair. In the original v(q) frame, they
+would enter through the curve shapes, making the equation nonlinear.
+   Collecting every pairwise comparison as rows results in a single linear system,
+                              Aθ ≈ b,         θ = (α1 , β1 , . . . , αN , βN )⊤ ,                        (13)
+that can be solved by ordinary least squares. The vector θ collects the alignment parameters αi
+and βi of all N cells (or modules). For N = 324 cells, this gives 2N = 648 unknowns constrained
+by N (N − 1)/2 = 52 326 pairwise comparisons. Each row of A holds the coefficients of one
+comparison, and the corresponding entry of b its right-hand side, which is zero for every pairwise
+comparison. Since the comparisons constrain only the relative agreement between cells, two
+anchor rows per cell are added to ensure a unique solution,
+                             αi qi (vlo ) + βi = 0,        αi qi (vhi ) + βi = 1                         (14)
+where vlo and vhi are the lowest and highest voltages shared by all cells. Each row of A has
+at most four nonzero entries, so the system is solved via the normal equations A⊤ A θ = A⊤ b,
+accumulated incrementally as each row is processed to avoid storing A densely.
+
+                                                      18
+    The alignment gives the capacity and initial SOC of each cell (or module) over the anchored
+voltage window. For cell i, 1/αi is the charge stored between vlo and vhi , and βi its SOC at the
+start of the measurement window, with 0 at vlo and 1 at vhi . To recover the cell’s capacity and
+SOC over the full cell voltage window, we need an SOC estimate at vlo and vhi :
+                                    1
+                         Qi =           ,      SOC0,i = SOClo + ∆SOC βi                          (15)
+                                αi ∆SOC
+where ∆SOC is the SOC span between vlo and vhi , and SOClo the SOC at vlo . Both are taken from
+the OCV curve measured at low power (subsection Validation against reference measurements),
+which reaches lower voltages than any curve reconstructed from field data and is extended
+linearly to the full cell voltage window, assuming the curve remains linear beyond its measured
+range. The same ∆SOC and SOClo are applied to every cell, which fixes the absolute level of
+the reported capacities and leaves the differences between them to the alignment alone. Cell
+and module SOH is obtained by normalizing Qi by the beginning-of-life capacity given in the
+datasheet, Qnom = 100 Ah per logical cell.
+    The module SOH is also determined by aggregating the capacities of its cells, which ac-
+counts for the spread in both capacity and SOC. Since charge and discharge each stop at the
+first cell to reach a voltage limit, the usable module capacity is set by the smallest chargeable
+                                                            dc
+and dischargeable capacity among its cells, Qch   mod and Qmod . Together they define the module
+SOH 6,33 ,
+                                                 Qch + Qdc
+                                        SOHmod = mod       mod
+                                                                                             (16)
+                                                      Qnom
+with
+                     Qch
+                      mod = min ((1 − SOCi ) Qi ) ,      Qdc
+                                                          mod = min (SOCi Qi )                   (17)
+                                i                                  i
+
+where i runs over the module’s twelve cells in series. Perfect SOC balancing within a module
+regains the capacity lost to imbalance, leaving the weakest cell as the only limit, Qmod = mini (Qi ).
+    The aligned curves, averaged at each voltage, form a single composite OCV curve that serves
+as reference for the population. Because the curves cover different, partly overlapping segments,
+the composite covers a wider voltage range than any individual cell. The fitted αi and βi set the
+capacity and the initial SOC, so any error in aligning a curve appears directly in both estimates.
+The quality of the alignment therefore indicates how reliable a cell’s (or module’s) estimates
+are. Each curve aligns to the composite only approximately: voltage, current, and temperature
+measurement errors perturb the reconstruction, and degradation changes the shape of the OCV
+curve, which the alignment cannot absorb. Their combined effect appears as the residual be-
+tween a cell’s aligned curve and the composite, from which we quantify the uncertainty on Qi
+and SOC0,i .
+    Because the residuals vary smoothly with voltage rather than from sample to sample, the
+classical least-squares covariance, which assumes independence, does not apply. We therefore
+model the residual as a zero-mean correlated Gaussian, with a covariance built from a squared-
+exponential kernel. Its length scale is estimated from the population’s residual autocorrelation,
+and its amplitude from each residual curve. Propagating this covariance through the alignment
+gives the uncertainty on αi and βi , which the delta method transfers to Qi and SOC0,i . The
+resulting ±1σ uncertainty intervals are wider for cells that agree less with the composite, for
+those whose data cover less of the SOC range, and for those confined to flat regions of the OCV
+curve.
+
+
+
+
+                                                 19
+Simulation and SOC estimation
+Once fitted, the model can be used to simulate arbitrary operating conditions, driven by the
+current and temperature inputs alone. The parameters are frozen at the values reached at the
+end of the fit, and the model propagates q and vrc through its dynamics while predicting the
+terminal voltage, in open loop. Because the OCV and R1 curves are recovered as functions of
+charge, the model applies to any load profile within the charge range covered by the fit. Prediction
+errors accumulate, since no measurement corrects the state, making the open-loop run a test of
+the model rather than of the filter.
+    For SOC estimation, the correction step is restored while the parameters stay frozen, so the
+state reduces to q and vrc . What remains is a conventional ECM-based SOC estimator, with the
+reconstructed OCV and R1 curves in place of tabulated ones. The measurement stays nonlinear
+in q, since both curves are evaluated through their frozen GPs, so the filter is still an EKF. Where
+the reconstruction is uncertain, the GP variance inflates the predicted voltage uncertainty and
+down-weights the correction, so extrapolation beyond the fitted range is visible in the estimate
+rather than silent. Charge converts to SOC through the composite fit,
+
+                                                           q(t)
+                                      SOC(t) = SOC0,i +         .                                (18)
+                                                            Qi
+
+When the initial SOC is unknown, inverting the reconstructed OCV at the initial voltage provides
+a starting value for q, which the filter refines as new measurements arrive.
+   The estimator runs at both levels, so a module’s SOC can be estimated directly or aggregated
+from its cells. As with capacity, aggregation follows from the cells that limit charge and discharge.
+Evaluated at each step from the cell estimates, the aggregate is the dischargeable share of the
+usable capacity,
+                                                       Qdc
+                                                         mod (t)
+                                   SOCmod (t) = dc                     .                         (19)
+                                                  Qmod (t) + Qch
+                                                               mod (t)
+
+    We assess SOC accuracy by running the estimator over the same window used for the fit. As
+in the fit, charge starts at q0 = 0 Ah and the RC voltage at rest. Unlike the fit, q no longer follows
+Coulomb counting alone: its initial uncertainty and process noise are nonzero, so the voltage
+correction can adjust the integrated charge and absorb accumulated current-measurement error.
+The RC voltage keeps its process noise but starts from a much wider prior, since an estimator
+applied during operation cannot assume it is at rest. Table 2 lists the EKF tuning for both states.
+
+Table 2: EKF tuning for the SOC estimation run at cell level. Starred (*) values are scaled by the
+number of series-connected cells for the lumped-module model (s = 12).
+      State             Initial value Initial uncertainty (σ0 ) Process noise (σ1 , per step)
+      Charge q               0 Ah               0.3 Ah                     0.3 mAh
+      RC voltage vrc *        0V                25 mV                      0.05 mV
+
+
+
+
+RESOURCE AVAILABILITY
+Lead contact
+Requests for any additional information about this work should be directed to the lead contact,
+Martı́n Cornejo (martin.cornejo@tum.de).
+
+                                                 20
+Materials availability
+This study did not generate new materials.
+
+
+Data and code availability
+The latest version of the associated Julia software is available on GitHub (https://github.com/
+martincornejo/BatteryRecursiveGPs.jl). The version used in this paper, together with the
+dataset, is archived on Zenodo (https://doi.org/10.5281/zenodo.22281620).
+
+
+ACKNOWLEDGMENTS
+The authors thank Fabian Dauth and Ramon Schindler (STABL Energy GmbH) for their support
+with the experimental setup. This work was funded by the Bavarian Transformation and Research
+Foundation, Germany, as part of the research project KI-M-Bat (reference number AZ1563-22).
+
+
+AUTHOR CONTRIBUTIONS
+Conceptualization, M.C. and A.J.; Methodology, M.C. and J.V.S.; Software, M.C. and J.V.S.;
+Formal Analysis, M.C.; Investigation, M.C. and J.M.-S.; Data Curation, J.M.-S.; Visualization,
+M.C.; Writing – Original Draft, M.C.; Writing – Review & Editing, M.C., J.M.-S., J.V.S., and A.J.;
+Supervision, A.J.; Funding Acquisition, M.C. and A.J.
+
+
+DECLARATION OF INTERESTS
+J.M.-S. is an employee of STABL Energy GmbH, which developed and operates the test system
+studied in this work. The remaining authors declare no competing interests.
+
+
+DECLARATION OF GENERATIVE AI AND AI-ASSISTED TECH-
+NOLOGIES
+During the preparation of this work, the authors used Claude (Anthropic) to assist with drafting
+and to improve the language and readability of the manuscript text. After using this tool, the
+authors reviewed and edited the content as needed and take full responsibility for the content of
+the publication.
+
+
+SUPPLEMENTAL INFORMATION
+Document S1: Figures S1–S9 and Notes S1 and S2.
+
+
+
+
+                                               21
+References
+ 1. Zhu, J., Mathews, I., Ren, D., Li, W., Cogswell, D., Xing, B., Sedlatschek, T., Kantareddy,
+    S.N.R., Yi, M., Gao, T., Xia, Y., Zhou, Q., Wierzbicki, T., and Bazant, M.Z. (2021). End-of-life
+    or second-life options for retired electric vehicle batteries. Cell Reports Physical Science 2,
+    100537. doi: 10.1016/j.xcrp.2021.100537.
+
+ 2. Börner, M.F., Frieges, M.H., Späth, B., Spütz, K., Heimes, H.H., Sauer, D.U., and Li, W.
+    (2022). Challenges of second-life concepts for retired electric vehicle batteries. Cell Reports
+    Physical Science 3. doi: 10.1016/j.xcrp.2022.101095.
+
+ 3. Mowri, S.T., Barai, A., Moharana, S., Gupta, A., and Marco, J. (2024). Assessing the Impact
+    of First-Life Lithium-Ion Battery Degradation on Second-Life Performance. Energies 17. doi:
+    10.3390/en17020501.
+
+ 4. Naylor Marlow, M., Chen, J., and Wu, B. (2024). Degradation in parallel-connected lithium-
+    ion battery packs under thermal gradients. Communications Engineering 3, 2. doi: 10.
+    1038/s44172-023-00153-5.
+
+ 5. Akhtari Zavareh, P., Naveen Matam, A., and Shah, K. (2026). Heterogeneous aging in a
+    multi-cell lithium-ion battery system driven by manufacturing-induced variability in electrode
+    microstructure: a physics-based simulation study. Energy Advances 5, 202–223. doi: 10.
+    1039/D5YA00182J.
+
+ 6. Rüther, T., Hileman, W., Trimboli, M.S., Plett, G.L., Dubarry, M., Kumar, N., Marco, J.,
+    Roehrer, F., Jossen, A., Schöberl, J., Lienkamp, M., Bohlen, O., and Danzer, M.A. (2025).
+    Battery pack states, properties, and characterization techniques beyond cell level. Cell
+    Reports Physical Science 6. doi: 10.1016/j.xcrp.2025.102919.
+
+ 7. Feng, F., Hu, X., Hu, L., Hu, F., Li, Y., and Zhang, L. (2019). Propagation mechanisms and
+    diagnosis of parameter inconsistency within Li-Ion battery packs. Renewable and Sustain-
+    able Energy Reviews 112, 102–113. doi: 10.1016/j.rser.2019.05.042.
+
+ 8. Su, L., Xu, Y., and Dong, Z. (2024). State-of-health estimation of lithium-ion batteries: A
+    comprehensive literature review from cell to pack levels. Energy Conversion and Economics
+    5, 224–242. doi: 10.1049/enc2.12125.
+
+ 9. Dubarry, M., Pastor-Fernández, C., Baure, G., Yu, T.F., Widanage, W.D., and Marco, J.
+    (2019). Battery energy storage system modeling: Investigation of intrinsic cell-to-cell varia-
+    tions. Journal of Energy Storage 23, 19–28. doi: 10.1016/j.est.2019.02.016.
+
+10. Yao, J., and Kowal, J. (2025). Towards a smarter battery management system: A critical
+    review on deep learning-based state of charge estimation of lithium-ion batteries. Energy
+    and AI 21, 100585. doi: 10.1016/j.egyai.2025.100585.
+
+11. Hossain, M., Haque, M.E., and Arif, M.T. (2022). Kalman filtering techniques for the online
+    model parameters and state of charge estimation of the Li-ion batteries: A comparative
+    analysis. Journal of Energy Storage 51, 104174. doi: 10.1016/j.est.2022.104174.
+
+12. Campestrini, C., Heil, T., Kosch, S., and Jossen, A. (2016). A comparative study and review
+    of different Kalman filters by applying an enhanced validation method. Journal of Energy
+    Storage 8, 142–159. doi: 10.1016/j.est.2016.10.004.
+
+
+
+                                                22
+13. Plett, G.L. (2004). Extended Kalman filtering for battery management systems of LiPB-
+    based HEV battery packs: Part 3. State and parameter estimation. Journal of Power
+    Sources 134, 277–292. doi: 10.1016/j.jpowsour.2004.02.033.
+
+14. Peng, J., Meng, J., Wu, J., Deng, Z., Lin, M., Mao, S., and Stroe, D.I. (2023). A compre-
+    hensive overview and comparison of parameter benchmark methods for lithium-ion battery
+    application. Journal of Energy Storage 71, 108197. doi: 10.1016/j.est.2023.108197.
+
+15. Kuzhiyil, J.A., Damoulas, T., and Widanage, W.D. (2024). Neural equivalent circuit models:
+    Universal differential equations for battery modelling. Applied Energy 371, 123692. doi:
+    10.1016/j.apenergy.2024.123692.
+
+16. Aitio, A., Joest, D., Sauer, D.U., and Howey, D. (2025). Learning battery model parame-
+    ter dynamics from data with recursive Gaussian process regression. Journal of Dynamic
+    Systems, Measurement, and Control. doi: 10.1115/1.4067771.
+
+17. Schaeffer, J., Lenz, E., Gulla, D., Bazant, M.Z., Braatz, R.D., and Findeisen, R. (2024).
+    Lithium-Ion battery system health monitoring and fault analysis from field data using Gaus-
+    sian processes. arXiv preprint arXiv:2406.19015. doi: 10.48550/arXiv.2406.19015.
+
+18. Zhou, Z., Aitio, A., and Howey, D. (2025). Learning Li-ion battery health and degradation
+    modes from data with aging-aware circuit models. Applied Energy 397, 126375. doi: 10.
+    1016/j.apenergy.2025.126375.
+
+19. Chen, X., Lei, H., Xiong, R., Shen, W., and Yang, R. (2019). A novel approach to reconstruct
+    open circuit voltage for state of charge estimation of lithium ion batteries in electric vehicles.
+    Applied Energy 255, 113758. doi: 10.1016/j.apenergy.2019.113758.
+
+20. Yang, Y., Wu, X., Liao, X., Shu, J., Deng, P., Yang, J., and Jiang, P. (2026). Open-circuit
+    voltage curve reconstruction for vehicle-mounted lithium-ion battery via beluga whale opti-
+    mization. Journal of Energy Storage 141, 119323. doi: 10.1016/j.est.2025.119323.
+
+21. Wang, X., Gong, R., Yang, Z., and Kang, L. (2024). State of charge estimation of lithium-
+    ion batteries based on online OCV curve construction. Batteries 10, 208. doi: 10.3390/
+    batteries10060208.
+
+22. Wang, L., Sun, J., Cai, Y., Lian, Y., Jin, M., Zhao, X., Wang, R., Chen, L., and Chen, J.
+    (2023). A novel OCV curve reconstruction and update method of lithium-ion batteries at
+    different temperatures based on cloud data. Energy 268, 126773. doi: 10.1016/j.energy.
+    2023.126773.
+
+23. Hofmann, T., Li, J., Hamar, J., Erhard, S., and Schmidt, J.P. (2024). The ∆Q-method: State
+    of health and degradation mode estimation for lithium-ion batteries using a mechanistic
+    model with relaxed voltage points. Journal of Power Sources 596, 234107. doi: 10.1016/
+    j.jpowsour.2024.234107.
+
+24. Figgener, J., Bors, J., Kuipers, M., Hildenbrand, F., Junker, M., Koltermann, L., Woerner, P.,
+    Mennekes, M., Haberschusz, D., Kairies, K.P., and Sauer, D.U. (2024). Degradation mode
+    estimation using reconstructed open circuit voltage curves from multi-year home storage
+    field data. arXiv preprint arXiv:2411.08025. doi: 10.48550/arXiv.2411.08025.
+
+25. Cornejo, M., Jablonski, S., Fischer, M., Bahrke, J., and Jossen, A. (2025). Data-driven
+    model enhancement of late-life lithium-ion batteries. Future Batteries 6, 100060. doi: 10.
+    1016/j.fub.2025.100060.
+
+                                                 23
+26. Li, N., Gao, F., Hao, T., Ma, Z., and Zhang, C. (2018). SOH balancing control method for
+    the MMC battery energy storage system. IEEE Transactions on Industrial Electronics 65,
+    6581–6591. doi: 10.1109/TIE.2017.2733462.
+
+27. Rivera, V., Smart, C., Burgos-Mellado, C., Arias-Esquivel, Y., Torres, M., Orchard, M.,
+    Cardenas-Dobson, R., and Muñoz-Carpintero, D. (2026). State of charge control of second
+    life batteries integrated by a modular multilevel converter. IEEE Transactions on Industrial
+    Electronics 73, 8101–8113. doi: 10.1109/TIE.2026.3651402.
+
+28. Ueki, K., Kitano, S., Toriyama, J.i., Seyama, Y., and Nishiyama, K. Development of large-
+    sized long-life type lithium-ion cells for electric vehicle. Technical Report Vol. 9, No. 1 GS
+    Yuasa Corporation (2012). URL: https://www.gs-yuasa.com/en/technology/technical_
+    report/pdf/vol9/009_01_026.pdf.
+
+29. Fong, Y., Wang, D., Mei, J., Raman, S.R., and Cheng, K. (2020). Study and development of
+    mixed repurposing EV battery system for stationary energy storage applications. In 2020
+    8th International Conference on Power Electronics Systems and Applications (PESA). pp.
+    1–6. doi: 10.1109/PESA50370.2020.9343967.
+
+30. Guenther, L.H., Klein, V., Loef, G., Pohl, A., Okube, H., Winterbur, R., Röwer, G., Wegener,
+    B., Goertz, R., and Bracke, S. (2024). Second life for lithium-ion traction batteries. Sustain-
+    ability 16, 7288. doi: 10.3390/su16177288.
+
+31. Waag, W., Käbitz, S., and Sauer, D.U. (2013). Experimental investigation of the lithium-ion
+    battery impedance characteristic at various conditions and aging states and its influence on
+    the application. Applied Energy 102, 885–897. doi: 10.1016/j.apenergy.2012.09.030.
+
+32. Tran, M.K., Mathew, M., Janhunen, S., Panchal, S., Raahemifar, K., Fraser, R., and Fowler,
+    M. (2021). A comprehensive equivalent circuit model for lithium-ion batteries, incorporating
+    the effects of state of health, state of charge, and temperature on model parameters. Journal
+    of Energy Storage 43, 103252. doi: 10.1016/j.est.2021.103252.
+
+33. Li, J., Greye, B., Buchholz, M., and Danzer, M.A. (2017). Interval method for an efficient
+    state of charge and capacity estimation of multicell batteries. Journal of Energy Storage 13,
+    1–9. doi: 10.1016/j.est.2017.05.012.
+
+34. Huber, M.F. (2014). Recursive Gaussian process: On-line regression and learning. Pattern
+    Recognition Letters 45, 85–91. doi: 10.1016/j.patrec.2014.03.004.
+
+35. Hu, X., Li, S., and Peng, H. (2012). A comparative study of equivalent circuit models for
+    Li-ion batteries. Journal of Power Sources 198, 359–367. doi: 10.1016/j.jpowsour.2011.
+    10.013.
+
+36. Grandjean, T.R.B., McGordon, A., and Jennings, P.A. (2017). Structural identifiability of
+    equivalent circuit models for Li-Ion batteries. Energies 10, 90. doi: 10.3390/en10010090.
+
+37. Zhao, S., and Howey, D.A. (2016). Global sensitivity analysis of battery equivalent circuit
+    model parameters. In 2016 IEEE Vehicle Power and Propulsion Conference (VPPC). pp.
+    1–4. doi: 10.1109/VPPC.2016.7791696.
+
+38. Lai, X., Wang, S., Ma, S., Xie, J., and Zheng, Y. (2020). Parameter sensitivity analysis
+    and simplification of equivalent circuit model for the state of charge of lithium-ion batteries.
+    Electrochimica Acta 330, 135239. doi: 10.1016/j.electacta.2019.135239.
+
+
+                                                24
+39. Andre, D., Meiler, M., Steiner, K., Wimmer, C., Soczka-Guth, T., and Sauer, D.U. (2011).
+    Characterization of high-power lithium-ion batteries by electrochemical impedance spec-
+    troscopy. I. Experimental investigation. Journal of Power Sources 196, 5334–5341. doi:
+    10.1016/j.jpowsour.2010.12.102.
+
+40. Ludwig, S., Steinhardt, M., and Jossen, A. (2022). Determination of internal temperature
+    differences for various cylindrical lithium-ion batteries using a pulse resistance approach.
+    Batteries 8, 60. doi: 10.3390/batteries8070060.
+
+41. Barat, F., Wilson, S., Kim, H., and Fang, H. (2026). System identification of lithium-ion
+    battery equivalent circuit models using ensemble kalman inversion. In 2026 American Con-
+    trol Conference (ACC). pp. 1615–1622. URL: https://ieeexplore.ieee.org/document/
+    11616140.
+
+42. Revels, J., Lubin, M., and Papamarkou, T. (2016). Forward-Mode Automatic Differentia-
+    tion in Julia. arXiv. URL: http://arxiv.org/abs/1607.07892. doi: 10.48550/arXiv.1607.
+    07892.
+
+43. Rasmussen, C.E., and Williams, C.K.I. (2006). Gaussian processes for machine learning.
+    MIT Press. ISBN 978-0-262-18253-9.
+
+
+
+
+                                              25
+                                             Supplementary Material
+
+1                       Supplementary Figures
+
+
+                        4.0
+
+                        3.5                       P1M1                     P2M1                     P3M1
+
+                        4.0
+
+                        3.5                       P1M2                     P2M2                     P3M2
+
+                        4.0
+
+                        3.5                       P1M3                     P2M3                     P3M3
+
+                        4.0
+
+                        3.5                       P1M4                     P2M4                     P3M4
+
+
+
+
+    Cell voltages / V
+                        4.0
+
+                        3.5                       P1M5                     P2M5                     P3M5
+
+                        4.0
+
+                        3.5                       P1M6                     P2M6                     P3M6
+
+                        4.0
+
+                        3.5                       P1M7                     P2M7                     P3M7
+
+                        4.0
+
+                        3.5                       P1M8                     P2M8                     P3M8
+
+                        4.0
+
+                        3.5                       P1M9                     P2M9                     P3M9
+
+                              0   4           8     12 0   4           8     12 0   4           8     12
+                                      Time / h                 Time / h                 Time / h
+
+
+Figure S1: Cell voltages of the full system over the measurement window. Each panel shows the
+twelve cell voltages of one module; rows are module positions M1–M9 and columns are phases
+P1–P3. Dashed lines mark the operational voltage limits, 3.4 V to 4.07 V. Within every module
+the cell voltages spread apart over the window, most visibly near the end of discharge. Red
+frames mark modules P1M6 and P3M5, which each contain a cell with divergent behavior.
+
+
+
+
+                                                           26
+                    A
+
+
+
+  Voltage / V
+                  47.5
+
+                  45.0
+
+                  42.5
+
+
+                      40
+
+
+    Current / A
+                      20
+                       0
+                     −20                                                        Module ID
+                     −40                                                             M1
+                                                                                     M2
+
+
+
+
+         Temperature / °C
+                                                                                     M3
+                            30
+                                                                                     M4
+                            25
+                                                                                     M5
+                            20                                                       M6
+                                 0   5                       10                      M7
+                                          Time / h                                   M8
+                                                                                     M9
+                    B
+
+
+  Voltage / V
+                  47.5
+                  47.0
+                  46.5
+                  46.0
+
+
+
+
+         Current / A
+                            40
+                            30
+                            20
+                            10
+                             0
+                                 0          5                            10
+                                         Time / min
+
+
+Figure S2: Module voltage, current, and temperature of all 27 modules, colored by module posi-
+tion M1–M9 within each phase. (A) The full measurement window. The system is cycled twice
+at approximately constant system power, but the MMC distributes the phase current unevenly
+between modules, so each module follows its own dynamic load profile. Module temperatures
+differ across the system and drift over the window. (B) The shaded 10 min window in (A). The
+modulation reassigns the load about once a minute, so each module alternates between differ-
+ent shares of the phase current, and its voltage steps with every switch.
+
+
+
+                                               27
+                 Module current (median 2 s, 36% available)
+             4
+          10
+          10 3
+  Count   10 2
+          10 1
+          10 0
+
+                 Module voltage (median 2 s, 36% available)
+             4
+          10
+          10 3
+  Count   10 2
+          10 1
+          10 0
+
+                 Module temperature (median 15 s, 82% available)
+             4
+          10
+          10 3
+  Count   10 2
+          10 1
+          10 0
+
+                 Cell voltage (median 10 s, 78% available)
+          10 4
+          10 3
+  Count   10 2
+          10 1
+          10 0
+                 0        10         20         30      40          50   60       70         80
+                                                 Sampling interval / s
+
+
+Figure S3: Sampling intervals in the dataset. Distribution of the interval between consecutive
+samples for module current, module voltage, module temperature, and cell voltage, on a loga-
+rithmic count axis. The median interval and the share of available samples are given above each
+histogram. The nominal intervals of 1 s for module current and voltage, 10 s for cell voltage, and
+15 s for module temperature are not always met.
+
+
+
+
+                                                        28
+                                        100
+
+
+
+                                        80
+
+
+
+                                        60
+
+
+                           Cell count
+                                        40
+
+
+
+                                        20
+
+
+
+                                         0
+                                              40       50           60       70        80
+                                                              Cell SOH / %
+
+
+Figure S4: Distribution of estimated cell SOH across the 324 cells. Most cells group tightly
+around a median of 75.4 %, with a pronounced lower tail. Cells P1M6C1 and P3M5C12 are clear
+outliers, at 47.8 % and 38.0 %. Capacity is obtained by aligning each reconstructed OCV curve
+against the rest of the population, and normalized to the nominal 100 Ah of a logical cell. Bin
+width 1 %.
+
+
+                      50
+                                                                                  P3M1      P3M2
+                                                                                  P3M3      P3M4
+                      40                                                          P3M6      P3M7
+                                                                                  P3M8      P3M9
+
+
+                      30
+
+              cells
+                      20
+
+
+                      10
+
+
+                       0
+                           0                       4             8                12           16
+                                                            OCV RMSE / mV
+
+
+Figure S5: Agreement between the reconstructed and reference pseudo-OCV curves. Distri-
+bution of the per-cell RMSE over the 96 validated cells, stacked by module, with a bin width of
+1 mV. Most cells lie between 3 mV and 5 mV. The tail corresponds to the cells with the lowest
+SOC, whose comparison windows reach the steep knee of the OCV curve.
+
+
+                                                              29
+                                              1.0
+
+
+
+
+                             SOC error / %
+                                              0.5
+
+                                              0.0
+
+                                             −0.5
+
+                                             −1.0
+                                                    0.0            2.5          5.0                               7.5             10.0             12.5
+                                                                                      Time / h
+
+
+Figure S6: SOC estimation error of the cell-level EKF for the twelve cells of module P1M9, one
+line per cell, relative to Coulomb counting of the external current probe and normalized to each
+cell’s estimated capacity. Over the 12.5 h window the error stays within about ±1.3 % of each
+cell’s capacity, corresponding to less than 1 Ah.
+
+
+                                                           No faults                                                    3.0 Ah offset + 0.1 A current bias
+
+                         0   A                                                                                0   B
+                −10                                                                                  −10
+
+
+
+  Charge / Ah                                                                          Charge / Ah
+                −20                                                                                  −20
+                −30                                                                                  −30
+                −40                                                                                  −40
+                −50                                                                                  −50
+                −60                                                                                  −60
+
+
+                         4   C                                                                                4   D
+            Error / Ah                                                                           Error / Ah
+                         2                                                                                    2
+                         0                                                                                    0
+
+                                              2.5         5.0      7.5   10.0   12.5                                      2.5      5.0      7.5      10.0    12.5
+                                                            Time / h                                                                 Time / h
+
+                                             Reference (oscilloscope CC)        Coulomb counting (module + faults)                                EKF estimate
+
+
+
+Figure S7: Synthetic fault-injection test of the EKF, illustrated for cell P1M9C2. The onboard
+module current is perturbed by a 3.0 Ah initial offset and a 0.1 A constant bias, emulating an
+unknown initial state and a drifting current sensor. The perturbed current feeds both Coulomb
+counting and the EKF. (A, B) Cumulative charge from the reference Coulomb count of the ex-
+ternal probe (black), from Coulomb counting of the onboard current (red dashed), and from the
+EKF estimate with ±2σ band (blue), for the unperturbed (A) and the perturbed (B) current. (C,
+D) Error of both estimates relative to the reference. Under perturbation, the Coulomb-count er-
+ror grows to about 4 Ah by the end of the window, whereas the EKF quickly corrects the offset
+through the voltage measurement and then tracks the reference closely.
+
+
+                                                                                  30
+2    Supplemental Notes
+Note S1: Recursive Gaussian process regression
+Gaussian process regression (GPR) has been widely adopted for battery parameter estimation,
+due to its flexibility in extracting functional parameters from data 16–18 . Rather than fitting param-
+eters to a predetermined equation, GPR recovers the shape of a function directly from the data,
+constrained only by an assumption of how smoothly it varies. GPs model functions y = f (x) un-
+der the assumption that inputs x and x′ that are close produce similar outputs. GPR determines
+this correlation from observed data, then predicts new points by interpolating or extrapolating
+from the known points.
+    A GP f (x) starts with a prior, defined by a mean function m(x) (the expected value before
+any observed data) and a kernel k(x, x′ ) that encodes the correlation structure,
+
+                                        f (x) ∼ GP(m(x), k(x, x′ ))                                 (S1)
+
+A common choice is the squared exponential (SE) kernel,
+
+                                                   (x − x′ )2
+                                                             
+                                      ′
+                             kSE (x, x ) = σ exp −                                                  (S2)
+                                                      2ℓ2
+
+where the length scale ℓ sets how quickly correlation decays with distance and the variance σ
+controls how much the function is expected to vary around its mean. Correlation is maximal at
+x = x′ and fades smoothly as x and x′ grow apart. Kernels encoding periodic or non-stationary
+behavior are also available, and can be combined to reflect more detailed prior knowledge about
+the function 43 .
+    For any finite set of inputs X = {x1 , x2 , . . . , xn }, the corresponding outputs Y = f (X) reduce
+to a multivariate Gaussian distribution Y ∼ N (µ, Σ) with mean vector µ = m(X) and covariance
+matrix Σ = KX,X , where the entries are Kij = k(xi , xj ). The observed inputs X and new inputs
+X ∗ together form another finite set of inputs, so the corresponding outputs Y and Y ∗ = f (X ∗ )
+are jointly Gaussian,                                                    
+                               Y            m(X)              KX,X KX,X ∗
+                                   ∼N                     ,                                          (S3)
+                               Y∗           m(X ∗ )          KX ∗ ,X KX ∗ ,X ∗
+where matrix KX,X ∗ collects the kernel evaluations between each pair of inputs in X and X ∗ .
+Conditioning on the observed values Y then gives predictions Y ∗ | Y ∼ N (µ∗ , Σ∗ ). Its mean µ∗
+gives the predicted values, and its covariance Σ∗ gives an uncertainty calibrated to the observa-
+tions:
+                                             −1
+                               µ∗ = KX ∗ ,X KX,X (Y − m(X)) + m(X ∗ )                               (S4)
+                               Σ ∗                          −1
+                                     = KX ∗ ,X ∗ − KX ∗ ,X KX,X KX,X ∗                              (S5)
+
+    A known limitation of GPR is its scalability. Computational cost grows as O(n3 ) in the number
+of observations n, due to the need to invert the n × n covariance matrix. Furthermore, since the
+training data are embedded in the GP posterior, the entire observation history must be stored
+to make predictions at new points. This makes GPR prohibitive for large datasets and has
+motivated approximation methods that reduce the cost 43 .
+    Huber introduced a recursive formulation of GP regression 34 that reframes it as a sequential
+problem solved with a Kalman filter, avoiding the need to store the observation history. The latent
+function is instead approximated by a fixed set of m basis inputs Xb = {x1 , . . . , xm } and their local
+estimates Zt = f (Xb ), updated with new observations at each time step t. The state follows a
+
+
+                                                     31
+multivariate normal distribution at every time step, Zt ∼ N (µt , Σt ). Before any observations, Z0
+follows directly from the GP prior evaluated at the basis inputs, Z0 ∼ N (m(Xb ), KXb ,Xb ).
+    The latent function evolves as Zt = Zt−1 + ηt , with process noise ηt ∼ N (0, Qt ), giving mean
+and covariance predictions
+
+                                µt|t−1 = µt−1 ,     Σt|t−1 = Σt−1 + Qt                           (S6)
+
+For a static function Qt = 0, the predicted covariance is also unchanged, while a nonzero Qt
+lets the function drift over time. The observation model relates observation yt at input xt to the
+latent state, using the GP conditioning recast as a Kalman filter observation equation, where
+ϵt ∼ N (0, Rt ) is the observation noise,
+
+                                                                                              (S7)
+                                                     
+                                  yt = Ht Zt − m(Xb ) + m(xt ) + ϵt
+
+Ht is the observation matrix,
+                                                       −1
+                                         Ht = Kxt ,Xb KXb ,Xb
+                                                              ,                                  (S8)
+and the observation noise covariance Rt combines the sensor noise variance σsensor
+                                                                            2
+                                                                                   with the GP
+prediction uncertainty at xt , the same residual term as in Σ ,
+                                                             ∗
+
+
+                                                                  2
+                                 Rt = k(xt , xt ) − Ht KXb ,xt + σsensor                         (S9)
+
+   Because the dynamics and observation model are both linear-Gaussian, updating Zt from a
+new observation yt follows the Kalman filter correction step,
+                                                              −1
+                        Gt = Σt|t−1 Ht⊤ Ht Σt|t−1 Ht⊤ + Rt                                      (S10)
+                                                                                                (S11)
+                                                                            
+                        µt = µt|t−1 + Gt yt − Ht µt|t−1 − m(xt ) + Ht m(Xb )
+                        Σt = Σt|t−1 − Gt Ht Σt|t−1                                              (S12)
+
+with the Kalman gain Gt .
+    At any state Zt , the observation model can predict y ∗ = f (x∗ ) at an arbitrary x∗ , conditioned
+at (Xb , Zt ) instead of the raw observations,
+
+                                   µ∗ = H ∗ (µt − m(Xb )) + m(x∗ )                              (S13)
+                                   Σ∗ = H ∗ Σt H ∗⊤ + R∗                                        (S14)
+
+with observation and covariance matrices evaluated at the prediction points
+                                                     −1
+                                      H ∗ = Kx∗ ,Xb KXb ,Xb
+                                                                                                (S15)
+                                       R∗ = Kx∗ ,x∗ − H ∗ KXb ,x∗                               (S16)
+
+   Because Xb is fixed, KX−1
+                           b ,Xb
+                                 is computed once and reused at every step, so each update costs
+only O(m2 ) regardless of how many observations have been processed. The cost of processing
+n observations therefore grows as O(nm2 ), compared to full GP regression’s O(n3 ).
+
+
+
+
+                                                   32
+Note S2: GP hyperparameter selection
+GPs recover functions directly from data, in a non-parametric approach. Their kernel hyperpa-
+rameters nonetheless shape that reconstruction, and a poor choice can degrade the fit: a length
+scale that is too large smooths away genuine features, while one that is too short fits measure-
+ment noise instead. Because our battery model estimates OCV(q), R1 (q), and the scalar ECM
+parameters jointly, poorly chosen hyperparameters can let one parameter absorb variation that
+should be explained by another.
+    This misattribution is difficult to identify from the voltage signal alone: over such a limited mea-
+surement window, multiple OCV curve shapes, including implausible ones, can fit the observed
+voltage about equally well. The shape of the reconstructed OCV curve can reveal a poor fit di-
+rectly, but systematically catching and correcting it requires a reference to check against. Since
+no predefined reference is available, we score each cell’s fit by its deviation from a population-
+wide composite curve.
+    These reference OCV curves, one for the cell-level fits and one for the module-level fits,
+are built in two stages. First, every cell (or module) is fit using the default hyperparameters
+(described in the subsection Filter parametrization and initialization of the main text), and a
+coarse composite curve is built from the whole ensemble using the same procedure as described
+in the subsection OCV curve alignment and SOH estimation of the main text. Each fit is then
+scored by its RMSE against this coarse composite, and cells exceeding a 4 mV threshold are set
+aside as outliers, the threshold being 50 mV for modules (twelve series-connected cells). The
+composite is then rebuilt from the remaining cells (or modules) only, giving a cleaner reference
+unskewed by poor initial fits.
+    The discarded cells are re-fit over a grid of candidate length scales: ℓR1 ∈ {0.3, 0.5, 1.0}
+and ℓOCV ∈ {0.5, 0.6, 0.85, 1.0, 1.5, 3, 7, 15}. Each candidate is scored against the reference OCV
+curve, and the best-fitting one is kept. The procedure is applied only to the discarded fits, since
+the composite serves as a plausibility check rather than a fitting target. Adapting every cell
+toward it would suppress the cell-to-cell differences the estimation is meant to resolve. A small
+grid search avoids gradient-based optimization, in which each iteration requires differentiating
+through the full filter. Performance varies only gradually with length scale within a reasonable
+range, so a coarse search is adequate.
+    The default hyperparameters yield a consistent OCV reconstruction: 289 of 324 cells and 23
+of 27 modules fall within the threshold, with a median deviation of 1.9 mV from the reference (Fig-
+ure S9). For the remaining cells and modules, misfits concentrate near the extremes of the SOC
+range, where the reconstructed curve can become implausible, including regions of negative
+differential voltage (Figure S9A, B). After adaptation, 316 of 324 cells and 25 of 27 modules fall
+within the threshold, and most curves regain a physically plausible shape (Figure S9C–F). The
+worst-performing cell, P1M6C1, improves from 42 mV to 10 mV only at the largest length scale
+in the grid (ℓOCV = 15), and still exceeds the threshold. We interpret this persistent deviation as
+evidence of an anomalous cell rather than an unresolved fitting problem.
+    Figure S8 shows the resulting GP hyperparameters in physical units. The module hyperpa-
+rameters coincide with the cell hyperparameters when expressed per cell equivalent, confirming
+that the same parametrization serves both model levels.
+
+
+
+
+                                                  33
+                    150
+
+
+ Cells / count
+                    100
+                                                P1M6C1
+                          50
+
+                           0
+
+
+
+
+       Modules* / count
+                          10
+
+
+                           5
+
+
+                           0
+                               10   20       50 100 200         20        40    60      180      230     280         7        8   9   10
+                                         ℓOCV / Ah                   ℓR1 / Ah                  σOCV / mV                  σR1 / mΩ
+
+                                               nominal ℓ / σ:    0.3       0.5 (init)    0.6    0.85    1      1.5       15
+
+
+Figure S8: GP hyperparameters of all cells (top) and modules (bottom) in physical units.
+Columns give the two length scales, ℓOCV and ℓR1 in ampere-hours, and the two prior stan-
+dard deviations, σOCV in millivolts and σR1 in milliohms, with ℓOCV on a logarithmic axis. Bars are
+colored by the selected nominal length scale, gray for the default. Since only the length scales
+are adapted, the two standard-deviation columns are uniformly gray. The spread within a color
+reflects the range each fit covers. Module standard deviations are expressed per cell equivalent,
+while the length scales are common to both levels. On this basis the module and cell hyperpa-
+rameters coincide.
+
+
+
+
+                                                                                34
+                                            Cells                                          Modules (per cell)
+ A                                   Initial ℓOCV (stage 1)                      B             Initial ℓOCV (stage 1)
+                     30
+                     25
+
+
+
+
+  dV/dSOC / (mV/%)
+                     20
+                     15
+                     10
+                      5
+                      0
+                     −5
+ C                               Adapted ℓOCV (stage 2)                          D         Adapted ℓOCV (stage 2)
+                     30
+                     25                         ≤ threshold (stage 1)
+
+
+
+
+  dV/dSOC / (mV/%)
+                     20                         > threshold (stage 1)
+                                                composite
+                     15
+                     10
+                      5
+                      0
+                     −5
+                           0    25           50               75        100          0    25           50               75        100
+                                           SOC / %                                                   SOC / %
+ E                                                                               F
+                     0.4                          Cell P1M6C1: 42 → 10 mV
+                                                                                                                   initial ℓOCV
+                     0.3                                                                                           adapted ℓOCV
+
+ Density             0.2
+
+                     0.1
+
+                     0.0
+                           0    2         4         6                       8        0    2         4         6                    8
+                               Composite-OCV RMSE / mV                                   Composite-OCV RMSE / mV
+
+
+Figure S9: Two-stage selection of the GP length scales, for cells (left) and modules (right, per
+cell equivalent). (A, B) Reconstructed dV /dSOC at the default ℓOCV , and (C, D) after adaptation,
+in which ℓOCV and ℓR1 are selected jointly. Cell and module fits that exceed the consistency
+threshold in the initial fit are drawn in dark orange. (E, F) Distribution of the RMSE between each
+reconstructed curve and the composite OCV, before (gray) and after (blue) adaptation, with the
+threshold as a dotted line. Fits beyond the axis range are labeled with their values before and
+after adaptation. Adaptation removes most of the implausible curve shapes, including the curves
+with negative dV /dSOC values.
+
+
+
+
+                                                                            35
+

@@ -1,0 +1,5 @@
+scenario,n,mae_pp,max_abs_pp,fallback_modes
+charge_curve_shape_change,20,29.480214729657444,59.234079588138556,{'out_of_domain_shallow_charge_ratio': 20}
+charge_polarization_change,20,10.09958308523939,14.948041364775705,{'out_of_domain_shallow_charge_ratio': 20}
+charge_soc_voltage_shift,20,23.215067201863995,32.57515952817968,{'out_of_domain_shallow_charge_ratio': 20}
+charge_voltage_noise,20,8.751221779809423,23.222548024731097,{'out_of_domain_shallow_charge_ratio': 20}

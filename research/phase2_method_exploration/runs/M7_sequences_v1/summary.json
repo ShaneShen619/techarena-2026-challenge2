@@ -1,0 +1,11 @@
+{
+  "events": 910,
+  "physical_cells": 6,
+  "min_native_samples": 24,
+  "max_native_samples": 49,
+  "max_length_allocated": 64,
+  "data_sha256": "cd052b9717a814b4de35298f4f7a964e01cc36e6235ab2612cf537838c2b2483",
+  "label_columns_in_sequence_file": false,
+  "no_upsampling": true,
+  "source": "first raw 3.50V crossing; only native 30s points in trailing 20Ah"
+}

@@ -1,0 +1,3 @@
+source_id,url,action,http_status,bytes,published_md5,observed_md5,sha256,member_count,license,status
+Ji_second_life_23,https://zenodo.org/records/18630889,downloaded_public_zip,success,4196439,ffacb176a7be606067b5d0c805fe8892,ffacb176a7be606067b5d0c805fe8892,16afff956da104fcfb0acae5ee86a53f4c5c5e030c06f6fa8e7dfd566c715d07,23,unknown_blank_on_published_page,verified_archive_local_research_only
+UConn_108,https://digitalcommons.lib.uconn.edu/reil_datasets/3/,metadata_only,not_requested,,,,,,CC_BY_4_0_page,not_downloaded_large_single_cell_non_D2

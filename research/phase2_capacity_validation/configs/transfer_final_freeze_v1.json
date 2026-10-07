@@ -1,0 +1,37 @@
+{
+  "version": "2026-09-30-transfer-final-freeze-v1",
+  "initial_config_sha256": "8657d336d93ae2930502339e325edef05b5e089581d73f2c0a776b519cdb15d2",
+  "split_sha256": "df1c0180c22d8cb9770a2c2d8b9490633de9ecb00316b70dcf38b0333563bffb",
+  "staging_source_zip_sha256": "16afff956da104fcfb0acae5ee86a53f4c5c5e030c06f6fa8e7dfd566c715d07",
+  "feature_code_sha256": "fd5934ddf27f73193367ae87d8ac09333ff9812ca42f91ea9481381773394e5d",
+  "selected_candidate": "q_whole_negative_control",
+  "comparators": [
+    "median",
+    "q_window",
+    "q_whole_negative_control"
+  ],
+  "fitting": "one feature ordinary least squares with intercept on 15 development cells; median comparator; LOOCV selection",
+  "voltage_window_V": [
+    3.35,
+    3.5
+  ],
+  "crossing_rule": "first recorded sample at or above each threshold",
+  "integral": "trapezoid current over observed interval",
+  "valid_gap_s_max": 10,
+  "duplicate_timestamp_rule": "keep last record at that second",
+  "eval_holdout_once": true,
+  "metrics": [
+    "MAE_Ah",
+    "max_AE_Ah",
+    "signed_bias_Ah",
+    "overestimate_fraction"
+  ],
+  "prohibit_fields": [
+    "SOC",
+    "source filename",
+    "target RPT/discharge"
+  ],
+  "exposure": "researcher nonblind to some source member label filenames; program separated; limited one-shot holdout",
+  "scope": "different-protocol 23 single LFP cells only; not official 4S SOH",
+  "stop_condition": "one final holdout evaluation; no retuning after scores"
+}

@@ -1,0 +1,17 @@
+{
+  "frozen_before_M6_model_run": "2026-09-28",
+  "input_run": "M6_TU_steps_v1, threshold_A=10, R_plausible=true",
+  "outer_split": "leave physical 8S system out; only systems with at least 100 retained 3h step events and >=30 calendar days scored",
+  "target_online_prefix": "first 20% of selected step events per cell warms time filter; later 80% one-step-ahead score, updating only after observation",
+  "train_cap_events_per_system": 1000,
+  "train_cap_rule": "chronological evenly-spaced complete pack step events; all eight cells kept",
+  "feature_scales": {"I_after_A":70,"SOC_BMS_pct":20,"temperature_C":15,"delta_I_A":70},
+  "model_methods": ["global_median", "workpoint_linear_ridge", "workpoint_RBF_approx", "global_plus_causal_Wiener_time", "linear_plus_causal_Wiener_time", "RBF_plus_causal_Wiener_time", "last_same_cell_step"],
+  "matched_temporal_controls_added_after_v3": "v3 revealed RBF-only worse than constant; v4 retains v3 and adds constant+time and linear+time with identical warmup/filter settings to isolate spatial contribution",
+  "spatial_kernel": {"type":"Gaussian RBF", "n_fixed_centers":64,"center_selection":"deterministic farthest-point from 10000 pooled training events","ridge_alpha":10.0},
+  "linear_ridge_alpha":10.0,
+  "time_filter": {"type":"per_system_cell Brownian random-walk Kalman filter of residual", "process_std_mOhm_per_sqrt_day":0.03,"minimum_measurement_std_mOhm":0.1,"initial_std_mOhm":0.5,"max_filter_abs_state_mOhm":3.0},
+  "outlier_target_range_mOhm": [0,10],
+  "metrics": ["system macro MAE mOhm", "system macro RMSE mOhm", "P95 absolute error", "worst system", "coverage of nominal 90% signal interval"],
+  "claim_limit": "Step response at 5s cadence includes polarization, BMS SOC is not capacity truth; model is a low-dimensional BattGP-inspired approximation, not exact paper reproduction."
+}

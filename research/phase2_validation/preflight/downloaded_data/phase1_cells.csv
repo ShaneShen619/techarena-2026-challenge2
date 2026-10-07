@@ -1,0 +1,7 @@
+cell_id,parts,rows,cycles,max_cycle,valid_capacity_labels,raw_backward_time_steps,temperature_missing_fraction,step_types,discharge_current_median_A,valid_capacity_min_Ah,valid_capacity_max_Ah
+102Ah_25degC_0p5C_cell3,6,595012,988,1375,988,290573,0.16418996591665377,"{'cccv_charge': 239503, 'cc_discharge': 234971, 'rest': 120538}",-50.012,94.9637,104.5186
+102Ah_25degC_1C_cell3,14,1830763,4157,5308,4155,885660,1.4747949352264603e-05,"{'rest': 580311, 'cc_discharge': 549839, 'cccv_charge': 537520, 'cc_charge': 163093}",-100.0,67.5734,105.1619
+102Ah_35degC_1C_cell1,13,1857025,5355,5356,5354,913413,0.19787563441526096,"{'rest': 653848, 'cccv_charge': 622971, 'cc_discharge': 578117, 'cc_charge': 2089}",-99.988,55.5342,104.6892
+102Ah_45degC_0p5C_cell3,20,2768377,4303,4502,4296,1353675,0.00012245442004466878,"{'cc_discharge': 1009477, 'cccv_charge': 885048, 'rest': 526009, 'cc_charge': 347843}",-49.996,43.6066,105.1129
+102Ah_45degC_1C_cell1,6,820940,2324,2397,2323,405321,4.750651691962872e-05,"{'rest': 284075, 'cccv_charge': 273385, 'cc_discharge': 263480}",-100.025,86.4735,104.7863
+102Ah_55degC_1C_cell3,6,729740,2176,2415,2176,355635,0.00031381039822402497,"{'rest': 265551, 'cccv_charge': 235150, 'cc_discharge': 229039}",-99.969,67.0169,104.8996

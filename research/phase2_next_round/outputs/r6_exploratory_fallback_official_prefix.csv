@@ -1,0 +1,9 @@
+candidate,checkup,date,SOH_est_pp,capacity_est_Ah,branch,qualified_events,visible_operation_rows,max_visible_timestamp,visible_capacity_labels,true_SOH_pp,absolute_error_pp,official_capacity_accuracy_verified
+exploratory_fallback,CK0,2025-01-14,98.44117647058823,100.41,released_CK0_anchor,,0,,1,98.44117647058823,0.0,True
+exploratory_fallback,CK1,2025-02-08,97.42503837036467,99.37353913777197,out_of_domain_shallow_charge_ratio,4.0,165918,2025-02-07 23:59:52,1,,,False
+exploratory_fallback,CK2,2025-03-11,95.82793879692971,97.74449757286831,out_of_domain_shallow_charge_ratio,7.0,236603,2025-02-19 09:50:00,1,,,False
+exploratory_fallback,CK3,2025-04-14,83.34150195096875,85.00833198998812,out_of_domain_shallow_charge_ratio,13.0,487874,2025-04-13 15:21:55,1,,,False
+exploratory_fallback,CK4,2025-05-16,78.6947781259834,80.26867368850307,out_of_domain_shallow_charge_ratio,19.0,729918,2025-05-15 21:30:54,1,,,False
+exploratory_fallback,CK5,2025-06-16,78.62166862346166,80.1941019959309,out_of_domain_shallow_charge_ratio,25.0,963168,2025-06-15 23:59:52,1,,,False
+exploratory_fallback,CK6,2025-07-25,76.08178244250047,77.60341809135048,out_of_domain_shallow_charge_ratio,32.0,1224851,2025-07-22 16:32:49,1,,,False
+exploratory_fallback,CK7,2025-08-28,80.43767678033286,82.04643031593952,out_of_domain_shallow_charge_ratio,39.0,1482584,2025-08-28 00:00:00,1,,,False

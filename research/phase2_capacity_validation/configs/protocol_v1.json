@@ -1,0 +1,13 @@
+{
+  "version": "2026-09-30-initial-preregistration",
+  "status": "frozen_before_new_capacity_label_search_and_model_results",
+  "objective": "qualify independent paired capacity labels and test whether start-state matching improves official-like partial-charge SOH without harming worst entity or late stage",
+  "official_target": {"series_cells": 4, "nominal_Ah": 102, "reference_discharge_A": 5.1, "first_pack_cutoff_V": 11.2, "target_unit": "SOH_pct"},
+  "initial_split": {"unit": "physical_pack", "seed": 20260930, "holdout_labels_only_after_final_freeze": true, "one_group_is_case_study_not_independent_generalization": true},
+  "candidate_order": ["C0_CK0_constant", "C1_causal_equivalent", "C2_start_current_gate", "C3_start_plus_gap", "C4_Q_range_sensitivity"],
+  "fixed_historical_thresholds": {"start_current_max_A": 5.0, "max_gap_s": 60, "Q_over_reference_range": [0.5, 1.5]},
+  "primary_metrics": ["entity_macro_MAE_pp", "worst_entity_MAE_pp", "maximum_abs_error_pp", "late_MAE_pp", "late_bias_pp", "late_overestimation_rate", "fallback_fraction"],
+  "internal_targets": {"macro_MAE_max_pp": 1.0, "worst_MAE_max_pp": 2.0, "max_abs_error_max_pp": 5.0, "macro_improvement_vs_frozen_simple_baseline_min_fraction": 0.20, "worst_and_late_not_worse": true},
+  "capacity_accuracy_without_qualified_labels": "not_testable",
+  "no_hardware_or_competition_submission": true
+}

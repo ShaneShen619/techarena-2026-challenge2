@@ -1,0 +1,5 @@
+paper_id,doi_or_stable_id,publication_date,source_version,access_status,decision,reason,card
+Zhu2022,10.1038/s41467-022-29837-w,2022-04-27,Nature Communications 13:2261 version of record,fulltext_read,include_indirect,NCA/NCM single cells; full-charge 30/60-min rest and repeated target capacity labels; no LFP 4S one-anchor validation,Zhu2022.md
+Zhou2026_dynamic_ICA,10.1109/TIE.2026.3665970,2026-08 final journal; 2026-01-09 arXiv v3,IEEE TIE 73(8):12228-12239 DOI metadata; arXiv v3 and accepted manuscript fulltext,fulltext_read,include_indirect,NMC622 parallel modules plus labeled LFP transfer; random truncated-window splits do not establish held-out pack performance,Zhou2026_dynamic_ICA.md
+Cheng2024,10.48550/arXiv.2412.10044,2024-12-13,arXiv:2412.10044v1 preprint,fulltext_read,include_mechanism_only,NMC811 full-SOC 1/3C IC and RPT-interpolated LLI/LAM labels; no capacity target,Cheng2024.md
+BatteryGPT2025,10.1038/s41467-025-66819-0,2025-12-05 online; 2026 volume,Nature Communications 17:126 version of record,fulltext_read,include_indirect,46 LFP single cells with full training lifetimes and per-cycle SOH labels; future trajectory task,BatteryGPT2025.md

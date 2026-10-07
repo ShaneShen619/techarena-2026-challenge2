@@ -1,0 +1,8 @@
+checkup,cumulative_charge_runs,cumulative_accepted,cumulative_temperature_mismatch,cumulative_implausible_episode_jump,cumulative_capacity_at_bound,cumulative_unidentifiable,cumulative_model_mismatch,cumulative_invalid_voltage,cumulative_insufficient_Ah,cumulative_gap_flag,cumulative_fit_attempt,cumulative_short_event,new_charge_runs,new_accepted,new_temperature_mismatch,new_implausible_episode_jump,new_capacity_at_bound,new_unidentifiable,new_model_mismatch,new_invalid_voltage,new_insufficient_Ah,new_gap_flag,new_fit_attempt,new_short_event
+CK1,114,0,0,26,10,18,0,0,0,0,54,60,114,0,0,26,10,18,0,0,0,0,54,60
+CK2,161,0,20,27,11,19,0,0,0,0,57,84,47,0,20,1,1,1,0,0,0,0,3,24
+CK3,333,0,42,56,28,33,0,0,0,1,117,174,172,0,22,29,17,14,0,0,0,1,60,90
+CK4,501,0,65,88,42,45,0,0,0,2,175,261,168,0,23,32,14,12,0,0,0,1,58,87
+CK5,661,0,83,116,62,55,0,0,0,3,233,345,160,0,18,28,20,10,0,0,0,1,58,84
+CK6,841,0,113,143,80,68,0,0,0,4,291,437,180,0,30,27,18,13,0,0,0,1,58,92
+CK7,1016,0,142,168,99,80,0,0,0,5,347,527,175,0,29,25,19,12,0,0,0,1,56,90

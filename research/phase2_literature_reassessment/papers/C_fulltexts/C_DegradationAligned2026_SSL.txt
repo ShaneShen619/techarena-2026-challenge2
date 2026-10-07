@@ -1,0 +1,1210 @@
+                                                                         Energy and AI 26 (2026) 100884
+
+
+                                                                   Contents lists available at ScienceDirect
+
+
+                                                                             Energy and AI
+                                                          journal homepage: www.elsevier.com/locate/egyai
+
+
+
+
+Degradation-aligned self-supervised learning for state of health estimation of
+lithium-ion batteries under label sparsity
+                   ∗
+Jiaqi Yao           , Julia Kowal
+Department of Electrical Energy Storage Technology (EET), Technische Universität Berlin, Einsteinufer 11, 10587, Berlin, Germany
+
+
+
+HIGHLIGHTS                                                GRAPHICAL                 ABSTRACT
+
+• A ranking-based SSL framework is pro-
+  posed for SOH estimation under label
+  sparsity.
+• A CNN-GRU model is developed for SOH
+  estimation with local feature fusion.
+• Insights are presented on the influences
+  of label distribution of degradation data.
+
+
+
+
+ARTICLE                INFO                               ABSTRACT
+
+Keywords:                                                 An accurate estimation of the state of health (SOH) underpins safe and optimized use of the battery system.
+Lithium-ion batteries                                     Although compelling, data-driven SOH estimation models typically require large amounts of high-quality
+Battery management systems                                labeled cycling data, while in practice such labels are often sparse in both quantity and coverage. Therefore, in
+State of health estimation
+                                                          this work, we propose a degradation-aligned self-supervised learning (SSL) framework based on a convolutional
+Deep learning
+                                                          neural network-gated recurrent unit (CNN-GRU) model, which learns aging-consistent representations from
+Self-supervised learning
+                                                          unlabeled data through a cycle-order ranking objective as the pretext task for pretraining, thereby enabling
+                                                          robust SOH estimation after fine-tuning on sparsely labeled data. Test results showcase that the proposed
+                                                          ranking-based SSL approach proves to endow the pretrained model with degradation awareness from unlabeled
+                                                          data, and after fine-tuning the model can carry out accurate, robust SOH estimation, even when only an
+                                                          extremely limited amount of 1% of unevenly distributed labeled training data is available, where the MAE of
+                                                          1.718% and RMSE of 2.329% can be achieved on the test cell. In addition, in-depth analyses are presented
+                                                          regarding the influences of label distribution and cross-cell robustness. We believe this work could shed
+
+
+
+
+  ∗ Corresponding author.
+     E-mail address: jiaqi.yao@tu-berlin.de (J. Yao).
+
+https://doi.org/10.1016/j.egyai.2026.100884
+Received 3 May 2026; Received in revised form 22 June 2026; Accepted 25 August 2026
+Available online 3 September 2026
+2666-5468/© 2026 The Authors. Published by Elsevier Ltd. This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/).
+J. Yao and J. Kowal                                                                                                            Energy and AI 26 (2026) 100884
+
+
+                                               new light on label-efficient SOH estimation of lithium-ion batteries, addressing a practical need in battery
+                                               management.
+
+
+
+                                                                                modeling of the electrical, aging, and even thermal behavior of the
+1. Introduction                                                                 battery, and specifically designed characterization tests are compulsory
+                                                                                to parameterize these models.
+    The growing urgency of global climate change has significantly                  In recent years, data-driven solutions have come into the spot-
+accelerated the transition to clean, sustainable energy systems [1–4].          light for various applications. Especially in the field of deep learn-
+Renewable energy sources such as wind [5] and solar power [6,7]                 ing, prosperous progresses are being made. In the context of battery
+have been rapidly developed and deployed worldwide. However, their              SOH estimation, data-driven approaches aim to capture the underlying
+inherent intermittency and volatility pose significant challenges to            degradation patterns directly from operational data without requiring
+the stability and reliability as an energy supply, thereby creating a           prior knowledge of battery electrochemical dynamics. However, most
+strong demand for dependable, efficient energy storage systems [8].             existing works choose to manually extract input features for data-driven
+Benefiting from many advantages, including high energy and power                models due to the belief that handcrafted health indicators can more ex-
+densities [9,10], low self-discharge [11], and longevity [12], lithium-         plicitly characterize battery degradation and thus reduce the difficulty
+ion batteries have been widely utilized across numerous fields, from            of model learning with increased interpretability [35]. In Ref. [36],
+portable consumer electronics [13,14] to electric transportation [15,           the authors proposed a lightweight local health indicator extraction
+16]. Regardless of the specific application, an accurate determination          approach for multi-stage fast charging protocols, where the segmented
+of the state of health (SOH) is indispensable for lithium-ion batteries         charging data of certain state of charge (SOC) windows was used as the
+and is a core functionality of battery management systems (BMSs). At            input features, which were then fed into a hybrid deep learning model
+some time 𝑡, the SOH of a battery can be defined either based on the            for the mapping of SOH estimates. The proposed approach achieved
+capacity or the internal resistance [17,18]:                                    precise SOH estimation, with mean absolute errors (MAEs) and root
+              𝐶𝑎𝑐𝑡𝑢𝑎𝑙 (𝑡)                                                       mean square errors (RMSEs) below 1%. In Ref. [37], the authors
+𝑆𝑂𝐻𝐶 (𝑡) =                                                            (1)       proposed an improved gated recurrent unit (GRU) network combined
+               𝐶𝑟𝑎𝑡𝑒𝑑
+                                                                                with the whale optimization algorithm for SOH estimation, where the
+             𝑅𝑎𝑐𝑡𝑢𝑎𝑙 (𝑡) − 𝑅𝐸𝑂𝐿                                                 time duration in the voltage ranges from 3.55 V to 3.75 V and from
+𝑆𝑂𝐻𝑅 (𝑡) =                                                            (2)
+              𝑅𝑟𝑎𝑡𝑒𝑑 − 𝑅𝐸𝑂𝐿                                                     3.80 V to 4.15 V during constant current (CC) charging was extracted as
+where 𝐶𝑎𝑐𝑡𝑢𝑎𝑙 (𝑡) and 𝐶𝑟𝑎𝑡𝑒𝑑 respectively denote the actual battery ca-         the two input features. Test results showed that the proposed method
+pacity at time 𝑡 and the rated capacity, while 𝑅𝑎𝑐𝑡𝑢𝑎𝑙 (𝑡), 𝑅𝐸𝑂𝐿 , and          is able to achieve an average error of less than 1% and presents good
+𝑅𝑟𝑎𝑡𝑒𝑑 respectively denote the actual battery internal resistance at time       generalization capability. In Ref. [38], the authors conducted a compre-
+𝑡, the predefined end-of-life (EOL) internal resistance, and the rated          hensive characterization of the aging behavior patterns of lithium-ion
+internal resistance. Usually, the capacity-based definition of 𝑆𝑂𝐻𝐶 is          batteries, where five aging patterns were identified, covering the rate
+utilized without further clarification, as in this work. SOH is a defined       of voltage change during discharging and CC charging, the duration
+metric for quantifying battery degradation. The determination of SOH            of CC charging, the rate of current change during constant voltage
+plays a vital role in battery systems [19–21], as it not only provides          (CV) charging, and the rate of temperature change during CV charging.
+essential information for the assessment of remaining useful life (RUL)         These aging patterns were then used as health indicators for the input
+and the early scheduling of necessary maintenance, but also underpins           of deep neural networks (DNNs). Test results showed that the proposed
+a safe and optimized use of the battery by supporting the prevention            health indicators consistently improved estimation performance across
+of unexpected failures and improving the overall lifespan utilization of        different DNN-based SOH estimators. In Ref. [39], incremental capacity
+the battery systems.                                                            analysis (ICA) was utilized for feature extraction, where the incremen-
+    However, SOH is closely related to the complex underlying elec-             tal capacity differences of five voltage intervals were selected as the
+trochemical processes and can hardly be directly measured; thus, it             input feature candidates of a multi-layer perceptron (MLP) for SOH
+has to be estimated from the measurable information during oper-                and RUL estimation. Test results showed that the proposed approach
+ation [22]. In general, SOH estimation approaches can be catego-                could achieve relative error rates below 3% for SOH estimation. In
+rized into three types [23,24]: direct measurement approaches, model-           Ref. [40], the authors focused on real-life electric vehicle (EV) driving
+based approaches, and data-driven approaches. Direct measurement                scenarios and proposed a snapshot-based approach with a long short-
+approaches estimate the SOH based on the knowledge acquired from                term memory (LSTM) network for flexible SOH estimation, where the
+measurements, such as deriving the actual usable capacity by apply-             voltage and current sequences of partial charging segments with a fixed
+ing coulomb counting on a standardized discharge capacity test [25].            window size were used as the model input. In addition, the authors
+Although straightforward and easy to implement, such approaches can             fused the snapshot-based and conventional history-based approaches to
+hardly be applied in real applications, as the fully controlled operat-         develop a noise-robust approach. Test results showed that the proposed
+ing conditions and complete discharge cycles required are generally             approaches were able to achieve an average error of less than 2.46%
+unavailable in practice. Model-based SOH estimation approaches can              over all presented experiments. In Ref. [41], on the other hand, the
+be further categorized into two groups, namely degradation modeling             authors directly took the full charging curves of voltage, current, and
+approaches and parameter identification approaches [24]. Degrada-               temperature as the input features of the proposed GRU-convolutional
+tion modeling approaches exploit various models that describe battery           neural network (CNN) for SOH estimation. Test results on the National
+degradation, such as empirical models [26,27] and electrochemical               Aeronautics and Space Administration (NASA) dataset and the Oxford
+models [28,29], to infer the current usable capacity, while parameter           battery degradation dataset showcased that the proposed approach was
+identification approaches cast the problem of SOH estimation as a               able to achieve accurate SOH estimation with the maximum estimation
+parameter identification problem utilizing battery models like equiv-           error of less than 4.3%, demonstrating the fact that deep learning
+alent circuit models (ECMs) [30] and electrochemical models [31],               models are capable of automatically extracting useful features from the
+and nonlinear state observers like extended Kalman filters (EKFs) [32],         measured cycling data and mapping them into accurate SOH estimates.
+unscented Kalman filters (UKFs) [33], and particle filters [34]. De-                However, data-driven SOH estimation approaches rely on large
+spite the fact that model-based approaches are generally considered             amounts of high-quality labeled battery cycling data, where the SOH
+accurate and robust, in-depth domain knowledge is required for the              labels are typically obtained through standardized checkup tests that
+
+                                                                            2
+J. Yao and J. Kowal                                                                                                              Energy and AI 26 (2026) 100884
+
+
+cover the entire lifespan of the batteries under controlled conditions.         work, we propose an intuitive degradation-aligned SSL framework that
+Such calibration tests are time-consuming and expensive for laborato-           learns aging-consistent representations from unlabeled CC charging
+ries, and can seldom be conducted in real-world deployment. Further-            curves through a cycle-order ranking objective as the pretext task for
+more, late-life SOH labels are inherently more difficult to collect, as         pretraining, thereby enabling robust SOH estimation after fine-tuning
+reaching the deep-degradation regime requires extensive cycling over a          on only a limited amount of labeled data for practical scenarios where
+long period of time with considerable experimental costs, resulting in a        data labels are sparse in both quantity and coverage. In addition, we
+pronounced imbalance in label distribution across the battery lifespan.         develop a CNN-GRU model that extracts local patterns from charg-
+As a result, in practical application scenarios, battery aging data often       ing curves via convolutional layers and then integrates these features
+face the problem of label sparsity, both in quantity and coverage, while        sequentially through recurrent units for accurate SOH estimation as
+large volumes of unlabeled operational cycling data are available. Self-        well as self-supervised pretraining. To the best of our knowledge, this
+supervised learning (SSL), a branch of machine learning, is specifically        work is the first to exploit the intrinsic information behind the cycle
+aimed at such challenges. SSL methods enforce the model to learn                order on battery aging for self-supervised SOH estimation. The main
+meaningful data representations without relying on manual labels by             contribution of this work is as follows:
+exploiting underlying data structures or automatically constructed pre-
+text tasks derived from the unlabeled data itself [42–44]. In general,               1. A ranking-based SSL framework is proposed to learn
+SSL techniques can be categorized into four types [44]: generative ap-                  degradation-consistent representations from unlabeled CC charg-
+proaches, which learn representations by reconstructing the input data                  ing curves via cycle-order ranking as pretraining for robust SOH
+or predicting the missing parts of it [45,46]; contrastive approaches,                  estimation in scenarios where only sparsely labeled data are
+which learn representations by forcing similar samples to be closer                     available for fine-tuning.
+and dissimilar samples to be more distant in the latent space [47,48];               2. A CNN-GRU model is developed to extract and sequentially
+contrastive generative approaches, which combine both generative and                    integrate the local patterns from charging curves for accurate
+contrastive objectives and exploit the advantages of both [49,50];                      SOH estimation as well as self-supervised pretraining.
+context-based approaches, which learn representations by leveraging                  3. In-depth analyses are presented regarding the influences of label
+contextual information of the samples, such as temporal order and                       distribution of battery degradation data.
+spatial structures [51,52]. In fact, SSL techniques have been sparsely
+                                                                                    The rest of this paper is structured as follows: Section 2 introduces
+applied in some previous works in the field of battery SOH estimation to
+                                                                                the proposed SSL framework for SOH estimation of lithium-ion batteries
+address the problem of label sparsity. In Ref. [53], the authors proposed
+                                                                                under label sparsity, with a detailed explanation of the developed
+an SSL framework utilizing a reconstruction-based generative approach
+                                                                                model, the ranking-based SSL algorithm, and the overall workflow.
+with an auto-encoder–decoder, aiming to address the problems of lim-
+                                                                                Section 3 describes the experimental setups, including data preparation,
+ited labeled data and underutilized measurements during degradation.
+                                                                                settings of the presented models and experiments, and the utilized
+In their work, an auto-encoder–decoder was trained to reconstruct
+                                                                                evaluation metrics. In Section 4, comprehensive results of a variety of
+the partial capacity–voltage curve as the pretext task. After the SSL
+                                                                                experiments are presented, together with in-depth analyses. The key
+pretraining, the trained encoder was transferred to the downstream
+                                                                                takeaways of this work are summarized in Section 5.
+network for SOH estimation, which was then fine-tuned using the
+sparse labeled data. Test results showed that the proposed framework
+                                                                                2. Methodology
+was able to achieve a robust, accurate SOH estimation using a very
+limited amount of labeled data. In Ref. [54], the authors proposed
+                                                                                2.1. CNN-GRU model for self-supervised pretraining and SOH estimation
+a self-supervised framework incorporating weak labels to reduce the
+demand for large amounts of annotated battery aging data for deep
+                                                                                2.1.1. Convolutional neural networks
+learning-based SOH estimation approaches, where the raw data was
+                                                                                   CNNs [56] are a class of deep learning models that apply trainable
+first processed into three-dimensional feature maps with enriched infor-
+                                                                                convolution kernels with local receptive fields and shared weight pa-
+mation. Afterwards, the authors exploited the generative pretext tasks
+                                                                                rameters to extract local patterns from structured data. Fig. 1 shows the
+of masked image reconstruction and charging capacity estimation for
+                                                                                working scheme of an example two-layer 1D CNN with a kernel size of
+pretraining. Similar to the aforementioned work, a small amount of
+                                                                                𝑘 = 7. The dilation factor 𝑑 and the stride 𝑠 are assumed to be 1. In
+labeled data was then used for fine-tuning on the downstream task of
+                                                                                order to preserve the input length after each convolution operation, the
+SOH estimation. Test results showed that the proposed model demon-
+                                                                                same padding technique is adopted in the network. Specifically, when
+strated strong generalization even with only a few labeled data points.
+                                                                                the kernel size 𝑘 is an odd number, the padding size on both sides of
+On the other hand, in Ref. [55], the authors proposed a multi-level
+                                                                                the 1D sequence is given by:
+contrastive SSL approach with dynamic embedding, aiming to leverage
+the multi-level physical temporal dependence of the data to solve the               𝑘−1
+                                                                                𝑝=                                                                        (3)
+problem of label scarcity. Frequency domain information was extracted                 2
+through the discrete Fourier transform, after which the embedding was           With the same padding technique, the output sequence will have the
+obtained using their proposed multi-scale dynamic embedding method.             same length as the input sequence without being shortened. In this
+Contrastive learning combined with mask reconstruction was utilized             case, the output vector at time step 𝑡, namely 𝒚 𝒕 , is dependent on
+for SSL pretraining. Finally, the pretrained model was fine-tuned using         the inputs 𝒙𝒕−𝒑 , 𝒙𝒕−𝒑+𝟏 , … , 𝒙𝒕 , … , 𝒙𝒕+𝒑−𝟏 , 𝒙𝒕+𝒑 , where the inputs with
+limited labeled data for SOH estimation. A summary of the existing              indices outside the original index range of the input sequence are
+works is shown in Table 1.                                                      the appended paddings. More generally, at some time step 𝑡, the 1D
+    As a matter of fact, current SSL approaches in the field of SOH             convolution operation under same padding 𝐺(𝑡) can be formulated as:
+estimation tend to focus on reconstruction-based pretext tasks, where                                  ∑
+                                                                                                       𝑘−1
+the model is trained to recover the input or its masked parts, as such          𝐺(𝑡) = (𝑿 ∗ 𝑭 )(𝑡) =         𝑭 (𝑖) ⋅ 𝒙𝑡+𝑖−𝑝                                (4)
+strategies help the model capture general underlying patterns of the                                   𝑖=0
+
+data. However, the learned representations are not necessarily aligned          where 𝑿 is the input sequence and 𝑭 denotes the convolution kernel
+with the battery degradation process that is most relevant to the task          with kernel size 𝑘. CNNs effectively capture local patterns in input data
+of SOH estimation. In contrast, the relative aging order between cycles         with relatively few parameters, which is why they are widely used
+provides a much more direct and task-relevant self-supervised signal,           across tasks such as image recognition, object detection, and signal
+since battery aging is inherently an ordered process. Therefore, in this        processing. In our context of battery SOH estimation, the cycling curves
+
+                                                                            3
+J. Yao and J. Kowal                                                                                                                        Energy and AI 26 (2026) 100884
+
+
+                      Table 1
+                      Comparison of existing and our works on SSL-based SOH estimation.
+                       Reference   Methodology                                           Objective
+                       Ref. [53]   Reconstruction-based generative approach with         To address the problems of limited labeled data
+                                   auto-encoder–decoder                                  and underutilized aging measurements
+                       Ref. [54]   SSL framework incorporating weak labels with a        To reduce the demand for large amounts of
+                                   five-layer Transformer encoder for feature            annotated battery aging data
+                                   extraction
+                       Ref. [55]   Multi-level contrastive SSL approach with dynamic     To leverage the multi-level physical temporal
+                                   embedding                                             dependence of the data to solve label scarcity
+                       Our work    Degradation-aligned SSL framework utilizing a         To enable robust SOH estimation after fine-tuning
+                                   cycle-order ranking objective for pretraining         on sparsely labeled data in real-world applications
+
+
+
+
+                                                 Fig. 1. Working scheme of an example two-layer 1D CNN.
+
+
+
+
+                                                            Fig. 2. Internal architecture of GRU.
+
+
+of batteries can also be viewed as structured one-dimensional signals,              is why they are utilized as part of the network backbone in this work
+where adjacent measurements often exhibit strong local correlations.                for SOH estimation as well as the self-supervised pretraining.
+
+Since battery degradation gradually alters the shape and patterns of
+                                                                                    2.1.2. Gated recurrent units
+the cycling measurement trajectories, CNNs are a natural choice for the                GRUs [57] are an advanced variant of recurrent neural networks
+extraction of local patterns correlated with aging from such data, which            (RNNs) that are designed for sequential dependency modeling while
+
+                                                                               4
+J. Yao and J. Kowal                                                                                                               Energy and AI 26 (2026) 100884
+
+
+mitigating the problem of vanishing gradient in vanilla RNNs. With the           As a result, it is more feasible to charge data to build high-quality,
+introduction of gating mechanisms, GRUs can regulate the information             large-scale datasets that are continuously accumulated across the entire
+flow actively and update the hidden state selectively based on the               usage history, with strong comparability across different cycles. In
+importance of historical and current information. In addition, the lean          addition, during the CC charging stage, the curve shape often exhibits
+internal architecture of GRUs facilitates high computational efficiency          evident pattern shifts with battery aging, making it a strong indicator of
+and lower dependencies on the amount of required training data,                  battery health. Since previous works have showcased that deep learning
+especially when compared with the other frequently applied variant               models are able to extract the aging-related features from the charging
+of RNN with gating mechanisms, namely LSTM [58], making them a                   curve automatically [41], we use the voltage measurement of the CC
+perfect choice for our case of SOH estimation under label sparsity. The          charging segment 𝑼 𝒄𝒄 directly as the input of the model. It is worth
+internal architecture of the GRU is demonstrated in Fig. 2. At time step         mentioning that the inclusion of other health indicators, such as the
+𝑡, given the input vector 𝒙𝒕 , the update gate 𝒛𝒕 and reset gate 𝒓𝒕 can be       temperature response or manually extracted statistical features, could
+calculated as:                                                                   improve robustness in more diverse operating conditions.
+
+𝒛𝒕 = 𝜎(𝑾 𝒙𝒛 𝒙𝒕 + 𝑾 𝒉𝒛 𝒉𝒕−𝟏 + 𝒃𝒛 )                                     (5)        2.2. Cycle-order ranking for degradation-aligned SSL
+
+𝒓𝒕 = 𝜎(𝑾 𝒙𝒓 𝒙𝒕 + 𝑾 𝒉𝒓 𝒉𝒕−𝟏 + 𝒃𝒓 )                                     (6)
+                                                                                 Algorithm 1 Computation of intra-cell cycle-order ranking loss for a
+where 𝜎(⋅) denotes the sigmoid activation function, 𝒉𝒕−𝟏 denotes the             sampled mini-batch.
+hidden state of the previous time step, and 𝑾 and 𝒃 denote the
+                                                                                 Require: Mini-batch {(𝑐𝑖 , 𝑛𝑖 , 𝑠𝑖 )}𝐵   , where 𝑐𝑖 is the cell ID, 𝑛𝑖 is the
+respective weight matrix and bias vector. The candidate hidden state                                                  𝑖=1
+                                                                                     cycle number, and 𝑠𝑖 is the predicted aging score of sample 𝑖;
+𝒉̃ 𝒕 can thereby be computed by:
+                                                                                     minimum cycle gap 𝑑min
+𝒉̃ 𝒕 = 𝑡𝑎𝑛ℎ(𝑾 𝒙𝒉 𝒙𝒕 + 𝑾 𝒉𝒉 (𝒓𝒕 ⊙ 𝒉𝒕−𝟏 ) + 𝒃𝒉 )                        (7)         1:  ← GroupByCell({1, … , 𝐵}; {𝑐𝑖 }𝐵   𝑖=1
+                                                                                                                              ) ⊳ group sample indices by cell
+                                                                                     ID
+where ⊙ denotes the Hadamard product, namely element-wise multi-
+                                                                                  2:  ← ∅                                  ⊳ store group-wise ranking losses
+plication. In the end, the final output of the hidden state 𝒉𝒕 is updated
+                                                                                  3: for all 𝐺𝑚 ∈  do
+as:
+                                                                                  4:    if |𝐺𝑚 | < 2 then
+𝒉𝒕 = (1 − 𝒛𝒕 ) ⊙ 𝒉𝒕−𝟏 + 𝒛𝒕 ⊙ 𝒉̃ 𝒕                                     (8)         5:         continue                      ⊳ at least two samples are needed
+                                                                                  6:    end if
+    The reset gate controls the forgetting and retention of the historical        7:    𝐺̃ 𝑚 ← Permute(𝐺𝑚 )            ⊳ generate a shuffled index order for
+information for the calculation of the candidate hidden state. The                   subsequent pairing
+candidate hidden state combines the current input and the selected                8:    𝑚 ← {(𝑖, 𝑗) ∣ 𝑖 ∈ 𝐺𝑚 , 𝑗 ∈ 𝐺̃ 𝑚 , 𝑛𝑖 ≠ 𝑛𝑗 , |𝑛𝑖 − 𝑛𝑗 | ≥ 𝑑min }      ⊳
+historical information. The new hidden state is the final output at the              construct sample pairs with ambiguous pairs removed
+current time step from the fusion of the previous hidden state and                9:    if |𝑚 | = 0 then
+candidate hidden state controlled by the update gate. In this work, the          10:         continue                           ⊳ skip if no valid pair remains
+GRU is utilized to sequentially integrate the local patterns extracted by        11:     end if{
+the previous CNN from CC charging curves, thereby comprehensively                                 +1, 𝑛𝑖 > 𝑛𝑗
+capturing the underlying patterns correlated with battery degrada-               12:     𝑦𝑖𝑗 ←                  , ∀(𝑖, 𝑗) ∈ 𝑚            ⊳ later cycles should
+                                                                                                  −1, 𝑛𝑖 < 𝑛𝑗
+tion for self-supervised representation learning and downstream SOH                  receive larger aging scores
+estimation.                                                                                            ∑     (          (              ))
+                                                                                 13:     𝑚 ← |1 |        ln 1 + exp −𝑦𝑖𝑗 (𝑠𝑖 − 𝑠𝑗 )              ⊳ group-wise
+                                                                                                  𝑚 (𝑖,𝑗)∈
+                                                                                                           𝑚
+2.1.3. CNN-GRU model                                                                 logistic ranking loss
+    Fig. 3 shows the architecture of the proposed CNN-GRU model.                 14:      ←  ∪ {𝑚 }                    ⊳ collect valid group losses
+The model consists of two parts, namely the encoder and head. The                15: end for
+encoder aims to learn the underlying patterns from the input charging            16: if || = 0 then
+curves and is composed of two stacked CNN blocks and one GRU layer,              17:     return None ⊳ no valid ranking supervision in this mini-batch
+where each CNN block further consists of one 1D convolutional layer              18: else
+                                                                                                   1  ∑
+and one rectified linear unit (ReLU) as the activation function. The             19:     rank ← ||       𝑚        ⊳ average over valid cell groups
+                                                                                                     𝑚 ∈
+CNN is responsible for extracting local patterns from the input charging
+                                                                                 20:    return rank
+curves, and the GRU is used to sequentially integrate the extracted
+                                                                                 21: end if
+features so as to capture their temporal dependencies. Based on the
+learned latent representation of the encoder, the head is further used
+to accomplish the target task, either self-supervised pretraining or SOH             Battery aging is an inherently progressive process, in which later
+regression, which is composed of two fully connected (FC) layers and             cycles generally correspond to deeper degradation states than earlier
+ReLU in between as the activation function. The same head architecture           ones. Such an ordinal relationship provides a natural, intuitive source
+is used for both self-supervised pretraining and SOH estimation, but of          of self-supervision even in the absence of explicit SOH labels. Moti-
+course with different loss functions and sizes for the outputs. For the          vated by this observation, we introduce an intra-cell cycle-order rank-
+proposed ranking-based self-supervised pretraining, the head is used             ing objective for self-supervised pretraining to encourage the model
+to generate an aging score 𝑠𝑎𝑔𝑒 based on the learned representations.            to learn degradation-aligned representations from unlabeled charging
+For reconstruction-based self-supervised pretraining, the head is used           data. Specifically, for each sampled mini-batch during training, the
+to reconstruct the respective input charging curve 𝑼̂ 𝒄𝒄 based on the            samples are first grouped according to their cell IDs, and ranking is
+embedded vector generated by the encoder. For the downstream SOH                 only performed within each cell group. This design avoids unreliable
+estimation task, the head performs regression for ̂ 𝑆𝑂𝐻. We use the CC           comparisons across different cells, whose degradation trajectories may
+segment of charging as input, since, in contrast to the highly dynamic           differ due to inter-cell variability. Within each cell group, random
+discharge process with substantial fluctuations in the operating condi-          sample pairs are constructed for efficient optimization. In order to
+tions, the charging process generally follows a clearer protocol and is          improve the reliability of the ranking signal, pairs with identical cycle
+acquired under more stable conditions for EVs and electronics [36,40].           numbers or with cycle-number differences smaller than a predefined
+
+                                                                             5
+J. Yao and J. Kowal                                                                                                               Energy and AI 26 (2026) 100884
+
+
+
+
+                                   Fig. 3. The proposed CNN-GRU model for self-supervised pretraining and SOH estimation.
+
+
+threshold 𝑑min are excluded, since their degradation order is either               where the margin indicates both whether the predicted order is correct
+undefined or too weak to provide clear supervision due to possible                 and how confidently the model makes this prediction. Minimizing the
+capacity recovery phenomena. For a valid pair of samples (𝑖, 𝑗) from               negative log-likelihood of this probability 𝑝𝑖𝑗 yields the loss 𝓁𝑖𝑗 , which
+the same cell, the ranking label is defined as:                                    encourages the score difference 𝑠𝑖 − 𝑠𝑗 to be consistent with the relative
+      {                                                                            cycle order. For the 𝑚th valid cell group, with 𝑚 denoting the set
+        +1, if 𝑛𝑖 > 𝑛𝑗                                                             of valid sample pairs constructed within that group, the group-wise
+𝑦𝑖𝑗 =                                                             (9)
+        −1, if 𝑛𝑖 < 𝑛𝑗                                                             ranking loss is then computed as:
+where 𝑛𝑖 and 𝑛𝑗 denote the corresponding cycle numbers. Here, 𝑦𝑖𝑗 = +1                     1      ∑
+                                                                                   𝑚 =                𝓁                                                  (12)
+indicates that sample 𝑖 comes from a later cycle and is expected to have                 |𝑚 | (𝑖,𝑗)∈ 𝑖𝑗
+                                                                                                    𝑚
+a larger aging score than sample 𝑗, as the pairwise logistic ranking loss
+                                                                                      Finally, the overall ranking loss for the mini-batch is obtained by
+is designed to be:
+                                                                                   averaging over all valid cell groups:
+        (        (              ))
+𝓁𝑖𝑗 = ln 1 + exp −𝑦𝑖𝑗 (𝑠𝑖 − 𝑠𝑗 )                                    (10)
+                                                                                             1 ∑
+                                                                                               𝑀
+                                                                                   rank =                                                               (13)
+where 𝑠𝑖 and 𝑠𝑗 are the aging scores predicted by the model under                            𝑀 𝑚=1 𝑚
+training. It is referred to as a logistic ranking loss because it is derived
+                                                                                   where 𝑀 is the number of valid cell groups in the mini-batch. Algo-
+from the negative log-likelihood of a logistic model, in which the                 rithm 1 summarizes the intra-cell cycle-order ranking objective for a
+probability of a correct pairwise order 𝑝𝑖𝑗 is modeled as a sigmoid                sampled mini-batch.
+function of the margin 𝑦𝑖𝑗 (𝑠𝑖 − 𝑠𝑗 ), namely:                                         During ranking-based self-supervised pretraining, the model, con-
+                 1                                                                 sisting of the encoder and the head, is expected to predict a dimen-
+𝑝𝑖𝑗 =          (               )                                       (11)
+        1 + exp −𝑦𝑖𝑗 (𝑠𝑖 − 𝑠𝑗 )                                                    sionless aging score from the CC charging curve input. By explicitly
+
+                                                                               6
+J. Yao and J. Kowal                                                                                                              Energy and AI 26 (2026) 100884
+
+
+
+
+                                Fig. 4. Workflow of the proposed SSL framework for SOH estimation under label sparsity.
+
+
+enforcing that the predicted aging scores follow the relative degrada-          charging data using the ranking-based SSL algorithm proposed in Sec-
+tion order across cycles, the proposed ranking objective encourages the         tion 2.2. The outcome of the pretraining can be validated by inspecting
+encoder to capture the underlying patterns correlated to the degrada-           the correlation between the pretrained model’s predicted aging score
+tion process from unlabeled charging curves. In this way, the learned
+                                                                                and the ground-truth SOH values, if available. The pretrained model
+representations become better aligned with the evolution of battery
+degradation, which is closely related to the downstream SOH estima-             will be saved and transferred to downstream adaptation on the task
+tion task, thereby benefiting cases with label sparsity in both quantity        of SOH estimation, where only the pretrained encoder will be loaded,
+and coverage.                                                                   and a new head will be instantiated for SOH regression. Subsequently,
+                                                                                the labeled subset of data will be used for fine-tuning the model,
+2.3. Degradation-aligned SSL framework
+                                                                                during which only the new head is updated, with the parameters of the
+    Fig. 4 shows the overall workflow of the proposed SSL framework             pretrained encoder frozen. The fine-tuned model is ready for accurate,
+for SOH estimation under label sparsity. First, as data preparation, the        robust SOH estimation on new cells despite label sparsity in the training
+collected battery cycling aging data undergo a series of preprocessing          data.
+procedures, including cleaning of dirty samples and outliers, formatting           To clarify the distinction between the various types of data and their
+for a unified structure, and labeling the data partially based on the
+                                                                                uses, we provide a more detailed explanation of the data pipeline. The
+experiment settings to simulate practical scenarios where the battery
+aging data are under label sparsity, both in quantity and coverage. The         data pipeline consists of four distinct parts. First, unlabeled cycling
+preprocessed data are then split into training, validation, and test sets       data are used for self-supervised pretraining, where only cycle-order
+for parameter optimization, hyperparameter fine-tuning, and objective           information is used to construct ranking pairs and no SOH labels are
+evaluation, respectively. The unlabeled data will be used for self-             required. Second, a sparse subset of labeled cycles from the training
+supervised pretraining, while the partially labeled subset will be used
+                                                                                cells is used for supervised fine-tuning. Third, the validation cell with
+for fine-tuning the pretrained model during downstream adaptation.
+During self-supervised pretraining, the CNN-GRU model introduced in             available SOH labels is used only for hyperparameter selection and
+Section 2.1, composed of an encoder and a head, is first initialized.           model selection. Finally, the test cell is strictly held out and its SOH
+Afterwards, the model is trained on the pretext task with unlabeled             labels are used only for the final evaluation.
+
+                                                                            7
+J. Yao and J. Kowal                                                                                                                 Energy and AI 26 (2026) 100884
+
+
+
+
+Fig. 5. Aging profiles of the cells, including the current and voltage measurement during CC charging and the evolution of SOH. (a) Cell CX2-34. (b) Cell CX2-36.
+(c) Cell CX2-37. (d) Cell CX2-38.
+
+Table 2                                                                             partial charging curve rather than simply using the sequence length as
+Specifications of the utilized CX2 battery.                                         the indicator. The corresponding SOH labels are calculated based on
+ Parameter                                                          Data            Eq. (1) using the full discharge capacity. Consequently, more thorough
+ Nominal capacity                                                   1.35 Ah         data cleaning is performed, removing outliers based on anomalies in
+ Cell chemistry                                                     LCO             current and voltage readings, as well as on the rolling median absolute
+ Cell format                                                        Prismatic
+                                                                                    deviation (MAD) of the lengths of CC charging segments at the cell
+ End-of-charge voltage                                              4.20 V
+ End-of-discharge voltage                                           2.70 V          level. More specifically, samples with CC charging segments of less than
+                                                                                    5 data points are first cleaned, and then samples whose last current
+                                                                                    reading during CC charging is smaller than 0.6 A or the first voltage
+                                                                                    reading during CC charging is larger than 4 V are removed as outliers.
+3. Experimental setup                                                               Afterwards, rolling MAD of a moderate window size 31 and threshold 3
+                                                                                    is applied onto the SOH degradation curves for further outlier removal.
+3.1. Data preparation                                                               The window size of 31 samples is used to estimate the local trend.
+                                                                                    The residuals between the original signal and this rolling median are
+    In this work, the experiments and analyses are based on the public              then computed, and their MAD is scaled by 1.4826 to estimate the
+battery aging dataset, which is widely used in the research community,              noise level. Samples whose robust z-score exceeded 3 are treated as
+from the Center for Advanced Life Cycle Engineering (CALCE) at the                  outliers. The preprocessed aging profiles of the cells are shown in Fig.
+University of Maryland [59]. Specifically, the cells CX2-34, CX2-36,                5. As can be observed, the overall shape and pattern of the voltage
+CX2-37, and CX2-38 are utilized in this work, of which the specifica-               measurement during CC charging demonstrate an obvious shift through
+tions are shown in Table 2. These prismatic cells have lithium cobalt               the aging process: the initial voltage reading becomes higher due to
+oxide (LCO) cathodes and a rated capacity of 1.35 Ah. The four cells                impedance rise, and the duration of the CC fraction becomes shorter
+underwent cyclic aging from the beginning of life until different depths            due to the combination of loss of lithium inventory (LLI), loss of active
+of degradation. For charging, they went through a CC-CV protocol,                   material (LAM), and impedance rise, which intuitively underpins the
+where the cells were charged under the constant current rate of 0.5 C               reliability of using voltage measurement during CC charging as the
+until the end-of-charge voltage of 4.2 V was reached, after which CV                input feature for SOH estimation. The capacity degradation trends of
+charging carried on until the charging current dropped below 0.05 A.                the cells appear similar, where the four cells are aged to different depths
+For discharging, the cells went through a CC protocol with a current                of degradation. Based on this observation, CX2-37 and CX2-38 are
+rate of 1 C [18] until the end-of-discharge voltage of 2.7 V was reached.           selected for training because together they cover relatively early and
+    BatteryML [60], an open-source platform for machine learning-                   late degradation stages, enabling the model to learn from a wider range
+based battery degradation diagnostics, is used for preliminary prepro-              of aging conditions. CX2-36 and CX2-34, which fall between these two
+cessing of the raw cycling data, including the initial integration and              extremes in terms of degradation depth, are used for validation and
+ordering of the measurement files, compilation of basic information,                testing, respectively. In this way, the validation and test cells remain
+and rough cleaning of dirty entries. Afterwards, the voltage measure-               unseen during training, while their degradation states are still enclosed
+ments of the CC charging fragment are extracted for each cycling curve              by the training distribution rather than lying outside it. This split is
+and resampled to a fixed length of 300 points to facilitate later training          therefore intended to enable a more stable and meaningful evaluation
+and to enforce the network to learn the underlying patterns from the                of cross-cell generalization. However, in order to test the model’s
+
+                                                                                8
+J. Yao and J. Kowal                                                                                                             Energy and AI 26 (2026) 100884
+
+
+robustness across different testing scenarios, we have also conducted            models after pretraining, and the SL models trained from scratch, grid
+further experiments using a variety of data splits in Section 4.4.               searches of the optimized learning rate are carried out in the range from
+                                                                                 1𝑒−5 to 1𝑒−2 for 50 trials; for the ridge regression models, grid searches
+3.2. Experiment settings                                                         of the optimized regularization penalty factor 𝛼 are carried out in the
+                                                                                 range from 1𝑒 − 6 to 1𝑒3 for 50 trials. All searches use the minimization
+    Z-score normalization is utilized on the training set to accelerate          of the validation error on the validation set as the objective, where for
+convergence in this work using the following formula:                            the SSL pretraining, it is the respective unlabeled SSL loss, and for SOH
+     𝑥−𝜇                                                                         estimation, it is the labeled estimation MAE.
+𝑧=                                                                   (14)
+       𝜎
+where 𝑧 is the normalized value, 𝑥 is the raw value, 𝜇 is the mean,
+and 𝜎 is the standard deviation. The utilized CNN-GRU models all have            3.3. Evaluation metrics
+the same architectural hyperparameters regardless of whether they are
+for self-supervised pretraining or SOH estimation. For the encoder part,            The regression performance of the SOH estimation task is evalu-
+the two-layer CNN uses a slightly larger kernel size of 7 to capture             ated using the following four evaluation metrics in this work, namely
+local patterns across more adjacent points and increases the number              MAE, RMSE, maximum absolute error (MAX), and the coefficient of
+of channels from 1 to 32 and then to 64. Replicate values are used for           determination 𝑅2 :
+the same padding on both sides of the input sequence. After the CNN,
+                                                                                                 1∑
+                                                                                                      𝑛
+a one-layer GRU with an input size of 64 and an output size of 128 is            𝑀𝐴𝐸(𝒚, ̂𝒚) =          |𝑦 − 𝑦̂𝑖 |                                       (15)
+used to fuse the extracted local patterns. For the head part, the fully                          𝑛 𝑖=1 𝑖
+connected layers have different numbers of neurons for different tasks.                           √
+                                                                                                  √ 𝑛
+                                                                                                  √1 ∑
+For ranking-based self-supervised pretraining and for SOH regression,            𝑅𝑀𝑆𝐸(𝒚, ̂𝒚) = √            (𝑦 − 𝑦̂𝑖 )2                                 (16)
+the two fully connected layers decrease the size of the latent vector                                 𝑛 𝑖=1 𝑖
+gradually from 128 to 64, and then to 1, yielding a scalar of aging                               ∑𝑛
+                                                                                                       (𝑦𝑖 − 𝑦̂𝑖 )2
+score or SOH estimate. For the reconstruction pretext task, which is             𝑅2 (𝒚, ̂𝒚) = 1 − ∑𝑖=1
+                                                                                                    𝑛                                                   (17)
+used as a comparison in the experiments, the two fully connected layers                                       𝑦)2
+                                                                                                    𝑖=1 (𝑦𝑖 − ̄
+gradually increase the size of the latent vector from 128 to 256, and
+then to 300. The batch size of 256 is used in this work. Automatic               𝑀𝐴𝑋( ̂𝒚) = max{|𝑦𝑖 − 𝑦̂𝑖 |}𝑛𝑖=1                                        (18)
+hyperparameter fine-tuning of the learning rate is conducted for all
+                                                                                 where 𝒚 and 𝒚̂ denote the labels and the estimates, respectively. 𝑛
+models, including both self-supervised pretraining and fine-tuning, us-
+                                                                                 is the number of samples, while 𝑦𝑖 and 𝑦̂𝑖 denote the label and the
+ing the hyperparameter optimization framework Optuna [61], utilizing
+                                                                                 estimate of the 𝑖th sample, respectively. 𝑦̄ is the mean of the labels
+the tree-structured Parzen estimator (TPE) algorithm, based on their
+performance on the validation set for a fair comparison.                         𝒚. The four evaluation metrics for regression have different emphases.
+    The ranking-based self-supervised pretraining uses a minimum cycle           MAE is an intuitive measure for the average magnitude of estimation
+gap of 𝑑𝑚𝑖𝑛 = 50 to mitigate disturbances to the supervision signal              errors, while RMSE gives greater weight to large errors due to the
+caused by the capacity recovery effect during the aging test. Besides            squaring operation. 𝑅2 is used to evaluate how well the estimations
+the proposed ranking-based SSL (SSL-Rank) approach, we apply two                 capture the overall variation trend of the labels during fitting, and MAX
+other SSL approaches for pretraining as comparison, including the most           reflects the worst-case estimation deviation across all samples. In this
+frequently used reconstruction-based SSL (SSL-Recon) approach and a              work, SOH is shown in its normalized fractional form between 0 and
+multi-objective SSL (SSL-MO) approach. As the pretext task, SSL-Recon            1, which is the direct output/target representation used in the model.
+aims to reconstruct the voltage curves during CC charging through the            In contrast, the evaluation errors are reported in percentage points to
+encoder and the head, thereby encouraging the model to learn infor-              improve readability and to make the magnitude of the errors easier to
+mative representations that preserve structural characteristics of the           interpret. For example, an MAE of 0.005 in fractional SOH corresponds
+input charging signals. And as the name indicates, SSL-MO combines               to 0.5% in the reported metrics.
+reconstruction and ranking as its pretext task in order to test the possi-           In addition, Spearman’s rank correlation coefficient 𝜌 is employed to
+bility that these two self-supervised objectives can complement each             evaluate the monotonic relationship between the predicted aging scores
+other and thereby yield more informative representations for down-               and the ground-truth SOH values after the self-supervised pretraining,
+stream SOH estimation. The SSL models are first pretrained using the
+                                                                                 thereby assessing whether the learned representations can consistently
+respective SSL strategy on the unlabeled data, after which a new head
+                                                                                 reflect the real degradation process. It is defined as:
+will be instantiated on top of the pretrained encoder for adaptation
+using the limited labeled data. During the adaptation, the pretrained                 cov(𝑹𝒔 , 𝑹𝒚 )
+                                                                                 𝜌=                                                                     (19)
+encoder will be frozen, meaning only the freshly instantiated head will                 𝜎𝑅𝑠 𝜎𝑅𝑦
+be updated. Certainly, at the same time, we train ordinary supervised
+learning (SL) models with the same network architecture using the                where 𝑹𝒔 and 𝑅𝑦 denote the ranks of the predicted aging scores and
+limited labeled data for SOH estimation as a baseline. In addition, the          the ground-truth SOH labels, respectively. cov denotes covariance, and
+conventional machine learning approach, ridge regression, is used as             𝜎𝑅𝑠 and 𝜎𝑅𝑦 denote the standard deviations of the corresponding rank
+a simple baseline for extra analyses. Specifically, a ridge regression           variables. 𝜌 is defined in the range from −1 to 1, where 𝜌 = 1 indicates a
+model with the cycle number as input (Ridge-C) is trained to serve               perfect positive monotonic relationship, and 𝜌 = −1 indicates a perfect
+as a direct indicator of the correlation between SOH and the cycle               negative monotonic relationship.
+number, and a ridge regression model with the CC charging voltage
+as input (Ridge-V) is trained as a leaner model that serves as a fairer
+                                                                                 4. Results and discussion
+baseline in such data-sparse scenarios. It is worth mentioning that
+the SL model refers specifically to the neural network with the same
+architecture trained under SL in this work, despite the fact that ridge              In this section, we present the results and analyses of a variety of
+regression generally also belongs to SL. For the automatic fine-tuning           experiments conducted to evaluate the pretrained model via degrada-
+using Optuna, all models follow the same tuning budget: for all the deep         tion alignment, compare different SSL and SL approaches on sparsely
+learning models, namely the SSL pretraining models, the fine-tuning              labeled data, and examine the influence of label distribution.
+
+                                                                             9
+J. Yao and J. Kowal                                                                                                               Energy and AI 26 (2026) 100884
+
+
+
+
+Fig. 6. Correlation between the aging score predicted by the pretrained model under ranking-based SSL and the respective ground-truth degradation process. (a)
+Cell CX2-37, normalized aging score and capacity fade. (b) Cell CX2-37, normalized aging score and SOH. (c) Cell CX2-38, normalized aging score and capacity
+fade. (d) Cell CX2-38, normalized aging score and SOH. (e) Cell CX2-36, normalized aging score and capacity fade. (f) Cell CX2-36, normalized aging score and
+SOH. (g) Cell CX2-34, normalized aging score and capacity fade. (h) Cell CX2-34, normalized aging score and SOH.
+
+
+4.1. Evaluation of the pretrained model via degradation alignment                  where 𝑥′ is the normalized value, 𝑥 is the original value, and 𝑥𝑚𝑎𝑥
+                                                                                   and 𝑥𝑚𝑖𝑛 denote the maximum and minimum of the variable, respec-
+    In this experiment, we aim to evaluate the pretrained model using              tively. In the left column of Fig. 6, namely Figs. 6(a), 6(c), 6(e), and
+the proposed ranking-based SSL approach before downstream fine-                    6(g), we compare the aforementioned normalized aging scores with
+tuning. To this end, the pretrained model is used to generate an                   the ground-truth capacity fade over the entire lifespan of each cell.
+aging score for each input charging curve, and the resulting scores are            As can be observed, despite the minor local fluctuations, the aging
+compared with the corresponding ground-truth degradation process in                scores predicted by the pretrained model generally demonstrate a
+order to verify their alignment. Since the proposed ranking objective              clear monotonic overall trend that is well aligned with the capacity
+is designed to encode the relative degradation order of battery cycles             degradation trajectory of each cell. In particular, as the battery ages and
+into the learned representations and then map it into an unscaled aging            the capacity gradually fades, the predicted aging scores consistently
+score prediction, effective pretraining is expected to produce aging               evolve in the corresponding direction, indicating that the pretrained
+scores that vary monotonically with SOH. Therefore, both the overall
+                                                                                   model has successfully captured degradation-relevant information from
+relationship between the predicted aging scores and the degradation
+                                                                                   unlabeled charging data. This is particularly evident for cells CX2-37
+process, and their Spearman’s rank correlation coefficient are ana-
+                                                                                   and CX2-38, namely the two training cells, as the ranking objective was
+lyzed to assess whether the pretrained model has successfully captured
+                                                                                   directly imposed on them during the training process. Especially for the
+degradation-aligned information from unlabeled charging data.
+                                                                                   training cell CX2-38, the aging scores predicted by the pretrained model
+    Fig. 6 shows the correlation between the aging score predicted
+by the pretrained model under the proposed ranking-based SSL and                   can even reconstruct the different degradation paces of the ground-
+the ground-truth degradation processes of the four cells, namely CX2-              truth degradation process, showing clearly different slopes before and
+37, CX2-38, CX2-36, and CX2-34, across the training, validation, and               after the 1350th cycle. For the validation cell CX2-36, from around
+testing sets. Since the learned aging score of the pretrained model is             the 600th cycle, the predicted aging score begins to show slight diver-
+an unscaled value without a unit, we first normalize it into the range             gence from the ground-truth capacity fade, although the monotonicity
+from 0 to 1 for better visualization, as well as the ground-truth capacity         and alignment are not compromised, and the dip indicating capacity
+fade, using the following formula of min–max normalization:                        recovery at around the 1300th cycle is well captured by the pretrained
+        𝑥 − 𝑥𝑚𝑖𝑛                                                                   model. Similarly, on the test cell CX2-34, the predicted aging score
+𝑥′ =                                                                  (20)         generally aligns quite well with the ground-truth capacity fade, despite
+      𝑥𝑚𝑎𝑥 − 𝑥𝑚𝑖𝑛
+
+                                                                              10
+J. Yao and J. Kowal                                                                                                               Energy and AI 26 (2026) 100884
+
+
+local fluctuations at the beginning of life (BOL) and a slight divergence          varies from 1% to 100%, where 100% of labeled data corresponds
+in the middle of life. The capacity recovery phenomenon at around the              to approximately 1200 training samples. This setup is consistent with
+1150th cycle is well captured by the pretrained model based on the                 practical scenarios, since 80% SOH is commonly adopted as the EOL
+unlabeled CC charging data as well.                                                criterion for lithium-ion batteries, and thus data from this earlier
+    In the right column of Fig. 6, namely Figs. 6(b), 6(d), 6(f), and 6(h),        degradation region are more likely to be available than labeled samples
+the correlation between the normalized aging score and the ground-                 from deep-degradation stages, whose acquisition requires much longer
+truth SOH is showcased for each cell, with Spearman’s rank correlation             cycling time and higher experimental cost. The labeled data points for
+coefficient calculated and marked in each case. The normalized aging               fine-tuning or complete SL are sampled uniformly from all data points
+scores generally exhibit a clear monotonic decreasing trend as the                 within the defined SOH range for each training cell.
+ground-truth SOH increases, or equivalently, a monotonic increasing                    Fig. 7 shows the SOH estimation results on the test cell CX2-34
+trend as the battery degrades. This indicates that the predicted aging             of different models after fine-tuning or complete training on different
+scores are strongly consistent with the underlying aging progression of            ratios of labeled data. At first glance, we can see that all models
+each cell. Although a few outliers can still be observed locally, the over-        pretrained using SSL strategies are able to carry out satisfactory SOH
+all relationship remains highly correlated. The calculated Spearman’s              estimation under different ratios of labeled data from 1% to 100% on
+rank correlation coefficients 𝜌, namely −0.997 for cell CX2-37, −0.998             the entire lifespan of the test cell, while the pure SL model without
+for cell CX2-38, −0.996 for cell CX2-36, and −0.997 for cell CX2-34,               pretraining shows great fluctuations in its estimation under ratios of
+are all extremely close to −1, indicating an almost perfect monotonic              labeled data above 50% and fails the task of SOH estimation under
+inverse relationship between the predicted aging score and the ground-             ratios of labeled data below 40%, because the number of samples
+truth SOH for all cells, which further supports the fact that our proposed         available for SL from scratch becomes too small for the model to
+ranking-based SSL approach is able to enforce the pretrained model to              capture the underlying battery degradation dynamics. Compared with
+extract degradation-aligned information from unlabeled charging data,              models pretrained with the other two SSL approaches, the proposed
+such that the learned aging scores consistently reflect the underlying             SSL-Rank model consistently outperforms the rest of the models and
+battery aging progression across the entire lifespan. Still, it is worth           is able to track the ground-truth degradation progression accurately
+mentioning that testing the learned aging score on cells with more                 under all scenarios with different ratios of labeled data, even when the
+pronounced regeneration events or highly irregular degradation trajec-             labeled data is extremely sparse, as low as 1%. In general, since the
+tories would be a useful way to further verify whether it reflects true            labeled data are considered to be in the earlier degradation region, the
+degradation rather than simply cycle number.                                       estimations of the models fit better to the early-life ground-truth SOHs,
+    Under the current experimental setting, we have conducted a quan-              while slight divergences can be observed toward the EOL. Nevertheless,
+titative analysis of the number of ranking pairs discarded due to                  the proposed SSL-Rank model is able to carry out an SOH estimation
+the violation of the minimum cycle gap 𝑑𝑚𝑖𝑛 . Specifically, pairs with             that not only is steady and smooth in early life, but also converges well
+identical cycle numbers or with cycle-number differences smaller than              to the ground-truth in late life, as shown in the zoomed-in sections.
+50 were removed from the ranking loss. Under this setting, in each                 In comparison, the SSL-Recon model exhibits significantly higher os-
+epoch, 243 out of 2593 candidate pairs were discarded, corresponding               cillations in its estimation, and the estimation errors of the SSL-Recon
+to 9.371% of all candidate pairs. In general, a smaller 𝑑𝑚𝑖𝑛 retains more          and SSL-MO models become more pronounced in the deep-degradation
+ranking pairs but may introduce ambiguous or noisy supervision from                regime. As for the ridge regression models, the Ridge-C model is able to
+close-cycle pairs, especially in the presence of local capacity recovery.          build the overall trend of SOH from the input cycle number without any
+Conversely, a larger 𝑑𝑚𝑖𝑛 increases the reliability of the ranking labels          response to the occurring capacity recovery effect or fluctuations in the
+by enforcing a clearer degradation separation, but it also reduces the             degradation process. Because of the lean structure, the Ridge-V model
+number of available training pairs. Considering the fact that exhaustive           is able to carry out SOH estimation even with a limited amount of
+tuning of this hyperparameter would take an extremely long time, as                labeled data, in spite of significantly larger errors than the SSL models.
+all the pretraining and fine-tuning processes are affected, 𝑑𝑚𝑖𝑛 = 50 is           However, as the labeled ratio increases, the Ridge-V model starts to
+selected as a conservative trade-off between pair reliability and pair             indicate overfitting to the training data, as the estimation error in the
+availability.                                                                      lower SOH regime increases drastically.
+                                                                                       Fig. 8 is the box plot of the absolute error of different models
+4.2. Model performance comparison under label sparsity                             for SOH estimation under different ratios of labeled data. The afore-
+                                                                                   mentioned observations can be better confirmed in this visualization.
+    In this experiment, we aim to compare the performance of the                   The three SSL models achieve consistently good performance across
+models pretrained using different SSL strategies after fine-tuning, as             all testing scenarios with varying proportions of labeled data. The
+well as under complete SL with no pretraining on the unlabeled data.               SSL-Recon model and the SSL-MO model achieve comparable overall
+More specifically, we consider three different SSL approaches: SSL-                performance in most cases, though the latter typically produces more
+Rank, our proposed SSL approach using the cycle-order objective as the             outliers. The proposed SSL-Rank model is able to outperform the rest of
+pretext task; SSL-Recon, the most frequently used SSL approach using               the models in every testing scenario, regardless of whether the labeled
+reconstruction of the input CC charging curves as the pretext task; SSL-           proportion is abundant or scarce, with fewer outliers in addition. The
+MO, which combines reconstruction and ranking as its pretext task in               baseline SL model can still carry out relatively good SOH estimation
+order to test the possibility that these two self-supervised objectives can        when the amount of labeled data is sufficient, namely 50% or more,
+complement each other and thereby yield more informative represen-                 but is not able to learn the underlying degradation dynamics and
+tations for downstream SOH estimation. All models are first pretrained             thus fails to carry out SOH estimation when fewer labeled data are
+on the unlabeled CC charging data using their respective SSL strategies,           available. It is intriguing that even in cases where 100% or 50% labeled
+where they have achieved the expected good performance, and then                   data is available, the SL model is still outperformed by all the SSL
+fine-tuned using sparsely labeled CC charging data. In addition, we                models, indicating that leveraging unlabeled charging data through
+train a pure SL model from scratch without pretraining on the same                 SSL pretext tasks not only compensates for label scarcity, but also
+sparsely labeled CC charging data using the same network architecture,             improves the model initialization and guides it toward a more favorable
+and two ridge regression models, namely Ridge-C and Ridge-V, with                  parameter space for downstream optimization, so that the model can
+the cycle number and the CC charging voltage as input, respectively.               make better use of the labeled data during fine-tuning and achieve
+Here, we consider a sparse-label setting in which only data above the              superior SOH estimation performance even when labels are relatively
+80% SOH threshold are labeled, and the proportion of labeled samples               abundant. As mentioned before, the Ridge-V model is able to survive
+
+                                                                              11
+J. Yao and J. Kowal                                                                                                                   Energy and AI 26 (2026) 100884
+
+
+
+
+Fig. 7. SOH estimation results on the test cell CX2-34 of different models after fine-tuning or complete training on different ratios of labeled data. (a) 100% of
+labeled data available. (b) 50% of labeled data available. (c) 40% of labeled data available. (d) 30% of labeled data available. (e) 20% of labeled data available.
+(f) 10% of labeled data available. (g) 5% of labeled data available. (h) 1% of labeled data available.
+
+
+
+
+                                Fig. 8. Box plot of the absolute error for SOH estimation under different ratios of labeled data.
+
+
+insufficient labeled data because of its lean architecture, but it has               that models pretrained by the proposed ranking-based SSL approach
+consistently higher errors than all SSL models. In general, the Ridge-C              are truly degradation-aware, instead of simply taking the cycle number
+model achieves comparable performance to the SSL-Recon and SSL-MO                    as a proxy.
+models, especially when the labeled ratio is smaller. However, it is still               Table 3 summarizes the experiment results on different models’
+consistently outperformed by the proposed SSL-Rank model, indicating                 performance under varying ratios of labeled data above 80% SOH. The
+
+                                                                                12
+J. Yao and J. Kowal                                                                                                                 Energy and AI 26 (2026) 100884
+
+
+Table 3                                                                            The MAXs of around 10% typically characterize the final estimation
+Comparison of different models’ performance under varying ratios of labeled        error in the deepest-degradation regime due to significantly accelerated
+data above 80% SOH.                                                                aging in this stage, suggesting that late-life labeled data, even if sparse,
+ Labeled         Model       Evaluation metrics                                    remain important for reliable deployment in real-world applications.
+ ratio [%]
+                                                                                   The error metrics of the two ridge regression models also confirm our
+                             MAE [%]      RMSE [%]    𝑅2         MAX [%]           aforementioned observations that models pretrained using the proposed
+                 SSL-Rank    1.715        2.255       0.972      10.458            SSL approach not only outperform intuitive, lean machine learning
+                 SSL-Recon   2.768        3.789       0.921      12.874            baselines, but also are truly degradation-aware, instead of simply taking
+                 SSL-MO      2.409        3.407       0.936      14.556
+ 100
+                 SL          4.017        5.384       0.841      19.625
+                                                                                   the cycle number as a proxy.
+                 Ridge-C     3.172        4.421       0.892      15.722                 The results of this experiment showcase the effectiveness and ro-
+                 Ridge-V     4.708        7.836       0.662      29.315            bustness of the proposed SSL framework across different labeled data
+                 SSL-Rank    1.722        2.302       0.971      10.937            proportions under the practical earlier-life labeling setting. Even with
+                 SSL-Recon   2.557        3.366       0.938      11.380            an extremely limited amount of labeled data, the proposed method is
+                 SSL-MO      2.370        3.303       0.940      13.889            still able to maintain a high estimation accuracy, further demonstrating
+ 50
+                 SL          4.301        5.381       0.841      18.038
+                                                                                   that the self-supervised pretraining stage has successfully endowed the
+                 Ridge-C     2.627        3.738       0.923      14.213
+                 Ridge-V     4.780        8.038       0.645      29.112            model with informative and degradation-aligned prior knowledge that
+                 SSL-Rank    1.699        2.259       0.972      10.724
+                                                                                   can be effectively transferred to downstream SOH estimation under
+                 SSL-Recon   2.590        3.401       0.936      11.168            label sparsity in both quantity and coverage.
+                 SSL-MO      2.362        3.370       0.938      14.576
+ 40
+                 SL          12.203       14.317      −0.127     28.848            4.3. Analysis on the influence of label distribution
+                 Ridge-C     2.584        3.666       0.926      14.021
+                 Ridge-V     4.761        7.993       0.649      28.781
+                                                                                       In this experiment, we aim to evaluate the SSL-Rank model’s per-
+                 SSL-Rank    1.707        2.279       0.971      10.815
+                                                                                   formance under different distributions of sparsely labeled data and
+                 SSL-Recon   2.449        3.169       0.945      11.838
+                 SSL-MO      2.283        3.311       0.940      14.869            thereby analyze the influence of label distribution on the task of SOH
+ 30
+                 SL          12.442       14.593      −0.171     29.566            estimation. Since the test results in Section 4.2 already show that the
+                 Ridge-C     2.510        3.560       0.930      13.759            model pretrained utilizing our proposed ranking-based SSL approach is
+                 Ridge-V     4.996        8.358       0.616      29.837            able to carry out accurate and robust SOH estimation after fine-tuning,
+                 SSL-Rank    1.692        2.241       0.972      10.624            even only on an extremely small number of labeled data, we explore the
+                 SSL-Recon   2.564        3.350       0.938      11.878
+                                                                                   different distributions on rather small labeled ratios here, namely 10%,
+                 SSL-MO      2.597        3.588       0.929      15.300
+ 20
+                 SL          12.184       14.290      −0.123     28.659
+                                                                                   5%, 2%, and 1% of the whole training set, where 10% corresponds to
+                 Ridge-C     2.471        3.505       0.932      13.625            approximately 260 samples. The four studied types of distribution are
+                 Ridge-V     4.774        8.002       0.648      28.733            uniform, random, early-only, and late-only. For the uniform setting, the
+                 SSL-Rank    1.692        2.249       0.972      10.686            labeled samples are selected to cover the entire available SOH range
+                 SSL-Recon   2.655        3.528       0.932      11.839            as evenly as possible. For the random setting, the labeled samples are
+                 SSL-MO      2.803        3.873       0.918      16.210            randomly drawn from all available data. In the early-only setting, only
+ 10
+                 SL          11.966       14.039      −0.084     27.791
+                                                                                   samples from the extreme early degradation stage, namely above 85%
+                 Ridge-C     2.533        3.584       0.929      13.802
+                 Ridge-V     4.797        7.910       0.656      28.679            SOH, are retained as labeled data, whereas in the late-only setting, only
+                 SSL-Rank    1.693        2.258       0.972      10.749
+                                                                                   samples from the late degradation stage, namely below 60% SOH, are
+                 SSL-Recon   2.806        3.789       0.921      12.592            labeled. This experiment is designed as a supplementary analysis to the
+                 SSL-MO      2.721        3.756       0.922      15.753            main experiment in Section 4.2, with the focus shifted from the overall
+ 5
+                 SL          11.969       14.043      −0.085     27.803            effectiveness of the proposed SSL framework to the specific influence
+                 Ridge-C     2.330        3.350       0.938      13.308
+                                                                                   of label distribution of the training set under very limited labeling
+                 Ridge-V     3.040        5.139       0.855      20.464
+                                                                                   budgets.
+                 SSL-Rank    1.718        2.329       0.970      11.157
+                                                                                       Fig. 9 shows the regression performance of the proposed SSL-Rank
+                 SSL-Recon   3.075        4.293       0.899      14.228
+                 SSL-MO      2.689        3.707       0.924      15.689            model fine-tuned with 10% or 5% of labeled data sampled from differ-
+ 1
+                 SL          11.957       14.029      −0.082     27.749            ent distributions. At first glance, we can see that the type of distribution
+                 Ridge-C     2.307        3.187       0.944      12.681            of the labeled data has some minor influence on the overall regression
+                 Ridge-V     3.634        5.054       0.860      22.066            performance. The 𝑅2 decreases from 0.979 to 0.977 when 10% of the
+                                                                                   labeled data are sampled randomly from the whole lifespan instead of
+                                                                                   uniformly, and decreases from 0.981 to 0.977 when the labeled ratio is
+proposed SSL-Rank model leads across all four evaluation metrics in all            5%, indicating that a more even coverage of the degradation trajectory
+testing scenarios with different labeled data ratios, achieving MAEs of            is still beneficial. The early-only distribution, on the other hand, seems
+1.715%, 1.722%, 1.692%, and 1.718% for labeled data ratios of 100%,                to yield worse training outcomes: the 𝑅2 is 0.974 when the labeled
+50%, 10%, and 1%, respectively. The single-objective SSL-Recon model               ratio is 10%, whereas the model fails the SOH estimation task when
+is outperformed by the dual-objective SSL-MO model in most test cases,             the ratio decreases to 5%. In fact, we have also tried to sample 10%
+except at 20% and 10% labeled data ratios, in terms of MAE. In the                 of the labeled data only from the range above 90%, where the model
+case when 30% of labeled data is available, the SSL-MO model achieves              fails as well. The deterioration in model performance when labeled
+an MAE of 2.283%, which is lower than the MAE of 2.449% of the                     data are only available for the extremely early life stage is due to the
+SSL-Recon model, while the RMSE of 3.311% of the SSL-MO model is                   limited diversity of charging curves in this stage. As shown in Fig. 5,
+higher than the RMSE of 3.169% of the SSL-Recon model, indicating                  the pattern shift in the voltage curve during CC charging is minor in
+that the estimation of the SSL-MO model contains more outliers. The                the early-degradation stage, but it accelerates significantly toward the
+SL model achieves MAEs of 4.017% and 4.031% in test scenarios with                 late-degradation stage, meaning that labeled samples drawn from the
+labeled data ratios of 100% and 50%, respectively, but collapses when              early-only distribution are not diverse enough and thus the model can
+fewer labeled data are available, with MAEs around 12%. In all test                hardly generalize on such data. The comparison with the test scenario
+scenarios, the proposed SSL-Rank model is able to maintain an 𝑅2                   using 1% labeled data in Section 4.2 also confirms this assumption,
+of over 0.970, indicating its strong performance in SOH regression.                as simply extending the SOH threshold from 85% to 80% significantly
+
+                                                                              13
+J. Yao and J. Kowal                                                                                                                    Energy and AI 26 (2026) 100884
+
+
+
+
+Fig. 9. Regression performance of the proposed SSL-Rank model fine-tuned with different ratios and distributions of labeled data. (a) 10% labeled data, uniform
+distribution. (b) 10% labeled data, random distribution. (c) 10% labeled data, early-only distribution. (d) 10% labeled data, late-only distribution. (e) 5% labeled
+data, uniform distribution. (f) 5% labeled data, random distribution. (g) 5% labeled data, early-only distribution. (h) 5% labeled data, late-only distribution.
+
+
+alleviates the generalization problem, even with much fewer samples.                 in the SOH estimation error in the late-life SOH window below 60%
+However, at the same time, we also observe that the compensation for                 from uniform distribution to random distribution and then to early-
+the lack of data diversity by larger data quantity also exists to some de-           only distribution. Sampling labeled data from the late-only distribution
+gree, as showcased by the regression performance under 10% and 5% of                 increases the estimation error in the early-life SOH window above 90%,
+early-only labeled data. On the contrary, the late-only distribution leads           but at the same time significantly decreases the estimation error in the
+to the overall performance even better than the uniform distribution.                late-life SOH window below 60% as well as in the middle-life SOH
+A plausible reason is that the voltage curves in this stage exhibit much             windows from 60% to 90%, resulting in an improvement in the overall
+more pronounced aging-related variations and pattern shifts, so that                 performance.
+the labeled samples provide stronger supervisory signals for calibrating                 Table 4 summarizes the estimation results of the proposed SSL-
+the pretrained model to the SOH regression task. In addition, a major                Rank model fine-tuned under different distributions of sparsely labeled
+source of error for uniform and random distributions is the divergence               data. Many of the aforementioned observations can be confirmed. The
+between the estimation and the ground truth toward the EOL, where                    model fine-tuned with late-only labeled data outperforms the rest of
+significantly accelerated aging happens. This is also compensated for                the label distributions consistently in terms of MAE, with the MAEs of
+when more labeled samples in the late-degradation region are available               1.320%, 1.369%, 1.369%, and 1.350% for cases where 10%, 5%, 2%,
+for model fine-tuning. The label-distribution analysis suggests that, if a           and 1% of the data are labeled, respectively. This suggests that, under
+few additional labels can be obtained, they should preferably improve                the same labeling budget, label coverage over the more informative
+coverage of poorly represented degradation regions instead of being                  late-degradation region is particularly beneficial for downstream SOH
+concentrated only in the early-life regime.                                          estimation, which indicates that, when only a very limited number of
+    Fig. 10 visualizes the MAEs of the SSL-Rank model’s estimation with              labels can be acquired, prioritizing samples from the later degradation
+different ratios and distributions of labeled data for fine-tuning across            stage may be more advantageous than distributing labels evenly or
+different SOH windows. In general, the estimation error in the SOH                   concentrating them in the early-life stage. The failure of the model
+range below 60% is significantly higher than in other SOH windows for                fine-tuned with early-only labeled data in cases of fewer labeled data
+each case due to the accelerated late-life degradation. The model fails              shows that the lack of data diversity and data quantity jointly affect
+the SOH estimation task when fine-tuned on less than 5% of labeled                   the effectiveness of downstream fine-tuning. However, to some extent,
+data under early-only distribution, causing the different scales of the              these two factors can compensate for each other: limited diversity
+bar graphs. In Fig. 10(a), we can clearly observe an increasing trend                may be partially alleviated by a larger number of labeled samples,
+
+                                                                                14
+J. Yao and J. Kowal                                                                                                               Energy and AI 26 (2026) 100884
+
+
+
+
+Fig. 10. Bar graph of the MAEs of the SSL-Rank model’s estimation with different ratios and distributions of labeled data for fine-tuning across SOH windows.
+(a) 10% of labeled data available. (b) 5% of labeled data available. (c) 2% of labeled data available. (d) 1% of labeled data available.
+
+Table 4                                                                                1. CX2-34 as test cell: CX2-37 and CX2-38 for training, CX2-36 for
+Evaluation of the SSL-Rank model’s performance under different distributions              validation.
+of sparsely labeled data.                                                              2. CX2-36 as test cell: CX2-37 and CX2-38 for training, CX2-34 for
+ Labeled         Distribution   Evaluation metrics                                        validation.
+ ratio [%]                      MAE [%]      RMSE [%]   𝑅2        MAX [%]              3. CX2-37 as test cell: CX2-34 and CX2-38 for training, CX2-36 for
+                 Uniform        1.569        1.946      0.979     9.032                   validation.
+ 10
+                 Random         1.566        2.037      0.977     9.515                4. CX2-38 as test cell: CX2-34 and CX2-37 for training, CX2-36 for
+                 Early-Only     1.615        2.160      0.974     10.058                  validation.
+                 Late-Only      1.320        1.744      0.983     7.605
+                 Uniform        1.519        1.858      0.981     7.724                 Based on the depth of degradation, the four different data splits
+                 Random         1.586        2.032      0.977     9.199             represent different test scenarios: Since CX2-37 has the shallowest
+ 5
+                 Early-Only     11.682       13.728     −0.037    27.632
+                                                                                    degradation, the SOH estimation task is relatively easy, considering
+                 Late-Only      1.369        1.862      0.981     7.565
+                                                                                    its degradation process is completely covered by the provided training
+                 Uniform        1.508        1.804      0.982     7.480
+                 Random         1.516        1.935      0.979     8.791
+                                                                                    data; since CX2-38 has the deepest degradation, the SOH estimation
+ 2                                                                                  task becomes a difficult extrapolation, as its degradation regime is not
+                 Early-Only     11.654       13.694     −0.031    27.572
+                 Late-Only      1.369        1.863      0.981     7.659             covered by the training cells; since the degradation of CX2-34 and CX2-
+                 Uniform        1.589        1.904      0.980     8.054             36 is enclosed by the training distribution, the difficulty of their SOH
+                 Random         1.635        2.013      0.978     8.753             estimation is rather moderate.
+ 1
+                 Early-Only     11.266       13.240     0.036     27.212                For each test scenario, the sparsely labeled situations are consid-
+                 Late-Only      1.350        1.839      0.981     7.420
+                                                                                    ered, with the ratio of labeled data ranging from 10% to 1%. In
+                                                                                    each case, three models are trained for comparison. Besides the strong
+                                                                                    machine learning baseline for such data-scarce scenarios, namely the
+while limited quantity may be mitigated if the labeled data cover more              Ridge-V model, we further fine-tune the SSL-Rank-pretrained model
+informative and diverse degradation stages. These findings further                  using two different fine-tuning strategies to study their influence: only
+confirm the effectiveness of the proposed ranking-based SSL strategy,               fine-tune the task head with the pretrained encoder frozen (Head), and
+which enables the model to capture degradation-relevant information                 fine-tune the full model including the pretrained encoder and the task
+                                                                                    head (Full).
+from unlabeled data and thus alleviates the dependence of downstream
+                                                                                        The results are shown in Table 5. Overall, the SSL-Rank model with
+fine-tuning on both label quantity and label diversity.
+                                                                                    the head fine-tuned is able to carry out the SOH estimation task on
+                                                                                    sparsely labeled data successfully in different test scenarios, where it
+4.4. Robustness analysis across data splits and fine-tuning strategies              achieves the lowest error in most cases. For the simpler test case of
+                                                                                    CX2-37, the Ridge-V model can achieve comparable performance to the
+                                                                                    SSL-Rank model with the head fine-tuned, with the MAE of 1.307%
+    In this section, we train, validate, and test the models’ performance           when 1% of labeled data is available and the MAE of 1.676% when
+across different data splits in order to further test the robustness of the         5% of labeled data is available. As mentioned before, this is due to
+proposed SSL framework under different test scenarios, where each cell              the fact that the degradation process of the test cell is completely
+is used as the test cell in turn, while the rest are used for training and          covered by the training samples, leading to a relatively naive test case
+validation. Specifically, we report results from four different data splits:        that can be easily solved without the help of extra information or
+
+                                                                               15
+J. Yao and J. Kowal                                                                                                                Energy and AI 26 (2026) 100884
+
+
+                      Table 5
+                      Evaluation of the SSL-Rank model’s performance under different data splits using different fine-tuning strategies
+                      with sparsely labeled data.
+                       Test cell      Labeled ratio [%]       Strategy       Evaluation metrics
+                                                                             MAE [%]          RMSE [%]         𝑅2            MAX [%]
+                                                              Ridge-V        4.797            7.910            0.656         28.679
+                                      10                      Head           1.692            2.249            0.972         10.686
+                                                              Full           9.180            10.903           0.346         26.325
+                                                              Ridge-V        3.040            5.139            0.855         20.464
+                                      5                       Head           1.693            2.258            0.972         10.749
+                                                              Full           9.277            10.988           0.336         26.184
+                       CX2-34
+                                                              Ridge-V        4.219            6.713            0.752         27.101
+                                      2                       Head           1.689            2.260            0.972         10.860
+                                                              Full           9.075            10.817           0.356         26.594
+                                                              Ridge-V        3.634            5.054            0.860         22.066
+                                      1                       Head           1.718            2.329            0.970         11.157
+                                                              Full           9.122            10.837           0.354         26.340
+                                                              Ridge-V        4.926            7.063            0.691         26.685
+                                      10                      Head           2.430            3.207            0.936         13.590
+                                                              Full           11.028           12.962           −0.040        30.678
+                                                              Ridge-V        3.326            4.631            0.867         18.821
+                                      5                       Head           2.401            3.183            0.937         13.565
+                                                              Full           10.893           13.001           −0.046        28.773
+                       CX2-36
+                                                              Ridge-V        4.240            6.062            0.773         24.834
+                                      2                       Head           2.400            3.177            0.938         13.529
+                                                              Full           10.907           12.874           −0.026        29.962
+                                                              Ridge-V        3.215            4.110            0.895         16.770
+                                      1                       Head           2.459            3.232            0.935         13.589
+                                                              Full           10.973           12.866           −0.025        30.898
+                                                              Ridge-V        2.236            3.560            0.869         10.949
+                                      10                      Head           1.811            2.216            0.949         6.569
+                                                              Full           11.242           13.433           −0.871        28.453
+                                                              Ridge-V        1.676            2.548            0.933         8.273
+                                      5                       Head           1.767            2.136            0.953         5.974
+                                                              Full           11.414           13.626           −0.925        28.725
+                       CX2-37
+                                                              Ridge-V        2.544            3.748            0.854         10.909
+                                      2                       Head           1.892            2.291            0.946         6.092
+                                                              Full           11.087           13.268           −0.825        28.255
+                                                              Ridge-V        1.307            1.572            0.974         7.429
+                                      1                       Head           2.116            2.578            0.931         7.706
+                                                              Full           11.593           13.826           −0.982        29.005
+                                                              Ridge-V        5.332            9.438            0.741         36.112
+                                      10                      Head           3.994            5.761            0.904         31.126
+                                                              Full           14.935           18.332           0.024         48.069
+                                                              Ridge-V        4.670            8.273            0.801         32.201
+                                      5                       Head           3.855            5.625            0.908         30.978
+                                                              Full           14.914           18.404           0.016         49.315
+                       CX2-38
+                                                              Ridge-V        5.407            10.446           0.683         43.189
+                                      2                       Head           3.885            5.796            0.902         31.266
+                                                              Full           14.757           18.252           0.032         49.382
+                                                              Ridge-V        6.540            13.039           0.506         53.256
+                                      1                       Head           3.195            5.084            0.925         30.000
+                                                              Full           14.838           18.312           0.026         49.083
+
+
+
+pretraining. On the contrary, when it comes to the extrapolation case             awareness of the overall degradation process in order for an accurate
+where CX2-38 is used as the test cell, the SSL-Rank model with the                SOH estimation over the entire lifespan.
+head fine-tuned still outperforms the Ridge-V model consistently due                  This experiment showcases the robustness of the proposed SSL
+to the extra degradation-aware knowledge gained through the ranking-              framework across different test scenarios under label sparsity, no mat-
+based SSL pretraining, with moderately increased MAEs of 3.195%                   ter if it is a naive case where the target degradation is shallow, or it is a
+when 1% of labeled data is available and 3.885% when 2% of labeled                difficult extrapolation case where the target degradation is even much
+data is available, even when this test scenario is extremely difficult            deeper than the training data.
+due to the extrapolation. Although the MAX has increased drastically,
+we notice that it is caused by one estimation outlier in the deep-                4.5. Study on industrial applicability
+degradation regime, which could possibly be mitigated through more
+delicate pretraining. For the two moderate test cases where CX2-34                    In this section, a concise study on the industrial applicability of the
+and CX2-36 are respectively used as the test cell, the SSL-Rank model             proposed SSL framework for robust SOH estimation under label sparsity
+with the head fine-tuned is able to carry out robust SOH estimation               is conducted. As a matter of fact, the computationally intensive part of
+with different labeled ratios as well. As for the fully fine-tuned SSL-           the proposed framework is the ranking-based SSL pretraining, which
+Rank model, it fails the SOH estimation task in all cases with very               can be done offline or on the cloud without the limitations of the edge
+high errors. Not surprisingly, when the pretrained model is fully fine-           BMS device. Therefore, the bottleneck for computational resources lies
+tuned, the knowledge the encoder gained through the pretraining is                in the computational cost of the inference of the CNN-GRU model. We
+undermined, as the full fine-tuning enforces the biased coverage of               provide the key indicators that are critical for industrial applications
+degradation information onto the encoder, which should have kept its              of the proposed framework, including the number of floating-point
+
+                                                                             16
+J. Yao and J. Kowal                                                                                                                  Energy and AI 26 (2026) 100884
+
+
+Table 6                                                                                degradation data and cross-cell robustness. So far, only one cell model
+Summary of the applicability key indicators of the proposed CNN-GRU                    under one cycling condition in the laboratory-based scenario has been
+model.
+                                                                                       studied. As a result, the present evaluation mainly supports the effec-
+ FLOPs          Number of parameters   Model size [KB]   Inference latency [ms]
+                                                                                       tiveness of the proposed framework in a controlled label-sparse setting,
+ 4.3763 × 106   97 473                 384.55            15.323
+                                                                                       but does not fully establish its generalization ability to different cell
+                                                                                       chemistries, temperatures, or operating protocols. Therefore, it would
+                                                                                       be more than meaningful for future work to extend the proposed SSL
+operations (FLOPs), number of parameters, model size, and the average                  framework to cross-cell and cross-condition settings that better reflect
+inference latency on the CPU. The number of parameters can be used                     the variability encountered in real-world applications. In addition, a
+to quantify the memory cost of the model, while the FLOPs can be used
+                                                                                       more systematic sensitivity analysis over 𝑑𝑚𝑖𝑛 would be beneficial for
+to quantify the computational cost of the model. The calculation of
+                                                                                       the implementation of the proposed framework. Still, the relatively
+the FLOPs and the average inference latency is based on a hypothet-
+                                                                                       large MAX in the deep-degradation region suggests that further valida-
+ical input voltage time series of length 300, just like in the previous
+experiments.                                                                           tion and safety-oriented calibration are required before deployment. In
+    As shown in Table 6, the proposed CNN-GRU model contains 97473                     particular, uncertainty-aware extensions could help identify predictions
+trainable parameters, corresponding to a model size of only 384.55 KB.                 in poorly labeled or deeply degraded regions where the model may be
+For an input CC voltage sequence with a length of 300, one forward                     less reliable, and could therefore make the framework more suitable
+pass requires 4.3763 × 106 FLOPs. The measured average inference                       for safety-critical BMS deployment. Considering the practical motiva-
+latency on a general-purpose CPU is 15.323 ms. This value should be                    tion and the encouraging experimental results, we believe this work
+interpreted as a reference measurement rather than a direct estimate                   could shed new light on label-efficient SOH estimation of lithium-ion
+of the latency on an automotive BMS microcontroller, where the avail-                  batteries, addressing a practical need in battery management.
+able computational resources are typically more limited. Nevertheless,
+SOH estimation is usually a low-frequency diagnostic task and does
+not require the millisecond-level update rate needed by typical safety
+                                                                                       Abbreviations
+protection functions. Therefore, the relatively small parameter count
+and moderate FLOPs suggest that the deployed inference model is
+computationally lightweight, especially for resource-capable onboard                      The following abbreviations are used in this manuscript:
+computing units or cloud-assisted BMS platforms. Further benchmark-
+ing on target embedded BMS hardware is still required before practical
+                                                                                        BMS                  Battery Management System
+deployment.
+                                                                                        BOL                  Beginning of Life
+                                                                                        CALCE                Center for Advanced Life Cycle Engineering
+5. Conclusion
+                                                                                        CC                   Constant Current
+                                                                                        CV                   Constant Voltage
+    An accurate estimation of SOH underpins a safe and optimized                        CNN                  Convolutional Neural Network
+use of the battery system. Although compelling, data-driven SOH es-                     DNN                  Deep Neural Network
+timation models rely on large amounts of high-quality labeled cycling                   ECM                  Equivalent Circuit Model
+data, where the SOH labels are typically obtained through standardized                  EKF                  Extended Kalman Filter
+checkup tests that cover the entire lifespan of the batteries under con-                EOL                  End of Life
+trolled conditions. However, in practical application scenarios, battery                EV                   Electric Vehicle
+aging data often face the problem of label sparsity in both quantity and                FC                   Fully Connected
+coverage due to the time-consuming and costly nature of such lifespan-                  FLOPs                Floating-Point Operations
+wide calibration tests, while large volumes of unlabeled operational                    GRU                  Gated Recurrent Unit
+cycling data are available. Therefore, in this work, we propose a                       ICA                  Incremental Capacity Analysis
+degradation-aligned SSL framework that learns aging-consistent repre-                   LAM                  Loss of Active Material
+sentations from unlabeled CC charging curves through a cycle-order                      LCO                  Lithium Cobalt Oxide
+ranking objective as the pretext task for pretraining, thereby enabling                 LLI                  Loss of Lithium Inventory
+robust SOH estimation after fine-tuning on only a limited amount of                     LSTM                 Long Short-Term Memory
+labeled data for practical scenarios where data labels are sparse in                    MAD                  Median Absolute Deviation
+both quantity and coverage. In addition, we develop a CNN-GRU model                     MAE                  Mean Absolute Error
+that extracts local patterns from charging curves via convolutional                     MAX                  Maximum Absolute Error
+layers and then integrates these features sequentially through recurrent                MLP                  Multi-Layer Perceptron
+units for accurate SOH estimation as well as self-supervised pretraining.               NASA                 National Aeronautics and Space Administration
+Comprehensive experiments are conducted on the CALCE battery aging                      ReLU                 Rectified Linear Unit
+dataset to evaluate the model performance after self-supervised pre-                    RMSE                 Root Mean Square Error
+training and after fine-tuning on sparsely labeled data. Test results not               RNN                  Recurrent Neural Network
+only demonstrate that the proposed ranking-based SSL approach proves                    RUL                  Remaining Useful Life
+to endow the pretrained model with degradation awareness from un-                       SL                   Supervised Learning
+labeled data, where Spearman’s correlation coefficients between the                     SOC                  State of Charge
+learned aging scores and the ground-truth SOHs are extremely close                      SOH                  State of Health
+to −1, but also showcase that the proposed SSL-Rank model can carry                     SSL                  Self-Supervised Learning
+out accurate, robust SOH estimation after fine-tuning, even when only                   SSL-MO               Multi-Objective SSL
+an extremely limited amount of 1% of unevenly distributed labeled                       SSL-Rank             Ranking-Based SSL
+training data is available, where an MAE of 1.718% and an RMSE of                       SSL-Recon            Reconstruction-Based SSL
+2.329% can be achieved on the test cell. In addition, in-depth analyses                 TPE                  Tree-Structured Parzen Estimator
+are presented regarding the influences of label distribution of battery                 UKF                  Unscented Kalman Filter
+
+                                                                                  17
+J. Yao and J. Kowal                                                                                                                                  Energy and AI 26 (2026) 100884
+
+
+CRediT authorship contribution statement                                                      [15] Camargos PH, Dos Santos PHJ, Dos Santos IR, Ribeiro GS, Caetano RE. Perspec-
+                                                                                                   tives on Li-ion battery categories for electric vehicle applications: A review of
+                                                                                                   state of the art. Int J Energy Res 2022;46(13):19258–68. http://dx.doi.org/10.
+    Jiaqi Yao: Writing – review & editing, Writing – original draft,
+                                                                                                   1002/er.7993.
+Visualization, Validation, Software, Resources, Methodology, Investiga-                       [16] S. Rangarajan S, Sunddararaj SP, Sudhakar A, Shiva CK, Subramaniam U,
+tion, Formal analysis, Data curation, Conceptualization. Julia Kowal:                              Collins ER, Senjyu T. Lithium-ion batteries—The crux of electric vehicles with
+Writing – review & editing, Supervision.                                                           opportunities and challenges. Clean Technol 2022;4(4):908–30. http://dx.doi.
+                                                                                                   org/10.3390/cleantechnol4040056.
+                                                                                              [17] Diao W, Jiang J, Zhang C, Liang H, Pecht M. Energy state of health estimation
+Declaration of competing interest                                                                  for battery packs based on the degradation and inconsistency. Energy Procedia
+                                                                                                   2017;142:3578–83. http://dx.doi.org/10.1016/j.egypro.2017.12.248.
+                                                                                              [18] Yao J, Zhao H, Kowal J. Fast-adaptive early-stage remaining useful life prediction
+    The authors declare that they have no known competing finan-
+                                                                                                   of lithium-ion batteries with meta-learning. J Power Sources 2025;660:238569.
+cial interests or personal relationships that could have appeared to                               http://dx.doi.org/10.1016/j.jpowsour.2025.238569.
+influence the work reported in this paper.                                                    [19] Jin S, Sui X, Huang X, Wang S, Teodorescu R, Stroe D-I. Overview of machine
+                                                                                                   learning methods for lithium-ion battery remaining useful lifetime prediction.
+                                                                                                   Electronics 2021;10(24):3126. http://dx.doi.org/10.3390/electronics10243126.
+Acknowledgment                                                                                [20] Demirci O, Taskin S, Schaltz E, Acar Demirci B. Review of battery state
+                                                                                                   estimation methods for electric vehicles-Part II: SOH estimation. J Energy Storage
+   We thank the High-Performance Computing Cluster of TU Berlin                                    2024;96:112703. http://dx.doi.org/10.1016/j.est.2024.112703.
+ZECM for the GPU resources and the Open Access Publication Fund                               [21] Xiong R, Li L, Tian J. Towards a smarter battery management system: A
+                                                                                                   critical review on battery state of health monitoring methods. J Power Sources
+of TU Berlin for the support.                                                                      2018;405:18–29. http://dx.doi.org/10.1016/j.jpowsour.2018.10.019.
+                                                                                              [22] Rezvanizaniani SM, Liu Z, Chen Y, Lee J. Review and recent advances in battery
+                                                                                                   health monitoring and prognostics technologies for electric vehicle (EV) safety
+                                                                                                   and mobility. J Power Sources 2014;256:110–24. http://dx.doi.org/10.1016/j.
+Data availability
+                                                                                                   jpowsour.2014.01.085.
+                                                                                              [23] Chen L, Lü Z, Lin W, Li J, Pan H. A new state-of-health estimation method for
+   The public dataset utilized in this work can be accessed through                                lithium-ion batteries through the intrinsic relationship between ohmic internal
+Ref. [59].                                                                                         resistance and capacity. Measurement 2018;116:586–95. http://dx.doi.org/10.
+                                                                                                   1016/j.measurement.2017.11.016.
+                                                                                              [24] Hu X, Jiang J, Cao D, Egardt B. Battery health prognosis for electric vehicles
+                                                                                                   using sample entropy and sparse Bayesian predictive modeling. IEEE Trans Ind
+References                                                                                         Electron 2015. http://dx.doi.org/10.1109/TIE.2015.2461523, 1–1.
+                                                                                              [25] Ng KS, Moo C-S, Chen Y-P, Hsieh Y-C. Enhanced Coulomb counting method
+ [1] Hassan Q, Viktor P, J. Al-Musawi T, Mahmood Ali B, Algburi S, Alzoubi HM,                     for estimating state-of-charge and state-of-health of lithium-ion batteries. Appl
+     Khudhair Al-Jiboory A, Zuhair Sameen A, Salman HM, Jaszczur M. The re-                        Energy 2009;86(9):1506–11. http://dx.doi.org/10.1016/j.apenergy.2008.11.021.
+     newable energy role in the global energy transformations. Renew Energy Focus             [26] Li X, Jiang J, Wang LY, Chen D, Zhang Y, Zhang C. A capacity model based
+     2024;48:100545. http://dx.doi.org/10.1016/j.ref.2024.100545.                                  on charging process for state of health estimation of lithium ion batteries. Appl
+ [2] Lin B, Li Z. Towards world’s low carbon development: The role of clean                        Energy 2016;177:537–43. http://dx.doi.org/10.1016/j.apenergy.2016.05.109.
+     energy. Appl Energy 2022;307:118160. http://dx.doi.org/10.1016/j.apenergy.               [27] Wang J, Liu P, Hicks-Garner J, Sherman E, Soukiazian S, Verbrugge M,
+     2021.118160.                                                                                  Tataria H, Musser J, Finamore P. Cycle-life model for graphite-LiFePO4 cells. J
+ [3] Olabi A, Abdelkareem MA. Renewable energy and climate change. Renew Sustain                   Power Sources 2011;196(8):3942–8. http://dx.doi.org/10.1016/j.jpowsour.2010.
+     Energy Rev 2022;158:112111. http://dx.doi.org/10.1016/j.rser.2022.112111.                     11.134.
+ [4] Feng Z, Yan B, Shen X, Zhang F, Tariq Z, Ouyang W, Han Z. A hybrid                       [28] Safari M, Delacourt C. Simulation-based analysis of aging phenomena in a
+     CNN-transformer surrogate model for the multi-objective robust optimization                   commercial graphite/LiFePO4 cell. J Electrochem Soc 2011;158(12):A1436. http:
+     of geological carbon sequestration. Adv Water Resour 2025;196:104897. http:                   //dx.doi.org/10.1149/2.103112jes.
+     //dx.doi.org/10.1016/j.advwatres.2025.104897.                                            [29] Christensen J, Newman J. A mathematical model for the lithium-ion negative
+ [5] Roga S, Bardhan S, Kumar Y, Dubey SK. Recent technology and chal-                             electrode solid electrolyte interphase. J Electrochem Soc 2004;151(11):A1977.
+     lenges of wind energy generation: A review. Sustain Energy Technol Assess                     http://dx.doi.org/10.1149/1.1804812.
+     2022;52:102239. http://dx.doi.org/10.1016/j.seta.2022.102239.                            [30] Kim I-S. A technique for estimating the state of health of lithium bat-
+ [6] Pourasl HH, Barenji RV, Khojastehnezhad VM. Solar energy status in the world:                 teries through a dual-sliding-mode observer. IEEE Trans Power Electron
+     A comprehensive review. Energy Rep 2023;10:3474–93. http://dx.doi.org/10.                     2010;25(4):1013–22. http://dx.doi.org/10.1109/TPEL.2009.2034966.
+                                                                                              [31] Hosseininasab S, Lin C, Pischinger S, Stapelbroek M, Vagnoni G. State-of-health
+     1016/j.egyr.2023.10.022.
+                                                                                                   estimation of lithium-ion batteries for electrified vehicles using a reduced-order
+ [7] Xie J, Li Y-Z. Telemetry-driven physics-informed prediction for on-orbit thermal–
+                                                                                                   electrochemical model. J Energy Storage 2022;52:104684. http://dx.doi.org/10.
+     electrical performance of solar panels in satellite power system. Aerosp Sci
+                                                                                                   1016/j.est.2022.104684.
+     Technol 2026;177:112268. http://dx.doi.org/10.1016/j.ast.2026.112268.
+                                                                                              [32] Plett GL. Extended Kalman filtering for battery management systems of LiPB-
+ [8] Yao J, Droese D, Kowal J. Joint online estimation of state of charge and internal
+                                                                                                   based HEV battery packs. J Power Sources 2004;134(2):277–92. http://dx.doi.
+     temperature of lithium-ion batteries with multi-task learning. J Energy Storage
+                                                                                                   org/10.1016/j.jpowsour.2004.02.033.
+     2026;155:121468. http://dx.doi.org/10.1016/j.est.2026.121468.
+                                                                                              [33] Liu S, Dong X, Yu X, Ren X, Zhang J, Zhu R. A method for state of
+ [9] Niu H, Zhang N, Lu Y, Zhang Z, Li M, Liu J, Zhang N, Song W, Zhao Y, Miao Z.
+                                                                                                   charge and state of health estimation of lithium-ion battery based on adaptive
+     Strategies toward the development of high-energy-density lithium batteries. J
+                                                                                                   unscented Kalman filter. Energy Rep 2022;8:426–36. http://dx.doi.org/10.1016/
+     Energy Storage 2024;88:111666. http://dx.doi.org/10.1016/j.est.2024.111666.
+                                                                                                   j.egyr.2022.09.093.
+[10] Horiba T, Maeshima T, Matsumura T, Koseki M, Arai J, Muranaka Y. Ap-                     [34] Schwunk S, Armbruster N, Straub S, Kehl J, Vetter M. Particle filter for state
+     plications of high power density lithium ion batteries. J Power Sources                       of charge and state of health estimation for lithium–Iron phosphate batteries. J
+     2005;146(1–2):107–10. http://dx.doi.org/10.1016/j.jpowsour.2005.03.205.                       Power Sources 2013;239:705–10. http://dx.doi.org/10.1016/j.jpowsour.2012.10.
+[11] Nasajpour-Esfahani N, Garmestani H, Bagheritabar M, Jasim DJ, Toghraie D,                     058.
+     Dadkhah S, Firoozeh H. Comprehensive review of lithium-ion battery materials             [35] Ren Z, Du C. A review of machine learning state-of-charge and state-of-health
+     and development challenges. Renew Sustain Energy Rev 2024;203:114783. http:                   estimation algorithms for lithium-ion batteries. Energy Rep 2023;9:2993–3021.
+     //dx.doi.org/10.1016/j.rser.2024.114783.                                                      http://dx.doi.org/10.1016/j.egyr.2023.01.108.
+[12] Zhang J, Huang H, Zhang G, Dai Z, Wen Y, Jiang L. Cycle life studies of                  [36] Xia B, Ye M, Wei M, Wang Q, Lian G, Li Y. SOH estimation of lithium-ion
+     lithium-ion power batteries for electric vehicles: A review. J Energy Storage                 batteries with local health indicators in multi-stage fast charging protocols.
+     2024;93:112231. http://dx.doi.org/10.1016/j.est.2024.112231.                                  Energy 2025;334:137617. http://dx.doi.org/10.1016/j.energy.2025.137617.
+[13] Liang Y, Zhao C-Z, Yuan H, Chen Y, Zhang W, Huang J-Q, Yu D, Liu Y,                      [37] Chen Z, Peng Y, Shen J, Zhang Q, Liu Y, Zhang Y, Xia X, Liu Y. State
+     Titirici M-M, Chueh Y-L, Yu H, Zhang Q. A review of rechargeable batteries for                of health estimation for lithium-ion batteries based on fragmented charging
+     portable electronic devices. InfoMat 2019;1(1):6–32. http://dx.doi.org/10.1002/               data and improved gated recurrent unit neural network. J Energy Storage
+     inf2.12000.                                                                                   2025;115:115952. http://dx.doi.org/10.1016/j.est.2025.115952.
+[14] Zubi G, Dufo-López R, Carvalho M, Pasaoglu G. The lithium-ion battery: State             [38] Xia Z, Qahouq JAA. Lithium-ion battery ageing behavior pattern characteri-
+     of the art and future perspectives. Renew Sustain Energy Rev 2018;89:292–308.                 zation and state-of-health estimation using data-driven method. IEEE Access
+     http://dx.doi.org/10.1016/j.rser.2018.03.002.                                                 2021;9:98287–304. http://dx.doi.org/10.1109/ACCESS.2021.3092743.
+
+
+                                                                                         18
+J. Yao and J. Kowal                                                                                                                                Energy and AI 26 (2026) 100884
+
+
+[39] Zhang S, Zhai B, Guo X, Wang K, Peng N, Zhang X. Synchronous estimation                 [49] Chen H, Wang Y, Lagadec B, Dantcheva A, Bremond F. Joint generative and
+     of state of health and remaining useful lifetime for lithium-ion battery using               contrastive learning for unsupervised person re-identification. In: 2021 IEEE/CVF
+     the incremental capacity and artificial neural networks. J Energy Storage                    conference on computer vision and pattern recognition (CVPR). Nashville,
+     2019;26:100951. http://dx.doi.org/10.1016/j.est.2019.100951.                                 TN, USA: IEEE; 2021, p. 2004–13. http://dx.doi.org/10.1109/CVPR46437.2021.
+[40] You G-W, Park S, Oh D. Diagnosis of electric vehicle batteries using recurrent               00204.
+     neural networks. IEEE Trans Ind Electron 2017;64(6):4885–93. http://dx.doi.org/         [50] Qi Z, Dong R, Fan G, Ge Z, Zhang X, Ma K, Yi L. Contrast with reconstruct:
+     10.1109/TIE.2017.2674593.                                                                    Contrastive 3D representation learning guided by generative pretraining. 2023,
+[41] Fan Y, Xiao F, Li C, Yang G, Tang X. A novel deep learning framework for state               http://dx.doi.org/10.48550/arXiv.2302.02318, arXiv:2302.02318.
+     of health estimation of lithium-ion battery. J Energy Storage 2020;32:101741.           [51] Gidaris S, Singh P, Komodakis N. Unsupervised representation learning by
+     http://dx.doi.org/10.1016/j.est.2020.101741.                                                 predicting image rotations. 2018, http://dx.doi.org/10.48550/arXiv.1803.07728,
+[42] Jaiswal A, Babu AR, Zadeh MZ, Banerjee D, Makedon F. A survey on contrastive                 arXiv:1803.07728.
+     self-supervised learning. Technologies 2020;9(1):2. http://dx.doi.org/10.3390/          [52] Agrawal P, Carreira J, Malik J. Learning to see by moving. 2015, http://dx.doi.
+     technologies9010002.                                                                         org/10.48550/arXiv.1505.01596, arXiv:1505.01596.
+[43] Liu X, Zhang F, Hou Z, Mian L, Wang Z, Zhang J, Tang J. Self-supervised                 [53] Che Y, Zheng Y, Sui X, Teodorescu R. Boosting battery state of health estimation
+     learning: Generative or contrastive. IEEE Trans Knowl Data Eng 2021. http:                   based on self-supervised learning. J Energy Chem 2023;84:335–46. http://dx.doi.
+     //dx.doi.org/10.1109/TKDE.2021.3090866, 1–1.                                                 org/10.1016/j.jechem.2023.05.034.
+[44] Gui J, Chen T, Zhang J, Cao Q, Sun Z, Luo H, Tao D. A survey on self-supervised         [54] Wang T, Ma Z, Zou S, Chen Z, Wang P. Lithium-ion battery state-of-health
+     learning: Algorithms, applications, and future trends. IEEE Trans Pattern                    estimation: A self-supervised framework incorporating weak labels. Appl Energy
+     Anal Mach Intell 2024;46(12):9052–71. http://dx.doi.org/10.1109/TPAMI.2024.                  2024;355:122332. http://dx.doi.org/10.1016/j.apenergy.2023.122332.
+     3415112.                                                                                [55] Liang Q, Zhang M, Jin Y, Xia L, Liu C, Zhang T. Multi-level contrastive
+[45] Devlin J, Chang M-W, Lee K, Toutanova K. BERT: Pre-training of deep bidi-                    self-supervised learning with dynamic spectral-temporal embedding for state-of-
+     rectional transformers for language understanding. 2019, http://dx.doi.org/10.               health estimation of lithium-ion battery with limited labeled data. IEEE Trans
+     48550/arXiv.1810.04805, arXiv:1810.04805.                                                    Instrum Meas 2025. http://dx.doi.org/10.1109/TIM.2025.3614866, 1–1.
+[46] Brown TB, Mann B, Ryder N, Subbiah M, Kaplan J, Dhariwal P, Neelakantan A,              [56] Lecun Y, Bottou L, Bengio Y, Haffner P. Gradient-based learning applied to
+     Shyam P, Sastry G, Askell A, Agarwal S, Herbert-Voss A, Krueger G, Henighan T,               document recognition. Proc IEEE 1998;86(11):2278–324. http://dx.doi.org/10.
+     Child R, Ramesh A, Ziegler DM, Wu J, Winter C, Hesse C, Chen M, Sigler E,                    1109/5.726791.
+     Litwin M, Gray S, Chess B, Clark J, Berner C, McCandlish S, Radford A,                  [57] Cho K, van Merrienboer B, Gulcehre C, Bahdanau D, Bougares F, Schwenk H,
+     Sutskever I, Amodei D. Language models are few-shot learners. 2020, http:                    Bengio Y. Learning phrase representations using RNN encoder-decoder for
+     //dx.doi.org/10.48550/arXiv.2005.14165, arXiv:2005.14165.                                    statistical machine translation. 2014, http://dx.doi.org/10.48550/ARXIV.1406.
+[47] Wu Z, Xiong Y, Yu SX, Lin D. Unsupervised feature learning via non-parametric                1078.
+     instance discrimination. In: 2018 IEEE/CVF conference on computer vision and            [58] Hochreiter S, Schmidhuber J. Long short-term memory. Neural Comput
+     pattern recognition. Salt Lake City, UT: IEEE; 2018, p. 3733–42. http://dx.doi.              1997;9(8):1735–80. http://dx.doi.org/10.1162/neco.1997.9.8.1735.
+     org/10.1109/CVPR.2018.00393.                                                            [59] Battery Data |Center for Advanced Life Cycle Engineering. https://calce.umd.
+[48] Chen T, Kornblith S, Norouzi M, Hinton G. A simple framework for contrastive                 edu/battery-data.
+     learning of visual representations. 2020, http://dx.doi.org/10.48550/arXiv.2002.        [60] Zhang H, Gui X, Zheng S, Lu Z, Li Y, Bian J. BatteryML: An open-source platform
+     05709, arXiv:2002.05709.                                                                     for machine learning on battery degradation. 2023, http://dx.doi.org/10.48550/
+                                                                                                  ARXIV.2310.14714.
+                                                                                             [61] Akiba T, Sano S, Yanase T, Ohta T, Koyama M. Optuna: A next-generation hy-
+                                                                                                  perparameter optimization framework. 2019, http://dx.doi.org/10.48550/arXiv.
+                                                                                                  1907.10902, arXiv:1907.10902.
+
+
+
+
+                                                                                        19
+

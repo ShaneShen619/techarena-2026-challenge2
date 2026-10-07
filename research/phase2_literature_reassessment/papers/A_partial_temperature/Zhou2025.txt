@@ -1,0 +1,342 @@
+Learning Li-ion battery health and degradation modes from data with aging-aware circuit models 
+Title: 
+Content selection saved. Describe the issue below: Description: 
+arXiv is now an independent nonprofit! Learn more × 
+
+License: arXiv.org perpetual non-exclusive license 
+arXiv:2407.06639v5 [eess.SY] 30 Jun 2025 
+
+
+[orcid=0009-0000-1783-8166] † † highlights: An aging-aware equivalent circuit model is proposed for battery health estimation
+It estimates capacity and resistance only from operational data without labels
+Changes of open-circuit voltage are strongly reflected in resistance estimation
+It may enable an in operando estimation of differential voltage curves 
+Learning Li-ion battery health and
+degradation modes from data with
+aging-aware circuit models 
+Zihao Zhou zihao.zhou@eng.ox.ac.uk organization=Department of Engineering Science, University of Oxford,
+city=Oxford,
+postcode=OX1 3PJ,
+state=Oxford,
+country=UK Antti Aitio antti.aitio@gmail.com David Howey organization=The Faraday Institution,
+city=Didcot,
+postcode=OX11 0RA,
+country=UK david.howey@eng.ox.ac.uk 
+Abstract 
+Non-invasive estimation of Li-ion battery state-of-health from operational data is valuable for battery applications, but remains challenging. Pure model-based methods may suffer from inaccuracy and long-term instability of parameter estimates, whereas pure data-driven methods rely heavily on training data quality and quantity, causing lack of generality when extrapolating to unseen cases. We apply an aging-aware equivalent circuit model for health estimation, combining the flexibility of data-driven techniques within a model-based approach. A simplified electrical model with voltage source and resistor incorporates Gaussian process regression to learn capacity fade over time and also the dependence of resistance on operating conditions and time. The approach was validated against two datasets and shown to give accurate performance with less than 1% relative root mean square error (RMSE) in capacity and less than 2 % \% mean absolute percentage error (MAPE). Critically, we show that changes from the open circuit voltage versus state-of-charge function will strongly influence the learnt resistance. We use this feature to further estimate in operando differential voltage curves from operational data. 
+keywords Battery,Health,Estimation,Gaussian process ,State space ,Equivalent circuit † † corresponding: Corresponding author 
+
+1 Introduction 
+
+Lithium-ion batteries play an important role in the transition to clean energy. Demand is increasing rapidly for grid storage, electric vehicle and home energy storage applications ( Tsiropoulos et al., 2018 ) . One of the most crucial challenges for batteries is estimating their state of health (SOH). Accurate estimation of SOH improves lifetime, system safety, and costs of warranties and maintenance. Many studies ( Hua et al., 2021 ; Shahjalal et al., 2022 ; Zhou et al., 2020 ) also discuss the importance of dealing with retired batteries, the number of which will increase drastically in the near future. Estimating the evolution of SOH from historical usage data is crucial for enabling possible ‘second-life’ applications that rely on accurate knowledge of battery residual value. 
+
+A commonly used SOH indicator, discharge capacity, normally requires the battery to undergo a low-rate constant-current discharge from 100% to 0% state of charge (SOC). This is time consuming, and therefore often not undertaken in real-world applications. Therefore, extensive studies have been done on faster capacity estimation methods ( Berecibar et al., 2016 ; Wang et al., 2020 ) . These are usually categorised into model-driven and data-driven approaches. Model-driven methods use a specific battery model, such as an electrochemical model or electrical equivalent circuit model (ECM), and update the parameters by repeated fitting as the battery ages ( Plett, 2004 ; Gao et al., 2021 ) . Electrochemical models usually need half-cell test data for parameterization and tend to suffer from parameter identifiability problems ( Lu et al., 2021 ; Miguel et al., 2021 ) . Equivalent-circuit models, the focus in this paper, have fewer parameters but are less connected to physical processes. Recursive state estimation techniques, such as extended Kalman filters ( Wassiliadis et al., 2018 ) and particle filters ( Wei et al., 2017a ) , are often adopted for co-estimation of model states and parameters. 
+
+On the other hand, data-driven methods for capacity estimation try to map from carefully selected features to corresponding capacity values ( Li et al., 2019 ) . Several features indicative of battery usage and aging may be extracted from cell voltage, current, and temperature measurements ( Severson et al., 2019 ; Greenbank and Howey, 2021 ; Li et al., 2024 ) . Then, machine learning models such as support vector machines ( Feng et al., 2019 ) , random forests ( Li et al., 2018 ) , neural networks ( Li et al., 2021 ) , and Gaussian processes ( Richardson et al., 2018 ) , have been used to capture the relationship between these features and capacity. Depending on the choice of inputs, data-driven models can be used either for estimating present SOH, or predicting the future SOH. If the learnt mapping is between input features and future capacity values, these models can be directly used for forecasting. The performance of machine learning models for battery health is largely determined by the breadth, quantity and accuracy of the data used for model training. 
+
+Moreover, capacity fade only represents one aspect of battery degradation—increasing impedance (often just represented by resistance) also plays an essential role in battery health ( Fu et al., 2021 ) , leading to power fade, which is often correlated with capacity fade. Impedance values may be easier to estimate from cycling data and field data, where capacity measurements are very challenging ( Pozzato et al., 2023 ; Sulzer et al., 2021 ) . Many SOH estimation works treat impedance as a scalar or rely on a look-up table that needs to be calibrated in standard reference tests ( Plett, 2004 ; Locorotondo et al., 2021 ) . However, many experimental works show that impedance does change with operating conditions ( Waag et al., 2013 ; Schönleber et al., 2017 ) . 
+
+In this work, we use an aging-aware electrical equivalent circuit model to estimate both capacity and operando battery impedance (resistance) from cycling data. The model parameters are described as functions of aging time and operating conditions (SOC and applied current in this case) and these functions are learned from data using Gaussian process regression. The model builds on former work ( Aitio et al., 2023 ) but with a simpler ECM emphasizing the importance of the estimated resistance. Results show that the learned resistance function is strongly impacted by the assumptions about the battery open circuit voltage (OCV) versus SOC function. Specifically, aging-induced shape changes in OCV-SOC function are revealed indirectly through the learned resistance function. This leads to a method to estimate differential voltage ( d ​ V / d ​ Q dV/dQ ) curves indirectly from impedance data. Open-source datasets from two batteries with different cycling conditions were used to validate model performance. Our method not only gives accurate performance with less than 1 % \% relative RMSE and less than 2 % 2\% MAPE for capacity estimation, but also enables d ​ V / d ​ Q dV/dQ estimation. Differential voltage analysis enables deeper understanding of battery aging by quantifying metrics such as loss of lithium inventory (LLI) and loss of active material in each electrode ( LAM n \text{LAM}_{\text{n}} , LAM p \text{LAM}_{\text{p}} ) ( Dubarry et al., 2012 ; Dubarry and Anseán, 2022 ) . 
+
+2 Methodology 
+
+2.1 State space formulation of Gaussian processes 
+
+In this work Gaussian processes (GPs) are used to fit functions to data. Full details of GPs are documented in several books and papers, for example Williams and Rasmussen Williams and Rasmussen (2006) —we give only a brief introduction here. A Gaussian process (GP) is defined as a distribution of functions over input 𝐱 \mathbf{x} , characterised by a mean and covariance, with the covariance defined by a kernel function k ⁡ ( 𝐱 , 𝐱 ′ ) k(\mathbf{x},\mathbf{x}^{\prime}) , 
+f ⁡ ( 𝐱 ) \displaystyle f(\mathbf{x}) ∼ 𝒢 ​ 𝒫 ​ ( m ⁡ ( 𝐱 ) , k ⁡ ( 𝐱 , 𝐱 ′ ) ) . \displaystyle\sim\mathcal{G}\mathcal{P}\left(m(\mathbf{x}),k\left(\mathbf{x},\mathbf{x}^{\prime}\right)\right). (1) 
+
+When this input includes both locations in space and time 𝐱 = ( s , t ) \mathbf{x}=(s,t) , it is often called a spatial-temporal Gaussian process Solin et al. (2016) , 
+f ⁡ ( s , t ) ∼ 𝒢 ​ 𝒫 ​ ( m ⁡ ( s , t ) , k ⁡ ( ( s , t ) , ( s ′ , t ′ ) ) ) . f(s,t)\sim\mathcal{G}\mathcal{P}\left(m(s,t),k\left((s,t),(s^{\prime},t^{\prime})\right)\right). (2) 
+Without loss of generality, the prior mean function m ⁡ ( 𝐱 ) m(\mathbf{x}) may be set to zero. By assuming a measurement noise term ϵ \epsilon , the mapping between 𝐱 \mathbf{x} and 𝐲 \mathbf{y} can be expressed as 
+y = f ⁡ ( 𝐱 ) + ϵ , ϵ ∼ 𝒩 ⁡ ( 0 , σ n 2 ​ 𝐈 ) . \mathrm{y}=f(\mathbf{x})+\mathbf{\epsilon},\mathbf{\epsilon}\sim\mathcal{N}\left(0,\sigma_{n}^{2}\mathbf{I}\right). (3) 
+To make predictions, we require the posterior predictive distribution at test samples 𝐗 ∗ \mathbf{X}^{*} based on observations from a labeled training set of input-output data 𝒟 = { ( 𝐱 i , y i ) } i = 1 N \mathcal{D}=\left\{\left(\mathbf{x}_{i},y_{i}\right)\right\}_{i=1}^{N} . In this case, the analytical solution is given by ( Williams and Rasmussen, 2006 ) , 
+p ⁡ ( 𝐲 ∗ ∣ X ∗ , X , 𝐲 ) = 𝒩 ⁡ ( 𝐲 ∗ ∣ 𝐦 ∗ , Σ ∗ ) , p\left(\mathbf{y}^{*}\mid X^{*},X,\mathbf{y}\right)=\mathcal{N}\left(\mathbf{y}^{*}\mid\mathbf{m}^{*},\Sigma^{*}\right), (4) 
+where 
+𝐦 ∗ \displaystyle\mathbf{m}^{*} = 𝐊 X , ∗ T ​ [ 𝐊 X + σ n 2 ​ 𝐈 ] − 1 ​ 𝐲 \displaystyle=\mathbf{K}_{X,*}^{T}\left[\mathbf{K}_{X}+\sigma_{n}^{2}\mathbf{I}\right]^{-1}\mathbf{y} (5) 
+Σ ∗ \displaystyle\Sigma^{*} = 𝐊 ∗ , ∗ − 𝐊 X , ∗ T ​ [ 𝐊 X + σ n 2 ​ 𝐈 ] − 1 ​ 𝐊 X , ∗ , \displaystyle=\mathbf{K}_{*,*}-\mathbf{K}_{X,*}^{T}\left[\mathbf{K}_{X}+\sigma_{n}^{2}\mathbf{I}\right]^{-1}\mathbf{K}_{X,*}, 
+and the kernel matrices are simplified as 𝐊 X = k ⁡ ( 𝐗 , 𝐗 ) \mathbf{K}_{X}=k(\mathbf{X},\mathbf{X}) , 𝐊 X , ∗ = k ⁡ ( 𝐗 , 𝐗 ∗ ) \mathbf{K}_{X,*}=k(\mathbf{X},\mathbf{X}^{*}) . For a zero-mean GP, the model is defined by its training data and the selected kernel function k ⁡ ( 𝐱 , 𝐱 ′ ) k(\mathbf{x},\mathbf{x}^{\prime}) including fitted hyperparameters. The negative log maximum likelihood (NLML) estimates of kernel hyperparameters θ \mathbf{\theta} are given by 
+NLML = − log ⁡ p ⁡ ( 𝐲 ∣ X , θ ) = \displaystyle\mathrm{NLML}=-\log p(\mathbf{y}\mid X,\theta)= (6) 
+− 1 2 ​ 𝐲 T ​ [ 𝐊 X + σ n 2 ​ 𝐈 ] − 1 ​ 𝐲 − 1 2 ​ log ⁡ | 𝐊 X + σ n 2 | − n 2 ​ log ⁡ 2 ​ π . \displaystyle-\frac{1}{2}\mathbf{y}^{\mathrm{T}}\left[\mathbf{K}_{X}+\sigma_{n}^{2}\mathbf{I}\right]^{-1}\mathbf{y}-\frac{1}{2}\log\left|\mathbf{K}_{X}+\sigma_{n}^{2}\right|-\frac{n}{2}\log 2\pi. 
+
+Large datasets pose challenges for GPs due to the requirement for inversion of an N × N N\times N matrix (equations 5 and 6 ) which scales computationally at 𝒪 ⁡ ( n 3 ) \mathcal{O}\left(n^{3}\right) . To address this, we adopt a state-space formulation of a GP that instead scales linearly with the ‘time’ dimension, 𝒪 ⁡ ( n ) \mathcal{O}\left(n\right) . 
+
+Proposed by Särkkä et al. ( Sarkka et al., 2013 ) and Solin ( Solin et al., 2016 ) , the state-space formulation interprets a spatial-temporal Gaussian process f ⁡ ( s , t ) f(s,t) as the solution to a linear time-invariant stochastic partial differential equation (LTI-SPDE), 
+∂ 𝐱 ⁡ ( s , t ) ∂ t \displaystyle\frac{\partial\mathbf{x}(s,t)}{\partial t} = ℱ ​ 𝐱 ​ ( s , t ) + 𝐋 ​ ω ​ ( s , t ) \displaystyle=\mathcal{F}\mathbf{x}(s,t)+\mathbf{L}\omega(s,t) (7) 
+y t \displaystyle\mathrm{y}_{\mathrm{t}} = ℋ t 𝐱 ( s , t ) + ϵ t , ϵ ∼ 𝒩 ( 0 , σ n 2 ) . \displaystyle=\mathcal{H}_{\mathrm{t}}\mathbf{x}(s,t)+\epsilon_{\mathrm{t}},\quad\epsilon\sim\mathcal{N}\left(0,\sigma_{n}^{2}\right). 
+We can evaluate this system of equations over a finite collection of spatial points of interest { s i } 1 n s \{s_{i}\}_{1}^{n_{\text{s}}} . This results in n s n_{\text{s}} sets of state vectors, ( 𝐱 ⁡ ( s 1 , t ) , 𝐱 ⁡ ( s 2 , t ) , … , 𝐱 ⁡ ( s n s , t ) ) \left(\mathbf{x}\left(s_{1},t\right),\mathbf{x}\left(s_{2},t\right),\ldots,\mathbf{x}\left(s_{n_{s}},t\right)\right) , where each is 
+𝐱 ⁡ ( s i , t ) = [ f ⁡ ( s i , t ) , d ​ f ​ ( s i , t ) d ​ t , … , d ​ f ​ ( s i , t ) p − 1 d ​ t p − 1 ] ⊤ . \mathbf{x}\left(s_{i},t\right)=\left[f\left(s_{i},t\right),\frac{df\left(s_{i},t\right)}{dt},\ldots,\frac{df\left(s_{i},t\right)^{p-1}}{dt^{p-1}}\right]^{\top}. (8) 
+Here, ℱ \mathcal{F} and ℋ \mathcal{H} are linear operators, 𝐋 \mathbf{L} is a dispersion matrix, and ω ⁡ ( x , t ) \omega(\mathrm{x},t) is a spatially resolved white noise process decided by the spatial kernel. The mathematical foundation comes from the Wiener-Khinchin theorem ( Cohen, 1998 ) , which indicates that the GP kernel covariance matrix and the spectral density of a solution process from a LTI-SPDE form a Fourier-transform pair. At a specific spatial point s i s_{i} , all of the time gradient information up to order p − 1 p-1 is maintained and propagated into future, and this propagation occurs for all n s n_{\text{s}} spatial points. The exact value for p p is decided by the selected time kernel. Intuitively, one can view this approach as constructing a LTI system which takes a white noise process as input and generates an output that is the desired Gaussian process. 
+
+To further simplify the problem, we assume kernel separability, 
+k ⁡ ( ( s , t ) , ( s ′ , t ′ ) ) = k ⁡ ( s , s ′ ) ​ k ​ ( t , t ′ ) . k\left((s,t),\left(s^{\prime},t^{\prime}\right)\right)=k\left(s,s^{\prime}\right)k\left(t,t^{\prime}\right). (9) 
+Under this assumption, ℱ \mathcal{F} and ℋ \mathcal{H} become constant matrices 𝐅 \mathbf{F} and 𝐇 \mathbf{H} . As a result, a GP kernel function may be directly mapped to 𝐅 \mathbf{F} , 𝐇 \mathbf{H} and ω ⁡ ( s , t ) \omega(s,t) , defining a corresponding LTI system. The practical implementation of eqn. 7 requires it to have a discretized form, 
+𝐱 k \displaystyle\mathbf{x}_{k} = 𝐀 k − 1 ​ 𝐱 k − 1 + 𝐰 k − 1 \displaystyle=\mathbf{A}_{k-1}\mathbf{x}_{k-1}+\mathbf{w}_{k-1} (10) 
+y k \displaystyle\mathrm{y}_{k} = 𝐇 k 𝐱 k + v k , v k ∼ 𝒩 ( 0 , σ n 2 ) , \displaystyle=\mathbf{H}_{k}\mathbf{x}_{k}+v_{k},\quad v_{k}\sim\mathcal{N}\left(0,\sigma_{n}^{2}\right), 
+where 𝐱 k = [ 𝐱 s 1 , k , 𝐱 s 2 , k , … , 𝐱 s n s , k ] ⊤ \mathbf{x}_{k}=\left[\mathbf{x}_{s_{1},k},\mathbf{x}_{s_{2},k},\ldots,\mathbf{x}_{s_{n_{\text{s}}},k}\right]^{\top} represents a state vector along all n s n_{\text{s}} space locations at time step t k t_{k} , and 𝐀 k = exp ⁡ ( Δ ​ t k ​ 𝐈 n s ⊗ 𝐅 ) \mathbf{A}_{k}=\exp\left(\Delta t_{k}\mathbf{I}_{n_{\text{s}}}\otimes\mathbf{F}\right) is a matrix exponential on 𝐅 \mathbf{F} and time interval Δ ​ t k = t k + 1 − t k \Delta t_{k}=t_{k+1}-t_{k} .
+The Kronecker product here comes from the space discretization. Each space location is propagated in time individually, and correlations in space are captured by the process noise term 𝐰 k − 1 \mathbf{w}_{k-1} which is a zero-mean multivariate GP over the n s n_{\text{s}} space locations with covariance function expressed as, 
+𝐰 k − 1 \displaystyle\mathbf{w}_{k-1} ∼ 𝒢 ​ 𝒫 ​ ( 𝟎 , 𝐊 s ⊗ w k − 1 ) \displaystyle\sim\mathcal{G}\mathcal{P}\left(\mathbf{0},\mathbf{K}_{\text{s}}\otimes w_{k-1}\right) (11) 
+w k − 1 \displaystyle w_{k-1} = ∫ 0 Δ ​ t k 𝐀 k − 1 ​ 𝐋 ​ Q c ​ 𝐋 ⊤ ​ 𝐀 k − 1 ⊤ ​ d τ . \displaystyle=\int_{0}^{\Delta t_{k}}\mathbf{A}_{k-1}\mathbf{L}\mathrm{Q}_{\mathrm{c}}\mathbf{L}^{\top}\mathbf{A}_{k-1}^{\top}\mathrm{d}\tau. 
+Here 𝐊 s \mathbf{K}_{s} is the n s × n s n_{\text{s}}\times n_{\text{s}} covariance matrix of the spatial kernel k ⁡ ( s , s ′ ) k(s,s^{\prime}) at n s n_{\text{s}} locations, and spectral density matrix Q c \mathrm{Q}_{\text{c}} is decided by the temporal kernel k ⁡ ( t , t ′ ) k(t,t^{\prime}) as a mathematical combination of kernel hyperparameters. 
+
+Once the GP is formulated as a discrete-time LTI system, both the estimation of posterior predictive distribution in eqn. 5 and the hyperparameter NLML in eqn. 6 can be achieved recursively using a Kalman filter and Rauch-Tung-Striebel (RTS) smoother ( Särkkä and Svensson, 2023 ) , enabling linear time complexity in forward model runs ( Aitio et al., 2023 ) . 
+
+2.2 Gaussian processes for equivalent circuit models V 0 ​ ( z ) V_{0}(z) R 0 ​ ( z , I , ζ ) R_{0}(z{,}I{,}\zeta) I I V term V_{\text{term}} Figure 1: Equivalent circuit model for Li-ion battery 
+
+As shown in Fig. 1 , a simple ECM is used for modelling the battery dynamics in this work. This approach is similar to the method we used in Aitio et al. Aitio et al. (2023) but simplified. The corresponding mathematical formulation is given as 
+V term \displaystyle V_{\text{term}} = V 0 ​ ( z ) + R 0 ​ ( z , I , ζ ) ​ I \displaystyle=V_{0}\left(z\right)+R_{0}\left(z,I,\zeta\right)I (12) 
+d ​ z d ​ t \displaystyle\frac{\mathrm{d}z}{\mathrm{d}t} = I ​ Q − 1 ​ ( ζ ) \displaystyle=IQ^{-1}\left(\zeta\right) 
+where z z is the SOC, I I is the applied current, and V 0 ​ ( z ) V_{0}(z) represents the OCV-SOC curve, which is often measured at beginning of life and assumed to be fixed over life. Two timescales are included in this ECM, one is the operating timescale ( t t ), which is often at the seconds level. Another is the life-long aging timescale ( ζ \zeta ), which can vary from days to months depending on usage. Although this circuit model is simple, for a high quality commercial cell operated at low rates, the internal overpotentials should be small, and therefore this model produces reasonable results. Even in highly dynamic applications, there are usually still some periods of low-rate operation that could be used for health estimation. 
+
+The variables I I , z z , V term V_{\text{term}} are all functions of t t , unless written in their discrete-time versions that are demarcated with subscripts (e.g. z i z_{i} ). For clarity the time-dependence of the continuous-time variables is assumed, rather than written out in every equation. For simplicity, we use a vector to denote operating conditions, 
+𝐬 = [ z , I ] ⊤ . \mathbf{s}=[z,I]^{\top}. (13) 
+The inverse capacity term Q − 1 Q^{-1} is modeled as a GP over ζ \zeta , while the resistance term R 0 R_{0} is modeled as a GP over 𝐬 \mathbf{s} and ζ \zeta , 
+Q − 1 ​ ( ζ ) \displaystyle Q^{-1}(\zeta) ∼ 𝒢 ​ 𝒫 ​ ( m ⁡ ( ζ ) , k ⁡ ( ζ , ζ ′ ) ) \displaystyle\sim\mathcal{G}\mathcal{P}\left(m(\zeta),k\left(\zeta,\zeta^{\prime}\right)\right) (14) 
+R 0 ​ ( 𝐬 , ζ ) \displaystyle R_{0}\left(\mathbf{s},\zeta\right) ∼ 𝒢 ​ 𝒫 ​ ( m ⁡ ( 𝐬 , ζ ) , k ⁡ ( ( 𝐬 , ζ ) , ( 𝐬 ′ , ζ ′ ) ) ) . \displaystyle\sim\mathcal{G}\mathcal{P}\left(m\left(\mathbf{s},\zeta\right),k\left(\left(\mathbf{s},\zeta\right),\left(\mathbf{s}^{\prime},\zeta^{\prime}\right)\right)\right). 
+Temperature was tightly controlled and consistent for battery samples used in our work, so had little impact on the results. Temperature effects can however be included as another dimension of the operating-condition dependency of R 0 ​ ( s , ζ ) R_{0}(s,\zeta) , where s = [ z , I , T ] s=[z,I,T] Aitio and Howey (2021) . Given the nonzero nature of impedance and capacity, instead of directly modelling R 0 R_{0} and Q Q , we chose to model them each as affine transformations of a zero-mean GP, which is equivalent to setting a nonzero prior mean for impedance and capacity Aitio et al. (2023) . Specifically, Eqns. 14 are written as, 
+Q − 1 ​ ( ζ ) \displaystyle Q^{-1}(\zeta) = q 0 ​ ( 1 + q ​ ( ζ ) ) \displaystyle=q_{0}(1+q(\zeta)) (15) 
+R 0 ​ ( 𝐬 , ζ ) \displaystyle R_{0}\left(\mathbf{s},\zeta\right) = r 0 ​ ( 1 + r ⁡ ( 𝐬 , ζ ) ) \displaystyle=r_{0}\left(1+r\left(\mathbf{s},\zeta\right)\right) 
+q ⁡ ( ζ ) \displaystyle q(\zeta) ∼ 𝒢 ​ 𝒫 ​ ( 0 , k ⁡ ( ζ , ζ ′ ) ) \displaystyle\sim\mathcal{G}\mathcal{P}\left(0,k\left(\zeta,\zeta^{\prime}\right)\right) 
+r ⁡ ( 𝐬 , ζ ) \displaystyle r\left(\mathbf{s},\zeta\right) ∼ 𝒢 ​ 𝒫 ​ ( 0 , k ⁡ ( ( 𝐬 , ζ ) , ( 𝐬 ′ , ζ ′ ) ) ) \displaystyle\sim\mathcal{G}\mathcal{P}\left(0,k\left(\left(\mathbf{s},\zeta\right),\left(\mathbf{s}^{\prime},\zeta^{\prime}\right)\right)\right) 
+where constants r 0 , q 0 r_{0},q_{0} reflect prior assumptions for the values of R 0 , Q − 1 R_{0},Q^{-1} , respectively. In practice, these can be set to the corresponding beginning-of-life (BoL) values. As a Gaussian distribution remains Gaussian under arbitrary affine transformation, R 0 R_{0} and Q − 1 Q^{-1} are still GPs. 
+
+The operating-condition dependency on 𝐬 \mathbf{s} and the life-long aging dependency on ζ \zeta are modelled with different kernels, since we expect that degradation is irreversible, whereas a more general smooth function describes operating-condition dependency, 
+k ⁡ ( ( 𝐬 , ζ ) , ( 𝐬 ′ , ζ ′ ) ) = k Matern32 ​ ( 𝐬 , 𝐬 ′ ) ​ k WV ​ ( ζ , ζ ′ ) k\left(\left(\mathbf{s},\zeta\right),\left(\mathbf{s}^{\prime},\zeta^{\prime}\right)\right)=k_{\text{Matern32 }}\left(\mathbf{s},\mathbf{s}^{\prime}\right)k_{\mathrm{WV}}\left(\zeta,\zeta^{\prime}\right) (16) 
+where k WV k_{\mathrm{WV}} and k Matern32 k_{\mathrm{Matern32}} represent a Wiener velocity (WV) kernel and a Matern ( ν = 3 / 2 \nu=3/2 ) kernel, respectively, so 
+k WV ​ ( ζ , ζ ′ ) = σ ζ 2 ​ ( min 3 ⁡ ( ζ , ζ ′ ) 3 + | ζ − ζ ′ | ​ min 2 ⁡ ( ζ , ζ ′ ) 2 ) \displaystyle k_{\mathrm{WV}}\left(\zeta,\zeta^{\prime}\right)=\sigma_{\zeta}^{2}\left(\frac{\min^{3}\left(\zeta,\zeta^{\prime}\right)}{3}+\left|\zeta-\zeta^{\prime}\right|\frac{\min^{2}\left(\zeta,\zeta^{\prime}\right)}{2}\right) (17) 
+k Matern32 ​ ( 𝐬 , 𝐬 ′ ) = σ s 2 ​ ( 1 + 3 ​ d ) ​ exp ⁡ ( − 3 ​ d ) \displaystyle k_{\text{Matern32 }}\left(\mathbf{s},\mathbf{s}^{\prime}\right)=\sigma_{s}^{2}(1+\sqrt{3}d)\exp(-\sqrt{3}d) 
+d 2 = | 𝐬 − 𝐬 ′ | ⊤ ​ [ l z − 2 0 0 l I − 2 ] ​ | 𝐬 − 𝐬 ′ | . \displaystyle d^{2}=\left|\mathbf{s}-\mathbf{s}^{\prime}\right|^{\top}\left[\begin{array}[]{cc}l_{z}^{-2}&0\\
+0&l_{I}^{-2}\end{array}\right]\left|\mathbf{s}-\mathbf{s}^{\prime}\right|. 
+While stationary kernels eventually converge back to the mean when extrapolated, the WV kernel is a non-stationary kernel that is more suitable for extrapolating aging trends into the future. 
+
+As shown in Fig. 2 , the battery operating dynamics, described by the ECM, and aging dynamics, described by the GPs, are evaluated at two different timescales. While the ECM state ( z z ) changes over seconds during cycling ( t t ), the GPs representing Q − 1 Q^{-1} and R 0 R_{0} may change more slowly, over weeks or months, as a function of cell-aging timescale ζ \zeta . In subsequent sections we will use discrete-time rather than continuous-time dynamics, with the indexes i i and j j denoting the discrete-time variables associated with t t and ζ \zeta , respectively, with the faster discrete time step size defined as Δ ​ t i \Delta t_{i} and the slower step size as Δ ​ ζ j \Delta\zeta_{j} . Figure 2: Modelling the separation of timescales with battery operating dynamics that change quickly (as a function of t t ) vs. aging dynamics that change slowly (as a function of ζ \zeta ) 
+
+The discrete-time state propagation for the ECM is a simple Coulomb counter that can be expressed as 
+z i = z i − 1 + Q − 1 ​ I i ​ Δ ​ t i . z_{i}=z_{i-1}+Q^{-1}I_{i}\Delta t_{i}. (18) 
+The discrete-time propagation for the inverse capacity and resistance parameters, which are GPs, can be written as 
+𝐱 Q − 1 , j \displaystyle\mathbf{x}_{Q^{-1},j} = exp ⁡ ( Δ ​ ζ j ​ 𝐅 WV ) ​ 𝐱 Q − 1 , j − 1 + w j − 1 \displaystyle=\exp\left(\Delta\zeta_{j}\mathbf{F}_{\mathrm{WV}}\right)\mathbf{x}_{Q^{-1},j-1}+w_{j-1} (19) 
+𝐱 R 0 , j \displaystyle\mathbf{x}_{R_{0},j} = exp ⁡ ( Δ ​ ζ j ​ 𝐈 n s ⊗ 𝐅 WV ) ​ 𝐱 R 0 , j − 1 + 𝐰 j − 1 , \displaystyle=\exp\left(\Delta\zeta_{j}\mathbf{I}_{n_{\text{s}}}\otimes\mathbf{F}_{\mathrm{WV}}\right)\mathbf{x}_{R_{0},j-1}+\mathbf{w}_{j-1}, 
+where, for the WV kernel, 𝐅 WV = [ 0 1 0 0 ] \mathbf{F}_{\mathrm{WV}}=\left[\begin{array}[]{ll}0&1\\
+0&0\end{array}\right] represents the discrete-time interval on the lifelong aging scale. Because of the operating condition dependency of R 0 R_{0} , Kronecker products are used to describe the corresponding discretisation in 𝐈 n s ⊗ 𝐅 WV \mathbf{I}_{n_{\text{s}}}\otimes\mathbf{F}_{\mathrm{WV}} and 𝐰 j − 1 \mathbf{w}_{j-1} . In this work, n s = n z ​ n I n_{\text{s}}=n_{z}n_{I} . Specifically, the 0 to 1 SOC range is evenly divided into n z n_{z} discrete SOC levels, while the applied current range (in absolute scale) is evenly divided into n I n_{I} discrete current levels. The process noise terms w j − 1 w_{j-1} and 𝐰 j − 1 \mathbf{w}_{j-1} can be calculated following Eqn. 11 , where Q c \mathrm{Q}_{c} for the WV kernel is σ ζ 2 \sigma_{\zeta}^{2} . 
+
+2.3 Joint estimation of battery states and GPs 
+
+The state covariance initialisation and process noise matrix of the joint system and GP subsystem are summarized as follows: 
+𝐏 joint , 0 = [ P z , 0 0 0 𝐏 GP , 0 ] , 𝐏 GP , 0 = [ 𝐏 Q − 1 , 0 0 0 𝐏 R 0 , 0 ] \displaystyle\mathbf{P}_{\text{joint},0}=\left[\begin{array}[]{cc}\mathrm{P}_{z,0}&0\\
+0&\mathbf{P}_{\text{GP},0}\end{array}\right],\mathbf{P}_{\mathrm{GP},0}=\left[\begin{array}[]{cc}\mathbf{P}_{Q^{-1},0}&0\\
+0&\mathbf{P}_{R_{0},0}\end{array}\right] (20) 
+𝐖 joint = [ W z 0 0 𝐖 GP ] , 𝐖 GP = [ 𝐖 Q − 1 0 0 𝐖 R 0 , ] \displaystyle\mathbf{W}_{\text{joint}}=\left[\begin{array}[]{cc}\mathrm{W}_{z}&0\\
+0&\mathbf{W}_{\text{GP}}\end{array}\right],\mathbf{W}_{\mathrm{GP}}=\left[\begin{array}[]{cc}\mathbf{W}_{Q^{-1}}&0\\
+0&\mathbf{W}_{R_{0}},\end{array}\right] 
+where 
+𝐏 R 0 , 0 = 𝐊 Mat ⊗ 𝐏 ζ 0 , WV , 𝐏 Q − 1 , 0 = 𝐏 ζ 0 , WV \displaystyle\mathbf{P}_{R_{0},0}=\mathbf{K}_{\mathrm{Mat}}\otimes\mathbf{P}_{\zeta_{0},\mathrm{WV}},\quad\mathbf{P}_{Q^{-1},0}=\mathbf{P}_{\zeta_{0},\mathrm{WV}} (21) 
+𝐖 R 0 = 𝐊 Mat ⊗ 𝐖 WV , 𝐖 Q − 1 = 𝐖 WV . \displaystyle\mathbf{W}_{R_{0}}=\mathbf{K}_{\mathrm{Mat}}\otimes\mathbf{W}_{\mathrm{WV}},\quad\mathbf{W}_{Q^{-1}}=\mathbf{W}_{\mathrm{WV}}. 
+In these equations, ζ 0 \zeta_{0} represents the initial aging time step and 𝐊 Mat \mathbf{K}_{\mathrm{Mat}} is the covariance matrix of the Matern kernel at n s n_{s} discrete operating conditions. For the selected WV kernel, the initial covariance and noise matrix are 
+𝐏 ζ 0 , WV = σ ζ 2 ​ [ 1 3 ​ ζ 0 3 1 2 ​ ζ 0 2 1 2 ​ ζ 0 2 ζ 0 ] , 𝐖 WV = σ ζ 2 ​ [ 1 3 ​ Δ ​ ζ 3 1 2 ​ Δ ​ ζ 2 1 2 ​ Δ ​ ζ 2 Δ ​ ζ ] . \mathbf{P}_{\zeta_{0},\mathrm{WV}}=\sigma_{\zeta}^{2}\left[\begin{array}[]{cc}\frac{1}{3}\zeta_{0}^{3}&\frac{1}{2}\zeta_{0}^{2}\\
+\frac{1}{2}\zeta_{0}^{2}&\zeta_{0}\end{array}\right],\mathbf{W}_{\mathrm{WV}}=\sigma_{\zeta}^{2}\left[\begin{array}[]{cc}\frac{1}{3}\Delta\zeta^{3}&\frac{1}{2}\Delta\zeta^{2}\\
+\frac{1}{2}\Delta\zeta^{2}&\Delta\zeta\end{array}\right]. (22) 
+
+In literature, several works ( Hu et al., 2012 ; Wassiliadis et al., 2018 ) use a dual estimation framework to propagate these two subsystems separately, with the estimated SOC ( z z ) as the ‘observation’ for parameter updates. By decoupling states from parameters, however, any cross-correlations between the two are lost and this may lead to poor estimation accuracy ( Plett, 2015 ) . For example, the uncertainty information from the SOC estimation, which is important for parameter updates, is discarded. As an alternative, other works ( Liu et al., 2020 ; Yu et al., 2017 ) adopt a joint estimation framework with a single timescale to update both states and parameters. This may suffer from poor numerical conditioning, though, due to the vastly different timescales of the state and parameter dynamics (seconds versus months). 
+
+To address these issues, we adopted our previously proposed co-estimation framework ( Aitio and Howey, 2021 ) . Within charge or discharge segments, the GP states (i.e. circuit model parameters) and the ECM state are propagated jointly. This means the GP dynamics described in eqn. 19 also evolve within each segment over time steps of Δ ​ t \Delta t . However, since Δ ​ t ≪ Δ ​ ζ \Delta t\ll\Delta\zeta , the changes in Q Q and R 0 R_{0} over small timesteps will be small since the GP is relatively smooth on the timescale of Δ ​ t \Delta t . Between segments, only the GP states are preserved; the ECM state is reinitialized at the beginning of every new discharge segment based on the measured initial SOC conditions. In this way, the GPs describing capacity and resistance and the ECM describing state of charge dynamics each share the same observations (eqn. 12 ), but their propagation is at different timescales. 
+
+Within a segment, the overall joint state vector for both ECM and GPs is given by 
+𝐱 joint , i = [ z i 𝐱 Q − 1 , i 𝐱 R 0 , i ] . \mathbf{x}_{\text{joint},i}=\left[\begin{array}[]{c}z_{i}\\
+\mathbf{x}_{Q^{-1},i}\\
+\mathbf{x}_{R_{0},i}\end{array}\right]. (23) 
+Between segments, the GP subsystem is linear and the GP state vector is given by 
+𝐱 GP , j = [ 𝐱 Q − 1 , j 𝐱 R 0 , j ] . \mathbf{x}_{\text{GP},j}=\left[\begin{array}[]{l}\mathbf{x}_{Q^{-1},j}\\
+\mathbf{x}_{R_{0},j}\end{array}\right]. (24) 
+Note that within a segment the joint system is nonlinear because Eqn. 12 is nonlinear in SOC ( z z ) due to the V 0 ​ ( z ) V_{0}(z) and R 0 ​ ( z ) R_{0}(z) functions. For simplicity, we write the nonlinear joint system dynamics as 
+𝐱 joint , i \displaystyle\mathbf{x}_{\text{joint},i} = g ⁡ ( 𝐱 joint , i − 1 , I i − 1 , 𝐖 joint , i − 1 ) \displaystyle=g\left(\mathbf{x}_{\text{joint},i-1},I_{i-1},\mathbf{W}_{\text{joint},i-1}\right) (25) 
+V i \displaystyle V_{i} = h ⁡ ( 𝐱 joint , i , I i − 1 , v i ) . \displaystyle=h\left(\mathbf{x}_{\text{joint},i},I_{i-1},v_{i}\right). 
+where v i v_{i} represents the measurement noise with variance σ v 2 \sigma^{2}_{v} . An extended Kalman filter is used to solve the system dynamics with local linearisation via Jacobian matrices 
+𝐆 i = d ​ g d ​ 𝐱 joint , i , 𝐇 i = d ​ h d ​ 𝐱 joint , i . \mathbf{G}_{i}=\frac{\mathrm{d}g}{\mathrm{d}\mathbf{x}_{\text{joint},i}},\quad\mathbf{H}_{i}=\frac{\mathrm{d}h}{\mathrm{d}\mathbf{x}_{\text{joint},i}}. (26) 
+
+The full co-estimation framework is given in Algorithm 1. Because R 0 R_{0} is modelled with a GP, its predictive variance needs to be included when calculating the noise covariance of output (the I i 2 ​ 𝚺 R 0 , i I_{i}^{2}\mathbf{\Sigma}_{R_{0},i} term in 𝐒 i \mathbf{S}_{i} ). Detailed derivations can be found in Appendix A and B . To provide a baseline comparison against our method, we also implemented a random-walk dual-estimation approach for parameter updates, see Appendix D . 
+
+The co-estimation in Algorithm 1 can be viewed as a single forward run of the proposed model under a specific GP hyperparameter set and measurement noise variance (i.e., σ ζ 2 , σ s 2 , l z − 1 , l I − 1 , σ v 2 \sigma_{\zeta}^{2},\sigma_{s}^{2},l_{z}^{-1},l_{I}^{-1},\sigma_{v}^{2} ). To find the optimal values of these, we use the accumulated NLML ( Φ \Phi ) as our cost function. Because of the additive nature of the NLML, Φ \Phi can be updated during the state and parameter co-estimation process. An outer optimisation loop using a gradient-based L-BFGS-B algorithm is then used to obtain maximum a posteriori (MAP) estimates of the hyperparameters for GPs, running the forward model many times, with each forward run giving one evaluation of Φ \Phi . The hyperparameter optimisations were solved on a virtualized Linux platform with two physical Intel Xeon Silver 5216 CPUs at 2.1 GHz. Finding the optimal hyperparameters took approximately 60 and 90 minutes for cells A and B, respectively. Algorithm 1 Co-estimation of battery state and GPs using extended Kalman filter. The NLML ( Φ \Phi ) is calculated recursively on every terminal voltage measurement. 
+
+1: Initialisation of co-estimation at ζ = ζ 0 \zeta=\zeta_{0} 
+2: 𝐱 GP + = 𝐱 GP , 0 , 𝐏 GP + = 𝐏 GP , 0 \mathbf{x}_{\mathrm{GP}}^{+}=\mathbf{x}_{\mathrm{GP},0},\mathbf{P}_{\mathrm{GP}}^{+}=\mathbf{P}_{\mathrm{GP},0} 
+3: Φ = 0 \Phi=0 
+4: for seg j ∈ segments \text{seg}_{j}\in\text{segments} do 
+5: GP propagation 
+6: 𝐱 GP , j − = exp ⁡ ( 𝐅 ​ Δ ​ ζ j ) ​ 𝐱 GP , j − 1 + \mathbf{x}_{\mathrm{GP},j}^{-}=\exp(\mathbf{F}\Delta\zeta_{j})\mathbf{x}_{\mathrm{GP},j-1}^{+} 
+7: 𝐏 GP , j − = exp ⁡ ( 𝐅 ​ Δ ​ ζ j ) ​ 𝐏 GP + ​ exp ⁡ ( 𝐅 ​ Δ ​ ζ j ) T + 𝐖 GP ​ ( Δ ​ ζ j ) \mathbf{P}_{\mathrm{GP},j}^{-}=\exp(\mathbf{F}\Delta\zeta_{j})\mathbf{P}_{\mathrm{GP}}^{+}\exp(\mathbf{F}\Delta\zeta_{j})^{\mathrm{T}}+\mathbf{W}_{\mathrm{GP}}(\Delta\zeta_{j}) 
+8: Initialisation at start of j j th segment 
+9: 𝐱 joint + = 𝐱 joint , 0 = [ z 0 , 𝐱 GP , j − ] ⊤ \mathbf{x}_{\text{joint}}^{+}=\mathbf{x}_{\text{joint},0}=[z_{0},\mathbf{x}_{\text{GP},j}^{-}]^{\top} 
+10: 𝐏 joint + = 𝐏 joint , 0 = [ 𝐏 z , 0 0 0 𝐏 GP , j − ] \mathbf{P}_{\text{joint}}^{+}=\mathbf{P}_{\text{joint},0}=\left[\begin{array}[]{cc}\mathbf{P}_{z,0}&0\\
+0&\mathbf{P}_{\mathrm{GP},j}^{-}\end{array}\right] 
+11: for V i ∈ seg j V_{i}\in\text{seg}_{j} do 
+12: Joint states propagation 
+13: 𝐱 joint , i − = g ⁡ ( 𝐱 joint , i − 1 + , I i − 1 , 𝐖 joint , i − 1 ) \mathbf{x}_{\text{joint},i}^{-}=g\left(\mathbf{x}_{\text{joint},i-1}^{+},I_{i-1},\mathbf{W}_{\text{joint},i-1}\right) 
+14: 𝐏 joint , i − = 𝐆 i − 1 ​ 𝐏 joint , i − 1 + ​ 𝐆 i − 1 T + 𝐖 joint , i − 1 \mathbf{P}_{\text{joint},i}^{-}=\mathbf{G}_{i-1}\mathbf{P}_{\text{joint},i-1}^{+}\mathbf{G}_{i-1}^{\mathrm{T}}+\mathbf{W}_{\text{joint},i-1} 
+15: Joint states update 
+16: 𝐞 i = V i − h ⁡ ( 𝐱 joint , i − , I i − 1 , v i ) \mathbf{e}_{i}=V_{i}-h\left(\mathbf{x}_{\text{joint},i}^{-},I_{i-1},v_{i}\right) 
+17: 𝐒 i = 𝐇 i ​ 𝐏 joint , i − ​ 𝐇 i ⊤ + I i 2 ​ 𝚺 R 0 , i + σ v 2 \mathbf{S}_{i}=\mathbf{H}_{i}\mathbf{P}_{\text{joint},i}^{-}\mathbf{H}_{i}^{\top}+I_{i}^{2}\mathbf{\Sigma}_{R_{0},i}+\sigma_{v}^{2} 
+18: 𝐋 i = 𝐏 joint , i − ​ 𝐇 i ⊤ ​ 𝐒 i − 1 \mathbf{L}_{i}=\mathbf{P}_{\text{joint},i}^{-}\mathbf{H}_{i}^{\top}\mathbf{S}_{i}^{-1} 
+19: 𝐱 joint , i + = 𝐱 joint , i − + 𝐋 i ​ 𝐞 i \mathbf{x}_{\text{joint},i}^{+}=\mathbf{x}_{\text{joint},i}^{-}+\mathbf{L}_{i}\mathbf{e}_{i} 
+20: 𝐏 joint , i + = ( 𝐈 − 𝐋 i ​ 𝐇 i ) ⊤ ​ 𝐏 joint , i − ​ ( 𝐈 − 𝐋 i ​ 𝐇 i ) + 𝐋 i ​ 𝐞 i ​ 𝐋 i ⊤ \mathbf{P}_{\text{joint},i}^{+}=(\mathbf{I}-\mathbf{L}_{i}\mathbf{H}_{i})^{\top}\mathbf{P}_{\text{joint},i}^{-}(\mathbf{I}-\mathbf{L}_{i}\mathbf{H}_{i})+\mathbf{L}_{i}\mathbf{e}_{i}\mathbf{L}_{i}^{\top} 
+21: Φ = Φ + 1 2 ​ 𝐞 i ⊤ ​ 𝐒 i − 1 ​ 𝐞 i + 1 2 ​ log ⁡ | 2 ​ π ​ 𝐒 i | \Phi=\Phi+\frac{1}{2}\mathbf{e}_{i}^{\top}\mathbf{S}_{i}^{-1}\mathbf{e}_{i}+\frac{1}{2}\log\left|2\pi\mathbf{S}_{i}\right| 
+22: end for 
+23: end for 
+
+3 Data preprocessing and model setup 
+
+3.1 Data description 
+
+3.1.1 Cell A 
+
+Cell A is a nickel-manganese-cobalt vs. graphite Li-ion battery from an open test dataset ( Thelen et al., 2023 ) . It is a commercial 502030 cell with nominal capacity 250 mAh 250\text{\,}\mathrm{m}\mathrm{A}\mathrm{h} and operating voltage from 3.0 to 4.2 V 4.2\text{\,}\mathrm{V} . The true initial capacity was measured as around 280 mAh 280\text{\,}\mathrm{m}\mathrm{A}\mathrm{h} and the beginning-of-life DC resistance around . This battery was aged with repeated charge/discharge cycles and checked through a weekly reference performance test (RPT). Cycling aging was conducted with a constant 1.825 C 1.825\text{\,}\mathrm{C} charging C-rate and a constant 0.5 C 0.5\text{\,}\mathrm{C} discharging C-rate. The depth of discharge (DoD) was 100 % 100\% and the environmental temperature was kept at 30 °C 30\text{\,}\mathrm{\SIUnitSymbolCelsius} . The RPT consisted of low rate ( 0.2 C 0.2\text{\,}\mathrm{C} ) constant-current constant-voltage (CC-CV) charging and constant-current discharging, yielding ground truth discharge capacity measurements and an up-to-date pseudo OCV-SOC curve. The cell number is G37C2 in the original dataset. 
+
+3.1.2 Cell B 
+
+Cell B is a nickel-cobalt-aluminium oxide vs. graphite-silicon battery from another open dataset ( Jöst et al., 2021 ) , with cell ID 015. It is a commercial 18650 cell with nominal capacity 3400 mAh 3400\text{\,}\mathrm{m}\mathrm{A}\mathrm{h} and BoL DC resistance around . This battery was charged with a CC-CV regime and discharged using a scaled drive cycle profile from 0-- 9.7 A 9.7\text{\,}\mathrm{A} (absolute value). Cycle aging was conducted at 25 °C 25\text{\,}\mathrm{\SIUnitSymbolCelsius} between 10 % 10\% and 90 % 90\% SOC. Regular RPTs were taken every 30 cycles, at 0.1 C 0.1\text{\,}\mathrm{C} . 
+
+3.2 Extracting discharge segments from cycling data 
+
+The sampling frequency for cycling was 0.2 Hz 0.2\text{\,}\mathrm{H}\mathrm{z} and 1 Hz 1\text{\,}\mathrm{H}\mathrm{z} for cells A and B, respectively. The corresponding full cycling datasets (over all of life) are 1,840,632 and 41,346,756 rows of current and voltage measurements, respectively. Using the entire cycle life data to optimize GP hyperparameters requires substantial computational effort. However, it is reasonable to assume that the aging between two adjacent cycles is small, and therefore we only selected a small number of cycling segments from which to train the model, with relatively large between-segment distances Δ ​ ζ j \Delta\zeta_{j} . 
+
+In this work, the process of down-selecting discharge segments was as follows. Discharge segments were selected evenly over the life of each battery. In the case of cell A, 15 discharge segments in total were chosen, and in the case of cell B, 18 segments were chosen. This reduced the data volume to 21,881 and 120,801 rows, respectively. In practice, the time interval Δ ​ ζ j \Delta\zeta_{j} between segments can be in the unit of days, weeks or months depending on usage and test conditions. The method would also work using units such as equivalent full cycles or cumulative charge throughput. One reason for using days is that segment extraction can be done in a convenient manner. The first 10 segments were used to train the model (i.e. to optimize the kernel hyperparameters for the GPs). We chose 10 segments for model training since it was computationally efficient but sufficient to demonstrate the efficacy of our method. 
+
+The RPT data at BoL was used to calibrate the OCV-SOC relationship, while other RPT data were not used in the proposed model. The extracted discharge segments for cells A and B are shown in Fig. 3 . The aging effect can be clearly seen from the shrinkage of discharge curves on the time axis. Figure 3: All extracted discharge segments, cells A and B 
+
+Considering the computational cost and data range, we set the operating condition discretization for cell A to n z = 25 n_{z}=25 and n I = 1 n_{I}=1 , and for cell B to n z = 25 n_{z}=25 and n I = 5 n_{I}=5 . 
+
+4 Results and Discussion 
+
+4.1 Health estimation and prediction Figure 4: Cell A projections of GP posteriors for Q Q and R 0 R_{0} . Ground truth RPTs are only used for capacity validation (red dots). RMSE and MAPE for capacity estimates are 0.0026 Ah 0.0026\text{\,}\mathrm{A}\mathrm{h} and 0.86 % \% , and for predictions are 0.0038 Ah 0.0038\text{\,}\mathrm{A}\mathrm{h} and 1.53 % \% Figure 5: Cell B projections of GP posteriors for Q Q and R 0 R_{0} . Ground truth RPTs are only used as capacity validations (red dots). RMSE and MAPE for capacity estimates are 0.0122 Ah 0.0122\text{\,}\mathrm{A}\mathrm{h} and 0.31 % \% , and for predictions are 0.009 Ah 0.009\text{\,}\mathrm{A}\mathrm{h} and 0.27 % \% 
+
+Fig. 4 and Fig. 5 show projections of the GP estimates of discharge capacity Q Q and impedance R 0 R_{0} over battery lifetime for cells A and B, respectively. Comparisons against the baseline random-walk method (Appendix D ) show that GP estimates are much more accurate and smoother than the random-walk approach. The train-test split is shown by the vertical black line. Here, ‘training’ refers to the data used to fit GP hyper-parameters, whereas ‘testing’ refers to short-term future predictions that are obtained by running the parameter dynamics forward in time without seeing new data. Such short-term future SOH predictions are useful for many applications, e.g., battery early maintenance. For cell A, the discharge current is constant, thus R 0 R_{0} is only plotted against SOC. For cell B, with dynamic discharging profile, R 0 R_{0} is plotted against both SOC and applied current. 
+
+It is clear that the GP captures the aging trend for capacity fade well based only on cycling data without RPTs. As the non-stationary WV kernel is used for modelling the time dependency of Q − 1 ​ ( ζ ) Q^{-1}(\zeta) , the GP extrapolation maintains the last known aging trend from the training stage. This linear extrapolation fits well for cell B, while it appears slightly worse for cell A where the ground truth aging speed accelerates in later life. The uncertainty for estimates is shown by the shaded area that grows larger when extrapolating further into the future. 
+
+For the estimation results of R 0 R_{0} , a clear upwards shift can be found for cell A during aging, indicating a systematic increase of battery resistance over all SOC levels. For cell B, R 0 R_{0} changes in a more complex way, with both increasing and decreasing trends observed against different SOC levels. The scale of R 0 R_{0} dependency on applied current is much smaller than the SOC dependency. Thus, we mainly discuss the SOC dependency in this work, and more details about the applied current dependency can be found in Appendix C . 
+
+All estimations are shown in solid lines, extrapolations are shown as dotted lines. The blue gradient colors denote the corresponding aging times. The extrapolation for R 0 R_{0} also maintains the increasing trend of training stage. To keep the figure simple, the uncertainties for R 0 R_{0} estimations are included in Fig. 6 . 
+
+In order to ensure smoothness in the estimated R 0 R_{0} functions that are displayed, the discretization of SOC was further increased to 100 evenly spaced locations. The trained model was then rerun in forward mode, with the previously learnt GP hyperparameters, but using the extended SOC discretization. 
+
+4.2 Dependence of R 0 R_{0} on SOC Figure 6: GP estimation of resistance increase at different SOC levels 
+
+Considering the results of the previous section, there are two abnormal features to note in the evolution of R 0 ​ ( z , ζ ) R_{0}(z,\zeta) . First, the increasing scale of R 0 R_{0} is much larger than expected. Given that the BoL DC resistance calculated from a pulse test is around and for cells A and B respectively, the increase in R 0 R_{0} by nearly five times at low SOC level as the cell ages seems unrealistic. Second, there is a wave-like curve shape and a corresponding uneven increase of resistance against SOC. This SOC dependency is also observed by others ( Waag et al., 2013 ; Schönleber et al., 2017 ) . Fig. 6 shows impedance increases at different SOC levels. In the training set, the increase at high SOC ( > 0.9 >0.9 ) is almost negligible for both cells. However, at low SOC ( < 0.1 <0.1 ), the increase of R 0 R_{0} is nearly and for cell A and B respectively. 
+
+We propose that these unexpected behaviours are not caused by ‘true’ changes in the underlying resistance, but instead hypothesize that a significant reason for increases in the estimated R 0 ​ ( z , ζ ) R_{0}(z,\zeta) is shape changes in the battery OCV-SOC curve as it ages.
+Specifically, the battery dynamics in Eqn. 12 assume that the OCV-SOC functional relationship is kept the same across the entire life, and only scaled by Q Q . A more realistic formulation could be expressed as 
+V term = V 0 ​ ( z , ζ ) + R ^ 0 ​ ( z , ζ ) ​ I , V_{\text{term}}=V_{0}(z,\zeta)+\hat{R}_{0}(z,\zeta)I, (27) 
+where the OCV-SOC relationship V 0 ​ ( z , ζ ) V_{0}(z,\zeta) is itself a function of both SOC ( z z ) and aging lifetime ( ζ \zeta ). In this case, R ^ 0 \hat{R}_{0} is the ‘pure’ impedance term (uneffected by OCV). By further separating the OCV term into a fixed part V ¯ 0 ​ ( z , ζ 0 ) \bar{V}_{0}(z,\zeta_{0}) (representing BoL OCV-SOC), and an age-sensitive variable part Δ ​ V 0 ​ ( z , ζ ) \Delta V_{0}(z,\zeta) , one can rewrite this equation as 
+V term = V ¯ 0 ​ ( z , ζ 0 ) + Δ ​ V 0 ​ ( z , ζ ) + R ^ 0 ​ ( z , ζ ) ​ I \displaystyle V_{\text{term}}=\bar{V}_{0}\left(z,\zeta_{0}\right)+\Delta V_{0}(z,\zeta)+\hat{R}_{0}(z,\zeta)I (28) 
+V term = V ¯ 0 ​ ( z ) + I ​ [ Δ ​ V 0 ​ ( z , ζ ) I + R ^ 0 ​ ( z , ζ ) ] ⏟ R 0 ​ ( z , ζ ) . \displaystyle V_{\text{term}}=\bar{V}_{0}(z)+I\underbrace{[\left.\frac{\Delta V_{0}(z,\zeta)}{I}+\hat{R}_{0}(z,\zeta)\right]}_{R_{0}(z,\zeta)}. 
+It is now clear that, rather than obtaining the pure resistance R ^ 0 \hat{R}_{0} , the learnt function R 0 ​ ( z , ζ ) R_{0}(z,\zeta) is influenced both by changes in the resistance and changes in the OCV-SOC functional form as the battery ages. Figure 7: Comparison between ground-truth OCV-SOC and estimated R 0 R_{0} function for cell A and B 
+
+Thanks to the regular RPT data, we are able to validate this hypothesis using ground-truth OCV-SOC changes. Fig. 7 compares the learnt R 0 ​ ( z , ζ ) R_{0}(z,\zeta) functions and ground-truth OCV-SOC curves. The applied current was 0.125 A 0.125\text{\,}\mathrm{A} and 0.34 A 0.34\text{\,}\mathrm{A} for cells A and B, respectively. Here, Δ ​ OCV \Delta\mathrm{OCV} represents the difference between ‘up-to-date’ OCVs (i.e., incorporating changes as the cell ages) and BoL OCVs across all SOC levels. A strong consistency can be observed in the changing trends of R 0 R_{0} and Δ ​ OCV \Delta\mathrm{OCV} . This can be quantified using a Pearson linear correlation coefficient—specifically, for each discrete SOC value, the linear coefficient between R 0 R_{0} and Δ ​ OCV \Delta\mathrm{OCV} as a function of age was calculated. For cell A, a linear coefficient of more than 0.8 is observed over all SOC levels, decreasing slightly around 0.8 SOC. Similarly, for cell B, a coefficient of more than 0.7 is seen for most SOC levels, decreasing around 0.8 SOC. 
+
+One remaining issue concerns the (un)identifiability of Δ ​ V 0 ​ ( z , ζ ) \Delta V_{0}(z,\zeta) and R ^ 0 ​ ( z , ζ ) \hat{R}_{0}(z,\zeta) . Given the additive nature of these, it is impossible to distinguish them individually from terminal voltage measurements. However, the differences of their influences on terminal voltage can be compared. If one assumes, for example, a 50% increase in resistance compared to BoL DC resistance, this would result in overpotential changes of 8 mV 8\text{\,}\mathrm{m}\mathrm{V} and 4 mV 4\text{\,}\mathrm{m}\mathrm{V} for cells A and B at 0.5C and 0.1C, respectively. However, the average changes in the OCV-SOC function over life are 30 mV 30\text{\,}\mathrm{m}\mathrm{V} and 20 mV 20\text{\,}\mathrm{m}\mathrm{V} , respectively—on the order of ten times higher. 
+
+4.3 Differential voltage analysis Figure 8: Comparison between RPT d ​ V / d ​ Q dV/dQ and estimated d ⁡ [ I ​ R 0 ] / d ​ Q d[IR_{0}]/dQ 
+
+Capacity decrease and impedance increase reflect battery SOH changes at the full cell level, but are insufficient to elucidate different degradation modes. One commonly used quantitative method for the latter is differential voltage analysis ( d ​ V / d ​ Q dV/dQ vs. discharge Ah). The d ​ V / d ​ Q dV/dQ curve is obtained by differentiating discharge voltage with respect to cumulative discharge Ampere-hours. The peaks on the d ​ V / d ​ Q dV/dQ curve can be assigned to electrode material phase transitions. The peak shifts and the changing between-peak distances are used to indicate different degradation modes, i.e. lost lithium inventory LLI , and loss of active material in the negative and positive electrodes, LAM n \text{LAM}_{n} and LAM p \text{LAM}_{p} ( Dubarry and Anseán, 2022 ) . One major limitation of the d ​ V / d ​ Q dV/dQ method is the requirement for a low C-rate ( < < C/20) deep (dis)charge, which is generally unavailable except in a carefully controlled lab environment. In our case, because of experiment limits, the RPT C-rates for cells A and B were higher, at C/5 and C/10, respectively. 
+
+Given the observed close similarity between Δ ​ OCV ​ ( z , ζ ) \Delta\text{OCV}(z,\zeta) and R 0 ​ ( z , ζ ) R_{0}(z,\zeta) as discussed in the previous section, a natural extension is to compare the d ​ V / d ​ Q dV/dQ information from the RPTs with the learnt d ⁡ [ I ​ R 0 ] / d ​ Q d[IR_{0}]/dQ vs. discharge curve. As shown in Fig. 8 , if one multiplies the SOC with the learnt capacity Q ⁡ ( ζ ) Q(\zeta) , one can derive a corresponding discharge Ampere-hour estimate and thus observe similar peak shifts to differential voltage functions. 
+
+Due to the lack of half cell test data, we are not able to attribute each d ​ V / d ​ Q dV/dQ peak to a corresponding electrode, However, we can speculate (on the basis of literature ( Keil et al., 2016 ; Zhu et al., 2020 ) and our understanding for these cell chemistries) about what the peak shifts mean, and thus estimate LLI , LAM n \text{LAM}_{\text{n}} for cells A and B respectively (Fig. 9 ). (Positive electrode loss of active material is less clear so we omit estimation of LAM p \text{LAM}_{\text{p}} .) For cell A with a CC discharging profile and NMC cathode, a 6-8 % \% increase is observed for both LLI and LAM n \text{LAM}_{\text{n}} . This is consistent with the relatively uniform capacity drop across life in Fig. 4 . For cell B, with a dynamic driving discharging profile and NCA cathode, there is a sharp increase of LLI within the first 100 days, which is likely related to diffusion-limited solid electrolyte interphase (SEI) laryer formation ( An et al., 2016 ; Spotte-Smith et al., 2022 ) . This is also consistent with capacity drop in Fig. 5 which then levels off. Figure 9: Comparison of estimated LLI and LAM n \text{LAM}_{n} for d ​ V / d ​ Q dV/dQ from RPTs and d ⁡ [ I ​ R 0 ] / d ​ Q d[IR_{0}]/dQ estimations. 
+
+5 Conclusions 
+
+We have proposed an aging-aware battery ECM incorporating GPs to describe the dependency of circuit-model parameters on SOC and lifetime. A state-space formulation was used to transform the GPs into time-stepping models enabling solution in linear time complexity with a Kalman filter and RTS smoother. This also enables co-estimation of both parameters and states in an unified framework. Compared to parameter random walks or deterministic models, using GPs to model parameter evolution has several advantages: 
+• 
+
+The state-space formulation of a GP maintains gradient information from the states whilst random walk or empirical models do not. 
+• 
+
+Incorporating the SOC and aging-time dependency of parameters via GP kernels makes ECM parameter estimates more stable over battery life, i.e. gives smoother interpolation and more reasonable extrapolation compared to random walk or deterministic models. 
+• 
+
+A GP prior helps to mitigate numerical ill-conditioning as it has a regularisation effect when parameters are not easily identifiable (e.g. due to measurement noise or extrapolation to unseen conditions). 
+
+We found that estimates of capacity Q Q exhibited good consistency compared with independent ground-truth measurements from RPTs, whereas estimates of the resistance function R 0 R_{0} showed a close relationship with shape changes in the OCV-SOC curve as a battery ages. A major part of the learnt R 0 ​ ( z , ζ ) R_{0}(z,\zeta) function comes from OCV changes, Δ ​ V 0 ​ ( z , ζ ) \Delta V_{0}(z,\zeta) . High linear coefficients ( > 0.8 >0.8 ) were observed between R 0 ​ ( z , ζ ) R_{0}(z,\zeta) and Δ ​ V 0 ​ ( z , ζ ) \Delta V_{0}(z,\zeta) over a wide range of SOCs. By using the estimates of both Q ⁡ ( ζ ) Q(\zeta) and R 0 ​ ( z , ζ ) R_{0}(z,\zeta) , we further calculated d ⁡ [ I ​ R 0 ] / d ​ Q d[IR_{0}]/dQ as an approximation to a differential voltage d ​ V / d ​ Q dV/dQ function. The estimated peak shifts and degradation modes ( LLI , LAM n \text{LAM}_{\text{n}} ) in d ⁡ [ I ​ R 0 ] / d ​ Q d[IR_{0}]/dQ were found to show similar behaviours compared with ground-truth from d ​ V / d ​ Q dV/dQ . 
+
+This work highlights both a challenge, to ensure that shape changes to the OCV curve do not distort battery SOH estimates, and an opportunity—to estimate degradation modes (lost lithium inventory, lost electrode material) directly from operational data. Further tests are required on other cell form factors, duty cycles (e.g. shallow cycling), chemistries, temperature variations, and cell sizes to explore the generalisation of these results. 
+
+6 Acknowledgements 
+
+This work was supported by the Department of Engineering Science, University of Oxford, The China Scholarship Council, and Rimac Automobili. 
+
+7 Appendix 
+
+Appendix A Gaussian process with input uncertainty 
+
+In the joint system dynamics (eqn. 25 ), R 0 R_{0} needs to be evaluated at every time step. The SOC at step i i is itself a Gaussian distribution expressed as 
+z i ∼ 𝒩 ⁡ ( z i − , 𝐏 z i − ) . z_{i}\sim\mathcal{N}(z_{i}^{-},\mathbf{P}_{z_{i}}^{-}). (29) 
+This means that R 0 R_{0} is a GP with input uncertainty from z i z_{i} . To incorporate this, the predictive distribution in eqn. 5 needs to be marginalised (averaged) over all z i z_{i} , 
+p ⁡ ( R 0 ) = ∫ p ⁡ ( R 0 ∣ z i ) ​ p ​ ( z i ) ​ d ​ z i . p\left(R_{0}\right)=\int p\left(R_{0}\mid z_{i}\right)p\left(z_{i}\right)\mathrm{d}z_{i}. (30) 
+This integral is usually intractable but can be approximated using Taylor expansions ( Girard et al., 2002 ) . A first-order expansion can be written as 
+m R 0 = K Z , z i ⊤ ​ [ K Z + σ GP 2 ​ I ] − 1 ​ z i \displaystyle m_{R_{0}}=K_{Z,z_{i}}^{\top}\left[K_{Z}+\sigma_{\text{GP}}^{2}I\right]^{-1}z_{i} (31) 
+𝚺 R 0 = K z i , z i − K Z , z i ⊤ ​ [ K Z + σ GP 2 ] − 1 ​ K Z , z i + ∂ R 0 ∂ z | z i ⊤ ​ 𝐏 z i − ​ ∂ R 0 ∂ z | z i . \displaystyle\begin{split}\mathbf{\Sigma}_{R_{0}}&=K_{z_{i},z_{i}}-K_{Z,z_{i}}^{\top}\left[K_{Z}+\sigma_{\text{GP}}^{2}\right]^{-1}K_{Z,z_{i}}\\
+&+\left.\left.\frac{\partial R_{0}}{\partial z}\right|_{z_{i}}^{\top}\mathbf{P}_{z_{i}}^{-}\frac{\partial R_{0}}{\partial z}\right|_{z_{i}}.\end{split} 
+where K Z K_{Z} and K Z , z i K_{Z,z_{i}} are covariance matrix and vector following the same definition in Eqn. 5 . 
+
+Appendix B Predictive variances for terminal voltage 
+
+In the extended Kalman filter used for the joint GP-ECM system, an extra variance term I i 2 ​ 𝚺 R 0 , i I_{i}^{2}\mathbf{\Sigma}_{R_{0},i} is included in the calculation of the innovation sequence 𝐒 i \mathbf{S}_{i} . This corresponds to the contribution of the R 0 R_{0} uncertainty when calculating the predictive distribution of terminal voltage V i V_{i} : 
+V i \displaystyle V_{i} = V 0 ​ ( z i ) + I i ​ R 0 , i + ν i , ν i ∼ N ⁡ ( 0 , σ v 2 ) \displaystyle=V_{0}\left(z_{i}\right)+I_{i}R_{0,i}+\nu_{i},\quad\nu_{i}\sim N\left(0,\sigma_{v}^{2}\right) (32) 
+E ⁡ [ V i ] \displaystyle\mathrm{E}\left[V_{i}\right] = V 0 ​ ( z i ) + I i ​ m R 0 ​ i \displaystyle=V_{0}\left(z_{i}\right)+I_{i}m_{R_{0i}} 
+cov ⁡ ( V i ) \displaystyle\operatorname{cov}\left(V_{i}\right) = E ⁡ [ ( V i − E ⁡ [ V i ] ) ​ ( V i − E ⁡ [ V i ] ) ⊤ ] \displaystyle=\mathrm{E}\left[\left(V_{i}-\mathrm{E}\left[V_{i}\right]\right)\left(V_{i}-\mathrm{E}\left[V_{i}\right]\right)^{\top}\right] 
+cov ⁡ ( V i ) \displaystyle\operatorname{cov}\left(V_{i}\right) = I i 2 ​ Σ R 0 ​ i + σ ν 2 . \displaystyle=I_{i}^{2}\Sigma_{R_{0i}}+\sigma_{\nu}^{2}. 
+
+Appendix C Impedance dependency on applied current 
+
+Fig. 10 gives a full set of resistance estimates at several SOCs and currents, for cell A. Figure 10: Dependence of resistance on applied current at several SOCs, for cell A 
+
+Appendix D The random-walk baseline model Figure 11: Results for the random-walk baseline model: cell A estimates have 0.129 Ah 0.129\text{\,}\mathrm{A}\mathrm{h} RMSE and 3.27 % \% MAPE, Cell B estimates have 0.019 Ah 0.019\text{\,}\mathrm{A}\mathrm{h} RMSE and 6.74 % \% MAPE. 
+
+To benchmark the proposed method, a random-walk model was used to track aging with the commonly used dual-estimation approach ( Plett, 2004 ; Wei et al., 2017b ; Wassiliadis et al., 2018 ) . The same ECM in Fig. 11 was used, without the dependency of R 0 R_{0} on the operating condition. 
+
+References 
+Aitio and Howey (2021) Aitio, A., Howey, D.A., 2021. Predicting battery end of life from solar off-grid system field data using machine learning. Joule 5, 3204–3220. 
+Aitio et al. (2023) Aitio, A., Jöst, D., Sauer, D.U., Howey, D., 2023. Learning battery model parameter dynamics from data with recursive gaussian process regression. Journal of Dynamic Systems, Measurement, and Control , 1–13. 
+An et al. (2016) An, S.J., Li, J., Daniel, C., Mohanty, D., Nagpure, S., Wood III, D.L., 2016. The state of understanding of the lithium-ion-battery graphite solid electrolyte interphase (sei) and its relationship to formation cycling. Carbon 105, 52–76. 
+Berecibar et al. (2016) Berecibar, M., Gandiaga, I., Villarreal, I., Omar, N., Van Mierlo, J., Van den Bossche, P., 2016. Critical review of state of health estimation methods of li-ion batteries for real applications. Renewable and Sustainable Energy Reviews 56, 572–587. 
+Cohen (1998) Cohen, L., 1998. The generalization of the wiener-khinchin theorem, in: Proceedings of the 1998 IEEE International Conference on Acoustics, Speech and Signal Processing, ICASSP’98 (Cat. No. 98CH36181), IEEE. pp. 1577–1580. 
+Dubarry and Anseán (2022) Dubarry, M., Anseán, D., 2022. Best practices for incremental capacity analysis. Frontiers in Energy Research 10, 1023555. 
+Dubarry et al. (2012) Dubarry, M., Truchot, C., Liaw, B.Y., 2012. Synthesize battery degradation modes via a diagnostic and prognostic model. Journal of power sources 219, 204–216. 
+Feng et al. (2019) Feng, X., Weng, C., He, X., Han, X., Lu, L., Ren, D., Ouyang, M., 2019. Online state-of-health estimation for li-ion battery using partial charging segment based on support vector machine. IEEE Transactions on Vehicular Technology 68, 8583–8592. 
+Fu et al. (2021) Fu, Y., Xu, J., Shi, M., Mei, X., 2021. A fast impedance calculation-based battery state-of-health estimation method. IEEE Transactions on Industrial Electronics 69, 7019–7028. 
+Gao et al. (2021) Gao, Y., Liu, K., Zhu, C., Zhang, X., Zhang, D., 2021. Co-estimation of state-of-charge and state-of-health for lithium-ion batteries using an enhanced electrochemical model. IEEE Transactions on Industrial Electronics 69, 2684–2696. 
+Girard et al. (2002) Girard, A., Rasmussen, C., Candela, J.Q., Murray-Smith, R., 2002. Gaussian process priors with uncertain inputs application to multiple-step ahead time series forecasting. Advances in neural information processing systems 15. 
+Greenbank and Howey (2021) Greenbank, S., Howey, D., 2021. Automated feature extraction and selection for data-driven models of rapid battery capacity fade and end of life. IEEE Transactions on Industrial Informatics 18, 2965–2973. 
+Hu et al. (2012) Hu, C., Youn, B.D., Chung, J., 2012. A multiscale framework with extended kalman filter for lithium-ion battery soc and capacity estimation. Applied Energy 92, 694–704. 
+Hua et al. (2021) Hua, Y., Liu, X., Zhou, S., Huang, Y., Ling, H., Yang, S., 2021. Toward sustainable reuse of retired lithium-ion batteries from electric vehicles. Resources, Conservation and Recycling 168, 105249. 
+Jöst et al. (2021) Jöst, D., Blömeke, A., Sauer, D.U., Ringbeck, F., 2021. Timeseries data of a drive cycle aging test of 28 high energy NCA/C+ Si round cells of type 18650. Technical Report. Institut für Stromrichtertechnik und Elektrische Antriebe. 
+Keil et al. (2016) Keil, P., Schuster, S.F., Wilhelm, J., Travi, J., Hauser, A., Karl, R.C., Jossen, A., 2016. Calendar aging of lithium-ion batteries. Journal of The Electrochemical Society 163, A1872. 
+Li et al. (2024) Li, T., Zhou, Z., Thelen, A., Howey, D.A., Hu, C., 2024. Predicting battery lifetime under varying usage conditions from early aging data. Cell Reports Physical Science 5. 
+Li et al. (2021) Li, W., Sengupta, N., Dechent, P., Howey, D., Annaswamy, A., Sauer, D.U., 2021. Online capacity estimation of lithium-ion batteries with deep long short-term memory networks. Journal of power sources 482, 228863. 
+Li et al. (2019) Li, Y., Liu, K., Foley, A.M., Zülke, A., Berecibar, M., Nanini-Maury, E., Van Mierlo, J., Hoster, H.E., 2019. Data-driven health estimation and lifetime prediction of lithium-ion batteries: A review. Renewable and sustainable energy reviews 113, 109254. 
+Li et al. (2018) Li, Y., Zou, C., Berecibar, M., Nanini-Maury, E., Chan, J.C.W., Van den Bossche, P., Van Mierlo, J., Omar, N., 2018. Random forest regression for online capacity estimation of lithium-ion batteries. Applied energy 232, 197–210. 
+Liu et al. (2020) Liu, B., Tang, X., Gao, F., 2020. Joint estimation of battery state-of-charge and state-of-health based on a simplified pseudo-two-dimensional model. Electrochimica Acta 344, 136098. 
+Locorotondo et al. (2021) Locorotondo, E., Cultrera, V., Pugi, L., Berzi, L., Pierini, M., Lutzemberger, G., 2021. Development of a battery real-time state of health diagnosis based on fast impedance measurements. Journal of Energy Storage 38, 102566. 
+Lu et al. (2021) Lu, D., Trimboli, M.S., Fan, G., Zhang, R., Plett, G.L., 2021. Implementation of a physics-based model for half-cell open-circuit potential and full-cell open-circuit voltage estimates: part i. processing half-cell data. Journal of The Electrochemical Society 168, 070532. 
+Miguel et al. (2021) Miguel, E., Plett, G.L., Trimboli, M.S., Oca, L., Iraola, U., Bekaert, E., 2021. Review of computational parameter estimation methods for electrochemical models. Journal of Energy Storage 44, 103388. 
+Plett (2004) Plett, G.L., 2004. Extended kalman filtering for battery management systems of lipb-based hev battery packs: Part 3. state and parameter estimation. Journal of Power sources 134, 277–292. 
+Plett (2015) Plett, G.L., 2015. Battery management systems, Volume II: Equivalent-circuit methods. Artech House. 
+Pozzato et al. (2023) Pozzato, G., Allam, A., Pulvirenti, L., Negoita, G.A., Paxton, W.A., Onori, S., 2023. Analysis and key findings from real-world electric vehicle field data. Joule 7, 2035–2053. 
+Richardson et al. (2018) Richardson, R.R., Birkl, C.R., Osborne, M.A., Howey, D.A., 2018. Gaussian process regression for in situ capacity estimation of lithium-ion batteries. IEEE Transactions on Industrial Informatics 15, 127–138. 
+Sarkka et al. (2013) Sarkka, S., Solin, A., Hartikainen, J., 2013. Spatiotemporal learning via infinite-dimensional bayesian filtering and smoothing: A look at gaussian process regression through kalman filtering. IEEE Signal Processing Magazine 30, 51–61. 
+Särkkä and Svensson (2023) Särkkä, S., Svensson, L., 2023. Bayesian filtering and smoothing. volume 17. Cambridge university press. 
+Schönleber et al. (2017) Schönleber, M., Uhlmann, C., Braun, P., Weber, A., Ivers-Tiffée, E., 2017. A consistent derivation of the impedance of a lithium-ion battery electrode and its dependency on the state-of-charge. Electrochimica Acta 243, 250–259. 
+Severson et al. (2019) Severson, K.A., Attia, P.M., Jin, N., Perkins, N., Jiang, B., Yang, Z., Chen, M.H., Aykol, M., Herring, P.K., Fraggedakis, D., et al., 2019. Data-driven prediction of battery cycle life before capacity degradation. Nature Energy 4, 383–391. 
+Shahjalal et al. (2022) Shahjalal, M., Roy, P.K., Shams, T., Fly, A., Chowdhury, J.I., Ahmed, M.R., Liu, K., 2022. A review on second-life of li-ion batteries: Prospects, challenges, and issues. Energy 241, 122881. 
+Solin et al. (2016) Solin, A., et al., 2016. Stochastic differential equation methods for spatio-temporal Gaussian process regression. Ph.D. thesis. Aalto University. 
+Spotte-Smith et al. (2022) Spotte-Smith, E.W.C., Kam, R.L., Barter, D., Xie, X., Hou, T., Dwaraknath, S., Blau, S.M., Persson, K.A., 2022. Toward a mechanistic model of solid–electrolyte interphase formation and evolution in lithium-ion batteries. ACS Energy Letters 7, 1446–1453. 
+Sulzer et al. (2021) Sulzer, V., Mohtat, P., Aitio, A., Lee, S., Yeh, Y.T., Steinbacher, F., Khan, M.U., Lee, J.W., Siegel, J.B., Stefanopoulou, A.G., et al., 2021. The challenge and opportunity of battery lifetime prediction from field data. Joule 5, 1934–1955. 
+Thelen et al. (2023) Thelen, A., Li, T., Liu, J., Tischer, C., Hu, C., 2023. Isu-ilcc battery aging dataset. https://doi.org/10.25380/iastate.22582234.v2 . doi: 10.25380/iastate.22582234.v2 . 
+Tsiropoulos et al. (2018) Tsiropoulos, I., Tarvydas, D., Lebedeva, N., et al., 2018. Li-ion batteries for mobility and stationary storage applications. Publications Office of the European Union. 
+Waag et al. (2013) Waag, W., Käbitz, S., Sauer, D.U., 2013. Experimental investigation of the lithium-ion battery impedance characteristic at various conditions and aging states and its influence on the application. Applied energy 102, 885–897. 
+Wang et al. (2020) Wang, Y., Tian, J., Sun, Z., Wang, L., Xu, R., Li, M., Chen, Z., 2020. A comprehensive review of battery modeling and state estimation approaches for advanced battery management systems. Renewable and Sustainable Energy Reviews 131, 110015. 
+Wassiliadis et al. (2018) Wassiliadis, N., Adermann, J., Frericks, A., Pak, M., Reiter, C., Lohmann, B., Lienkamp, M., 2018. Revisiting the dual extended kalman filter for battery state-of-charge and state-of-health estimation: A use-case life cycle analysis. Journal of Energy Storage 19, 73–87. 
+Wei et al. (2017a) Wei, J., Dong, G., Chen, Z., 2017a. Remaining useful life prediction and state of health diagnosis for lithium-ion batteries using particle filter and support vector regression. IEEE Transactions on Industrial Electronics 65, 5634–5643. 
+Wei et al. (2017b) Wei, Z., Zhao, J., Ji, D., Tseng, K.J., 2017b. A multi-timescale estimator for battery state of charge and capacity dual estimation based on an online identified model. Applied energy 204, 1264–1274. 
+Williams and Rasmussen (2006) Williams, C.K., Rasmussen, C.E., 2006. Gaussian processes for machine learning. MIT press Cambridge, MA. 
+Yu et al. (2017) Yu, Q., Xiong, R., Lin, C., Shen, W., Deng, J., 2017. Lithium-ion battery parameters and state-of-charge joint estimation based on h-infinity and unscented kalman filters. IEEE Transactions on Vehicular Technology 66, 8693–8701. 
+Zhou et al. (2020) Zhou, Z., Ran, A., Chen, S., Zhang, X., Wei, G., Li, B., Kang, F., Zhou, X., Sun, H., 2020. A fast screening framework for second-life batteries based on an improved bisecting k-means algorithm combined with fast pulse test. Journal of Energy Storage 31, 101739. 
+Zhu et al. (2020) Zhu, J., Darma, M.S.D., Knapp, M., Sørensen, D.R., Heere, M., Fang, Q., Wang, X., Dai, H., Mereacre, L., Senyshyn, A., et al., 2020. Investigation of lithium-ion battery degradation mechanisms by combining differential voltage analysis and alternating current impedance. Journal of Power Sources 448, 227575. 

@@ -1,0 +1,6 @@
+candidate,baseline_pct,targeted_gap_pct,delta_pp,evidence_level
+none,98.87845139182514,98.44,-0.43845139182514004,synthetic_gap_mechanism_not_capacity_accuracy
+range,98.60076828625688,98.3694945364931,-0.2312737497637869,synthetic_gap_mechanism_not_capacity_accuracy
+gap,98.87845139182514,98.65873856553617,-0.21971282628896915,synthetic_gap_mechanism_not_capacity_accuracy
+combined,98.60076828625688,98.58856321687028,-0.012205069386595824,synthetic_gap_mechanism_not_capacity_accuracy
+start,98.60076828625688,98.3694945364931,-0.2312737497637869,synthetic_gap_mechanism_not_capacity_accuracy

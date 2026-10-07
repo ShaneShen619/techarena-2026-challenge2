@@ -1,0 +1,2 @@
+contrast,n_cells,observed_macro_difference_pp,cluster_bootstrap_2.5pct,cluster_bootstrap_97.5pct,seed,interpretation
+A_minus_B_absolute_error_pp,6,-4.69189707417732,-8.891758634622585,0.1450159468862875,20260928,"descriptive uncertainty only; six development cells, not significance proof"

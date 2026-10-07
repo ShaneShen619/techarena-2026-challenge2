@@ -1,0 +1,13 @@
+held_temperature_group_C,method,alpha,inner_macro_mae_pp
+25,spline_age,1000.0,5.963701076570849
+25,spline_age_rate,100.0,6.546118694740651
+25,spline_age_temp_rate,10.0,4.471487550384286
+35,spline_age,100.0,4.361073500642101
+35,spline_age_rate,10.0,5.270815846070996
+35,spline_age_temp_rate,100.0,3.419047906774183
+45,spline_age,100.0,5.483408248000364
+45,spline_age_rate,100.0,5.5389935882028585
+45,spline_age_temp_rate,100.0,5.837332072767005
+55,spline_age,10.0,2.538456585339964
+55,spline_age_rate,1.0,2.3573066556198974
+55,spline_age_temp_rate,0.1,2.215732314469036

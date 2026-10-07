@@ -1,0 +1,10 @@
+{
+  "future_deleted_then_refit_invariant": true,
+  "extreme_prefix_operating_channels_invariant": true,
+  "pickle_fresh_process_test": "official run_model train/test exercised separate process",
+  "checkpoint_order_invariant": true,
+  "all_8_outputs_present": true,
+  "missing_window_and_missing_temp": "fallback uses released CK0 only",
+  "ck0_soh_unrounded": 98.44117647058823,
+  "official_validator": "candidates/official_gated/validation_report.txt"
+}

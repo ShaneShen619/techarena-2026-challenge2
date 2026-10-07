@@ -1,0 +1,14 @@
+{
+  "version": "2026-09-29-exploratory-v1",
+  "frozen_at": "before_V1_event_coverage",
+  "strict_discharge_current_range": {"value": [4.59, 5.61], "unit": "A magnitude, official current negative", "source": "assumed plus/minus 10 percent around 5.1 A for exploratory coverage", "status": "exploratory_not_official_tolerance", "hash": null},
+  "min_contiguous_span": {"value": 5.0, "unit": "Ah", "source": "exploratory event inventory threshold", "status": "exploratory", "hash": null},
+  "max_sample_gap": {"value": 30.0, "unit": "s", "source": "three times nominal 10 s sample interval", "status": "exploratory", "hash": null},
+  "conditional_current_ranges": {"value": [[15.0, 25.0], [1.0, 10.0]], "unit": "A magnitude", "source": "predeclared inventory bands; no automatic capacity qualification", "status": "exploratory", "hash": null},
+  "temperature_match_to_reference": {"value": null, "unit": "degC", "source": "reference T_ref unknown", "status": "unavailable", "hash": null},
+  "C_scale_grid": {"value": [70.0, 105.0, 0.5], "unit": "Ah min/max/step", "source": "exploratory sensitivity domain; not a validated capacity bound", "status": "exploratory", "hash": null},
+  "assumed_voltage_bias_grid": {"value": [-0.01, -0.005, -0.002, 0.0, 0.002, 0.005, 0.01], "unit": "V", "source": "assumed sensitivity, not instrument accuracy", "status": "exploratory", "hash": null},
+  "reference_full_charge_state": {"value": null, "unit": "SOC/Ah", "source": "not specified sufficiently for future checkpoints", "status": "unknown_requires_gate", "hash": null},
+  "official_capacity_update_gate": {"value": "closed_when_T_ref_or_reference_full_charge_unknown", "unit": "decision", "source": "R02 math preflight and protocol", "status": "frozen_safety_of_inference", "hash": null},
+  "profile_width_limit_Ah": {"value": null, "unit": "Ah", "source": "needs E0 noise and independent pilot", "status": "not_frozen_for_blind_test", "hash": null}
+}

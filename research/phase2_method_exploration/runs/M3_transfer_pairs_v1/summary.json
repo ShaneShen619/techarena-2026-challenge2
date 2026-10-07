@@ -1,0 +1,29 @@
+{
+  "first_phase_surface_theta_diagnostic_only": [
+    35.70605082983881,
+    3.7297891482585364,
+    4.489227329921432
+  ],
+  "first_phase_source_sha256": "afd0f5f4d4b4b779d2934bedb455e3e1e1ea38752e310a01af3d8d3d1b515afe",
+  "official_shallow_charge_count": 33,
+  "official_transfer_mae_C": 3.2361366376082628,
+  "official_transfer_by_chamber_C": {
+    "25.0": {
+      "n": 9.0,
+      "median_error_C": 9.98848293649203,
+      "mae_C": 9.93126071426981
+    },
+    "45.0": {
+      "n": 24.0,
+      "median_error_C": -0.7319234421935192,
+      "mae_C": 0.7254651088601832
+    }
+  },
+  "first_phase_surface_portable_under_2C_rule": false,
+  "P1_adjacent_matched_temp_pairs": 6,
+  "P1_minimum_pairs_for_causal_claim": 10,
+  "official_bracket_cell_rows": 136,
+  "official_bracket_physical_pulses": 34,
+  "official_center_minus_bracket_R10_mOhm_median": -0.0859737552631914,
+  "claim_limit": "Equipment surface is not transferred if official error >2C; bracketed resistance is descriptive, not capacity truth or causal temperature isolation."
+}

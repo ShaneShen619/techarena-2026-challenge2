@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "scope": "DOCX structural audit plus four-page macOS Quick Look document preview converted to A4 PDF and visually inspected",
+  "docx_sha256": "8027c00cbde01342ef69717e6045128412581ef330ff4477ece32d80a707f8e0",
+  "paragraphs": 58,
+  "section_headings": [
+    "1 目标评分对象与信息边界",
+    "2 第一阶段温度模型能解决什么",
+    "3 旧方案 A 的故障和修复实验",
+    "4 从弱老化先验到多窗口容量映射",
+    "5 固定面板最终结果与不确定性",
+    "6 温度扰动事件缺测和机制仿真",
+    "7 官方四串迁移与 TU 现场数据",
+    "8 复现审查与下一步测量",
+    "参考与证据索引"
+  ],
+  "figures": 8,
+  "table_rows": 8,
+  "preview_pages_inspected": 4,
+  "preview_pngs": [
+    "outputs/report_render/page-1.png",
+    "outputs/report_render/page-2.png",
+    "outputs/report_render/page-3.png",
+    "outputs/report_render/page-4.png"
+  ],
+  "canonical_render_docx_py_attempted": true,
+  "canonical_renderer_unavailable": "pdf2image and bundled LibreOffice unavailable in this workspace",
+  "native_Microsoft_Word_PDF_pagination_verified": false,
+  "limitation": "Quick Look/Chrome pagination can differ from Microsoft Word; Heading 1 keep-with-next behavior and section 7 page-break-before were structurally checked in DOCX."
+}

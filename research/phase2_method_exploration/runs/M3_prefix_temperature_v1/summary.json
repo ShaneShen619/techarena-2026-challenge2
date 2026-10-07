@@ -1,0 +1,48 @@
+{
+  "source_sha256": "af5c48ce970ce7cead7b3dff7562b8a7e1ada58d4fcc2acab44f3180354b712a",
+  "event_temperature_definition": "median of complete earlier P1 charging event, after anchor; extra scalar channel",
+  "temperature_observation_fraction_median": 1.0,
+  "event_count_range": [
+    42,
+    4223
+  ],
+  "metrics": [
+    {
+      "method": "current_T_only",
+      "macro_mae_pp": 3.493845098229532,
+      "worst_cell_mae_pp": 5.733803343108993,
+      "max_abs_error_pp": 16.916442834146608
+    },
+    {
+      "method": "full_prefix_arrhenius",
+      "macro_mae_pp": 4.323865912536562,
+      "worst_cell_mae_pp": 7.731526896794585,
+      "max_abs_error_pp": 15.633254217673638
+    },
+    {
+      "method": "full_prefix_hot_fraction",
+      "macro_mae_pp": 3.9600891740146853,
+      "worst_cell_mae_pp": 7.785199895412288,
+      "max_abs_error_pp": 19.602904082906647
+    },
+    {
+      "method": "full_prefix_meanT",
+      "macro_mae_pp": 3.264972339198083,
+      "worst_cell_mae_pp": 5.528641112856599,
+      "max_abs_error_pp": 17.06235635777908
+    },
+    {
+      "method": "full_prefix_meanT_plus_currentT",
+      "macro_mae_pp": 2.991032253963932,
+      "worst_cell_mae_pp": 5.378759486448871,
+      "max_abs_error_pp": 16.830148341319756
+    },
+    {
+      "method": "stable_noT",
+      "macro_mae_pp": 3.8087706774664976,
+      "worst_cell_mae_pp": 8.294324536414052,
+      "max_abs_error_pp": 19.984069338018017
+    }
+  ],
+  "claim_limit": "Not the main D1 15-fragment input budget; full-event T differs from official clipped shallow charge. Six cells cannot isolate aging vs conditions."
+}

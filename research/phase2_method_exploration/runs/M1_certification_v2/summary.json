@@ -1,0 +1,22 @@
+{
+  "candidate_count": 41,
+  "accepted": 41,
+  "rejected": 0,
+  "accepted_before_CK7": 39,
+  "gate_failure_counts": {
+    "duration_1700_1900s": 0,
+    "all_samples_minus20p5_to_minus19p5A": 0,
+    "positive_dt_le20s": 0,
+    "current_stable_0p25A": 0,
+    "prior_charge_ge60min_and_13p95V": 0,
+    "pre_rest_ge25min": 0,
+    "temperature_span_le2C": 0,
+    "counter_sum_matches_integral_0p2Ah": 0,
+    "pack_cell_median_residual_le0p05V": 0
+  },
+  "named_discharge_counter_matches_count": 0,
+  "pulse_integral_Ah_median": 10.199727777777778,
+  "pre_rest_s_median": 1800.0,
+  "post_rest_s_median": 1800.0,
+  "note": "Certification based only on official input rows; no hidden capacity truth. Charge/discharge named counter inconsistency is separately audited."
+}

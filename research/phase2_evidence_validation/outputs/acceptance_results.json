@@ -1,0 +1,280 @@
+{
+  "version": "2026-09-29-final",
+  "environment_smoke_pass": true,
+  "data_provenance_verified": true,
+  "protocol_frozen": true,
+  "r02_implemented": true,
+  "r02_identifiability_status": "insufficient_current_D3",
+  "r05_implemented": true,
+  "r05_capacity_validation_status": "D1_proxy_failed_D2_D3_not_testable",
+  "causal_hard_tests_pass": true,
+  "incremental_capacity_signal_status": "not_supported_for_sampled_T_D1;official_not_testable",
+  "d1_high_targets_met": false,
+  "improvement_vs_previous_best": false,
+  "tail_and_worst_entity_status": "worse_with_tail_priority",
+  "external_transfer_confirmation": false,
+  "compatible_independent_group_capacity_confirmation": false,
+  "official_ck1_ck7_accuracy_verified": false,
+  "independent_audit_status": "passed_with_versioned_R02_correction",
+  "reader_test_status": "passed_12_of_12_after_revision",
+  "word_render_verified": true,
+  "research_complete": true,
+  "performance_target_met": false,
+  "official_capacity_performance_status": "not_testable_hidden_truth",
+  "acceptance_details": {
+    "environment_smoke_pass": {
+      "status": "passed",
+      "reason": "raw event, CK0, prefix, regression, serialization and Word smoke executed",
+      "evidence_level": "V0",
+      "run_ids": [
+        "V0_preflight_20260929"
+      ],
+      "artifact_refs": [
+        "notes/READINESS.md"
+      ]
+    },
+    "data_provenance_verified": {
+      "status": "passed",
+      "reason": "input hashes and D1 deep-charge origin checked; D2-compatible absent",
+      "evidence_level": "D0/D1/D3",
+      "run_ids": [
+        "V0_preflight_20260929"
+      ],
+      "artifact_refs": [
+        "data_manifests/input_manifest.csv",
+        "outputs/data_eligibility.csv"
+      ]
+    },
+    "protocol_frozen": {
+      "status": "passed",
+      "reason": "v1 configs before V1; R05 v2 before fitting; R02 v1 unit mismatch corrected in versioned sensitivity",
+      "evidence_level": "D1/D3/S",
+      "run_ids": [
+        "V2_R02_sensitivity_20260929_v3",
+        "V3_R05_D1_20260929_v1"
+      ],
+      "artifact_refs": [
+        "configs/frozen_manifest.json",
+        "configs/r05_v2.json",
+        "notes/PREREGISTRATION.md"
+      ]
+    },
+    "r02_implemented": {
+      "status": "passed",
+      "reason": "loaded CK0 pack template, root, bounded profile, synthetic mismatch and gated official fallback",
+      "evidence_level": "S/D3",
+      "run_ids": [
+        "V2_R02_20260929_v1",
+        "V2_R02_sensitivity_20260929_v3"
+      ],
+      "artifact_refs": [
+        "src/r02.py",
+        "runs/V2_R02_sensitivity_20260929_v3/sensitivity_summary.csv"
+      ]
+    },
+    "r02_identifiability_status": {
+      "status": "inconclusive",
+      "reason": "no qualified >=5Ah near-reference operating windows; reference state/T unknown; synthetic nuisance mimic scale",
+      "evidence_level": "S/D3",
+      "run_ids": [
+        "V1_event_coverage_20260929_v2",
+        "V2_R02_sensitivity_20260929_v3"
+      ],
+      "artifact_refs": [
+        "outputs/event_eligibility.csv",
+        "runs/V2_R02_sensitivity_20260929_v3/paired_profiles.csv"
+      ]
+    },
+    "r05_implemented": {
+      "status": "passed",
+      "reason": "executable anchored ridge prototype, nested physical-cell LOCO and temperature controls; official group update unqualified",
+      "evidence_level": "D1",
+      "run_ids": [
+        "V3_R05_D1_20260929_v1",
+        "V3_R05_controls_20260929_v2"
+      ],
+      "artifact_refs": [
+        "scripts/v3_r05_d1.py",
+        "runs/V3_R05_D1_20260929_v1/per_target_predictions.csv"
+      ]
+    },
+    "r05_capacity_validation_status": {
+      "status": "failed",
+      "reason": "D1 proxy sampled-temperature arm loses matched no-T basis and high target; D2/D3 capacity untestable",
+      "evidence_level": "D1",
+      "run_ids": [
+        "V3_R05_D1_20260929_v1",
+        "V4_comparison_20260929_v1"
+      ],
+      "artifact_refs": [
+        "outputs/method_comparison.csv"
+      ]
+    },
+    "r05_D1_proxy": {
+      "status": "failed",
+      "reason": "sampled T macro 4.759 pp vs matched no-T 3.521 pp; six reused single cells",
+      "evidence_level": "D1",
+      "run_ids": [
+        "V3_R05_D1_20260929_v1"
+      ],
+      "artifact_refs": [
+        "runs/V3_R05_D1_20260929_v1/metrics.csv"
+      ]
+    },
+    "r05_D2_compatible": {
+      "status": "not_testable",
+      "reason": "no independent new physical 4S group with official-matched capacity labels",
+      "evidence_level": "D2-compatible",
+      "run_ids": [],
+      "artifact_refs": [
+        "outputs/data_eligibility.csv"
+      ]
+    },
+    "r05_D3_official": {
+      "status": "not_testable",
+      "reason": "CK1–CK7 capacity truth hidden; one CK0 anchor cannot fit group prior",
+      "evidence_level": "D3",
+      "run_ids": [],
+      "artifact_refs": [
+        "data/checkups/checkup_capacities_released.csv"
+      ]
+    },
+    "causal_hard_tests_pass": {
+      "status": "passed",
+      "reason": "future deletion/refit, extreme operating mutation, serialization, all CK coverage and isolated clean-copy official validator",
+      "evidence_level": "D3",
+      "run_ids": [
+        "V6_official_candidate_20260929_v1",
+        "V6_hard_tests_20260929_v1",
+        "V6_clean_extract_20260929_v1"
+      ],
+      "artifact_refs": [
+        "runs/V6_hard_tests_20260929_v1/result.json",
+        "runs/V6_clean_extract_20260929_v1/result.json"
+      ]
+    },
+    "incremental_capacity_signal_status": {
+      "status": "inconclusive",
+      "reason": "sampled temperature feature gain unsupported on D1; official increment untestable",
+      "evidence_level": "D1/D3",
+      "run_ids": [
+        "V3_R05_D1_20260929_v1",
+        "V3_R05_controls_20260929_v2"
+      ],
+      "artifact_refs": [
+        "runs/V3_R05_controls_20260929_v2/control_metrics.csv"
+      ]
+    },
+    "d1_high_targets_met": {
+      "status": "failed",
+      "reason": "macro/worst/max exceed 1/2/5 pp and no 20% gain over strong simple baseline",
+      "evidence_level": "D1",
+      "run_ids": [
+        "V3_R05_D1_20260929_v1",
+        "V4_comparison_20260929_v1"
+      ],
+      "artifact_refs": [
+        "outputs/method_comparison.csv"
+      ]
+    },
+    "improvement_vs_previous_best": {
+      "status": "failed",
+      "reason": "new nested R05 5.147 pp macro vs historical frozen TCN 2.851 pp on same developed cells",
+      "evidence_level": "D1",
+      "run_ids": [
+        "V4_comparison_20260929_v1"
+      ],
+      "artifact_refs": [
+        "runs/V4_comparison_20260929_v1/result.json"
+      ]
+    },
+    "tail_and_worst_entity_status": {
+      "status": "failed",
+      "reason": "tail-priority selected late 9.385 vs average-priority 8.940 pp; worst remains >2 pp",
+      "evidence_level": "D1",
+      "run_ids": [
+        "V4_comparison_20260929_v1"
+      ],
+      "artifact_refs": [
+        "runs/V4_comparison_20260929_v1/nested_selected_metrics.csv"
+      ]
+    },
+    "external_transfer_confirmation": {
+      "status": "not_testable",
+      "reason": "no eligible same-protocol new group; Che/TU do not meet reference protocol",
+      "evidence_level": "D2-compatible",
+      "run_ids": [],
+      "artifact_refs": [
+        "outputs/data_eligibility.csv"
+      ]
+    },
+    "compatible_independent_group_capacity_confirmation": {
+      "status": "not_testable",
+      "reason": "new independent 4S RPT package absent",
+      "evidence_level": "D2-compatible",
+      "run_ids": [],
+      "artifact_refs": [
+        "outputs/D2_MEASUREMENT_PROTOCOL.md"
+      ]
+    },
+    "official_ck1_ck7_accuracy_verified": {
+      "status": "not_testable",
+      "reason": "competition hides CK1–CK7 truth; D3 predictions are unlabeled",
+      "evidence_level": "D3",
+      "run_ids": [
+        "V6_official_candidate_20260929_v1"
+      ],
+      "artifact_refs": [
+        "outputs/predictions_official_unlabeled.csv"
+      ]
+    },
+    "independent_audit_status": {
+      "status": "passed",
+      "reason": "independent raw/metric audit; R02 v1 issue corrected, v3 last small safeguard self-checked",
+      "evidence_level": "D1/D3/S",
+      "run_ids": [
+        "V1_event_coverage_20260929_v2",
+        "V3_R05_D1_20260929_v1",
+        "V2_R02_sensitivity_20260929_v3"
+      ],
+      "artifact_refs": [
+        "notes/INDEPENDENT_AUDIT.md"
+      ]
+    },
+    "reader_test_status": {
+      "status": "passed",
+      "reason": "no-context reader answered 12/12; first D2 raw-field ambiguity revised and retested",
+      "evidence_level": "document",
+      "run_ids": [],
+      "artifact_refs": [
+        "notes/READER_TEST.md"
+      ]
+    },
+    "word_render_verified": {
+      "status": "passed",
+      "reason": "5-page PDF rendered to PNG and all pages visually checked; split table repeats header",
+      "evidence_level": "document",
+      "run_ids": [],
+      "artifact_refs": [
+        "rendered/final/page-1.png",
+        "rendered/final/page-5.png"
+      ]
+    },
+    "research_complete": {
+      "status": "passed",
+      "reason": "V0–V8 executable components, constrained module decisions, independent review and all documents delivered; capacity performance separate",
+      "evidence_level": "D1/D3/S",
+      "run_ids": [
+        "V0_preflight_20260929",
+        "V1_event_coverage_20260929_v2",
+        "V2_R02_sensitivity_20260929_v3",
+        "V3_R05_D1_20260929_v1",
+        "V4_comparison_20260929_v1",
+        "V6_hard_tests_20260929_v1"
+      ],
+      "artifact_refs": [
+        "outputs/LFP_SOH_文献驱动验证与双路线决策报告.pdf"
+      ]
+    }
+  }
+}

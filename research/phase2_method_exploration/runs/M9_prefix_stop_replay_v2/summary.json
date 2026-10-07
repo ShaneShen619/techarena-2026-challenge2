@@ -1,0 +1,13 @@
+{
+  "prefix_first_crossings": 18958,
+  "old_completed_events_with_crossing": 18612,
+  "shared_event_ids": 18612,
+  "eligible_counts": {
+    "15": 18570,
+    "20": 18566,
+    "30": 18558
+  },
+  "all_1080_target_views_equal": true,
+  "candidate_emission_uses_full_run_end": false,
+  "note": "Offline vectorized simulation: every start and first-crossing decision uses current or earlier rows; no completed-event extractor is called."
+}

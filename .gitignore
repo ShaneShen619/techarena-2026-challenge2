@@ -1,0 +1,48 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+out/
+validation_report.txt
+
+# Local environments and caches
+.DS_Store
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+node_modules/
+**/clean_venv/
+**/final_clean_venv/
+**/docenv/
+**/wheelhouse/
+
+# Local credentials
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+id_rsa
+id_ed25519
+
+# Large raw datasets (kept locally; see GIT_UPLOAD.md)
+/TU Darmstadt/
+/dataset original/
+/Che-Dataset3.mat
+
+# Large generated experiment outputs
+/research/phase2_evidence_validation/outputs/event_eligibility.csv
+/research/phase2_evidence_validation/runs/V1_event_coverage_20260929/event_eligibility_v1.csv
+/research/phase2_method_exploration/outputs/predictions_long.csv
+/research/phase2_method_exploration/runs/M6_TU_steps_v1/system_06_events.csv
+/research/phase2_method_exploration/runs/M6_TU_steps_v1/system_08_events.csv
+/research/phase2_method_exploration/runs/M6_threshold_common_v1/matched_event_predictions.csv
+/research/phase2_method_exploration/runs/M6_workpoint_time_20A_v1/LOSO_online_predictions.csv
+/research/phase2_method_exploration/runs/M6_workpoint_time_v3/LOSO_online_predictions.csv
+/research/phase2_method_exploration/runs/M6_workpoint_time_v4/LOSO_online_predictions.csv
+/research/phase2_method_exploration/runs/M6_workpoint_time_v5/LOSO_online_predictions.csv

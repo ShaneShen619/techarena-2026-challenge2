@@ -1,0 +1,22 @@
+{
+  "date_utc": "2026-09-29",
+  "scope": "C workstream only; targeted literature and original dataset audit, not a systematic review",
+  "logged_exact_queries": 24,
+  "unique_screened_records_in_C_screening_csv": 15,
+  "locally_downloaded_and_methods_results_limitations_read": 10,
+  "deep_evidence_cards": 10,
+  "author_code_repositories_statically_inspected": 2,
+  "author_code_commits": {
+    "GenEVBattery": "f058ff133724ff6bab5073d8c4bbaf5b42f21dda",
+    "BattGP": "6d5e1db3337f0de5f3a533acbc09eddccc178e9d"
+  },
+  "abstract_or_access_limited_excluded_from_method_claims": 4,
+  "related_full_html_deferred_to_parent_team_to_avoid_duplicate_card": 1,
+  "access_failures": [
+    "J Energy Chem 2023 source PDF returned HTTP 429",
+    "IFAC 2023 PDF direct returned HTTP 403",
+    "AAAI 2026 guessed PDF URL returned HTTP 404"
+  ],
+  "source_types": ["publisher and academic search discovery", "arXiv or institutional author PDF", "publisher full PDF", "Zenodo/Mendeley DOI records", "local representative source files"],
+  "stop_limitation": "C workstream did not complete exhaustive forward/backward citation snowballing or 40-60 fulltext target; interpretations remain bounded to listed papers."
+}

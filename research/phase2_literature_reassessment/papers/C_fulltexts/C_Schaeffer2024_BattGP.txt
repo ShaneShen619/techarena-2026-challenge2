@@ -1,0 +1,1199 @@
+                                         G AUSSIAN PROCESS - BASED ONLINE HEALTH MONITORING AND
+                                           FAULT ANALYSIS OF LITHIUM - ION BATTERY SYSTEMS FROM
+                                                                                       FIELD DATA
+
+
+
+                                                          Joachim Schaeffer                                          Eric Lenz
+
+
+
+
+arXiv:2406.19015v3 [cs.LG] 30 Oct 2024
+                                            Control and Cyber-Physical Systems Laboratory         Control and Cyber-Physical Systems Laboratory
+                                                       TU Darmstadt, Germany                                 TU Darmstadt, Germany
+
+                                                              Duncan Gulla                                          Martin Z. Bazant
+                                               Control and Cyber-Physical Systems Laboratory               Massachusetts Institute of Technology
+                                                          TU Darmstadt, Germany                                  Cambridge, MA, USA
+
+                                                        Richard D. Braatz                                      Rolf Findeisen
+                                               Massachusetts Institute of Technology           Control and Cyber-Physical Systems Laboratory
+                                                     Cambridge, MA, USA                                   TU Darmstadt, Germany
+                                                           braatz@mit.edu                                 rolf.findeisen@iat.tu-darmstadt.de
+
+
+
+
+                                                                                       October 31, 2024
+
+
+
+
+                                         This version is outdated. The final article is published as open access
+                                         in Cell Reports Physical Science.
+                                         Article (open): https://doi.org/10.1016/j.xcrp.2024.102258
+                                         BattGP Code: https://github.com/JoachimSchaeffer/BattGP
+                                         Data set: https://zenodo.org/records/13715694
+    This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+                                                     A BSTRACT
+         Health monitoring, fault analysis, and detection are critical for the safe and sustainable operation of
+         battery systems. We apply Gaussian process resistance models on lithium iron phosphate battery field
+         data to effectively separate the time-dependent and operating point-dependent resistance. The data
+         set contains 29 battery systems returned to the manufacturer for warranty, each with eight cells in
+         series, totaling 232 cells and 131 million data rows.
+         We develop probabilistic fault detection rules using recursive spatiotemporal Gaussian processes.
+         These processes allow the quick processing of over a million data points, enabling advanced online
+         monitoring and furthering the understanding of battery pack failure in the field. The analysis
+         underlines that often, only a single cell shows abnormal behavior or a knee point, consistent with
+         weakest-link failure for cells connected in series, amplified by local resistive heating. The results
+         further the understanding of how batteries degrade and fail in the field and demonstrate the potential
+         of efficient online monitoring based on data.
+         We open-source the code and publish the large data set upon completion of the review of this article.
+
+Keywords Lithium-Ion Batteries · Field Data · Gaussian Processes · Machine Learning · Artificial Intelligence · Health
+Monitoring · Fault Detection
+
+
+
+Lithium-Ion Batteries (LIBs) are essential for Electric Vehicles (EVs), grid storage, mobile applications, and consumer
+electronics. Over the last 30 years, remarkable advances have led to long-lasting cells with high energy efficiency and
+density [1]. The growth of production volume over the last decade is projected to continue [2, 3] mainly due to EVs and
+stationary storage, both needed for the transition to a sustainable future. Safe operation of LIBs is vital to protect life
+and property and to strengthen trust in LIBs. In the past, LIB fires erupted in many different applications, including
+EVs [4], stationary storage [5], and electric bicycles [6]. Monitoring batteries during operation allows the detection of
+electrical or mechanical abuse of the system or the onset of accelerated cell degradation, which is critical to reducing
+the potential of such fires.
+This article considers the design of Gaussian Process (GP)-based health monitoring systems from battery field data,
+which are time series data consisting of noisy temperature, current, and voltage measurements corresponding to the
+system, module, and cell level [7]. In real-world applications, the operational conditions are usually uncontrolled, i.e.,
+the device is in the hands of the customer, who can use and potentially abuse the battery system. From a high level, the
+key task for the Battery Management System (BMS) is to ensure safe operation of the battery system [8], either onboard
+or potentially also leveraging the cloud [9] if further investigations or compute power are needed. Field data are critical
+for improving BMSs, understanding how batteries age in the field, and detecting faults early under realistic battery
+operating conditions [7, 10]. Furthermore, openly available health monitoring methods are important for regulation,
+such as the battery passport [2]. A critical bottleneck in pushing the field of battery monitoring forward has been the
+lack of published battery field data [11], which is one of the contributions of this article.
+Many methods are available for modeling the cycling and degradation behavior of battery cells and systems [12–14].
+Roughly, these battery models can be categorized as empirical models (e.g., [15, 16]), machine learning models (e.g.,
+[17–22]), first-principles models (aka physics-based aka mechanistic, e.g., [23–25]), and hybrid models which combine
+first-principles and machine learning models (e.g., [26–28]). Choosing an appropriate model is essential to use the
+available data optimally [12]. Physics-based battery models such as Pseudo-Two-Dimensional (P2D) and Single-Particle
+Models (SPMs) are often challenging to parameterize with field data where often no or only a few cell parameters are
+known in combination with sensor noise and bias as well as low time resolution. Equivalent Circuit Models (ECMs) are
+an alternative because they are easier to parameterize with limited data [13] and are applicable to field data [29].
+Faults are abnormal events that cause the system to behave in an unintended way or stop operating. Furthermore, faults
+can potentially cause safety threats to a system and its environment. Fault detection methods can be categorized as
+signal-based or model-based. Much research considers the fast signal-based fault detection for battery systems [30–32].
+A few examples of commonly used methods include normalized voltage-based methods [33], analysis of correlation
+coefficients of cell voltages [34, 35], and sample entropy-based methods [36]. Model-based fault detection methods are
+more computationally complex but can potentially detect faults earlier and improve robustness (see [37–43]). Battery
+system faults can be auxiliary, sensor, or battery faults. Battery faults are often due to slow processes, such as battery
+degradation, which can be addressed by real-time estimation of the State Of Health (SOH) of batteries to enable
+prediction of battery lifetime [29, 44, 45]. It is commonly observed that slow capacity decay is followed by accelerated
+degradation, yielding a knee-shaped capacity decay curve as a function of charge throughput [46].
+
+
+                                                            2
+    This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+In this work, we analyze and model lithium-ion battery systems based on field data using a hybrid approach of machine
+learning and ECMs. Inspired by [29], we develop a GP-based resistance modeling framework for lithium-ion battery
+systems without the need for an Open Circuit Voltage (OCV) curve for Lithium-Iron-Phosphate (LFP) batteries. We
+showcase exact GP results using 40k data points for each cell and recursive spatiotemporal GP results based on all
+selected data points (above 1 million data points for the system with the most available data). Furthermore, we develop
+fault probabilities, allowing probabilistic monitoring of the time-dependent internal resistance and associated fault
+probabilities for each individual cell and the whole system. The derivations are motivated by field data from 29 portable
+lithium-ion battery systems consisting of eight cells in series, totaling 232 cells that were in use for up to 5 years. All
+analyzed systems were returned to the manufacturer for warranty claims, where the data were recovered. An in-depth
+analysis of the data set and modeling results allows us to further the understanding of how battery packs fail. This
+article makes the field data and associated Python package BattGP available as open source. This data set provides a
+unique opportunity to develop and test approaches for estimating SOH and fault detection and health monitoring. To
+the best of the author’s knowledge, this is the first large publicly available lithium-ion battery field data set containing
+data from many independent systems and multiple years of operation.
+
+Field Data Set
+The data set contains data from 29 portable 24 V LFP battery systems with approximately 160 Ah nominal capacity.
+Each system’s specific use case is unknown, but battery systems of this size are typically used as power sources for
+recreational vehicles, solar energy storage, and more.
+All battery systems in this data set showed some form of unsatisfactory behavior and were returned to the manufacturer.
+Many reasons can cause a consumer to return a battery to the manufacturer for maintenance. The user’s individual
+decisions may be motivated by personal judgment, BMS warnings, or customer support advice. This data set comprises
+a very small fraction of batteries sold of this version. Therefore, this data set is biased and not representative of the
+operational data of the entire population of this system version. This article’s battery system type was replaced by an
+improved version. The battery system manufacturer provided the data set for this study and allowed its open-source
+release under the condition of anonymity.
+Some time series data contain data gaps, either because the system was fully switched off, the user tampered with it
+and its data storage unit, or for other unknown reasons. Furthermore, the exact manufacturing and shipping dates are
+unavailable, making it impossible to reconstruct charge throughput and rest periods’ duration precisely.
+
+
+                                                          BMS
+
+
+
+
+      Figure 1: Sketch of a battery system with 8 prismatic cells temperature sensors shared by two cells in red.
+
+
+
+Battery System
+
+Each battery system consists of 8 prismatic cells in series. Each system has one load current sensor, and each cell has
+one voltage sensor. The four temperature sensors are placed between adjacent cells, i.e., each temperature sensor is
+shared by two cells (Fig. 1). Furthermore, the battery systems have active cell balancing. The available measurements
+for the systems vary from a single month to five years. Consequently, the number of data rows per system varies from
+several thousand to millions, depending on the duration of battery operation. The data set contains a total of 131 million
+
+
+                                                             3
+    This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+             Table 1: Technical specification of the battery system and summary of the associated data.
+                        Technical Specification                                 Data Set
+            Nominal voltage                         24 V       Number of systems                    29
+            Nominal capacity                     ≈ 160 Ah Total number of cells                    232
+            # Cells                               8 (series)   Total rows of data                 131 M
+            # Current Sensors                         1        Median of measurement intervals      5s
+            # Voltage Sensors                         9
+            # Temperature Sensors                     4
+            # Cell Balancing Current Sensors          8
+
+
+rows of measurements (cf. Tab. 1). The estimated probability densities of usage conditions (Fig. 2) demonstrate the
+widely varying operational conditions. Note that the estimated current, voltage, and State Of Charge (SOC) densities are
+plotted on a logarithmic scale. For example, many temperature measurements are below room temperature, suggesting
+that some systems were operated outdoors or in unheated environments. The observed Depth Of Discharges (DODs)
+are predominantly limited to the upper half of the SOC range, and much time was spent fully charged for most systems.
+The distribution of voltage shows that some batteries were overcharged (> 3.6 V) or undercharged (< 2.0 V), or both at
+some point. Furthermore, battery systems 3, 4, and 16 have discharge current outliers > 1000 A, suggesting a shortcut
+or inrush current due to improper installation or abuse or a sensor error. It is not possible to further disentangle the
+reasons for these abnormally high discharge currents and over/undercharging. There is a lot of uncertainty associated
+with how the user installed the system and which equipment was connected because the systems are portable and
+suitable for many different applications.
+
+Exemplary Data Visualization and Analysis
+
+We analyze 24.2 million rows of data associated with battery system 8, which was operated for approximately five
+years (Fig. 3). The system was switched on in November 2016, but frequent usage only started about a year later. The
+end of continuous usage is around December 2021. However, the system kept logging data for a couple more months
+afterward. The temperature profile shows seasonal variations with higher temperatures during the northern hemisphere
+summer months. Furthermore, voltage measurements and estimated SOC show that the system was primarily operated
+between 60 to 100% SOC with occasional discharges below 40%. Around September 2020, the usage pattern changes,
+as can be seen by the current and SOC patterns. The mean subtracted cell voltages,
+                                                                      n
+                                                                 1 X
+                                           ũi (t) = ui (t) −        uj (t),                                           (1)
+                                                                n−1
+                                                                    j, j̸=i
+
+where ui (t) is the voltage of cell i at time t, and n is the number of cells, show average deviations below 0.1 V for the
+first two years of operation (Fig. 3b). With increasing usage, i.e., increasing charge throughput and time and therefore
+also degradation, the average mean subtracted voltages increase, an indicator that individual cells age differently, likely
+due to cell-to-cell variations (e.g., [47, 48]), and as a consequence, the system is less balanced. Similarly, the voltage
+standard deviations,                  v
+                                      u           n                                     n
+                                      u 1 X                                          1X
+                            σu (t) = t              (ui (t) − µ(t))2 , where µ(t) =        ui (t),                      (2)
+                                          n − 1 i=1                                  n i=1
+
+are below 0.05 V for the first years; however, toward the end of use, the standard deviation of cell voltages increases
+significantly.
+To summarize, the data analysis of system 8 shows heavy usage over a five-year period, totaling about 1531 equivalent
+full cycles. However, based on the data visualization, it is challenging to understand further how cells degraded, whether
+certain cells degraded more than others, or when the system might fail. In the next section, we explore how to use the
+battery data for internal state estimation suitable for tracking the aging behavior of the individual cells.
+
+
+
+
+                                                                4
+       This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+ a)                                                             b)
+                      Log Density of Current                                           Log Density of Cell Voltage
+        1                                                             1
+        2                                                             2
+        3                                                             3
+        4                                                             4
+        5                                                             5
+        6                                                             6
+        7                                                             7
+        8                                                             8
+        9                                                             9
+       10                                                            10
+       11                                                            11
+       12                                                            12
+       13                                                            13
+       14                                                            14
+       15                                                            15
+       16                                                            16
+       17                                                            17
+       18                                                            18
+       19                                                            19
+       20                                                            20
+       21                                                            21
+       22                                                            22
+       23                                                            23
+       24                                                            24
+       25                                                            25
+       26                                                            26
+       27                                                            27
+       28                                                            28
+       29                                                            29
+                300   200          100          0   100   200             0       1        2        3         4         5        6
+                             Current [A]                                                        Cell Voltage [V]
+
+
+
+                                                                d)
+  c)                                                                                   Density of Temperature
+                       Log Density of SOC                             1
+        1                                                             2
+        2                                                             3
+        3                                                             4
+        4                                                             5
+        5                                                             6
+        6                                                             7
+        7                                                             8
+        8                                                             9
+        9                                                            10
+       10                                                            11
+       11                                                            12
+       12                                                            13
+       13                                                            14
+       14                                                            15
+       15                                                            16
+       16                                                            17
+       17                                                            18
+       18                                                            19
+       19                                                            20
+       20                                                            21
+       21                                                            22
+       22                                                            23
+       23                                                            24
+       24
+       25                                                            25
+       26                                                            26
+       27                                                            27
+       28                                                            28
+       29                                                            29
+            0    20         40             60       80    100                 0       10       20        30        40       50
+                                 SOC [%]                                                       Temperature [°C]
+
+Figure 2: Estimations of the logarithmic probability densities of the distributions of a) current, b) cell voltages, c) SOC,
+and d) probability density of temperatures.
+
+
+
+
+                                                                      5
+    This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+Figure 3: Data visualization of battery system #8. a) Cell voltages, b) Cell voltages with mean of other cells subtracted,
+c) Cell voltage standard deviation, d) Battery system current, e) Cell balancing converter current, f) State of charge, g)
+Temperatures (each temperature sensor neighbors two cells (Fig. 1)), h) Data availability.
+
+
+
+
+                                                            6
+    This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+Gaussian Process Equivalent Circuit Battery Systems Modeling
+
+Gaussian Processes (GPs) are suitable for modeling the time- and operating point behavior of batteries [29]. GPs,
+f (x) ∼ GP(µ(x), k(x, x′ )), are nonparametric probabilistic models defining a distribution of functions. GPs are
+defined by a mean function µ(x) and a covariance function k(x, x′ ) where x, x′ ∈ X D and X D is the input space with
+dimension D. The modeled response y follows a Gaussian distribution, as does any marginal distribution (e.g., [49] for
+further information). GPs are a flexible modeling framework excelling in the case of limited data by making a point
+estimate and modeling the covariance associated with the prediction.
+
+
+                                        ROP(I, SOC, T)                   Rt(t)
+
+
+                                                                                               +
+
+
+                                                                                             VMeas
+                           +
+                           _       VOCV(SOC)
+
+                                                                                               _
+
+Figure 4: Visualization of the ECM model with illustrations of random draws from the kernel functions (Radial basis
+function kernel with current, SOC, and temperature inputs and Wiener velocity kernel with time input, as suggested in
+[29]).
+
+
+
+Motivated by [29], we base our analysis on the GP-ECM modeling framework, which uses an ECM consisting of two
+series resistors modeled by two additive kernels (Fig. 4). The first resistor is modeled by an Radial Basis Function
+(RBF) kernel taking the current, SOC, and temperature as inputs and is, therefore, only dependent on the operating point
+of the battery. A non-stationary Wiener velocity kernel models the second series resistor and depends only on time. The
+underlying assumption of this framework is that the operating point-dependent equivalent circuit internal resistance
+does not depend on degradation. This assumption, while not exactly fulfilled by LIBs, is, however, reasonable, allowing
+us to approximate and extract the equivalent circuit time-dependent resistance, i.e., a proxy of degradation.
+
+
+GP-ECM Modeling Pipeline The GP-ECM algorithm consists of the following steps for a single cell. First, voltage,
+current, SOC, and time are extracted and downselected. The aim is to select data points with significant information
+for the learning tasks and to avoid sparse extreme conditions where the dependency between the equivalent circuit
+operating point-dependent resistance might be more nonlinear. We use discharging sections only because, in the data
+set, there are more dynamics during discharging. Further selection criteria outlined in the Methods section are applied
+to limit the considered SOC window, discharge current range, and temperature conditions (Tab. 3). We select the latest
+section with no gaps larger than 100 days and require at least 600 valid data points, resulting in a selection of 21 systems
+for modeling. We use a linear pseudo OCV curve roughly approximating the OCV of LFP to calculate the equivalent
+circuit resistance based on the SOC estimation of the BMS for all time steps (SI Fig. A.1). Physically, the linear OCV
+model approximates the distribution of particle-size dependent nucleation barriers [50] for a porous electrode with a
+particular distribution of LFP particle sizes [51]. The results indicate that the algorithm can be used even when the
+OCV curve associated with the cells in the data set is not available by using a rough approximation from published
+OCV curves.
+Based on the pack layout, 8 cells in series, and 1 parallel string (8s1p), we generate a model for each cell, resulting
+in eight models for each battery system. We use exact GPs to get an overview of the data set but move to recursive
+spatiotemporal GPs in the next section, enabling online monitoring (see Methods section for more details). For the exact
+GP, to keep the computational complexity feasible, we further downselect each cell to a maximum of 40k measurements
+by selecting data with linearly spaced indices of the preselected data. The hyperparameters are optimized as outlined
+in the Methods section. Identical hyperparameters are used for all battery systems because the hyperparameters
+characterize the system behavior, and all systems are identical in construction. Even though the batteries were operated
+in different applications with different average operating points, GPs can handle these differences.
+
+
+                                                             7
+    This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+
+Figure 5: Evaluation of the time-dependent Wiener velocity kernel equivalent circuit resistance for up to 40k randomly
+selected data points after downselection. Only systems for which >600 data points after downselection are available are
+shown (21 systems). Each subplot shows the equivalent circuit resistance for each cell with the reference operating point
+set to the mean of all selected data points (top) and a logarithmically scaled bar plot in red, visualizing the available
+data points over time (bottom). The plots and systems are described in more detail in Tab. 2.
+
+
+
+
+                                                           8
+     This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+
+                                 Table 2: Overview of GP Analysis Results
+  Subplot,    Equivalent Max Age     GP       Intriguing Comments
+  System        Full      (Days)   Section      Cells
+    ID         Cycles              (Days)
+   a), 1         14        1402      580          (7)    Cell 7 behaves differently to the other cells.
+   b), 2          6        1651      204          (8)    Cell 8 shows a slightly higher resistance than the
+                                                         other cells.
+    c), 3        11         591      127          (7)    Cell 7 shows a strong upward resistance trend, while
+                                                         other cells have fairly constant resistances.
+    d), 4        185        544      176          (1)    Cell 1 behaves very differently to other cells.
+    e), 5        28        2166       44          (1)    Cell 1 shows a slightly higher resistance than the
+                                                         other cells.
+    f), 6       1446       1352     1170          (8)    Cell 8 shows a resistance kneepoint after 3 years.
+    g), 7        15         428      122       (5), (7), Cell 5 has a slightly higher resistance; cells 7 and 8
+                                                  (8)    show different trends after 40 days in comparison to
+                                                         the other cells.
+    h), 8       1531       1923     1476                 All cells show a knee point behavior toward the end
+                                                         of the section (seasonal temperature variations affect-
+                                                         ing resistance estimates, see SI Fig. D.8).
+    i), 9        489        534      322       (2), (1)  Cell 2 has a knee point after 240 days. Cell 1 has
+                                                         a slightly higher resistance to other cells except for
+                                                         cell 2.
+   j), 10        211        417      241       (8), (1), Cell 8 shows an increasing resistance after 100 days.
+                                               (2), (7)  Cells 1, 2, and 7 behave slightly differently from the
+                                                         other cells.
+   k), 11        15         997      185                 Lower average current than most other systems, un-
+                                                         clear interpretation.
+   l), 12        93         320       69       (8), (7)  Cells 8 and 7 show different behavior (significantly
+                                                         higher temperatures measured by temperature sensor
+                                                         4, see SI Fig. D.12).
+   m), 13        23         724      183                 Lower average current than most other systems, un-
+                                                         clear interpretation.
+   n), 14        23         376      117                 Lower average current than most other systems, un-
+                                                         clear interpretation.
+   o), 15        17        1217      187                 Many data gaps, unclear interpretation.
+   p), 16        34         799      332          (4)    Cell 4 behaves slightly different to the other cells.
+   q), 17        21         889      153          (3)    Cell 3 shows different behavior, unclear interpreta-
+                                                         tion.
+   r), 18        453        900      182                 All cells show increasing resistance toward the end
+                                                         of use, unclear interpretation.
+   s), 19        28         712      185                 Lower average current than most other systems, un-
+                                                         clear interpretation.
+   t), 20        22         724      183                 Lower average current than most other systems, un-
+                                                         clear interpretation.
+   u), 21       1088        644      377          (5)    Cell 5 behaves differently to the other cells.
+
+
+
+Results
+
+The GP modeling results (Fig. 5) show the time-dependent resistance modeled by the Wiener velocity kernel at the
+reference operating point. The reference operating point is set to the mean of current, SOC, and temperature of the
+selected data for each system to keep the same reference operating point for all cells of a system. Consequently, the
+absolute values for the resistance vary between the systems. For nine systems (1, 3, 4, 6, 7, 9, 12, 16, 17), single cells or
+two cells behave differently than the remaining cells (Fig. 5, Tab. 2). A single cell shows a knee-shaped behavior for
+three systems (3, 6, 9). Battery system 8 shows a knee-shaped resistance trajectory for all cells at roughly the same time.
+Table 2 gives an overview of equivalent full cycle count, length of available data, length of the section modeled by the
+GP, intriguing cells, and comments on the resistance pattern.
+
+
+                                                             9
+     This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+There can be a wide variety of root causes for the resistance patterns. To further understand the cause of individual
+degradation, a mechanical inspection of the systems would be needed, which can not be done as the returned battery
+systems are not physically available to the authors. Furthermore, the model cannot distinguish between battery
+degradation and external degradation or faults such as connector loss, corrosion, connector resistance increase, etc. If
+little data is present, learning the battery operating point-dependent equivalent resistance can be challenging, resulting
+in larger uncertainty bands. Furthermore, the output scale parameter of the Wiener velocity kernel was tuned to track
+battery degradation (c.f., Methods section). Therefore, it can be challenging for the GP to capture sudden faults such as
+connector loss or others quickly (see SI Sec. B.2 for more details). In case of strong temperature variations, the Wiener
+velocity kernel can pick up some of the temperature variations, leading to downward trends (e.g., System 8).
+Systems 6, 8, and 9 have the highest equivalent full cycle count (1446, 1531, and 489). Their resistance trajectories
+suggest that these systems were healthy for most of their operation, with degradation accelerating towards the end of use.
+Judging from the presumably healthy section of these systems, the patterns of many of the other systems appear visually
+different, suggesting that, indeed, there was an issue during operation, consistent with the fact that the systems were
+returned to the manufacturer. This gives further confidence that the GP models systems well when they are “healthy”
+and that different faults and issues show up in the modeled equivalent circuit resistance and thus show the promise of
+GPs for early fault detection which we explore in the next section.
+
+Fault Probabilites
+Based on the observations on the entire data set, we investigate how the four systems with the highest equivalent full
+cycle count, 6, 8, 9, and 10, degraded. To do so, we propose to define a battery pack consisting of cells in series to have
+an acceptable resistance distribution if the internal resistances of all cells are within a resistance range centered around
+the mean of cell resistances,
+                                                   n
+                                             1 X
+                               Rp,i (t) =        Rj (t),                                                                 (3)
+                                            n−1
+                                                 j, j̸=i
+
+                            p(FRi (t)) = p(Ri (t) > Rp,i (t) + b) + p(Ri (t) < Rp,i (t) − b),                            (4)
+where Rp,i (t) is the mean resistance of the time-dependent GP resistance mean of all cells in the pack except cell i.
+p(FRi (t)) is the probability of a resistance fault of cell i, i.e., the probability of cell i not being within the band b of
+acceptable resistances. The GP provides the mean and probabilities needed for calculating p(FRi (t)).
+The GP modeling results (Fig. 5) show that a single cell degrading strongly can define the end of life of a battery system.
+Therefore, we propose to define the probability of a pack resistance fault, p(FRp ), as
+                                                Y                           X
+                             p(FRp (t)) = 1 −       (1 − p(FRi (t)(i))) ∼      p(FRi (t))                               (5)
+                                                   i                           i
+
+according to the true “weakest link” failure statistics for cells connected in series [52–54]. In the limit of rare,
+independent failures dominated by a single cell, the pack resistance fault can be approximated by
+                                              p(FRp (t)) ≈ max p(FRi (t)).                                               (6)
+                                                               i
+
+The choice of b depends on the acceptable cell-to-cell variations, the system design, and the reference operating point.
+In an online BMS setting, the ECM-GP needs to be updated continuously with new data arriving. The computational
+complexity of exact GPs scale with O(n3 ), where n is the number of data points, making it computationally infeasible
+to update the model continuously, using all selected data. Therefore, we use a recursive spatiotemporal GP, which
+scales linearly with the number of data points [29, 55, 56], allowing to process above 1 million data points within two
+minutes on a laptop computer, enabling the use in embedded BMS systems, or efficient calculations in the cloud for
+thousands of systems. Our approach is motivated by [29] but not identical (see Methods section for further details). The
+spatiotemporal GP walks forward in time using a Kalman filter. We use the estimate of the Kalman filter at time tk ,
+which only depends on data up to time tk to calculate forward fault probabilities. We set b = 0.33 mΩ based on the
+resistance spread observed at the beginning of the life of the batteries for the systems investigated here. Furthermore,
+we use the mean of the mean operating points of the four systems as common reference operating point.
+The forward fault probabilities (Figs. 6a.1,b.1,c.1,d.1) fluctuate more than the smooth fault probabilities
+(Figs. 6a.2,b.2,c.2,d.2), which is expected from the fact that they only depend on past data. In addition, the for-
+ward fault probabilities need a certain amount of data to settle in, here in the order of 30-150 days, depending on
+the usage of the system. The fault probabilities for Systems 6, 8, and 9 show similar patterns with very low fault
+
+
+                                                            10
+                              This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+  a.1): Forward Fault Probabilities Battery #6                                                                                                                                                             b.1): Forward Fault Probabilities Battery #8
+                  Fault Probabilites Battery #6, Resistance Band: 0.33 mOhm                                                                                                   1e 6                                         Fault Probabilites Battery #8, Resistance Band: 0.33 mOhm                                                                                                           1e 6
+
+
+
+
+   R Band Fault Probability
+                              1.0
+
+
+
+
+                                                                                                                                                                                                            R Band Fault Probability
+                                                                                                                                                                                                                                       1.0                                                                                                                                                               1.0
+
+
+
+                                                                                                                                                                                     Variance of Rt Mean                                                                                                                                                                                                   Variance of Rt Mean
+                                                                                                                                                                                     2
+                              0.5                                                                                                                                                                                                      0.5                                                                                                                                                               0.5
+                                                                                                                                                                                     1
+
+                              0.0                                                                                                                                                    0                                                 0.0                                                                                                                                                               0.0
+                                     0                    200                      400                      600                       800                  1000                                                                               0              200                   400               600                    800                 1000                   1200               1400
+
+  a.2): Smooth  4 Fault 12Probabilities28 Battery #615                       1              0                                                                                                              b.2): Smooth   5 Fault  03
+                                                                                                                                                                                                                                      Probabilities
+                                                                                                                                                                                                                                                20
+                                                                                                                                                                                                                                                        Battery #8 24
+                                                                                                                                                                                                                                                               8                      11           27                                                                                            5
+        8-1
+            0-2       Fault
+                     9-0
+                         5 - Probabilites11-Battery #6, 0-06-
+                                                        Resistance Band: 1-0
+                                                                      1-0 0.33 mOhm 1-0
+                                                                                        7-2                                                                                                                          11-1       06- Fault 8-12-
+                                                                                                                                                                                                                                         Probabilites Battery
+                                                                                                                                                                                                                                                          0 7-0 #8, -01-
+                                                                                                                                                                                                                                                                   Resistance Band:08- 0.33 1-
+                                                                                                                                                                                                                                                                                           mOhm02-                                                                                            9-1
+                                                                                                                                                                                                                                                                                                                                                                                           1-0 1e 7
+                                01   19-                201                   20                      202                         202                    202
+                                                                                                                                                                              1e 7                               17-        18-          01
+                                                                                                                                                                                                                                       21.0           19-
+                                                                                                                                                                                                                                                        20          20         20-
+                                                                                                                                                                                                                                                                              20            2   20                    20                       20                 20                    202               2
+
+
+
+
+   R Band Fault Probability                                                                                                                                                                                 R Band Fault Probability
+                              21.0
+
+
+
+                                                                                                                                                                                     Variance of Rt Mean                                                                                                                                                                                                   Variance of Rt Mean
+                                                                                                       Date                                                                          4                                                                                                                               Date
+
+                              0.5                                                                                                                                                    2                                                 0.5                                                                                                                                                                1
+
+
+                              0.0                                                                                                                                                    0                                                 0.0                                                                                                                                                                0
+                                     0                    200                      400                      600                       800                  1000                                                                               0              200                   400                600                   800                     1000                1200                  1400
+
+
+                                         0-2
+                                               4                 -12                     -28                  6-  15                     1-0
+                                                                                                                                             1
+                                                                                                                                                               7-2
+                                                                                                                                                                    0                                                                             -15           6-0
+                                                                                                                                                                                                                                                                    3
+                                                                                                                                                                                                                                                                                         2-2
+                                                                                                                                                                                                                                                                                            0
+                                                                                                                                                                                                                                                                                                            7-0
+                                                                                                                                                                                                                                                                                                                 8
+                                                                                                                                                                                                                                                                                                                                  1-2
+                                                                                                                                                                                                                                                                                                                                     4                     8-11               2-2
+                                                                                                                                                                                                                                                                                                                                                                                    7
+                                                                                                                                                                                                                                                                                                                                                                                                 9-1
+                                                                                                                                                                                                                                                                                                                                                                                                     5
+                                     8-1                   9-0
+                                                               5                   9-11                   0-0                         1-0                   1-0                                                                               7-11           8-0                   8-1                9-0                    0-0                        0-0             1-0                   1-0
+                              201                       201                   201                     202                         202                    202                                                                           201              201                   201               201                   202                       202                202                   202
+                                                                                                       Date                                                                                                                                                                                                          Date
+
+
+  c.1): Forward Fault Probabilities Battery #9                                                                                                                                                             d.1): Forward Fault Probabilities Battery #10
+                  Fault Probabilites Battery #9, Resistance Band: 0.33 mOhm                                                                                                1e 7                                            Fault Probabilites Battery #10, Resistance Band: 0.33 mOhm                                                                                                            1e 6
+                                                                                                                                                                                  7.5
+
+
+
+
+                                                                                                                                                                                                            R Band Fault Probability
+                                                                                                                                                                                                                                       1.0
+
+
+
+
+   R Band Fault Probability
+                              1.0                                                                                                                                                                                                                                                                                                                                                                         2
+
+
+
+                                                                                                                                                                                     Variance of Rt Mean                                                                                                                                                                                                   Variance of Rt Mean
+                                                                                                                                                                                  5.0
+                              0.5                                                                                                                                                                                                      0.5                                                                                                                                                                1
+                                                                                                                                                                                  2.5
+
+                              0.0                                                                                                                                                 0.0                                                  0.0                                                                                                                                                                0
+                                     0                   50                  100                    150                     200                  250                 300                                                                      0                          50                           100                                 150                               200
+
+  c.2): Smooth  06
+                   Fault25Probabilities   4 Battery        3 #9       22
+                                                                                                                                                                                                           d.2): Smooth    Fault 15
+                                                                                                                                                                                                                                 Probabilities Battery             #10
+            08-        09-            11-1 Battery 6-0 1-0         02-            04 -12                                                                                6-0
+                                                                                                                                                                            1
+                                                                                                                                                                                                                    11-2
+                                                                                                                                                                                                                         6
+                                                                                                                                                                                                                                    01-
+                                                                                                                                                                                                                                                            05
+                                                                                                                                                                                                                                                         03-#10, Resistance6-04-
+                                                                                                                                                                                                                                                                                 24
+                                                                                                                                                                                                                                                                                               06-
+                                                                                                                                                                                                                                                                                                   13
+        15-         15- Fault Probabilites
+                                0
+                              21.015-            1 #9, Resistance
+                                                   20           16- Band: 0.3316-
+                                                                        20
+                                                                               mOhm
+                                                                                               20                      20                   20                    201
+                                                                                                                                                                     6-0 1e 7
+                                                                                                                                                                                  7.5                           15-          Fault
+                                                                                                                                                                                                                                16-
+                                                                                                                                                                                                                                     Probabilites Battery
+                                                                                                                                                                                                                                         0
+                                                                                                                                                                                                                                       21.0          16-           20    1
+                                                                                                                                                                                                                                                                             Band: 0.33 mOhm
+                                                                                                                                                                                                                                                                                           16-   20                                 20                                 20
+                                                                                                                                                                                                                                                                                                                                                                                               1e 7
+
+
+
+
+   R Band Fault Probability                                                                                                                                                                                 R Band Fault Probability
+                                                                                                                                                                                                                                                                                                                                                                                                         1.5
+
+
+
+                                                                                                                                                                                     Variance of Rt Mean                                                                                                                                                                                                   Variance of Rt Mean
+                                                                                                        Date                                                                                                                                                                                                         Date
+                                                                                                                                                                                  5.0                                                                                                                                                                                                                    1.0
+                              0.5                                                                                                                                                                                                      0.5
+                                                                                                                                                                                  2.5                                                                                                                                                                                                                    0.5
+                              0.0                                                                                                                                                 0.0                                                  0.0
+                                     0                   50                  100                    150                     200                  250                 300                                                                      0                          50                           100                                150                            200
+
+
+                                           -06                9-2
+                                                                 5                 -14                1-0
+                                                                                                          3
+                                                                                                                              2-2
+                                                                                                                                  2
+                                                                                                                                                   4-1
+                                                                                                                                                       2
+                                                                                                                                                                        6-0
+                                                                                                                                                                              1                                                                   -26                      1-1
+                                                                                                                                                                                                                                                                               5
+                                                                                                                                                                                                                                                                                                           3-0
+                                                                                                                                                                                                                                                                                                                 5
+                                                                                                                                                                                                                                                                                                                                            4-2
+                                                                                                                                                                                                                                                                                                                                                    4
+                                                                                                                                                                                                                                                                                                                                                                              6-1
+                                                                                                                                                                                                                                                                                                                                                                                  3
+                                 5-0
+                                    8
+                                                        5-0                5-11                   6-0                     6-0                  6-0                   6-0                                                                  5-11                          6-0                           6-0                                6-0                             6-0
+                              201                  201                  201                    201                     201                  201                   201                                                                  201                         201                          201                                201                             201
+                                                                                                        Date                                                                                                                                                                                                         Date
+
+                                     Cell 1                          Cell 2                         Cell 3                          Cell 4                        Cell 5                                          Cell 6                                       Cell 7                            Cell 8                                 Weakest Link                                      Variance
+
+
+Figure 6: Fault probabilities for each cell of the four systems with the highest equivalent full cycle count in color.
+Variance of the GP resistance mean in black. a) System 6, b) System 8, c) System 10, d) System 12.
+
+
+
+
+probabilities for most of their usage (Fig. 6). Generally, the forward and smooth fault probabilities agree well and detect
+the onset of high fault probabilities close to 1 at the same point in time.
+System 6: The fault probability of cell 8 increases after 600 days and crosses 0.5 shortly before 1000 days. The
+remaining cells also start deviating more from one another, as seen by their increasing resistance fault probabilities.
+Interestingly, cell 8 showed already a small fault probability at the beginning of life.
+System 8: The mean resistances associated with system 8 show seasonal variations (Fig. 5h), in line with a wide
+temperature distribution (Fig. 2d) where most readings are in a range between 10 and 45◦ C, a lot wider than the
+distributions of most other systems. Around day 1000, the resistance fault probabilities of cells 6, 7, and 8 start to
+increase sharply. Figure 5 shows a knee-shaped resistance with a fairly similar knee point, suggesting that most cells
+reached the region of accelerated degradation at about the same time.
+System 9: System 10 shows a similar pattern to system 6. Here, cell 2 displays a knee in the mean resistance at day 220
+in the analyzed section (Fig. 5).
+System 10: Cells 7 and 8 have a significant fault probability already from the start, suggesting that these cells had an
+issue early on, in line with the end of use after 211 equivalent full cycles (Tab. 2).
+The fault probabilities allow us to analyze the aging in detail and unlock online monitoring.
+
+
+                                                                                                                                                                                        11
+      This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+Conclusion
+Health monitoring, fault analysis, and detection are critical for the safe and sustainable operation of battery systems. To
+analyze and detect faults, we developed a recursive and exact Gaussian process electrical circuit modeling pipeline to
+estimate the time-dependent equivalent circuit internal resistance as a surrogate for SOH from lithium-ion battery pack
+field data with measurement noise and unknown OCV curve. Furthermore, we developed resistance fault probabilities
+using the individual cell resistance of the cells in a pack, suitable for early online detection of resistive knee points and
+resistance faults.
+The methods are motivated and tested on a large field data set comprising 29 battery systems and more than 131 million
+data rows. The results show that often, a single cell with abnormal performance can cause the end of a system’s use
+and that such faults can be detected with the proposed Gaussian process electrical circuit modeling approach. Such
+an occurrence can be caused after heavy use due to degradation or due to other issues. The results support that if a
+cell has a higher resistance early on, this can already be an indicator that this cell will age faster than the remaining
+cells. Physically, this could occur by enhanced resistive heating of the most degraded cell, thereby accelerating its
+degradation [57], which has been observed in the case of Li-ion batteries connected in series [58]. Furthermore, the
+results show the promise of online cell monitoring and suggest that, for larger battery packs, advanced pack layouts that
+allow the permanent bypass of a more strongly degraded cell can be advantageous in prolonging the life of a system.
+To conclude, this analysis furthers the understanding of how batteries degrade and fail in the field and demonstrates the
+potential of online monitoring. We publish the associated data and Python software BattGP upon completion of the
+review of this article, making crucially important data and tools for analyzing and modeling battery field data available
+to the community.
+
+
+
+
+Methods
+Data Selection
+
+The data selection criteria (Tab. 3) are applied to each cell individually.
+
+                                            Table 3: Data Selection Criteria
+                                       Charging/Discharging Discharge only
+                                       Temperature (◦ C)           10 < x < 100
+                                       Current (A)             −200 < x < −5
+                                       SOC (%)                     40 < x < 94
+
+
+GPs
+
+GPs are a flexible modeling framework excelling in the case of limited data by making a point estimate and modeling
+the covariance associated with the prediction. GPs are nonparametric probabilistic models fully defined by a mean
+function µ(x) and a covariance function k(x, x′ ) where x, x′ ∈ X D . A GP is usually written as
+                                               f (x) ∼ GP(µ(x), k(x, x′ )),                                               (7)
+making it explicit that GPs describe a distribution of functions. The GP posterior predictions are normally distributed,
+i.e., any marginal distribution of the GP is Gaussian. Furthermore, all joint distributions associated with a finite number
+of elements of the index set are multivariate normal distributions (e.g., [49] for further information). Assuming that
+we have no noisy observations (xo,i , yo,i ) with yo,i = f (xo,i ) + ϵi , where ϵi is Gaussian noise with variance σn2 , the
+predictive GP equations are
+                       µ|o (X∗ ) = K(X∗ , Xo )[K(Xo , Xo ) + σn2 I]−1 yo                                                  (8)
+                       Σ|o (X∗ ) = K(X∗ , X∗ ) − K(X∗ , Xo )[K(Xo , Xo ) + σn2 I]−1 K(Xo , X∗ ),                          (9)
+where X∗ = [x∗,1 · · · x∗,n∗ ] denotes the n∗ test locations, Xo = [xo,1 · · · xo,no ] denotes the training locations
+with responses yoT = [yo,1 · · · yo,no ], and K(X1 , X2 ) denotes the covariance matrix that is constructed by applying
+the kernel function to all pairs of column vectors from X1 and X2 (for a full derivation, see [49]).
+
+
+                                                             12
+    This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+The training of a GP refers to the choice of kernel function and the optimization of associated hyperparameters, usually
+based on optimizing the marginal likelihood of the training data. Subsequently, the posterior distribution can be
+calculated for points of interest by inference, using (8, 9).
+SE Kernel: The Squared Exponential (SE) kernel is a smooth, infinitely many times differentiable kernel which only
+depends on the distance of data points and is given for one-dimensional x by
+                                                                −|x − x′ |2
+                                                                           
+                                                 ′      2
+                                        kSE (x, x ) = σSE exp                 .                               (10)
+                                                                   2l2
+We use three input dimensions – current, SOC, and temperature – and combine three one-dimensional RBF kernels to
+the third-order additive kernel,
+                                     3                                         3
+                                                                                               !
+                                                   −|xd − x′d |2                 −|xd − x′d |2
+                                     Y                                       X
+                                ′       2                             2
+                  kSE,3ARD (x, x ) =   σSE,d exp                   = σSE,3 exp                   ,         (11)
+                                                       2ld2                          2ld2
+                                     d=1                                                d=1
+
+which is known as the SE-ARD kernel (ARD denotes “automatic relevance detection” because each length scale
+represents the importance of its associated direction; for more information, see [59]). There are four hyperparameters
+                                                                              2
+associated with the three-dimensional SE-ARD kernel: the output scale σSE,       3 , the length scale associated with the
+current dimension l1 = lI , the length scale associated with the SOC dimension l2 = lSOC , and the length scale associated
+with the temperature dimension l3 = lT .
+Wiener Velocity Kernel: The Wiener Velocity (WV) model corresponds to the integrated Wiener process [60]. The WV
+covariance function or kernel is defined by
+                                                  min3 {t, t′ }              2     ′
+                                                                                     
+                                       ′     2                          ′ min {t, t }
+                              kWV (t, t ) = σWV                 + |t − t |              .                     (12)
+                                                      3                       2
+
+                                                            2
+The WV kernel has one hyperparameter: the WV output scale, σWV .
+Including the noise variance σn2 there are six hyperparameters, which define the characteristics of the GP used in this
+article.
+
+Spatiotemporal GPs A large number of data points are recorded during the operation of a battery. Ideally, all samples
+that fulfill the data selection criteria are used, but a classical exact GP prevents this due to the unfavorable scaling of
+compute and memory usage. To address this issue, we follow [56, 60] and leverage the fact that we can interpret the GP
+as a spatiotemporal GP. For lead-acid batteries, a spatiotemporal GPs approach has been shown by [29].
+A temporal GP, i.e., a GP that depends on only one variable, can be written as a Kalman filter [55, 60], which makes it
+scale linearly with the number of data points, with the restriction that the data points must be given in a sorted manner.
+Here, the variable is actually time; therefore, this does not impose further restrictions.
+A spatiotemporal GP [60] is a GP that depends on multiple variables, of which one can be regarded as the time variable,
+the others being the spatial variables,
+                                                           
+                                                            t
+                                                    x=         .
+                                                           xs
+This concept leads to an infinite-dimensional Kalman filter that propagates the mean and variance functions over the
+time points.
+A further important simplification arises as our model is separable, i.e., we can write the covariance function as a
+product
+                                               k(x, x) = kt (t, t)ks (xs , xs ).
+When using only a finite number of spatial vectors, this eventually leads to a classical, finite-dimensional Kalman filter
+[60].
+We cannot restrict the actual measured data locations to a finite set. Therefore, we combine the spatiotemporal approach
+with the recursive approach from Huber [56]. In this approach the spatial part of the GP is not represented exactly, but it
+is represented by nb predefined basis vectors xs,b,i that are collected into
+                                           Xb = [xs,b,1    xs,b,2    ···   xs,b,nb ].
+
+
+                                                             13
+       This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+Combining these two approaches leads to the following procedure, which is similar but not identical to the method used
+in [29]. The difference is mentioned below.
+The state z of the Kalman filter,
+                                                              
+                                                              z
+                                                        z= t ,
+                                                              zs
+comprises two parts. zt corresponds to the representation of the temporal kernel. In the case of the Wiener velocity
+kernel, it contains two scalar values; the first represents the mean value, and the second is the time derivative of the
+mean value [60]. zs corresponds to the spatial kernel, and for the Huber approach [56], these are the mean values at the
+specified basis vectors Xb .
+
+Evaluation Given the state zk|k and its covariance matrix Pk|k at the time tk and built with all information available
+until tk , the mean and covariance at this time point can be calculated by
+                                    µ|k (Xq , tk ) = Hzk|k                                                        (13)
+                                  Σ|k (Xq , tk ) = Kqq + HPk|k H T − Hs Kbb HsT .                                   (14)
+The mean and the covariance of the GP at nq spatial vectors xs,q,i are collected into Xq similar to Xb . Furthermore, we
+use the abbreviations
+                                  Kbb ∈ Rnb ×nb , (Kbb )i,j = ks (xs,b,i , xs,b,j ),
+                                    Kqq ∈ Rnq ×nq , (Kqq )i,j = ks (xs,q,i , xs,q,j ),
+for the covariance at the basis vectors and the covariance at the queried locations, respectively.
+The measurement matrix
+                                                     H = [Ht     Hs ]                                                 (15)
+is partitioned according to z. The temporal part
+                                                                    
+                                                             1 0
+                                                      Ht =  ... ... ,                                               (16)
+                                                                    
+                                                             1 0
+reflects that for the Wiener velocity kernel with the chosen representation, the first associated state corresponds to the
+mean. The spatial part is
+                                                                    −1
+                                                     Hs = Kqb Kbb      ,                                              (17)
+with
+                                     Kqb ∈ Rnq ×nb , (Kqb )i,j = ks (xs,q,i , xs,b,j )
+given by [56]. Here, our approach differs from the approach described in [29]. In (17), only the inverse of Kbb is
+needed, which is known a priori and can be calculated offline. In [29], the corresponding term includes an additional
+part that depends on the current state; thus, the inverse must be calculated in each step anew.
+Equation (13) shows that the assumption of a separable kernel means that the mean values given by the temporal kernel
+and the spatial kernel are added, which is in accordance with the modeling of the two resistances in series (see Fig. 4).
+
+Prediction step The prediction step of the Kalman filter is performed identically to [29],
+                                   zk|k−1 = A(Ts )zk−1|k−1
+                                      Pk|k−1 = A(Ts )Pk−1|k−1 AT (Ts ) + Q(Ts )
+with                                                                                                      
+                      Pt (0)    0                            At (Ts ) 0                             Qt (Ts ) 0
+            P (0) =                   ,          A(Ts ) =                    ,          Q(Ts ) =                 ,
+                        0     Ps (0)                             0       I                             0     0
+where Ts = tk − tk−1 is the length of the time step that may be different for each prediction step. The structure of these
+matrices shows the decoupling of the two parts, i.e., the spatial state is not influenced by the time step. However, due to
+the correction step, the covariance matrix will not retain its initial block diagonal structure.
+For the Wiener velocity kernel (12), which is used as temporal kernel, the corresponding matrices are
+                                                                                        " 3         2
+                                                                                                         #
+                                                                                         T   /3   T   /2
+                                                       
+                     0 0                             1 Ts                            2    s        s
+           Pt (0) =         ,           At (Ts ) =          ,            Qt (Ts ) = σWV                    .
+                     0 0                             0 1                                 T 2 /2     Ts
+                                                                                               s
+The initial value for the spatial covariance matrix is Ps (0) = Kbb . [29, 60]
+
+
+                                                            14
+     This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+Correction step When new measurements (Xm,k , ym,k ) arrive, the Kalman filter performs a correction step
+                                                                        
+                                zk|k = zk|k−1 + Kk ym,k − Hk zk|k−1
+                                        Pk|k = Pk|k−1 − Kk Hk Pk|k−1 .
+
+Xm,k is a matrix that contains the locations of the nm,k measurements, ym,k is a vector giving the measured output for
+each location in Xm,k , and Hk is the measurement matrix build as in (15) with Xq = Xm,k . The Kalman gain Kk is
+calculated by
+                                                                               −1
+                                       Kk = Pk|k−1 HkT Σ|k (Xm,k ) + σn2 I           ,                                  (18)
+
+where Σ|k (Xm,k ) is given by (14) with Xq = Xm,k . This step differs from [29] by the different evaluation mentioned
+above and another measurement model.
+Remark 1: If nm,k = 0, i.e., no measurement data was acquired within the last time step, the correction step can be
+skipped, and the algorithm proceeds with the next prediction step. Alternatively, the algorithm could wait until new data
+is available and then perform a larger prediction step.
+Remark 2: In a standard Kalman filter setup, the correction step can be performed iteratively for each group of
+measurements that is not correlated with measurements outside this group. Consequently, for the case here, where we
+model the measurement noise with the covariance matrix σn2 I, i.e., all measurements are uncorrelated, each measurement
+could be processed individually, thus rendering the matrix inverse in (18) a scalar inversion. However, due to some
+simplifications in the approach of [56] that led to the filter equations, processing each measurement individually or
+multiple measurements together in a minibatch is not analytically equivalent for this application. Based on case studies,
+it seems to be advantageous to add measurements in larger groups.
+
+Rauch-Tung-Striebel smoother The Rauch-Tung-Striebel smoother allows calculating the state and covariance and
+thus the estimates µ|n (Xq , tk ) and Σ|n (Xq , tk ) at all time points tk under consideration of the complete measured data
+of the n time points. This smoother starts with the variables zn|n and Pn|n of the last Kalman filter correction step and
+iterates backward using [61]
+
+                                        zk|n = zk|k + Gk (zk+1|n − zk+1|k )                                             (19)
+                                        Pk|n = Pk|k + Gk (Pk+1|n − Pk+1|k )GT
+                                                                            k                                           (20)
+
+for k = n − 1, n − 2, . . . with
+                                                                    −1
+                                            Gk = Pk|k A(tk+1 − tk )Pk+1|k .                                             (21)
+
+The output values µ|n (Xq , tk ) and their variances Σ|n (Xq , tk ) for each time point tk can be calculated by (13) and
+(14) by replacing zk|k with zk|n and Pk|k with Pk|n .
+For evaluating equations (19), (20) and (21), the results zk|k and Pk|k of the Kalman filter are used. Thus, these values
+must be stored while performing the forward filtering pass. zk+1|k and Pk+1|k could either be stored also or calculated
+anew from zk|k and Pk|k by reevaluating the prediction step.
+
+Implementation for the presented results The batteries are mostly sampled with 5 s, which, with the very small
+magnitude of sensible parameters for the output scale of the Wiener velocity kernel, leads to numerical issues in
+performing the prediction steps.
+Therefore, we define a sampling time for the updates (1 hour in all shown results) and process all data captured within
+this interval at the same update time point. If no data was recorded within this hour, we only perform a new prediction
+step without the update to set an evaluation point for the later backward smoothing pass.
+
+Selection of Basis Vectors The selection of basis vectors can be done in different ways. Similarly to [29], we found
+that using k-means to select the basis vectors is effective, i.e., the results and confidence intervals of the spatiotemporal
+GP with only 27 basis vectors selected by k-means as well as the reference operating point, resulting in 28 basis vectors
+(SI Fig. B.1) resemble fairly closely the results of the full GP with up to 40k data points. However, in an online setting,
+there will be no data available at the beginning. Therefore, as an alternative, we propose to place vectors linearly within
+the range of the data selection criteria and, furthermore, set a constraint based on the length scale of the associated
+measurement (SI Sec. B).
+
+
+                                                            15
+    This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+Hyperparameter Tuning
+
+All battery systems contain the same prismatic cell type with the same specifications. Therefore, the aim is to find a
+single hyperparameter set that can be used for all cells. We optimized the hyperparameters on the four longest-lived
+systems (6, 8, 9, and 10) by optimizing the marginal likelihood using 16k data points. The mode of each hyperparameter
+was chosen as a robust estimate, assuming that the parameters are mutually independent. We do not formulate an
+optimization problem for our spatiotemporal GP but use the hyperparameters found by the exact GP. The results of
+the exact GP using 40k data points (Fig. 5) and the spatiotemporal GP using all selected data (SI Figs. B.1,B.2), gives
+confidence that this approach is reasonable.
+
+Software and Hardware Details
+
+The full GP is solved on an NVIDIA A100 GPU with 80 GB RAM. We use the Python GPytorch framework, allowing
+the solving of an exact GP with 40k data points selected by their index within approximately a few minutes per battery
+system. The recursive GP is solved on a MacBook Pro with a 10-core M1 chip, taking approximately 2 min for a single
+cell of system #8 with over 1 million data points and less than 1 hour to process all data from the 21 analyzed systems.
+
+Data and Code Availability
+We publish the associated data and Python software BattGP upon completion of the review of this article.
+
+Author Contributions
+Joachim Schaeffer: Conceptualization, Methodology, Software, Validation, Formal Analysis, Investigation, Data
+Curation, Writing – original draft, Writing – review & editing, Visualization; Eric Lenz: Methodology, Software,
+Formal Analysis, Writing – review & editing, Visualization; Duncan Gulla: Methodology, Software, Investigation,
+Data Curation, Writing – review & editing; Martin Z. Bazant: Writing – review & editing; Richard D. Braatz: Writing
+– review & editing, Supervision; Rolf Findeisen: Resources, Writing – review & editing, Supervision, Funding
+Acquisition
+
+Acknowledgments
+We would like to thank numerous people for their outstanding support throughout this project; however, we can not name
+them due to data privacy requirements from the data provider. In particular, we are truly grateful for the outstanding
+support from our main contacts from the data provider; without you, this work would not have been possible.
+
+Funding
+The work was financed through base funding from the Technical University of Darmstadt.
+
+Competing Interests
+None.
+
+Supplementary Information
+The supplementary information is only available in version 1 on arXiv due to its large size; version 2 (this version) is
+otherwise identical to version 1.
+
+
+
+
+                                                          16
+       This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+References
+ [1]    G. E. Blomgren. “The development and future of lithium ion batteries”. In: Journal of The Electrochemical
+        Society 164.1 (2016), A5019–A5025.
+ [2]    “Regulation (EU) 2023/1542 of the European Parliament and of the Council of 12 July 2023 concerning
+        concerning batteries and waste batteries, amending Directive 2008/98/EC and Regulation (EU) 2019/1020 and
+        repealing Directive 2006/66/EC”. In: O.J. L 191/1 66 (2023), pp. 1–117.
+ [3]    M. Hanicke, D. Ibrahim, S. Jautelat, L. Torscht, A. van de Rijt, M. Linder, and P. Schaufuss. Battery
+        demand is growing–and so is the need for better solutions along the value chain. Report published on-
+        line. URL: https://www.mckinsey.com/industries/automotive-and-assembly/our-insights/battery-2030-resilient-
+        sustainable-and-circular. Jan. 2023.
+ [4]    P. Sun, R. Bisschop, H. Niu, and X. Huang. “A review of battery fires in electric vehicles”. In: Fire Technology
+        56 (2020), pp. 1361–1410.
+ [5]    D.-H. Im and J.-B. Chung. “Social construction of fire accidents in battery energy storage systems in Korea”. In:
+        Journal of Energy Storage 71 (2023), p. 108192.
+ [6]    W. Hu. How New York plans to regulate e-bikes in the wake of deadly fires. Sept. 2023. URL: https://www.
+        nytimes.com/article/ebike-laws-nyc.html (visited on 10/06/2023).
+ [7]    V. Sulzer, P. Mohtat, A. Aitio, S. Lee, Y. T. Yeh, et al. “The challenge and opportunity of battery lifetime
+        prediction from field data”. In: Joule 5.8 (2021), pp. 1934–1955.
+ [8]    G. L. Plett. Battery Management Systems: Equivalent-Circuit Methods. Vol. 2. Norwood, MA, USA: Artech
+        House, 2015.
+ [9]    W. Li, M. Rentemeister, J. Badeda, D. Jöst, D. Schulte, and D. U. Sauer. “Digital twin for battery systems: Cloud
+        battery management system with online state-of-charge and state-of-health estimation”. In: Journal of Energy
+        Storage 30 (2020), p. 101557.
+[10]    G. Pozzato, A. Allam, L. Pulvirenti, G. A. Negoita, W. A. Paxton, and S. Onori. “Analysis and key findings from
+        real-world electric vehicle field data”. In: Joule 7.9 (2023), pp. 2035–2053.
+[11]    L. Ward, S. Babinec, E. J. Dufek, D. A. Howey, V. Viswanathan, et al. “Principles of the battery data genome”.
+        In: Joule 6.10 (2022), pp. 2253–2271.
+[12]    J. Schaeffer, G. Galuppini, J. Rhyu, P. A. Asinger, R. Droop, R. Findeisen, and R. D. Braatz. “Cycle life prediction
+        for lithium-ion batteries: Machine learning and more”. In: Proceedings of the American Control Conference. in
+        press, https://arxiv.org/abs/2404.04049. 2024.
+[13]    U. Krewer, F. Röder, E. Harinath, R. D. Braatz, B. Bedürftig, and R. Findeisen. “Dynamic models of Li-ion
+        batteries for diagnosis and operation: A review and perspective”. In: Journal of The Electrochemical Society
+        165.16 (2018), A3656–A3673.
+[14]    V. Ramadesigan, P. W. Northrop, S. De, S. Santhanagopalan, R. D. Braatz, and V. R. Subramanian. “Modeling and
+        simulation of lithium-ion batteries from a systems engineering perspective”. In: Journal of the Electrochemical
+        Society 159.3 (2012), R31.
+[15]    M. Petit, E. Prada, and V. Sauvant-Moynot. “Development of an empirical aging model for Li-ion batteries and
+        application to assess the impact of vehicle-to-grid strategies on battery lifetime”. In: Applied Energy 172 (2016),
+        pp. 398–407.
+[16]    E. Samadani, S. Farhad, W. Scott, M. Mastali, L. E. Gimenez, M. Fowler, and R. A. Fraser. “Empirical modeling
+        of lithium-ion batteries based on electrochemical impedance spectroscopy tests”. In: Electrochimica Acta 160
+        (2015), pp. 169–177.
+[17]    K. A. Severson, P. M. Attia, N. Jin, N. Perkins, B. Jiang, et al. “Data-driven prediction of battery cycle life before
+        capacity degradation”. In: Nature Energy 4.5 (2019), pp. 383–391.
+[18]    P. K. Jones, U. Stimming, and A. A. Lee. “Impedance-based forecasting of lithium-ion battery performance amid
+        uneven usage”. In: Nature Communications 13.1 (Aug. 2022), p. 4806.
+[19]    J. Schaeffer, P. Gasper, E. Garcia-Tamayo, R. Gasper, M. Adachi, et al. “Machine learning benchmarks for the
+        classification of equivalent circuit models from solid-state electrochemical impedance spectra”. In: Journal of
+        The Electrochemical Society 170.6 (2023), p. 060512.
+[20]    J. Schaeffer, E. Lenz, W. C. Chueh, M. Z. Bazant, R. Findeisen, and R. D. Braatz. “Interpretation of high-
+        dimensional linear regression: Effects of nullspace and regularization demonstrated on battery data”. In: Comput-
+        ers & Chemical Engineering 180 (2024), p. 108471.
+[21]    R. R. Richardson, M. A. Osborne, and D. A. Howey. “Gaussian process regression for forecasting battery state
+        of health”. In: Journal of Power Sources 357 (2017), pp. 209–219.
+
+
+                                                             17
+    This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+[22] R. R. Richardson, C. R. Birkl, M. A. Osborne, and D. A. Howey. “Gaussian process regression for in situ capacity
+     estimation of lithium-ion batteries”. In: IEEE Transactions on Industrial Informatics 15.1 (2019), pp. 127–138.
+[23] J. Newman and W. Tiedemann. “Porous-electrode theory with battery applications”. In: AIChE Journal 21.1
+     (1975), pp. 25–41.
+[24] M. Doyle, T. F. Fuller, and J. Newman. “Modeling of galvanostatic charge and discharge of the
+     lithium/polymer/insertion cell”. In: Journal of the Electrochemical Society 140.6 (1993), pp. 1526–1533.
+[25] A. Jokar, B. Rajabloo, M. Désilets, and M. Lacroix. “Review of simplified Pseudo-two-Dimensional models of
+     lithium-ion batteries”. In: Journal of Power Sources 327 (2016), pp. 44–55.
+[26] M. Aykol, C. B. Gopal, A. Anapolsky, P. K. Herring, B. van Vlijmen, et al. “Perspective—Combining physics
+     and machine learning to predict battery lifetime”. In: Journal of The Electrochemical Society 168.3 (2021),
+     p. 030525.
+[27] H. Tu, S. Moura, Y. Wang, and H. Fang. “Integrating physics-based modeling with machine learning for
+     lithium-ion batteries”. In: Applied Energy 329 (2023), p. 120289.
+[28] R. G. Nascimento, M. Corbetta, C. S. Kulkarni, and F. A. Viana. “Hybrid physics-informed neural networks for
+     lithium-ion battery modeling and prognosis”. In: Journal of Power Sources 513 (2021), p. 230526.
+[29] A. Aitio and D. A. Howey. “Predicting battery end of life from solar off-grid system field data using machine
+     learning”. In: Joule 5.12 (2021), pp. 3204–3220.
+[30] X. Hu, K. Zhang, K. Liu, X. Lin, S. Dey, and S. Onori. “Advanced fault diagnosis for lithium-ion battery
+     systems: A review of fault mechanisms, fault features, and diagnosis procedures”. In: IEEE Industrial Electronics
+     Magazine 14.3 (2020), pp. 65–91.
+[31] Q. Wang, B. Mao, S. I. Stoliarov, and J. Sun. “A review of lithium ion battery failure mechanisms and fire
+     prevention strategies”. In: Progress in Energy and Combustion Science 73 (2019), pp. 95–131.
+[32] M.-K. Tran and M. Fowler. “A review of lithium-ion battery fault diagnostic algorithms: Current progress and
+     future challenges”. In: Algorithms 13.3 (2020), p. 62.
+[33] L. Jiang, Z. Deng, X. Tang, L. Hu, X. Lin, and X. Hu. “Data-driven fault diagnosis and thermal runaway warning
+     for battery packs using real-world vehicle data”. In: Energy 234 (Nov. 2021), p. 121266.
+[34] Y. Kang, B. Duan, Z. Zhou, Y. Shang, and C. Zhang. “Online multi-fault detection and diagnosis for battery
+     packs in electric vehicles”. In: Applied Energy 259 (2020), p. 114170.
+[35] X. Li and Z. Wang. “A novel fault diagnosis method for lithium-ion battery packs of electric vehicles”. In:
+     Measurement 116 (2018), pp. 402–411.
+[36] X. Li, K. Dai, Z. Wang, and W. Han. “Lithium-ion batteries fault diagnostic for electric vehicles using sample
+     entropy analysis method”. In: Journal of Energy Storage 27 (2020), p. 101121.
+[37] Z. Chen, R. Xiong, J. Tian, X. Shang, and J. Lu. “Model-based fault diagnosis approach on external short circuit
+     of lithium-ion battery used in electric vehicles”. In: Applied Energy 184 (Dec. 2016), pp. 365–374.
+[38] K. Zhang, X. Hu, Y. Liu, X. Lin, and W. Liu. “Multi-fault detection and isolation for lithium-ion battery systems”.
+     In: IEEE Transactions on Power Electronics 37.1 (2021), pp. 971–989.
+[39] C. Sadhukhan, S. K. Mitra, S. Bhattacharyya, E. Almatrafi, B. Saleh, and M. K. Naskar. “Modeling and simulation
+     of high energy density lithium-ion battery for multiple fault detection”. In: Scientific Reports 12.1 (2022), p. 9800.
+[40] Y. Zhao, P. Liu, Z. Wang, L. Zhang, and J. Hong. “Fault and defect diagnosis of battery for electric vehicles
+     based on big data analysis methods”. In: Applied Energy 207 (2017), pp. 354–362.
+[41] A. Samanta, S. Chowdhuri, and S. S. Williamson. “Machine learning-based data-driven fault detection/diagnosis
+     of lithium-ion battery: A critical review”. In: Electronics 10.11 (2021), p. 1309.
+[42] M. Schmid, H.-G. Kneidinger, and C. Endisch. “Data-driven fault diagnosis in battery systems through cross-cell
+     monitoring”. In: IEEE Sensors Journal 21.2 (2020), pp. 1829–1837.
+[43] J. Zhao, H. Ling, J. Wang, A. F. Burke, and Y. Lian. “Data-driven prediction of battery failure for electric
+     vehicles”. In: Iscience 25.4 (2022), p. 104172.
+[44] R. Xiong, L. Li, and J. Tian. “Towards a smarter battery management system: A critical review on battery state
+     of health monitoring methods”. In: Journal of Power Sources 405 (2018), pp. 18–29.
+[45] M. Berecibar, I. Gandiaga, I. Villarreal, N. Omar, J. Van Mierlo, and P. Van den Bossche. “Critical review of state
+     of health estimation methods of Li-ion batteries for real applications”. In: Renewable and Sustainable Energy
+     Reviews 56 (2016), pp. 572–587.
+[46] P. M. Attia, A. Bills, F. B. Planella, P. Dechent, G. dos Reis, et al. “Review—“Knees” in lithium-ion battery
+     aging trajectories”. In: Journal of The Electrochemical Society 169.6 (2022), p. 060517.
+[47] D. Beck, P. Dechent, M. Junker, D. U. Sauer, and M. Dubarry. “Inhomogeneities and cell-to-cell variations in
+     lithium-ion batteries, a review”. In: Energies 14.11 (2021).
+
+
+                                                           18
+    This version is outdated. Final article (open access): https://doi.org/10.1016/j.xcrp.2024.102258
+
+
+[48] E. Barbers, F. E. Hust, F. E. A. Hildenbrand, F. Frie, K. L. Quade, et al. “Exploring the effects of cell-to-cell
+     variability on battery aging through stochastic simulation techniques”. In: Journal of Energy Storage 84 (2024),
+     p. 110851.
+[49] C. K. I. Williams and C. E. Rasmussen. Gaussian Processes for Machine Learning. Vol. 2. Cambridge, MA,
+     USA: MIT Press, 2006.
+[50] D. A. Cogswell and M. Z. Bazant. “Theory of coherent nucleation in phase-separating nanoparticles”. In: Nano
+     Letters 13.7 (2013), pp. 3036–3041.
+[51] T. R. Ferguson and M. Z. Bazant. “Phase transformation dynamics in porous battery electrodes”. In: Electrochim-
+     ica Acta 146 (2014), pp. 89–97.
+[52] E. J. Gumbel. Statistics of Extremes. New York: Columbia University Press, 1958.
+[53] R. A. Fisher and L. H. C. Tippett. “Limiting forms of the frequency distribution of the largest or smallest member
+     of a sample”. In: Mathematical Proceedings of the Cambridge Philosophical Society 24.2 (1928), pp. 180–190.
+[54] J.-L. Le, Z. P. Bažant, and M. Z. Bazant. “Lifetime of high-k gate dielectrics and analogy with strength of
+     quasibrittle structures”. In: Journal of Applied Physics 106.10 (2009).
+[55] S. Särkkä, A. Solin, and J. Hartikainen. “Spatiotemporal learning via infinite-dimensional Bayesian filtering
+     and smoothing: A look at Gaussian process regression through Kalman filtering”. In: IEEE Signal Processing
+     Magazine 30.4 (2013), pp. 51–61.
+[56] M. F. Huber. “Recursive Gaussian process: On-line regression and learning”. In: Pattern Recognition Letters 45
+     (2014), pp. 85–91.
+[57] R. Gogoana, M. B. Pinson, M. Z. Bazant, and S. E. Sarma. “Internal resistance matching for parallel-connected
+     lithium-ion cells and impacts on battery pack cycle life”. In: Journal of Power Sources 252 (2014), pp. 8–13.
+[58] K.-C. Chiu, C.-H. Lin, S.-F. Yeh, Y.-H. Lin, C.-S. Huang, and K.-C. Chen. “Cycle life analysis of series connected
+     lithium-ion batteries with temperature difference”. In: Journal of Power Sources 263 (2014), pp. 75–84.
+[59] D. Duvenaud. “Automatic Model Construction with Gaussian Processes”. PhD thesis. UK: University of
+     Cambridge, 2014.
+[60] A. Solin. “Stochastic Differential Equation Methods for Spatio-Temporal Gaussian Process Regression”. Aalto
+     University publication series Doctoral Dissertations, 50/2016. PhD thesis. Aalto University, Helsinki, Finland,
+     2016. URL: https://aaltodoc.aalto.fi/handle/123456789/19842.
+[61] S. Särkkä and A. Solin. Applied Stochastic Differential Equations. U.K.: Cambridge University Press, 2019.
+
+
+
+
+                                                         19
+

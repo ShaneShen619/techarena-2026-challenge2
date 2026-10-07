@@ -1,0 +1,22 @@
+{
+  "registered_after_M7_primary_before_M8_fusion_scores": "2026-09-28",
+  "data_tier": "D1 six P1 development cells, 20Ah first 3.50V crossing, persistent history",
+  "target_count": 180,
+  "fixed_components": [
+    "M2_primary_v2:age_ridge",
+    "M2_spline_v1:spline_age_temp_rate",
+    "M7_TCN_v1:TCN_from_scratch, mean of three frozen seeds"
+  ],
+  "candidate_rules": {
+    "simple_age_tcn": "0.5 age + 0.5 TCN ensemble",
+    "simple_temp_tcn": "0.5 temperature spline + 0.5 TCN ensemble",
+    "disagreement_gate": "if |temperature spline - TCN ensemble| > 5 SOH pp, 0.5 age + 0.25 temperature spline + 0.25 TCN; else 0.5 temperature spline + 0.5 TCN",
+    "missing_temperature": "0.5 age + 0.5 TCN ensemble",
+    "missing_waveform": "0.5 age + 0.5 temperature spline"
+  },
+  "weights_not_fitted_on_outer_labels": true,
+  "quality_rule_limitation": "A disagreement gate is only a heuristic on two correlated estimators, not an independently calibrated likelihood or uncertainty.",
+  "interval_rule": "fixed-alpha=10 age/count ridge; inner leave-one-training-cell-out max target residual per calibration cell; group-level 80% rank quantile max of five; 90% finite rank impossible with five calibration cells",
+  "capacity_protocol": "P1 high-rate single-cell discharge proxy SOH, not official 4S C/20",
+  "selection_status": "adaptive M8 development, no untouched D2 confirmation"
+}
