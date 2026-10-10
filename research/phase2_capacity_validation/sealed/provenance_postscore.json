@@ -1,9 +1,0 @@
-{
-  "status": "postscore_provenance_verified_not_original_freeze",
-  "source_zip_sha256": "16afff956da104fcfb0acae5ee86a53f4c5c5e030c06f6fa8e7dfd566c715d07",
-  "sealed_mapping_sha256": "285ede825cd90b37d15d38b11450c2f130dde2ab74e0dd48e77e39e6a03f6564",
-  "member_stage_label_triplets_verified": 23,
-  "original_freeze_missing_label_map_hash": true,
-  "original_freeze_sha256": "cffe412c2185bcb74d72b8bcc52c478029286f16033d37cce032297cfcaa5c4f",
-  "one_shot_flag_sha256": "451ee5e632364282766cd5cbb5f986936e0581d429e5a984bfeaed07668a37e4"
-}

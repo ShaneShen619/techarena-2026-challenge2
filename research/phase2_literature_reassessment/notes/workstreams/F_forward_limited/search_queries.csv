@@ -1,6 +1,0 @@
-query_id,date,source,query,result,screening_note
-F01,2026-09-29,web_search,"Rapid health estimation of in-service battery packs limited labels domain adaptation Xu",Deng2024_and_author_repo,Title attribution corrected to Deng first author
-F02,2026-09-29,web_search,"Rapid health estimation of in-service battery packs pdf Deng Xu Liu",first_author_ResearchGate_fulltext,Full web text readable; PDF 404
-F03,2026-09-29,web_search,"An adaptive capacity estimation approach 10-min relaxation voltage Jiang pdf",publisher_abstract_only,ResearchGate request-full-text only
-F04,2026-09-29,OpenAlex_API,"10.1016/j.energy.2022.125802",closed_no_repository_fulltext,Do not deeply rate without Methods
-F05,2026-09-29,GitHub_API,"BatICM/Charging-test-data-of-in-service-electric-vehicles",one_MAT_one_README,Downloaded and audited both

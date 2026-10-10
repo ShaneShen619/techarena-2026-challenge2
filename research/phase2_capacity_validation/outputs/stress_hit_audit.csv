@@ -1,6 +1,0 @@
-case,modified_row_43400,modified_row_within_original_event,n_rows,n_events,event1_q_Ah,prediction_pct,q_ref_Ah,interpretation
-unmodified,0,1,236603,7,21.377334444444443,98.87845139182514,21.397263888888887,intervention_or_reference
-remove_missing_segment3_zero_control,0,1,236603,7,21.377334444444443,98.87845139182514,21.397263888888887,zero_control
-90s_inside_real_window,1,1,236603,7,21.830720555555555,98.44,21.49256722222222,intervention_or_reference
-duplicate_inside_real_window,1,1,236603,7,21.37732611111111,98.87845139182514,21.397263888888887,intervention_or_reference
-eleven_current_rows_inside_real_window,1,1,236603,7,20.754009444444442,98.87845139182514,21.397263888888887,intervention_or_reference

@@ -1,8 +1,0 @@
-{
-  "long_rows": 971323,
-  "comparison_rows": 259,
-  "D1_v15_primary_methods": 57,
-  "hidden_capacity_rows": 16,
-  "official_capacity_accuracy_verified": false,
-  "warning": "Never rank different tiers or units by a single MAE; D1 is reused six-cell development."
-}

@@ -1,3 +1,0 @@
-run_id,method,cell_id,target_ordinal,target_cycle,target_discharge_start,input_end,prediction_soh_pp,prediction_Ah,fallback,updates,runtime_s,evidence
-M0_smoke,B0,102Ah_45degC_1C_cell1,1,118,2021-05-16T05:18:48,2021-05-16T05:18:18,102.61176470588235,104.664,True,0,1.2999982573091984e-05,E3-P1 developmental holdout; target labels stored only in panel_main.csv
-M0_smoke,A_old,102Ah_45degC_1C_cell1,1,118,2021-05-16T05:18:48,2021-05-16T05:18:18,102.61176470588235,104.664,True,0,0.021824207971803844,E3-P1 developmental holdout; target labels stored only in panel_main.csv

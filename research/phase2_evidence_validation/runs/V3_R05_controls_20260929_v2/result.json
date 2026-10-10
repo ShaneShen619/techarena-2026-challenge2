@@ -1,7 +1,0 @@
-{
-  "true_macro_mae_pp": 4.759305893825441,
-  "permuted_macro_mean_pp": 4.697927868099613,
-  "permute_scope": "training cells only; within cell and age quartile, 20 seeds; fixed true-data inner alpha",
-  "temperature_perturbation": "held cell current event measured temperature +/-5C; fixed fitted model",
-  "causal_status": "D1 physical-cell split; sampled source events strictly pre-target in source builder"
-}

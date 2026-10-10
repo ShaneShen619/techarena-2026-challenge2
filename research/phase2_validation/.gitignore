@@ -1,5 +1,0 @@
-.venv/
-.cache/
-wheelhouse/
-__pycache__/
-*.pyc

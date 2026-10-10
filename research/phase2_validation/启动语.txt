@@ -1,1 +1,0 @@
-/goal 读取并完整执行 research/phase2_validation/START_PROMPT.md 的 v2 修订版。使用已落盘并验收的第一阶段原始数据、Che Dataset 3 和 TU Darmstadt 数据，完成两条路线的设计、实现、实测代理验证、压力测试、比较与 Word 交付。严格按文件的数据用途、因果边界和完成条件执行；普通疑问记录假设后继续，不等待逐章确认，不设置 token 预算。

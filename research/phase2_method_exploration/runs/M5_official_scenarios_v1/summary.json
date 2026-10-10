@@ -1,6 +1,0 @@
-{
-  "checkpoints": 7,
-  "draws_per_checkup": 2000,
-  "selection_notice": "These priors are analytic stress assumptions after inspecting official unlabeled campaign, not estimated from hidden capacity labels. No official accuracy computed.",
-  "capacity_truth": "CK1-CK7 hidden; these are assumption-driven stress envelopes, not validated error bars"
-}

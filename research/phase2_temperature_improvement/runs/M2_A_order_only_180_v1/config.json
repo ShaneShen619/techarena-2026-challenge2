@@ -1,8 +1,0 @@
-{
-  "run_id": "M2_A_order_only_180_v1",
-  "panel_sha256": "7188b662900f84312292a7062d6023e5eeb4f2e32798b6d61a3547ed40cdc59c",
-  "route_a_sha256": "3e6e0f2c37afed165f4fddb4c99453efa3c1a54b5916c325b731fb4e79529480",
-  "cell": "all",
-  "limit": 0,
-  "model_code_unmodified": true
-}

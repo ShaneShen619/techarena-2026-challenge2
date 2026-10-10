@@ -1,2 +1,0 @@
-group_id,checkup_id,capacity_Ah_integrated,SOH_pp,counter_capacity_Ah,counter_minus_integrated_Ah,first_crossing_timestamp,terminal_pack_voltage_V,minimum_terminal_cell_V,stop_reason,official_protocol_complete,samples
-SYNTH_4S_01,T0,102.085,100.08333333333333,102.085,0.0,2026-01-01T20:01:00+00:00,11.19,2.7975,group_11p2V,True,1202

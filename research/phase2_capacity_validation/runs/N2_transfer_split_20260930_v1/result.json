@@ -1,8 +1,0 @@
-{
-  "n_dev": 15,
-  "n_holdout": 8,
-  "split_sha256": "df1c0180c22d8cb9770a2c2d8b9490633de9ecb00316b70dcf38b0333563bffb",
-  "config_sha256": "8657d336d93ae2930502339e325edef05b5e089581d73f2c0a776b519cdb15d2",
-  "label_file": "sealed/ji_23_private_label_map.csv",
-  "exposure_status": "program_separated_researcher_nonblind_due_filename"
-}

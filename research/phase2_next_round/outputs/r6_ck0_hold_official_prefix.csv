@@ -1,9 +1,0 @@
-candidate,checkup,date,SOH_est_pp,capacity_est_Ah,branch,qualified_events,visible_operation_rows,max_visible_timestamp,visible_capacity_labels,true_SOH_pp,absolute_error_pp,official_capacity_accuracy_verified
-ck0_hold,CK0,2025-01-14,98.44117647058823,100.41,CK0_hold,,0,,1,98.44117647058823,0.0,True
-ck0_hold,CK1,2025-02-08,98.44117647058823,100.41,CK0_hold,,165918,2025-02-07 23:59:52,1,,,False
-ck0_hold,CK2,2025-03-11,98.44117647058823,100.41,CK0_hold,,236603,2025-02-19 09:50:00,1,,,False
-ck0_hold,CK3,2025-04-14,98.44117647058823,100.41,CK0_hold,,487874,2025-04-13 15:21:55,1,,,False
-ck0_hold,CK4,2025-05-16,98.44117647058823,100.41,CK0_hold,,729918,2025-05-15 21:30:54,1,,,False
-ck0_hold,CK5,2025-06-16,98.44117647058823,100.41,CK0_hold,,963168,2025-06-15 23:59:52,1,,,False
-ck0_hold,CK6,2025-07-25,98.44117647058823,100.41,CK0_hold,,1224851,2025-07-22 16:32:49,1,,,False
-ck0_hold,CK7,2025-08-28,98.44117647058823,100.41,CK0_hold,,1482584,2025-08-28 00:00:00,1,,,False

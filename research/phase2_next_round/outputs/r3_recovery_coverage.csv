@@ -1,8 +1,0 @@
-feature,available,total,coverage
-apparent_R_10s_mOhm,164,164,1.0
-apparent_R_30s_mOhm,164,164,1.0
-apparent_R_60s_mOhm,164,164,1.0
-recovery_10s_V,164,164,1.0
-recovery_30s_V,164,164,1.0
-recovery_60s_V,164,164,1.0
-v_q2_q10_slope_V_per_Ah,164,164,1.0

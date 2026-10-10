@@ -1,4 +1,0 @@
-candidate,dev_n,dev_macro_MAE_Ah,dev_worst_Ah,target,status
-median,15,0.4225333333333336,1.431,author_prior_mean_capacity_Ah,development_only
-q_window,15,0.10486867561659242,0.3400495419734888,author_prior_mean_capacity_Ah,development_only
-q_whole_negative_control,15,0.0027335857367345893,0.008234859806343753,author_prior_mean_capacity_Ah,development_only

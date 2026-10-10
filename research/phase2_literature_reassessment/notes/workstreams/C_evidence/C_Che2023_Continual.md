@@ -1,8 +1,0 @@
-# C_Che2023_Continual — 大容量 LFP 少标签持续适配
-
-- 书目：Che et al., “Increasing generalization capability of battery health estimation using continual learning,” *Cell Reports Physical Science* 4 (2023) 101743, DOI [10.1016/j.xcrp.2023.101743](https://doi.org/10.1016/j.xcrp.2023.101743)。2026-09-29 读 [Stanford 作者正式稿 PDF](https://pangea.stanford.edu/ERE/pdf/OnoriPDF/Journals/75.pdf) 21 页，存 `papers/C_fulltexts/C_Che2023_Continual.pdf`；核 [Mendeley Dataset v9 DOI 10.17632/n3b54nsw8m.9](https://data.mendeley.com/datasets/n3b54nsw8m/9) 原始说明与本地 MAT 字段。文章开放访问；数据 CC BY 4.0。
-- 数据/标签：论文共 55 枚商用 pouch/prismatic，跨五个数据组与 116,000 余循环；Dataset 3/4 为约 **100 Ah LFP 单芯**，不同充电倍率和环境温度，非四串。文中 Methods“Data generation”定义 SOH=当前可用容量/新鲜容量；Mendeley v9 更精确地说明标签来自测试仪**同循环全充入量**归一化，并警告 Dataset 1 的充电容量含动态放电中的充电脉冲。这与官方 `C/20 组端放电 Ah /102 Ah` 不同。本地 `Che-Dataset3.mat` 11 个实体，`Dataset3` 字段 `Capacity, Workingprofile, cell, cycles`，各 `cycles` 下 `Partial_Q, Partial_dQ`；首芯 `Capacity` 长 3024、值约 80.6–107.7，应按来源归一化量解读，绝不能按 80–110 Ah 直接称容量。局部 Q 为 101 点派生曲线；本地 MAT 没有原始时间/电流/电压/温度列或明确电压网格。
-- 方法：从固定电压窗内部分充电 Q–V 序列插值（LFP 3.3–3.5 V，2 mV 间隔，Methods），两层前馈网络；源芯标签 MSE、域间 MMD、目标芯早期少量标签的记忆更新。作者 Fig. 1/3/5 显示不同温度倍率适配；目标实体的**3 个早期容量标签**（首 10% 老化）或持续获得的稀疏标签是实际信息预算，明显强于官方 CK0 一点。只有无标签 MMD 不能单独提供官方容量刻度。
-- 划分/数值：Dataset 3 以 1C/25°C cell 2 或 1C/35°C cell 6 做基模型，再向其他单芯工况迁移（Fig. 3E/F、Fig. 5）。摘要报跨动态电流/温度 RMSE 1.312%，但并非只用一容量锚，也非同一 4S 容量定义。多窗口/循环误差应按电芯聚合，不能用 114,741 条记录当独立对象。特定 target 的早期少标签和无标签序列何时进入更新，必须在官方严格前缀下重构。
-- 适配/反证：可借固定窄窗插值、MMD/记忆更新结构、跨温开发思路；但比赛没有目标隐藏容量标签可持续更新，本地 Che 也缺原始波形与组端数据。最小实验：只给留出目标实体一枚 CK0 类锚点，冻结窗口/归一化/预训练，严格按时间前缀与同输入不适配基线比；若收益依赖 3 个早期容量标签或完整寿命无标签分布，则不能上升为官方主路线证据。
-- 核验等级：E2 论文全文 Methods/Fig. 3/5、Mendeley v9、代表 MAT 字段交叉检查；未运行作者算法。数据资格为异协议单芯迁移/形状开发，非 D2 四串确认。

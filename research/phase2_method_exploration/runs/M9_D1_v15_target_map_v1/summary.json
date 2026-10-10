@@ -1,7 +1,0 @@
-{
-  "targets": 180,
-  "mean_unique_allowed_events": 15.0,
-  "all_current_present": true,
-  "all_fragment_ends_before_target": true,
-  "labels_in_inputs": false
-}

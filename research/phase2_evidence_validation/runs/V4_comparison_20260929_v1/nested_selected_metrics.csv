@@ -1,3 +1,0 @@
-objective,arm,n_targets,macro_mae_pp,worst_cell_mae_pp,worst_cell,max_abs_error_pp,late_mae_pp,late_worst_cell_mae_pp,late_bias_pp,late_overestimate_rate
-average,nested_selected,180,5.147326799745925,7.825459602107349,102Ah_35degC_1C_cell1,23.103870015119888,8.94045732306795,14.589743411782099,1.5748567582459774,0.5
-tail,nested_selected,180,5.680100084747433,8.597022298104916,102Ah_55degC_1C_cell3,23.103870015119888,9.384914226580465,15.315648793119848,2.9016627125741463,0.5

@@ -1,8 +1,0 @@
-{
-  "run_id": "N6_Ji_holdout_20260930_v1",
-  "summary": "sealed 8-cell single protocol-different score exactly once",
-  "task_version": "2026-09-30",
-  "freeze_sha256": "cffe412c2185bcb74d72b8bcc52c478029286f16033d37cce032297cfcaa5c4f",
-  "source_zip_sha256": "16afff956da104fcfb0acae5ee86a53f4c5c5e030c06f6fa8e7dfd566c715d07",
-  "script_sha256": "56434bf175ef307b8100d067e7527afd383d9b806946dfe8835cd1a43eb312d8"
-}

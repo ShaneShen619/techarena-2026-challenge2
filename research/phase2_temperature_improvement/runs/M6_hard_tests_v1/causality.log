@@ -1,6 +1,0 @@
-COMMAND: /Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_validation/.venv/bin/python /Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_temperature_improvement/scripts/hard_checks.py causality
-STDOUT:
-nontrivial CK3 future append/delete/extreme, repetition, order, reference-time checks passed
-
-STDERR:
-

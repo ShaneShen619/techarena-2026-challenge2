@@ -1,8 +1,0 @@
-{
-  "run_id": "M0_smoke",
-  "panel_sha256": "7188b662900f84312292a7062d6023e5eeb4f2e32798b6d61a3547ed40cdc59c",
-  "old_route_a_sha256": "f7b57b5831f27367df6ce5c0bc5456b88ee70ec0282a8ad2fac88a8c3048ee6a",
-  "cell": "102Ah_45degC_1C_cell1",
-  "limit": 1,
-  "model_code_unmodified": true
-}

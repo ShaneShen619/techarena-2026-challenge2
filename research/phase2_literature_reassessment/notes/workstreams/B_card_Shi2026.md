@@ -1,7 +1,0 @@
-# B-Shi2026｜Fisher 信息门控 SOC，容量为已知输入
-
-- 书目：Shi J, Jiang S, Tao S, Lee J, Borah M, Moura S. An adaptive estimation approach based on Fisher information to overcome the flat voltage plateau challenges of SOC estimation in LFP batteries. Energy and AI 24 (2026) 100693, DOI 10.1016/j.egyai.2026.100693。核对 arXiv:2507.01173 作者稿完整 31 页（papers/B_sources/Fisher2025_arxiv.pdf，SHA256 2da2eab2b403538643dc10109c3486f85aa0e502eb59969535e719206ff178df）与 Chalmers 机构出版稿元数据；数值按作者稿。2026-09-29 访问。[作者稿](https://arxiv.org/pdf/2507.01173)；[机构正式稿](https://research.chalmers.se/publication/551220/file/551220_Fulltext.pdf)。
-- 对象/真值：LithiumWerks APR18650M1-B 1.2 Ah LFP 单芯，25/10°C，专门 1/50C 双向 OCV–SOC–滞后映射和 HPPC，1 Hz 采样，在 UDDS 等动态电流与偏置/量化/低温/平平台测试；“真值”SOC 从已知容量积分/受控设定，非后续容量 SOH 标签（PDF 第 7、12–13 页）。无四串组容量验证、无老化容量更新目标。
-- 方法：二阶 ECM 在线估 OCV，按充放方向更新滞后因子 H，以已标定的三维 U(z,H) 反演 SOC；电压对参数灵敏度构造 Fisher 信息，再以逆斜率和估 OCV 协方差形成 SOC 更新置信度，与库仑计数融合（第 4–12 页图 1、式 11–19）。100 s/1 Hz 窗长由场景调试。公式量纲：若 U 的斜率 a=dU/dz [V/无量纲 SOC]，SOC 方差近似 Var(U)/a²；a→0 则增大。Fisher 矩阵受电流激励与噪声协方差影响；必须看整矩阵条件数，单项大不足以证明 Q 可辨。
-- 原文条件/边界：库仑传播式直接用事先已知容量 C_b（PDF 第 11 页 §SOC fusion）；因而 SOC RMSE 如平平台 20–80% 场景 2.54% 对 UKF 6.69%（第 15 页图 11）只验证状态门控，不验证未知容量估计。作者第 22 页承认电压测量偏置仍是限制，和 Yi 的偏置专门处理形成互补证据。
-- 竞赛适配：可把低 OCV 斜率、低激励、高滞后不确定性的窗降权，并将累计 Ah 继续前向传播；不能用该论文的 SOC 数值误差作为容量 SOH 精度。官方 10 s 使 1 Hz 频域参数与 100 点窗口需重新设计；CK0 动态曲线不足以单独生成零流三维滞后图。最小反证：在实际 10 s 前缀以多组 Q/初始 z/电压偏置计算条件 Fisher 矩阵与 held-out 电压；若 Q 列近线性依赖，即使 SOC 滤波稳定也冻结 Q。E2 原文公式/验证目标核对，未数值复现。

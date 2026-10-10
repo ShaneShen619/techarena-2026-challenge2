@@ -1,8 +1,0 @@
-{
-  "candidate": "ck0_hold",
-  "checkpoints": 8,
-  "strict_prefix_pass": true,
-  "hidden_truth_count": 7,
-  "official_capacity_accuracy_verified": false,
-  "model_sha256": "0891487ee21670188ca5962acb7dca472d02da89e58e7f7ae21aa4f55480da90"
-}

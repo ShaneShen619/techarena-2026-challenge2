@@ -1,8 +1,0 @@
-assumed_pack_shift_mV,first_root_Ah,meaning
--10,100.397,CK0 one-curve assumed voltage-shift sensitivity; not capacity accuracy
--5,100.405,CK0 one-curve assumed voltage-shift sensitivity; not capacity accuracy
--2,100.408,CK0 one-curve assumed voltage-shift sensitivity; not capacity accuracy
-0,100.412,CK0 one-curve assumed voltage-shift sensitivity; not capacity accuracy
-2,,CK0 one-curve assumed voltage-shift sensitivity; not capacity accuracy
-5,,CK0 one-curve assumed voltage-shift sensitivity; not capacity accuracy
-10,,CK0 one-curve assumed voltage-shift sensitivity; not capacity accuracy

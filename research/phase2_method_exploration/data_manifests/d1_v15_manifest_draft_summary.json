@@ -1,8 +1,0 @@
-{
-  "target_views": 1080,
-  "selected_event_ids_any_budget": 952,
-  "selected_event_ids_20Ah": 952,
-  "count_is_prefix_endpoint_qualified": true,
-  "selection_reads_post_endpoint": false,
-  "source": "M9_shallow_prefix_eligibility_v1/all_crossing_events.csv"
-}

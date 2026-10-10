@@ -1,6 +1,0 @@
-{
-  "formula": "ceil(((z_0.975 + z_0.80) * assumed_SD / delta)^2)",
-  "warning": "planning sensitivity only; update with pilot group-level paired differences and account for protocol strata before fixing confirmation n",
-  "startup_plan_groups": 12,
-  "minimum_sealed_groups": 4
-}
