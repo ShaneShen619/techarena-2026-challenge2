@@ -31,3 +31,5 @@ Last commit: `e636af5f2cb89586421dd65862d8739584b0f289`.
 独立基线验证：Python 3.11.14，未来噪声和 fit 前缀精确一致，sample_data 通过；实现最大差异 1.42e-14 pp。
 
 最近提交：`e636af5f2cb89586421dd65862d8739584b0f289`。
+
+Run finished 2026-10-14. Result: no alternative beat V2; V2 remains the leading candidate. All stage commits pushed to origin/exp/phase2-round3-models-20261014.
