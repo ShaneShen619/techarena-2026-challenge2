@@ -1,0 +1,20 @@
+{
+ "G-proxy": false,
+ "G-epsfree": {
+  "model": 0.24596392446212637,
+  "V2": 0.2155472671451436,
+  "passed": false
+ },
+ "G-robust": {
+  "wins": 0,
+  "passed": false
+ },
+ "G-regress": {
+  "max_abs_err_increase_pp": 0.1257519663479549,
+  "passed": true
+ },
+ "identifiability": {
+  "frac_bottom_identified": 0.6,
+  "exit_triggered": false
+ }
+}
