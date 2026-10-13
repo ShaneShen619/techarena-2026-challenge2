@@ -1,0 +1,8 @@
+{
+  "stage": "F",
+  "registered": "2026-10-14, before evaluation",
+  "members": "models that passed their stage gates; V2 always counts",
+  "weights": "equal, fixed",
+  "report_if": "pairwise per-checkup error correlation < 0.8",
+  "outcome": "no new model passed (B exit, D=D0, A fail, C fail); single member V2 -> ensemble not formed"
+}
