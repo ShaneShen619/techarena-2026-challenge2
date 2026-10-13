@@ -1,0 +1,6 @@
+scenario,n,mean_abs_z,fraction_within_1sd,fraction_within_2sd,interpretation
+PC10,6,0.8520099644901878,0.5,1.0,"descriptive, exposed proxies and dependent scenarios; not calibrated coverage"
+PC5,6,1.1859676716726573,0.6666666666666666,0.6666666666666666,"descriptive, exposed proxies and dependent scenarios; not calibrated coverage"
+PG1,4,0.353611993021956,1.0,1.0,"descriptive, exposed proxies and dependent scenarios; not calibrated coverage"
+PG2,4,0.7307553113185132,0.5,1.0,"descriptive, exposed proxies and dependent scenarios; not calibrated coverage"
+real,7,1.5176515327270224,0.5714285714285714,0.7142857142857143,"descriptive, exposed proxies and dependent scenarios; not calibrated coverage"

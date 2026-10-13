@@ -120,6 +120,10 @@ def fit_predict(ctx, tau=5.0, beta=None, rw=0.02):
     sd = float(np.sqrt(c @ cov @ c))
     info = dict(pred_sd=sd, beta=beta, delta_fit=float(th[i_dl]), A_last=float(th[iA[K - 1]]),
                 r45_last=float(th[i45[K - 1]]), r25_last=float(th[i25[K - 1]]) if K > 1 else np.nan)
+    info.update(all_months=list(range(K)),
+                all_r25=[float(th[i25[m]]) if m > 0 else None for m in range(K)],
+                all_r45=[float(th[i45[m]]) for m in range(K)],
+                all_A=[float(th[iA[m]]) for m in range(K)])
     return q, info
 
 
