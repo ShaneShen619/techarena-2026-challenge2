@@ -1,0 +1,91 @@
+{
+  "n_full_charges": 8,
+  "full_charge_Q": [
+    {
+      "segment": 1,
+      "setpoint_C": 45,
+      "Q_Ah": 100.122
+    },
+    {
+      "segment": 2,
+      "setpoint_C": 25,
+      "Q_Ah": 97.003
+    },
+    {
+      "segment": 4,
+      "setpoint_C": 25,
+      "Q_Ah": 95.67
+    },
+    {
+      "segment": 6,
+      "setpoint_C": 25,
+      "Q_Ah": 94.642
+    },
+    {
+      "segment": 8,
+      "setpoint_C": 25,
+      "Q_Ah": 93.747
+    },
+    {
+      "segment": 10,
+      "setpoint_C": 25,
+      "Q_Ah": 93.082
+    },
+    {
+      "segment": 12,
+      "setpoint_C": 25,
+      "Q_Ah": 92.636
+    },
+    {
+      "segment": 14,
+      "setpoint_C": 25,
+      "Q_Ah": 91.954
+    }
+  ],
+  "max_abs_integral_minus_counter_Ah": 0.021512499998834755,
+  "max_tail_margin_upper_Ah": 2.064000000000007,
+  "n_step_programs": 41,
+  "located_fraction": 1.0,
+  "median_four_cell_range_Ah": 0.6271055555555876,
+  "p90_four_cell_range_Ah": 0.7354416666666594,
+  "variant_spread_median_Ah": 0.7354298611111325,
+  "variant_spread_max_Ah": 1.4662569444446127,
+  "mean_checkup_jump_Ah": 0.1953673412698446,
+  "ck0_reference_step": {
+    "mid_cell1_V": 32.464,
+    "dvdq_cell1_V": 32.75,
+    "mid_cell2_V": 32.903,
+    "dvdq_cell2_V": 32.5,
+    "mid_cell3_V": 32.856,
+    "dvdq_cell3_V": 33.0,
+    "mid_cell4_V": 32.512,
+    "dvdq_cell4_V": 32.0
+  },
+  "a4_section_changes": [
+    {
+      "smooth_Ah": 1.0,
+      "dQ": -5.049128333333144,
+      "d_bottom_to_step": -1.0625,
+      "d_step_to_top": -3.986628333333144,
+      "slope_top_vs_Q": 0.8109263750043366,
+      "slope_bottom_vs_Q": 0.18907362499566868
+    },
+    {
+      "smooth_Ah": 2.0,
+      "dQ": -5.049128333333144,
+      "d_bottom_to_step": -1.3125,
+      "d_step_to_top": -3.736628333333144,
+      "slope_top_vs_Q": 0.6358656859139455,
+      "slope_bottom_vs_Q": 0.36413431408605523
+    },
+    {
+      "smooth_Ah": 3.0,
+      "dQ": -5.049128333333144,
+      "d_bottom_to_step": -1.625,
+      "d_step_to_top": -3.424128333333144,
+      "slope_top_vs_Q": 0.6643782078474155,
+      "slope_bottom_vs_Q": 0.33562179215258964
+    }
+  ],
+  "first_program_step_mean": 32.80654027777788
+}
