@@ -4,13 +4,15 @@
 
 > English · [中文](#zh)
 
-Stages 0, B, D, A, C, E and F are complete. V2 remains the leading research candidate; no new model passed. No stage reached its cap.
+COMPLETE. All six stages B → D → A → C → E → F and stage0 are finished; none needed its cap. FINAL_REPORT.md, bilingual stage reports, frozen protocols, all metrics and supplementary diagnostics are written and committed.
 
-Dual-reference templates, bounded profiles, all monthly SS states, actual 1/3-Ah A4 sensitivities and causal pack-root maps are complete. FINAL_REPORT.md has been rewritten with all 15 evaluated model names, full metrics and procedural limitations.
+Result: retain V2 as the leading research candidate. New models failed required gates; epsilon drift remains inconclusive across all physical variants. Procedural deviations and late diagnostics are explicitly disclosed. Active submission and earlier tracked studies are unchanged.
 
-Current: final integrity audit and push. Next: confirm clean working tree and origin round-3 branch equality, then stop. Do not rerun completed stages.
+Verification: V2 0.215726/0.669052 pp; exact candidate causality, Python3.11 sample smoke and implementation agreement pass; all 10 protocol hashes and 16 bilingual documents pass integrity checks.
 
-Last completed stage commit: `eb30aff4d7b9cc724f14ec90a77562f46a24a410`. Candidate environment: /tmp/arena-round3-py311 (Python3.11.14; numpy2.4.6/pandas3.0.6).
+Final report commit: `f7bfae1d29566a2563be9d32396dda3932cc0643`, verified on origin/exp/phase2-round3-models-20261014. This status update is the only subsequent commit and is pushed to the same branch.
+
+Next: none. Stop; do not rerun completed stages.
 
 ---
 
@@ -20,10 +22,12 @@ Last completed stage commit: `eb30aff4d7b9cc724f14ec90a77562f46a24a410`. Candida
 
 > [English](#en) · 中文
 
-阶段 0、B、D、A、C、E、F 均完成；V2 仍为领先研究候选，无新模型通过验收，无阶段用满上限。
+已完成。阶段 0 及 B → D → A → C → E → F 六个阶段均结束，无阶段需要用满上限。FINAL_REPORT.md、双语阶段报告、冻结协议、全部指标及补充诊断均已写入并提交。
 
-已补齐双参考模板、有界剖面、SS 全月份状态、实际 1/3 Ah A4 敏感性和因果组端首根映射。FINAL_REPORT.md 已汇总全部十五个模型名称、完整指标及流程局限。
+结论：保留 V2 为领先研究候选；新模型未通过必要门，全部物理变体下的 ε 漂移仍无定论。流程偏差及后补诊断已明确披露。当前提交包及前期已跟踪研究未改动。
 
-当前：最终完整性审计和推送。下一步：确认工作区干净且远端新分支与本地一致，然后停止，不重跑完成阶段。
+核验：V2 0.215726/0.669052 pp；候选精确因果性、Python 3.11 sample 冒烟及实现一致性通过；十个协议哈希及十六份双语文档均通过检查。
 
-最近完成阶段提交：`eb30aff4d7b9cc724f14ec90a77562f46a24a410`。候选环境 /tmp/arena-round3-py311，Python3.11.14、numpy2.4.6/pandas3.0.6。
+最终报告提交：`f7bfae1d29566a2563be9d32396dda3932cc0643`，已在远端新分支核验。本状态更新是其后唯一提交，也推送同一分支。
+
+下一步：无。停止，不重跑完成阶段。
