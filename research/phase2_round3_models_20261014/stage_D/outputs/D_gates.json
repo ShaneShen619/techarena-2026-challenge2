@@ -1,0 +1,23 @@
+{
+ "G-proxy": false,
+ "G-epsfree": {
+  "model": 0.2155472671451436,
+  "V2": 0.2155472671451436,
+  "passed": false
+ },
+ "G-regress": {
+  "max_abs_err_increase_pp": 0.0,
+  "passed": true
+ },
+ "CK2_abs_decreases": {
+  "chosen": 0.6690524237472275,
+  "V2": 0.6690524237472275,
+  "passed": false
+ },
+ "PG_MAE_improves": {
+  "chosen": 0.2287953941992969,
+  "D0": 0.2287953941992969,
+  "passed": false
+ },
+ "note": "chosen rule is D0 (identical to V2); stage D adds no change"
+}
