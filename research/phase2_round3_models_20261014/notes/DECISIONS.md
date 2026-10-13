@@ -30,3 +30,4 @@
 - DE.1 Stage E: S1 conflicts with the stage-A finding (Q_fc independent of start state) but matches eps0 at dV=0.05 V; per the registered rule a leaderboard-only V2_S1 is produced and not recommended.
 - DF.1 Stage F: only V2 qualifies; ensemble not formed.
 - DX.1 Foreign changes observed at ~00:21 (not made by this run): 4 metadata lines added to src/statespace.py (extra info fields, predictions unchanged) and stage_C/run_independent_diagnostics.py with stage_C/outputs/C_independent_*. Left untouched and not committed by this run; all commits from here use explicit paths.
+- DX.2 A parallel independent-review session committed to this branch during the run (1d0d16b, 4864a70, e636af5, ec59abc, ab5b31f). Its findings (D ordering, D2 beta deviation, E mapping deviation, softer Q_fc wording) are disclosed in FINAL_REPORT.md; its untracked files were left alone.

@@ -15,7 +15,7 @@
 
 - **B, charge-direction steps: exit.** Only the 8 anchor charges cross the graphite step. The ~5-day CCCV charges start about 21 Ah below full, above the step.
 - **D, gap extrapolation: no change.** Every rate-based rule over-corrects the CK2-like pseudo-gaps, so the registered selection kept "no extrapolation". CK2 stays at +0.67 pp.
-- **A, full-curve registration β: fails** (MAE 0.242 vs 0.216). The registered bottom section tracks each anchor's *start state* (r = −0.975 with start voltage), not LAM.
+- **A, full-curve registration β: fails** (MAE 0.242 vs 0.216). The registered bottom section is strongly confounded with each anchor's *start state* (r = −0.975 with start voltage), so it cannot isolate LAM.
 - **C, state-space fusion: fails** (MAE 0.355). Its structure lets ε leak into the degradation rates. It does confirm the temperature offset (δ ≈ 0.2 Ah) and the post-checkup transient (≈ +0.6 Ah).
 - **E, ε-drift risk: zero, 0.03 or up to 0.5 pp, depending on the checkup protocol.** The large-drift scenario conflicts with the data. A leaderboard-only variant `V2_S1` was produced; it is not recommended.
 - **F, ensemble: not applicable.** Only V2 qualified.
@@ -63,7 +63,7 @@ Per-checkup errors at ε0+0.4 (pp):
 
 - **Identifiability.** The registration parameters are mostly identifiable: bottom 60 %, top 85 % of anchor-cells.
 - **The start-state problem.** The post-CK3 anchor started from a lower rest voltage (2.907 V/cell), and its registered bottom section came out 0.65 Ah longer. Across anchors, Δbottom follows the start voltage (r = −0.975), so the bottom section does not measure LAM_NE, and β_reg (0.86–1.38) is biased.
-- **Q_fc is unaffected.** It shows no start-state effect (r = 0.04). This supports Q_fc as both anchor and proxy.
+- **No linear start-state association was detected for Q_fc** (r = 0.04, 7 anchors). This small diagnostic neither validates Q_fc as the hidden C/20 capacity nor rules out a start-state effect.
 
 **C** ([report](stage_C/REPORT.md)).
 
@@ -77,7 +77,7 @@ Per-checkup errors at ε0+0.4 (pp):
 **E** ([report](stage_E/REPORT.md)).
 
 - **S2, a cell-limited checkup charge:** ε drift ≤ 0.03 pp.
-- **S1, no start-state cancellation:** drift of 0.26–0.51 pp. With ΔV = 0.05 V it reproduces ε0 (0.285 vs 0.288 Ah) and the 25 °C offset (0.71 vs 0.69 Ah). It contradicts the stage A finding, however: Q_fc does not follow the start state.
+- **S1, no start-state cancellation:** drift of 0.26–0.51 pp. With ΔV = 0.05 V it reproduces ε0 (0.285 vs 0.288 Ah) and the 25 °C offset (0.71 vs 0.69 Ah). It sits uneasily with the stage A diagnostic, however: no association between Q_fc and the start state was detected.
 - **`V2_S1`.** This leaderboard-only variant differs from V2 by −0.39 to +0.34 pp on CK4–CK7. Do not submit it without information on the checkup protocol.
 
 **F** ([report](stage_F/REPORT.md)). Not applicable; only V2 qualified.
@@ -91,6 +91,18 @@ Per-checkup errors at ε0+0.4 (pp):
    - the state-space model with anchor 0 given its own offset and τ ≈ 8 d;
    - a start-state-corrected registration β;
    - the anchor √t trend as a fallback for missing recent data (reduced-budget run).
+
+## Deviations from the prompt and independent review
+
+A second session ran an independent review on this branch during the run (`notes/INDEPENDENT_REVIEW.md`, `stage_0/`, `*_independent_*`). Its points, and other deviations, are listed here so that none of them is hidden:
+
+1. **Stage D order.** PC5/PC10 at CK2 contain the same data as the real CK2 cut, so CK2 results of D1/D2 were computed (inside `run_select.py`) before the selection was committed. This breaks the prompt's ordering rule. The selection used PG1 + PG2 only and kept D0.
+2. **Stage D, D2 formula.** The prompt asked for β-converted step observations. The registered implementation used M4's β = 1 step changes instead, and estimated the gap throughput from a visible-data rate (the post-gap counter jump is not visible at CK2). D2 was therefore not an exact execution of the prompt's formula. D2 is in any case not selected.
+3. **Stage E, model.** The prompt asked for a per-cell CK0-curve mapping. This run implemented mechanism scenarios S0–S2 instead. The independent session registered a supplement for the required per-cell mapping (`stage_E/required_mapping_protocol.json`). Its results are not part of this report.
+4. **Wording.** The independent review softened some claims about Q_fc and the start state in the stage A report. This report follows the softer wording.
+5. **Candidate checks.** No candidate class was produced in this run, so G-impl was never applied. The review notes that bit-identity checks must compare exact floats, not rounded output.
+
+None of these changes the main result: no alternative passed the gates against V2.
 
 ## Risks and limits
 
@@ -136,7 +148,7 @@ python3 stage_E/run_e.py
 
 - **B，充电方向台阶：退出。** 只有 8 次锚点充电越过石墨台阶；约每 5 天一次的 CCCV 充电起点在满充以下约 21 Ah，位于台阶之上。
 - **D，缺段外推：无改动。** 所有基于速率的规则在类 CK2 伪缺口上都修正过头，按登记的选择规则保留"不外推"，CK2 仍为 +0.67 pp。
-- **A，全曲线配准 β：未通过**（MAE 0.242，V2 为 0.216）。配准得到的底部段跟随的是每次锚点充电的*起点状态*（与起点电压 r = −0.975），而不是 LAM。
+- **A，全曲线配准 β：未通过**（MAE 0.242，V2 为 0.216）。配准得到的底部段与每次锚点充电的*起点状态*高度混淆（与起点电压 r = −0.975），无法单独分离出 LAM。
 - **C，状态空间融合：未通过**（MAE 0.355）。其结构会让 ε 泄漏进老化速率。不过它证实了温度偏移（δ ≈ 0.2 Ah）和检查后瞬态（约 +0.6 Ah）。
 - **E，ε 漂移风险：视检查协议而定，为 0、0.03 或最多 0.5 pp。** 大漂移情景与数据矛盾。生成了只供排行榜检验的变体 `V2_S1`，不推荐使用。
 - **F，集成：不适用。** 只有 V2 符合条件。
@@ -184,7 +196,7 @@ python3 stage_E/run_e.py
 
 - **可辨识性。** 配准参数大多可辨识：底部 60 %、顶部 85 % 的锚点-电芯组合。
 - **起点状态问题。** CK3 之后的锚点起点静置电压更低（2.907 V/芯），配准出的底部段长了 0.65 Ah。在各锚点之间，Δ底部跟随起点电压（r = −0.975），所以底部段测的不是 LAM_NE，β_reg（0.86–1.38）因此有偏。
-- **Q_fc 不受影响。** 它没有起点状态效应（r = 0.04），这支持把 Q_fc 同时用作锚点和代理。
+- **未发现 Q_fc 与起点状态的线性关联**（r = 0.04，7 个锚点）。这个小样本诊断既不能证明 Q_fc 等于隐藏 C/20 容量，也不能排除起点状态效应。
 
 **C**（[报告](stage_C/REPORT.md)）。
 
@@ -198,7 +210,7 @@ python3 stage_E/run_e.py
 **E**（[报告](stage_E/REPORT.md)）。
 
 - **S2，单芯限顶的检查满充：** ε 漂移 ≤ 0.03 pp。
-- **S1，起点状态不抵消：** 漂移 0.26–0.51 pp。取 ΔV = 0.05 V 时它复现了 ε0（0.285 对 0.288 Ah）和 25 °C 偏置（0.71 对 0.69 Ah），但与阶段 A 的发现矛盾：Q_fc 不随起点状态变化。
+- **S1，起点状态不抵消：** 漂移 0.26–0.51 pp。取 ΔV = 0.05 V 时它复现了 ε0（0.285 对 0.288 Ah）和 25 °C 偏置（0.71 对 0.69 Ah），但与阶段 A 的诊断不太相符：没有发现 Q_fc 与起点状态的关联。
 - **`V2_S1`。** 这个只供排行榜检验的变体，在 CK4–CK7 上与 V2 相差 −0.39 至 +0.34 pp。没有检查协议信息之前，不要提交它。
 
 **F**（[报告](stage_F/REPORT.md)）。不适用，只有 V2 符合条件。
@@ -212,6 +224,18 @@ python3 stage_E/run_e.py
    - 给锚点 0 单独偏置、τ ≈ 8 天的状态空间模型；
    - 做起点状态修正的配准 β；
    - 把锚点 √t 趋势作为缺少近期数据时的回退（数据削减评估）。
+
+## 与 prompt 的偏差及独立审查
+
+运行期间，另一个会话在本分支上做了独立审查（`notes/INDEPENDENT_REVIEW.md`、`stage_0/`、`*_independent_*`）。以下列出其指出的问题和其他偏差，一项都不隐瞒：
+
+1. **阶段 D 的顺序。** CK2 处的 PC5/PC10 与真实 CK2 截断数据相同，所以 D1/D2 在 CK2 上的结果在选择提交之前已经算出（在 `run_select.py` 中），违反了 prompt 的顺序规则。选择只用了 PG1 + PG2，并保留了 D0。
+2. **阶段 D 的 D2 公式。** prompt 要求台阶观测经 β 换算，登记的实现却用了 M4 的 β = 1 台阶变化；缺段吞吐量用的是可见数据的速率（CK2 时看不到缺段后的计数器跳变）。因此 D2 并非严格按 prompt 的公式执行。D2 本来也没有被选中。
+3. **阶段 E 的模型。** prompt 要求用各芯 CK0 曲线做逐芯映射，本次运行实现的是 S0–S2 机理情景。独立会话为所要求的逐芯映射登记了补充协议（`stage_E/required_mapping_protocol.json`），其结果不在本报告之内。
+4. **措辞。** 独立审查把阶段 A 报告中关于 Q_fc 与起点状态的部分说法改得更谨慎，本报告采用了更谨慎的措辞。
+5. **候选类检查。** 本次运行没有生成候选类，因此从未用到 G-impl。审查指出，逐位一致检查必须比较精确的浮点值，而不是舍入后的输出。
+
+以上各点都不改变主要结论：没有备选方案通过相对 V2 的接纳门。
 
 ## 风险与局限
 
