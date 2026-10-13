@@ -23,3 +23,4 @@
 2. 已读两份归档文献，保留可辨识性、温度分层、带载模板恒等和组端首根约束；37.3 kJ/mol 仅作固定先验。
 
 3. 准备期间另一会话提交 c958688 与 ce6ce01，完成 0/B。已恢复原 harness 接口，补充评估器为 harness_extended.py；保留完成阶段和已有协议。
+- DD.1 Stage D D2: throughput across a gap is estimated from the visible 45 C daily discharge rate, because the counter jump is not visible before the checkup (deviation from prompt wording, causality takes precedence).

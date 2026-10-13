@@ -1,0 +1,22 @@
+{
+  "stage": "D",
+  "registered": "2026-10-14, before any stage-D evaluation code was run",
+  "base": "V2_main (phase branch unchanged). Extrapolation is added only on V2's fallback branch, and only if gap = CK_k date - t_cv_end(last visible step) > 10 days (V2 valid_days). Real data: only CK2 qualifies; PG1/PG2 all qualify; PC10 partly.",
+  "rules": {
+    "D0": "no extrapolation (= V2_main)",
+    "D1": "dQ = beta_k * r * gap; r = Theil-Sen 45 C step-depth rate (Ah/day) of the most recent visible 45 C segment with >=3 steps that is not segment 1 (month 0); if none, Theil-Sen of segment 1's last three steps; beta_k = V2 beta_a4 (A4 smooth 2 Ah, tau 1)",
+    "D2": "semi-empirical capacity model fitted causally: observations = anchors (post-CK0 = 100.41; 25 C anchors Q_fc+eps) plus in-month step-derived capacities Q_anchor_m + (s - s_first_after_anchor_m) (beta 1, as M4); model Q(t) = 100.41 - a*[C(t)-C(t0)] - b*[A(t)-A(t0)], C = cumulative sum of f(T)*d(sqrt(days since CK0)) over operation rows, f(T)=exp(-Ea/R*(1/T-1/298.15)), Ea=37.3 kJ/mol, T = temp_mean_C+273.15; A = discharge_Ah_cum (counter); t0 = end of post-CK0 anchor; a,b >= 0 by 2-parameter NNLS. Gap: C increment with T = 45 C (318.15 K actual-free), A increment = mean daily discharge throughput of visible 45 C rows * gap days (the counter jump across a missing segment is not visible before the checkup).",
+    "D3": "anchor trend: Q_fc,j = a + b*sqrt(days since CK0 at anchor end) over visible 25 C anchors (>=2); dQ = b*(sqrt(t_ck)-sqrt(t_last)); undefined for CK2 (reported, not selectable)"
+  },
+  "selection": "main rule = lowest mean |err| over PG1+PG2 (k=4..7, delta 0.4, main step, A4 2 Ah) among D0/D1/D2; must beat D0 by >=0.10 pp, else D0. Choice is written to stage_D/selection.json and committed before the real-data CK2 result is computed.",
+  "scenarios": [
+    "PG1",
+    "PG2",
+    "PC5",
+    "PC10",
+    "LOA (anchor of month k-1 removed, k=2..7)",
+    "real"
+  ],
+  "gates": "G-causal, G-regress, G-impl; plus CK2 |err| decreases and PG1+PG2 MAE improves. G-epsfree, G-proxy reported only.",
+  "deviation_from_prompt": "prompt D2 says use the counter jump across the gap; at prediction time the jump is not visible (segment 4 starts after CK2), so throughput in the gap is estimated from the visible 45 C daily rate."
+}
