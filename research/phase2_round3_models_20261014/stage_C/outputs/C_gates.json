@@ -1,0 +1,20 @@
+{
+ "G-proxy": false,
+ "G-epsfree": {
+  "model": 0.41353201333086886,
+  "V2": 0.2155472671451436,
+  "passed": false
+ },
+ "G-robust": {
+  "wins": 0,
+  "passed": false
+ },
+ "G-regress": {
+  "max_abs_err_increase_pp": 0.46811230091904854,
+  "passed": false
+ },
+ "calibration_descriptive": {
+  "mean_abs_z": 1.5176515327270224,
+  "frac_within_2sd": 0.7142857142857143
+ }
+}
