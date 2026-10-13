@@ -1,8 +1,8 @@
 """Report the three required A4 windows without changing the registered A model.
 
-The registration reference feature stays at its frozen 2-Ah setting. The A4
-window varies in the V2 comparator. This must not be described as refitting
-registration under three derivative smoothing windows.
+The main model stays at its frozen 2-Ah setting. Required diagnostic variants
+use 1/3-Ah A4 reference features, with separate cache keys. These late
+supplementary variants cannot change the main configuration or selection.
 """
 import sys
 from pathlib import Path
@@ -14,9 +14,9 @@ import registration as R
 
 if __name__=='__main__':
     predictors={**H.BASELINES,
-                'V2_reg':lambda c:R.v2_reg(c,'V','full'),
-                'V2_reg_dvdq':lambda c:R.v2_reg(c,'dVdQ','full'),
-                'V2_reg_bottom':lambda c:R.v2_reg(c,'V','bottom')}
+                'V2_reg':lambda c:R.v2_reg(c,'V','full',ref_smooth=c['a4s']),
+                'V2_reg_dvdq':lambda c:R.v2_reg(c,'dVdQ','full',ref_smooth=c['a4s']),
+                'V2_reg_bottom':lambda c:R.v2_reg(c,'V','bottom',ref_smooth=c['a4s'])}
     original=pd.read_csv(HERE/'outputs/A_long.csv')
     extra=H.run(predictors,scenarios=tuple(H.SCENARIOS),variants=('main',),smooths=(1.,3.))
     df=pd.concat([original,extra],ignore_index=True)

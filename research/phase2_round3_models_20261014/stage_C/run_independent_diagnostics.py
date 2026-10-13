@@ -1,7 +1,8 @@
 """Full monthly MAP states, pseudo-scenario calibration and A4 reporting.
 
-Only metadata is added to the frozen state-space implementation. Its beta
-reference remains at the registered 2-Ah window; the V2 comparator varies.
+The main 2-Ah implementation is unchanged apart from metadata. Diagnostic
+variants pass beta explicitly from 1/3-Ah A4 windows; they cannot retune the
+registered main configuration.
 """
 import sys
 from pathlib import Path
@@ -11,10 +12,20 @@ HERE=Path(__file__).resolve().parent
 sys.path.insert(0,str(HERE.parent/'src'))
 import harness as H
 import statespace as S
+from v2 import beta_a4
+
+def with_smoothing(**config):
+    def predict(ctx):
+        options=dict(config)
+        beta=options.pop('beta',None)
+        if beta is None:
+            beta=beta_a4(ctx['fc'],ctx['a4'][ctx['a4s']],ctx['ck'],ctx['k'],1.,1.)
+        return S.fit_predict(ctx,beta=beta,**options)
+    return predict
 
 if __name__=='__main__':
-    predictors={**H.BASELINES,'SS':S.make(),'SS_tau3':S.make(tau=3.),'SS_tau8':S.make(tau=8.),
-                'SS_beta1':S.make(beta=1.),'SS_rw01':S.make(rw=.01),'SS_rw04':S.make(rw=.04)}
+    predictors={**H.BASELINES,'SS':with_smoothing(),'SS_tau3':with_smoothing(tau=3.),'SS_tau8':with_smoothing(tau=8.),
+                'SS_beta1':with_smoothing(beta=1.),'SS_rw01':with_smoothing(rw=.01),'SS_rw04':with_smoothing(rw=.04)}
     df=H.run(predictors,scenarios=tuple(H.SCENARIOS),smooths=(1.,2.,3.))
     df.to_csv(HERE/'outputs/C_independent_long.csv',index=False)
     H.metrics(df).to_csv(HERE/'outputs/C_independent_metrics.csv',index=False)

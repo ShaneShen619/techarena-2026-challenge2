@@ -83,8 +83,9 @@ def register(ref, tgt, p1, mode="V", fit_range=None):
 def anchor_registrations(op, fc, a4_ref, ck, mode="V", fit="full"):
     """Registration of every visible 25 C anchor j>=2 against anchor 1, per cell.
 
-    Cached by (segment, mode, fit): an anchor charge is complete in every cut that
-    contains it, so its registration does not depend on the cutoff."""
+    Cache includes the reference feature coordinates so smoothing variants
+    cannot silently reuse another window's fit. Complete charges are stable
+    across later cutoffs."""
     anc = anchors_by_checkup(fc, ck)
     if 1 not in anc:
         return anc, {}
@@ -99,7 +100,7 @@ def anchor_registrations(op, fc, a4_ref, ck, mode="V", fit="full"):
     for j, r in anc.items():
         if j < 2 or r["setpoint_C"] != 25:
             continue
-        key = (int(r["segment"]), mode, fit)
+        key = (int(r["segment"]), mode, fit, tuple(p1))
         if key not in _REG_CACHE:
             tgt = anchor_curve(op, r)
             cells = []
@@ -114,9 +115,9 @@ def anchor_registrations(op, fc, a4_ref, ck, mode="V", fit="full"):
     return anc, out
 
 
-def beta_reg(ctx, mode="V", fit="full", beta0=1.0, tau=1.0):
+def beta_reg(ctx, mode="V", fit="full", beta0=1.0, tau=1.0, ref_smooth=2.0):
     fc, ck, k = ctx["fc"], ctx["ck"], ctx["k"]
-    anc, reg = anchor_registrations(ctx["op"], fc, ctx["a4"][2.0], ck, mode, fit)
+    anc, reg = anchor_registrations(ctx["op"], fc, ctx["a4"][ref_smooth], ck, mode, fit)
     js = [j for j in range(2, k) if j in reg]
     if 1 not in anc or not js:
         return beta0, {}
@@ -132,13 +133,13 @@ def beta_reg(ctx, mode="V", fit="full", beta0=1.0, tau=1.0):
     return shrink(pairs, beta0, tau), info
 
 
-def v2_reg(ctx, mode="V", fit="full"):
+def v2_reg(ctx, mode="V", fit="full", ref_smooth=2.0):
     """V2 with beta from registration on the phase branch."""
     from v2 import phase_diff
     q, info = H.v2_pred(ctx)
     if info["branch"] != "phase":
         return q, dict(info, beta_reg=np.nan)
-    b, _ = beta_reg(ctx, mode, fit)
+    b, _ = beta_reg(ctx, mode, fit, ref_smooth=ref_smooth)
     anc = anchors_by_checkup(ctx["fc"], ctx["ck"])
     x = phase_diff(ctx["steps"][ctx["step"]], anc, ctx["ck"], ctx["k"], 10.0, True)
     q_new = anc[ctx["k"] - 1]["Q_Ah"] + ctx["eps"] + b * x
