@@ -37,6 +37,7 @@ def validate(candidate, prediction_file, name):
         future=op.timestamp>date
         for c in op.columns:
             if c not in ('timestamp','segment','elapsed_s') and pd.api.types.is_numeric_dtype(op[c]):
+                op[c]=op[c].astype(float)
                 op.loc[future,c]=rng.normal(size=int(future.sum()))
         corrupted=Dataset(op[~future].reset_index(drop=True),ds.checkups_released,full.eval_points,full.reference_discharge,date)
         noisy=float(model.estimate_soh(corrupted,date))

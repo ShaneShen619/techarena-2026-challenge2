@@ -1,0 +1,16 @@
+[
+  {
+    "scenario": "PC5",
+    "k": 2,
+    "identical_to_real_CK2_operation": true,
+    "last_visible_timestamp": "2025-02-19 09:50:00",
+    "rows": 236603
+  },
+  {
+    "scenario": "PC10",
+    "k": 2,
+    "identical_to_real_CK2_operation": true,
+    "last_visible_timestamp": "2025-02-19 09:50:00",
+    "rows": 236603
+  }
+]
