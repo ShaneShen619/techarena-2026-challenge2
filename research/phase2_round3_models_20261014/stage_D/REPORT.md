@@ -4,6 +4,8 @@
 
 > **Language:** English · [中文](#zh)
 
+Exposed-exploratory. Proxy values have already been seen and are not hidden capacity truth.
+
 **Result: no rule beat "no extrapolation" (D0) on the pseudo-gaps, so the registered selection keeps D0 = V2. CK2 stays at +0.67 pp. Stage D brings no change to the model.**
 
 Protocol: `protocol.json` (SHA256 in `protocol.sha256`). Extrapolation applies only on V2's fallback branch, and only when the last visible step is more than 10 days before the checkup.
@@ -51,6 +53,8 @@ PC5 and PC10 at k = 2 contain no rows after 17 February, so they equal the real 
 # 阶段 D——缺段外推与伪缺口选择
 
 > **语言：** [English](#en) · 中文
+
+已曝光探索性研究。代理值已被查看，不是隐藏容量真值。
 
 **结果：在伪缺口上没有规则胜过"不外推"（D0），按登记的选择规则保留 D0，即 V2。CK2 仍为 +0.67 pp，本阶段对模型没有改动。**
 

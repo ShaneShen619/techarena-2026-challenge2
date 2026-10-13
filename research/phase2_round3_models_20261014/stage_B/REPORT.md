@@ -4,6 +4,8 @@
 
 > **Language:** English · [中文](#zh)
 
+Exposed-exploratory. Proxy values have already been seen and are not hidden capacity truth.
+
 **Result: exit condition met. The charge-direction channel stays diagnostic only; no variant was built or evaluated.**
 
 - **Audit** (`audit_coverage.py`, `coverage.csv`): 41 charges end in pack-level CV, all at a dominant CC current of 20.4 A.
@@ -19,6 +21,8 @@
 # 阶段 B——充电方向台阶测量
 
 > **语言：** [English](#en) · 中文
+
+已曝光探索性研究。代理值已被查看，不是隐藏容量真值。
 
 **结果：触发退出条件。充电方向通道只作诊断用，没有构建或评估任何变体。**
 

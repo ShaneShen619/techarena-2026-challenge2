@@ -4,7 +4,9 @@
 
 > **Language:** English · [中文](#zh)
 
-**Result: registration-based β fails the gates (MAE 0.242 vs V2's 0.216 at ε0+0.4; better than V2 in 0 of 6 step variants). V2's β is kept. The reason was found: the registered bottom section measures the *start state* of each anchor charge, not active-material loss.**
+Exposed-exploratory. Proxy values have already been seen and are not hidden capacity truth.
+
+**Result: registration-based β fails the gates (MAE 0.242 vs V2's 0.216 at ε0+0.4; better than V2 in 0 of 6 step variants). V2's β is kept. The exploratory start-state diagnostic indicates substantial confounding: the registered bottom section cannot isolate active-material loss from the initial charge state.**
 
 Protocol: `protocol.json`.
 
@@ -43,8 +45,8 @@ Gates: G-proxy fail, G-epsfree fail, G-robust 0/6, G-regress pass.
 ## Exploratory, not pre-registered: start state (`explore_start_state.py`)
 
 - **The post-CK3 anchor started deeper than the others:** mean rest voltage 2.907 V/cell, against 2.95–2.99 V. Its registered bottom section is 0.65 Ah *longer*.
-- **Across anchors, Δbottom correlates with the start voltage at r = −0.975.** The bottom-section change is therefore dominated by where the charge starts, not by LAM_NE, and β_reg inherits this noise.
-- **Q_fc itself shows no start-state effect:** its residual from a √t trend has r = 0.04 against the CK0-tail conversion of the start voltage. This supports using Q_fc as both anchor and proxy.
+- **Across anchors, Δbottom correlates with the start voltage at r = −0.975.** This is consistent with start-state confounding of the bottom-section change; it does not establish a unique degradation mechanism, and β_reg may inherit that confounding.
+- **No linear association was detected for Q_fc in this small diagnostic:** its residual from a √t trend has r = 0.04 against the CK0-tail conversion of the start voltage. This does not validate Q_fc as hidden C/20 capacity or rule out a start-state effect.
 - **Idea for later, not evaluated.** A bottom section corrected for start state could make a registration β usable. It was not tried in this round, to avoid choosing a variant after seeing the results.
 
 ---
@@ -55,7 +57,9 @@ Gates: G-proxy fail, G-epsfree fail, G-robust 0/6, G-regress pass.
 
 > **语言：** [English](#en) · 中文
 
-**结果：配准得到的 β 未通过接纳门（ε0+0.4 下 MAE 0.242，V2 为 0.216；6 种台阶变体中 0 种优于 V2），保留 V2 的 β。原因已经找到：配准得到的底部段反映的是每次锚点充电的*起点状态*，而不是活性物质损失。**
+已曝光探索性研究。代理值已被查看，不是隐藏容量真值。
+
+**结果：配准得到的 β 未通过接纳门（ε0+0.4 下 MAE 0.242，V2 为 0.216；6 种台阶变体中 0 种优于 V2），保留 V2 的 β。探索性起点诊断提示明显混淆：配准底部段不能把活性物质损失与初始充电状态独立分开。**
 
 协议：`protocol.json`。
 
@@ -94,6 +98,6 @@ Gates: G-proxy fail, G-epsfree fail, G-robust 0/6, G-regress pass.
 ## 探索性分析（未预登记）：起点状态（`explore_start_state.py`）
 
 - **CK3 之后的锚点充电起点比其他锚点更深：** 平均静置电压 2.907 V/芯，其他为 2.95–2.99 V。它配准得到的底部段*长了* 0.65 Ah。
-- **在各锚点之间，Δ底部与起点电压的相关系数为 r = −0.975。** 可见底部段的变化主要由充电起点决定，而不是 LAM_NE；β_reg 继承了这部分噪声。
-- **Q_fc 本身没有起点状态效应：** 它相对 √t 趋势的残差，与按 CK0 尾段换算的起点电压之间 r = 0.04。这支持把 Q_fc 同时用作锚点和代理。
+- **在各锚点之间，Δ底部与起点电压的相关系数为 r = −0.975。** 这个相关性与起点状态混淆相符，但不能唯一确定退化机制；β_reg 可能继承该混淆。
+- **本小样本诊断未发现 Q_fc 的线性关联：** 它相对 √t 趋势的残差，与按 CK0 尾段换算的起点电压之间 r = 0.04。这不能验证 Q_fc 等于隐藏 C/20 容量，也不能排除起点状态效应。
 - **留待以后的想法（未评估）。** 对底部段做起点状态修正，或许能让配准 β 变得可用。为避免看到结果后再挑变体，本轮没有尝试。
