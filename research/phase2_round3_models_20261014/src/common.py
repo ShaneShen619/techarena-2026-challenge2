@@ -4,6 +4,7 @@ import json
 import subprocess
 import sys
 from pathlib import Path
+sys.dont_write_bytecode = True
 
 STUDY = Path(__file__).resolve().parents[1]
 REPO = STUDY.parents[1]

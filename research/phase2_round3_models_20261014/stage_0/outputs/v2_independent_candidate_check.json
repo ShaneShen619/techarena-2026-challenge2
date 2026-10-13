@@ -1,0 +1,80 @@
+{
+  "candidate": "research/phase2_round3_models_20261014/candidate_model/v2_reference_model.py",
+  "python": "3.11.14 (main, Oct  9 2025, 16:16:55) [Clang 17.0.0 (clang-1700.6.3.2)]",
+  "predictions": [
+    {
+      "k": 0,
+      "SOH": 98.44117647058823,
+      "fit_prefix_exact": true,
+      "future_noise_exact": true
+    },
+    {
+      "k": 1,
+      "SOH": 95.99167892156889,
+      "fit_prefix_exact": true,
+      "future_noise_exact": true
+    },
+    {
+      "k": 2,
+      "SOH": 95.13741244553358,
+      "fit_prefix_exact": true,
+      "future_noise_exact": true
+    },
+    {
+      "k": 3,
+      "SOH": 93.54065032679704,
+      "fit_prefix_exact": true,
+      "future_noise_exact": true
+    },
+    {
+      "k": 4,
+      "SOH": 92.81104727103843,
+      "fit_prefix_exact": true,
+      "future_noise_exact": true
+    },
+    {
+      "k": 5,
+      "SOH": 92.08110165182639,
+      "fit_prefix_exact": true,
+      "future_noise_exact": true
+    },
+    {
+      "k": 6,
+      "SOH": 91.33115318019532,
+      "fit_prefix_exact": true,
+      "future_noise_exact": true
+    },
+    {
+      "k": 7,
+      "SOH": 90.8208293783605,
+      "fit_prefix_exact": true,
+      "future_noise_exact": true
+    }
+  ],
+  "sample_smoke": [
+    {
+      "checkup": "CK0",
+      "SOH": 98.03921568627452
+    },
+    {
+      "checkup": "CK1",
+      "SOH": 98.03921568627452
+    },
+    {
+      "checkup": "CK2",
+      "SOH": 98.03921568627452
+    },
+    {
+      "checkup": "CK3",
+      "SOH": 98.03921568627452
+    },
+    {
+      "checkup": "CK4",
+      "SOH": 98.03921568627452
+    }
+  ],
+  "max_research_difference_pp": 1.4210854715202004e-14,
+  "G-causal": true,
+  "G-impl": true,
+  "passed": true
+}

@@ -9,6 +9,7 @@ import json
 import pickle
 import sys
 from pathlib import Path
+sys.dont_write_bytecode=True
 import numpy as np
 import pandas as pd
 
