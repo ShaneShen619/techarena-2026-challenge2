@@ -1,7 +1,21 @@
-# DECISIONS (round 3)
+<a id="en"></a>
 
-- D0.1 Harness caches cut operation data and event tables under cache/ (git-ignored).
-- D0.2 Pseudo-gap PG1/PG2 keep operation rows of month k-1's 45 C segment up to `t_measured` (last sample of the deep-discharge excursion) of the first / second step; later rows of that segment are dropped. Pseudo-cut PC5/PC10 cut all rows `days` before CK_k. Proxies stay P_k of CK_k.
-- D0.3 G-impl: candidate output is rounded to 3 decimals (as run_model output); pass if |candidate - research| <= 0.001 pp.
-- D0.4 Causality check corrupts current, voltages, chamber setpoint and mean temperature after the cutoff.
-- DB.1 Stage B windows would have been fixed from the CK0 curve and segment 1 only; not needed because the exit rule triggered at the audit.
+# Decisions
+
+> English · [中文](#zh)
+
+1. The branch already exists at 24728fa, directly after 886bfc1, with the prompt as its first commit. Resume it without rewriting history.
+
+2. Read both archived literature documents. Retain identifiability profiles, temperature layering, loaded-template identity and first pack-voltage root; 37.3 kJ/mol is a fixed sensitivity prior, not independently validated for this pack.
+
+---
+
+<a id="zh"></a>
+
+# Decisions
+
+> [English](#en) · 中文
+
+1. 分支已存在，24728fa 紧接 886bfc1，首提交为 prompt；继续使用，不改写历史。
+
+2. 已读两份归档文献，保留可辨识性、温度分层、带载模板恒等和组端首根约束；37.3 kJ/mol 仅作固定先验。

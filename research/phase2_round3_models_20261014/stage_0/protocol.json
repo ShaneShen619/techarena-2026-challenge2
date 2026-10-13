@@ -1,0 +1,62 @@
+{
+  "exposure": "exposed-exploratory; proxies are not hidden truth",
+  "gates": {
+    "G-causal": "bit-identical future corruption and fit-prefix checks",
+    "G-proxy": "MAE lower for every delta; MAX <= V2 MAX + 0.10 pp",
+    "G-epsfree": "CK2-7 MAE <= V2 - 0.02 pp",
+    "G-robust": "wins in >=5/6 step variants",
+    "G-regress": "per-checkup absolute error growth <=0.30 pp",
+    "G-impl": "numpy/pandas only, <=0.001 pp agreement, Python3.11 sample smoke"
+  },
+  "main": "recompute M4 and V2",
+  "variants": {
+    "steps": {
+      "main": {},
+      "band_narrow": {
+        "current_band_A": [
+          -11.5,
+          -9.0
+        ]
+      },
+      "windows_minus3": {
+        "upper_window_Ah": [
+          12.0,
+          22.0
+        ],
+        "lower_window_Ah": [
+          39.0,
+          47.0
+        ]
+      },
+      "windows_plus3": {
+        "upper_window_Ah": [
+          18.0,
+          28.0
+        ],
+        "lower_window_Ah": [
+          45.0,
+          53.0
+        ]
+      },
+      "dvdq_peak": {
+        "method": "dvdq_peak"
+      },
+      "ir_corrected": {
+        "ir_correction": true
+      }
+    },
+    "smooth_Ah": [
+      1,
+      2,
+      3
+    ]
+  },
+  "selection": "must reproduce rounded V2 MAE=.216 MAX=.669 at delta=.4; else stop",
+  "scenarios": [
+    "normal",
+    "PG1",
+    "PG2",
+    "PC5",
+    "PC10"
+  ]
+}
