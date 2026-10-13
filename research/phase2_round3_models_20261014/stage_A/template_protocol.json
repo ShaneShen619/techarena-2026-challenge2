@@ -1,0 +1,15 @@
+{
+  "purpose": "Complete required CK0 and first25C per-cell derivative-template diagnostics; no proxy scoring, no change to registered beta model",
+  "grid_Ah": 0.25,
+  "smooth_Ah": [
+    1,
+    2,
+    3
+  ],
+  "main_step": "maximum positive dV/dQ over 50<q<80 Ah, as existing A4",
+  "high_SOC": "maximum dV/dQ for q>=step+5 and q<=Q_CC-2; feature present only if its derivative >=2 times median derivative in that search window",
+  "low_tail_onset": "first q in [3,20] with slope <=25% of maximum slope in [0,5] for all next 1 Ah grid points; otherwise unavailable",
+  "robust": "feature present at all three smoothing widths and span <=1 Ah",
+  "selection": "diagnostic only; no model selection or retuning",
+  "timing": "Supplement registered after main A evaluation to fill missing templates, before its own feature evaluation; main pre-registration remains unchanged."
+}
