@@ -1,0 +1,28 @@
+{
+  "stage": "C",
+  "registered": "2026-10-14, before any stage-C code was written or run",
+  "latent": "Q(t) = 100.41 + sum_m [r25_m * D25_m(t) + r45_m * D45_m(t)], t from the end of anchor 0. Month m (anchors_by_checkup): 25 C regime from anchor m end to the first visible row with chamber setpoint 45 after it (month 0: none), 45 C regime from there to anchor m+1 start (past months) or open (current month). D25_m(t), D45_m(t) = days spent in each regime up to t (clipped).",
+  "anchor_obs": "Q(t_anchor_end_m) = 100.41 (m=0) or Q_fc,m + eps (m>=1), SD 0.05 Ah",
+  "step_obs": "s_i = s0 + (Q(t_cv_end_i) - 100.41)/beta + delta*[setpoint 45] + A_m*exp(-(t_i - t_anchor_m)/tau_tr) + e, SD 0.15 Ah; steps in month m (after anchor m end, before anchor m+1 start)",
+  "priors": {
+    "s0": "N(30, 10^2)",
+    "delta": "N(0.18, 0.1^2) Ah",
+    "A_m": "N(0, 0.5^2) Ah each",
+    "r45_0, first r25": "N(-0.05, 0.1^2) Ah/day",
+    "random_walk": "r_m - r_(m-1) ~ N(0, 0.02^2) separately for the 25 C and 45 C rates"
+  },
+  "beta": "V2's beta_a4 (A4 smooth 2 Ah, tau 1, beta0 1) at each cutoff (stage A failed, so not from A)",
+  "tau_tr": "5 days (main); variants 3, 8",
+  "fit": "linear-Gaussian MAP by weighted least squares with priors as pseudo-observations, at each cutoff on visible data only",
+  "prediction": "Q(CK_k date 00:00); days after the last visible row are assigned to the 45 C regime of the current month if it has started, else to its 25 C regime; SD from the posterior covariance",
+  "variants": [
+    "tau_tr 3",
+    "tau_tr 8",
+    "beta = 1",
+    "random-walk SD 0.01",
+    "random-walk SD 0.04",
+    "step variants x6"
+  ],
+  "gates": "common gates against V2; calibration of predicted SD descriptive only",
+  "charge_side": "none (stage B exit)"
+}
