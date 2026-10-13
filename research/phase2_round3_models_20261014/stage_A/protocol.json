@@ -1,0 +1,20 @@
+{
+  "stage": "A",
+  "registered": "2026-10-14, after inspecting the anchor charge curves (feature locations only), before any registration fit or proxy evaluation",
+  "reference": "per cell, the CC part (I>20 A) of anchor 1 (post-CK1, 25 C) on a 0.25 Ah grid, linear interpolation of raw 10-s samples; breakpoint p1 = charge-direction main-step position of anchor 1 from events.charge_step_split (smooth 2 Ah) per cell",
+  "model": "for 25 C anchor j>=2, per cell: V_j(m(q)) = V_1(q) + v_off for q in [3, Q_CC,1 - 1] Ah, m(q) = s_b*q (q<=p1), s_b*p1 + s_t*(q-p1) (q>p1); points with m(q) > Q_CC,j - 0.5 are excluded; loss = mean squared residual; v_off closed form (mean residual)",
+  "search": "grid: coarse s_b in [0.94,1.04] step 0.002, s_t in [0.80,1.05] step 0.005; fine around the coarse optimum +-2 coarse steps with steps 0.0002 / 0.0005",
+  "outputs": "bottom_j = s_b*p1 (Ah from empty to the step), top_j = Q_fc,j - bottom_j, per cell then four-cell mean",
+  "identifiability": "profile per parameter on the fine grid; a parameter is 'not identified' if values with loss <= 1.05*min span more than 50% of |theta_hat - 1| (scale parameters)",
+  "beta_reg": "beta_k = shrink(pairs, beta0=1, tau=1) with pairs (top_j - top_1, Q_fc,j - Q_fc,1) for visible 25 C anchors j=2..k-1 (same shrink formula as V2's beta_a4)",
+  "main_variant": "V2_reg = V2_main with beta_k replaced by beta_reg (phase branch only; fallback unchanged)",
+  "variants": [
+    "registration on dV/dQ (smooth 2 Ah) instead of V",
+    "fit range [3, p1+15] (bottom-focused)",
+    "step variants x6",
+    "A4-independent: p1 from anchor-1 registration feature"
+  ],
+  "optional_eps_drift": "skipped in stage A: with a common per-cell map the modelled C/20 change equals the Q_fc change; any eps drift comes from cell-to-cell differences in the pack root, which is stage E",
+  "gates": "common gates against V2 (prompt section 4)",
+  "exit": "if top/bottom not identified in most anchors (> half of anchor-cells), report and keep V2's beta"
+}
