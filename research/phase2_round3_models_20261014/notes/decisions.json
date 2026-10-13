@@ -1,14 +1,78 @@
 [
   {
-    "en": "The branch already exists at 24728fa, directly after 886bfc1, with the prompt as its first commit. Resume it without rewriting history.",
-    "zh": "分支已存在，24728fa 紧接 886bfc1，首提交为 prompt；继续使用，不改写历史。"
+    "en": "Reuse the existing round-3 branch. Its first commit 24728fa contains the execution prompt and follows the permitted parent 886bfc1. Do not rewrite history.",
+    "zh": "沿用已存在的新分支；首提交 24728fa 为 prompt，父提交 886bfc1 符合要求，不改写历史。"
   },
   {
-    "en": "Read both archived literature documents. Retain identifiability profiles, temperature layering, loaded-template identity and first pack-voltage root; 37.3 kJ/mol is a fixed sensitivity prior, not independently validated for this pack.",
-    "zh": "已读两份归档文献，保留可辨识性、温度分层、带载模板恒等和组端首根约束；37.3 kJ/mol 仅作固定先验。"
+    "en": "Concurrent stage0/B commits appeared during setup. Restore and preserve the original harness interface; keep the supplementary evaluator separate and integrate completed work.",
+    "zh": "准备时出现阶段 0/B 的并发提交；恢复并保留原 harness 接口，补充评估器单独存放并整合完成工作。"
   },
   {
-    "en": "Concurrent external commits c958688 and ce6ce01 completed stages 0/B while this executor was preparing the harness. Restored the original harness interface; the additional evaluator is harness_extended.py. Preserve completed stages; subsequent work uses the existing interface and avoids rewriting protocols.",
-    "zh": "准备期间另一会话提交 c958688 与 ce6ce01，完成 0/B。已恢复原 harness 接口，补充评估器为 harness_extended.py；保留完成阶段和已有协议。"
+    "en": "Read both archived literature documents. Retain identifiability, temperature separation, loaded-template identity and first pack-root constraints. The 37.3 kJ/mol value is a fixed prior, not validated for this pack.",
+    "zh": "已读归档文献，保留可辨识性、温度分层、带载模板恒等和组端首根约束；37.3 kJ/mol 仅为固定先验。"
+  },
+  {
+    "en": "Cache causal operation prefixes and event tables under git-ignored cache/. PG1/PG2 keep the first/second completed deep discharge, using t_measured, not its pre-discharge CV time.",
+    "zh": "因果前缀及事件表缓存到忽略的 cache；PG1/PG2 保留首个/两个完整深放电，使用 t_measured 而非放电前 CV 时刻。"
+  },
+  {
+    "en": "B exits from coverage: only anchors span the step. No in-month charge-side model is built, and C receives no extra charge observations.",
+    "zh": "B 因覆盖退出：只有锚点穿过台阶；不构建月内充电侧模型，C 不增加充电观测。"
+  },
+  {
+    "en": "D selects D0 by the prewritten PG1+PG2 rule. The choice was committed before run_eval, but PC5/PC10 at CK2 equal real CK2 and exposed its result earlier. Preserve this procedural deviation and never claim strict CK2 blindness.",
+    "zh": "D 按预写 PG1+PG2 规则选 D0；选择在 run_eval 前提交，但 PC5/PC10 的 CK2 与实际前缀相同，已提前暴露结果。保留这个顺序偏差，不声称严格 CK2 盲化。"
+  },
+  {
+    "en": "D2 missing-gap throughput uses a visible 45-C rate because the post-gap counter jump is not available at CK2. The implementation uses beta=1 step observations; it is not an exact test of the prescribed beta-converted D2.",
+    "zh": "D2 看不到 CK2 缺段后的计数器，使用可见 45℃ 速率；其台阶观测采用 β=1，并非要求的 β 换算公式的精确测试。"
+  },
+  {
+    "en": "Keep A main configuration and rejection. Add dual-reference templates and bounded nuisance profiles under separate protocols before their own unscored diagnostics; these late supplements cannot select a new main.",
+    "zh": "保留 A 主配置和拒绝结论；双参考模板及有界干扰剖面在自己的不评分计算前单独登记。晚补诊断不能选择新主模型。"
+  },
+  {
+    "en": "Reference-feature coordinates must be part of A registration cache keys so 1/3-Ah smoothing variants cannot reuse a 2-Ah fit. Defaults remain 2 Ah.",
+    "zh": "A 配准缓存键必须含参考特征坐标，防止 1/3 Ah 变体误用 2 Ah 拟合；主默认仍为 2 Ah。"
+  },
+  {
+    "en": "Do not infer a degradation mechanism or validate Q_fc from the small start-state correlations. Report confounding and remaining uncertainty.",
+    "zh": "小样本起点相关性不能确定退化机制或验证 Q_fc；报告混淆及不确定性。"
+  },
+  {
+    "en": "C uses V2 beta because A failed. Add every monthly latent rate/amplitude and pseudo-scenario calibration as metadata, with 648 predictions checked exactly unchanged.",
+    "zh": "A 不通过，C 使用 V2 β；增加全部月份速率/幅度和伪情景区间元数据，核验 648 条预测完全未变。"
+  },
+  {
+    "en": "D2 and SS CK2-7 errors vary across epsilon assumptions. Call them subset metrics, not epsilon-free metrics; evaluate all deltas transparently.",
+    "zh": "D2 和 SS 的 CK2–7 误差随 ε 假设改变；称为子集指标，不称 ε 无关指标，透明报告全部 Δ。"
+  },
+  {
+    "en": "Required E maps use the last visible anchor before each checkup. Transfer Ah maps to loaded CK0 curves without adding absolute IR/polarization or charge-specific voltage offsets.",
+    "zh": "E 规定映射仅用检查前最后可见锚点，映射到 CK0 带载曲线，不重复加入绝对 IR/极化或充电特有电压偏置。"
+  },
+  {
+    "en": "Raw reference cell sum ends at 11.203 V. Freeze <=0.1-Ah linear tail extension, disclose extent, and mark unsupported roots unavailable rather than invent a far tail.",
+    "zh": "原四芯和末端 11.203 V；冻结最多 0.1 Ah 的线性尾段外延，明确报告，并把不支持的根记为缺失，不编造远端尾段。"
+  },
+  {
+    "en": "Ninety of 105 E roots are finite and their maximum drift is 0.022651 pp. Fifteen missing roots make the overall result inconclusive; do not declare all drift negligible.",
+    "zh": "E 有 90/105 个有限根，最大漂移 0.022651 pp；十五个缺失根使整体无定论，不能宣称全部漂移可忽略。"
+  },
+  {
+    "en": "Legacy E S1 uses a -1-V endpoint interpolation jump. Its stress outputs and V2_S1 are unvalidated diagnostics, not continuous pack-root evidence or rigorous risk bounds. Do not recommend promotion.",
+    "zh": "旧 E S1 插值末端跳变 −1 V，其压力数值及 V2_S1 仅为未验证诊断，不是连续组端首根证据或严格风险上界，不推荐提升。"
+  },
+  {
+    "en": "Only V2 is eligible for F. No single-member error correlation or new ensemble result is defined.",
+    "zh": "F 只有 V2 符合成员条件，单成员没有成员间误差相关系数，不报告新集成。"
+  },
+  {
+    "en": "Copy the V2 reference class into the study only. Verify exact raw floats for fit-prefix/future-noise checks, Python3.11 sample_data, pickling and research agreement. No new research model passed performance gates, so no new submission class is promoted.",
+    "zh": "V2 参考类仅复制到研究目录；验证原始浮点值的前缀 fit/未来噪声一致性、Python 3.11 sample_data、序列化及研究一致性。新增模型未通过性能门，不提升提交类。"
+  },
+  {
+    "en": "Use -B/dont_write_bytecode on supplementary commands. All tracked modifications stay in the study; push only the round-3 branch, without force push or stash.",
+    "zh": "补充命令使用 -B/dont_write_bytecode；所有已跟踪修改限于研究目录，仅推送新分支，不强推、不 stash。"
   }
 ]

@@ -4,7 +4,9 @@
 
 > **Language:** English · [中文](#zh)
 
-**Result: the registered state-space model (SS) fails every gate against V2.** MAE at ε0+0.4 is 0.355 vs 0.216, and it beats V2 in 0 of 6 step variants. The model is rejected.
+Exposed-exploratory; proxies are not hidden capacity truth. Full monthly states and pseudo-scenario calibration are in `outputs/C_independent_*`.
+
+**Result: the registered state-space model (SS) fails the required performance gates against V2.** MAE at ε0+0.4 is 0.355 vs 0.216, and it beats V2 in 0 of 6 step variants. The model is rejected.
 
 Protocol: `protocol.json`.
 
@@ -39,9 +41,9 @@ SS handles the hard PG1 gap better, but loses elsewhere.
 - The temperature offset δ is fitted at 0.15–0.22 Ah, consistent with the +0.18 Ah found by hand.
 - The post-checkup transient amplitude A_m is fitted at +0.5 to +0.8 Ah. The step is deeper right after a checkup and decays.
 
-Both effects are real in the data.
+These fitted terms are consistent with the observed signal structure under the registered priors; this is not independent mechanism validation.
 
-**Calibration (descriptive, 7 points).** Mean |z| = 1.52, and 71 % of errors are within 2 SD. The predicted SD is too small.
+**Calibration (descriptive, 7 points).** Mean |z| = 1.52, and 71 % of errors are within 2 SD. Coverage is lower than the nominal two-SD level, but seven exposed proxy points do not establish calibrated uncertainty.
 
 ## Why it fails
 
@@ -64,7 +66,9 @@ Both were seen only as variants here, so they cannot be claimed as improvements.
 
 > **语言：** [English](#en) · 中文
 
-**结果：登记的状态空间模型（SS）相对 V2 的接纳门全部不通过。** ε0+0.4 下 MAE 为 0.355（V2 为 0.216），6 种台阶变体中 0 种优于 V2，模型被淘汰。
+已曝光探索性研究，代理不是隐藏容量真值。全部月份状态及伪情景区间描述见 `outputs/C_independent_*`。
+
+**结果：登记的状态空间模型（SS）相对 V2 的必要性能门不通过。** ε0+0.4 下 MAE 为 0.355（V2 为 0.216），6 种台阶变体中 0 种优于 V2，模型被淘汰。
 
 协议：`protocol.json`。
 
@@ -101,7 +105,7 @@ SS 在较难的 PG1 缺口上表现更好，其他情景则更差。
 
 这两个效应在数据中都真实存在。
 
-**校准（描述性，7 个点）。** |z| 平均 1.52，71 % 的误差落在 2 倍标准差以内，说明预测标准差偏小。
+**校准（描述性，7 个点）。** |z| 平均 1.52，71 % 的误差落在 2 倍标准差以内，说明七个已曝光代理点不足以证明区间校准，经验覆盖偏低。
 
 ## 失败原因
 

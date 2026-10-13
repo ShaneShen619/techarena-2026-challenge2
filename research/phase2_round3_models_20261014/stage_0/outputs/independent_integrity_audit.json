@@ -11,18 +11,60 @@
       "sha256": "8bd614968e3f079f0fe13ca16ef879dd00e8c18d6b2e2aefd390717146fb9c45"
     },
     "A": {
-      "present": false
+      "hash_matches": true,
+      "sha256": "8bd3c2372b3fa357e923b19a564c6f7f5d0c64c65836dd04726732214a1f63d5"
     },
     "C": {
-      "present": false
+      "hash_matches": true,
+      "sha256": "b86e59e71a4046fab7386c6fec5c095d93ee7d75034cfe7a4dbca1c7b00387a3"
     },
     "E": {
-      "present": false
+      "hash_matches": true,
+      "sha256": "4d4b22ac26a1b82870104e70d0b44c84437dde4b7433a6a08a919bc71e2ae2a6"
     },
     "F": {
-      "present": false
+      "hash_matches": true,
+      "sha256": "83d01e7430dcea8dd84eef32a1ae8553ae725a0b176dc6e52f968ce7fa06230b"
     }
   },
-  "candidate_import_audit": {},
-  "head": "9f1ca7e9c4ec35bb51db8ea744b79bbce72e7440"
+  "candidate_import_audit": {
+    "v2_reference_model.py": {
+      "imports": [
+        "numpy",
+        "pandas"
+      ],
+      "additional_imports_to_inspect": []
+    }
+  },
+  "all_protocol_hashes": {
+    "stage_0/protocol.json": true,
+    "stage_A/bounded_profile_protocol.json": true,
+    "stage_A/protocol.json": true,
+    "stage_A/template_protocol.json": true,
+    "stage_B/protocol.json": true,
+    "stage_C/protocol.json": true,
+    "stage_D/protocol.json": true,
+    "stage_E/protocol.json": true,
+    "stage_E/required_mapping_protocol.json": true,
+    "stage_F/protocol.json": true
+  },
+  "markdown_bilingual_markers": {
+    "FINAL_REPORT.md": true,
+    "README.md": true,
+    "EXECUTION_PROMPT.md": true,
+    "stage_B/REPORT.md": true,
+    "stage_E/REQUIRED_MAPPING_REPORT.md": true,
+    "stage_E/REPORT.md": true,
+    "stage_D/REPORT.md": true,
+    "stage_C/REPORT.md": true,
+    "stage_F/REPORT.md": true,
+    "stage_A/REPORT.md": true,
+    "stage_A/BOUNDED_PROFILE_REPORT.md": true,
+    "stage_A/TEMPLATE_REPORT.md": true,
+    "stage_0/REPORT.md": true,
+    "notes/INDEPENDENT_REVIEW.md": true,
+    "notes/STATUS.md": true,
+    "notes/DECISIONS.md": true
+  },
+  "head": "2e8982c05e07863e344e670436c8d965495a3f22"
 }

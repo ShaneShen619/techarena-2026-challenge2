@@ -4,6 +4,8 @@
 
 > **Language:** English · [中文](#zh)
 
+Exposed-exploratory; proxies are not hidden capacity truth. **Audit qualification:** legacy S1 uses an arbitrary −1 V interpolation jump beyond the measured tail, so its outputs are unvalidated stress values, not continuous pack-root estimates or rigorous upper bounds. The required causal-map supplement found 90/105 supported roots; overall ε drift remains inconclusive. See [REQUIRED_MAPPING_REPORT.md](REQUIRED_MAPPING_REPORT.md). `V2_S1` has not passed class-level qualification.
+
 **Result: under the registered scenarios, ε drift ranges from zero (S0) to as much as 0.5 pp (S1). The scenario that gives large drift (S1) conflicts with the data, but cannot be ruled out. Following the registered decision rule, a leaderboard-only variant `V2_S1` was produced. It is not recommended and not scored.**
 
 Protocol: `protocol.json`. Nothing in this stage is scored on the proxies, because the proxies are the anchors themselves.
@@ -19,7 +21,7 @@ Protocol: `protocol.json`. Nothing in this stage is scored on the proxies, becau
 **Evidence for and against S1.**
 
 - **For, a sanity check.** With ΔV = 0.05 V, S1 reproduces the CK0-defined ε0 (0.285 vs 0.288 Ah) and the assumed 25 °C offset (0.71 vs ε0 + 0.4 = 0.69 Ah).
-- **Against, a direct test.** Under S1, a deeper start (the post-CK3 anchor, 0.4–0.5 Ah less residual) should raise Q_fc by the same amount. Stage A detected no association between Q_fc residuals and the start state (r = 0.04, 7 anchors). This suggests that the rest-voltage differences may not behave like SOC differences, so S1's drift values are better read as an upper bound on the risk than as an estimate.
+- **Against, a direct test.** Under S1, a deeper start (the post-CK3 anchor, 0.4–0.5 Ah less residual) should raise Q_fc by the same amount. Stage A detected no association between Q_fc residuals and the start state (r = 0.04, 7 anchors). This suggests that the rest-voltage differences may not behave like SOC differences, so S1's drift values are better read as an unvalidated stress scenario than as an estimate.
 - **The top-of-charge spread (S2) is small.** The per-cell step offsets drift (cell 1 −0.20 → −0.42 Ah, cell 4 −0.21 → −0.01 Ah), but the leading cell's offset barely changes. A cell-limited checkup charge would therefore move ε by ≤ 0.03 pp.
 
 ## Leaderboard-only variant (`outputs/E_leaderboard_only_V2_S1.csv`)
@@ -42,6 +44,8 @@ These differences are as large as V2's whole proxy error. This is why the checku
 
 > **语言：** [English](#en) · 中文
 
+已曝光探索性研究，代理不是隐藏容量真值。**审计限定：** 旧 S1 在实测尾段之外任意插值跳变 −1 V，其结果仅为未验证压力数值，不是连续组端首根估计或严格上界。规定的因果映射补充只有 90/105 个受支持首根，整体 ε 漂移仍无定论。见 [REQUIRED_MAPPING_REPORT.md](REQUIRED_MAPPING_REPORT.md)，V2_S1 未通过类级资格验证。
+
 **结果：在登记的几种情景下，ε 漂移从零（S0）到最多 0.5 pp（S1）不等。给出大漂移的情景（S1）与数据相矛盾，但无法排除。按登记的决策规则，生成了一个只供排行榜检验的变体 `V2_S1`；不推荐使用，也不评分。**
 
 协议：`protocol.json`。代理标签本身就是锚点，所以本阶段的任何结果都不在代理上评分。
@@ -57,7 +61,7 @@ These differences are as large as V2's whole proxy error. This is why the checku
 **支持与反对 S1 的证据。**
 
 - **支持（合理性检验）。** 取 ΔV = 0.05 V 时，S1 复现了由 CK0 定义的 ε0（0.285 对 0.288 Ah），也复现了假定的 25 °C 偏置（0.71 对 ε0 + 0.4 = 0.69 Ah）。
-- **反对（直接检验）。** 按 S1，起点更深（CK3 之后的锚点，剩余电量少 0.4–0.5 Ah）应当让 Q_fc 增加同样的量。但阶段 A 没有发现 Q_fc 残差与起点状态的关联（r = 0.04，7 个锚点）。这提示静置电压的差异可能不像 SOC 差异，所以 S1 给出的漂移更适合看作风险上限，而不是估计值。
+- **反对（直接检验）。** 按 S1，起点更深（CK3 之后的锚点，剩余电量少 0.4–0.5 Ah）应当让 Q_fc 增加同样的量。但阶段 A 没有发现 Q_fc 残差与起点状态的关联（r = 0.04，7 个锚点）。这提示静置电压的差异可能不像 SOC 差异，所以 S1 给出的漂移更适合看作未验证压力情景，而不是可靠估计值。
 - **顶部离散（S2）很小。** 各芯台阶偏移在漂移（电芯 1 −0.20 → −0.42 Ah，电芯 4 −0.21 → −0.01 Ah），但领先那颗电芯的偏移几乎不变，所以即使检查满充是单芯限顶，ε 也只会移动 ≤ 0.03 pp。
 
 ## 只供排行榜检验的变体（`outputs/E_leaderboard_only_V2_S1.csv`）

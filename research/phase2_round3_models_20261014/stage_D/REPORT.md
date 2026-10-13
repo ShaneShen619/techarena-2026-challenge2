@@ -39,11 +39,11 @@ Per-checkup error at ε0+0.4, in pp:
 
 ## Exposure note
 
-PC5 and PC10 at k = 2 contain no rows after 17 February, so they equal the real CK2 cut. Their D1/D2 CK2 values were printed by the selection script before the selection was committed. The selection rule used PG1 + PG2 only (`notes/DECISIONS.md`, DD.2).
+PC5 and PC10 at k = 2 end at 19 February 09:50 (the only visible 45 C step is on 17 February), so they equal the real CK2 cut. Their D1/D2 CK2 values were printed by the selection script before the selection was committed. The selection rule used PG1 + PG2 only (`notes/DECISIONS.md`, DD.2).
 
 ## What this means
 
-- The CK2 error cannot be fixed with a time- or throughput-based rate learned from other months.
+- The tested D1/D2 implementations did not improve CK2. This does not establish an irreducible error floor or rule out other causal models.
 - D3's good pseudo-cut numbers suggest that an anchor-level trend helps *pseudo-cutoffs* (missing recent data). It cannot be used for CK2, which has only one 25 °C anchor before it. This matters for the reduced-data-budget run and is passed on to stage C, where the state-space model carries a trend.
 
 ---
@@ -89,9 +89,9 @@ PG1/PG2：对 k = 4..7，把第 k−1 月的 45 °C 段截断到第一次 / 第�
 
 ## 曝光说明
 
-k = 2 时，PC5 和 PC10 在 2 月 17 日之后没有任何数据，等同于真实的 CK2 截断。它们在 D1/D2 下的 CK2 数值，在选择提交之前已由选择脚本打印出来。选择规则只用了 PG1 + PG2（见 `notes/DECISIONS.md` 的 DD.2）。
+k = 2 时，PC5 和 PC10 的最后一行是 2 月 19 日 09:50（唯一可见 45℃ 台阶在 17 日），等同于真实 CK2 前缀。它们在 D1/D2 下的 CK2 数值，在选择提交之前已由选择脚本打印出来。选择规则只用了 PG1 + PG2（见 `notes/DECISIONS.md` 的 DD.2）。
 
 ## 结论
 
-- 用从其他月份学到的时间或吞吐量速率，修不好 CK2 的误差。
+- 已测试 D1/D2 实现没有改善 CK2，但不能据此证明不可降低的误差下限或排除其他因果模型。
 - D3 在伪截断上的好结果说明，锚点层面的趋势对*伪截断*（缺少近期数据）有帮助；但 CK2 之前只有一个 25 °C 锚点，D3 用不上。这与数据削减评估有关，也作为线索交给阶段 C：阶段 C 的状态空间模型带有趋势项。

@@ -4,15 +4,13 @@
 
 > English · [中文](#zh)
 
-Completed: stage 0 (V2 reproduced); B (diagnostic-only exit); D (D0 retained, all robustness settings independently evaluated).
+Stages 0, B, D, A, C, E and F are complete. V2 remains the leading research candidate; no new model passed. No stage reached its cap.
 
-Current: A. Registered main evaluation is present and fails G-proxy/G-epsfree/G-robust. Additional diagnostics and report are being prepared in the concurrent execution session.
+Dual-reference templates, bounded profiles, all monthly SS states, actual 1/3-Ah A4 sensitivities and causal pack-root maps are complete. FINAL_REPORT.md has been rewritten with all 15 evaluated model names, full metrics and procedural limitations.
 
-Next: finish A report, then C → E → F and FINAL_REPORT.md. Preserve existing protocols and completed stages.
+Current: final integrity audit and push. Next: confirm clean working tree and origin round-3 branch equality, then stop. Do not rerun completed stages.
 
-Independent baseline verification: Python 3.11.14, exact future-noise/fit-prefix equality, sample_data passed; max implementation difference 1.42e-14 pp.
-
-Last commit: `e636af5f2cb89586421dd65862d8739584b0f289`.
+Last completed stage commit: `eb30aff4d7b9cc724f14ec90a77562f46a24a410`. Candidate environment: /tmp/arena-round3-py311 (Python3.11.14; numpy2.4.6/pandas3.0.6).
 
 ---
 
@@ -22,14 +20,10 @@ Last commit: `e636af5f2cb89586421dd65862d8739584b0f289`.
 
 > [English](#en) · 中文
 
-已完成：阶段 0（V2 复现）、B（仅诊断退出）、D（保留 D0，已独立评估全部稳健性设置）。
+阶段 0、B、D、A、C、E、F 均完成；V2 仍为领先研究候选，无新模型通过验收，无阶段用满上限。
 
-当前：A。已登记主评估已产出，G-proxy/G-epsfree/G-robust 不通过。并发执行会话正在补充诊断与报告。
+已补齐双参考模板、有界剖面、SS 全月份状态、实际 1/3 Ah A4 敏感性和因果组端首根映射。FINAL_REPORT.md 已汇总全部十五个模型名称、完整指标及流程局限。
 
-下一步：完成 A 报告，接着 C → E → F 和 FINAL_REPORT.md。保留已有协议及完成阶段。
+当前：最终完整性审计和推送。下一步：确认工作区干净且远端新分支与本地一致，然后停止，不重跑完成阶段。
 
-独立基线验证：Python 3.11.14，未来噪声和 fit 前缀精确一致，sample_data 通过；实现最大差异 1.42e-14 pp。
-
-最近提交：`e636af5f2cb89586421dd65862d8739584b0f289`。
-
-Run finished 2026-10-14. Result: no alternative beat V2; V2 remains the leading candidate. All stage commits pushed to origin/exp/phase2-round3-models-20261014.
+最近完成阶段提交：`eb30aff4d7b9cc724f14ec90a77562f46a24a410`。候选环境 /tmp/arena-round3-py311，Python3.11.14、numpy2.4.6/pandas3.0.6。

@@ -1,0 +1,177 @@
+"""Render the final bilingual report from consolidated frozen evaluations."""
+import json
+import sys
+from pathlib import Path
+import pandas as pd
+HERE=Path(__file__).resolve().parent
+STUDY=HERE.parent
+sys.path.insert(0,str(STUDY/'src'))
+from common import bilingual
+from run_independent_summary import consolidate
+
+def table(headers,rows):
+    return '\n'.join(['| '+' | '.join(headers)+' |','| '+' | '.join(['---']*len(headers))+' |']+
+                     ['| '+' | '.join(map(str,row))+' |' for row in rows])
+
+def number(x):
+    return f'{x:.3f}' if pd.notna(x) else 'unavailable'
+
+if __name__=='__main__':
+    consolidate()
+    m=pd.read_csv(HERE/'outputs/independent_main_metrics.csv').set_index(['model','scenario','delta'])
+    e=pd.read_csv(HERE/'outputs/independent_per_checkup_errors.csv',index_col=0)
+    inv={r['model']:r for r in json.loads((HERE/'outputs/independent_epsilon_invariance.json').read_text())}
+    order=['M4','V2','D0','D1','D2','D3','V2_reg','V2_reg_dvdq','V2_reg_bottom',
+           'SS','SS_tau3','SS_tau8','SS_beta1','SS_rw01','SS_rw04']
+    rows=[]
+    for name in order:
+        real=[m.loc[(name,'real',d)] for d in (0.,.4,.8)]
+        rows.append([name,int(real[1].n_predictions),
+                     ' / '.join(number(r.MAE) for r in real),
+                     ' / '.join(number(r.MAX) for r in real),
+                     ' / '.join(number(r.RMSE) for r in real),number(real[1].CK2_7_MAE),
+                     'yes' if inv[name]['epsilon_independent_within_1e_8_pp'] else 'no']+
+                    [number(m.loc[(name,s,.4),'MAE']) for s in ('PG1','PG2','PC5','PC10')])
+    summary=table(['Model','n','MAE Δ0 / .4 / .8','MAX Δ0 / .4 / .8','RMSE Δ0 / .4 / .8','CK2–7 MAE Δ.4','ε independent','PG1','PG2','PC5','PC10'],rows)
+    percheck=table(['Model']+[f'CK{k}' for k in range(1,8)],[[n]+[number(e.loc[k,n]) for k in range(1,8)] for n in order])
+    gate_rows=[['B','diagnostic-only exit','not applicable','not applicable','not applicable','not applicable'],
+               ['D0 selected','no CK2 or PG improvement','fail','fail','0/6','pass'],
+               ['V2_reg','rejected','fail','fail','0/6','pass'],
+               ['SS','rejected','fail','not ε-free; threshold fails','0/6','fail'],
+               ['E','unscored sensitivity; inconclusive','not scored','not scored','not applicable','not applicable'],
+               ['F','only V2 eligible; no ensemble','not applicable','not applicable','not applicable','not applicable']]
+    gate_table=table(['Stage/main','Decision','G-proxy','G-epsfree','G-robust','G-regress'],gate_rows)
+    root=json.loads((STUDY/'stage_E/outputs/E_required_mapping_summary.json').read_text())
+    commands='''```bash
+cd /Users/shane/Desktop/Arena_1013_model/research/phase2_round3_models_20261014
+python3 -B stage0_reproduce.py
+python3 -B stage_B/audit_coverage.py
+python3 -B stage_D/run_select.py
+python3 -B stage_D/run_eval.py
+python3 -B stage_D/run_independent_robustness.py
+python3 -B stage_A/run_a.py
+python3 -B stage_A/explore_start_state.py
+python3 -B stage_A/run_independent_smoothing.py
+python3 -B stage_A/run_templates.py
+python3 -B stage_A/run_bounded_profiles.py
+python3 -B stage_C/run_c.py
+python3 -B stage_C/run_independent_diagnostics.py
+python3 -B stage_E/run_e.py
+python3 -B stage_E/run_required_mapping.py
+python3 -B stage_F/run_independent_summary.py
+python3 -B stage_F/write_final_report.py
+python3 -B stage_0/audit_integrity.py
+```
+
+```bash
+/opt/homebrew/bin/python3.11 -m venv /tmp/arena-round3-py311
+/tmp/arena-round3-py311/bin/pip install numpy==2.4.6 pandas==3.0.6
+/tmp/arena-round3-py311/bin/python -B stage_0/validate_candidate.py \\
+  candidate_model/v2_reference_model.py stage_0/outputs/predictions.csv V2 \\
+  --output stage_0/outputs/v2_independent_candidate_check.json
+```'''
+    en=f'''**Keep V2 as the leading research candidate. No new model passed its stage gates.** All six stages have completed with positive or negative findings; no stage needed its time cap. The active M4 submission was not changed. This is **exposed-exploratory** research: proxies were already seen, are post-checkup charge observations plus an assumed ε, and are not hidden C/20 truth.
+
+V2 reproduces MAE **0.215726 pp**, MAX **0.669052 pp** at Δ=0.4, versus M4 MAE 0.291265 pp. The V2 reference candidate passes exact future-noise and fit-on-CK1-prefix comparisons, pickling, sample_data smoke and Python 3.11.14; its maximum difference from research is 1.42×10⁻¹⁴ pp. No newly passing candidate class or ensemble was warranted.
+
+## All candidates and variants
+
+All numbers are SOH percentage points. Main step method and A4 2 Ah; pseudo-scenario MAE uses Δ=0.4. The three numbers in each metric column use Δ=0, 0.4, 0.8. **n=6 for D3** because CK2 is undefined; that average cannot be compared with seven-checkup models. For D2 and SS variants, CK2–7 is a subset metric and is **not ε-free**.
+
+{summary}
+
+Full precision, sample counts, every step/A4 setting and scenario are in [independent_all_predictions.csv](stage_F/outputs/independent_all_predictions.csv) and [independent_main_metrics.csv](stage_F/outputs/independent_main_metrics.csv). δ in the original reports sometimes denotes the proxy offset; here Δ denotes that offset, while δ in SS is the fitted temperature shift.
+
+## Per-checkup errors at Δ=0.4
+
+{percheck}
+
+## Acceptance decisions
+
+{gate_table}
+
+G-causal and G-impl are independently **passed for the V2 reference class**. New research models already failed their required performance gates, so they were rejected without producing submission classes; their class-level causal/implementation gates are **not run**, not claimed passed or failed. Late diagnostic variants never replace a registered main result.
+
+## Stage findings
+
+**B — diagnostic-only exit.** Of 41 CV-ending charges, only eight post-checkup anchors span ≥45 Ah. Periodic CCCV charges span about 21 Ah and miss the graphite step; zero of seven months have two usable 45-C charge-side events. No additional charge channel enters C. [Report](stage_B/REPORT.md).
+
+**D — keep D0.** PG1+PG2 MAE is D0 0.229, D1 0.361 and D2 0.381 pp. D3 is 0.217 but undefined for CK2 and ineligible. Selection was committed as 816a21d before the real-data evaluation, and no CK2 tuning was observed. However PC5/PC10 CK2 are identical to the real CK2 prefix and were evaluated before that commit: the strict CK2 result-order requirement was violated. D1/D2 worsen CK2 to −1.427/−1.049 pp, compared with V2 +0.669. This rejects the tested rules; it does **not** establish an irreducible error floor. Leave-one-anchor-observation-out MAE is D0 0.336, D1 0.514, D2 0.466 and D3 0.301 (D3 excludes CK2). [Report](stage_D/REPORT.md).
+
+**A — registration beta rejected.** Main MAE is 0.242 pp and six step variants give zero wins. Original profiles identify bottom/top scales in 60%/85% of anchor-cell fits, but the original voltage nuisance was unconstrained and not profiled. The unscored bounded-nuisance audit identifies bottom/top/voltage in only 40%/80%/20%; it cannot rehabilitate the main beta. Dual CK0/first25C templates, 1/2/3-Ah derivative features and all three parameter profiles are now supplied in separately registered supplements. The strong start-voltage/bottom-change correlation (r=−0.975) suggests confounding; it does not uniquely prove LAM or its absence. The Q_fc residual correlation r≈0.04 in this small sample neither rules out start-state effects nor validates the proxy. [Main report](stage_A/REPORT.md), [templates](stage_A/TEMPLATE_REPORT.md), [profiles](stage_A/BOUNDED_PROFILE_REPORT.md).
+
+**C — fusion rejected.** Main MAE is 0.355 pp, CK2–7 MAE is 0.334 at Δ=0.4, and regression exceeds 0.30 pp. τ=8 reaches 0.243 pp but is a variant and still loses to V2. The fitted temperature/transient terms are consistent with prior observations under this model, not an independent mechanism validation. All monthly rates/amplitudes and pseudo-scenario calibration are supplied. The 7-point real-data fraction within 2 SD is 5/7; calibration is descriptive because points are exposed and scenarios reuse observations. D2 error spans 0.447 pp and SS spans 0.868 pp across the ε assumptions at CK2–7, so neither subset score is genuinely ε-free. Metadata additions match 648 original predictions exactly (0 Ah difference). [Report](stage_C/REPORT.md), [states](stage_C/outputs/C_independent_monthly_states.csv), [calibration](stage_C/outputs/C_independent_calibration.csv).
+
+**E — ε remains unverified.** Prescribed causal per-cell charge maps/A4 fallback maps are applied to the CK0 loaded discharge, summed and solved for the first 11.2 V root. Only anchors visible before each CK cutoff are used. {root['finite_roots']}/{root['total_roots']} roots exist within the registered 0.1-Ah tail extension; among finite roots, max |ε−ε0| is {root['maximum_absolute_epsilon_drift_pp_among_finite_roots']:.6f} pp. Fifteen unavailable roots mean the overall range is **inconclusive**, not established negligible. The raw four-cell reference sum ends at 11.203 V; its extended root is {root['reference_raw_cell_sum_root_Ah']:.6f} Ah. No absolute IR/polarization was added, and charge-specific voltage offsets were not transplanted into discharge. The original S0/S1/S2 mechanism stress scenarios remain separate: legacy S1 gives 0.26–0.51 pp but uses an arbitrary −1 V endpoint jump in interpolation, so those values are not validated continuous pack roots or rigorous upper bounds. The registered leaderboard-only V2_S1 option remains an unqualified diagnostic; it is neither recommended nor claimed to improve proxy scores. [Causal mapping report](stage_E/REQUIRED_MAPPING_REPORT.md), [legacy scenarios](stage_E/REPORT.md).
+
+**F — no ensemble.** Only V2 is eligible. Pairwise correlation has no definition for a single member, so the fixed-weight ensemble reporting condition is not met. [Report](stage_F/REPORT.md).
+
+## Protocol deviations and limits
+
+- Concurrent work was found after initial setup. Original harness interfaces and completed commits were preserved; supplementary outputs are now integrated and committed.
+- D2 estimates missing throughput from visible 45-C history because the post-gap counter jump is unavailable causally at CK2; it also uses beta=1 step observations rather than the specified beta conversion. Its failure is evidence about this implementation, not an exact test of the prescribed D2 formula.
+- A dual-reference features, bounded voltage profiles and the required E maps were missing from the first main runs. Supplements froze separate protocols before their own computation. They came after main evaluation and cannot be presented as original pre-registration or used to select a replacement.
+- Main configurations and stage-D selection were retained. Required 1/3-Ah A4 sensitivity variants are reported separately; A cache keys now include reference feature coordinates to avoid cross-window cache reuse.
+- Proxies are already exposed. Pseudo cuts/gaps increase test cases, not independent packs or hidden labels. Small correlations do not validate physical causality or the capacity label.
+- ε, full-charge start state, post-checkup recovery, 25/45-C transfer, endpoint extrapolation and the single-pack design remain material limits. Independent same-protocol capacity measurements would resolve these assumptions; this run cannot infer hidden CK1–CK7 truth.
+
+## Exact reproduction
+
+Run from the specified worktree. `-B` prevents bytecode writes into reused directories. Reproduction reruns frozen analyses and reports; it does not recreate the historical pre-registration/selection timing. Environment versions are recorded in stage_0/outputs/*environment.json. Extraction caches are git-ignored.
+
+{commands}
+
+Protected tracked directories are unchanged relative to 24728fa. Protocol hashes, bilingual document markers and candidate imports are checked by stage_0/audit_integrity.py. Branch: `exp/phase2-round3-models-20261014`; no wiring into my_model, other-branch push or force push was performed.'''
+    zh=f'''**继续以 V2 为领先研究候选。没有新增模型通过本阶段接纳门。** 六个阶段均完成，包含退出和负面结果，无阶段需要用满时间上限；当前 M4 提交模型未修改。这是**已曝光探索性研究**：代理值此前已看过，是检查后充入量加假设 ε，不是隐藏 C/20 真值。
+
+Δ=0.4 下复现 V2：MAE **0.215726 pp**，MAX **0.669052 pp**；M4 MAE 为 0.291265 pp。V2 参考候选类在 Python 3.11.14 下通过未来噪声、仅 CK1 前缀 fit 的精确一致性、序列化和 sample_data 冒烟检查，与研究实现最大差异 1.42×10⁻¹⁴ pp。没有新增通过验收的类，也不构建集成。
+
+## 全部候选与变体
+
+数值均为 SOH 百分点。使用主台阶方法及 A4 2 Ah；伪情景 MAE 对应 Δ=0.4。三个指标值依次对应 Δ=0、0.4、0.8。**D3 只有六个有效点**，CK2 无定义，不能与七点模型直接比较。D2 和 SS 变体的 CK2–7 只是子集指标，**不与 ε 无关**。
+
+{summary}
+
+完整精度、有效样本数、全部台阶/A4 设置和情景见 [总预测表](stage_F/outputs/independent_all_predictions.csv) 与 [总指标表](stage_F/outputs/independent_main_metrics.csv)。这里 Δ 表示代理偏置；SS 中 δ 表示拟合温度偏移。
+
+## Δ=0.4 的逐检查点误差
+
+{percheck}
+
+## 接纳决定
+
+{gate_table}
+
+**V2 参考类独立通过 G-causal/G-impl**。新增研究模型先已不满足必要性能门，因此拒绝，不生成提交类；其类级因果/实现门是**未运行**，不虚报为通过或失败。后补诊断变体不替代预登记主结果。
+
+## 各阶段结果
+
+**B——仅诊断退出。** 41 次 CV 结束充电中，只有八次检查后锚点跨越 ≥45 Ah；周期性 CCCV 只覆盖约 21 Ah，未穿过石墨台阶。七个月中没有一个月具备两次可用 45℃ 充电侧事件，C 不增加该通道。[报告](stage_B/REPORT.md)。
+
+**D——保留 D0。** PG1+PG2 MAE：D0 0.229，D1 0.361，D2 0.381 pp；D3 为 0.217，但 CK2 无定义，不可选。选择在 816a21d 提交，随后才运行实际数据评估，未观察到对 CK2 调参。不过 PC5/PC10 的 CK2 前缀与实际 CK2 完全相同，已在该提交前评估，因此违反了严格的 CK2 结果顺序要求。D1/D2 让 CK2 误差变为 −1.427/−1.049 pp，V2 是 +0.669。本轮否定这些已测试规则，**不证明误差存在无法降低的下限**。留一锚点观测 MAE：D0 0.336，D1 0.514，D2 0.466，D3 0.301（D3 不含 CK2）。[报告](stage_D/REPORT.md)。
+
+**A——配准 β 不通过。** 主 MAE 0.242 pp，六种台阶变体零胜。原缩放剖面给出底部/顶部可辨识比例 60%/85%，但电压干扰未限定范围且未做剖面。补充的有界干扰审计给出底部/顶部/电压比例 40%/80%/20%，不能恢复主 β 的资格。现已补齐 CK0/首个25℃双参考、1/2/3 Ah 导数特征及三个参数的剖面，各补充在自己的计算前单独登记。起点电压和底部变化的 r=−0.975 提示混淆，不唯一证明 LAM 或其不存在。Q_fc 残差的小样本 r≈0.04 既不能排除起点效应，也不能验证代理容量。[主报告](stage_A/REPORT.md)、[模板](stage_A/TEMPLATE_REPORT.md)、[剖面](stage_A/BOUNDED_PROFILE_REPORT.md)。
+
+**C——融合不通过。** 主 MAE 0.355 pp，Δ=0.4 的 CK2–7 MAE 0.334，且有误差回归超过 0.30 pp。τ=8 的 0.243 pp 仍差于 V2，且只是变体。拟合温度/瞬态与已有观察相符，不是独立机制验证。已补齐所有月份的速率、瞬态幅度和伪情景区间描述；实际七点只有 5/7 落在 2 SD 内，曝光且相关的样本不能建立区间校准。CK2–7 在三个 ε 假设下的误差跨度：D2 0.447 pp、SS 0.868 pp，因此两者不是 ε 无关指标。元数据补充与 648 条原预测完全一致，差异 0 Ah。[报告](stage_C/REPORT.md)、[状态](stage_C/outputs/C_independent_monthly_states.csv)、[区间描述](stage_C/outputs/C_independent_calibration.csv)。
+
+**E——ε 仍未验证。** 已按要求把因果可见的逐芯充电映射/A4 回退映射应用于 CK0 带载曲线，四芯求和并求首次 11.2 V 根。只使用检查点前的可见锚点。在登记的 0.1 Ah 尾段外延范围内，{root['total_roots']} 个首根中可找到 {root['finite_roots']} 个；有限首根的最大 |ε−ε0| 为 {root['maximum_absolute_epsilon_drift_pp_among_finite_roots']:.6f} pp。十五个不可用首根意味着整体**无定论**，不能判定可忽略。原始四芯和末端 11.203 V，外延后的基准首根为 {root['reference_raw_cell_sum_root_Ah']:.6f} Ah。未重复加入绝对 IR/极化，也未把充电特有电压偏置移植到放电。原 S0/S1/S2 是独立机制压力情景：旧 S1 给出 0.26–0.51 pp，但插值末端任意跳变 −1 V，不能当作已验证连续组端首根或严格风险上界。登记的排行榜限定 V2_S1 仍是未经资格验证的诊断选项，不推荐，也不声称改善代理分数。[因果映射报告](stage_E/REQUIRED_MAPPING_REPORT.md)、[旧情景](stage_E/REPORT.md)。
+
+**F——不构建集成。** 只有 V2 符合成员条件，单成员没有可定义的成员间相关系数，不满足固定权重集成报告条件。[报告](stage_F/REPORT.md)。
+
+## 流程偏差与局限
+
+- 准备后发现并发执行；已保留原 harness 接口及完成提交，补充输出现已整合提交。
+- D2 在 CK2 前看不到缺段后的计数器跳变，使用可见 45℃ 历史估吞吐量；其台阶观测另使用 β=1，而非要求的 β 换算。负面结论针对该实现，不等于精确检验原 D2 公式。
+- 首轮主评估缺少 A 双参考、有界电压剖面及 E 规定的映射；后补项目各在计算前冻结单独协议。它们晚于主评估，不能称作原预登记，也不能用来挑选替代主模型。
+- 主配置及阶段 D 选择保持原样。1/3 Ah A4 敏感性作为独立诊断变体报告；A 缓存键包含参考特征坐标，避免跨平滑窗口误用拟合。
+- 代理已曝光；伪截断/缺口增加情景数，不增加独立电池组或隐藏标签。相关性不能证明物理因果或容量标签正确。
+- ε、满充起点、检查后回弹、25/45℃ 迁移、端点外延和单电池组仍是实际局限；独立同协议容量测量可以核验，本轮不能推断隐藏 CK1–CK7 真值。
+
+## 精确复现
+
+在指定 worktree 运行。`-B` 避免向复用目录写入字节码。复现是重跑冻结分析和报告，不能重建历史预登记/选择的时间顺序。环境版本记录在 stage_0/outputs/*environment.json；cache 被 git 忽略。
+
+{commands}
+
+相对 24728fa，受保护的已跟踪目录未变。stage_0/audit_integrity.py 检查协议哈希、双语锚点及候选依赖。分支为 `exp/phase2-round3-models-20261014`，未接入 my_model、推送其他分支或强制推送。'''
+    bilingual(STUDY/'FINAL_REPORT.md','Round 3 alternative capacity models — final report',en,zh)
