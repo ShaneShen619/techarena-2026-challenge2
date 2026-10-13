@@ -4,13 +4,13 @@
 
 > English · [中文](#zh)
 
-Stage: D pending; concurrent execution detected.
+Stage: 0 complete.
 
-Done: Stages 0/B externally completed; original harness restored
+Done: Harness and baseline pseudo scenarios reproduced
 
-Next: Inspect existing stage D protocol and resume missing work
+Next: Stage B coverage audit
 
-Last commit: `35f4efd4586fb963c0c3dd3ad32645b02a0f4ba8`.
+Last commit: `9f1ca7e9c4ec35bb51db8ea744b79bbce72e7440`.
 
 ---
 
@@ -20,10 +20,10 @@ Last commit: `35f4efd4586fb963c0c3dd3ad32645b02a0f4ba8`.
 
 > [English](#en) · 中文
 
-阶段：D pending; concurrent execution detected。
+阶段：0 complete。
 
-已完成：Stages 0/B externally completed; original harness restored
+已完成：Harness and baseline pseudo scenarios reproduced
 
-下一步：Inspect existing stage D protocol and resume missing work
+下一步：Stage B coverage audit
 
-最近提交：`35f4efd4586fb963c0c3dd3ad32645b02a0f4ba8`。
+最近提交：`9f1ca7e9c4ec35bb51db8ea744b79bbce72e7440`。
