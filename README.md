@@ -1,4 +1,92 @@
+<a id="en"></a>
+
+# TechArena 2026 Challenge 2 — Post-Checkup Full-Charge Anchor + Graphite-Step Model
+
+> **Language:** English · [中文](#zh)
+
+Branch `exp/phase2-anchor-step-20261013`. This branch builds on `main`, which holds the official submission template. It adds only the new capacity estimator from 2026-10-13 and its validation.
+
+## What the model does
+
+It estimates the SOH of a 4 × 102 Ah LFP series pack on each checkup date. SOH is the checkup-protocol capacity divided by 102 Ah.
+
+- **Anchor.** After every monthly checkup, the pack is charged from near empty to the end of the 14.0 V CV phase. The charged Ah is almost exactly the usable capacity at that time. To predict a checkup, the model uses the latest such charge before it as the anchor.
+- **In-month update.** Roughly every 5 days, a fixed program discharges about 56 Ah below full and crosses the graphite staging step. The Ah distance from the step to the top of charge shrinks with loss of lithium inventory, so it tracks the capacity change after the anchor.
+
+The proxy label is the post-checkup full charge plus an offset. On it, the strictly causal prediction error is about 7 % (MAE) of the official ExampleModel's. The proxy is not the hidden truth, and the official accuracy is still unverified. See the [validation report](research/phase2_anchor_step_20261013/FINAL_REPORT.md).
+
+## Layout
+
+```
+.
+├── README.md                              this file
+├── .gitignore
+├── TechArena_Challenge2_Team_Package/     submission package (official template + wired-in V1 model)
+│   ├── framework/  run_model.py  validate_submission.py   official framework, do not modify
+│   ├── my_model/                          active model entry (MyModel = V1 anchor + step)
+│   ├── README.md  REPORT.md               submission write-up and report
+│   ├── data/                              official operating data and CK0 checkup data
+│   ├── sample_data/                       small sample used by the validator
+│   └── requirements.txt                   submission dependencies (numpy, pandas)
+└── research/
+    ├── phase2_anchor_step_20261013/       V1 study
+    │   ├── README.md                      reproduction steps, environment, file guide
+    │   ├── FINAL_REPORT.md                validation report
+    │   ├── EXECUTION_PROMPT.md            execution brief
+    │   ├── candidate_model/               candidate model AnchorStepModel
+    │   ├── src/  stage_*.py               research code and stage scripts
+    │   └── outputs/  figures/             results
+    └── phase2_v2_phase_matched_20261013/  V2 study (phase-matched step differencing + physics β)
+        ├── FINAL_REPORT.md  protocol.json validation report and frozen protocol
+        ├── candidate_model/               candidate class MyModel (V2)
+        └── src/  stage_v2_*.py  outputs/  research code, scripts and results
+```
+
+## Quick start
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r research/phase2_anchor_step_20261013/requirements.txt
+cd research/phase2_anchor_step_20261013
+python3 stage_a_events.py && python3 stage_bcd_causal_eval.py && python3 stage_e_robustness.py \
+  && python3 stage_f_candidate.py && python3 stage_g_figures.py
+```
+
+To see only the candidate's per-checkup output, run `stage_bcd_causal_eval.py` and then `stage_f_candidate.py`. The result is in `outputs/F_candidate_predictions.csv`.
+
+## Current status
+
+- **V1 is wired into the submission.**
+  - `MyModel` in `TechArena_Challenge2_Team_Package/my_model/model_template.py` is `AnchorStepModel`, and the switch points at `MyModel`.
+  - `validate_submission.py` passes in a fresh Python 3.11 venv.
+  - The full-data output is identical to `outputs/F_candidate_predictions.csv`, both with numpy 1.24 / pandas 2.0 and with numpy 2.4 / pandas 3.0.
+  - The submission README and REPORT.md have been updated to the submission requirements. Team name and members are still to be filled in.
+  - The zip has not been built and nothing has been submitted.
+- **V2 candidate** ([research/phase2_v2_phase_matched_20261013/](research/phase2_v2_phase_matched_20261013/)).
+  - Phase-matched 45 °C step differencing plus a physics β.
+  - Proxy MAE 0.29 → 0.22 pp. The pre-registered gates H1–H6 all pass (exposed-exploratory validation).
+  - Not yet wired into the submission.
+- **Main risks.** These are covered in the risk section of both reports:
+  - the offset ε between the checkup protocol and the operating charge
+  - the post-checkup recovery
+  - CK1's sensitivity to the ratio assumption
+  - the missing segment 3 before CK2
+
+## Related branches
+
+| Branch | Contents |
+|---|---|
+| `main` | official submission template |
+| `exp/phase2-anchor-step-20261013` | this branch: main + new model (V1 wired into the package, V2 as candidate) |
+| `research-archive-20261010` | all other research up to 2026-10-13 (literature, earlier experiments, failed-route reports, diagnostics) |
+
+---
+
+<a id="zh"></a>
+
 # TechArena 2026 Challenge 2 — 检查后完整充电锚点 + 石墨台阶模型
+
+> **语言：** [English](#en) · 中文
 
 分支 `exp/phase2-anchor-step-20261013`。本分支在 `main`（官方提交模板）之上，只加入 2026-10-13 的新容量估计模型及其验证。
 

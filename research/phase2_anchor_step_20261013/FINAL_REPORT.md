@@ -1,4 +1,172 @@
+<a id="en"></a>
+
+# Post-Checkup Full-Charge Anchor + Graphite-Step Displacement: Validation Report
+
+> **Language:** English · [中文](#zh)
+
+- **Run date:** 2026-10-13.
+- **Branch:** `exp/phase2-anchor-step-20261013` (`main` plus this study directory).
+- **Brief and protocol:** the work follows [EXECUTION_PROMPT.md](EXECUTION_PROMPT.md). The protocol was frozen in [protocol.json](protocol.json) before evaluation (SHA256 `2c0e1365…`).
+- **Untouched:** this round did not modify `framework/`, `run_model.py` or the active `my_model/`.
+- **Other research referenced:** the three failed-route reports, the endpoint audit, the first-principles diagnosis and others are on branch `research-archive-20261010`.
+
+## Conclusions first
+
+**The data contain two signals that were never used as capacity observations before. M4 is a strictly causal model built on them. On the proxy labels its error is about 7 % (MAE) and 12–14 % (maximum error) of ExampleModel's. The pre-registered gates G1–G5 all pass, G1 with one caveat.**
+
+- **Proxy SOH error:**
+  - M4: MAE 0.29–0.35 pp, maximum error 0.67 pp.
+  - ExampleModel: 3.9–4.7 / 4.9–5.7 pp.
+  - Existing B baseline: 3.0–3.8 / 4.1–4.9 pp.
+- **ε-independent error on CK2–CK7:** M4 0.30 pp.
+- **Candidate package:** implemented and passes the causality checks, but is **not wired into the active submission**.
+
+**Important limits.**
+
+- The proxy label is "post-checkup full charge + offset ε", not the hidden truth.
+- Some of the numbers in this task were seen during exploration before the protocol was registered. This is therefore an exposed, exploratory validation.
+- All errors are proxy errors. The true accuracy on CK1–CK7 cannot be verified.
+
+![Overview](figures/overview.png)
+
+## 1. The signals
+
+**Post-checkup full charge (A1).** After each checkup, the first operating segment opens with a 20.4 A charge from near empty to the end of the CCCV 14.0 V phase:
+
+| | after CK0 (45 °C) | after CK1 | after CK2 | after CK3 | after CK4 | after CK5 | after CK6 | after CK7 |
+|---|---|---|---|---|---|---|---|---|
+| Q_fc (Ah) | 100.122 | 97.003 | 95.670 | 94.642 | 93.747 | 93.082 | 92.636 | 91.954 |
+
+- The current integral and the counters differ by at most 0.022 Ah.
+- The 25 °C charges follow a very consistent protocol: the rest before the start is always 2.0 h, the end current is always 5.10 A, and the temperature is about 26.4 °C.
+- The rest voltage at the start is 2.89–3.00 V/cell.
+  - Converted with the loaded tail of the CK0 curve, the remaining charge is at most 2.06 Ah.
+  - This is a loose upper bound, because at the same SOC the rest voltage is higher than the loaded voltage.
+- If the checkup ends with a 5.1 A discharge to 11.2 V and nothing after it, the starting state cancels between Q_CK and Q_fc. This depends on the checkup protocol and is **unverified**, which is why G1 passes with a caveat.
+
+**The graphite step in the fixed program (A2).** About every 5 days, the sequence "CCCV full charge → 20 A pulse of 10.2 Ah → dynamic discharge of about 45.7 Ah" reaches 55.9 Ah of depth.
+
+- **Location method:** in the ~10 A part of the discharge, each cell's step depth is taken as the first crossing of the midpoint between the upper and lower plateau.
+- **Detection:** the step was found in 41 of 41 events. The median four-cell range is 0.63 Ah and the 90th percentile 0.74 Ah.
+- **Trend:** step depth fell from 32.81 Ah (20 January) to 25.87 Ah (6 September). The four cells fell by 6.7–7.3 Ah each, and no single cell ran away.
+- **Current dependence is small.** On the CK0 reference curve (5.1 A) the step is at 32.5–32.9 Ah, consistent with the first operating measurement (about 10 A).
+- **Detection variants:** the six variants differ mainly by a constant offset (median 0.74 Ah), which cancels in differences.
+- **A reversible recovery after each checkup.**
+  - The jump from the last measurement before a checkup to the first one after it grows from +0.05 to +0.54 Ah, with a mean of 0.20 Ah.
+  - At the same time, the step falls faster within 25 °C segments than within 45 °C segments.
+  - Together these point to a reversible post-checkup recovery, or to a temperature effect. It is confounded with the checkup itself and cannot be separated in this round.
+
+**Where the ageing happens (A4).** The charge-direction step is located inside each full charge. From February to September, Q_fc fell by 5.05 Ah, split as follows:
+
+| Smoothing window | step → top of charge | empty end → step |
+|---|---|---|
+| 1 Ah | −3.99 | −1.06 |
+| 2 Ah | −3.74 | −1.31 |
+| 3 Ah | −3.42 | −1.63 |
+
+- 68–79 % of the loss lies in the "step → top of charge" section, which is dominated by LLI.
+- Part of the loss also appears in the bottom section, possibly from LAM_NE or a rate effect.
+
+## 2. Causal prediction and proxy evaluation (B–D)
+
+**Causal cut.**
+
+- A prediction for CK_k uses only the output of `load_dataset(until=CK_k)`.
+- The framework cuts at 00:00, so the step measurement at 08:52 on 8 February is not visible to CK1.
+
+**Proxy.**
+
+- The proxy is P_k = Q_fc,k + ε.
+- ε0 = 100.41 − 100.122 = 0.288 Ah.
+- The registered set is {ε0, ε0+0.4, ε0+0.8}.
+
+| Model | MAE (pp) | Max error (pp) | MAE / M0 | Max error / M0 | CK1 error | CK2–7 MAE (ε-independent) |
+|---|---|---|---|---|---|---|
+| M0 ExampleModel | 3.90–4.69 | 4.88–5.67 | 1 | 1 | +2.2 to +3.0 | — |
+| M1 B baseline | 3.05–3.83 | 4.12–4.91 | 0.78–0.82 | 0.84–0.87 | +1.3 to +2.0 | — |
+| M2 anchor persistence | 1.03–1.14 | 2.27–3.06 | 0.24–0.26 | 0.47–0.54 | +2.3 to +3.1 | 0.83 |
+| M3 anchor + √t | 0.58–0.69 | 2.27–3.06 | 0.15 | 0.47–0.54 | +2.3 to +3.1 | 0.30 |
+| **M4 anchor + step (main)** | **0.29–0.35** | **0.67** | **0.07** | **0.12–0.14** | **−0.18 to +0.61** | **0.30** |
+| M5 causally fitted β | 0.45–0.51 | 0.82 | 0.11 | 0.15–0.17 | −0.18 to +0.61 | 0.49 |
+
+Per-checkup errors at ε0+0.4, in pp:
+
+- M4: CK1 +0.22, CK2 +0.67, CK3 +0.08, CK4 +0.28, CK5 −0.11, CK6 −0.40, CK7 −0.28.
+- ExampleModel: CK1 +2.64, CK2 +4.41, CK3 +4.15, CK4 +5.05, CK5 +5.28, CK6 +4.22, CK7 +4.32.
+
+Notes on the results:
+
+- **CK2 is M4's largest error.** Segment 3 (19 February to 11 March) is missing, so the last visible step stays at 17 February.
+- **M4 fixes M3's CK1 problem.** M3 relies only on monthly anchors and cannot handle CK1; M4 solves this with the first month's step displacement.
+- **M5's fitted β made things worse.** It drifts from 1.0 to 1.5, and the error ends up larger than with a fixed β = 1. This is consistent with the recovery effect above.
+
+## 3. Robustness and falsification (E)
+
+- **Step-detection variants (6).** The CK7 output changes by at most 0.18 Ah. Per checkup, the maximum differences are 0.45, 0.12, 0.27, 0.46, 0.59, 0.72 and 0.18 Ah.
+- **β sensitivity (0.7–1.5).**
+  - CK7 moves by 0.78 Ah, below the 1 pp flag threshold.
+  - CK1 moves by 2.0 Ah, so **CK1 is driven by the ratio assumption**.
+- **Choice of s_last.** Using the mean of the last two measurements raises the MAE to 0.37 pp. The main setting is better, but both are far better than the baseline.
+- **Leave-one-anchor-out.** With the latest full charge removed, M4's errors are 0.52, 0.35, 0.32, 0.50, −0.09 and −0.24 pp, so the model degrades smoothly.
+- **ε-drift checks.**
+  - The CV share rises from 1.2 % to 1.5 %.
+  - End current, rest time and temperature stay constant.
+  - The residual of Q_fc against a √t fit correlates with the start voltage at −0.49 (n = 7, not significant).
+  - No clear drift was found, but a change in the checkup protocol itself cannot be ruled out.
+- **Synthetic half-cell falsification.** This is a schematic model roughly matched to the CK0 curve, not a real calibration.
+  - **Pure LLI:** M4's error is at most 0.16 Ah.
+  - **Pure LAM_NE:** M4 misreads the lengthening of the "step → top" section as a capacity increase, with an error about equal to the loss.
+  - **Pure LAM_PE:** once the positive electrode limits the bottom end, the step stays put while capacity falls, and M4 does not see this loss.
+  - **LLI and LAM_NE mixed in the measured proportion:** M4 underestimates the loss by about 25 %. The real model re-anchors on a full charge every month, so this error accumulates for only one month, about 0.2 Ah.
+
+## 4. Acceptance gates
+
+| Gate | Result |
+|---|---|
+| G1 data | **Pass (with caveat):** 8/8, counter difference 0.022 Ah; the start tail gives only an upper bound, and the start-state cancellation depends on the checkup protocol |
+| G2 step channel | **Pass:** 100 % located, median four-cell range 0.63 Ah, CK7 variant difference 0.18 Ah |
+| G3 causality | **Pass:** fitting on pre-CK1 data only and replacing future rows with noise both give bit-identical output |
+| G4 proxy performance | **Pass:** MAE and maximum error below ExampleModel for every ε; CK2–7 error 0.30 pp |
+| G5 mechanism | **Pass:** error ≤ 0.16 Ah under LLI; LAM cases reported as found, and A4 shows the real data are LLI-dominated |
+
+Conclusion: **a formal candidate that passes at proxy level**. The hidden truth is unverified.
+
+## 5. Candidate package (F)
+
+- **Implementation:** [candidate_model/anchor_step_model.py](candidate_model/anchor_step_model.py) contains `AnchorStepModel`. It depends only on numpy/pandas and is an independent rewrite of the research M4. The two differ by at most 0.0005 pp (three-decimal rounding).
+- **Predicted SOH (%):** CK0 98.441, CK1 95.992, CK2 95.137, CK3 93.541, CK4 92.862, CK5 91.819, CK6 91.091, CK7 90.544.
+- **ε:** fixed at ε0+0.4, the midpoint of the registered range. This is an assumption.
+- **Smoke test:** passes on sample_data. With no events, the model falls back to CK0.
+
+## 6. Still unverifiable / risks
+
+1. **Size and stability of ε.**
+   - ε depends on the checkup protocol: full-charge termination, temperature, and whether anything else follows the discharge.
+   - An overall shift in ε moves every CK by about ±0.4 pp.
+2. **Post-checkup recovery.**
+   - This round cannot tell whether the capacity measured at a checkup is closer to the state before or after the recovery.
+   - It is one of the main sources of the ±0.4 pp-level errors from CK2 on.
+3. **CK1.** It depends on β and spans 2 pp over β = 0.7–1.5. At β = 1 it falls inside the proxy range.
+4. **A single pack, and proxies rather than truth.** No official accuracy can be claimed. Under the submission rules, proxy values must not be presented as "true CK" values.
+
+## 7. Suggested next steps
+
+1. The user decides whether to wire `AnchorStepModel` into `my_model/` and run `validate_submission.py`. If it is wired in, the README must state the ε assumption and the physical basis.
+2. Find the official checkup protocol, or ask the organizers for it, to narrow ε.
+3. Optional small improvements. Each needs a new registration and an independent evaluation:
+   - a rate term for extrapolating the step when segment 3 is missing;
+   - modelling the recovery as a term that decays with days since the checkup.
+4. Stop inferring capacity from mid-plateau voltage windows (the capacity part of routes one, two and three).
+
+See [README.md](README.md) for reproduction.
+
+---
+
+<a id="zh"></a>
+
 # 检查后完整充电锚点 + 石墨台阶位移：验证报告
+
+> **语言：** [English](#en) · 中文
 
 执行日期：2026-10-13。分支 `exp/phase2-anchor-step-20261013`（`main` + 本研究目录）。执行依据：[EXECUTION_PROMPT.md](EXECUTION_PROMPT.md)；协议在评估前冻结于 [protocol.json](protocol.json)（SHA256 `2c0e1365…`）。本轮未修改 `framework/`、`run_model.py`、正式 `my_model/`。报告引用的其他研究目录（三份失败报告、端点审计、第一性原理诊断等）在分支 `research-archive-20261010` 上。
 

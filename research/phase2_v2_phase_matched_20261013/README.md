@@ -1,4 +1,38 @@
+<a id="en"></a>
+
 # phase2_v2_phase_matched_20261013
+
+> **Language:** English · [中文](#zh)
+
+V2 capacity estimation builds on V1 (post-checkup full-charge anchor + graphite-step displacement) with two changes:
+
+- The in-month update compares only steps at the same temperature and the same phase, namely the month-end 45 °C steps.
+- β comes from the charge-side LLI share.
+
+The conclusions are in [FINAL_REPORT.md](FINAL_REPORT.md). The protocol is in [protocol.json](protocol.json), with its hash in `protocol.sha256`.
+
+| Path | Contents |
+|---|---|
+| `src/v2.py` | research implementation: month split, month-end 45 °C values, rate, β (A4 / direct calibration), V2 predictor |
+| `stage_v2_eval.py` | causal prediction + proxy evaluation + gates H2–H5 |
+| `stage_v2_candidate.py` | runs the candidate class the way run_model.py does, checks H1 and H6, smoke test on sample_data |
+| `candidate_model/anchor_step_v2_model.py` | framework-compatible candidate class `MyModel` (numpy / pandas only; not yet wired into the submission) |
+| `outputs/` | all results |
+
+**Dependencies.** The study reuses `../phase2_anchor_step_20261013/src/events.py` and that study's requirements. Data and framework come from `TechArena_Challenge2_Team_Package/`.
+
+```bash
+cd research/phase2_v2_phase_matched_20261013
+python3 stage_v2_eval.py && python3 stage_v2_candidate.py
+```
+
+---
+
+<a id="zh"></a>
+
+# phase2_v2_phase_matched_20261013
+
+> **语言：** [English](#en) · 中文
 
 V2 容量估计：在 V1（检查后完整充电锚点 + 石墨台阶位移）的基础上，月内更新只比较同温度、同相位（月末 45 °C）的台阶，β 由充电方向的 LLI 份额给出。结论见 [FINAL_REPORT.md](FINAL_REPORT.md)，协议见 [protocol.json](protocol.json)（哈希在 `protocol.sha256`）。
 

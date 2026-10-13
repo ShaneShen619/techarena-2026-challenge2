@@ -1,4 +1,144 @@
+<a id="en"></a>
+
+# V2: Phase-Matched 45 °C Step Differencing + Physics β — Validation Report
+
+> **Language:** English · [中文](#zh)
+
+- **Run date:** 2026-10-13.
+- **Protocol:** frozen before evaluation in [protocol.json](protocol.json) (SHA256 `072395c8…`). It contains one amendment, made before any code was written.
+- **Base study:** [../phase2_anchor_step_20261013/FINAL_REPORT.md](../phase2_anchor_step_20261013/FINAL_REPORT.md). Its event-extraction code `events.py` is reused unchanged.
+
+## Conclusions first
+
+**On the proxy labels, V2 lowers the MAE from M4's 0.29 pp to 0.22 pp (ε0+0.4). The ε-independent MAE on CK2–CK7 falls from 0.30 to 0.22 pp. The pre-registered gates H1–H6 all pass.**
+
+The maximum error does not change: it is still CK2 at 0.67 pp. Under the protocol, CK2 does not meet the phase-matching condition, so it keeps M4.
+
+**Important limits.**
+
+- **This is an exposed, exploratory validation.** The decomposition and the errors for CK3–CK7 were computed by hand on the same data before registration, so the improvement on CK4–CK7 is not a blind result.
+- **CK1–CK3 were not tuned on their own results.** Their rules were fixed without looking at their V2 errors, and in practice all three take the fallback branch, identical to M4.
+- **All errors are proxy errors.**
+
+## 1. Motivation: where M4's remaining error comes from
+
+Splitting each month's step-depth change (base study, A2 main method) shows four things:
+
+- **Temperature shift.** At each monthly 25 °C → 45 °C switch, the step depth jumps up by +0.14 to +0.22 Ah. In the CK1 → CK2 month the jump is +0.60.
+- **Post-checkup transient.** Within 25 °C segments the step falls by 0.07–0.13 Ah/day, but only by 0.02–0.04 Ah/day within 45 °C segments. That is the opposite of temperature-accelerated ageing.
+- **M4's difference spans both effects.** The first step after the anchor is at 25 °C and the last one at 45 °C. The two effects partly cancel, by a different amount each month. "Month total − anchor-to-anchor ΔQ" reproduces M4's per-checkup errors almost exactly.
+- **β.** A4 shows that only 68–79 % of the loss lies in the step → top section. The step therefore under-reads the total loss by a factor of about 1.3–1.45.
+
+## 2. Method (V2_main)
+
+To predict CK_k, k ≥ 2:
+
+- **Months.** Month m = the step measurements after anchor m and before anchor m+1 (amendment 1).
+- **Month-end value.** E45(m) = the last 45 °C step in month m; d(m) = its distance in days to the CK_{m+1} date.
+- **Phase-matched branch.** It is taken when both of these hold:
+  - the previous month has a complete 45 °C segment (≥ 3 steps) and d(k−2) ≤ 10 days;
+  - in the current month, either d(k−1) ≤ 10 days or a rate can be estimated (≥ 3 steps).
+
+```
+Q̂ = Q_anchor(k−1) + β_k · [E45(k−1) − E45(k−2) + r · (d(k−1) − d(k−2))]
+```
+
+  - r is the Theil–Sen slope (Ah/day) of the current month's 45 °C steps.
+  - The difference spans exactly one checkup plus one month, so it lines up with "anchor k−1 → anchor k". The temperature shift and the post-checkup transient cancel in it.
+- **β_k.** It is computed in three steps:
+  - Use the visible 25 °C anchors j = 2..k−1, each taken relative to anchor 1.
+  - Regress their ΔQ_fc through the origin on Δ(charge-direction step → top distance, 2 Ah smoothing).
+  - Shrink the result towards β0 = 1 (τ = 1 Ah²).
+- **Fallback.** In every other case the prediction is exactly M4 (β = 1, no rate term).
+
+Branches and β as they came out:
+
+| | CK1 | CK2 | CK3 | CK4 | CK5 | CK6 | CK7 |
+|---|---|---|---|---|---|---|---|
+| Branch | fallback | fallback | fallback | phase-matched | phase-matched | phase-matched | phase-matched |
+| β | 1 | 1 | 1 (computed 1.27, not used) | 1.06 | 1.24 | 1.41 | 1.51 |
+| SOH_est (%) | 95.992 | 95.137 | 93.541 | 92.811 | 92.081 | 91.331 | 90.821 |
+
+## 3. Proxy evaluation
+
+| Model | MAE ε0 / +0.4 / +0.8 (pp) | Max error (pp) | CK2–7 MAE (ε-independent) |
+|---|---|---|---|
+| M4 (V1, current submission) | 0.347 / 0.291 / 0.285 | 0.669 | 0.304 |
+| **V2_main** | **0.272 / 0.216 / 0.210** | 0.669 | **0.216** |
+| V2, β = 1 | 0.301 / 0.245 / 0.239 | 0.669 | 0.249 |
+| V2, no rate term | 0.275 / 0.219 / 0.213 | 0.669 | 0.219 |
+| V2, β also applied to the fallback | 0.285 / 0.229 / 0.223 | 0.669 | 0.231 |
+| V2, β calibrated directly on past phase-matched pairs | 0.291 / 0.235 / 0.229 | 0.669 | 0.238 |
+| V2, β0 = 1.3 (exposed value) | 0.269 / 0.213 / 0.207 | 0.669 | 0.212 |
+
+Per-checkup errors (ε0+0.4, pp):
+
+| | CK1 | CK2 | CK3 | CK4 | CK5 | CK6 | CK7 |
+|---|---|---|---|---|---|---|---|
+| M4 | +0.22 | +0.67 | +0.08 | +0.28 | −0.11 | −0.40 | −0.28 |
+| V2_main | +0.22 | +0.67 | +0.08 | +0.23 | +0.15 | −0.16 | −0.00 |
+
+- **Phase-matched differencing on its own** (β = 1) accounts for about 60 % of the improvement (0.291 → 0.245). The physics β accounts for the rest (→ 0.216).
+- **The rate term has very little effect** (0.003 pp), because both ends are a similar number of days before their checkups.
+- **CK5 gets slightly worse.** Its error changes from −0.11 to +0.15, so the absolute error grows by 0.04 pp. This is within what H5 allows.
+
+## 4. Robustness
+
+- **Six step-detection methods.** V2 beats M4 on all of them (MAE at ε0+0.4):
+
+| Method | main | band_narrow | windows_minus3 | windows_plus3 | dvdq_peak | ir_corrected |
+|---|---|---|---|---|---|---|
+| M4 | 0.291 | 0.278 | 0.373 | 0.412 | 0.404 | 0.321 |
+| V2 | 0.216 | 0.217 | 0.274 | 0.304 | 0.333 | 0.238 |
+
+- **Other parameters:**
+  - τ = 0.25 / 4 gives MAE 0.216 / 0.219.
+  - Validity windows of 7 / 14 days both give 0.216.
+  - A4 smoothing of 1 / 3 Ah gives 0.224 / 0.205.
+
+## 5. Acceptance gates
+
+| Gate | Result |
+|---|---|
+| H1 causality | **Pass:** replacing future rows with noise, and fitting on pre-CK1 data only, both give bit-identical output |
+| H2 proxy | **Pass:** lower MAE at all three ε values, same maximum error |
+| H3 ε-independent | **Pass:** 0.216 ≤ 0.304 − 0.05 |
+| H4 robustness | **Pass:** 6/6 detection methods, and every τ and validity-window setting |
+| H5 no large regression | **Pass:** the largest increase in a single-point absolute error is 0.04 pp (CK5) |
+| H6 reimplementation | **Pass:** the candidate class differs from the research implementation by ≤ 0.0004 pp (three-decimal rounding) |
+
+## 6. Still unverifiable / risks
+
+1. **Exposure.** The direction of the CK4–CK7 improvement was seen before registration. The robustness result holds on every variant, however, which suggests the improvement does not come from picking parameters.
+2. **β runs high.**
+   - CK7's β = 1.51 is above the whole-campaign A4 ratio (1.27–1.45).
+   - It is sensitive to the A4 smoothing window (MAE 0.224 / 0.205 at 1 / 3 Ah).
+   - If the LAM share falls later in life, β will overestimate the loss.
+3. **No improvement on CK1–CK3.** CK2's 0.67 pp remains the largest error. The missing segment 3 cannot be extrapolated causally, because segment 1's rate reflects first-month break-in and cannot be used.
+4. **The same risks as V1:**
+   - ε;
+   - the post-checkup recovery: whether the hidden C/20 value is before or after it;
+   - a single pack.
+
+   The proxy labels are themselves anchors, so only the leaderboard can settle these.
+
+## 7. Reproduction
+
+```bash
+cd research/phase2_v2_phase_matched_20261013
+python3 stage_v2_eval.py        # research implementation + proxy evaluation + gates -> outputs/V2_*
+python3 stage_v2_candidate.py   # candidate class, causality checks, reimplementation, smoke test -> outputs/V2_candidate_*
+```
+
+Runs in about 15 s on Python 3.13 (numpy 2.4.2, pandas 3.0.0). The candidate class depends only on numpy / pandas.
+
+---
+
+<a id="zh"></a>
+
 # V2：同相位 45 °C 台阶差分 + 物理 β：验证报告
+
+> **语言：** [English](#en) · 中文
 
 执行日期：2026-10-13。协议先冻结、后评估：[protocol.json](protocol.json)（SHA256 `072395c8…`，含一次修订，修订在写代码之前完成）。基础研究见 [../phase2_anchor_step_20261013/FINAL_REPORT.md](../phase2_anchor_step_20261013/FINAL_REPORT.md)；事件提取代码 `events.py` 原样复用。
 

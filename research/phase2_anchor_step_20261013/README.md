@@ -1,4 +1,76 @@
+<a id="en"></a>
+
 # phase2_anchor_step_20261013
+
+> **Language:** English · [中文](#zh)
+
+Validation of capacity estimation from the post-checkup full-charge anchor plus the graphite-step displacement. The conclusions are in [FINAL_REPORT.md](FINAL_REPORT.md) and the execution brief is in [EXECUTION_PROMPT.md](EXECUTION_PROMPT.md).
+
+## Branch layout
+
+This branch is `main` (the `TechArena_Challenge2_Team_Package/` submission template, framework and official data) plus this study directory. The scripts read `framework/`, `my_model/model_example.py` and `data/` from `TechArena_Challenge2_Team_Package/`.
+
+The report and the execution prompt refer to other research directories. These include the three failed-route reports, the 6 October endpoint audit, the first-principles diagnosis and the literature cards. All of them are on branch `research-archive-20261010`.
+
+- The B-baseline CSV has been copied to `inputs/history_B_prior_baseline.csv`.
+- `input_manifest.json` records the paths and hashes from the original run.
+
+## Environment
+
+| Purpose | Python | Dependencies |
+|---|---|---|
+| Research pipeline (stages A–G) | 3.13 (verified) | [requirements.txt](requirements.txt): numpy, pandas, scipy, matplotlib |
+| Candidate model `candidate_model/` | 3.11 and 3.13 (verified; the official environment is 3.11/3.12) | numpy and pandas only, same as `TechArena_Challenge2_Team_Package/requirements.txt` |
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r research/phase2_anchor_step_20261013/requirements.txt
+```
+
+Run records are in [environment.json](environment.json).
+
+## Reproduction
+
+From the repository root:
+
+```bash
+cd research/phase2_anchor_step_20261013
+python3 stage_a_events.py          # A: event extraction and audit              -> outputs/A*
+python3 stage_bcd_causal_eval.py   # B–D: causal prediction and proxy evaluation -> outputs/C_*, D_*
+python3 stage_e_robustness.py      # E: robustness, ε-drift checks, synthetic falsification -> outputs/B_*, E*
+python3 stage_f_candidate.py       # F: candidate model, causality checks, smoke test -> outputs/F_*
+python3 stage_g_figures.py         # G: figure                                  -> figures/overview.png
+```
+
+Notes on running:
+
+- **Order matters.** `stage_f_candidate.py` reads the output of `stage_bcd_causal_eval.py` for its consistency check.
+- **Stage B's ε-drift check lives in `stage_e_robustness.py`.** It needs the full event table, so it runs there, but its outputs keep the `B_` prefix.
+- Output-file prefixes match the stage numbers in the report.
+
+## Files
+
+| Path | Contents |
+|---|---|
+| `EXECUTION_PROMPT.md` | execution brief (original kept, with a layout-update note at the top) |
+| `FINAL_REPORT.md` | validation report |
+| `protocol.json` / `protocol.sha256` | protocol frozen before evaluation and its hash |
+| `environment.json`, `input_manifest.json` | run environment record and input SHA256 hashes |
+| `requirements.txt` | research-pipeline dependencies |
+| `inputs/` | comparison inputs copied from the archive branch (B baseline) |
+| `src/events.py` | event extraction: integrated charge, full charges, step location, CK0 reference |
+| `src/predictors.py` | pre-registered predictors M2–M5 |
+| `candidate_model/anchor_step_model.py` | framework-compatible candidate class `AnchorStepModel` (research copy; the equivalent `MyModel` in the submission package's `my_model/model_template.py` is wired in) |
+| `stage_*.py` | stage scripts |
+| `outputs/`, `figures/` | all results and figures |
+
+---
+
+<a id="zh"></a>
+
+# phase2_anchor_step_20261013
+
+> **语言：** [English](#en) · 中文
 
 检查后完整充电锚点 + 石墨台阶位移的容量估计验证。结论见 [FINAL_REPORT.md](FINAL_REPORT.md)，任务书见 [EXECUTION_PROMPT.md](EXECUTION_PROMPT.md)。
 
@@ -49,6 +121,6 @@ python3 stage_g_figures.py         # G：图                        -> figures/o
 | `inputs/` | 从归档分支复制的对照输入（B 基线） |
 | `src/events.py` | 事件提取：积分电量、完整充电、台阶定位、CK0 参考 |
 | `src/predictors.py` | 预登记预测器 M2–M5 |
-| `candidate_model/anchor_step_model.py` | 可接入框架的候选类 `AnchorStepModel`（未接入正式模型） |
+| `candidate_model/anchor_step_model.py` | 可接入框架的候选类 `AnchorStepModel`（研究副本；提交包中 `my_model/model_template.py` 的 `MyModel` 与它等价，已接入） |
 | `stage_*.py` | 各阶段运行脚本 |
 | `outputs/`、`figures/` | 全部结果与图 |
