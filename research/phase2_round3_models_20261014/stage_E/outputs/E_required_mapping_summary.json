@@ -1,0 +1,11 @@
+{
+  "maximum_absolute_epsilon_drift_pp_among_finite_roots": 0.022651282427632376,
+  "negligible_under_0_10_pp": false,
+  "reference_raw_cell_sum_root_Ah": 100.41685386091018,
+  "finite_roots": 90,
+  "total_roots": 105,
+  "all_roots_found": false,
+  "all_states_visible_before_cutoff": true,
+  "model_voltage_offset": "No voltage offset transferred between charge and discharge; it is a nuisance specific to charge fit.",
+  "selection": "no proxy scoring, no replacement; sensitivity diagnostics only"
+}
