@@ -1,0 +1,124 @@
+{
+  "registered_at": "2026-10-13T22:06:04",
+  "exposure_note": "Exploratory: rough values of post-checkup full charges and step depths were seen in a quick probe on 2026-10-13 before registration. Results are exposed-exploratory validation, not blind.",
+  "integration": {
+    "dt_max_s": 600,
+    "dedupe": "within-phase duplicate timestamps keep last row of same current sign; dt<=0 not integrated",
+    "sign": "charge positive"
+  },
+  "full_charge": {
+    "pack_start_max_V": 12.3,
+    "cv_pack_min_V": 13.95,
+    "cv_end_current_max_A": 6.0,
+    "min_Ah": 50,
+    "first_in_segment_only": true
+  },
+  "step_program": {
+    "cv_end": "pack>=13.95 V, 0<I<6 A, last such sample",
+    "stop_on_recharge_Ah": 2.0,
+    "min_depth_Ah": 50,
+    "main": {
+      "current_band_A": [
+        -12.5,
+        -8.0
+      ],
+      "upper_window_Ah": [
+        15,
+        25
+      ],
+      "lower_window_Ah": [
+        42,
+        50
+      ],
+      "search_from_Ah": 20,
+      "method": "midpoint_crossing"
+    },
+    "variants": {
+      "band_narrow": {
+        "current_band_A": [
+          -11.5,
+          -9.0
+        ]
+      },
+      "windows_minus3": {
+        "upper_window_Ah": [
+          12,
+          22
+        ],
+        "lower_window_Ah": [
+          39,
+          47
+        ]
+      },
+      "windows_plus3": {
+        "upper_window_Ah": [
+          18,
+          28
+        ],
+        "lower_window_Ah": [
+          45,
+          53
+        ]
+      },
+      "dvdq_peak": {
+        "method": "dvdq_peak",
+        "grid_Ah": 0.25,
+        "smooth_Ah": 2.0,
+        "search_Ah": [
+          22,
+          42
+        ]
+      },
+      "ir_corrected": {
+        "method": "midpoint_crossing",
+        "ir_correction": "V+R_hat*|I|, R_hat from pulse edge of the same program (visible at measurement time)"
+      }
+    }
+  },
+  "epsilon_Ah": {
+    "definition": "eps = Q_CK - Q_fc",
+    "eps0": "100.41 - Q_fc,0 (computed; Q_fc,0 at 45 C)",
+    "set": [
+      "eps0",
+      "eps0+0.4",
+      "eps0+0.8"
+    ],
+    "basis": "assumption: 45 C vs 25 C charge capacity difference 0-0.8 Ah; no verified source in this task"
+  },
+  "predictors": {
+    "M0": "ExampleModel unchanged",
+    "M1": "history-temperature B baseline CSV (comparison only)",
+    "M2": "Q_hat = Q_fc,last + eps; CK1: 100.41",
+    "M3": "anchor + a+b*sqrt(t) fit on visible 25C post-checkup charges (t days since CK0); <2 points -> M2; no increase allowed",
+    "M4_main": "Q_hat = Q_anchor + beta*(s_last - s_anchor), beta=1, s_last = last visible step depth (main method), s_anchor = first step after anchor charge; CK1 anchor = CK0 100.41 with s_anchor = first step after CK0",
+    "M4_sens": {
+      "beta": [
+        0.7,
+        1.0,
+        1.3,
+        1.5
+      ],
+      "s_last": [
+        "last1",
+        "mean_last2"
+      ],
+      "step_method": [
+        "main",
+        "band_narrow",
+        "windows_minus3",
+        "windows_plus3",
+        "dvdq_peak",
+        "ir_corrected"
+      ]
+    },
+    "M5": "beta fitted by Theil-Sen on visible (Q_fc,j, s_after,j) pairs j>=1; <2 pairs -> beta=1"
+  },
+  "main_table": "M4_main x all eps",
+  "gates": {
+    "G1": "8 full charges found; |integral-counter|<0.05 Ah; start in steep tail",
+    "G2": ">=90% programs located; median 4-cell range <=0.8 Ah; variant change of M4 CK7 <=0.5 Ah",
+    "G3": "post-cutoff deletion leaves predictions bit-identical",
+    "G4": "for all eps: M4 MAE and max error < ExampleModel; CK2-7 increment MAE <=0.5 pp",
+    "G5": "synthetic LLI-dominant: M4 error <=0.5 Ah; LAM cases reported"
+  }
+}

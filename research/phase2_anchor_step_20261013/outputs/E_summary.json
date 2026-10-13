@@ -1,0 +1,231 @@
+{
+  "leave_one_anchor_out": [
+    {
+      "checkup": "CK2",
+      "M4": 97.04,
+      "M4_drop_latest_anchor": 96.884,
+      "err_pp": 0.669,
+      "err_drop_pp": 0.516
+    },
+    {
+      "checkup": "CK3",
+      "M4": 95.411,
+      "M4_drop_latest_anchor": 95.69,
+      "err_pp": 0.08,
+      "err_drop_pp": 0.353
+    },
+    {
+      "checkup": "CK4",
+      "M4": 94.719,
+      "M4_drop_latest_anchor": 94.757,
+      "err_pp": 0.279,
+      "err_drop_pp": 0.316
+    },
+    {
+      "checkup": "CK5",
+      "M4": 93.656,
+      "M4_drop_latest_anchor": 94.28,
+      "err_pp": -0.111,
+      "err_drop_pp": 0.5
+    },
+    {
+      "checkup": "CK6",
+      "M4": 92.913,
+      "M4_drop_latest_anchor": 93.229,
+      "err_pp": -0.402,
+      "err_drop_pp": -0.093
+    },
+    {
+      "checkup": "CK7",
+      "M4": 92.355,
+      "M4_drop_latest_anchor": 92.394,
+      "err_pp": -0.281,
+      "err_drop_pp": -0.242
+    }
+  ],
+  "corr_resid_vs_start_voltage": -0.4909885421509956,
+  "per_cell_step_trends": {
+    "cell1_V": {
+      "total_change_Ah": -7.296170833333406,
+      "slope_Ah_per_100d": -2.2326351812497576
+    },
+    "cell2_V": {
+      "total_change_Ah": -6.783076388888958,
+      "slope_Ah_per_100d": -2.1373088936372087
+    },
+    "cell3_V": {
+      "total_change_Ah": -6.937290277777862,
+      "slope_Ah_per_100d": -2.1127181106833133
+    },
+    "cell4_V": {
+      "total_change_Ah": -6.734531944444498,
+      "slope_Ah_per_100d": -2.036016485155904
+    }
+  },
+  "synthetic_reference": {
+    "Q0": 99.23999999999788,
+    "step0": 32.269999999999314
+  },
+  "synthetic": [
+    {
+      "mechanism": "LLI",
+      "nominal_loss_Ah": 1.0,
+      "Q_true": 98.26,
+      "dQ_true": -0.98,
+      "step_Ah": 31.27,
+      "dstep_Ah": -1.0,
+      "M4_pred": 98.24,
+      "M4_err_Ah": -0.02
+    },
+    {
+      "mechanism": "LLI",
+      "nominal_loss_Ah": 3.0,
+      "Q_true": 96.27,
+      "dQ_true": -2.97,
+      "step_Ah": 29.27,
+      "dstep_Ah": -3.0,
+      "M4_pred": 96.24,
+      "M4_err_Ah": -0.03
+    },
+    {
+      "mechanism": "LLI",
+      "nominal_loss_Ah": 6.0,
+      "Q_true": 93.27,
+      "dQ_true": -5.97,
+      "step_Ah": 26.29,
+      "dstep_Ah": -5.98,
+      "M4_pred": 93.26,
+      "M4_err_Ah": -0.01
+    },
+    {
+      "mechanism": "LLI",
+      "nominal_loss_Ah": 9.0,
+      "Q_true": 90.27,
+      "dQ_true": -8.97,
+      "step_Ah": 23.46,
+      "dstep_Ah": -8.81,
+      "M4_pred": 90.43,
+      "M4_err_Ah": 0.16
+    },
+    {
+      "mechanism": "LAM_NE",
+      "nominal_loss_Ah": 1.0,
+      "Q_true": 99.24,
+      "dQ_true": 0.0,
+      "step_Ah": 33.26,
+      "dstep_Ah": 0.99,
+      "M4_pred": 100.23,
+      "M4_err_Ah": 0.99
+    },
+    {
+      "mechanism": "LAM_NE",
+      "nominal_loss_Ah": 3.0,
+      "Q_true": 99.26,
+      "dQ_true": 0.02,
+      "step_Ah": 35.26,
+      "dstep_Ah": 2.99,
+      "M4_pred": 102.23,
+      "M4_err_Ah": 2.97
+    },
+    {
+      "mechanism": "LAM_NE",
+      "nominal_loss_Ah": 6.0,
+      "Q_true": 97.97,
+      "dQ_true": -1.27,
+      "step_Ah": 36.95,
+      "dstep_Ah": 4.68,
+      "M4_pred": 103.92,
+      "M4_err_Ah": 5.95
+    },
+    {
+      "mechanism": "LAM_NE",
+      "nominal_loss_Ah": 9.0,
+      "Q_true": 93.18,
+      "dQ_true": -6.06,
+      "step_Ah": 35.14,
+      "dstep_Ah": 2.87,
+      "M4_pred": 102.11,
+      "M4_err_Ah": 8.93
+    },
+    {
+      "mechanism": "LAM_PE",
+      "nominal_loss_Ah": 1.0,
+      "Q_true": 99.19,
+      "dQ_true": -0.05,
+      "step_Ah": 32.28,
+      "dstep_Ah": 0.01,
+      "M4_pred": 99.25,
+      "M4_err_Ah": 0.06
+    },
+    {
+      "mechanism": "LAM_PE",
+      "nominal_loss_Ah": 3.0,
+      "Q_true": 98.8,
+      "dQ_true": -0.44,
+      "step_Ah": 32.29,
+      "dstep_Ah": 0.02,
+      "M4_pred": 99.26,
+      "M4_err_Ah": 0.46
+    },
+    {
+      "mechanism": "LAM_PE",
+      "nominal_loss_Ah": 6.0,
+      "Q_true": 96.82,
+      "dQ_true": -2.42,
+      "step_Ah": 32.31,
+      "dstep_Ah": 0.04,
+      "M4_pred": 99.28,
+      "M4_err_Ah": 2.46
+    },
+    {
+      "mechanism": "LAM_PE",
+      "nominal_loss_Ah": 9.0,
+      "Q_true": 93.99,
+      "dQ_true": -5.25,
+      "step_Ah": 32.33,
+      "dstep_Ah": 0.06,
+      "M4_pred": 99.3,
+      "M4_err_Ah": 5.31
+    },
+    {
+      "mechanism": "LLI+LAM_NE_observed_mix",
+      "nominal_loss_Ah": 1.0,
+      "Q_true": 98.26,
+      "dQ_true": -0.98,
+      "step_Ah": 31.53,
+      "dstep_Ah": -0.74,
+      "M4_pred": 98.5,
+      "M4_err_Ah": 0.24
+    },
+    {
+      "mechanism": "LLI+LAM_NE_observed_mix",
+      "nominal_loss_Ah": 3.0,
+      "Q_true": 96.28,
+      "dQ_true": -2.96,
+      "step_Ah": 30.05,
+      "dstep_Ah": -2.22,
+      "M4_pred": 97.02,
+      "M4_err_Ah": 0.74
+    },
+    {
+      "mechanism": "LLI+LAM_NE_observed_mix",
+      "nominal_loss_Ah": 6.0,
+      "Q_true": 93.28,
+      "dQ_true": -5.96,
+      "step_Ah": 27.83,
+      "dstep_Ah": -4.44,
+      "M4_pred": 94.8,
+      "M4_err_Ah": 1.52
+    },
+    {
+      "mechanism": "LLI+LAM_NE_observed_mix",
+      "nominal_loss_Ah": 9.0,
+      "Q_true": 90.29,
+      "dQ_true": -8.95,
+      "step_Ah": 25.63,
+      "dstep_Ah": -6.64,
+      "M4_pred": 92.6,
+      "M4_err_Ah": 2.31
+    }
+  ]
+}
