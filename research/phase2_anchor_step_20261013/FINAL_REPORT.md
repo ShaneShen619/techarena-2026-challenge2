@@ -1,6 +1,6 @@
 # 检查后完整充电锚点 + 石墨台阶位移：验证报告
 
-执行日期：2026-10-13。分支 `exp/phase2-anchor-step-20261013`（独立 worktree）。执行依据：[执行Prompt.md](执行Prompt.md)；协议在评估前冻结于 [protocol.json](protocol.json)（SHA256 `2c0e1365…`）。本轮未修改 `framework/`、`run_model.py`、正式 `my_model/`。
+执行日期：2026-10-13。分支 `exp/phase2-anchor-step-20261013`（`main` + 本研究目录）。执行依据：[EXECUTION_PROMPT.md](EXECUTION_PROMPT.md)；协议在评估前冻结于 [protocol.json](protocol.json)（SHA256 `2c0e1365…`）。本轮未修改 `framework/`、`run_model.py`、正式 `my_model/`。报告引用的其他研究目录（三份失败报告、端点审计、第一性原理诊断等）在分支 `research-archive-20261010` 上。
 
 ## 结论先读
 

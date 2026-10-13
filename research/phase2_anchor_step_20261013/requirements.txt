@@ -1,0 +1,6 @@
+# Research pipeline (stages A-G). Versions used for the recorded run.
+# The candidate model itself only needs numpy and pandas.
+numpy==2.4.2
+pandas==3.0.0
+scipy==1.18.0
+matplotlib==3.11.1

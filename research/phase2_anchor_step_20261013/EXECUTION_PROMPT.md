@@ -2,6 +2,8 @@
 
 编写日期：2026-10-13。将本文全文交给执行者即可开始，不依赖原聊天。本任务是研究验证，不直接替换比赛提交模型。
 
+> **布局更新（2026-10-13 整理分支时补注）：** 下文是执行时的原始任务书，保留原文。执行完成后，分支已重组为 `main` + 本研究目录：§1 所述独立 worktree 与主目录符号链接已不存在；`framework/`、`my_model/`、`data/` 位于 `TechArena_Challenge2_Team_Package/`；§2 列出的其他研究资料在分支 `research-archive-20261010` 上。文件已改名：本文原名 `执行Prompt.md`，§5 中的 `run_candidate.py` 现为 `stage_f_candidate.py`，其他脚本见 [README.md](README.md)。
+
 ## 0. 任务与要回答的问题
 
 你是负责电池容量估计与实验验证的研究工程师。项目根目录 `/Users/shane/Desktop/Arena 阶段 2 官方材料`（下称“主目录”）。官方任务：4×102 Ah LFP 串联组，在每个检查点日期估计 SOH=Qpack/102，Qpack 为参考满充后 5.1 A 放电至组端首次 11.2 V 的 Ah；只有 CK0=100.41 Ah 公开，CK1–CK7 隐藏，评分为 SOH 误差（含最坏误差）除以官方 ExampleModel 的对应误差。
