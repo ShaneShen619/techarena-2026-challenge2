@@ -1,0 +1,26 @@
+{
+  "purpose": "Complete bounded voltage-nuisance and per-parameter profiles missing from original A; supplementary unscored physical audit, not a replacement main configuration",
+  "parameters": [
+    "bottom scale sb",
+    "top scale st",
+    "charge-specific voltage offset"
+  ],
+  "bounds": {
+    "sb": [
+      0.94,
+      1.04
+    ],
+    "st": [
+      0.8,
+      1.05
+    ],
+    "voltage_V": [
+      -0.02,
+      0.02
+    ]
+  },
+  "objective": "Original CC V(q) residual, voltage nuisance constrained; coarse registered grids plus original local fine grids, optimize other parameters for each profile",
+  "identifiability": "Within <=1.05 min SSE, span >50% of absolute scale change from1 or voltage change from0 -> not identified. Floor1e-6 only handles zero reference change.",
+  "anchors": "j=2..6, four cells, reference anchor1; all charge curves complete before relevant CK cutoff",
+  "selection": "None. No proxy evaluation, no revised beta, no gate promotion. Report diagnostics and the original main protocol deviation."
+}
