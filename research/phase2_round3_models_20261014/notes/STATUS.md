@@ -5,8 +5,8 @@ Start: 2026-10-14 00:10 CEST. Branch exp/phase2-round3-models-20261014.
 | Stage | State | Notes |
 |---|---|---|
 | 0 harness | done | V2 reproduced 0.216/0.669 (stage0/reproduce.json). PG1 M4 CK4 err +0.60 (CK2-like). |
-| B | next | |
-| D | todo | |
+| B | done (exit) | only 8 anchors cross the step; 5-day CCCV start ~21 Ah below full. Diagnostic only. |
+| D | next | |
 | A | todo | |
 | C | todo | |
 | E | todo | |

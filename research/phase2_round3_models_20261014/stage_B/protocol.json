@@ -1,0 +1,7 @@
+{
+  "stage": "B",
+  "registered": "2026-10-14, after the coverage audit, before any proxy evaluation",
+  "exit_rule": "if fewer than half of the months have >=2 usable charge-side events at 45 C, or median four-cell range > 1 Ah: channel is diagnostic only; no V2+charge-steps variant is built",
+  "audit_result": "41 CV-ending charges, all at 20.4 A CC. Only the 8 post-checkup anchors start >=45 Ah below the CV end; all ~5-day CCCV charges start 20.7-21.4 Ah below it (above the step at 26-33 Ah). 45 C months with >=2 charge-side step events: 0 of 7.",
+  "decision": "exit triggered: charge-direction channel = anchors only (already used by A4 / stage A); no variant evaluated"
+}
