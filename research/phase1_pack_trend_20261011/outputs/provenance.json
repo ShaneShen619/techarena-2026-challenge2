@@ -1,0 +1,146 @@
+{
+  "branch": "exp/pack-trend-feedback-20261011",
+  "inputs": [
+    {
+      "path": "research/phase1_transfer_ab/outputs/panel_scoring.csv",
+      "sha256": "7188b662900f84312292a7062d6023e5eeb4f2e32798b6d61a3547ed40cdc59c"
+    },
+    {
+      "path": "research/phase1_transfer_ab/outputs/history_features.csv",
+      "sha256": "da2d7fa829bc0ffc91a255c80f6faec2a3dbce140fa512e0b539569f108fb63f"
+    },
+    {
+      "path": "research/phase1_transfer_ab/artifacts/shallow_observations.csv",
+      "sha256": "d77b2ceee17bd259eea78cf08676c8989acf11ac8103574a1c6c30834dff16e9"
+    },
+    {
+      "path": "research/phase1_transfer_ab/artifacts/shallow_visibility.csv",
+      "sha256": "cc27e490ed11667a3cbe83a133fde2497d394436bbeaa78ea9441e61d81f32b1"
+    },
+    {
+      "path": "research/phase1_transfer_ab/artifacts/source_prior.json",
+      "sha256": "2a61a5894450c098bba814ad057a205adfdf891d0fe36d8d8d81eec364390fb5"
+    },
+    {
+      "path": "research/phase1_transfer_ab/artifacts/data_102Ah_25degC_0p5C_cell3.npz",
+      "sha256": "5d6f8faa9fb66bbb1cfb1f489794e961aa04ece8569f7d11f90370c44397b0e7"
+    },
+    {
+      "path": "research/phase1_transfer_ab/artifacts/data_102Ah_25degC_1C_cell3.npz",
+      "sha256": "0f6dcdf15371d7c4dccb5bc1a7c6467432eafa2e3accd5d6aa080b4850d43361"
+    },
+    {
+      "path": "research/phase1_transfer_ab/artifacts/data_102Ah_35degC_1C_cell1.npz",
+      "sha256": "d7f20b890445f6fbaa549b977f161b06613386e3e039ef04e0db6746f1d1317e"
+    },
+    {
+      "path": "research/phase1_transfer_ab/artifacts/data_102Ah_45degC_0p5C_cell3.npz",
+      "sha256": "263e2e65ad0a7472de09d275329ff9dd863eae7cd44264eca51f417eb0dd1132"
+    },
+    {
+      "path": "research/phase1_transfer_ab/artifacts/data_102Ah_45degC_1C_cell1.npz",
+      "sha256": "3b2eeff6b7f8c4aebec9653a66eca0011020d4e20a66c03b96544a2c7f11f72f"
+    },
+    {
+      "path": "research/phase1_transfer_ab/artifacts/data_102Ah_55degC_1C_cell3.npz",
+      "sha256": "9880246a309601ff1dda08448f3290dd6c34007c90c8b86a6fafe27c76de2bd6"
+    },
+    {
+      "path": "data/checkups/CK0_reference_discharge.csv.gz",
+      "sha256": "fe244391b1a492dce4909b087f3ee196bd6edf91bf3f8c05abd177c31b3a377a"
+    },
+    {
+      "path": "data/checkups/checkup_capacities_released.csv",
+      "sha256": "3e925e2f6afb4d6c27cbf749938eba493685176525f8c8775686816aff6fdda7"
+    },
+    {
+      "path": "data/checkups/evaluation_points.csv",
+      "sha256": "66e02b1b6ae8e011550a07fce963c49c649bb0cad4193c14d557bcca4e463669"
+    },
+    {
+      "path": "data/operation/segment_01_45degC.csv.gz",
+      "sha256": "bcc9fd78db77cc51bc75466f3dd41242df5eb364f602a4db55507bc1f2c8fd8b"
+    },
+    {
+      "path": "data/operation/segment_02_25degC.csv.gz",
+      "sha256": "d9375a5375d63458caee7100371e890c801792e8b2caf762adb1547d465cf6e5"
+    },
+    {
+      "path": "data/operation/segment_04_25degC.csv.gz",
+      "sha256": "befd9408aa133312a49a7201ecb297c21ee0b2ee8af5ac6c055b1f80a1c26afe"
+    },
+    {
+      "path": "data/operation/segment_05_45degC.csv.gz",
+      "sha256": "1dc1d9450d35e74d14c7830adfd1d18ecaa6a1ccdcd4197cc7d634ec1e429877"
+    },
+    {
+      "path": "data/operation/segment_06_25degC.csv.gz",
+      "sha256": "edc573a06970aed19704e9111624fec010757bdef5af767cf8fb416f032cf89e"
+    },
+    {
+      "path": "data/operation/segment_07_45degC.csv.gz",
+      "sha256": "01ef531b691dd3c738a1775bbca75f0be45a217e7abe0d4db640239ebd4526ea"
+    },
+    {
+      "path": "data/operation/segment_08_25degC.csv.gz",
+      "sha256": "aeb9e42434f1bb5c0805fbc806e3efb12440998457b8dfd6b2285a04f5a3255b"
+    },
+    {
+      "path": "data/operation/segment_09_45degC.csv.gz",
+      "sha256": "5930f41d240b1fb6ed08593f319d36a4160d627fc6792286735de8fb172dae7b"
+    },
+    {
+      "path": "data/operation/segment_10_25degC.csv.gz",
+      "sha256": "46bc655ca595f7a8ad1ea8c34d41a7933feedfcf57ace907c4fbbe1c2e9f5b9c"
+    },
+    {
+      "path": "data/operation/segment_11_45degC.csv.gz",
+      "sha256": "0d4082a96b6af84fa2e8eebe9aed0f62bbbe59ef1aa425b89f5413b375da61aa"
+    },
+    {
+      "path": "data/operation/segment_12_25degC.csv.gz",
+      "sha256": "65d35f7fe387edddc8337bb43944faf8d5c2c4a84aa0addcad34a6d6ef1f9663"
+    },
+    {
+      "path": "data/operation/segment_13_45degC.csv.gz",
+      "sha256": "a952b4f0bbbfbd08f3537f58525f99c73a23b2ca77c274ad34f82f75643bcbd2"
+    },
+    {
+      "path": "data/operation/segment_14_25degC.csv.gz",
+      "sha256": "33f9040cf3e7cc828df31ef92d6114411f5e4e34a397c4092ca78e8dd7ce8c26"
+    }
+  ],
+  "code": [
+    {
+      "path": "research/phase1_pack_trend_20261011/src/pack.py",
+      "sha256": "a80a347d821908a159c95d8b0039175f1e3d098de59ffcc62ca20055fb439a49"
+    },
+    {
+      "path": "research/phase1_pack_trend_20261011/src/trend.py",
+      "sha256": "9720f331968621c6e06cc69de2ce5b6c9d3ee706c24a1ad514fa6d956be2fbe2"
+    },
+    {
+      "path": "research/phase1_pack_trend_20261011/scripts/audit_inputs.py",
+      "sha256": "7bb0ed4db324c201237ecef43bae87c289768a700a7cc5307b6d1db62f06a212"
+    },
+    {
+      "path": "research/phase1_pack_trend_20261011/scripts/run_pack_validation.py",
+      "sha256": "e60f3da3f55d43d5cc541cf691ab882d94a10b2377b2b1577f87422acb5e0444"
+    },
+    {
+      "path": "research/phase1_pack_trend_20261011/scripts/run_rate_validation.py",
+      "sha256": "135edf33b6dbc3de6f9ec06932d26ea14b88cc1f67fa056005411bd9b9f4fc59"
+    },
+    {
+      "path": "research/phase1_pack_trend_20261011/tests/test_science.py",
+      "sha256": "d480286bdd11086981882478c99c2a0c7b9a2292f3994ccc39a0ecf191e4b509"
+    }
+  ],
+  "protocol_sha256": "9eb027a94c58e1c00130442aa595f50e47e223a77df24e925e3df5992292490f",
+  "event_addendum_sha256": "7d67a0c6e3d3ceba773dcf487b5baa089779b775dad1f1d16a7d36bf1c580c0a",
+  "prior_source_code_stamp": "4f04ada7c151",
+  "raw_stage1_provenance_audit": "research/phase1_transfer_ab/outputs/source_registry.json",
+  "source_model_cache_reuse": "training-entity sets asserted; previous directory read only",
+  "unphysical_selected_OOF_priors": 7,
+  "selected_OOF_prior_sets": 90
+}

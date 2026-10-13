@@ -1,0 +1,134 @@
+[
+  {
+    "training_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "rows": 150,
+    "rows_with_permuted_position": 134
+  },
+  {
+    "training_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "rows": 150,
+    "rows_with_permuted_position": 134
+  },
+  {
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "rows": 150,
+    "rows_with_permuted_position": 132
+  },
+  {
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "rows": 150,
+    "rows_with_permuted_position": 132
+  },
+  {
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "rows": 150,
+    "rows_with_permuted_position": 134
+  },
+  {
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "rows": 150,
+    "rows_with_permuted_position": 134
+  },
+  {
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "rows": 150,
+    "rows_with_permuted_position": 129
+  },
+  {
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "rows": 150,
+    "rows_with_permuted_position": 129
+  },
+  {
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "rows": 150,
+    "rows_with_permuted_position": 131
+  },
+  {
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "rows": 150,
+    "rows_with_permuted_position": 131
+  },
+  {
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "rows": 150,
+    "rows_with_permuted_position": 130
+  },
+  {
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "rows": 150,
+    "rows_with_permuted_position": 130
+  }
+]

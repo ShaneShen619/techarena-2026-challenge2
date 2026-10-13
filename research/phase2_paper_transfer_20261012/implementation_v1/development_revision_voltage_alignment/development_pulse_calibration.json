@@ -1,0 +1,58 @@
+[
+  {
+    "T": 25,
+    "cell": 1,
+    "n": 10,
+    "R_app_median_ohm": 0.0,
+    "MAD_ohm": 0.0
+  },
+  {
+    "T": 25,
+    "cell": 2,
+    "n": 10,
+    "R_app_median_ohm": 0.0,
+    "MAD_ohm": 0.0
+  },
+  {
+    "T": 25,
+    "cell": 3,
+    "n": 10,
+    "R_app_median_ohm": 0.0,
+    "MAD_ohm": 0.0
+  },
+  {
+    "T": 25,
+    "cell": 4,
+    "n": 10,
+    "R_app_median_ohm": 0.0,
+    "MAD_ohm": 0.0
+  },
+  {
+    "T": 45,
+    "cell": 1,
+    "n": 17,
+    "R_app_median_ohm": 0.0,
+    "MAD_ohm": 0.0
+  },
+  {
+    "T": 45,
+    "cell": 2,
+    "n": 17,
+    "R_app_median_ohm": 0.0,
+    "MAD_ohm": 0.0
+  },
+  {
+    "T": 45,
+    "cell": 3,
+    "n": 17,
+    "R_app_median_ohm": 0.0,
+    "MAD_ohm": 0.0
+  },
+  {
+    "T": 45,
+    "cell": 4,
+    "n": 17,
+    "R_app_median_ohm": 0.0,
+    "MAD_ohm": 0.0
+  }
+]

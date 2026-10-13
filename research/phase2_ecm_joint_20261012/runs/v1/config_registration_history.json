@@ -1,0 +1,13 @@
+{
+  "original_manifest_unchanged": true,
+  "changes": [
+    {
+      "path": "research/phase2_ecm_joint_20261012/configs/protocol.json",
+      "initial_audit_sha256": "95b1c778034af94ceb35d13cb68ecc102fb62d5f3595fd3a699f648fc256e4a7",
+      "pre_scoring_frozen_sha256": "7a9a5c6991546db46a57d551ebaa1c19dbf2eb5b9948878ca143dc65614cc6e1",
+      "current_sha256": "7a9a5c6991546db46a57d551ebaa1c19dbf2eb5b9948878ca143dc65614cc6e1",
+      "note": "Actual-temperature coefficient bound and pre-rest initialization were finalized before development/first evaluation. Original audit manifest retained; final frozen configuration hash is independently recorded."
+    }
+  ],
+  "post_scoring_model_tuning": false
+}

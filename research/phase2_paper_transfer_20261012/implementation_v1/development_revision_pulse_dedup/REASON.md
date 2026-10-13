@@ -1,0 +1,1 @@
+Pre-freeze audit correction: pulse extraction now uses the same sorted keep-last timestamp deduplication as event integration. Earlier 0-second candidate steps were logging duplicates rather than qualified physical samples. Official development profiles rebuilt; independent synthetic profiles unaffected. No evaluation occurred.

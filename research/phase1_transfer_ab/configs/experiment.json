@@ -1,0 +1,188 @@
+{
+  "seed": 20261010,
+  "panel": "six previously developed physical cells x30 dates x3 shallow budgets",
+  "budgets_Ah": [
+    15,
+    20,
+    30
+  ],
+  "primary_budget_Ah": 20,
+  "primary_panel": "history_exposure_strict_shallow_A",
+  "source_fit": "full training-cell labels; target post-anchor diagnostic discharge rows excluded",
+  "source_shape_prior_strength": 3.0,
+  "source_ea_prior_strength": 0.1,
+  "shape_subsample_per_cell": 512,
+  "b_configs": [
+    "charge_noT",
+    "nominal_sat",
+    "dynamic_fixed",
+    "dynamic_sat",
+    "dynamic_extrap",
+    "dynamic_sat_noKnee"
+  ],
+  "xi0_candidates": [
+    0.0,
+    0.001
+  ],
+  "selection": "minimum inner macro MAE; outer holdout excluded from all preprocessing/selection",
+  "baseline_ridge_alpha": [
+    1.0,
+    10.0,
+    100.0
+  ],
+  "baseline_power": [
+    0.5,
+    1.0
+  ],
+  "a_windows_V": [
+    [
+      3.35,
+      3.39
+    ],
+    [
+      3.38,
+      3.42
+    ],
+    [
+      3.41,
+      3.45
+    ],
+    [
+      3.44,
+      3.48
+    ],
+    [
+      3.35,
+      3.42
+    ],
+    [
+      3.38,
+      3.45
+    ],
+    [
+      3.41,
+      3.48
+    ],
+    [
+      3.35,
+      3.45
+    ],
+    [
+      3.38,
+      3.48
+    ]
+  ],
+  "a_match_temp_C": 5.0,
+  "a_match_current_relative": 0.2,
+  "a_recent_events": 5,
+  "a_reference_events": 10,
+  "fusion_K": [
+    0.0,
+    0.1,
+    0.2
+  ],
+  "fusion_L_pp": [
+    1.0,
+    2.0
+  ],
+  "fusion_ridge_alpha": [
+    10.0,
+    100.0
+  ],
+  "acceptance": {
+    "B_relative_improvement": 0.1,
+    "fusion_relative_improvement": 0.05,
+    "fusion_absolute_improvement_pp": 0.1,
+    "tail_max_degradation_pp": 0.5,
+    "fusion_noninferior_cells": 4,
+    "a_coverage_all": 0.6,
+    "a_coverage_each_cell": 0.3
+  },
+  "unknown_calendar_coefficient": "not_identifiable_no_added_calendar_term",
+  "D2_status": "not_testable_until_independent_4S_same_protocol_labels",
+  "input_temperature_bins_C": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80
+  ],
+  "source_rate_axis": "nominal condition C; target stable positive-run median rate",
+  "frozen_before_new_results": true
+}

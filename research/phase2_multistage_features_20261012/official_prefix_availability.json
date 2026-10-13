@@ -1,0 +1,82 @@
+[
+  {
+    "checkup": "CK0",
+    "date": "2025-01-14",
+    "available_feature_rows": 0,
+    "available_events": 0,
+    "paired_CK0_feature": false,
+    "capacity_label_released": true,
+    "pack_capacity_status": "UNVERIFIED",
+    "new_SOH_estimate": null
+  },
+  {
+    "checkup": "CK1",
+    "date": "2025-02-08",
+    "available_feature_rows": 32,
+    "available_events": 8,
+    "paired_CK0_feature": false,
+    "capacity_label_released": false,
+    "pack_capacity_status": "UNVERIFIED",
+    "new_SOH_estimate": null
+  },
+  {
+    "checkup": "CK2",
+    "date": "2025-03-11",
+    "available_feature_rows": 55,
+    "available_events": 13,
+    "paired_CK0_feature": false,
+    "capacity_label_released": false,
+    "pack_capacity_status": "UNVERIFIED",
+    "new_SOH_estimate": null
+  },
+  {
+    "checkup": "CK3",
+    "date": "2025-04-14",
+    "available_feature_rows": 101,
+    "available_events": 25,
+    "paired_CK0_feature": false,
+    "capacity_label_released": false,
+    "pack_capacity_status": "UNVERIFIED",
+    "new_SOH_estimate": null
+  },
+  {
+    "checkup": "CK4",
+    "date": "2025-05-16",
+    "available_feature_rows": 149,
+    "available_events": 37,
+    "paired_CK0_feature": false,
+    "capacity_label_released": false,
+    "pack_capacity_status": "UNVERIFIED",
+    "new_SOH_estimate": null
+  },
+  {
+    "checkup": "CK5",
+    "date": "2025-06-16",
+    "available_feature_rows": 197,
+    "available_events": 49,
+    "paired_CK0_feature": false,
+    "capacity_label_released": false,
+    "pack_capacity_status": "UNVERIFIED",
+    "new_SOH_estimate": null
+  },
+  {
+    "checkup": "CK6",
+    "date": "2025-07-25",
+    "available_feature_rows": 250,
+    "available_events": 62,
+    "paired_CK0_feature": false,
+    "capacity_label_released": false,
+    "pack_capacity_status": "UNVERIFIED",
+    "new_SOH_estimate": null
+  },
+  {
+    "checkup": "CK7",
+    "date": "2025-08-28",
+    "available_feature_rows": 305,
+    "available_events": 75,
+    "paired_CK0_feature": false,
+    "capacity_label_released": false,
+    "pack_capacity_status": "UNVERIFIED",
+    "new_SOH_estimate": null
+  }
+]

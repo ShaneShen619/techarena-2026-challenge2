@@ -1,0 +1,29 @@
+{
+  "version": "route3-v1-before-capacity-scoring", "seed":42,
+  "exposure":"P1 six lifecycles and official group have prior research exposure; all results exploratory nested validation, no new blind pack evidence",
+  "primary_metric":"physical-entity equal-weight MAE Ah; SOH pp=100*MAE/known nominal Ah",
+  "source_pairing":"P1 same physical cell and cycle; Zhu same file/cycle charge-rest then discharge; Gasper author measurement_id join, physical cell retained",
+  "selection":"P1 first,last and cycle multiples25; Zhu first two numerically numbered cells per dataset1 condition, first,last and cycles multiples10, fixed before downloads",
+  "entity_evaluation":"P1 leave-one-cell-out, inner GroupKFold up to3; Zhu GroupKFold5 outer/3 inner; Gasper paper GroupShuffleSplit50/.2/42 measurement_id and strict physical-cell GroupKFold5",
+  "time_test":"within each P1 cell train earliest70%, test later30%; inner training cell groups; no target future waveform preprocessing",
+  "temperature_test":"P1 leave chamber-temperature-out with inner physical-cell groups",
+  "budgets":["charge + pre-rest300/900/1800","discharge-end (only early300s and <=10Ah waveforms, no label-tail features)","post-rest300/900/1800; retrospective after real reference discharge"],
+  "common_intersection":"all comparisons within budget use same events; complete primary intersection requires f2_1800 and f4_1800; all-event fallback separately",
+  "metadata":"age, chamber T, actual T visible so far, known charge C,duration,start/end V; fixed observed rest-budget duration. No cycle ID, full-discharge duration/Ah, future temperature, true SOC or target capacity columns",
+  "project_configs":[
+   {"kind":"EN","alpha":0.001,"l1_ratio":0.2},{"kind":"EN","alpha":0.001,"l1_ratio":0.8},
+   {"kind":"EN","alpha":0.1,"l1_ratio":0.2},{"kind":"EN","alpha":0.1,"l1_ratio":0.8},
+   {"kind":"XGB","n_estimators":40,"max_depth":2,"learning_rate":0.05},{"kind":"XGB","n_estimators":40,"max_depth":3,"learning_rate":0.05},
+   {"kind":"XGB","n_estimators":100,"max_depth":2,"learning_rate":0.05},{"kind":"XGB","n_estimators":100,"max_depth":3,"learning_rate":0.05}
+  ],
+  "auxiliary_configs":[{"kind":"Ridge","alpha":1},{"kind":"Ridge","alpha":10}],
+  "paper_fixed":"Zhu Table11 XGB6/depth6/lr.8/lambda1/alpha0/subsample1. Gasper XGBRegressor defaults locked xgboost3.1.1; complete booster config saved after fit",
+  "no_trainable_target_calibration":"CK0 Jan14 precedes first official operation Jan19; no paired CK0 features; TL1/TL2/one-parameter anchor prohibited",
+  "support_gate":"all mandatory features finite, source-training 1%-99% range expanded by25% width; chemistry and voltage-control must match. Never refit support using official future rows",
+  "acceptance":{"improvement_vs_metadata":0.05,"improvement_vs_best_single_stage":0.05,"direct_coverage":0.9,"max_temperature_degradation":0.1,"pack_conversion":"UNVERIFIED without independent real physical-group labels; numerical examples cannot satisfy"},
+  "A":"previous up to5 valid local charge windows, at least3; log(Ahwindow) slope per calendar day. Additional input, direction-conflict flag, and outer-test residual correction from training-cell OOF primary predictions; no independent-evidence claim",
+  "negative_controls":"masks only; age/temperature only; voltage-initial/T only; local-window only; train-label shuffle within entity and age quartile; train/test shape shuffle within entity and age quartile, leaves metadata unchanged",
+  "robustness":"held-cell waveform-derived summary perturbations constant +/-5mV, seeded 1mV noise, 1mV quantization; explicit masks/drop stages; prefixes and coarsening; independent fixed-Q RC stress for temperature/SOC/charge terminal/current and imbalance. OOD rejects report coverage",
+  "official_auxiliary":"previous completed standard event features predict next standard event dV30; chronological first60% training/later40% scoring; features available strictly before target start, future target waveform only scoring",
+  "official_capacity_errors":"CK1-CK7 empty, no B/A/physics prediction used as label"
+}

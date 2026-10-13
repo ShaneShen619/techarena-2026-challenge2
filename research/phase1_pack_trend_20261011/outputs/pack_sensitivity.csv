@@ -1,0 +1,9 @@
+scenario,capacity_Ah,shift_from_common_Ah,status,mean_stretch_shortcut_Ah,min_stretch_shortcut_Ah
+shared B,97.3977,0.0,computed,97.3977,97.3977
+one cell additional 0.5 percent,97.26938165315843,-0.12831834684156718,computed,97.2721875,96.89564999999999
+one cell additional 1 percent,97.13277280001405,-0.26492719998594794,computed,97.146675,96.39359999999999
+one cell initial deficit 1Ah,97.1455,-0.252200000000002,computed,97.3977,97.3977
+one cell initial deficit 2Ah,96.86122360439728,-0.536476395602719,computed,97.3977,97.3977
+all cells added resistance 1mOhm,97.36627262598094,-0.03142737401906004,computed,97.3977,97.3977
+all cells added resistance 3mOhm,97.29934395908855,-0.09835604091145456,computed,97.3977,97.3977
+extreme mismatch rejected,,,First cutoff outside bounded template domain,90.62002499999998,70.28699999999999

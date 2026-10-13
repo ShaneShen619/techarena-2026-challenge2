@@ -1,0 +1,177 @@
+[
+  {
+    "check": "Zhu_sample_variance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "Zhu_skew_sample_std_population_numerator",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "Zhu_excess_kurtosis",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "zero_variance_defined_and_masked",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "zero_current_PI_mask",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "raw_current_preserves_actual_discharge_sign",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "raw_PI_defined_from_actual_current",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "raw_T_observed_grid",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "missing_grid_not_extrapolated",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "large_gap_rejected",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "300s_prefix_future_voltage_invariance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "unobserved_900_1800_missing",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "datetime_unit_seconds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "all_scored_capacity_labels_follow_charge",
+    "pass_": true,
+    "detail": "706/773 raw pairs legal"
+  },
+  {
+    "check": "forward_labels_before_future_inputs_and_physical_cycles",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "capacity_tail_not_in_model",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "known_nominal_current_denominator",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "outer_physical_entity_disjoint",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "candidate_budget_8_plus_2_aux_under12",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "protocol_unmodified_after_freeze",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "CK0_no_paired_feature",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "pre_rest_excludes_discharge_features",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "pre_rest_excludes_post_rest",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "pre300_no_full_future_rest",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "feature_available_after_charge_end",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "raw_prefix_rest_reconstruction",
+    "pass_": true,
+    "detail": "119/119"
+  },
+  {
+    "check": "raw_prefix_temperature_reconstruction",
+    "pass_": true,
+    "detail": "41/41"
+  },
+  {
+    "check": "next_event_aux_causal",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "unverified_pack_capacity_left_empty",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "four_channels_are_one_physical_group",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "protected_files_identical_to_original",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "raw_unmodified_reextraction_matches_saved_prediction",
+    "pass_": true,
+    "detail": "max difference 2.7418136596679688e-06 Ah"
+  },
+  {
+    "check": "A_history_date_strictly_prior",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "stage_identified_after_raw_query_cutoff_without_future_catalog",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "check": "independent_causal_replay_matches_registered_rest_features",
+    "pass_": true,
+    "detail": "403 matched records"
+  }
+]

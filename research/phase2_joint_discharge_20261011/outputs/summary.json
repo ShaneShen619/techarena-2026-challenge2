@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-11",
+  "physical_packs": 1,
+  "qualified_events": 39,
+  "anchor_capacity_Ah": 100.41,
+  "capacity_truth_available": [
+    "CK0"
+  ],
+  "input_scope": "CK0 loaded curve and official raw I/V/T; no B aging parameters, no hidden capacity labels",
+  "waveform_changes": [
+    {
+      "T": 25,
+      "events": 14,
+      "early_3_drop_2to10_mV": 0.2651137779892861,
+      "late_3_drop_2to10_mV": 0.33333333333340764,
+      "change_drop_2to10_mV": 0.06821955534412155,
+      "early_3_R30_mOhm": 1.7973856209150378,
+      "late_3_R30_mOhm": 1.879084967320263
+    },
+    {
+      "T": 45,
+      "events": 25,
+      "early_3_drop_2to10_mV": 0.9603266996714988,
+      "late_3_drop_2to10_mV": 0.5395708711113759,
+      "change_drop_2to10_mV": -0.42075582856012284,
+      "early_3_R30_mOhm": 2.2111928104575154,
+      "late_3_R30_mOhm": 1.7116013071895446
+    }
+  ],
+  "forward_voltage_test": [
+    {
+      "method": "fixed_CK0_capacity",
+      "n_pack_events": 35,
+      "mae_mV": 4.215308245278608,
+      "RMS_mV": 4.351243391705558
+    },
+    {
+      "method": "matched_last_shift",
+      "n_pack_events": 35,
+      "mae_mV": 0.6702183064986946,
+      "RMS_mV": 0.827365791277512
+    },
+    {
+      "method": "profile_capacity",
+      "n_pack_events": 35,
+      "mae_mV": 7.573854820184059,
+      "RMS_mV": 7.846448180928105
+    }
+  ],
+  "CK7_update_gates": [
+    {
+      "T": 25,
+      "base_gate": false,
+      "best_capacity_spread_Ah": 7.028700000000001,
+      "accept": false
+    },
+    {
+      "T": 45,
+      "base_gate": false,
+      "best_capacity_spread_Ah": 10.041000000000011,
+      "accept": false
+    }
+  ],
+  "limitations": [
+    "Voltage validation is not capacity validation",
+    "RC plus loaded-template deembedding is a prototype assumption; no independent OCV",
+    "Profile ranges are tolerance sensitivity sets, not confidence intervals",
+    "Four cells share one physical event",
+    "Projection assumes matched full-charge reference state; operating nuisance is not carried to reference cutoff"
+  ]
+}

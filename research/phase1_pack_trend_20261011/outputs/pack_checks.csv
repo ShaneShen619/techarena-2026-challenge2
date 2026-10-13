@@ -1,0 +1,9 @@
+test,error,tolerance,passed
+CK0 published capacity identity,0.0,1e-08,True
+common stretch 0.7,0.0,1e-08,True
+common stretch 0.85,0.0,1e-08,True
+common stretch 0.95,0.0,1e-08,True
+common stretch 1.0,0.0,1e-08,True
+loaded CK0 pack voltage pointwise,0.0,1e-08,True
+official future extremes do not alter CK3,0.0,1e-08,True
+official prefix versus full campaign CK3,0.0,1e-08,True

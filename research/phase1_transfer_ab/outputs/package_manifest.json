@@ -1,0 +1,80 @@
+{
+  "archive": "research/phase1_transfer_ab/candidates/Phase1AB_Research_Challenge2.zip",
+  "sha256": "2c4fc12879236759a1ea044c876f10c95df57dac3590bae8ecc6e833d142cf0d",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "162327877065e6178538d009d4d8664803bca4debb8a271535901dde55579e8a"
+    },
+    {
+      "path": "framework/__init__.py",
+      "sha256": "88e1c6670a9adb53b5579aa08e2ace24dea4f41502282246f41df489b2e82250"
+    },
+    {
+      "path": "framework/data.py",
+      "sha256": "d0cf13e37a74fb1bcf540dacc4cc1ffd294196c97be5853c9616db1c9a66f708"
+    },
+    {
+      "path": "framework/io.py",
+      "sha256": "0af07e168ae038ce5b09d77b2547f23f98031f9f14c2756b62468b5925dbdd49"
+    },
+    {
+      "path": "framework/persistence.py",
+      "sha256": "8e2627dd4d33e5d1d9ae0d4be2d2584c53b0b93bcaedc19a2d81d8a7231fd1be"
+    },
+    {
+      "path": "my_model/__init__.py",
+      "sha256": "19e0b9301a7de795e323a12bc42b57111f557fb719a56af083309e37cde118ab"
+    },
+    {
+      "path": "my_model/exposure.py",
+      "sha256": "e50d6f4253ff5676790443b37b3cd978da43dcbde24df281655bb8899f301058"
+    },
+    {
+      "path": "my_model/model.py",
+      "sha256": "d941bfa4450b9883b54a0c8c6b21654d7191dbc437be0839ee1d79f2d72faf6e"
+    },
+    {
+      "path": "my_model/observation_a.py",
+      "sha256": "c33b5520a3b09824ad0f5e373833295feefb2b776588a45ad2b2a287c508de7b"
+    },
+    {
+      "path": "my_model/source_prior.json",
+      "sha256": "2a61a5894450c098bba814ad057a205adfdf891d0fe36d8d8d81eec364390fb5"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "6979eeaed30ec7f45ff725f33240136e49c396fdf8a5ef12964fb2960c8a5d1e"
+    },
+    {
+      "path": "run_model.py",
+      "sha256": "58b43ad8947ccf7939c804636996678d73df0f894c6d32f18134393b9df9c71d"
+    },
+    {
+      "path": "sample_data/checkups/CK0_reference_discharge.csv.gz",
+      "sha256": "9c8f520ccfa4bef64d142833beaea920d6cc7232d3e6b2574098ce39589d30f2"
+    },
+    {
+      "path": "sample_data/checkups/checkup_capacities_released.csv",
+      "sha256": "0027f1d3d4b7bbf8e85e5a4f908ecac8c53b370a4b7b43c7dc3562169ec24ac8"
+    },
+    {
+      "path": "sample_data/checkups/evaluation_points.csv",
+      "sha256": "54b93c5d386c9723199a62d3b2d454886099f252cd5eea0e6e52d97c99d9b2cc"
+    },
+    {
+      "path": "sample_data/operation/segment_01_45degC.csv.gz",
+      "sha256": "d602e390b4a3a8a8760eed252c53a8cf5db9ac4b0bc0f326cf94dfa9c3a7685b"
+    },
+    {
+      "path": "sample_data/operation/segment_02_25degC.csv.gz",
+      "sha256": "1b0128c0acb25483fe04c9f2fe3e9b79f0ce3df84a97d9fbfac38f2ad5a4f2b7"
+    },
+    {
+      "path": "validate_submission.py",
+      "sha256": "4ac51cf9d67d39d1a357e750d766a325c46cfc6856b72b63f48c3d3ef3e53ae8"
+    }
+  ],
+  "numeric_A_enabled": false,
+  "root_model_switched": false
+}

@@ -1,0 +1,40 @@
+{
+  "events": 3,
+  "rows": [
+    {
+      "id": "short_2025-02-12T04:27:43",
+      "panel": "short",
+      "T": 25,
+      "q_Ah": 10.199643055555558,
+      "best_rms_mV": 0.5520231076090387,
+      "profile_width_Ah": 35.1435,
+      "cached_loss_max_difference": null,
+      "old_capacity_update_gate": false,
+      "read_only_old_artifacts": true
+    },
+    {
+      "id": "short_2025-01-24T21:10:13",
+      "panel": "short",
+      "T": 45,
+      "q_Ah": 10.199683333333336,
+      "best_rms_mV": 0.42017109911673156,
+      "profile_width_Ah": 27.61274999999999,
+      "cached_loss_max_difference": 0.0,
+      "old_capacity_update_gate": false,
+      "read_only_old_artifacts": true
+    },
+    {
+      "id": "wide_2025-01-26T08:39:03",
+      "panel": "wide",
+      "T": 45,
+      "q_Ah": 32.895479166666654,
+      "best_rms_mV": 1.336674658893265,
+      "profile_width_Ah": 35.1435,
+      "cached_loss_max_difference": 0.0,
+      "old_capacity_update_gate": false,
+      "read_only_old_artifacts": true
+    }
+  ],
+  "definition": "Single-event old failure subset; no reopening full old evaluation or tuning",
+  "exact_cached_profiles_reproduced": 2
+}

@@ -1,0 +1,48 @@
+{
+  "model": {
+    "config": "dynamic_fixed",
+    "shape": [
+      103.10883828885322,
+      13.043221921145166,
+      0.3226759046881035,
+      118.98118686249072,
+      0.6024228088794579
+    ],
+    "parameters": {
+      "lnA": -5.511880415386647,
+      "Ea": 36409.83678198747,
+      "gamma": 0.0
+    },
+    "rate_mode": "fixed",
+    "n_deep": 5,
+    "head_taus": [
+      5182.655144858856,
+      4777.936633483105,
+      5639.592315226457,
+      3841.024813524488,
+      3751.0414843023214,
+      1780.2284104760968
+    ],
+    "source_coordinate_fit_rmse_pp": 0.6515817180212377,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "source_temperature_axis": "charge-exposure sensor bins",
+    "source_rate_definition": "charge-weighted stable-run median, binned"
+  },
+  "xi0": 0.001,
+  "selection": "source six-cell LOCO development mean; not independent test score",
+  "selection_MAE_pp": 3.0330992796831775,
+  "nominal_capacity_Ah": 102.0,
+  "phase2_numeric_A_enabled": false,
+  "source_identity_confirmed": "102Ah LFP specification only",
+  "source_label_protocol": "single-cell high-rate discharge to 2.5V",
+  "target_label_protocol": "4S 5.1A to pack first11.2V",
+  "calendar_term": "not independently identifiable; not added",
+  "prior_license": "Che D3 CC BY4.0; source target data reused under challenge permission"
+}

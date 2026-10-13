@@ -1,0 +1,118 @@
+{
+  "code": "exact original MyModel.fit and predict_soh from phase1_transfer_ab/src/legacy",
+  "protocol": "training five complete source-cell trajectories, test sixth, known nominal T/C and currently completed source charge cycle; unanchored initial level learned from training only",
+  "same_labels_as_other_models": true,
+  "same_source_cells_but_full_training_curves": true,
+  "held_true_initial_capacity_used": false,
+  "scope": "historical N/T comparator, not equal training event count to small joint feature model, not in fair stage incremental gate",
+  "splits": [
+    {
+      "test_entity": "102Ah_25degC_0p5C_cell3",
+      "training_entities": [
+        "102Ah_25degC_1C_cell3",
+        "102Ah_35degC_1C_cell1",
+        "102Ah_45degC_0p5C_cell3",
+        "102Ah_45degC_1C_cell1",
+        "102Ah_55degC_1C_cell3"
+      ],
+      "held_capacity_anchor_used": false
+    },
+    {
+      "test_entity": "102Ah_25degC_1C_cell3",
+      "training_entities": [
+        "102Ah_25degC_0p5C_cell3",
+        "102Ah_35degC_1C_cell1",
+        "102Ah_45degC_0p5C_cell3",
+        "102Ah_45degC_1C_cell1",
+        "102Ah_55degC_1C_cell3"
+      ],
+      "held_capacity_anchor_used": false
+    },
+    {
+      "test_entity": "102Ah_35degC_1C_cell1",
+      "training_entities": [
+        "102Ah_25degC_0p5C_cell3",
+        "102Ah_25degC_1C_cell3",
+        "102Ah_45degC_0p5C_cell3",
+        "102Ah_45degC_1C_cell1",
+        "102Ah_55degC_1C_cell3"
+      ],
+      "held_capacity_anchor_used": false
+    },
+    {
+      "test_entity": "102Ah_45degC_0p5C_cell3",
+      "training_entities": [
+        "102Ah_25degC_0p5C_cell3",
+        "102Ah_25degC_1C_cell3",
+        "102Ah_35degC_1C_cell1",
+        "102Ah_45degC_1C_cell1",
+        "102Ah_55degC_1C_cell3"
+      ],
+      "held_capacity_anchor_used": false
+    },
+    {
+      "test_entity": "102Ah_45degC_1C_cell1",
+      "training_entities": [
+        "102Ah_25degC_0p5C_cell3",
+        "102Ah_25degC_1C_cell3",
+        "102Ah_35degC_1C_cell1",
+        "102Ah_45degC_0p5C_cell3",
+        "102Ah_55degC_1C_cell3"
+      ],
+      "held_capacity_anchor_used": false
+    },
+    {
+      "test_entity": "102Ah_55degC_1C_cell3",
+      "training_entities": [
+        "102Ah_25degC_0p5C_cell3",
+        "102Ah_25degC_1C_cell3",
+        "102Ah_35degC_1C_cell1",
+        "102Ah_45degC_0p5C_cell3",
+        "102Ah_45degC_1C_cell1"
+      ],
+      "held_capacity_anchor_used": false
+    }
+  ],
+  "input_manifest": [
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase1_transfer_ab/artifacts/data_metadata.json",
+      "sha256": "d808d90695d96d6dda82aab7bf9f3537d8dc9e4f9243a4261d65da7710ee93ee"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase1_transfer_ab/src/legacy/model_template.py",
+      "sha256": "80cbb1af77be4266cff46b539ba5fa25b5489094b480c6e0080edb7b3569686d"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase1_transfer_ab/src/legacy/collapse.py",
+      "sha256": "b4273ffab3a4a1e784716a543f926953b93808fa1de88a42434349b55143e57e"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase1_transfer_ab/src/legacy/pretrained.json",
+      "sha256": "d079c79c00fad861e3c5bbed994804cb60fba577bc21507a4e8846f8d476f6ee"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase1_transfer_ab/artifacts/data_102Ah_25degC_0p5C_cell3.npz",
+      "sha256": "5d6f8faa9fb66bbb1cfb1f489794e961aa04ece8569f7d11f90370c44397b0e7"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase1_transfer_ab/artifacts/data_102Ah_25degC_1C_cell3.npz",
+      "sha256": "0f6dcdf15371d7c4dccb5bc1a7c6467432eafa2e3accd5d6aa080b4850d43361"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase1_transfer_ab/artifacts/data_102Ah_35degC_1C_cell1.npz",
+      "sha256": "d7f20b890445f6fbaa549b977f161b06613386e3e039ef04e0db6746f1d1317e"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase1_transfer_ab/artifacts/data_102Ah_45degC_0p5C_cell3.npz",
+      "sha256": "263e2e65ad0a7472de09d275329ff9dd863eae7cd44264eca51f417eb0dd1132"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase1_transfer_ab/artifacts/data_102Ah_45degC_1C_cell1.npz",
+      "sha256": "3b2eeff6b7f8c4aebec9653a66eca0011020d4e20a66c03b96544a2c7f11f72f"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase1_transfer_ab/artifacts/data_102Ah_55degC_1C_cell3.npz",
+      "sha256": "9880246a309601ff1dda08448f3290dd6c34007c90c8b86a6fafe27c76de2bd6"
+    }
+  ]
+}

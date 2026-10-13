@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "scientific_checks": 35,
+  "source_only_budget_models": 7,
+  "formal_files_identical": true,
+  "unreleased_labels_and_errors_not_filled": true,
+  "official_reference_temperature_not_invented": true,
+  "capacity_gate_fail_preserved": true,
+  "tracked_git_diffs_empty": true
+}

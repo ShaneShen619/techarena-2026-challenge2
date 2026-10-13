@@ -1,0 +1,7 @@
+{
+  "P1_history": "all earlier non-cc_discharge t/I/T; no step_capacity; all candidate methods equal access",
+  "P1_A": "only registered v1.5 15/20/30Ah fragments before target; no full-charge depth/end",
+  "P1_D1_restricted": "B full-history coordinate unavailable; keep separate and do not rank full-history B against D1",
+  "P2": "timestamp<=at_date plus published CK0 reference exception; fit stores only pretrained artifact and CK0",
+  "identifiers": "only split/audit; not regression features"
+}

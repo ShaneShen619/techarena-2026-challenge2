@@ -1,0 +1,17 @@
+{
+  "phase": "test",
+  "positive_seeds": 10,
+  "positive_acceptance": 0.0,
+  "positive_mean_relative_error": 0.1125326515949272,
+  "constant_pressure_seeds": 90,
+  "false_updates": 0,
+  "false_update_fraction": 0.0,
+  "constant_rejected": 90,
+  "positive_finite_outputs": 10,
+  "gate": "FAIL",
+  "estimator_did_not_receive_true_capacity_or_SOC": true,
+  "capacity_truth": "Independent reference simulation, not same-model scale labels",
+  "generation_seed_separation": true,
+  "ref_dt_error_max_Ah": 1.400010337704316e-05,
+  "runtime_s": 139.26817154200398
+}

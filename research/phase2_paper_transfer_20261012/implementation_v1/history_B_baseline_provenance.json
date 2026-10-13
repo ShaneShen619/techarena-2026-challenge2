@@ -1,0 +1,10 @@
+{
+  "scope": "Pre-existing independent baseline only; never used for fit, gate or truth",
+  "files": {
+    "research/phase1_pack_trend_20261011/outputs/official_4S_prototype.csv": "5a42925ad9f220e92b21728bdae090ca28e4dd951a6d7a8fe1bc7c201ff5ca9b",
+    "research/phase1_transfer_ab/src/age_prior.py": "8018665e8397c76b1a890d685e2fa276ce468d2c0318f44027305db27037e053",
+    "research/phase1_transfer_ab/artifacts/source_prior.json": "2a61a5894450c098bba814ad057a205adfdf891d0fe36d8d8d81eec364390fb5",
+    "research/phase1_transfer_ab/runs/clean_validation/extracted/my_model/source_prior.json": "2a61a5894450c098bba814ad057a205adfdf891d0fe36d8d8d81eec364390fb5",
+    "research/phase1_transfer_ab/candidates/phase1_ab/my_model/source_prior.json": "2a61a5894450c098bba814ad057a205adfdf891d0fe36d8d8d81eec364390fb5"
+  }
+}

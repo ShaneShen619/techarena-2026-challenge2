@@ -1,0 +1,34 @@
+{
+  "short_25": {
+    "tau": 300,
+    "baseline": {
+      "A": "B1_previous",
+      "B": "B0_fixed"
+    },
+    "development_events": 5
+  },
+  "short_45": {
+    "tau": 600,
+    "baseline": {
+      "A": "B1_previous",
+      "B": "B1_previous"
+    },
+    "development_events": 10
+  },
+  "wide_25": {
+    "tau": 300,
+    "baseline": {
+      "A": "B1_previous",
+      "B": "B1_previous"
+    },
+    "development_events": 5
+  },
+  "wide_45": {
+    "tau": 600,
+    "baseline": {
+      "A": "B1_previous",
+      "B": "B1_previous"
+    },
+    "development_events": 9
+  }
+}

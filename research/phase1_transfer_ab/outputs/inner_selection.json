@@ -1,0 +1,170 @@
+[
+  {
+    "heldout": "102Ah_25degC_0p5C_cell3",
+    "family": "B",
+    "config": "dynamic_fixed",
+    "xi0": 0.001,
+    "inner_MAE_pp": 3.341119812149107,
+    "training_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "heldout": "102Ah_25degC_0p5C_cell3",
+    "family": "simple",
+    "config": "age",
+    "alpha": 100.0,
+    "inner_MAE_pp": 3.664870496254815,
+    "training_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "heldout": "102Ah_25degC_1C_cell3",
+    "family": "B",
+    "config": "dynamic_sat",
+    "xi0": 0.001,
+    "inner_MAE_pp": 2.244150373031369,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "heldout": "102Ah_25degC_1C_cell3",
+    "family": "simple",
+    "config": "age",
+    "alpha": 100.0,
+    "inner_MAE_pp": 4.002345344033147,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "heldout": "102Ah_35degC_1C_cell1",
+    "family": "B",
+    "config": "dynamic_fixed",
+    "xi0": 0.001,
+    "inner_MAE_pp": 1.9689662586030057,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "heldout": "102Ah_35degC_1C_cell1",
+    "family": "simple",
+    "config": "power",
+    "alpha": 100.0,
+    "inner_MAE_pp": 3.787092858089242,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "heldout": "102Ah_45degC_0p5C_cell3",
+    "family": "B",
+    "config": "dynamic_fixed",
+    "xi0": 0.001,
+    "inner_MAE_pp": 3.264969067936832,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "heldout": "102Ah_45degC_0p5C_cell3",
+    "family": "simple",
+    "config": "age",
+    "alpha": 100.0,
+    "inner_MAE_pp": 3.7014863866585004,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "heldout": "102Ah_45degC_1C_cell1",
+    "family": "B",
+    "config": "dynamic_fixed",
+    "xi0": 0.001,
+    "inner_MAE_pp": 2.958283530216001,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "heldout": "102Ah_45degC_1C_cell1",
+    "family": "simple",
+    "config": "age",
+    "alpha": 100.0,
+    "inner_MAE_pp": 3.7667296931248666,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "heldout": "102Ah_55degC_1C_cell3",
+    "family": "B",
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "inner_MAE_pp": 2.9206732428132303,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ]
+  },
+  {
+    "heldout": "102Ah_55degC_1C_cell3",
+    "family": "simple",
+    "config": "age",
+    "alpha": 100.0,
+    "inner_MAE_pp": 1.8682726253317257,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ]
+  }
+]

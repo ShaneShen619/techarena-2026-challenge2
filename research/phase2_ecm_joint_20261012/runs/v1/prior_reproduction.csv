@@ -1,0 +1,4 @@
+id,panel,T,q_Ah,best_rms_mV,profile_width_Ah,cached_loss_max_difference,old_capacity_update_gate,read_only_old_artifacts
+short_2025-02-12T04:27:43,short,25,10.199643055555558,0.5520231076090387,35.1435,,False,True
+short_2025-01-24T21:10:13,short,45,10.199683333333336,0.42017109911673156,27.61274999999999,0.0,False,True
+wide_2025-01-26T08:39:03,wide,45,32.895479166666654,1.336674658893265,35.1435,0.0,False,True

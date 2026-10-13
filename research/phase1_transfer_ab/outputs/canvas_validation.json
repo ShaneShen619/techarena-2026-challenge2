@@ -1,0 +1,9 @@
+{
+  "path": "/Users/shane/.cursor/projects/Users-shane-Desktop-Arena-2/canvases/LFP-phase1-transfer-validation.canvas.tsx",
+  "sha256": "2f4086dc882d342de97ea8090cb13a493498f7a7629071b5a72e87f93a81ec35",
+  "TypeScript": "Version 5.9.3",
+  "no_type_errors": true,
+  "validation": "tsc --project runs/canvas_check/tsconfig.json; checked against installed cursor/canvas SDK declarations",
+  "source_date_range": "2021-05-11 to 2023-11-11",
+  "official_evaluation_date_range": "2025-01-14 to 2025-08-28"
+}

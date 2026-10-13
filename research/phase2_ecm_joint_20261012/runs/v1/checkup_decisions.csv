@@ -1,0 +1,9 @@
+checkup,date,reliable_capacity_Ah,fallback_capacity_Ah,fallback_SOH_pct,capacity_update,status,hidden_capacity_error_Ah
+CK0,2025-01-14,100.41,100.41,98.44117647058823,False,released_CK0_anchor,
+CK1,2025-02-08,,100.41,98.44117647058823,False,REJECTED_capacity_update_UNVERIFIED_accuracy,
+CK2,2025-03-11,,100.41,98.44117647058823,False,REJECTED_capacity_update_UNVERIFIED_accuracy,
+CK3,2025-04-14,,100.41,98.44117647058823,False,REJECTED_capacity_update_UNVERIFIED_accuracy,
+CK4,2025-05-16,,100.41,98.44117647058823,False,REJECTED_capacity_update_UNVERIFIED_accuracy,
+CK5,2025-06-16,,100.41,98.44117647058823,False,REJECTED_capacity_update_UNVERIFIED_accuracy,
+CK6,2025-07-25,,100.41,98.44117647058823,False,REJECTED_capacity_update_UNVERIFIED_accuracy,
+CK7,2025-08-28,,100.41,98.44117647058823,False,REJECTED_capacity_update_UNVERIFIED_accuracy,

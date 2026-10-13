@@ -1,0 +1,31 @@
+{
+  "config": "charge_noT",
+  "shape": [
+    103.52306053649585,
+    15.414369513994115,
+    0.35037010374124233,
+    399.99999999999994,
+    0.23873550391574447
+  ],
+  "parameters": {
+    "lnA": 8.455884730247352,
+    "Ea": 0.0,
+    "gamma": 0.0
+  },
+  "rate_mode": "sat",
+  "n_deep": 2,
+  "head_taus": [
+    5097.96412630657,
+    5475.855229477742,
+    3725.4908497025335
+  ],
+  "source_coordinate_fit_rmse_pp": 0.43728278150390826,
+  "training_cells": [
+    "102Ah_25degC_0p5C_cell3",
+    "102Ah_35degC_1C_cell1",
+    "102Ah_45degC_0p5C_cell3"
+  ],
+  "source_temperature_axis": "none",
+  "source_rate_definition": "charge-weighted stable-run median, binned",
+  "code_hash": "4f04ada7c151"
+}

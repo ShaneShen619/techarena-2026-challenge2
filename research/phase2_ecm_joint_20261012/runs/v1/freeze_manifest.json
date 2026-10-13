@@ -1,0 +1,35 @@
+{
+  "config_sha256": "7a9a5c6991546db46a57d551ebaa1c19dbf2eb5b9948878ca143dc65614cc6e1",
+  "source_sha256": "aa6ab29dee4af4c7d9b53b02a648d5747a6a7b9dceba66ae5bfcae43f4b86467",
+  "selected_sha256": "0dd113dd8d0c0ef670c6033db2e8e7e37cc0312fe6b1708930c5b92f6510fe1c",
+  "code_sha256": {
+    "audit_events.py": "3f2f2af3ebd53824f0a5c974a951d87e0b72aa7279d86e81d6f1d9654b5b3a4c",
+    "calibration.py": "1cdc1de5b4ecd161a1a7e485c0e6924d2f03821595f52da1ea5ccc47efd31589",
+    "common.py": "bb180d9a43bbf66253ce13da3fb71ac0b7f72a7162442636218789eb6a1de353",
+    "ecm.py": "f77c227e2c0d71264882ede2bcf1a4b88be225c52519eb813ca4ec809d1a7acd",
+    "evaluate.py": "8aaaaa6f433f30e3b135ad3076696b99047ea41d4779bd85fb1c556b73aaaf4f",
+    "identifiability.py": "dfdcd2b6a0deebb4a579d22c7ae346f0a5f0cf73c6c8cf9ae60328958b2f5789",
+    "joint_estimation.py": "c086a28c396dc72940c7c60c9da749c25e18e65d57ed95ed6db1bb099c38df1f"
+  },
+  "development_until": "2025-04-14T00:00:00",
+  "future_evaluation_voltage_used": false,
+  "core_code_sha256": {
+    "audit_events.py": "3f2f2af3ebd53824f0a5c974a951d87e0b72aa7279d86e81d6f1d9654b5b3a4c",
+    "calibration.py": "1cdc1de5b4ecd161a1a7e485c0e6924d2f03821595f52da1ea5ccc47efd31589",
+    "checkup_diagnostics.py": "7ac397ef3b304c08574dffa81c85d1a5bbcbbeb766792eba1913cc34449a7fb2",
+    "common.py": "bb180d9a43bbf66253ce13da3fb71ac0b7f72a7162442636218789eb6a1de353",
+    "ecm.py": "f77c227e2c0d71264882ede2bcf1a4b88be225c52519eb813ca4ec809d1a7acd",
+    "evaluate.py": "8aaaaa6f433f30e3b135ad3076696b99047ea41d4779bd85fb1c556b73aaaf4f",
+    "identifiability.py": "dfdcd2b6a0deebb4a579d22c7ae346f0a5f0cf73c6c8cf9ae60328958b2f5789",
+    "joint_estimation.py": "c086a28c396dc72940c7c60c9da749c25e18e65d57ed95ed6db1bb099c38df1f",
+    "mechanisms.py": "7b39106896f8d417d985e39e0eec85f470b00bacc74f34168dc6723eb7f6710a",
+    "online.py": "9aa316e9b452ebe2b3ce547c5a75f0e8880cdf10efc79e16c7141c2937d3203e",
+    "reproduce_prior.py": "13838a2d6ee69848ddcc5ed8baba900a24705e46b35bf99a03c833aea0617a08"
+  },
+  "science_checks_sha256": "490dad29045ccd792c4a8b61caa7327584e5d2cc25780870640b24d871c5fa50",
+  "paper_sources": {
+    "research/phase2_literature_reassessment/papers/B_sources/ZhouAitioHowey2025_arxiv.pdf": "d907ac5339a695d69688125a3441c3af2a7fa1de4fdef9305431bd1d9648566e",
+    "research/phase2_literature_reassessment/papers/B_sources/Yi2024_arxiv_v2.pdf": "a382d26e0dbf68f3c2e4b110d4709f5810852a06d45bb5189d735e465ddc6942"
+  },
+  "sealing_note": "Final implementation and invariants sealed before first official or held-out mechanism scoring."
+}

@@ -1,0 +1,14 @@
+file,rows,loaded_discharge_rows,min_loaded_cell_V,min_loaded_pack_V,loaded_cell_le2p8_rows,loaded_pack_le11p2_rows,lowest_any_state_cell_V,lowest_any_state_pack_V
+segment_01_45degC.csv.gz,171541,78330,3.231,12.921,0,0,2.879,11.526
+segment_02_25degC.csv.gz,65062,29160,3.228,12.906,0,0,2.938,11.798
+segment_04_25degC.csv.gz,69616,30756,3.223,12.89,0,0,2.935,11.794
+segment_05_45degC.csv.gz,181655,83720,3.22,12.874,0,0,3.22,12.874
+segment_06_25degC.csv.gz,69338,30492,3.217,12.864,0,0,2.848,11.473
+segment_07_45degC.csv.gz,172706,79574,3.215,12.859,0,0,3.215,12.859
+segment_08_25degC.csv.gz,58957,26812,3.215,12.852,0,0,2.953,11.87
+segment_09_45degC.csv.gz,178755,80925,3.212,12.847,0,0,3.212,12.847
+segment_10_25degC.csv.gz,92438,41614,3.213,12.85,0,0,2.969,11.949
+segment_11_45degC.csv.gz,164783,74882,3.211,12.842,0,0,3.211,12.842
+segment_12_25degC.csv.gz,88248,40041,3.21,12.84,0,0,2.952,11.885
+segment_13_45degC.csv.gz,174442,78561,3.208,12.83,0,0,3.208,12.83
+segment_14_25degC.csv.gz,85353,38166,3.207,12.827,0,0,2.957,11.917

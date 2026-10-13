@@ -1,0 +1,106 @@
+[
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/features_pulse_hppc.csv",
+    "bytes": 114140141,
+    "compressed_bytes": 4055232,
+    "header_offset": 2170357388
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/features_pulse_rapid.csv",
+    "bytes": 7962225,
+    "compressed_bytes": 777825,
+    "header_offset": 2185514078
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/targets_soh.csv",
+    "bytes": 36004,
+    "compressed_bytes": 12948,
+    "header_offset": 2186305640
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-025_1-#1.csv",
+    "bytes": 77438138,
+    "compressed_bytes": 18841594,
+    "header_offset": 52
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-025_1-#2.csv",
+    "bytes": 38021274,
+    "compressed_bytes": 9145243,
+    "header_offset": 18841715
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#1.csv",
+    "bytes": 13031728,
+    "compressed_bytes": 3782804,
+    "header_offset": 71754166
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#2.csv",
+    "bytes": 14886912,
+    "compressed_bytes": 4609370,
+    "header_offset": 123377735
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-1_1-#1.csv",
+    "bytes": 3508566,
+    "compressed_bytes": 1013241,
+    "header_offset": 158415456
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-1_1-#2.csv",
+    "bytes": 3686791,
+    "compressed_bytes": 1061537,
+    "header_offset": 159428764
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY35-05_1-#1.csv",
+    "bytes": 46176164,
+    "compressed_bytes": 14414100,
+    "header_offset": 166667754
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY35-05_1-#2.csv",
+    "bytes": 44425016,
+    "compressed_bytes": 13866821,
+    "header_offset": 181081922
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#1.csv",
+    "bytes": 57799918,
+    "compressed_bytes": 17979989,
+    "header_offset": 195784636
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#2.csv",
+    "bytes": 59491975,
+    "compressed_bytes": 17585495,
+    "header_offset": 363736370
+  }
+]

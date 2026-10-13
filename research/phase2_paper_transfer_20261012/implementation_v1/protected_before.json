@@ -1,0 +1,18 @@
+{
+  "research/phase2_initial_soc_four_methods_20261011/src/synthetic.py": "7458fc96b35549798424927c956af15c5d75e1a261ac71d2722bec54960a7296",
+  "research/phase2_initial_soc_four_methods_20261011/src/run.py": "af7ab1a4d93b1a196c3d388176edf1fa9dcf79d164902c68583c5254dc0b6dbe",
+  "research/phase2_initial_soc_four_methods_20261011/src/audit.py": "51fcbcabb5a9f19ad6ee2b3c242c220d1d05bb794c204a10fa3dd8f7f7f04e08",
+  "research/phase2_initial_soc_four_methods_20261011/src/checks.py": "392cc166929c4d04b1840448a6f423269678ed8ad934225b234b396df7155998",
+  "research/phase2_initial_soc_four_methods_20261011/src/postprocess.py": "b20bacd272f57e7de9f48b533150bcdcc1a476943560e3d5ea376490d4e8434c",
+  "research/phase2_initial_soc_four_methods_20261011/src/engine.py": "2b40cb107c5ecbe87449bc0077314c716b24dfd20a34b1b3910b6e5af58957d3",
+  "research/phase2_initial_soc_four_methods_20261011/src/official.py": "631e89b6a3622d6258a5967954640d16c0c7ac46c8fe50ec084e44cc0e162828",
+  "research/phase2_initial_soc_four_methods_20261011/src/supplement.py": "5d2db4b2b7e46b5ac67f7dc3fca43b68ade4c77be09c89fe15fb6b02d582c906",
+  "research/phase2_initial_soc_four_methods_20261011/src/report.py": "7f37ade997c981838c108eefece6689006dcfcb836773b51f24838be6d94f0ed",
+  "research/phase2_initial_soc_four_methods_20261011/configs/frozen_protocol.json": "ebc5d3dd34fdf7ae3cfa12152d25570fc351778fcff7d2c08ac199cef3ce5ab3",
+  "research/phase2_initial_soc_four_methods_20261011/runs/v1/freeze_manifest.json": "a07efa35aabcf65862b39db9610d312d49e0e487b0b745eb1294453ce15bffb1",
+  "research/phase2_initial_soc_four_methods_20261011/runs/v1/EVALUATION_COMPLETE": "4d5b1a907006b8e21f30571b8b30834b2885c30f38b5ee15dc4f8da5943c5199",
+  "research/phase2_initial_soc_four_methods_20261011/runs/v1/events.pkl": "bf64ebe6eafbfdd78614626188565032f368f767e3c0105a9db35ff75d557c4a",
+  "my_model/model_example.py": "b01471512322519ee755b54dc6abdb419654d1c43c64ce11d4d065ab0a77defd",
+  "my_model/model_template.py": "bccbbbc80392c6bd6e3a40e7a809d6458be741871394b621426a8c5b7d2da88c",
+  "my_model/__init__.py": "a205d0a1c397c5e5b04b9795c9b9ef5c5b6dcfd11287b758da0f0e397f1193b8"
+}

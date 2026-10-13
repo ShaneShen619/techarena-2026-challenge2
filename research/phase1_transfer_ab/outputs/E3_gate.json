@@ -1,0 +1,12 @@
+{
+  "B_E3_performance_pass": true,
+  "relative_improvement_over_simple": 0.3225390012680951,
+  "tail_degradation_pp": {
+    "worst_cell_MAE_pp": -3.6971670793580405,
+    "max_error_pp": -4.923501397966227,
+    "late_macro_MAE_pp": -0.09176520633838425
+  },
+  "hard_checks": "pass_E6_engineering",
+  "E5_numeric_fusion_allowed_by_E3": true,
+  "official_capacity_performance": "not_testable"
+}

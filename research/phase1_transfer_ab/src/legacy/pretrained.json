@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "note": "PUBLIC-ONLY offline prior file. No 102 Ah target-derived parameters are stored here.",
+    "coordinates": "Dataset 3 fitted in relative SOH coordinates; only a_rel and p are transferred."
+  },
+  "d3_prior": {
+    "source": "Che et al., Increasing generalization capability of battery health estimation using continual learning, Dataset 3",
+    "license": "CC BY 4.0",
+    "dataset_file": "Dataset3.mat",
+    "n_cells": 11,
+    "a_rel": 13.947491056022937,
+    "p": 0.34240698598634933,
+    "diagnostic_full_fit": {
+      "s0": 102.42991005795517,
+      "b": 4.355539687363757,
+      "w": 0.12372431892752514,
+      "rmse": 0.49115062767874734,
+      "r2": 0.9922145502403713
+    }
+  },
+  "ea_prior": {
+    "value_kJ_per_mol": 37.3,
+    "source": "Yagci et al., Journal of Energy Storage 124 (2025) 116774, DOI: 10.1016/j.est.2025.116774",
+    "note": "External literature anchor; not fitted from the 102 Ah target cells."
+  }
+}

@@ -1,0 +1,38 @@
+raw audit segment_01_45degC.csv.gz
+raw audit segment_02_25degC.csv.gz
+raw audit segment_04_25degC.csv.gz
+raw audit segment_05_45degC.csv.gz
+raw audit segment_06_25degC.csv.gz
+raw audit segment_07_45degC.csv.gz
+raw audit segment_08_25degC.csv.gz
+raw audit segment_09_45degC.csv.gz
+raw audit segment_10_25degC.csv.gz
+raw audit segment_11_45degC.csv.gz
+raw audit segment_12_25degC.csv.gz
+raw audit segment_13_45degC.csv.gz
+[
+  {
+    "T": 25,
+    "capacity_Ah": 80.0,
+    "optimizer_RMS_mV": 0.9667802105274306,
+    "dense_shift_RMS_mV": 0.9695983635621447
+  },
+  {
+    "T": 25,
+    "capacity_Ah": 100.0,
+    "optimizer_RMS_mV": 0.9020403465435985,
+    "dense_shift_RMS_mV": 0.9026824528589176
+  },
+  {
+    "T": 45,
+    "capacity_Ah": 80.0,
+    "optimizer_RMS_mV": 0.7941448318099666,
+    "dense_shift_RMS_mV": 0.7952448021389097
+  },
+  {
+    "T": 45,
+    "capacity_Ah": 100.0,
+    "optimizer_RMS_mV": 0.6785192522140375,
+    "dense_shift_RMS_mV": 0.6870850250387636
+  }
+]

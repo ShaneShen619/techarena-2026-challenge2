@@ -1,0 +1,12 @@
+mechanism test informative_capacity seeds 10 seconds 14.0
+mechanism test shallow_constant seeds 10 seconds 25.9
+mechanism test start_change seeds 10 seconds 38.8
+mechanism test resistance_change seeds 10 seconds 52.0
+mechanism test bias_change seeds 10 seconds 65.9
+mechanism test temperature_return seeds 10 seconds 80.2
+mechanism test hysteresis_change seeds 10 seconds 94.1
+mechanism test undercharge seeds 10 seconds 102.2
+mechanism test imbalance seeds 10 seconds 118.5
+mechanism test gap seeds 10 seconds 126.0
+mechanism test capacity_plus_interference seeds 10 seconds 139.3
+{'phase': 'test', 'positive_seeds': 10, 'positive_acceptance': 0.0, 'positive_mean_relative_error': 0.1125326515949272, 'constant_pressure_seeds': 90, 'false_updates': 0, 'false_update_fraction': 0.0, 'constant_rejected': 90, 'positive_finite_outputs': 10, 'gate': 'FAIL', 'estimator_did_not_receive_true_capacity_or_SOC': True, 'capacity_truth': 'Independent reference simulation, not same-model scale labels', 'generation_seed_separation': True, 'ref_dt_error_max_Ah': 1.400010337704316e-05, 'runtime_s': 139.26817154200398}

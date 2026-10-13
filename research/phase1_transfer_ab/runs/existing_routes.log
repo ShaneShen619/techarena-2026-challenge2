@@ -1,0 +1,11 @@
+comparison raw prepared 102Ah_25degC_0p5C_cell3 160
+comparison raw prepared 102Ah_25degC_1C_cell3 157
+comparison raw prepared 102Ah_35degC_1C_cell1 160
+comparison raw prepared 102Ah_45degC_0p5C_cell3 155
+comparison raw prepared 102Ah_45degC_1C_cell1 160
+comparison raw prepared 102Ah_55degC_1C_cell3 160
+                   method  macro_MAE_pp  worst_cell_MAE_pp  max_error_pp  macro_RMSE_pp  late_macro_MAE_pp   bias_pp  n_targets
+     A_raw_shallow_budget     14.454791          20.203437     41.118804      15.745899          21.675224 14.454791        180
+     B_old_shallow_budget     14.454791          20.203437     41.118804      15.745899          21.675224 14.454791        180
+causal_window_single_cell     14.454791          20.203437     41.118804      15.745899          21.675224 14.454791        180
+shallow_multiwindow_ridge      4.929250           7.863843     17.691035       5.594485           6.702334 -1.051033        180

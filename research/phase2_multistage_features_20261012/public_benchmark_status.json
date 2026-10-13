@@ -1,0 +1,15 @@
+{
+  "Gasper": {
+    "status": "UNVERIFIED",
+    "reason": "Required verified ZIP members unavailable; HTTP range requests timed out; only metadata/index and author code audited",
+    "missing": [
+      "features_pulse_hppc.csv",
+      "features_pulse_rapid.csv",
+      "targets_soh.csv"
+    ]
+  },
+  "Zhu": {
+    "status": "UNVERIFIED",
+    "reason": "No verified NCA raw CSV downloaded; strict waveform/capacity pairing not yet executable; no complete paper reproduction claimed"
+  }
+}

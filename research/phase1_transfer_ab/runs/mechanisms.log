@@ -1,0 +1,11 @@
+constant_capacity_varying_temperature done
+constant_temperature_capacity_fade done
+coupled_temperature_and_fade done
+sensor_bias done
+self_heating_change done
+four_series_capacity_imbalance done
+four_series_soc_imbalance done
+limiting_cell_switch done
+prior_too_fast done
+prior_too_slow done
+polarization_start_soc_confounds_A done

@@ -1,0 +1,77 @@
+[
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/charge_capacity_review_20261006/operating_events.csv",
+    "sha256": "589e5d4702a5924353635b6873f6b0563477afc27f714b723e0a045327cbf592",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/data/checkups/evaluation_points.csv",
+    "sha256": "66e02b1b6ae8e011550a07fce963c49c649bb0cad4193c14d557bcca4e463669",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_literature_reassessment/papers/B_sources/Gasper2025_OSTI.txt",
+    "sha256": "fe280bf0a1dafedd8868dc3220ee36e576dd78b3a1344c89c6c26652aaad0871",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_literature_reassessment/papers/B_sources/Gasper2025_OSTI.pdf",
+    "sha256": "792051d371b52958a2dcb8f73fc570f0ae33b1c40644e1ce8e3cc688e4d9eee1",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_literature_reassessment/papers/D_old_refs/Zhu2022.txt",
+    "sha256": "362b42178cc7dc335a1b0c319b05bb4f863d9ee5e9ba0e81261af748426e1aa3",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_literature_reassessment/papers/D_old_refs/Zhu2022.pdf",
+    "sha256": "7bb10cfb5f361711f4b383456686eeaeead28fa6128e43f8bc888c1899786846",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_literature_reassessment/papers/D_old_refs/Zhu2022_MOESM1.txt",
+    "sha256": "90330460163a40a15464af990d5b5623e046adcf6f4ef02f68146d2a12c9b391",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_literature_reassessment/papers/D_old_refs/Zhu2022_MOESM1.pdf",
+    "sha256": "6e45f07415f2d22aa60956c63a3717deca98535c31eb5ed38d001f3ddb889f9a",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_literature_reassessment/outputs/LFP_SOH_核心论文精读与证据附册.md",
+    "sha256": "6b29257e4578ebd2f4b405e20e397e6731f1297878e556cd6183b64ef8dc8937",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_literature_reassessment/outputs/LFP_SOH_第二阶段文献综述与技术路线_深度重评.md",
+    "sha256": "3785a1e1eebfbfb690faccd25496e992fcd49deaef6608f4d15b24cfc019614f",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_signal_driven_routes_20261011/阶段二四串电池组_运行信号驱动路线评估.md",
+    "sha256": "c56d6794b20872039b0a45d16a3166285ae9c69de6fed3601c5f295dccd18899",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_joint_discharge_20261011/README.md",
+    "sha256": "6fc5f3abad1e2c9c4021640833e5662a0e92e9f98a6a70e1ad00a268413d94ec",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_initial_soc_four_methods_20261011/FINAL_REPORT.md",
+    "sha256": "791b4c59220d96a7e86fdb15974336eaa9cc9d1bc6a48461e71dbcdda9806cdc",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_method_exploration/data_manifests/source_inventory.csv",
+    "sha256": "497d727734ad3d9bc08fed4b55682387a85f8b80e0da59f850f55ae2ba03ff3a",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_method_exploration/data_manifests/source_inventory_summary.json",
+    "sha256": "15263bb0c125cb09ce25b21b602ae8968d45289dcabe2193da9d13e855b1ed31",
+    "read_only": true
+  }
+]

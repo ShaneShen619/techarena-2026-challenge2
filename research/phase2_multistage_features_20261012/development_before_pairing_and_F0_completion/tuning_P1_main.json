@@ -1,0 +1,3571 @@
+[
+  {
+    "family": "F0",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      3.5297738111623453,
+      3.4092825604397445,
+      3.720093558925295,
+      6.8529290646552905,
+      3.498228492235325,
+      3.0609178029047923,
+      3.0227771052404924,
+      2.7261192493430833
+    ]
+  },
+  {
+    "family": "F0",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      3.3944518914534614,
+      3.628032041364013,
+      4.939079814084602,
+      6.9369085857606905,
+      4.56863216027134,
+      4.155817240650093,
+      4.220912023385952,
+      3.994363310774427
+    ]
+  },
+  {
+    "family": "F0",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.1,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      6.916378133517957,
+      5.936819047249823,
+      4.198144340857091,
+      7.502206121589742,
+      5.581398040846177,
+      5.752723018050397,
+      5.207435018752429,
+      5.926472967264951
+    ]
+  },
+  {
+    "family": "F0",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      5.39514996729978,
+      3.970572116231492,
+      4.695821981355376,
+      6.538124362357138,
+      3.246136936069513,
+      3.1855301040059265,
+      2.9580080208933723,
+      3.0543464669627314
+    ]
+  },
+  {
+    "family": "F0",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      3.9225642287570124,
+      3.7554609524315197,
+      4.99612620205598,
+      7.467031217944185,
+      4.223655128479236,
+      3.564036866415539,
+      3.477604320322326,
+      3.083372260416207
+    ]
+  },
+  {
+    "family": "F0",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      2.144172275525291,
+      2.20945733873651,
+      2.8268281030799804,
+      6.544716099177758,
+      2.595733640820109,
+      2.2931924546328766,
+      1.8276263011342402,
+      1.8195407064259186
+    ]
+  },
+  {
+    "family": "NT_only",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      3.345454973664927,
+      3.3538916605467834,
+      3.713292445959631,
+      6.8529290646552905,
+      3.407309855998128,
+      3.016554048916892,
+      3.0489033781380632,
+      2.970548221508386
+    ]
+  },
+  {
+    "family": "NT_only",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 40,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      6.171043131397227,
+      5.9540739893501495,
+      4.427622127877724,
+      6.9369085857606905,
+      4.665154789061811,
+      4.333643966547351,
+      4.538680470994179,
+      4.366776931247556
+    ]
+  },
+  {
+    "family": "NT_only",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.1,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      12.140701993050946,
+      11.832497167168555,
+      4.141325271172407,
+      7.502206121589742,
+      4.8077085094321745,
+      4.5602520431535964,
+      4.7614573669276545,
+      4.684805163944653
+    ]
+  },
+  {
+    "family": "NT_only",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      4.5301930542303115,
+      4.513989780760783,
+      3.988353448712897,
+      6.538124362357138,
+      3.748577597964867,
+      3.1861981450136563,
+      3.000693639596362,
+      2.8191710090102715
+    ]
+  },
+  {
+    "family": "NT_only",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      4.440961507489559,
+      4.275128379816398,
+      4.925717791314634,
+      7.467031217944185,
+      4.268634038380458,
+      3.6172288880222965,
+      3.5483595566410644,
+      3.2938037288887236
+    ]
+  },
+  {
+    "family": "NT_only",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      2.4157664044637683,
+      2.3696492507326203,
+      2.82682810307998,
+      6.544716099177758,
+      2.803252814673429,
+      2.4352172074113962,
+      2.4897521034862438,
+      2.250825219614676
+    ]
+  },
+  {
+    "family": "V0_T",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.1,
+      "l1_ratio": 0.8
+    },
+    "inner_losses": [
+      7.83946170281521,
+      7.875481037932973,
+      7.206947817784905,
+      6.8529290646552905,
+      7.198842309563618,
+      8.13621054867424,
+      7.511207732889588,
+      7.578894722102047
+    ]
+  },
+  {
+    "family": "V0_T",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.1,
+      "l1_ratio": 0.8
+    },
+    "inner_losses": [
+      10.32196132754966,
+      10.089541071255493,
+      7.399237963664139,
+      7.265683427880271,
+      8.298126765637148,
+      8.495220997192087,
+      8.03308915973352,
+      8.729704343135085
+    ]
+  },
+  {
+    "family": "V0_T",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.1,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      14.849369146015277,
+      14.453291543032815,
+      7.928291160506528,
+      7.998869093752999,
+      10.478380200616915,
+      10.98413456958579,
+      11.228952056325632,
+      11.221599494166272
+    ]
+  },
+  {
+    "family": "V0_T",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 40,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      13.673533491089847,
+      13.331041423222212,
+      7.63245948785904,
+      6.538124362357138,
+      6.24292560211198,
+      6.024720886762256,
+      6.806895381623784,
+      7.040657646753584
+    ]
+  },
+  {
+    "family": "V0_T",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 40,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      10.002158734261453,
+      9.856620030662047,
+      7.619664732129571,
+      7.678597618873387,
+      6.825273488836052,
+      7.84733156297483,
+      7.637022226150085,
+      8.435826404907024
+    ]
+  },
+  {
+    "family": "V0_T",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.1,
+      "l1_ratio": 0.8
+    },
+    "inner_losses": [
+      9.276472099737562,
+      9.173744712374178,
+      7.215244215325498,
+      7.009887341721969,
+      7.9537046023732145,
+      7.844255897210788,
+      8.950685478230444,
+      7.929463958744196
+    ]
+  },
+  {
+    "family": "F0_F1_CCCV",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      2.338896677315959,
+      2.965441417035396,
+      3.3918775248709765,
+      6.670726504511317,
+      2.7709961157022733,
+      2.3925934370196016,
+      2.0435734281665137,
+      1.7706255020512949
+    ]
+  },
+  {
+    "family": "F0_F1_CCCV",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      3.549270505342728,
+      5.131444792506413,
+      4.239190279972248,
+      6.881138809769277,
+      2.9344620812651656,
+      2.542113373137868,
+      3.188766425041,
+      2.4400623281392804
+    ]
+  },
+  {
+    "family": "F0_F1_CCCV",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      2.129571112605612,
+      2.941579994539338,
+      4.060631545692284,
+      7.346606400379679,
+      3.41522240607799,
+      2.7776782815547056,
+      3.201791594263716,
+      2.5750302970508834
+    ]
+  },
+  {
+    "family": "F0_F1_CCCV",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      3.3518511608554875,
+      4.434386788416938,
+      4.737577850667288,
+      6.538124362357138,
+      2.798681095104588,
+      2.347551467388234,
+      2.646568406829779,
+      2.1477022887795476
+    ]
+  },
+  {
+    "family": "F0_F1_CCCV",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      3.1587335604071334,
+      4.68018448954487,
+      4.464060917188987,
+      7.422102162520483,
+      2.859299061251504,
+      2.498522559774171,
+      1.960447248963779,
+      1.837126539230758
+    ]
+  },
+  {
+    "family": "F0_F1_CCCV",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      2.230776709681855,
+      2.7631087541951316,
+      2.7225163589193655,
+      6.544716099177758,
+      2.6373091589033626,
+      2.122420099665539,
+      2.268924698669248,
+      1.7341278938579285
+    ]
+  },
+  {
+    "family": "F0_F2_rest",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      5.428717784016067,
+      3.594055957939169,
+      3.842051222079454,
+      6.763533315042838,
+      3.4463603007297423,
+      3.160336876641698,
+      2.9295820796028202,
+      2.9198509165587563
+    ]
+  },
+  {
+    "family": "F0_F2_rest",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      3.2656632396581147,
+      3.7724189673799104,
+      5.040668348954552,
+      6.921289373809666,
+      4.175969752948134,
+      4.113394018451955,
+      3.815988646774578,
+      3.8548986448245275
+    ]
+  },
+  {
+    "family": "F0_F2_rest",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.8
+    },
+    "inner_losses": [
+      6.603442027387359,
+      3.248133940287962,
+      6.07390121783339,
+      7.542757684031701,
+      4.38239325104233,
+      4.008052785273269,
+      3.8280012386059203,
+      3.790616161894648
+    ]
+  },
+  {
+    "family": "F0_F2_rest",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      6.898634735245826,
+      4.671748144336576,
+      4.665513386127708,
+      6.538124362357138,
+      3.506174056792122,
+      3.309976516863459,
+      3.1054049779009674,
+      3.2205464522192315
+    ]
+  },
+  {
+    "family": "F0_F2_rest",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      6.426124215233261,
+      4.623203637023289,
+      5.079111326916604,
+      7.467031217944185,
+      4.208252133559159,
+      4.010234123076975,
+      3.5842890902989817,
+      3.5658287489483795
+    ]
+  },
+  {
+    "family": "F0_F2_rest",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      2.960870629904237,
+      2.479697978805969,
+      2.967722641064909,
+      6.544716099177758,
+      2.63999547585193,
+      2.341245464808558,
+      2.0054382592877102,
+      1.8735951559194706
+    ]
+  },
+  {
+    "family": "F0_F3_dynamic",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      117.14450278017564,
+      126.78028365868968,
+      4.027652248161935,
+      6.8529290646552905,
+      4.013475793532129,
+      4.116298298900147,
+      3.472638748249713,
+      3.7186346448109484
+    ]
+  },
+  {
+    "family": "F0_F3_dynamic",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      77.75941172236537,
+      4.6089495845733115,
+      5.307882101926351,
+      6.9369085857606905,
+      5.395214943336803,
+      4.269743623237268,
+      5.1211001364812905,
+      4.188419756838033
+    ]
+  },
+  {
+    "family": "F0_F3_dynamic",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      3.435188281531496,
+      4.1425146407395825,
+      5.981226798550798,
+      7.502206121589742,
+      7.427252453764572,
+      7.539948514118976,
+      6.656111565297628,
+      7.276351311215888
+    ]
+  },
+  {
+    "family": "F0_F3_dynamic",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      42.95918590395129,
+      5.170379747369136,
+      4.971997365655608,
+      6.538124362357138,
+      4.260723148414991,
+      3.5046019841731586,
+      3.789117328182919,
+      3.332304648817339
+    ]
+  },
+  {
+    "family": "F0_F3_dynamic",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      179.52472139702272,
+      182.4943397721359,
+      5.235149410824464,
+      7.467031217944185,
+      5.23882536049915,
+      4.576289933239395,
+      4.494241470500088,
+      4.111110004666942
+    ]
+  },
+  {
+    "family": "F0_F3_dynamic",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      230.28898651687564,
+      249.39568129811101,
+      2.8701262304004125,
+      6.544716099177758,
+      2.7916748141195975,
+      2.600468702796087,
+      2.086962820824091,
+      2.1868959483074706
+    ]
+  },
+  {
+    "family": "F0_F4_recovery",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      3.4156673855284096,
+      3.249185488276153,
+      3.550618220371464,
+      6.8529290646552905,
+      3.2116998159769485,
+      3.0083166312174274,
+      2.7322631748604467,
+      2.7552259954213
+    ]
+  },
+  {
+    "family": "F0_F4_recovery",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      5.342911794338785,
+      5.91454808596531,
+      4.662223017965461,
+      6.930890006819318,
+      4.490668716064276,
+      4.182156438748652,
+      3.907541673166083,
+      3.947541741011946
+    ]
+  },
+  {
+    "family": "F0_F4_recovery",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      6.321098849565241,
+      6.027162309160821,
+      5.09096900830991,
+      7.39252846153808,
+      4.5483628929170745,
+      3.8247029306840057,
+      4.1394552807779235,
+      3.64204522847307
+    ]
+  },
+  {
+    "family": "F0_F4_recovery",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 40,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      3.4202607749372094,
+      3.2583286048082245,
+      3.9234940397709352,
+      6.538124362357138,
+      3.4667066975600265,
+      2.917124300568074,
+      3.301153368421533,
+      2.945151352721549
+    ]
+  },
+  {
+    "family": "F0_F4_recovery",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      3.6806919082407603,
+      3.873785093939574,
+      4.437307206072705,
+      7.457758542580455,
+      4.971278514935487,
+      4.506456536817936,
+      4.292685673521189,
+      4.102503577602197
+    ]
+  },
+  {
+    "family": "F0_F4_recovery",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      2.969429599061116,
+      2.9788284911733096,
+      2.851062611735447,
+      6.544716099177758,
+      2.746144605053959,
+      2.5682201184969964,
+      2.2478570265005544,
+      2.2080997743048316
+    ]
+  },
+  {
+    "family": "Zhu_three",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 40,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      6.693018930055184,
+      6.575777947859822,
+      4.487602898052537,
+      6.8529290646552905,
+      3.6043223668653455,
+      4.3391495448499615,
+      4.130934458437965,
+      4.916742051577512
+    ]
+  },
+  {
+    "family": "Zhu_three",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 40,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      7.781702422842828,
+      7.8169493854234275,
+      6.473267647881762,
+      6.981537499711313,
+      5.63887799888733,
+      6.120924269087344,
+      6.635693008913622,
+      7.198767298897299
+    ]
+  },
+  {
+    "family": "Zhu_three",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 40,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      12.388620541991042,
+      12.22104867241092,
+      8.370242868433037,
+      7.843340931672451,
+      4.99623773525709,
+      4.617905387049165,
+      5.674130224693117,
+      5.549912466502993
+    ]
+  },
+  {
+    "family": "Zhu_three",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.1,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      6.765405696385389,
+      6.974219250116202,
+      5.519467806958613,
+      6.538124362357138,
+      5.566271353024248,
+      5.653521278178829,
+      6.38811245624616,
+      6.366861121623971
+    ]
+  },
+  {
+    "family": "Zhu_three",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 40,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      6.325634810281565,
+      6.377015186476497,
+      5.916487831943867,
+      7.4815284956673995,
+      5.078508056590102,
+      5.283338390135965,
+      5.285152314131959,
+      5.741776867292105
+    ]
+  },
+  {
+    "family": "Zhu_three",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 40,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      6.5327396455574895,
+      6.574322063399498,
+      5.9650382183174075,
+      6.824337999024474,
+      5.292948481505789,
+      5.731047977596872,
+      5.616235122394607,
+      6.235597086274074
+    ]
+  },
+  {
+    "family": "Zhu_six",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 40,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      5.218727949415448,
+      4.917231333211805,
+      4.49516154291406,
+      6.8529290646552905,
+      3.6515891367306343,
+      4.413582286918798,
+      4.457588937323005,
+      5.063633443799742
+    ]
+  },
+  {
+    "family": "Zhu_six",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      5.377340973407122,
+      6.082903779520619,
+      6.649395481000775,
+      6.981537499711313,
+      5.947443493173923,
+      6.124396761994129,
+      6.753239323049482,
+      6.970540461861427
+    ]
+  },
+  {
+    "family": "Zhu_six",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 40,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      11.164486562229316,
+      11.632859634667916,
+      8.490432956130112,
+      7.843340931672451,
+      4.851303711209679,
+      5.010342721134089,
+      5.8071183045252495,
+      6.042058809504901
+    ]
+  },
+  {
+    "family": "Zhu_six",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.8
+    },
+    "inner_losses": [
+      4.374759065993519,
+      4.134021472260572,
+      5.691018315166839,
+      6.538124362357138,
+      5.27356580206378,
+      5.290969352411026,
+      6.04864576043037,
+      6.061862305797561
+    ]
+  },
+  {
+    "family": "Zhu_six",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      4.954644938639267,
+      5.0327690499074045,
+      5.991380624750582,
+      7.4815284956673995,
+      5.022634543779556,
+      5.2633329423520365,
+      5.127427519746793,
+      5.46882661021067
+    ]
+  },
+  {
+    "family": "Zhu_six",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      4.870938716245666,
+      5.437526994409682,
+      6.044262490044159,
+      6.824337999024474,
+      5.183164373111814,
+      5.51426570186093,
+      5.2168968039226415,
+      5.618707057259961
+    ]
+  },
+  {
+    "family": "F0_Zhu_three",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      3.6439453409784717,
+      3.5842116142979434,
+      3.984888511931005,
+      6.8529290646552905,
+      3.4091051140782063,
+      3.133017679092805,
+      2.99052981592259,
+      3.0742762333302487
+    ]
+  },
+  {
+    "family": "F0_Zhu_three",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      3.1293097634866074,
+      3.736231353380295,
+      5.1546891579473995,
+      6.9369085857606905,
+      4.136322516485779,
+      3.9071154827454606,
+      3.7112393527758742,
+      3.580030605698801
+    ]
+  },
+  {
+    "family": "F0_Zhu_three",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      5.382860393962377,
+      3.938036225995604,
+      6.86160785420463,
+      7.659953295008124,
+      4.199270920783762,
+      3.5349848967968525,
+      3.780399625271882,
+      3.4914340680804017
+    ]
+  },
+  {
+    "family": "F0_Zhu_three",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      6.899333212145192,
+      4.565940498524567,
+      4.6037869308161055,
+      6.538124362357138,
+      3.4378784030424088,
+      3.255562696301234,
+      3.1003558327322183,
+      3.0896021004482526
+    ]
+  },
+  {
+    "family": "F0_Zhu_three",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      4.655655449480072,
+      4.218754888795404,
+      5.183553986203387,
+      7.467031217944185,
+      4.398385934271483,
+      3.939608359387615,
+      3.7026520854528355,
+      3.558859035368397
+    ]
+  },
+  {
+    "family": "F0_Zhu_three",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      2.5780361984133564,
+      2.3876613244301406,
+      2.974996456993759,
+      6.544716099177758,
+      2.669738993779202,
+      2.3594050860644034,
+      1.9034256153773856,
+      1.8654482530763439
+    ]
+  },
+  {
+    "family": "F0_raw",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      118.95632428147742,
+      124.0125179931669,
+      4.026425389847283,
+      6.8529290646552905,
+      4.0233188417884795,
+      3.9003814381138695,
+      3.516186173343857,
+      3.5319852282309485
+    ]
+  },
+  {
+    "family": "F0_raw",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      290.73436590069184,
+      43.98002618149658,
+      5.505166535891179,
+      6.9369085857606905,
+      5.418661993012153,
+      4.3052412251086745,
+      5.196156353210922,
+      4.248915472178126
+    ]
+  },
+  {
+    "family": "F0_raw",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.8
+    },
+    "inner_losses": [
+      3.8335861361216765,
+      3.6446835417230994,
+      5.597065361339141,
+      7.502206121589742,
+      7.1461124249226184,
+      7.071642103255518,
+      6.44805522753038,
+      7.095817291068632
+    ]
+  },
+  {
+    "family": "F0_raw",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      149.627395453782,
+      25.250078990241942,
+      4.895716636235039,
+      6.538124362357138,
+      4.0176596745859126,
+      3.391447680634863,
+      3.6012308095439223,
+      3.2109553439028415
+    ]
+  },
+  {
+    "family": "F0_raw",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      121.91576587813861,
+      133.25447087868406,
+      5.293707837709715,
+      7.467031217944185,
+      5.169570958566931,
+      4.8282716681793465,
+      4.479262518259246,
+      4.378855235813541
+    ]
+  },
+  {
+    "family": "F0_raw",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      233.716357111267,
+      243.24723851812345,
+      2.873377791852904,
+      6.544716099177758,
+      2.7470599026176776,
+      2.6817686315585427,
+      2.176630632997452,
+      2.3183383162896782
+    ]
+  },
+  {
+    "family": "joint",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      10.647789628469251,
+      58.78337658073353,
+      3.330965957901558,
+      6.670726504511317,
+      3.0352761714813807,
+      2.650712458138862,
+      2.4145894634234892,
+      2.121357651951416
+    ]
+  },
+  {
+    "family": "joint",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      49.61463921678017,
+      5.028666090056621,
+      4.719110154089689,
+      6.884691275725987,
+      3.787909445402172,
+      3.4123953506713134,
+      3.2861736399921475,
+      3.100949683584859
+    ]
+  },
+  {
+    "family": "joint",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      2.8414485448838454,
+      3.88474329151308,
+      4.585425047653552,
+      7.346606400379679,
+      3.3817874018195284,
+      2.957068482315063,
+      2.83620852183372,
+      2.7455382675619995
+    ]
+  },
+  {
+    "family": "joint",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      25.316633353503555,
+      3.6768329482178226,
+      5.145327104854084,
+      6.538124362357138,
+      3.4778244318344136,
+      2.9341215885140532,
+      3.2727265827434806,
+      2.866446917804712
+    ]
+  },
+  {
+    "family": "joint",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      78.34200170686621,
+      86.56456070525537,
+      4.522027216956255,
+      7.422102162520483,
+      3.5611073993671694,
+      3.4535706668944925,
+      2.827149165672296,
+      2.8791690725510746
+    ]
+  },
+  {
+    "family": "joint",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      20.594380637393577,
+      115.03877651540213,
+      2.8190321792935253,
+      6.544716099177758,
+      2.7478582404047383,
+      2.2617963846432554,
+      2.3543573366441835,
+      1.9020070396285618
+    ]
+  },
+  {
+    "family": "joint_no_full_charge",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      39.1460695690255,
+      59.4697837735381,
+      3.5737948172325433,
+      6.763533315042838,
+      3.5123925998386105,
+      3.3249223055151957,
+      3.0231919893955737,
+      3.0902715119218893
+    ]
+  },
+  {
+    "family": "joint_no_full_charge",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 40,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      5.803596738204778,
+      6.276209492202645,
+      5.234163145369207,
+      6.93089000681932,
+      5.214172597536285,
+      5.210286303687423,
+      5.239538522410713,
+      5.31223923631555
+    ]
+  },
+  {
+    "family": "joint_no_full_charge",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      4.526459350417919,
+      3.9054274054736617,
+      5.271036779689802,
+      7.5098306311058165,
+      4.308445931695234,
+      3.5451555732284574,
+      3.782461988705685,
+      3.4630823841500016
+    ]
+  },
+  {
+    "family": "joint_no_full_charge",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      2.8893692022863866,
+      3.5516232606943396,
+      5.214199176498594,
+      6.538124362357138,
+      4.396567266673491,
+      4.09471477836314,
+      4.3964278396664955,
+      4.452699895758096
+    ]
+  },
+  {
+    "family": "joint_no_full_charge",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      88.0595944143244,
+      108.36439371566499,
+      4.8339634926347745,
+      7.457758542580455,
+      5.103311250413261,
+      4.6887537466470794,
+      4.675902367956354,
+      4.408587211714002
+    ]
+  },
+  {
+    "family": "joint_no_full_charge",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.1,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      76.40656709954905,
+      115.54150667278016,
+      2.904478057865295,
+      6.544716099177758,
+      3.1868447073034214,
+      3.1285321260307133,
+      2.917624138305492,
+      2.9471442743308987
+    ]
+  },
+  {
+    "family": "shape_only",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      3.282672483947055,
+      3.7261566438928804,
+      4.971593439183762,
+      6.763533315042838,
+      5.146202054227657,
+      5.778946035205039,
+      4.686356612315921,
+      5.724740418477784
+    ]
+  },
+  {
+    "family": "shape_only",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 40,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      5.962392339506301,
+      6.889922505656733,
+      5.759818034651664,
+      7.001924853369258,
+      5.919734776497796,
+      5.619324821951501,
+      6.334528870116354,
+      6.01233343306731
+    ]
+  },
+  {
+    "family": "shape_only",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      5.393524303360453,
+      4.7096379000498025,
+      5.38601432140226,
+      7.719090437854891,
+      4.861309166010505,
+      4.647513945366198,
+      4.889610342080009,
+      4.623375388830068
+    ]
+  },
+  {
+    "family": "shape_only",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      2.480964135327864,
+      3.8230431192587333,
+      7.105358951441367,
+      6.538124362357138,
+      5.66034003084035,
+      6.05068293989764,
+      5.277965240683136,
+      5.842406925427218
+    ]
+  },
+  {
+    "family": "shape_only",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      11.214377008817209,
+      5.394227263096545,
+      4.939187365740181,
+      7.491776758967136,
+      4.827073861621378,
+      4.988865867779767,
+      4.267726419434888,
+      4.672364379234493
+    ]
+  },
+  {
+    "family": "shape_only",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      5.735113331312674,
+      6.971198545676468,
+      5.245342460958184,
+      6.858847350597614,
+      5.248928209268443,
+      5.676215527830381,
+      4.671915821233284,
+      5.4983654916423434
+    ]
+  },
+  {
+    "family": "A_window_only",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      3.746327055430794,
+      3.7796073063255724,
+      6.062989472630736,
+      6.8529290646552905,
+      6.607734258865774,
+      6.0960924278901505,
+      6.218373821980744,
+      5.8224171790175
+    ]
+  },
+  {
+    "family": "A_window_only",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      6.551019423729284,
+      6.6833599755808235,
+      7.7133490408297645,
+      7.265683427880271,
+      7.04365606355965,
+      6.959900266993408,
+      6.523972754909411,
+      6.564417494238098
+    ]
+  },
+  {
+    "family": "A_window_only",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      6.494108270222784,
+      6.513154091420107,
+      6.571902184472101,
+      7.998869093752999,
+      7.611577872614464,
+      7.152858606505262,
+      6.579412637168794,
+      7.224287671001458
+    ]
+  },
+  {
+    "family": "A_window_only",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.8
+    },
+    "inner_losses": [
+      2.9580599640471563,
+      2.9387620324323835,
+      6.1894176155770175,
+      6.538124362357138,
+      6.511550766775483,
+      6.554306797381159,
+      6.437536517912943,
+      6.368826222331857
+    ]
+  },
+  {
+    "family": "A_window_only",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      4.950450866806209,
+      5.172761278437192,
+      8.20409103454517,
+      7.678597618873387,
+      5.395432207676579,
+      6.309634841879781,
+      4.578165628975984,
+      6.3251839358968684
+    ]
+  },
+  {
+    "family": "A_window_only",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      4.736102231435387,
+      4.972233861311656,
+      6.922248736281901,
+      7.009887341721969,
+      6.50903010740827,
+      6.46809993997347,
+      6.236959415800912,
+      6.3272670697144475
+    ]
+  },
+  {
+    "family": "joint_plus_A",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      13.081439189141516,
+      29.3706529216587,
+      3.330965957901558,
+      6.670726504511317,
+      3.0352761714813807,
+      2.6429477176210545,
+      2.4142415283459693,
+      2.1018931854123286
+    ]
+  },
+  {
+    "family": "joint_plus_A",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      34.875627305071475,
+      4.933797566679339,
+      4.719110761021024,
+      6.884691275725987,
+      3.787909445402172,
+      3.4123717158235474,
+      3.2850607784121464,
+      3.104787779678021
+    ]
+  },
+  {
+    "family": "joint_plus_A",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      2.8224729507828146,
+      3.8383997857929693,
+      4.585421948031241,
+      7.346606400379679,
+      3.3817874018195284,
+      2.957068482315063,
+      2.83620852183372,
+      2.7455382675619995
+    ]
+  },
+  {
+    "family": "joint_plus_A",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      18.02825742488907,
+      3.6465432268883062,
+      5.145324676324239,
+      6.538124362357138,
+      3.4778244318344136,
+      2.9341215885140532,
+      3.272746805303207,
+      2.8658260790452372
+    ]
+  },
+  {
+    "family": "joint_plus_A",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      56.802877367982866,
+      100.21936245558992,
+      4.522025784288536,
+      7.422102162520483,
+      3.5611073993671694,
+      3.4535706668944925,
+      2.827149165672296,
+      2.8863850373457405
+    ]
+  },
+  {
+    "family": "joint_plus_A",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      25.396715296569422,
+      56.408182415571694,
+      2.8190321792935253,
+      6.544716099177758,
+      2.7478582404047383,
+      2.2599272872781904,
+      2.3504079040906207,
+      1.8650581064268412
+    ]
+  },
+  {
+    "family": "joint_without_F1_CCCV",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      58.52171819202814,
+      67.07459745128901,
+      3.529150743268841,
+      6.763533315042838,
+      3.3243883345691096,
+      3.01364814692246,
+      2.9592332387666835,
+      2.8203145521795867
+    ]
+  },
+  {
+    "family": "joint_without_F1_CCCV",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      4.9884753147805,
+      6.044670226087027,
+      4.6675328169765695,
+      6.930890006819318,
+      4.315289999541936,
+      4.163997051477013,
+      3.7590209519257285,
+      4.004311668428466
+    ]
+  },
+  {
+    "family": "joint_without_F1_CCCV",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      4.238202391522505,
+      3.6367012925531554,
+      5.271053934978563,
+      7.509830631105816,
+      4.459341719855841,
+      3.671798501300187,
+      4.003048196415439,
+      3.576179408469077
+    ]
+  },
+  {
+    "family": "joint_without_F1_CCCV",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      2.9601211877959326,
+      3.2479937223927484,
+      4.248589965350583,
+      6.538124362357138,
+      3.4906287374163574,
+      3.2120517234046084,
+      3.232297228084948,
+      3.292884209088794
+    ]
+  },
+  {
+    "family": "joint_without_F1_CCCV",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      60.515715463483865,
+      87.77016152309744,
+      4.430026831129103,
+      7.457758542580455,
+      4.235994126459788,
+      3.9222872009048415,
+      3.5024425813955085,
+      3.4624753529117056
+    ]
+  },
+  {
+    "family": "joint_without_F1_CCCV",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      114.86397405595554,
+      130.7819018278096,
+      2.8982904157176796,
+      6.544716099177758,
+      2.8437555114032977,
+      2.565800126598585,
+      2.3043818802530547,
+      2.086713788907759
+    ]
+  },
+  {
+    "family": "joint_without_F2_rest",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      13.711626396237724,
+      2.841659588440151,
+      3.3230655235989537,
+      6.670726504511317,
+      2.9384307004264203,
+      2.5259157756973982,
+      2.262674117436375,
+      1.9396988185198942
+    ]
+  },
+  {
+    "family": "joint_without_F2_rest",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      44.206792016980884,
+      23.825015286664165,
+      4.206795545743164,
+      6.884691275725987,
+      3.76959529545969,
+      3.5546124787586693,
+      3.241723966792341,
+      3.2602498960032493
+    ]
+  },
+  {
+    "family": "joint_without_F2_rest",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      2.5922724896346616,
+      3.221828329842787,
+      4.3147929391442785,
+      7.346606400379679,
+      3.6945676706703177,
+      3.3467240501057383,
+      3.1497209660983274,
+      3.1459056068982996
+    ]
+  },
+  {
+    "family": "joint_without_F2_rest",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      22.809007739021954,
+      13.217805560283585,
+      4.736361097975143,
+      6.538124362357138,
+      3.2946083902291683,
+      2.6642421146876947,
+      3.0344484413249733,
+      2.479339339762702
+    ]
+  },
+  {
+    "family": "joint_without_F2_rest",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      56.68445883230163,
+      4.182590591791988,
+      4.26994905000371,
+      7.422102162520483,
+      3.5484705211164163,
+      3.3574054956010655,
+      2.8184819215780132,
+      3.014269561517277
+    ]
+  },
+  {
+    "family": "joint_without_F2_rest",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      26.401553189213367,
+      3.1196589897747744,
+      2.7921678013544926,
+      6.544716099177758,
+      2.6858710610958862,
+      2.2791549490382237,
+      2.2841558685065815,
+      1.8720267159627606
+    ]
+  },
+  {
+    "family": "joint_without_F3_dynamic",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      2.5067074211085476,
+      3.2163159306365103,
+      3.330965957901558,
+      6.670726504511317,
+      3.0627400804552987,
+      2.673440936974383,
+      2.4320256757481458,
+      2.159903482156804
+    ]
+  },
+  {
+    "family": "joint_without_F3_dynamic",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      3.855885610123155,
+      5.034484469772941,
+      4.71912093641015,
+      6.884691275725987,
+      3.770690936969628,
+      3.408111617172178,
+      3.310500475641426,
+      3.1439795804824633
+    ]
+  },
+  {
+    "family": "joint_without_F3_dynamic",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      2.83914939080018,
+      4.00375370518398,
+      4.585435963643045,
+      7.346606400379679,
+      3.341459426639232,
+      2.9262923514435526,
+      2.8127136116868217,
+      2.687778310435197
+    ]
+  },
+  {
+    "family": "joint_without_F3_dynamic",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      2.4714124635706436,
+      3.6790829802212364,
+      5.145327104854084,
+      6.538124362357138,
+      3.4826936391563805,
+      2.955535994946879,
+      3.2865275377223213,
+      2.8710157468366106
+    ]
+  },
+  {
+    "family": "joint_without_F3_dynamic",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 2,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      3.6093634410576483,
+      4.042393254077832,
+      4.522027216956255,
+      7.422102162520483,
+      3.5611073993671694,
+      3.451122201124575,
+      2.826410558799379,
+      2.9117068989839234
+    ]
+  },
+  {
+    "family": "joint_without_F3_dynamic",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      3.4372860066813784,
+      3.5195077673277213,
+      2.8190321792935253,
+      6.544716099177758,
+      2.7478582404047383,
+      2.264069337684071,
+      2.357084607512144,
+      1.9097374362987474
+    ]
+  },
+  {
+    "family": "joint_without_F4_recovery",
+    "fold": 0,
+    "train_entities": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      40.86427255925717,
+      51.28744438601715,
+      3.4522864239641913,
+      6.670726504511317,
+      3.108736595072147,
+      2.7423929268614082,
+      2.353117204023736,
+      2.108316610392643
+    ]
+  },
+  {
+    "family": "joint_without_F4_recovery",
+    "fold": 1,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_25degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      33.51973504953885,
+      5.58615322160216,
+      4.913048983186353,
+      6.881138809769277,
+      3.6388770525864635,
+      3.1688602995278337,
+      3.363565609115291,
+      2.977558500589753
+    ]
+  },
+  {
+    "family": "joint_without_F4_recovery",
+    "fold": 2,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "EN",
+      "alpha": 0.001,
+      "l1_ratio": 0.2
+    },
+    "inner_losses": [
+      1.9229701159366808,
+      3.242467753958178,
+      4.7657719428747445,
+      7.346606400379679,
+      3.6802779091891464,
+      3.027644354151703,
+      3.2372159803704195,
+      2.87124597815874
+    ]
+  },
+  {
+    "family": "joint_without_F4_recovery",
+    "fold": 3,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      18.447803900096805,
+      5.273746163474845,
+      5.356617765133661,
+      6.538124362357138,
+      3.534677944491269,
+      3.0452096539536617,
+      3.322069880020335,
+      2.978179149044748
+    ]
+  },
+  {
+    "family": "joint_without_F4_recovery",
+    "fold": 4,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "test_entities": [
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      4.5782998885821495,
+      4.447124784088115,
+      4.860404937825417,
+      7.422102162520483,
+      3.542227078031254,
+      3.2666416380452454,
+      2.8527393191405643,
+      2.718086814804676
+    ]
+  },
+  {
+    "family": "joint_without_F4_recovery",
+    "fold": 5,
+    "train_entities": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "test_entities": [
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": {
+      "kind": "XGB",
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    },
+    "inner_losses": [
+      79.19665215953164,
+      98.50343599982519,
+      2.7617427899059406,
+      6.544716099177758,
+      2.768571434545974,
+      2.227350867691281,
+      2.4084671867442937,
+      1.8353368453990697
+    ]
+  }
+]

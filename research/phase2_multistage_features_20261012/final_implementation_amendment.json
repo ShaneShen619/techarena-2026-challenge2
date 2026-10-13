@@ -1,0 +1,12 @@
+{
+  "utc": "2026-10-13T16:21:47.913342+00:00",
+  "reason": "Raw chronological-pairing/F0 completeness audit; previous development outputs preserved, no parameter/window selection based on results",
+  "changes": [
+    "Exclude capacity discharge before same-numbered charge from supervised paired experiments; retain in raw label/pairing inventory",
+    "Add known past accumulated CHARGE Ah to all F0 comparisons, from physical-cycle prior charge quantities in P1 and visible positive-current integral in official; no target-discharge tails",
+    "Restrict simple A history to earlier timestamps and exclude current event from registered-A history",
+    "Forward tests require physical-cycle order and train reference-label time before earliest test charge time"
+  ],
+  "development_archive": "development_before_pairing_and_F0_completion",
+  "all_project_configs_unchanged": true
+}

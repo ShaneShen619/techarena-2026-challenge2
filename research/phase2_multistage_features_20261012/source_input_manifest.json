@@ -1,0 +1,512 @@
+[
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_55degC_1C_cell3/102Ah_55degC_1C_cell3_time_series_part06.csv",
+    "bytes": 482025,
+    "sha256": "1c3bc951d511d130187d1bd1b81e35641014880ec2791a0c6e8b8397c006f3f9",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_55degC_1C_cell3/102Ah_55degC_1C_cell3_time_series_part05.csv",
+    "bytes": 9677951,
+    "sha256": "466acba627f6f1dbe02af1b81a3886f31f8e96c1a20efa9b06b390f243cec3b7",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_55degC_1C_cell3/102Ah_55degC_1C_cell3_time_series_part04.csv",
+    "bytes": 9740192,
+    "sha256": "809b67d59aa0047fd6af95cbf8739b1c3a30ea62f738d1fd8a4125748cae2954",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_55degC_1C_cell3/102Ah_55degC_1C_cell3_time_series_part01.csv",
+    "bytes": 9605038,
+    "sha256": "f7819a1f5f81676f4411603a9728892e61574e6db386c01bb3e11d58ea61539b",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_55degC_1C_cell3/102Ah_55degC_1C_cell3_time_series_part03.csv",
+    "bytes": 9745065,
+    "sha256": "0387be8474095d6420dd272e6092a607f044b9acad554303d57dff09e47405f5",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_55degC_1C_cell3/102Ah_55degC_1C_cell3_time_series_part02.csv",
+    "bytes": 9626895,
+    "sha256": "23f92a0d806f8497e0efe46bcf1987bcadfb43062e4cdbb79aa8fbf9e221ddca",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part09.csv",
+    "bytes": 9644427,
+    "sha256": "3d8451964dd683d8f3e36a5cdfdfc66f97095e7298d97c607b180466eb500695",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part08.csv",
+    "bytes": 9690482,
+    "sha256": "d85229e1f889832e6cb2fa08523c239dccd2e30fcf5193775802464555e2d905",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part12.csv",
+    "bytes": 5208794,
+    "sha256": "28ebec51e83907c2c0498f04cb2ee515ab08faf7a1245843944f0285dedabfc2",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part06.csv",
+    "bytes": 9737017,
+    "sha256": "21a45acf5e361e98425181058352b423e59c3400338f2547867ad865132a82ea",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part07.csv",
+    "bytes": 9749657,
+    "sha256": "ba83226156843b695d6161c6274794142320e3bb9dffcdc54b2a4e3b7fbc0442",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part13.csv",
+    "bytes": 10168705,
+    "sha256": "78a7af93bd215f097c717f7577b1aac03187fb232b35a367ab2939b8577805b8",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part05.csv",
+    "bytes": 9782241,
+    "sha256": "1ae8e2fa4621f8fcbc11bf68ca7a2b2fea8d210bd1f0e48e7f39d463df79ce9e",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part11.csv",
+    "bytes": 4380863,
+    "sha256": "86314b952b681ecc3230fed8379901ddd7377d16aa38d52cf0e804033c2ee367",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part10.csv",
+    "bytes": 10065681,
+    "sha256": "f47d765e28854834bc18ac4bfb0fb00cac3bbb1533ecccc677a0a1308077ecd0",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part04.csv",
+    "bytes": 9757845,
+    "sha256": "1eed456fdb054caaddeae7bea06413f871328dbd4192b036844e5015352e50a1",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part14.csv",
+    "bytes": 6653832,
+    "sha256": "05d6fa2a60a2aa3e33d71a4e6a1f6ccadd183a535b1836264964a9976fc5190e",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part01.csv",
+    "bytes": 9680447,
+    "sha256": "a00d84e3bac22c7a2edeaec53c992770a11f7278065667a9d475763dd33b338c",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part03.csv",
+    "bytes": 9721924,
+    "sha256": "f04823a5566763825071c1394d916cbb4add912365b4890ba023c28bbe8dae00",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_1C_cell3/102Ah_25degC_1C_cell3_time_series_part02.csv",
+    "bytes": 9688553,
+    "sha256": "c70ac9e8023f07702c1d6519a70e4288b0823cd29db9ee0a4510f37b3a6d2ddb",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part09.csv",
+    "bytes": 10051079,
+    "sha256": "b24739fc7082a9995a15df66774608e26b2946d3dea2b46c7f30c44135eef58e",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part08.csv",
+    "bytes": 10041120,
+    "sha256": "4f89526520003078615245107606d412fe88c5366cee8bee3ce415801bdf34aa",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part01.csv",
+    "bytes": 9890091,
+    "sha256": "cbf4a5a03cf162ababd3124339f09902dd96186a46882133a1bcba9c6b717c40",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part03.csv",
+    "bytes": 10002299,
+    "sha256": "72585c5e3eb764d15e0bbfe0aa6ba83f1bbb32a2be623fc5048e8c5694184e0e",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part02.csv",
+    "bytes": 9948413,
+    "sha256": "45bb46ec9690dd08c9822920ef8196c6586ce68657effcd259cccf6f4aed092c",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part06.csv",
+    "bytes": 10045349,
+    "sha256": "32e461c334333c9ddf9ed4c6d198a829e6f7d421cc40511d5276582ea7aaca75",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part12.csv",
+    "bytes": 9643433,
+    "sha256": "f179f7336980388dcc19b2ac79829c50861a0af43f04bc390f34f3e72dbed6c5",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part13.csv",
+    "bytes": 4925393,
+    "sha256": "8353dd89d5d8256eed69ab0f0f28b1ac56deb75e2c825befe974d99953de1cf1",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part07.csv",
+    "bytes": 10032325,
+    "sha256": "fb19eb232545994ecd2fd00458af4ccde70acc62303759a7b684be17de1edabf",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part11.csv",
+    "bytes": 9383089,
+    "sha256": "d07fd9c221b6b3f8a2c90728a99e79a2c471964b399ba4dcd3cff3ad931a52af",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part05.csv",
+    "bytes": 10058622,
+    "sha256": "47b9aecc4898019cea0bc9abd13afd967bd9df51c67db20379a463e5124368d0",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part04.csv",
+    "bytes": 10057407,
+    "sha256": "9211e5516e247b57173740854bb5e6132f250bf5fe544a10c22e0f7d28e9cdf1",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_35degC_1C_cell1/102Ah_35degC_1C_cell1_time_series_part10.csv",
+    "bytes": 9728328,
+    "sha256": "635e334a04b067df825da9de177da35cef84f8437d5457ba93331c213ea2e182",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_1C_cell1/102Ah_45degC_1C_cell1_time_series_part01.csv",
+    "bytes": 9679469,
+    "sha256": "a4f99eda6a93409ba0c67223e7458ce34fd8404ba0a83f7453025c9c2567b634",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_1C_cell1/102Ah_45degC_1C_cell1_time_series_part03.csv",
+    "bytes": 9779014,
+    "sha256": "99db8d9f33535f74cc105e1900cd37bac9e536cd5a54c94ce211b9fe97f862de",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_1C_cell1/102Ah_45degC_1C_cell1_time_series_part02.csv",
+    "bytes": 9722113,
+    "sha256": "c82581e60c18ece8e2bf299f8c71ee0a41b50d7bae99e09c539826b9883706c5",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_1C_cell1/102Ah_45degC_1C_cell1_time_series_part06.csv",
+    "bytes": 6769130,
+    "sha256": "44969cb409b9f7ffbb43d76a92e8a65462ec633e1cb13d7b9ed3f1721cd5a542",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_1C_cell1/102Ah_45degC_1C_cell1_time_series_part05.csv",
+    "bytes": 9849174,
+    "sha256": "e235982aa363992f088e12eb797a2fcaa61d388eca0ee740e791b7e90c9ca9b2",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_1C_cell1/102Ah_45degC_1C_cell1_time_series_part04.csv",
+    "bytes": 9849856,
+    "sha256": "a67e9809d514d69dbaeee49e1d8ae7206dd00c687d8c367c197596767067dc37",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part14.csv",
+    "bytes": 9929314,
+    "sha256": "60359507a8826200762e87c9797572c031b8c6cd14d63f8e4b883dd7f5d8b529",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part15.csv",
+    "bytes": 9957498,
+    "sha256": "5ebd097ac4fb32828d3aad192ccf1c1eded073d94f7d82b872b02453de65afdb",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part01.csv",
+    "bytes": 9746533,
+    "sha256": "5127a6a955c9657c1e058ab7b7449f73c2d8cd5deb30461ceecf716bd2785a71",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part17.csv",
+    "bytes": 9990793,
+    "sha256": "dae145e144d682b9d52418106c315287977a849748738dd296d5ecc10addd7f1",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part03.csv",
+    "bytes": 9867578,
+    "sha256": "4a5ca17ac311bfdaf6a004cea2bf8d464ca6d9d4e398fd0ad732bc2ad2b6b42d",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part02.csv",
+    "bytes": 9830062,
+    "sha256": "183e4121436d7d7210fcfe26e7d67c4cb09929e688edfa0386074ddcc3cb8b78",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part16.csv",
+    "bytes": 9838987,
+    "sha256": "19f56dc143d65bd07d1055aac44a08363325fedb2d62900e762fb869fe00690e",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part12.csv",
+    "bytes": 9849707,
+    "sha256": "f1b5544bcc59d466326ab9e3b500554c33cbdccc4758cbc5b821794c7c9bf93a",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part06.csv",
+    "bytes": 10007018,
+    "sha256": "e253adb1891a07784c67ecfa1477a803ab163fab7abf3684bebc4278ee65ed36",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part07.csv",
+    "bytes": 9974428,
+    "sha256": "c43e24773318299c4c2d7b42e812d09efa209d32a3f174cb7f65e635ca2608bc",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part13.csv",
+    "bytes": 10015470,
+    "sha256": "a99c93c5c4233f1066c8cb948142d8029cca49a4fe57b7f15bfed53ff6aa7b62",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part05.csv",
+    "bytes": 9928035,
+    "sha256": "d275ba40682544483e045c785b42fff6ce8c414815d56fe77f08ab324e87d777",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part11.csv",
+    "bytes": 9909907,
+    "sha256": "d82c6687bb59b8b93f859fa77e3b3d00b5e1e8f05fca9121957a1c86eb5b045b",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part10.csv",
+    "bytes": 9919823,
+    "sha256": "ca41c54604e18751e5d52305d9522fdb18cf8de0108963daf83486ba4d7ff21e",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part04.csv",
+    "bytes": 9859587,
+    "sha256": "ecef150d2aa49254a14c6c29113f3d184a11dcf00fb6be0c689c65690af077a5",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part09.csv",
+    "bytes": 9928208,
+    "sha256": "93dbb0d859658b4284d61faa7d11a6cd1bc94ebd8cb6a981af8cbb65ef8cef69",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part20.csv",
+    "bytes": 9734977,
+    "sha256": "8003d562ba1638ba73eb67471dcff61b4be22bf30eca49153002b04bbaabffff",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part08.csv",
+    "bytes": 9944416,
+    "sha256": "acc701a05bf09c48ae50064e2ddc60531b31485a9a859153cb0dad1e2d893f87",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part18.csv",
+    "bytes": 9115647,
+    "sha256": "c6d5e8ea15be23150ecfb7e69d658cbcb9d13d881cd54b1354f2219eac077ccb",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3/102Ah_45degC_0p5C_cell3_time_series_part19.csv",
+    "bytes": 5781192,
+    "sha256": "a3cdc50d1b61405ab55edefc719b9f3041902616b78ad3bca8cc46c7354e45cc",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_0p5C_cell3/102Ah_25degC_0p5C_cell3_time_series_part05.csv",
+    "bytes": 2174382,
+    "sha256": "af63e7dcb6a088628bcb3f6a673d810cc250f6126c048b7080dcdcbdbfd59ae4",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_0p5C_cell3/102Ah_25degC_0p5C_cell3_time_series_part04.csv",
+    "bytes": 9738409,
+    "sha256": "5bb2b714884212d1b20203ea819b1fbc0b529cfb2c21a9618e20d63f2f523d99",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_0p5C_cell3/102Ah_25degC_0p5C_cell3_time_series_part06.csv",
+    "bytes": 154338,
+    "sha256": "03ca3553e5faa822380650f0d1178403ef33e20bacd97e6f1458c102860e7b17",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_0p5C_cell3/102Ah_25degC_0p5C_cell3_time_series_part03.csv",
+    "bytes": 9720063,
+    "sha256": "346626f9bb058445cd364f8c139568b0a3fd341cf34fe626e8c565774df27ba6",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_0p5C_cell3/102Ah_25degC_0p5C_cell3_time_series_part02.csv",
+    "bytes": 9710554,
+    "sha256": "0c6630dcc1454b79a10c94fe5110c3c35e7c990eed7ebf3130a14f31780f95cc",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_0p5C_cell3/102Ah_25degC_0p5C_cell3_time_series_part01.csv",
+    "bytes": 9211484,
+    "sha256": "c57c66a8b4b7dc8ed75eb803c306c92ea1999ca2a9252a1238f7e09c1fed53ab",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/data/operation/segment_04_25degC.csv.gz",
+    "bytes": 1040588,
+    "sha256": "befd9408aa133312a49a7201ecb297c21ee0b2ee8af5ac6c055b1f80a1c26afe",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/data/operation/segment_09_45degC.csv.gz",
+    "bytes": 2620009,
+    "sha256": "5930f41d240b1fb6ed08593f319d36a4160d627fc6792286735de8fb172dae7b",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/data/operation/segment_10_25degC.csv.gz",
+    "bytes": 1390987,
+    "sha256": "46bc655ca595f7a8ad1ea8c34d41a7933feedfcf57ace907c4fbbe1c2e9f5b9c",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/data/operation/segment_14_25degC.csv.gz",
+    "bytes": 1289596,
+    "sha256": "33f9040cf3e7cc828df31ef92d6114411f5e4e34a397c4092ca78e8dd7ce8c26",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/data/operation/segment_13_45degC.csv.gz",
+    "bytes": 2567537,
+    "sha256": "a952b4f0bbbfbd08f3537f58525f99c73a23b2ca77c274ad34f82f75643bcbd2",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/data/operation/segment_07_45degC.csv.gz",
+    "bytes": 2524052,
+    "sha256": "01ef531b691dd3c738a1775bbca75f0be45a217e7abe0d4db640239ebd4526ea",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/data/operation/segment_11_45degC.csv.gz",
+    "bytes": 2430571,
+    "sha256": "0d4082a96b6af84fa2e8eebe9aed0f62bbbe59ef1aa425b89f5413b375da61aa",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/data/operation/segment_05_45degC.csv.gz",
+    "bytes": 2657017,
+    "sha256": "1dc1d9450d35e74d14c7830adfd1d18ecaa6a1ccdcd4197cc7d634ec1e429877",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/data/operation/segment_01_45degC.csv.gz",
+    "bytes": 2499039,
+    "sha256": "bcc9fd78db77cc51bc75466f3dd41242df5eb364f602a4db55507bc1f2c8fd8b",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/data/operation/segment_08_25degC.csv.gz",
+    "bytes": 876995,
+    "sha256": "aeb9e42434f1bb5c0805fbc806e3efb12440998457b8dfd6b2285a04f5a3255b",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/data/operation/segment_02_25degC.csv.gz",
+    "bytes": 966851,
+    "sha256": "d9375a5375d63458caee7100371e890c801792e8b2caf762adb1547d465cf6e5",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/data/operation/segment_06_25degC.csv.gz",
+    "bytes": 1035962,
+    "sha256": "edc573a06970aed19704e9111624fec010757bdef5af767cf8fb416f032cf89e",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/data/operation/segment_12_25degC.csv.gz",
+    "bytes": 1318290,
+    "sha256": "65d35f7fe387edddc8337bb43944faf8d5c2c4a84aa0addcad34a6d6ef1f9663",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/submission_instructions_2026.md",
+    "bytes": 13591,
+    "sha256": "12df3925e8ba985fd002cf17b0b298544bc368ef8dfefaa800b55ec2b5a83c56",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/data/DATA_DESCRIPTION.md",
+    "bytes": 2384,
+    "sha256": "23189a695a207a5e57d3eee522828e4582ce1ec1cca475b90453fcb90dd28cf0",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_routes23_prompts_20261012/方案3_CCCV静置脉冲联合特征_执行Prompt.md",
+    "bytes": 25842,
+    "sha256": "3707f3bb0aac7d7440c8a1fbc5f63b496bb8a14c0c814830d0acce7c76265164",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_routes23_prompts_20261012/paper_code_snapshot/Gasper_run_bootstrap_xgboost.py",
+    "bytes": 9699,
+    "sha256": "264021aea4e1c08c8b5fff4c2ca05a7394f9426aef48b3dda08f14873a027102",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_routes23_prompts_20261012/paper_code_snapshot/manifest.json",
+    "bytes": 1275,
+    "sha256": "9bdf494daa950c06941b6dcea4c535b3f3327bef068c732eb2f6f965f669f9c0",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_routes23_prompts_20261012/paper_code_snapshot/Zhu_Features_extraction_dataset1.py",
+    "bytes": 1673,
+    "sha256": "a2c50ff23f43d38f1cc5088713447b5eeb090c294915f19e1c928b94a1b9f34b",
+    "read_only": true
+  },
+  {
+    "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_routes23_prompts_20261012/paper_code_snapshot/Gasper_05_process_data_for_ml.py",
+    "bytes": 2297,
+    "sha256": "ed8765e13faa6f8b9254f9f6dcdd99fd047822fa1950a688a973f9b690b2cd4d",
+    "read_only": true
+  }
+]

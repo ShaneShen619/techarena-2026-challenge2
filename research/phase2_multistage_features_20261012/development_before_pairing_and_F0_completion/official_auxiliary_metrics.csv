@@ -1,0 +1,4 @@
+family,train_events,test_events,MAE_mV,worst_mV,selected_alpha,target
+metadata,24,16,1.5827999315581396,4.205015150269824,10,"NEXT standard event pack-average dV30, not capacity"
+metadata_stages,24,16,2.03114724261507,6.261336484768787,10,"NEXT standard event pack-average dV30, not capacity"
+metadata_stages_structure,24,16,2.6314383575698517,8.58208748392263,10,"NEXT standard event pack-average dV30, not capacity"

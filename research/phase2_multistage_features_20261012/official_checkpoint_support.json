@@ -1,0 +1,423 @@
+[
+  {
+    "checkup": "CK0",
+    "date": "2025-01-14",
+    "available_events": 0,
+    "available_rows": 0,
+    "feature_only_supported_rows": 0,
+    "capacity_accepted_rows": 0,
+    "capacity_accept_coverage": null,
+    "paired_CK0": false,
+    "Qpack_Ah": null,
+    "SOH_percent": null,
+    "real_error_Ah": null,
+    "status": "UNVERIFIED",
+    "latest_by_budget": []
+  },
+  {
+    "checkup": "CK1",
+    "date": "2025-02-08",
+    "available_events": 8,
+    "available_rows": 32,
+    "feature_only_supported_rows": 0,
+    "capacity_accepted_rows": 0,
+    "capacity_accept_coverage": 0.0,
+    "paired_CK0": false,
+    "Qpack_Ah": null,
+    "SOH_percent": null,
+    "real_error_Ah": null,
+    "status": "UNVERIFIED",
+    "latest_by_budget": [
+      {
+        "budget": "dis_end",
+        "latest_event": "wide33_2025-02-05T00:46:52",
+        "available_after": "2025-02-05T05:37:32",
+        "feature_rows": 8
+      },
+      {
+        "budget": "post1800",
+        "latest_event": "standard_2025-02-03T13:18:02",
+        "available_after": "2025-02-03T14:18:02",
+        "feature_rows": 4
+      },
+      {
+        "budget": "post300",
+        "latest_event": "standard_2025-02-03T13:18:02",
+        "available_after": "2025-02-03T13:53:02",
+        "feature_rows": 4
+      },
+      {
+        "budget": "post900",
+        "latest_event": "standard_2025-02-03T13:18:02",
+        "available_after": "2025-02-03T14:03:02",
+        "feature_rows": 4
+      },
+      {
+        "budget": "pre1800",
+        "latest_event": "standard_2025-02-03T13:18:02",
+        "available_after": "2025-02-03T13:18:02",
+        "feature_rows": 4
+      },
+      {
+        "budget": "pre300",
+        "latest_event": "standard_2025-02-03T13:18:02",
+        "available_after": "2025-02-03T12:53:02",
+        "feature_rows": 4
+      },
+      {
+        "budget": "pre900",
+        "latest_event": "standard_2025-02-03T13:18:02",
+        "available_after": "2025-02-03T13:03:02",
+        "feature_rows": 4
+      }
+    ]
+  },
+  {
+    "checkup": "CK2",
+    "date": "2025-03-11",
+    "available_events": 13,
+    "available_rows": 55,
+    "feature_only_supported_rows": 0,
+    "capacity_accepted_rows": 0,
+    "capacity_accept_coverage": 0.0,
+    "paired_CK0": false,
+    "Qpack_Ah": null,
+    "SOH_percent": null,
+    "real_error_Ah": null,
+    "status": "UNVERIFIED",
+    "latest_by_budget": [
+      {
+        "budget": "dis_end",
+        "latest_event": "wide33_2025-02-18T12:01:40",
+        "available_after": "2025-02-18T16:52:20",
+        "feature_rows": 13
+      },
+      {
+        "budget": "post1800",
+        "latest_event": "standard_2025-02-17T00:32:50",
+        "available_after": "2025-02-17T01:32:50",
+        "feature_rows": 7
+      },
+      {
+        "budget": "post300",
+        "latest_event": "standard_2025-02-17T00:32:50",
+        "available_after": "2025-02-17T01:07:50",
+        "feature_rows": 7
+      },
+      {
+        "budget": "post900",
+        "latest_event": "standard_2025-02-17T00:32:50",
+        "available_after": "2025-02-17T01:17:50",
+        "feature_rows": 7
+      },
+      {
+        "budget": "pre1800",
+        "latest_event": "standard_2025-02-17T00:32:50",
+        "available_after": "2025-02-17T00:32:50",
+        "feature_rows": 7
+      },
+      {
+        "budget": "pre300",
+        "latest_event": "standard_2025-02-17T00:32:50",
+        "available_after": "2025-02-17T00:07:50",
+        "feature_rows": 7
+      },
+      {
+        "budget": "pre900",
+        "latest_event": "standard_2025-02-17T00:32:50",
+        "available_after": "2025-02-17T00:17:50",
+        "feature_rows": 7
+      }
+    ]
+  },
+  {
+    "checkup": "CK3",
+    "date": "2025-04-14",
+    "available_events": 25,
+    "available_rows": 101,
+    "feature_only_supported_rows": 0,
+    "capacity_accepted_rows": 0,
+    "capacity_accept_coverage": 0.0,
+    "paired_CK0": false,
+    "Qpack_Ah": null,
+    "SOH_percent": null,
+    "real_error_Ah": null,
+    "status": "UNVERIFIED",
+    "latest_by_budget": [
+      {
+        "budget": "dis_end",
+        "latest_event": "wide33_2025-04-10T12:35:05",
+        "available_after": "2025-04-10T17:25:45",
+        "feature_rows": 25
+      },
+      {
+        "budget": "post1800",
+        "latest_event": "standard_2025-04-09T01:06:15",
+        "available_after": "2025-04-09T02:06:15",
+        "feature_rows": 13
+      },
+      {
+        "budget": "post300",
+        "latest_event": "standard_2025-04-09T01:06:15",
+        "available_after": "2025-04-09T01:41:15",
+        "feature_rows": 13
+      },
+      {
+        "budget": "post900",
+        "latest_event": "standard_2025-04-09T01:06:15",
+        "available_after": "2025-04-09T01:51:15",
+        "feature_rows": 13
+      },
+      {
+        "budget": "pre1800",
+        "latest_event": "standard_2025-04-09T01:06:15",
+        "available_after": "2025-04-09T01:06:15",
+        "feature_rows": 11
+      },
+      {
+        "budget": "pre300",
+        "latest_event": "standard_2025-04-09T01:06:15",
+        "available_after": "2025-04-09T00:41:15",
+        "feature_rows": 13
+      },
+      {
+        "budget": "pre900",
+        "latest_event": "standard_2025-04-09T01:06:15",
+        "available_after": "2025-04-09T00:51:15",
+        "feature_rows": 13
+      }
+    ]
+  },
+  {
+    "checkup": "CK4",
+    "date": "2025-05-16",
+    "available_events": 37,
+    "available_rows": 149,
+    "feature_only_supported_rows": 0,
+    "capacity_accepted_rows": 0,
+    "capacity_accept_coverage": 0.0,
+    "paired_CK0": false,
+    "Qpack_Ah": null,
+    "SOH_percent": null,
+    "real_error_Ah": null,
+    "status": "UNVERIFIED",
+    "latest_by_budget": [
+      {
+        "budget": "dis_end",
+        "latest_event": "wide33_2025-05-13T20:20:04",
+        "available_after": "2025-05-14T01:10:44",
+        "feature_rows": 37
+      },
+      {
+        "budget": "post1800",
+        "latest_event": "standard_2025-05-12T08:51:14",
+        "available_after": "2025-05-12T09:51:14",
+        "feature_rows": 19
+      },
+      {
+        "budget": "post300",
+        "latest_event": "standard_2025-05-12T08:51:14",
+        "available_after": "2025-05-12T09:26:14",
+        "feature_rows": 19
+      },
+      {
+        "budget": "post900",
+        "latest_event": "standard_2025-05-12T08:51:14",
+        "available_after": "2025-05-12T09:36:14",
+        "feature_rows": 19
+      },
+      {
+        "budget": "pre1800",
+        "latest_event": "standard_2025-05-12T08:51:14",
+        "available_after": "2025-05-12T08:51:14",
+        "feature_rows": 17
+      },
+      {
+        "budget": "pre300",
+        "latest_event": "standard_2025-05-12T08:51:14",
+        "available_after": "2025-05-12T08:26:14",
+        "feature_rows": 19
+      },
+      {
+        "budget": "pre900",
+        "latest_event": "standard_2025-05-12T08:51:14",
+        "available_after": "2025-05-12T08:36:14",
+        "feature_rows": 19
+      }
+    ]
+  },
+  {
+    "checkup": "CK5",
+    "date": "2025-06-16",
+    "available_events": 49,
+    "available_rows": 197,
+    "feature_only_supported_rows": 0,
+    "capacity_accepted_rows": 0,
+    "capacity_accept_coverage": 0.0,
+    "paired_CK0": false,
+    "Qpack_Ah": null,
+    "SOH_percent": null,
+    "real_error_Ah": null,
+    "status": "UNVERIFIED",
+    "latest_by_budget": [
+      {
+        "budget": "dis_end",
+        "latest_event": "wide33_2025-06-14T23:10:32",
+        "available_after": "2025-06-15T04:01:12",
+        "feature_rows": 49
+      },
+      {
+        "budget": "post1800",
+        "latest_event": "standard_2025-06-13T11:41:42",
+        "available_after": "2025-06-13T12:41:42",
+        "feature_rows": 25
+      },
+      {
+        "budget": "post300",
+        "latest_event": "standard_2025-06-13T11:41:42",
+        "available_after": "2025-06-13T12:16:42",
+        "feature_rows": 25
+      },
+      {
+        "budget": "post900",
+        "latest_event": "standard_2025-06-13T11:41:42",
+        "available_after": "2025-06-13T12:26:42",
+        "feature_rows": 25
+      },
+      {
+        "budget": "pre1800",
+        "latest_event": "standard_2025-06-13T11:41:42",
+        "available_after": "2025-06-13T11:41:42",
+        "feature_rows": 23
+      },
+      {
+        "budget": "pre300",
+        "latest_event": "standard_2025-06-13T11:41:42",
+        "available_after": "2025-06-13T11:16:42",
+        "feature_rows": 25
+      },
+      {
+        "budget": "pre900",
+        "latest_event": "standard_2025-06-13T11:41:42",
+        "available_after": "2025-06-13T11:26:42",
+        "feature_rows": 25
+      }
+    ]
+  },
+  {
+    "checkup": "CK6",
+    "date": "2025-07-25",
+    "available_events": 62,
+    "available_rows": 250,
+    "feature_only_supported_rows": 0,
+    "capacity_accepted_rows": 0,
+    "capacity_accept_coverage": 0.0,
+    "paired_CK0": false,
+    "Qpack_Ah": null,
+    "SOH_percent": null,
+    "real_error_Ah": null,
+    "status": "UNVERIFIED",
+    "latest_by_budget": [
+      {
+        "budget": "dis_end",
+        "latest_event": "standard_2025-07-22T05:37:29",
+        "available_after": "2025-07-22T06:07:29",
+        "feature_rows": 62
+      },
+      {
+        "budget": "post1800",
+        "latest_event": "standard_2025-07-22T05:37:29",
+        "available_after": "2025-07-22T06:37:29",
+        "feature_rows": 32
+      },
+      {
+        "budget": "post300",
+        "latest_event": "standard_2025-07-22T05:37:29",
+        "available_after": "2025-07-22T06:12:29",
+        "feature_rows": 32
+      },
+      {
+        "budget": "post900",
+        "latest_event": "standard_2025-07-22T05:37:29",
+        "available_after": "2025-07-22T06:22:29",
+        "feature_rows": 32
+      },
+      {
+        "budget": "pre1800",
+        "latest_event": "standard_2025-07-17T09:34:54",
+        "available_after": "2025-07-17T09:34:54",
+        "feature_rows": 28
+      },
+      {
+        "budget": "pre300",
+        "latest_event": "standard_2025-07-22T05:37:29",
+        "available_after": "2025-07-22T05:12:29",
+        "feature_rows": 32
+      },
+      {
+        "budget": "pre900",
+        "latest_event": "standard_2025-07-22T05:37:29",
+        "available_after": "2025-07-22T05:22:29",
+        "feature_rows": 32
+      }
+    ]
+  },
+  {
+    "checkup": "CK7",
+    "date": "2025-08-28",
+    "available_events": 75,
+    "available_rows": 305,
+    "feature_only_supported_rows": 0,
+    "capacity_accepted_rows": 0,
+    "capacity_accept_coverage": 0.0,
+    "paired_CK0": false,
+    "Qpack_Ah": null,
+    "SOH_percent": null,
+    "real_error_Ah": null,
+    "status": "UNVERIFIED",
+    "latest_by_budget": [
+      {
+        "budget": "dis_end",
+        "latest_event": "standard_2025-08-27T11:37:50",
+        "available_after": "2025-08-27T12:07:50",
+        "feature_rows": 75
+      },
+      {
+        "budget": "post1800",
+        "latest_event": "standard_2025-08-27T11:37:50",
+        "available_after": "2025-08-27T12:37:50",
+        "feature_rows": 39
+      },
+      {
+        "budget": "post300",
+        "latest_event": "standard_2025-08-27T11:37:50",
+        "available_after": "2025-08-27T12:12:50",
+        "feature_rows": 39
+      },
+      {
+        "budget": "post900",
+        "latest_event": "standard_2025-08-27T11:37:50",
+        "available_after": "2025-08-27T12:22:50",
+        "feature_rows": 39
+      },
+      {
+        "budget": "pre1800",
+        "latest_event": "standard_2025-08-27T11:37:50",
+        "available_after": "2025-08-27T11:37:50",
+        "feature_rows": 35
+      },
+      {
+        "budget": "pre300",
+        "latest_event": "standard_2025-08-27T11:37:50",
+        "available_after": "2025-08-27T11:12:50",
+        "feature_rows": 39
+      },
+      {
+        "budget": "pre900",
+        "latest_event": "standard_2025-08-27T11:37:50",
+        "available_after": "2025-08-27T11:22:50",
+        "feature_rows": 39
+      }
+    ]
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "branch": "plan/phase1-capacity-transfer-ab-20261010",
+  "E0": "pass_provenance_and_input_freeze",
+  "E1": "pass_exact_legacy_reproduction",
+  "E2": "completed_minimal_exposure_audit; calendar_and_real_path_order_not_testable",
+  "E3_source_development_B_performance_pass": true,
+  "E4_A_independent_increment_pass": false,
+  "E5_numeric_fusion_pass": false,
+  "E6_engineering_pass": true,
+  "E7": "not_testable_missing_independent_same_protocol_4S_labels",
+  "tests": {
+    "total": 14,
+    "failures": 0
+  },
+  "causal_checks": 48,
+  "stress_scenarios": 22,
+  "mechanism_cases": 110,
+  "isolated_package_validated": true,
+  "root_model_switched": false,
+  "final_candidate": "B_new_dynamic_fixed_xi0.001 plus A monitoring; numeric correction disabled",
+  "source_B_macro_MAE_pp": 3.084237790616022,
+  "source_F_signal_macro_MAE_pp": 3.328045523832598,
+  "official_capacity_performance": "not_testable",
+  "D1_restricted_model_performance": "not_applicable_full_history_not_allowed",
+  "independent_blind_test": false,
+  "hard_check_pass_is_accuracy_proof": false,
+  "remaining_scientific_limits": [
+    "low-rate extrapolation",
+    "source timestamp overlaps and temperature missingness",
+    "source-target capacity protocol",
+    "unobserved exposure and calendar ageing",
+    "small previously developed entity sample",
+    "path ordering",
+    "4S capacity/SOC imbalance",
+    "temperature bias increases late errors",
+    "numeric fusion event-level deployment equivalence not implemented; candidate rejected"
+  ],
+  "ZIP_sha256": "2c4fc12879236759a1ea044c876f10c95df57dac3590bae8ecc6e833d142cf0d",
+  "clean_runtime_python": "Python 3.12.14"
+}

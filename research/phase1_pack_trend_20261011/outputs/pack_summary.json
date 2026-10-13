@@ -1,0 +1,12 @@
+{
+  "q0_Ah": 100.41,
+  "raw_CK0_first_cutoff_Ah": 100.412,
+  "axis_factor": 1.0000199183348273,
+  "chain_residual_median_V": -0.0030000000000001137,
+  "passed_checks": 8,
+  "truth_code_sha256": "1d63655ee8718f0a60646187e05e48a90b7f79106ff70587da6cd2f7698b90ef",
+  "official_rate_gain": 0.0,
+  "official_accuracy": "not_testable",
+  "projection_parameter_identification": "not demonstrated",
+  "shared_stretch_reduces_to_B_capacity": true
+}

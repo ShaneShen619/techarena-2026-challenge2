@@ -1,0 +1,34 @@
+CK0 SOH 98.441176 raw 98.441176 CK0_anchor A 0
+CK1 SOH 97.42654 raw 97.42654 prior A 3
+CK2 SOH 97.297081 raw 97.297081 prior A 5
+CK3 SOH 96.709298 raw 96.709298 prior A 8
+CK4 SOH 96.28424 raw 96.28424 prior A 9
+CK5 SOH 95.93403 raw 95.93403 prior A 10
+CK6 SOH 95.617897 raw 95.617897 prior A 10
+CK7 SOH 95.340857 raw 95.340857 prior A 10
+stress temperature_bias_-5C 0.336837
+stress temperature_bias_-2C 0.137723
+stress temperature_bias_-1C 0.068994
+stress temperature_bias_1C -0.070688
+stress temperature_bias_2C -0.141655
+stress temperature_bias_5C -0.362147
+stress current_gain_0.95 0.0807
+stress current_gain_0.99 0.015963
+stress current_gain_1.01 -0.015878
+stress current_gain_1.05 -0.07856
+stress current_offset_-0.1A 0.02497
+stress current_offset_0.1A -0.025931
+stress cell_voltage_bias_-0.01V 0.0
+stress cell_voltage_bias_-0.005V 0.0
+stress cell_voltage_bias_0.005V 0.0
+stress cell_voltage_bias_0.01V 0.0
+stress counter_swap 0.0
+stress counter_reset 0.0
+/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_validation/.venv/lib/python3.12/site-packages/numpy/lib/_nanfunctions_impl.py:1214: RuntimeWarning: Mean of empty slice
+  return np.nanmean(a, axis, out=out, keepdims=keepdims)
+/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_validation/.venv/lib/python3.12/site-packages/numpy/lib/_nanfunctions_impl.py:1214: RuntimeWarning: Mean of empty slice
+  return np.nanmean(a, axis, out=out, keepdims=keepdims)
+stress temperature_columns_missing 0.078787
+stress one_cell_voltage_missing 0.0
+stress additional_segment6_deleted 0.039393
+stress no_history 3.10032

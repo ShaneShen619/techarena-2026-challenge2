@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-12",
+  "note": "References inspected for writing prompts; no new model experiments performed.",
+  "sources": [
+    {
+      "path": "research/phase2_literature_reassessment/papers/B_sources/ZhouAitioHowey2025_arxiv.pdf",
+      "sha256": "d907ac5339a695d69688125a3441c3af2a7fa1de4fdef9305431bd1d9648566e",
+      "bytes": 2807201
+    },
+    {
+      "path": "research/phase2_literature_reassessment/papers/B_sources/Yi2024_arxiv_v2.pdf",
+      "sha256": "a382d26e0dbf68f3c2e4b110d4709f5810852a06d45bb5189d735e465ddc6942",
+      "bytes": 2206835
+    },
+    {
+      "path": "research/phase2_literature_reassessment/papers/B_sources/Gasper2025_OSTI.pdf",
+      "sha256": "792051d371b52958a2dcb8f73fc570f0ae33b1c40644e1ce8e3cc688e4d9eee1",
+      "bytes": 2397482
+    },
+    {
+      "path": "research/phase2_literature_reassessment/papers/D_old_refs/Zhu2022.pdf",
+      "sha256": "7bb10cfb5f361711f4b383456686eeaeead28fa6128e43f8bc888c1899786846",
+      "bytes": 6974034
+    },
+    {
+      "path": "research/phase2_literature_reassessment/papers/D_old_refs/Zhu2022_MOESM1.pdf",
+      "sha256": "6e45f07415f2d22aa60956c63a3717deca98535c31eb5ed38d001f3ddb889f9a",
+      "bytes": 2111906
+    },
+    {
+      "path": "research/phase2_initial_soc_four_methods_20261011/FINAL_REPORT.md",
+      "sha256": "791b4c59220d96a7e86fdb15974336eaa9cc9d1bc6a48461e71dbcdda9806cdc",
+      "bytes": 12442
+    },
+    {
+      "path": "research/phase2_joint_discharge_20261011/README.md",
+      "sha256": "6fc5f3abad1e2c9c4021640833e5662a0e92e9f98a6a70e1ad00a268413d94ec",
+      "bytes": 10505
+    }
+  ]
+}

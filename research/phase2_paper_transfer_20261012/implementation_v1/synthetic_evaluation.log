@@ -1,0 +1,16 @@
+mechanism evaluation informative_60Ah
+mechanism evaluation shallow_10Ah
+mechanism evaluation capacity_only
+mechanism evaluation start_only
+mechanism evaluation capacity_and_start
+mechanism evaluation cell_capacity_imbalance
+mechanism evaluation cell_start_imbalance
+mechanism evaluation temperature_45C
+mechanism evaluation resistance_growth
+mechanism evaluation path_hysteresis
+mechanism evaluation voltage_bias
+mechanism evaluation current_bias_gap
+mechanism evaluation undercharge
+mechanism evaluation unobserved_balancing
+mechanism evaluation shape_change
+mechanism evaluation outliers

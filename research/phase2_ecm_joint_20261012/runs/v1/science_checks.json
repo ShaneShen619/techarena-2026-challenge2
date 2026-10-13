@@ -1,0 +1,127 @@
+{
+  "checks": [
+    {
+      "name": "certified_75_events_after_stage_aware_duplicates",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "71_continuous_anchor_chains",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "CK0_raw_first_pack_cutoff_100p41",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "official_SOH_denominator_102",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "common_alpha_exact_capacity_mapping",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "common_reference_shift_moves_baseline_observation_mapping",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "CK0_raw_pack_residual_counted_once",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reference_dynamic_increment_identity_zero",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "exact_1RC_discretization",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Ah_seconds_conversion_and_charge_sign",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "all_parameter_history_available_before_target",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no_development_chain_crosses_evaluation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "suffix_voltage_cannot_change_prefix_initialization",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "suffix_voltage_cannot_change_forward_prediction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "future_charge_cannot_set_prefix_parameter_bounds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "historical_charge_response_not_reset_at_discharge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "unobserved_gap_breaks_dynamic_chain",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no_negative_coordinate_or_unbounded_tail",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Joseph_matches_linear_Kalman_covariance",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Joseph_covariance_PSD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "NLML_positive_quadratic_logdet_formula",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "joint_four_cell_conditional_online_covariance_PSD",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "online_capacity_remains_frozen_when_no_gate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "CK_date_midnight_not_whole_calendar_day",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "passed": 24,
+  "reference_smoothing_rms_mV": 0.25934733791420933,
+  "evidence": "Scientific invariants; not real SOC or capacity accuracy"
+}

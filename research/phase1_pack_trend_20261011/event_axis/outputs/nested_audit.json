@@ -1,0 +1,3182 @@
+[
+  {
+    "outer_pool": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "label_entity": "102Ah_55degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.0,
+    "mode": "forward"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_25degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_extrap",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_25degC_1C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "nominal_sat",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_35degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "charge_noT",
+    "xi0": 0.0,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_0p5C_cell3",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.001,
+    "mode": "damage"
+  },
+  {
+    "outer_pool": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ],
+    "label_entity": "102Ah_45degC_1C_cell1",
+    "B_fit_and_selection_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3"
+    ],
+    "config": "dynamic_sat_noKnee",
+    "xi0": 0.0,
+    "mode": "damage"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "paired_seeds": 10,
+  "conditional_warm_minus_initial_mean_Ah": 1.75,
+  "conditional_return_minus_initial_mean_Ah": 0.1,
+  "conditional_return_abs_mean_Ah": 0.1,
+  "accepted_local_updates": 0,
+  "measured_temperature_visits": 30,
+  "inference": "Conditional point estimates under controlled full-charge resets; neither true capacity update nor continuous path validation",
+  "supplementary_after_primary_scoring": true,
+  "primary_model_threshold_and_test_unchanged": true
+}

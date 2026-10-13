@@ -1,0 +1,67 @@
+replay short_2025-04-17T01:19:57 history 4 profile 9.500000000000028 elapsed 1.8
+replay wide_2025-04-18T12:48:48 history 4 profile 9.400000000000006 elapsed 3.8
+replay short_2025-04-22T17:42:19 history 4 profile 9.099999999999994 elapsed 5.6
+replay wide_2025-04-24T05:11:09 history 4 profile 9.099999999999994 elapsed 7.6
+replay short_2025-04-27T20:40:07 history 4 profile 8.5 elapsed 9.4
+replay wide_2025-04-29T08:08:57 history 4 profile 8.800000000000011 elapsed 11.6
+replay short_2025-05-02T16:43:51 history 4 profile 8.699999999999989 elapsed 13.4
+replay wide_2025-05-04T04:12:42 history 4 profile 8.699999999999989 elapsed 15.4
+replay short_2025-05-07T12:47:42 history 4 profile 8.5 elapsed 17.3
+replay wide_2025-05-09T00:16:32 history 4 profile 8.400000000000006 elapsed 19.3
+replay short_2025-05-12T08:51:14 history 4 profile 8.300000000000011 elapsed 21.3
+replay wide_2025-05-13T20:20:04 history 4 profile 8.199999999999989 elapsed 23.6
+replay short_2025-05-19T21:38:59 history 4 profile 9.099999999999994 elapsed 25.5
+replay wide_2025-05-21T09:07:49 history 4 profile 9.099999999999994 elapsed 27.6
+replay short_2025-05-24T17:43:54 history 4 profile 9.099999999999994 elapsed 29.6
+replay wide_2025-05-26T05:12:44 history 4 profile 9.0 elapsed 31.8
+replay short_2025-05-29T23:31:12 history 4 profile 8.199999999999989 elapsed 33.8
+replay wide_2025-05-31T11:00:02 history 4 profile 8.400000000000006 elapsed 36.1
+replay short_2025-06-03T19:34:45 history 4 profile 8.400000000000006 elapsed 38.1
+replay wide_2025-06-05T07:03:36 history 4 profile 8.400000000000006 elapsed 40.3
+replay short_2025-06-08T15:38:13 history 4 profile 8.400000000000006 elapsed 42.3
+replay wide_2025-06-10T03:07:04 history 4 profile 8.100000000000023 elapsed 44.4
+replay short_2025-06-13T11:41:42 history 4 profile 8.0 elapsed 46.3
+replay wide_2025-06-14T23:10:32 history 4 profile 8.0 elapsed 48.5
+replay short_2025-06-22T04:01:00 history 4 profile 9.000000000000028 elapsed 50.6
+replay wide_2025-06-23T15:29:50 history 4 profile 9.000000000000028 elapsed 52.8
+replay short_2025-06-27T00:04:33 history 4 profile 9.099999999999994 elapsed 54.7
+replay wide_2025-06-28T11:33:24 history 4 profile 9.099999999999994 elapsed 56.9
+replay short_2025-07-01T20:07:43 history 4 profile 9.200000000000017 elapsed 58.8
+replay wide_2025-07-04T08:54:18 history 4 profile 7.900000000000006 elapsed 60.8
+replay short_2025-07-07T17:29:32 history 4 profile 7.900000000000006 elapsed 62.8
+replay wide_2025-07-09T04:58:22 history 4 profile 8.200000000000017 elapsed 64.9
+replay short_2025-07-12T13:32:18 history 4 profile 8.200000000000017 elapsed 66.9
+replay wide_2025-07-14T01:01:08 history 4 profile 8.300000000000011 elapsed 69.0
+replay short_2025-07-17T09:34:54 history 4 profile 8.199999999999989 elapsed 70.9
+replay wide_2025-07-18T21:03:44 history 4 profile 7.900000000000006 elapsed 73.1
+replay short_2025-07-22T05:37:29 history 4 profile 7.900000000000006 elapsed 75.0
+replay short_2025-07-28T23:14:42 history 4 profile 9.0 elapsed 77.1
+replay wide_2025-07-30T10:43:32 history 4 profile 13.400000000000006 elapsed 79.1
+replay short_2025-08-02T19:18:34 history 4 profile 9.300000000000011 elapsed 81.1
+replay wide_2025-08-04T06:47:24 history 4 profile 13.200000000000017 elapsed 83.0
+replay short_2025-08-07T15:21:59 history 4 profile 9.200000000000017 elapsed 85.0
+replay wide_2025-08-09T14:55:32 history 4 profile 7.800000000000011 elapsed 86.9
+replay short_2025-08-12T23:30:51 history 4 profile 7.800000000000011 elapsed 88.9
+replay wide_2025-08-14T10:59:42 history 4 profile 11.900000000000006 elapsed 90.8
+replay short_2025-08-17T19:33:12 history 4 profile 8.0 elapsed 92.7
+replay wide_2025-08-19T07:02:02 history 4 profile 12.0 elapsed 94.7
+replay short_2025-08-22T15:35:15 history 4 profile 8.099999999999994 elapsed 96.7
+replay wide_2025-08-24T03:04:05 history 4 profile 7.800000000000011 elapsed 98.8
+replay short_2025-08-27T11:37:50 history 4 profile 7.700000000000017 elapsed 100.8
+budget          method  events  finite_events    mae_mV    rms_mV  direct_coverage  worst_event_mV
+     A      B_previous      50             50  0.508528  0.732455             1.00        1.509440
+     A B_previous_rest      50             50  2.313170  2.703169             1.00        8.982147
+     A         M_fixed      50             50 13.043906 15.364335             0.94       29.213772
+     A         M_gated      50             50 13.043906 15.364335             0.94       29.213772
+     A    M_mean_cells      50             50 15.056127 17.198826             0.94       27.424849
+     A     M_no_charge      50             50 18.569420 20.800137             0.88       36.739193
+     A       M_no_rest      50             50  2.539737  3.186393             0.96        5.799555
+     A       M_ungated      50             50  9.922472 10.957701             0.94       30.073627
+     B      B_previous      50             50  0.680944  0.930335             1.00        1.698423
+     B B_previous_rest      50             50  0.680944  0.930335             1.00        1.698423
+     B         M_fixed      50             50 18.527643 20.420905             0.94       34.316513
+     B         M_gated      50             50 18.527643 20.420905             0.94       34.316513
+     B    M_mean_cells      50             50 20.705624 22.644561             0.94       34.726830
+     B     M_no_charge      50             50 13.354728 15.407032             0.88       26.524133
+     B       M_no_rest      50             50  8.325461  9.158819             0.96       19.781036
+     B       M_ungated      50             50 14.533186 15.913824             0.94       32.362614
