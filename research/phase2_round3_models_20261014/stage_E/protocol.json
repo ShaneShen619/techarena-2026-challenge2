@@ -1,0 +1,12 @@
+{
+  "stage": "E",
+  "registered": "2026-10-14, before any stage-E code was written or run",
+  "purpose": "quantify possible drift of eps = Q_CK - Q_fc from cell-to-cell differences; not scored on proxies",
+  "scenarios": {
+    "S0_cancellation": "checkup discharge ends at the 5.1 A pack 11.2 V root and the anchor charge starts from that state; start state cancels; pack-CV tops in both -> drift 0 by construction (reported as the reference case)",
+    "S1_no_cancellation": "eps_k = x*_k + const, x*_k = Ah still dischargeable at 5.1 A from the anchor start state to the pack 11.2 V root: per cell, start rest voltage minus dV (dV in {0, 0.05, 0.10} V) -> remaining Ah r_i on the CK0 loaded tail; pack root: smallest x>=0 with sum_i V_i^CK0(Q0_i - r_i + x) <= 11.2 (Q0_i = end of the CK0 curve). Drift reported relative to anchor 1 (all 25 C), k = 2..7; anchor 0 (45 C) reported separately as a sanity check against eps0 = 0.288",
+    "S2_cell_limited_top": "checkup full charge terminated by the first cell reaching its limit instead of pack CV: drift_k = -(max_i rel_i(k) - max_i rel_i(1)), rel_i = per-cell discharge step depth minus four-cell mean, averaged over the 45 C steps of month k-1 (month-end state)"
+  },
+  "decision": "if max |drift| < 0.10 pp in every scenario considered plausible -> negligible; otherwise register an eps-drift-corrected V2 variant as leaderboard-only (never claimed as a proxy improvement)",
+  "plausibility_evidence": "stage A exploratory: Q_fc residuals are uncorrelated with start-state tail Ah (r = 0.04), which argues against S1 being large"
+}
