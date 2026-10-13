@@ -1,0 +1,6 @@
+{
+  "runtime_s": 170.16275183399557,
+  "hidden_capacity_labels_used": false,
+  "reference_initial_imbalance_certified": false,
+  "A_capacity_correction": "not admitted without rate calibration and main-model dynamics pass"
+}

@@ -1,0 +1,2 @@
+dataset,family,MAE_Ah,RMSE_Ah,relative_error,SOH_MAE_pp,worst_entity_MAE_Ah,entities,events
+P1_raw_complete,F0_raw,5.089846473037417,7.305792142384361,0.06212498600516304,4.990045561801389,8.405320025952655,6,575

@@ -1,0 +1,20 @@
+{
+  "execution_date": "2026-10-13",
+  "official_events": 46,
+  "synthetic_scenario_seed_combinations": 160,
+  "literature_reproduction": false,
+  "real_per_cell_SOC_accuracy": "unmeasurable_no_independent_labels",
+  "real_later_capacity_accuracy": "unmeasurable_no_independent_same_protocol_labels",
+  "primary_candidate": "LAD_independent_multi_common",
+  "primary_forward_gate": false,
+  "primary_mechanism_gate": false,
+  "global_identification_gate": false,
+  "some_layer_identification_gate": false,
+  "accept_capacity_update": false,
+  "accept_four_independent_scales": false,
+  "deploy_formal_model": false,
+  "publish_new_checkpoint_SOH": false,
+  "Sun_reconstruction": "feature_audit_only_missing_full_formula_and_OCV_scale",
+  "protected_unchanged": true,
+  "conclusion": "Independent constraints evaluated; do not identify scale solely from voltage residual. See per-layer outcomes."
+}

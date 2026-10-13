@@ -1,0 +1,31 @@
+{
+  "config": "dynamic_fixed",
+  "shape": [
+    104.21566852076126,
+    13.851262536210122,
+    0.3529925793635927,
+    43.33810866762134,
+    2.9999999999999996
+  ],
+  "parameters": {
+    "lnA": -6.049545754036463,
+    "Ea": 37686.725508787575,
+    "gamma": 0.0
+  },
+  "rate_mode": "fixed",
+  "n_deep": 3,
+  "head_taus": [
+    4603.845973634494,
+    5586.687682992035,
+    1784.05651476823
+  ],
+  "source_coordinate_fit_rmse_pp": 0.8337337304671112,
+  "training_cells": [
+    "102Ah_25degC_1C_cell3",
+    "102Ah_35degC_1C_cell1",
+    "102Ah_55degC_1C_cell3"
+  ],
+  "source_temperature_axis": "charge-exposure sensor bins",
+  "source_rate_definition": "charge-weighted stable-run median, binned",
+  "code_hash": "a16765fdd951"
+}

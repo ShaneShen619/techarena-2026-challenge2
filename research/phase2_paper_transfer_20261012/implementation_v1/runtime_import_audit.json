@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-13",
+  "issue": "Legacy directory prepended sys.path, causing from run to resolve old run.py in non-entrypoint scripts",
+  "resolution": "Load frozen implementation_v1/run.py by absolute path through importlib and bind sys.modules[run] before invoking the requested frozen script",
+  "model_or_threshold_modified": false,
+  "old_entrypoint_initial_failure": "No synthetic evaluation seeds were generated before the import failure",
+  "new_runner_sha256": "1caea4f1f7f5ecc1f4f9c3c4b2d49c0de12d02b8fb6febe4f7121764a227e2a3",
+  "original_freeze_verified": true
+}

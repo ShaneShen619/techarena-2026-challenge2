@@ -1,0 +1,15 @@
+{
+  "initial": "CK0",
+  "A_unavailable": "K=0; keep previous Ah offset; prior continues",
+  "B_severe": "hold last trusted prefix-replayed capacity; CK0 only if none",
+  "severe_conditions": [
+    "nonfinite",
+    "invalid_time_integral",
+    "scenario_span_pp>5"
+  ],
+  "scenario_width_threshold_pp": 5.0,
+  "low_rate_alone": "warning_only",
+  "recovery": "current prefix constrains exposure and scenario_span<=5; no replay of old innovations",
+  "range_label": "empirical sensitivity, not calibrated confidence",
+  "counter_gap_fill": "disabled unless direction qualified; raw counter deltas diagnostic only"
+}

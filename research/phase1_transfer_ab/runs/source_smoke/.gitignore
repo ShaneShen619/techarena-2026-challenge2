@@ -1,0 +1,26 @@
+# --- runtime artifacts (regenerated on every run - never commit) ---
+__pycache__/
+*.pyc
+.venv/
+.venv311/
+.venv_final
+venv/
+model_state/
+output*/
+.val_out*/
+.eval_out_*/
+validation_report.txt
+
+# real measurement data never belongs in this repo
+/data/
+/dataset/
+/*102Ah_*/
+*.rar
+
+# --- editor / OS noise ---
+.DS_Store
+.vscode/
+.claude/
+
+# derived from the proprietary 102Ah data - regenerate with analysis/p0_refit.py
+analysis/*.npz

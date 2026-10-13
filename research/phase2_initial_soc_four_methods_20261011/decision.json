@@ -1,0 +1,714 @@
+{
+  "date": "2026-10-11",
+  "run": "v1",
+  "physical_official_packs": 1,
+  "audited_events": 75,
+  "development_events": 29,
+  "evaluation_events": 46,
+  "synthetic_seed_scenarios": 300,
+  "science_checks_passed": 18,
+  "methods": {
+    "M1": {
+      "implementation": "passed_scientific_invariants",
+      "synthetic_evidence": "anchor_improves_over_naive_full_reset_but_state_accuracy_gate_not_demonstrated",
+      "real_SOC_accuracy": "not_testable_missing_independent_truth",
+      "official_forward_gate_passed": false,
+      "official_best_variant_by_budget": {
+        "A": {
+          "budget": "A",
+          "method": "M1_stretch",
+          "n_events": 46,
+          "mae_mV": 1.2186518999698994,
+          "baseline_mae_mV": 0.4888292758169203,
+          "fallback_count": 2,
+          "worst_event_mae_mV": 3.4307080300153094,
+          "runtime_s": 0.011119456998128385,
+          "absolute_improvement_mV": -0.729822624152979,
+          "relative_improvement": -1.4930010542705654,
+          "direct_coverage": 0.9565217391304348,
+          "O_gate": false
+        },
+        "B": {
+          "budget": "B",
+          "method": "M1_cell",
+          "n_events": 46,
+          "mae_mV": 1.3198126292749754,
+          "baseline_mae_mV": 0.6360487255689391,
+          "fallback_count": 2,
+          "worst_event_mae_mV": 2.8440008299542456,
+          "runtime_s": 0.02034879499842426,
+          "absolute_improvement_mV": -0.6837639037060363,
+          "relative_improvement": -1.0750181176676623,
+          "direct_coverage": 0.9565217391304348,
+          "O_gate": false
+        }
+      },
+      "capacity_identification": "not_passed",
+      "official_capacity_accuracy": "not_testable_hidden_labels",
+      "positive_synthetic": [
+        {
+          "scenario": "informative_60Ah",
+          "method": "M1_anchor_integral",
+          "n_seeds": 20,
+          "SOC_mae_pp": 7.065699531274058,
+          "initial_SOC_mae_pp": 3.2153570681150514,
+          "SOC_p95_pp": 10.48001093857563,
+          "s_mae": 0.11538242717954572,
+          "d_mae_reference_Ah": 3.2796642094773545,
+          "capacity_mae_Ah": 11.328675772323873,
+          "accepted_fraction": 0.0
+        }
+      ],
+      "recommendation": "operation_bookkeeping_only_not_accepted_SOC_or_voltage_predictor"
+    },
+    "M2": {
+      "implementation": "passed_scientific_invariants",
+      "synthetic_evidence": "SOC_recovery_supported_in_informative_synthetic_case_capacity_update_gate_not_passed",
+      "real_SOC_accuracy": "not_testable_missing_independent_truth",
+      "official_forward_gate_passed": false,
+      "official_best_variant_by_budget": {
+        "A": {
+          "budget": "A",
+          "method": "M2_shift",
+          "n_events": 46,
+          "mae_mV": 1.9464457586340118,
+          "baseline_mae_mV": 0.4888292758169203,
+          "fallback_count": 0,
+          "worst_event_mae_mV": 4.915020129001353,
+          "runtime_s": 0.0116114569755132,
+          "absolute_improvement_mV": -1.4576164828170914,
+          "relative_improvement": -2.9818518548856474,
+          "direct_coverage": 1.0,
+          "O_gate": false
+        },
+        "B": {
+          "budget": "B",
+          "method": "M2_shrunk_d",
+          "n_events": 46,
+          "mae_mV": 4.561768707672622,
+          "baseline_mae_mV": 0.6360487255689391,
+          "fallback_count": 0,
+          "worst_event_mae_mV": 8.166437131137133,
+          "runtime_s": 0.0720944990025579,
+          "absolute_improvement_mV": -3.925719982103683,
+          "relative_improvement": -6.172042839315755,
+          "direct_coverage": 1.0,
+          "O_gate": false
+        }
+      },
+      "capacity_identification": "not_passed",
+      "official_capacity_accuracy": "not_testable_hidden_labels",
+      "positive_synthetic": [
+        {
+          "scenario": "informative_60Ah",
+          "method": "M2_gated",
+          "n_seeds": 20,
+          "SOC_mae_pp": 3.029699741640227,
+          "initial_SOC_mae_pp": 2.8675314221026578,
+          "SOC_p95_pp": 4.951619470434624,
+          "s_mae": 0.06001376972871526,
+          "d_mae_reference_Ah": 2.924882050544712,
+          "capacity_mae_Ah": 5.87993978872546,
+          "accepted_fraction": 0.7
+        },
+        {
+          "scenario": "informative_60Ah",
+          "method": "M2_joint_common",
+          "n_seeds": 20,
+          "SOC_mae_pp": 1.4413776235419973,
+          "initial_SOC_mae_pp": 2.9753520810847403,
+          "SOC_p95_pp": 2.828325906283468,
+          "s_mae": 0.03964994821844848,
+          "d_mae_reference_Ah": 3.034859122706436,
+          "capacity_mae_Ah": 3.8813418375551576,
+          "accepted_fraction": 1.0
+        },
+        {
+          "scenario": "informative_60Ah",
+          "method": "M2_joint_free4",
+          "n_seeds": 20,
+          "SOC_mae_pp": 0.7075039346477101,
+          "initial_SOC_mae_pp": 1.450588279690756,
+          "SOC_p95_pp": 2.5062790338524823,
+          "s_mae": 0.019351979194763648,
+          "d_mae_reference_Ah": 1.4796000452845721,
+          "capacity_mae_Ah": 1.257150365635471,
+          "accepted_fraction": 1.0
+        },
+        {
+          "scenario": "informative_60Ah",
+          "method": "M2_shift_only",
+          "n_seeds": 20,
+          "SOC_mae_pp": 3.637445301511766,
+          "initial_SOC_mae_pp": 6.277956893335159,
+          "SOC_p95_pp": 8.005112721011958,
+          "s_mae": 0.11538242717954572,
+          "d_mae_reference_Ah": 6.403516031201863,
+          "capacity_mae_Ah": 11.328675772323873,
+          "accepted_fraction": 0.0
+        }
+      ],
+      "recommendation": "research_only",
+      "mechanism_capacity_gates": [
+        {
+          "method": "M2_joint_common",
+          "n_seed_scenarios": 220,
+          "finite_capacity_count": 220,
+          "no_capacity_output_count": 0,
+          "raw_accepted_fraction": 1.0,
+          "valid_accepted_fraction": 1.0,
+          "false_update_count": 189,
+          "false_update_rate_all": 0.8590909090909091,
+          "false_update_rate_finite": 0.8590909090909091,
+          "positive_raw_acceptance": 1.0,
+          "positive_valid_acceptance": 1.0,
+          "positive_valid_acceptance_wilson95": [
+            0.8388698745050667,
+            1.0
+          ],
+          "positive_SOC_mae_pp": 1.4413776235419975,
+          "positive_s_mae": 0.039649948218448486,
+          "mechanism_gate_passed": false
+        },
+        {
+          "method": "M2_joint_free4",
+          "n_seed_scenarios": 220,
+          "finite_capacity_count": 12,
+          "no_capacity_output_count": 208,
+          "raw_accepted_fraction": 1.0,
+          "valid_accepted_fraction": 0.05454545454545454,
+          "false_update_count": 7,
+          "false_update_rate_all": 0.031818181818181815,
+          "false_update_rate_finite": 0.5833333333333334,
+          "positive_raw_acceptance": 1.0,
+          "positive_valid_acceptance": 0.45,
+          "positive_valid_acceptance_wilson95": [
+            0.25819502085709295,
+            0.6579179916924003
+          ],
+          "positive_SOC_mae_pp": 0.7075039346477101,
+          "positive_s_mae": 0.01935197919476365,
+          "mechanism_gate_passed": false
+        },
+        {
+          "method": "M2_gated",
+          "n_seed_scenarios": 220,
+          "finite_capacity_count": 220,
+          "no_capacity_output_count": 0,
+          "raw_accepted_fraction": 0.0,
+          "valid_accepted_fraction": 0.0,
+          "false_update_count": 0,
+          "false_update_rate_all": 0.0,
+          "false_update_rate_finite": 0.0,
+          "positive_raw_acceptance": 0.7,
+          "positive_valid_acceptance": 0.7,
+          "positive_valid_acceptance_wilson95": [
+            0.4810232237710206,
+            0.854524726031006
+          ],
+          "positive_SOC_mae_pp": 3.029699741640227,
+          "positive_s_mae": 0.06001376972871527,
+          "mechanism_gate_passed": false
+        }
+      ]
+    },
+    "M3": {
+      "implementation": "passed_scientific_invariants",
+      "synthetic_evidence": "calibrated_synthetic_OCV_initialization_limited_by_plateau_and_path_state_gate_not_demonstrated",
+      "real_SOC_accuracy": "not_testable_missing_independent_truth",
+      "official_forward_gate_passed": false,
+      "official_best_variant_by_budget": {
+        "A": {
+          "budget": "A",
+          "method": "M3_shape",
+          "n_events": 46,
+          "mae_mV": 1.7661303053954043,
+          "baseline_mae_mV": 0.4888292758169203,
+          "fallback_count": 22,
+          "worst_event_mae_mV": 6.896886460025946,
+          "runtime_s": 0.005178375016838401,
+          "absolute_improvement_mV": -1.277301029578484,
+          "relative_improvement": -2.612979812724775,
+          "direct_coverage": 0.5217391304347826,
+          "O_gate": false
+        },
+        "B": {
+          "budget": "B",
+          "method": "M3_shape",
+          "n_events": 46,
+          "mae_mV": 0.886618059267297,
+          "baseline_mae_mV": 0.6360487255689391,
+          "fallback_count": 22,
+          "worst_event_mae_mV": 2.0303539291051855,
+          "runtime_s": 0.008409665984798913,
+          "absolute_improvement_mV": -0.2505693336983579,
+          "relative_improvement": -0.393946758519524,
+          "direct_coverage": 0.5217391304347826,
+          "O_gate": false
+        }
+      },
+      "capacity_identification": "not_passed",
+      "official_capacity_accuracy": "not_testable_hidden_labels",
+      "positive_synthetic": [
+        {
+          "scenario": "informative_60Ah",
+          "method": "M3_endpoint_calibrated_OCV",
+          "n_seeds": 20,
+          "SOC_mae_pp": 6.340356300158249,
+          "initial_SOC_mae_pp": 10.137194418727278,
+          "SOC_p95_pp": 10.524413301532807,
+          "s_mae": null,
+          "d_mae_reference_Ah": null,
+          "capacity_mae_Ah": null,
+          "accepted_fraction": 0.0
+        },
+        {
+          "scenario": "informative_60Ah",
+          "method": "M3_shape_calibrated_OCV",
+          "n_seeds": 20,
+          "SOC_mae_pp": 5.428019304488815,
+          "initial_SOC_mae_pp": 9.198209718317264,
+          "SOC_p95_pp": 9.430520236656665,
+          "s_mae": null,
+          "d_mae_reference_Ah": null,
+          "capacity_mae_Ah": null,
+          "accepted_fraction": 0.0
+        }
+      ],
+      "recommendation": "rest_diagnostic_only_not_accepted_SOC_or_voltage_predictor"
+    },
+    "M4": {
+      "implementation": "passed_scientific_invariants",
+      "synthetic_evidence": "range_limited_online_SOC_support_no_independent_capacity_projection_test",
+      "real_SOC_accuracy": "not_testable_missing_independent_truth",
+      "official_forward_gate_passed": false,
+      "official_best_variant_by_budget": {
+        "A": {
+          "budget": "A",
+          "method": "M4_no_M1",
+          "n_events": 46,
+          "mae_mV": 2.1158428029112777,
+          "baseline_mae_mV": 0.4888292758169203,
+          "fallback_count": 0,
+          "worst_event_mae_mV": 4.995332881725066,
+          "runtime_s": 1.3945590810253612,
+          "absolute_improvement_mV": -1.6270135270943573,
+          "relative_improvement": -3.3283880642691246,
+          "direct_coverage": 1.0,
+          "O_gate": false
+        },
+        "B": {
+          "budget": "B",
+          "method": "M4_no_M1",
+          "n_events": 46,
+          "mae_mV": 1.846363905602138,
+          "baseline_mae_mV": 0.6360487255689391,
+          "fallback_count": 0,
+          "worst_event_mae_mV": 4.424931120998225,
+          "runtime_s": 1.4247148719805385,
+          "absolute_improvement_mV": -1.2103151800331988,
+          "relative_improvement": -1.902865506020131,
+          "direct_coverage": 1.0,
+          "O_gate": false
+        }
+      },
+      "capacity_identification": "not_passed",
+      "official_capacity_accuracy": "not_testable_hidden_labels",
+      "positive_synthetic": [
+        {
+          "scenario": "informative_60Ah",
+          "method": "M4_fixed",
+          "n_seeds": 20,
+          "SOC_mae_pp": 2.8556301585004444,
+          "initial_SOC_mae_pp": 3.471950760465146,
+          "SOC_p95_pp": 5.612707807103345,
+          "s_mae": 0.11538242717954572,
+          "d_mae_reference_Ah": null,
+          "capacity_mae_Ah": null,
+          "accepted_fraction": 0.0
+        },
+        {
+          "scenario": "informative_60Ah",
+          "method": "M4_gated_s",
+          "n_seeds": 20,
+          "SOC_mae_pp": 1.419374540774602,
+          "initial_SOC_mae_pp": 2.877354024954185,
+          "SOC_p95_pp": 3.380864344081656,
+          "s_mae": 0.06001376972871526,
+          "d_mae_reference_Ah": null,
+          "capacity_mae_Ah": null,
+          "accepted_fraction": 0.7
+        },
+        {
+          "scenario": "informative_60Ah",
+          "method": "M4_no_M1",
+          "n_seeds": 20,
+          "SOC_mae_pp": 32.20214561001918,
+          "initial_SOC_mae_pp": 29.942538995759264,
+          "SOC_p95_pp": 35.16802099995247,
+          "s_mae": 0.11538242717954572,
+          "d_mae_reference_Ah": null,
+          "capacity_mae_Ah": null,
+          "accepted_fraction": 0.0
+        },
+        {
+          "scenario": "informative_60Ah",
+          "method": "M4_no_M3",
+          "n_seeds": 20,
+          "SOC_mae_pp": 2.8448058223529658,
+          "initial_SOC_mae_pp": 3.471950760465146,
+          "SOC_p95_pp": 5.604972323912114,
+          "s_mae": 0.11538242717954572,
+          "d_mae_reference_Ah": null,
+          "capacity_mae_Ah": null,
+          "accepted_fraction": 0.0
+        },
+        {
+          "scenario": "informative_60Ah",
+          "method": "M4_ungated_s",
+          "n_seeds": 20,
+          "SOC_mae_pp": 0.7844841595207441,
+          "initial_SOC_mae_pp": 2.871707279532193,
+          "SOC_p95_pp": 2.7057409124618665,
+          "s_mae": 0.03964994821844848,
+          "d_mae_reference_Ah": null,
+          "capacity_mae_Ah": null,
+          "accepted_fraction": 0.0
+        }
+      ],
+      "recommendation": "research_only"
+    }
+  },
+  "identifiability": [
+    {
+      "panel": "short",
+      "T": 25,
+      "n_completed_events": 4,
+      "best_s": 1.05,
+      "conditional_best_capacity_Ah": 105.4305,
+      "best_rms_mV": 0.783080507618499,
+      "conditional_profile_width_Ah": 35.1435,
+      "boundary": true,
+      "nuisance_best_capacity_spread_Ah": 0.0,
+      "joint_witness_capacity_span_Ah": 25.102499999999992,
+      "joint_search_exhaustive": false,
+      "capacity_identification": "refuted_by_witness",
+      "absolute_reference_state_confirmed": false
+    },
+    {
+      "panel": "short",
+      "T": 45,
+      "n_completed_events": 4,
+      "best_s": 1.05,
+      "conditional_best_capacity_Ah": 105.4305,
+      "best_rms_mV": 0.5224325193300675,
+      "conditional_profile_width_Ah": 32.633250000000004,
+      "boundary": true,
+      "nuisance_best_capacity_spread_Ah": 0.0,
+      "joint_witness_capacity_span_Ah": 25.102499999999992,
+      "joint_search_exhaustive": false,
+      "capacity_identification": "refuted_by_witness",
+      "absolute_reference_state_confirmed": false
+    },
+    {
+      "panel": "wide",
+      "T": 25,
+      "n_completed_events": 4,
+      "best_s": 1.05,
+      "conditional_best_capacity_Ah": 105.4305,
+      "best_rms_mV": 0.9080781461183366,
+      "conditional_profile_width_Ah": 20.081999999999994,
+      "boundary": true,
+      "nuisance_best_capacity_spread_Ah": 12.551249999999996,
+      "joint_witness_capacity_span_Ah": 7.558752083224306,
+      "joint_search_exhaustive": false,
+      "capacity_identification": "refuted_by_witness",
+      "absolute_reference_state_confirmed": false
+    },
+    {
+      "panel": "wide",
+      "T": 45,
+      "n_completed_events": 4,
+      "best_s": 0.9,
+      "conditional_best_capacity_Ah": 90.369,
+      "best_rms_mV": 2.087636016277029,
+      "conditional_profile_width_Ah": 30.12299999999999,
+      "boundary": false,
+      "nuisance_best_capacity_spread_Ah": 7.530749999999998,
+      "joint_witness_capacity_span_Ah": 20.081999999999994,
+      "joint_search_exhaustive": false,
+      "capacity_identification": "refuted_by_witness",
+      "absolute_reference_state_confirmed": false
+    }
+  ],
+  "absolute_SOC_truth_available": false,
+  "official_followup_capacity_verified": false,
+  "scope": "Frozen-rule forward replay of already-explored official pack, independent mismatched-model mechanism simulation; no external SOC accuracy claim",
+  "false_capacity_updates_raw_flag_only": [
+    {
+      "method": "M2_joint_common",
+      "n_seed_scenarios": 220,
+      "false_update_rate": 0.8590909090909091,
+      "accepted_fraction": 1.0,
+      "positive_acceptance": 1.0
+    },
+    {
+      "method": "M2_joint_free4",
+      "n_seed_scenarios": 220,
+      "false_update_rate": 0.031818181818181815,
+      "accepted_fraction": 1.0,
+      "positive_acceptance": 1.0
+    },
+    {
+      "method": "M2_gated",
+      "n_seed_scenarios": 220,
+      "false_update_rate": 0.0,
+      "accepted_fraction": 0.0,
+      "positive_acceptance": 0.7
+    }
+  ],
+  "false_capacity_updates": [
+    {
+      "method": "M2_joint_common",
+      "n_seed_scenarios": 220,
+      "finite_capacity_count": 220,
+      "no_capacity_output_count": 0,
+      "raw_accepted_fraction": 1.0,
+      "valid_accepted_fraction": 1.0,
+      "false_update_count": 189,
+      "false_update_rate_all": 0.8590909090909091,
+      "false_update_rate_finite": 0.8590909090909091,
+      "positive_raw_acceptance": 1.0,
+      "positive_valid_acceptance": 1.0,
+      "positive_valid_acceptance_wilson95": [
+        0.8388698745050667,
+        1.0
+      ],
+      "positive_SOC_mae_pp": 1.4413776235419975,
+      "positive_s_mae": 0.039649948218448486,
+      "mechanism_gate_passed": false
+    },
+    {
+      "method": "M2_joint_free4",
+      "n_seed_scenarios": 220,
+      "finite_capacity_count": 12,
+      "no_capacity_output_count": 208,
+      "raw_accepted_fraction": 1.0,
+      "valid_accepted_fraction": 0.05454545454545454,
+      "false_update_count": 7,
+      "false_update_rate_all": 0.031818181818181815,
+      "false_update_rate_finite": 0.5833333333333334,
+      "positive_raw_acceptance": 1.0,
+      "positive_valid_acceptance": 0.45,
+      "positive_valid_acceptance_wilson95": [
+        0.25819502085709295,
+        0.6579179916924003
+      ],
+      "positive_SOC_mae_pp": 0.7075039346477101,
+      "positive_s_mae": 0.01935197919476365,
+      "mechanism_gate_passed": false
+    },
+    {
+      "method": "M2_gated",
+      "n_seed_scenarios": 220,
+      "finite_capacity_count": 220,
+      "no_capacity_output_count": 0,
+      "raw_accepted_fraction": 0.0,
+      "valid_accepted_fraction": 0.0,
+      "false_update_count": 0,
+      "false_update_rate_all": 0.0,
+      "false_update_rate_finite": 0.0,
+      "positive_raw_acceptance": 0.7,
+      "positive_valid_acceptance": 0.7,
+      "positive_valid_acceptance_wilson95": [
+        0.4810232237710206,
+        0.854524726031006
+      ],
+      "positive_SOC_mae_pp": 3.029699741640227,
+      "positive_s_mae": 0.06001376972871527,
+      "mechanism_gate_passed": false
+    }
+  ],
+  "raw_accepted_update_caveat": "For unconstrained M2 joint models, accepted_update is an optimization flag. Nonfinite capacity projections are failures/no output, never successful capacity updates.",
+  "final_combination": {
+    "deployable_new_SOC_or_capacity_estimator": "none_accepted",
+    "retain": "development_frozen_baseline_for_voltage; audited_relative_Ah_as_operation_state",
+    "s_updates": "freeze_without_identifiability_and_valid_reference_projection",
+    "initialization": "reference_charge_position_without_absolute_SOC; bounded_cell_offsets_are_a_modeling_choice_not_verified_cell_truth",
+    "continuous_chain": "inherit_only_with_audited_signed_current; after_unknown_gap_keep_unknown_until_new_anchor",
+    "SOC_partition": "no_hard_low_mid_high_SOC_partition; use_observable_span_slope_and_uncertainty"
+  },
+  "initial_error_test_scope": "synthetic oracle-centered perturbation; criterion is 10 consecutive points below 3 pp, not sustained convergence to trajectory end",
+  "post_primary_exploratory_supplements": {
+    "supplement_full_structure_forecasts": [
+      {
+        "method": "M2_full_common_d",
+        "budget": "A",
+        "n_events": 46,
+        "n_output": 46,
+        "mae_mV": 1.2479337106012438,
+        "paired_baseline_mV": 0.4888292758169203
+      },
+      {
+        "method": "M2_full_common_d",
+        "budget": "B",
+        "n_events": 46,
+        "n_output": 46,
+        "mae_mV": 1.3230696275435299,
+        "paired_baseline_mV": 0.6360487255689391
+      },
+      {
+        "method": "M2_full_shrunk_d",
+        "budget": "A",
+        "n_events": 46,
+        "n_output": 46,
+        "mae_mV": 2.152402344972124,
+        "paired_baseline_mV": 0.4888292758169203
+      },
+      {
+        "method": "M2_full_shrunk_d",
+        "budget": "B",
+        "n_events": 46,
+        "n_output": 46,
+        "mae_mV": 1.2497760106655904,
+        "paired_baseline_mV": 0.6360487255689391
+      }
+    ],
+    "supplement_waiting_budget_forecasts": [
+      {
+        "method": "endpoint",
+        "budget": "A",
+        "waiting_budget_s": 300,
+        "n_events": 46,
+        "n_output": 46,
+        "mae_mV": 2.512657766605451,
+        "paired_baseline_mV": 0.4888292758169203
+      },
+      {
+        "method": "endpoint",
+        "budget": "A",
+        "waiting_budget_s": 900,
+        "n_events": 46,
+        "n_output": 46,
+        "mae_mV": 2.6430436748070165,
+        "paired_baseline_mV": 0.4888292758169203
+      },
+      {
+        "method": "endpoint",
+        "budget": "A",
+        "waiting_budget_s": 1800,
+        "n_events": 46,
+        "n_output": 46,
+        "mae_mV": 2.576965810262709,
+        "paired_baseline_mV": 0.4888292758169203
+      },
+      {
+        "method": "endpoint",
+        "budget": "B",
+        "waiting_budget_s": 300,
+        "n_events": 46,
+        "n_output": 46,
+        "mae_mV": 1.369611217592078,
+        "paired_baseline_mV": 0.6360487255689391
+      },
+      {
+        "method": "endpoint",
+        "budget": "B",
+        "waiting_budget_s": 900,
+        "n_events": 46,
+        "n_output": 46,
+        "mae_mV": 1.3696112175920803,
+        "paired_baseline_mV": 0.6360487255689391
+      },
+      {
+        "method": "endpoint",
+        "budget": "B",
+        "waiting_budget_s": 1800,
+        "n_events": 46,
+        "n_output": 46,
+        "mae_mV": 1.3696112175920805,
+        "paired_baseline_mV": 0.6360487255689391
+      },
+      {
+        "method": "shape",
+        "budget": "A",
+        "waiting_budget_s": 300,
+        "n_events": 46,
+        "n_output": 24,
+        "mae_mV": 3.660336890603508,
+        "paired_baseline_mV": 0.37798988699789543
+      },
+      {
+        "method": "shape",
+        "budget": "A",
+        "waiting_budget_s": 900,
+        "n_events": 46,
+        "n_output": 24,
+        "mae_mV": 3.3795807043999173,
+        "paired_baseline_mV": 0.37798988699789543
+      },
+      {
+        "method": "shape",
+        "budget": "A",
+        "waiting_budget_s": 1800,
+        "n_events": 46,
+        "n_output": 24,
+        "mae_mV": 3.188348796483432,
+        "paired_baseline_mV": 0.37798988699789543
+      },
+      {
+        "method": "shape",
+        "budget": "B",
+        "waiting_budget_s": 300,
+        "n_events": 46,
+        "n_output": 24,
+        "mae_mV": 4.205282050374943,
+        "paired_baseline_mV": 0.6552414036365644
+      },
+      {
+        "method": "shape",
+        "budget": "B",
+        "waiting_budget_s": 900,
+        "n_events": 46,
+        "n_output": 24,
+        "mae_mV": 2.7444381963805156,
+        "paired_baseline_mV": 0.6552414036365644
+      },
+      {
+        "method": "shape",
+        "budget": "B",
+        "waiting_budget_s": 1800,
+        "n_events": 46,
+        "n_output": 24,
+        "mae_mV": 2.3980646529243796,
+        "paired_baseline_mV": 0.6552414036365644
+      }
+    ],
+    "oracle_diagnostics": [
+      {
+        "oracle": "known_capacity_only",
+        "SOC_mae_pp": 1.6310945093997975
+      },
+      {
+        "oracle": "known_start_and_capacity",
+        "SOC_mae_pp": 0.006022081729928668
+      }
+    ],
+    "temperature_return": {
+      "n_seeds": 20,
+      "mean_abs_25_to_45_capacity_change_Ah": 2.083570398468802,
+      "max_abs_25_return_difference_Ah": 0.0,
+      "accepted_update_count": 0,
+      "interpretation": "paired_controller_reset_not_continuous_thermal_state_validation"
+    },
+    "daily_chains": {
+      "n_chains": 38,
+      "n_fully_continuous": 34,
+      "n_chains_with_gap": 4,
+      "rows": 1294231,
+      "max_observed_relative_Ah": 76.6293180555556,
+      "SOC_accuracy": "not_testable"
+    }
+  },
+  "frozen_source_fingerprints_unchanged": true
+}

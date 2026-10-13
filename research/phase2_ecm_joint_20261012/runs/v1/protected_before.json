@@ -1,0 +1,46 @@
+[
+  {
+    "path": "framework/__init__.py",
+    "sha256": "88e1c6670a9adb53b5579aa08e2ace24dea4f41502282246f41df489b2e82250"
+  },
+  {
+    "path": "framework/data.py",
+    "sha256": "d0cf13e37a74fb1bcf540dacc4cc1ffd294196c97be5853c9616db1c9a66f708"
+  },
+  {
+    "path": "framework/io.py",
+    "sha256": "0af07e168ae038ce5b09d77b2547f23f98031f9f14c2756b62468b5925dbdd49"
+  },
+  {
+    "path": "framework/persistence.py",
+    "sha256": "8e2627dd4d33e5d1d9ae0d4be2d2584c53b0b93bcaedc19a2d81d8a7231fd1be"
+  },
+  {
+    "path": "my_model/__init__.py",
+    "sha256": "a205d0a1c397c5e5b04b9795c9b9ef5c5b6dcfd11287b758da0f0e397f1193b8"
+  },
+  {
+    "path": "my_model/model_example.py",
+    "sha256": "b01471512322519ee755b54dc6abdb419654d1c43c64ce11d4d065ab0a77defd"
+  },
+  {
+    "path": "my_model/model_template.py",
+    "sha256": "bccbbbc80392c6bd6e3a40e7a809d6458be741871394b621426a8c5b7d2da88c"
+  },
+  {
+    "path": "research/phase2_initial_soc_four_methods_20261011/decision.json",
+    "sha256": "4cc9edc60d012ebc571f73659e1cd62eac107e2429c516a207444059c91e2496"
+  },
+  {
+    "path": "research/phase2_initial_soc_four_methods_20261011/runs/v1/EVALUATION_COMPLETE",
+    "sha256": "4d5b1a907006b8e21f30571b8b30834b2885c30f38b5ee15dc4f8da5943c5199"
+  },
+  {
+    "path": "run_model.py",
+    "sha256": "58b43ad8947ccf7939c804636996678d73df0f894c6d32f18134393b9df9c71d"
+  },
+  {
+    "path": "validate_submission.py",
+    "sha256": "4ac51cf9d67d39d1a357e750d766a325c46cfc6856b72b63f48c3d3ef3e53ae8"
+  }
+]

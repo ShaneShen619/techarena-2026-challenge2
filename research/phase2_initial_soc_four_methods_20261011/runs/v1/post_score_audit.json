@@ -1,0 +1,6 @@
+{
+  "recorded_parameter_timestamps_causal": true,
+  "every_method_same_event_denominator": true,
+  "expected_events": 46,
+  "null_capacity_truth_preserved": true
+}

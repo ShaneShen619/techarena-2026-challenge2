@@ -1,0 +1,8 @@
+{
+  "scope": "post-score exploratory; fixed main estimator unchanged",
+  "date": "2026-10-13",
+  "files": {
+    "research/phase2_paper_transfer_20261012/implementation_v1/supplement_wide50/execute.py": "c2dcd204abbfcddba27b44f7c691b4500c41901f23355f7f89f180347e561783",
+    "research/phase2_paper_transfer_20261012/implementation_v1/supplement_wide50/PROTOCOL.md": "79e767f729f466444b57a6e18071348a3460cc76a68863ed314647a297704faa"
+  }
+}

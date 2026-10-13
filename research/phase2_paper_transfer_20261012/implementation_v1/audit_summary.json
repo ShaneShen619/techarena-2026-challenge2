@@ -1,0 +1,14 @@
+{
+  "events": 75,
+  "development": 29,
+  "evaluation": 46,
+  "raw_files": 12,
+  "max_raw_Ah_discrepancy": 1.9895196601282805e-13,
+  "candidate_pulses": 78,
+  "qualified_pulses": 78,
+  "qualified_unique_pulses": 78,
+  "real_per_cell_SOC_labels": false,
+  "later_same_protocol_capacity_labels": false,
+  "CK0_temperature_certified": false,
+  "exposure": "Previously studied single physical pack; temporal replay, not new blind evaluation"
+}

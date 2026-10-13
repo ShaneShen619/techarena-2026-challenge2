@@ -1,0 +1,182 @@
+[
+  {
+    "outer_held": "102Ah_25degC_0p5C_cell3",
+    "family": "metadata",
+    "inner_MAE_pp": 77.23858743842892,
+    "alpha": 10.0,
+    "K": 0.0,
+    "L_pp": 1.0,
+    "training_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "outer_held": "102Ah_25degC_0p5C_cell3",
+    "family": "signal",
+    "inner_MAE_pp": 77.23858743842892,
+    "alpha": 10.0,
+    "K": 0.0,
+    "L_pp": 1.0,
+    "training_cells": [
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "outer_held": "102Ah_25degC_1C_cell3",
+    "family": "metadata",
+    "inner_MAE_pp": 2.4892888414596905,
+    "alpha": 100.0,
+    "K": 0.2,
+    "L_pp": 2.0,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "outer_held": "102Ah_25degC_1C_cell3",
+    "family": "signal",
+    "inner_MAE_pp": 2.3720114054254005,
+    "alpha": 100.0,
+    "K": 0.2,
+    "L_pp": 1.0,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "outer_held": "102Ah_35degC_1C_cell1",
+    "family": "metadata",
+    "inner_MAE_pp": 3.7403024028635246,
+    "alpha": 10.0,
+    "K": 0.0,
+    "L_pp": 1.0,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "outer_held": "102Ah_35degC_1C_cell1",
+    "family": "signal",
+    "inner_MAE_pp": 3.7403024028635246,
+    "alpha": 10.0,
+    "K": 0.0,
+    "L_pp": 1.0,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "outer_held": "102Ah_45degC_0p5C_cell3",
+    "family": "metadata",
+    "inner_MAE_pp": 30.723404316445986,
+    "alpha": 10.0,
+    "K": 0.0,
+    "L_pp": 1.0,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "outer_held": "102Ah_45degC_0p5C_cell3",
+    "family": "signal",
+    "inner_MAE_pp": 30.723404316445986,
+    "alpha": 10.0,
+    "K": 0.0,
+    "L_pp": 1.0,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "outer_held": "102Ah_45degC_1C_cell1",
+    "family": "metadata",
+    "inner_MAE_pp": 3.4612367405057567,
+    "alpha": 10.0,
+    "K": 0.0,
+    "L_pp": 1.0,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "outer_held": "102Ah_45degC_1C_cell1",
+    "family": "signal",
+    "inner_MAE_pp": 3.4612367405057567,
+    "alpha": 10.0,
+    "K": 0.0,
+    "L_pp": 1.0,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_55degC_1C_cell3"
+    ]
+  },
+  {
+    "outer_held": "102Ah_55degC_1C_cell3",
+    "family": "metadata",
+    "inner_MAE_pp": 5.10366521655295,
+    "alpha": 10.0,
+    "K": 0.0,
+    "L_pp": 1.0,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ]
+  },
+  {
+    "outer_held": "102Ah_55degC_1C_cell3",
+    "family": "signal",
+    "inner_MAE_pp": 5.10366521655295,
+    "alpha": 10.0,
+    "K": 0.0,
+    "L_pp": 1.0,
+    "training_cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1"
+    ]
+  }
+]

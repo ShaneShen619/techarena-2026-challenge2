@@ -1,0 +1,9 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "numpy": "2.3.5",
+  "pandas": "2.2.3",
+  "scipy": "1.18.1",
+  "platform": "macOS-15.7.4-arm64-arm-64bit",
+  "branch": "exp/phase2-ecm-joint-20261012",
+  "head": "3b0909e9749afddd317c7d5896acd2af49582394"
+}

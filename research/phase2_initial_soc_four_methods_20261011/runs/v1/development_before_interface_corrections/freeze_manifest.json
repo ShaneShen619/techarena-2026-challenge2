@@ -1,0 +1,76 @@
+{
+  "files": [
+    {
+      "path": "research/phase2_initial_soc_four_methods_20261011/src/audit.py",
+      "sha256": "51fcbcabb5a9f19ad6ee2b3c242c220d1d05bb794c204a10fa3dd8f7f7f04e08"
+    },
+    {
+      "path": "research/phase2_initial_soc_four_methods_20261011/src/checks.py",
+      "sha256": "44fdc5b653cc3a1dd99e7919358cf7a550b81f30553716988ddf9f66d23ba0c0"
+    },
+    {
+      "path": "research/phase2_initial_soc_four_methods_20261011/src/engine.py",
+      "sha256": "738e294c6134195fccd2e4fa2d5278778e636572c55d930371f34bffb41f9394"
+    },
+    {
+      "path": "research/phase2_initial_soc_four_methods_20261011/src/official.py",
+      "sha256": "1a231a9b0469113b2b94b1878c56772a8f5946c76e5e58d649d5d0b36ea760f0"
+    },
+    {
+      "path": "research/phase2_initial_soc_four_methods_20261011/src/run.py",
+      "sha256": "af7ab1a4d93b1a196c3d388176edf1fa9dcf79d164902c68583c5254dc0b6dbe"
+    },
+    {
+      "path": "research/phase2_initial_soc_four_methods_20261011/src/synthetic.py",
+      "sha256": "0ad105bbdef12760e1e7438526b8da69e2aa8d70d67d1e60bf964226c0fe0e37"
+    },
+    {
+      "path": "research/phase2_initial_soc_four_methods_20261011/protocol.md",
+      "sha256": "75c8b21726c07d6f395b57724312cbaec43150f33101da1dc274ab5c9b78636a"
+    },
+    {
+      "path": "research/phase2_initial_soc_four_methods_20261011/configs/frozen_protocol.json",
+      "sha256": "ebc5d3dd34fdf7ae3cfa12152d25570fc351778fcff7d2c08ac199cef3ce5ab3"
+    },
+    {
+      "path": "research/phase2_initial_soc_four_methods_20261011/runs/v1/selected_configuration.json",
+      "sha256": "c3ac4be1ed1f6a801ca555fa475678bdf5b038019a9cc9be897eb9dec39cf626"
+    }
+  ],
+  "evaluation_opened": false,
+  "selected": {
+    "short_25": {
+      "tau": 300,
+      "baseline": {
+        "A": "B1_previous",
+        "B": "B0_fixed"
+      },
+      "development_events": 5
+    },
+    "short_45": {
+      "tau": 600,
+      "baseline": {
+        "A": "B1_previous",
+        "B": "B1_previous"
+      },
+      "development_events": 10
+    },
+    "wide_25": {
+      "tau": 300,
+      "baseline": {
+        "A": "B1_previous",
+        "B": "B1_previous"
+      },
+      "development_events": 5
+    },
+    "wide_45": {
+      "tau": 600,
+      "baseline": {
+        "A": "B1_previous",
+        "B": "B1_previous"
+      },
+      "development_events": 9
+    }
+  },
+  "python": "3.13.0 (v3.13.0:60403a5409f, Oct  7 2024, 00:37:40) [Clang 15.0.0 (clang-1500.3.9.4)]"
+}

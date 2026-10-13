@@ -1,0 +1,4 @@
+method,n_seed_scenarios,false_update_rate,accepted_fraction,positive_acceptance
+M2_joint_common,220,0.8590909090909091,1.0,1.0
+M2_joint_free4,220,0.031818181818181815,1.0,1.0
+M2_gated,220,0.0,0.0,0.7

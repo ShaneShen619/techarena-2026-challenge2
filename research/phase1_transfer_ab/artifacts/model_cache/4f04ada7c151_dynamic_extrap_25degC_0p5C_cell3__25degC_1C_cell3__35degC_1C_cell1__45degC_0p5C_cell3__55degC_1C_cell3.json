@@ -1,0 +1,36 @@
+{
+  "config": "dynamic_extrap",
+  "shape": [
+    103.18266844854705,
+    14.109315085989978,
+    0.34170029485921727,
+    94.61170942944241,
+    0.673358271187962
+  ],
+  "parameters": {
+    "lnA": -6.064614546263289,
+    "Ea": 37760.93642170673,
+    "gamma": 0.0018701386692899168
+  },
+  "rate_mode": "extrap",
+  "n_deep": 4,
+  "head_taus": [
+    5139.309313791526,
+    4738.809419924822,
+    5637.0985252102455,
+    3842.332387151968,
+    1786.5274587018703
+  ],
+  "source_coordinate_fit_rmse_pp": 0.711012193148381,
+  "training_cells": [
+    "102Ah_25degC_0p5C_cell3",
+    "102Ah_25degC_1C_cell3",
+    "102Ah_35degC_1C_cell1",
+    "102Ah_45degC_0p5C_cell3",
+    "102Ah_55degC_1C_cell3"
+  ],
+  "source_temperature_axis": "charge-exposure sensor bins",
+  "source_rate_definition": "charge-weighted stable-run median, binned",
+  "fit_seconds": 0.1465853339759633,
+  "code_hash": "4f04ada7c151"
+}

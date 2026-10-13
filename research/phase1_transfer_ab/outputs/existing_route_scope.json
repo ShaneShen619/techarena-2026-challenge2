@@ -1,0 +1,38 @@
+{
+  "source_Ridge_version": "new strict shallow nine-window adaptation, not old24-window full-charge1.039pp model",
+  "B_old_input": "same registered20Ah fragments; CK0 single-cell reference; _event_fit and gates unchanged; prefix endpoint known",
+  "A_raw_input": "old windows/gates on registered20Ah fragments, never full-event future depth",
+  "causal_window": "single-cell voltage window adapted from pack13.4/13.95V; same20Ah budget",
+  "Ridge_selection": [
+    {
+      "heldout": "102Ah_25degC_0p5C_cell3",
+      "alpha": 100.0,
+      "inner_MAE_pp": 6.210660749977693
+    },
+    {
+      "heldout": "102Ah_25degC_1C_cell3",
+      "alpha": 10.0,
+      "inner_MAE_pp": 4.1183141806628925
+    },
+    {
+      "heldout": "102Ah_35degC_1C_cell1",
+      "alpha": 10.0,
+      "inner_MAE_pp": 3.020390589855946
+    },
+    {
+      "heldout": "102Ah_45degC_0p5C_cell3",
+      "alpha": 1.0,
+      "inner_MAE_pp": 6.39733492416506
+    },
+    {
+      "heldout": "102Ah_45degC_1C_cell1",
+      "alpha": 100.0,
+      "inner_MAE_pp": 5.644379934015726
+    },
+    {
+      "heldout": "102Ah_55degC_1C_cell3",
+      "alpha": 1.0,
+      "inner_MAE_pp": 3.1371933154307117
+    }
+  ]
+}

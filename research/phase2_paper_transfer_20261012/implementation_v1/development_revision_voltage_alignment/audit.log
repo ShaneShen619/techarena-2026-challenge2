@@ -1,0 +1,13 @@
+raw re-audit segment_01_45degC.csv.gz 171541
+raw re-audit segment_02_25degC.csv.gz 65062
+raw re-audit segment_04_25degC.csv.gz 69616
+raw re-audit segment_05_45degC.csv.gz 181655
+raw re-audit segment_06_25degC.csv.gz 69338
+raw re-audit segment_07_45degC.csv.gz 172706
+raw re-audit segment_08_25degC.csv.gz 58957
+raw re-audit segment_09_45degC.csv.gz 178755
+raw re-audit segment_10_25degC.csv.gz 92438
+raw re-audit segment_11_45degC.csv.gz 164783
+raw re-audit segment_12_25degC.csv.gz 88248
+raw re-audit segment_13_45degC.csv.gz 174442
+{'events': 75, 'development': 29, 'evaluation': 46, 'raw_files': 12, 'max_raw_Ah_discrepancy': 1.9895196601282805e-13, 'candidate_pulses': 78, 'qualified_pulses': 67, 'qualified_unique_pulses': 67, 'real_per_cell_SOC_labels': False, 'later_same_protocol_capacity_labels': False, 'CK0_temperature_certified': False, 'exposure': 'Previously studied single physical pack; temporal replay, not new blind evaluation'}

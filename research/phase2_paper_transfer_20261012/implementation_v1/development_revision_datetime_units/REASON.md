@@ -1,0 +1,1 @@
+Pre-freeze implementation correction: pandas timestamp dtype was microseconds. Explicit nanosecond conversion replaces assumed ns units. Initial audit outputs retained for provenance and not used. No scoring occurred.

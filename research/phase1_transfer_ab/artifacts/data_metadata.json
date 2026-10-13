@@ -1,0 +1,44 @@
+[
+  {
+    "cell_id": "102Ah_25degC_0p5C_cell3",
+    "nominal_T": 25.0,
+    "nominal_C": 0.5,
+    "raw_mean_T": 36.92616741434538,
+    "raw_temp_coverage": 0.8358100340833462
+  },
+  {
+    "cell_id": "102Ah_25degC_1C_cell3",
+    "nominal_T": 25.0,
+    "nominal_C": 1.0,
+    "raw_mean_T": 35.56124263684114,
+    "raw_temp_coverage": 0.9999852520506477
+  },
+  {
+    "cell_id": "102Ah_35degC_1C_cell1",
+    "nominal_T": 35.0,
+    "nominal_C": 1.0,
+    "raw_mean_T": 40.14735604018623,
+    "raw_temp_coverage": 0.802124365584739
+  },
+  {
+    "cell_id": "102Ah_45degC_0p5C_cell3",
+    "nominal_T": 45.0,
+    "nominal_C": 0.5,
+    "raw_mean_T": 46.31629468237069,
+    "raw_temp_coverage": 0.9998775455799553
+  },
+  {
+    "cell_id": "102Ah_45degC_1C_cell1",
+    "nominal_T": 45.0,
+    "nominal_C": 1.0,
+    "raw_mean_T": 49.10414386144005,
+    "raw_temp_coverage": 0.9999524934830804
+  },
+  {
+    "cell_id": "102Ah_55degC_1C_cell3",
+    "nominal_T": 55.0,
+    "nominal_C": 1.0,
+    "raw_mean_T": 58.84992810252348,
+    "raw_temp_coverage": 0.999686189601776
+  }
+]

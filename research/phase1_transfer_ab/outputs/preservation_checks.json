@@ -1,0 +1,138 @@
+{
+  "source_snapshot": [
+    {
+      "path": "/Users/shane/Desktop/\u9879\u76ee/Current State_Challenge1/README.md",
+      "sha256": "b919ba41e0fdf00744f7e33fdbdde209bc358dca3ec480481a4204cf530a7da3",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/shane/Desktop/\u9879\u76ee/Current State_Challenge1/my_model/model_template.py",
+      "sha256": "80cbb1af77be4266cff46b539ba5fa25b5489094b480c6e0080edb7b3569686d",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/shane/Desktop/\u9879\u76ee/Current State_Challenge1/my_model/collapse.py",
+      "sha256": "b4273ffab3a4a1e784716a543f926953b93808fa1de88a42434349b55143e57e",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/shane/Desktop/\u9879\u76ee/Current State_Challenge1/my_model/pretrained.json",
+      "sha256": "d079c79c00fad861e3c5bbed994804cb60fba577bc21507a4e8846f8d476f6ee",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/shane/Desktop/\u9879\u76ee/Current State_Challenge1/framework/data.py",
+      "sha256": "74bf0b1c803d41ddb5ce4177089ad31f73c518e959e9993952a3dc4636cdb6c3",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena \u9636\u6bb5 2 \u5b98\u65b9\u6750\u6599/data/DATA_DESCRIPTION.md",
+      "sha256": "23189a695a207a5e57d3eee522828e4582ce1ec1cca475b90453fcb90dd28cf0",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena \u9636\u6bb5 2 \u5b98\u65b9\u6750\u6599/submission_instructions_2026.md",
+      "sha256": "12df3925e8ba985fd002cf17b0b298544bc368ef8dfefaa800b55ec2b5a83c56",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena \u9636\u6bb5 2 \u5b98\u65b9\u6750\u6599/framework/data.py",
+      "sha256": "d0cf13e37a74fb1bcf540dacc4cc1ffd294196c97be5853c9616db1c9a66f708",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena \u9636\u6bb5 2 \u5b98\u65b9\u6750\u6599/my_model/__init__.py",
+      "sha256": "a205d0a1c397c5e5b04b9795c9b9ef5c5b6dcfd11287b758da0f0e397f1193b8",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena \u9636\u6bb5 2 \u5b98\u65b9\u6750\u6599/research/phase2_temperature_improvement/scripts/run_m3_age_prior.py",
+      "sha256": "c721a116e95ab858b39c565719df00f61dc89949a5378f78ef6b685baade0544",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena \u9636\u6bb5 2 \u5b98\u65b9\u6750\u6599/research/phase2_temperature_improvement/src/route_a_repaired.py",
+      "sha256": "2e6df765ec783e3ee6c0320cd715f783108c523b5c2c41ea27bbe98cd22f9611",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena \u9636\u6bb5 2 \u5b98\u65b9\u6750\u6599/research/phase2_temperature_improvement/outputs/\u65b9\u6848A_\u6e29\u5ea6\u4fee\u590d\u4e0e\u63d0\u5347\u62a5\u544a.md",
+      "sha256": "81b4d16c29a2926a34805a0becfe4738d63248a4dff746b5178c2d1b9cd07593",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena \u9636\u6bb5 2 \u5b98\u65b9\u6750\u6599/research/phase2_next_round/outputs/EXECUTIVE_SUMMARY.md",
+      "sha256": "a607dc3ba4ef87a9fb217c18e233ac5dbadcb3b8b8b20559f6b6d14e95b7e065",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena \u9636\u6bb5 2 \u5b98\u65b9\u6750\u6599/research/phase2_capacity_validation/outputs/EXECUTIVE_SUMMARY.md",
+      "sha256": "8a1659e8e5f15748cc051937d8410c9f24eb347ec53c9980da462655ccb3b585",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena \u9636\u6bb5 2 \u5b98\u65b9\u6750\u6599/research/official_current_review_20261009/results.json",
+      "sha256": "bfd0d2938830db9828113b5c08cd7f75747dbb73d687fd42e9256d56248e5641",
+      "unchanged": true
+    }
+  ],
+  "frozen_execution_files": [
+    {
+      "path": "research/phase1_transfer_ab/configs/experiment.json",
+      "sha256": "e597877a05c2bd15d1038049e97844cb581cd8ee1c8279dfef9fba07bc3aa836",
+      "unchanged": true
+    },
+    {
+      "path": "research/phase1_transfer_ab/configs/fallback_policy.json",
+      "sha256": "81e436ba152eccaca8b053591f07b13d7645edc68b2734b261a4f6fc15732a12",
+      "unchanged": true
+    },
+    {
+      "path": "research/phase1_transfer_ab/configs/input_budget.json",
+      "sha256": "e686fa1ab082dc537b1968308cfe2c7dc799432ad4254d6555aeba054e945e71",
+      "unchanged": true
+    },
+    {
+      "path": "research/phase1_transfer_ab/configs/protocol.md",
+      "sha256": "ac0e711b1bd713db7d299436634c058834c0026bf5b499c25f1fd1252ae71861",
+      "unchanged": true
+    },
+    {
+      "path": "research/phase1_transfer_ab/outputs/panel_scoring.csv",
+      "sha256": "7188b662900f84312292a7062d6023e5eeb4f2e32798b6d61a3547ed40cdc59c",
+      "unchanged": true
+    },
+    {
+      "path": "research/phase1_transfer_ab/src/legacy/model_template.py",
+      "sha256": "80cbb1af77be4266cff46b539ba5fa25b5489094b480c6e0080edb7b3569686d",
+      "unchanged": true
+    },
+    {
+      "path": "research/phase1_transfer_ab/src/legacy/collapse.py",
+      "sha256": "b4273ffab3a4a1e784716a543f926953b93808fa1de88a42434349b55143e57e",
+      "unchanged": true
+    },
+    {
+      "path": "research/phase1_transfer_ab/src/legacy/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "unchanged": true
+    },
+    {
+      "path": "research/phase1_transfer_ab/src/legacy/pretrained.json",
+      "sha256": "d079c79c00fad861e3c5bbed994804cb60fba577bc21507a4e8846f8d476f6ee",
+      "unchanged": true
+    },
+    {
+      "path": "research/phase1_transfer_ab/src/legacy_data.py",
+      "sha256": "74bf0b1c803d41ddb5ce4177089ad31f73c518e959e9993952a3dc4636cdb6c3",
+      "unchanged": true
+    },
+    {
+      "path": "research/phase1_transfer_ab/src/event_core.py",
+      "sha256": "abc430d3ce231ec43d7ef686ce114ffbbb5c4818df8f4e1c3e3ba552fe928d76",
+      "unchanged": true
+    }
+  ],
+  "protected_tracked_changes": "",
+  "all_pass": true
+}

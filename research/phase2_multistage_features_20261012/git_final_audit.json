@@ -1,0 +1,21 @@
+{
+  "original_branch": "exp/phase2-ecm-joint-20261012",
+  "worktree_branch": "exp/phase2-multistage-features-20261012",
+  "original_HEAD": "3b0909e9749afddd317c7d5896acd2af49582394",
+  "worktree_HEAD": "3b0909e9749afddd317c7d5896acd2af49582394",
+  "original_tracked_diff": [],
+  "worktree_tracked_diff": [],
+  "original_status": [
+    "?? research/phase1_pack_trend_20261011/",
+    "?? research/phase1_transfer_ab/",
+    "?? research/phase1_transfer_ab_plan_20261010/",
+    "?? research/phase2_ecm_joint_20261012/",
+    "?? research/phase2_initial_soc_four_methods_20261011/",
+    "?? research/phase2_joint_discharge_20261011/",
+    "?? research/phase2_multistage_features_20261012",
+    "?? research/phase2_paper_transfer_20261012/",
+    "?? research/phase2_routes23_prompts_20261012/",
+    "?? research/phase2_signal_driven_routes_20261011/"
+  ],
+  "task_link_target": "/Users/shane/.cursor/worktrees/arena-phase2/multistage-features-20261013/research/phase2_multistage_features_20261012"
+}

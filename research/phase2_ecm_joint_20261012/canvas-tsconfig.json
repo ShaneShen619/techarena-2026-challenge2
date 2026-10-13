@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "typeRoots": [
+      "/Users/shane/Desktop/Arena \u9636\u6bb5 2 \u5b98\u65b9\u6750\u6599/research/phase1_transfer_ab/runs/canvas_check/node_modules/@types"
+    ],
+    "paths": {
+      "cursor/canvas": [
+        "/Users/shane/.cursor/skills-cursor/canvas/sdk/index.d.ts"
+      ],
+      "react": [
+        "/Users/shane/Desktop/Arena \u9636\u6bb5 2 \u5b98\u65b9\u6750\u6599/research/phase1_transfer_ab/runs/canvas_check/node_modules/@types/react/index.d.ts"
+      ],
+      "react/jsx-runtime": [
+        "/Users/shane/Desktop/Arena \u9636\u6bb5 2 \u5b98\u65b9\u6750\u6599/research/phase1_transfer_ab/runs/canvas_check/node_modules/@types/react/jsx-runtime.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "/Users/shane/.cursor/projects/Users-shane-Desktop-Arena-2/canvases/phase2-ECM-joint-validation.canvas.tsx"
+  ]
+}

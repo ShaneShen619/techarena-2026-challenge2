@@ -1,0 +1,64 @@
+{
+  "path": "L",
+  "OCV_gate": "UNVERIFIED",
+  "reason": "No qualified independent target-cell OCV/SOC versus charge coordinate and direction/temperature calibration. Loaded CK0 and endpoint rests are not OCV.",
+  "source_project": "/Users/shane/Desktop/项目/Current State_Challenge1",
+  "source_project_exists": true,
+  "source_csv_files": 65,
+  "source_entities": 6,
+  "source_inventory_scan": "all filenames and SHA256; first 5000 rows per file inspected, not exhaustive OCV protocol reconstruction",
+  "explicit_calibration_filename_candidates": [],
+  "nominal_chemistry_similarity": "102Ah LFP",
+  "same_manufacturer_model_batch": "unproven",
+  "initial_SOCs": "unavailable",
+  "temperature_channels": "mean/min/max shared across four cells",
+  "CK0_record_start": "2025-01-15T14:03:42",
+  "CK0_record_end": "2025-01-16T09:44:56",
+  "CK0_nominal_date": "2025-01-14",
+  "CK0_reference_authorization": "released reference separately allowed by framework even though timestamp later than nominal CK0",
+  "CK0_columns": [
+    "timestamp",
+    "current_A",
+    "voltage_V",
+    "cell1_V",
+    "cell2_V",
+    "cell3_V",
+    "cell4_V",
+    "discharged_Ah"
+  ],
+  "voltage_reporting_resolution_V": {
+    "cell1_V": 0.0009999999999998899,
+    "cell2_V": 0.0009999999999998899,
+    "cell3_V": 0.0009999999999998899,
+    "cell4_V": 0.0009999999999998899
+  },
+  "sample_period_s": 10,
+  "Nyquist_Hz": 0.05,
+  "Yi_0p5Hz_recoverable": false,
+  "Yi_0p01Hz": "within bandwidth; no demonstrated dedicated injection",
+  "group_sum_residual_mV": {
+    "median": -16.99999999999946,
+    "minimum": -35.00000000000014,
+    "maximum": -5.999999999998451
+  },
+  "independent_same_protocol_4S_capacity_gate": "UNVERIFIED",
+  "eligibility_registry": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_capacity_validation/outputs/data_eligibility.csv",
+  "registered_sources": [
+    "official_CK0",
+    "official_CK1_CK7",
+    "P1_D1_six_cells",
+    "TU_BattGP",
+    "Che_Dataset3",
+    "He_ESSL1",
+    "Xu_1P10S",
+    "Yagci_180Ah",
+    "Ji_second_life_23",
+    "UConn_108",
+    "new_independent_4S_D2"
+  ],
+  "capacity_truth_available": [
+    "CK0"
+  ],
+  "release_temperatures": "CK0 reference temperature not independently certified in supplied metadata",
+  "usable_charging_information": "CCCV operational anchors, signed coulomb ledger, historical current propagation; charging voltage is not treated as discharge-template observation"
+}

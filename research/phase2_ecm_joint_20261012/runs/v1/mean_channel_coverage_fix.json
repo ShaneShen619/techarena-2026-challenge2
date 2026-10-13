@@ -1,0 +1,6 @@
+{
+  "reason": "Full-model mean-output direct coverage must inherit original model/fallback status, rather than all finite outputs.",
+  "forecast_errors_changed": false,
+  "full_model_direct_coverage": 0.94,
+  "original_files_preserved": true
+}

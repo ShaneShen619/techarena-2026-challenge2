@@ -1,0 +1,18 @@
+{
+  "protected_files_unchanged": true,
+  "historical_parameter_time_violations": 0,
+  "capacity_updates_admitted": 0,
+  "science_checks_passed": 24,
+  "primary_results_not_retuned_after_scoring": true,
+  "conditional_reference_mapping_correction": {
+    "reason": "A common reference-position shift must also shift the CK0 pack-sum residual mapping; original unshifted mapping could lose a bracket from millivolt rounding.",
+    "original_source_sha256": "f77c227e2c0d71264882ede2bcf1a4b88be225c52519eb813ca4ec809d1a7acd",
+    "corrected_source_sha256": "8715d78f7bfcfa9e2f228f4ab5982b23c33d12272991bdf997f6c966b214f05a",
+    "primary_zero_shift_voltage_and_capacity_max_difference": 0.0,
+    "primary_prediction_estimation_and_thresholds_changed": false,
+    "rerun_scope": "reference perturbation projections and scientific invariants only",
+    "unequal_cell_mapping": "mean reference coordinate remains a conditional assumption",
+    "frozen_original_preserved": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_ecm_joint_20261012/runs/v1/source_snapshot/ecm_before_reference_shift_correction.py"
+  },
+  "supplemental_analysis_does_not_select_primary_model": true
+}

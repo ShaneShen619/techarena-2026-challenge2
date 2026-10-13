@@ -1,0 +1,61 @@
+{
+  "code_and_report": [
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_joint_discharge_20261011/README.md",
+      "sha256": "6fc5f3abad1e2c9c4021640833e5662a0e92e9f98a6a70e1ad00a268413d94ec"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_joint_discharge_20261011/protocol.md",
+      "sha256": "9ea0d273452e401bcb9b916d758584fe69424c3aa0b43b53d83630e5dc736878"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_joint_discharge_20261011/放电截止与单芯保护_原始数据核查.md",
+      "sha256": "08eb7b56a1cc9c7e6a4fdb8fed45db2c90ce7e5722e2219c118b62cc965f50ac"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_joint_discharge_20261011/canvas-tsconfig.json",
+      "sha256": "49fe3567fddace6bc8413f57f440b6f3e171ccce3acf28652d96a64bd22bc374"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_joint_discharge_20261011/src/cutoff_audit.py",
+      "sha256": "935ca43120d017b68e0438695c56a1337f2679feef825e6da4e410ac6403548f"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_joint_discharge_20261011/src/diagnostics.py",
+      "sha256": "7c3cb20b8820f74f84e0bc6816213bff97d143b63d6527595f51d0f0e14e9173"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_joint_discharge_20261011/src/experiment.py",
+      "sha256": "659efc728bd82205abb91fd6ead08a5a8e77ef8ae34b88cea1f30a5e4b89c299"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_joint_discharge_20261011/src/lower_voltage_audit.py",
+      "sha256": "a71ba80d015420510df06aea75362354d7758ea31be7da09cf1efb51bd4d5bbe"
+    },
+    {
+      "path": "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase2_joint_discharge_20261011/tests/check_science.py",
+      "sha256": "a7618a61211dc99c3504f6281568cbeb686925301147e1f1097f0fdc3acc9325"
+    },
+    {
+      "path": "/Users/shane/.cursor/projects/Users-shane-Desktop-Arena-2/canvases/joint-discharge-identification.canvas.tsx",
+      "sha256": "2ac524dff9427cc2032664db8fc3cff333b238d4a3bee5f326c8385eabfa254c"
+    }
+  ],
+  "checks": {
+    "science_assertions": "passed",
+    "canvas_typescript": "passed",
+    "python_compile": "passed",
+    "capacity_update_gate": "rejected in all evaluated CK/temperature groups"
+  },
+  "wider_discharge_followup": {
+    "raw_events_verified": 36,
+    "capacity_fit_performed": false,
+    "absolute_SOC_calibrated": false
+  },
+  "cutoff_audit": {
+    "raw_segments": 13,
+    "documented_cutoff": "pack 11.2 V for checkup",
+    "single_cell_protection_configuration": "unknown",
+    "canvas_typecheck": "passed"
+  }
+}

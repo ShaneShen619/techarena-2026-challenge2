@@ -1,0 +1,96 @@
+[
+  {
+    "name": "CK0_first_pack_cutoff",
+    "passed": true,
+    "detail": 100.41
+  },
+  {
+    "name": "serial_Ah_not_fourfold",
+    "passed": true,
+    "detail": 97.3977
+  },
+  {
+    "name": "template_domain_rejection",
+    "passed": true,
+    "detail": "negative_start_and_unbounded_tail_rejected"
+  },
+  {
+    "name": "counter_direction_not_assumed",
+    "passed": true,
+    "detail": "short_pulses_use_current_integral"
+  },
+  {
+    "name": "whole_chain_fold_isolation",
+    "passed": true,
+    "detail": 38
+  },
+  {
+    "name": "forecast_no_suffix_voltage_budget_0",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "name": "EKF_snapshot_no_suffix_voltage_budget_0",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "name": "forecast_no_suffix_voltage_budget_1",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "name": "EKF_snapshot_no_suffix_voltage_budget_1",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "name": "rest_no_post_discharge_information",
+    "passed": true,
+    "detail": "pre_rest_only"
+  },
+  {
+    "name": "serialized_state_prediction_identity",
+    "passed": true,
+    "detail": "template_state_and_parameters_roundtrip"
+  },
+  {
+    "name": "cell_permutation_prediction_equivariance",
+    "passed": true,
+    "detail": "templates_states_and_observations_reordered"
+  },
+  {
+    "name": "cell_permutation_pack_capacity",
+    "passed": true,
+    "detail": "pack_first_crossing_within_reference_domain"
+  },
+  {
+    "name": "RC_seconds_units",
+    "passed": true,
+    "detail": [
+      0.0,
+      12.642411176571153,
+      17.293294335267746
+    ]
+  },
+  {
+    "name": "stretch_update_no_retroactive_coordinate_jump",
+    "passed": true,
+    "detail": "current_reference_position_preserved"
+  },
+  {
+    "name": "reference_generator_time_step",
+    "passed": true,
+    "detail": 5.242794620130553e-05
+  },
+  {
+    "name": "generator_charge_not_forced_100percent",
+    "passed": true,
+    "detail": "controller_generated_end_state"
+  },
+  {
+    "name": "operation_anchor_age_is_causal",
+    "passed": true,
+    "detail": "audited_raw_anchor_end_before_start"
+  }
+]

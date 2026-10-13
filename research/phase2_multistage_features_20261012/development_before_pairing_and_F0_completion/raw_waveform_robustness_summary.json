@@ -1,0 +1,32 @@
+{
+  "noise1mV": {
+    "mean_abs_change_Ah": 0.0,
+    "max_abs_change_Ah": 0.0,
+    "entities": 6
+  },
+  "offset_minus5mV": {
+    "mean_abs_change_Ah": 0.0241546630859375,
+    "max_abs_change_Ah": 0.144927978515625,
+    "entities": 6
+  },
+  "offset_plus5mV": {
+    "mean_abs_change_Ah": 0.03357823689778646,
+    "max_abs_change_Ah": 0.12994384765625,
+    "entities": 6
+  },
+  "quantization1mV": {
+    "mean_abs_change_Ah": 0.0,
+    "max_abs_change_Ah": 0.0,
+    "entities": 6
+  },
+  "rest_sample60s": {
+    "mean_abs_change_Ah": 1.9288927714029949,
+    "max_abs_change_Ah": 4.316261291503906,
+    "entities": 6
+  },
+  "unchanged": {
+    "mean_abs_change_Ah": 0.0,
+    "max_abs_change_Ah": 0.0,
+    "entities": 6
+  }
+}

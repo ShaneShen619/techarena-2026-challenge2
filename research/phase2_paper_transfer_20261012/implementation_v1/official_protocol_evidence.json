@@ -1,0 +1,23 @@
+{
+  "source": "CHALLENGE2_DESCRIPTION.pdf",
+  "sha256": "2620a0c9ccd51f759f360b777d8c3301ee8d87825e363a9b82b5e59b8520e047",
+  "confirmed": {
+    "reference_discharge_current_A": 5.1,
+    "pack_cutoff_V": 11.2,
+    "reference_after_full_charge": true,
+    "nominal_capacity_Ah": 102,
+    "CK0_capacity_Ah": 100.41,
+    "operation_nominal_sampling_s": 10,
+    "duplicate_timestamps": "documented step transition markers",
+    "checkup_throughput_in_operation_counters": false,
+    "later_capacity_labels_released": false
+  },
+  "not_explicitly_specified": [
+    "checkup charge tail current",
+    "checkup balancing procedure",
+    "checkup rest duration",
+    "checkup reference temperature",
+    "individual cell initial SOC"
+  ],
+  "scope": "Protocol verification after scoring freeze; consistent with prior registered assumptions, no threshold or algorithm changed"
+}

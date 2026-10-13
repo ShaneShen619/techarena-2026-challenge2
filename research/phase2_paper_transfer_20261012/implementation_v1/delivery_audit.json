@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-13",
+  "main_dependencies_verified": 105,
+  "protected_originals_unchanged": true,
+  "main_forward_events": 46,
+  "main_forward_rows": 2392,
+  "synthetic_combinations": 160,
+  "synthetic_rows": 2560,
+  "paired_rows": 120,
+  "supplement_raw_events": 70,
+  "supplement_forward_events": 42,
+  "supplement_is_post_score_exploratory": true,
+  "all_recorded_history_end_before_target": true,
+  "science_checks": 16,
+  "all_requested_unconditional_stages_complete": true,
+  "Sun_conditional_stage": "feature_feasibility_completed_reconstruction_not_eligible",
+  "L2_mechanism_gate_passes": true,
+  "new_real_SOH_update_accepted": false,
+  "canvas_typecheck": "no errors",
+  "figures_visually_inspected": [
+    "pulse_timing.png",
+    "forward_MAE.png",
+    "capacity_profiles.png"
+  ]
+}

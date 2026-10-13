@@ -1,0 +1,15 @@
+{
+  "events": 75,
+  "continuous_anchor_events": 71,
+  "physical_packs": 1,
+  "split_counts": {
+    "('short', 25, 'development')": 4,
+    "('short', 25, 'evaluation')": 10,
+    "('short', 45, 'development')": 9,
+    "('short', 45, 'evaluation')": 16,
+    "('wide', 25, 'development')": 4,
+    "('wide', 25, 'evaluation')": 8,
+    "('wide', 45, 'development')": 8,
+    "('wide', 45, 'evaluation')": 16
+  }
+}

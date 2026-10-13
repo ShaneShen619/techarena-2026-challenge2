@@ -1,0 +1,7 @@
+source,entity,chemistry,nominal_Ah,label_protocol,paired_stages,full_discharge_tail_as_feature,previously_exposed,path
+P1,102Ah_25degC_0p5C_cell3,LFP,102,"0.5C discharge to 2.5V, chamber 25C","CCCV, charge-rest, discharge-prefix, discharge-rest",False,True,/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_0p5C_cell3
+P1,102Ah_25degC_1C_cell3,LFP,102,"1.0C discharge to 2.5V, chamber 25C","CCCV, charge-rest, discharge-prefix, discharge-rest",False,True,/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_25degC_1C_cell3
+P1,102Ah_35degC_1C_cell1,LFP,102,"1.0C discharge to 2.5V, chamber 35C","CCCV, charge-rest, discharge-prefix, discharge-rest",False,True,/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_35degC_1C_cell1
+P1,102Ah_45degC_0p5C_cell3,LFP,102,"0.5C discharge to 2.5V, chamber 45C","CCCV, charge-rest, discharge-prefix, discharge-rest",False,True,/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_0p5C_cell3
+P1,102Ah_45degC_1C_cell1,LFP,102,"1.0C discharge to 2.5V, chamber 45C","CCCV, charge-rest, discharge-prefix, discharge-rest",False,True,/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_45degC_1C_cell1
+P1,102Ah_55degC_1C_cell3,LFP,102,"1.0C discharge to 2.5V, chamber 55C","CCCV, charge-rest, discharge-prefix, discharge-rest",False,True,/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original/102Ah_55degC_1C_cell3

@@ -1,0 +1,16 @@
+# Rebuildable private working copies and extracted environments.
+runs/source_smoke/my_model/
+runs/source_smoke/model_state/
+runs/source_smoke/framework/
+runs/source_smoke/sample_data/
+runs/source_smoke/analysis/
+runs/source_smoke/sample_input.csv
+runs/source_smoke/run_model.py
+runs/source_smoke/validate_submission.py
+runs/source_smoke/README.md
+runs/source_smoke/requirements.txt
+runs/clean_validation/extracted/
+runs/clean_validation/full_state/
+runs/clean_validation/full_test/
+runs/clean_validation/query_*/
+runs/canvas_check/

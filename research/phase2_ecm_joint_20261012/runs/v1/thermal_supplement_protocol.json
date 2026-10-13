@@ -1,0 +1,25 @@
+{
+  "seeds": [
+    1301,
+    1302,
+    1303,
+    1304,
+    1305,
+    1306,
+    1307,
+    1308,
+    1309,
+    1310
+  ],
+  "temperature_sequence_C": [
+    25,
+    45,
+    25
+  ],
+  "capacity_constant": true,
+  "operation": "Independent full-charge control reset at each temperature; no claim of continuous uncontrolled thermal-path validation",
+  "tau_s": 600,
+  "delta_mV": 1,
+  "selection_use": false,
+  "reason": "Primary temperature scenario tested 45C transfer. This separately completes the prescribed return-to25 control without changing the primary model/test."
+}

@@ -1,0 +1,34 @@
+{
+  "forward": {
+    "improvement_over_B_pp": -0.18624197720302593,
+    "A_increment_over_metadata_pp": 0.0015498049251312374,
+    "noninferior_cells_B": 5,
+    "noninferior_cells_metadata": 6,
+    "tail_degradation_pp": {
+      "worst_cell_MAE_pp": 1.009718659560475,
+      "max_error_pp": 0.802443903111957,
+      "late_macro_MAE_pp": 0.30212968559407827
+    },
+    "accepted": false
+  },
+  "damage": {
+    "improvement_over_B_pp": -0.6340950051608569,
+    "A_increment_over_metadata_pp": -0.005931436843880533,
+    "noninferior_cells_B": 4,
+    "noninferior_cells_metadata": 5,
+    "tail_degradation_pp": {
+      "worst_cell_MAE_pp": 1.0949814200815071,
+      "max_error_pp": 1.5222140030072993,
+      "late_macro_MAE_pp": 1.104789421960234
+    },
+    "accepted": false
+  },
+  "protocol_sha256": "9eb027a94c58e1c00130442aa595f50e47e223a77df24e925e3df5992292490f",
+  "trend_axis": "days",
+  "exploratory": false,
+  "primary_budget_Ah": 20,
+  "decision_scope": "frozen 30 past-only decision dates, not event-level deployment",
+  "independent_blind_validation": false,
+  "official_capacity_validation": "not_testable",
+  "eligible_fraction": 0.8611111111111112
+}

@@ -1,0 +1,147 @@
+{
+  "created": "2025-01-03T22:37:28.966515+00:00",
+  "modified": "2025-01-03T22:37:29.100249+00:00",
+  "id": 14597394,
+  "conceptrecid": "14597393",
+  "doi": "10.5281/zenodo.14597394",
+  "conceptdoi": "10.5281/zenodo.14597393",
+  "doi_url": "https://doi.org/10.5281/zenodo.14597394",
+  "metadata": {
+    "title": "Searching for a pulse: evaluating the use of rapid DC pulses for diagnosing battery health, state-of-charge, and safety.",
+    "doi": "10.5281/zenodo.14597394",
+    "publication_date": "2025-01-03",
+    "description": "<p>Data set collected 50,000 independent DC pulse sequences, collected from ~80 cells of 4 different types of commercially produced Li-ion batteries, with varying state-of-health (lab-aged, field-aged, and both), pulse state-of-charge, pulse design, pulse current, battery temperature, and battery hysteresis, while also measuring battery performance metrics relevant to a variety of battery applications (rate capability, mobility application, and stationary energy storage application). To diagnose safety, we have attempted to quantify potential safety and reliability issues using both electrochemical (post-charge voltage relaxation) and physical methods (rapid X-ray CT screening). We then use machine-learning methods to predict different target metrics using rapid pulse data and analyze results.</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Gasper, Paul",
+        "affiliation": "National Renewable Energy Lab",
+        "orcid": "0000-0001-8834-9458"
+      },
+      {
+        "name": "Nina Prakash",
+        "affiliation": "National Laboratory of the Rockies",
+        "orcid": "0000-0001-6653-0694"
+      },
+      {
+        "name": "Knutson, Bryce",
+        "affiliation": "University of Colorado Boulder",
+        "orcid": "0009-0002-4589-7694"
+      },
+      {
+        "name": "Bethel, Thomas",
+        "affiliation": "National Laboratory of the Rockies"
+      },
+      {
+        "name": "Keyser, Matthew",
+        "affiliation": "National Renewable Energy Laboratory",
+        "orcid": "0000-0002-6929-847X"
+      }
+    ],
+    "version": "0.1",
+    "custom": {
+      "code:codeRepository": "https://github.com/NREL/battery_pulse_diagnostics",
+      "code:developmentStatus": {
+        "id": "active",
+        "title": {
+          "en": "Active"
+        }
+      }
+    },
+    "resource_type": {
+      "title": "Journal",
+      "type": "publication",
+      "subtype": "journal"
+    },
+    "license": {
+      "id": "cc-by-4.0"
+    },
+    "grants": [
+      {
+        "code": "Vehicle Technologies Office, ReCell Consortia",
+        "internal_id": "01bj3aw27::Vehicle Technologies Office, ReCell Consortia",
+        "funder": {
+          "name": "United States Department of Energy"
+        }
+      }
+    ],
+    "relations": {
+      "version": [
+        {
+          "index": 0,
+          "is_last": true,
+          "parent": {
+            "pid_type": "recid",
+            "pid_value": "14597393"
+          }
+        }
+      ]
+    }
+  },
+  "title": "Searching for a pulse: evaluating the use of rapid DC pulses for diagnosing battery health, state-of-charge, and safety.",
+  "links": {
+    "self": "https://zenodo.org/api/records/14597394",
+    "self_html": "https://zenodo.org/records/14597394",
+    "preview_html": "https://zenodo.org/records/14597394?preview=1",
+    "doi": "https://doi.org/10.5281/zenodo.14597394",
+    "self_doi": "https://doi.org/10.5281/zenodo.14597394",
+    "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.14597394",
+    "reserve_doi": "https://zenodo.org/api/records/14597394/draft/pids/doi",
+    "parent": "https://zenodo.org/api/records/14597393",
+    "parent_html": "https://zenodo.org/records/14597393",
+    "parent_doi": "https://doi.org/10.5281/zenodo.14597393",
+    "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.14597393",
+    "self_iiif_manifest": "https://zenodo.org/api/iiif/record:14597394/manifest",
+    "self_iiif_sequence": "https://zenodo.org/api/iiif/record:14597394/sequence/default",
+    "files": "https://zenodo.org/api/records/14597394/files",
+    "media_files": "https://zenodo.org/api/records/14597394/media-files",
+    "latest": "https://zenodo.org/api/records/14597394/versions/latest",
+    "latest_html": "https://zenodo.org/records/14597394/latest",
+    "versions": "https://zenodo.org/api/records/14597394/versions",
+    "draft": "https://zenodo.org/api/records/14597394/draft",
+    "access_links": "https://zenodo.org/api/records/14597394/access/links",
+    "access_grants": "https://zenodo.org/api/records/14597394/access/grants",
+    "access_users": "https://zenodo.org/api/records/14597394/access/users",
+    "access_request": "https://zenodo.org/api/records/14597394/access/request",
+    "access": "https://zenodo.org/api/records/14597394/access",
+    "communities": "https://zenodo.org/api/records/14597394/communities",
+    "communities-suggestions": "https://zenodo.org/api/records/14597394/communities-suggestions",
+    "request_deletion": "https://zenodo.org/api/records/14597394/request-deletion",
+    "file_modification": "https://zenodo.org/api/records/14597394/file-modification",
+    "quota_increase": "https://zenodo.org/api/records/14597394/quota-increase",
+    "requests": "https://zenodo.org/api/records/14597394/requests"
+  },
+  "updated": "2025-01-03T22:37:29.100249+00:00",
+  "recid": "14597394",
+  "revision": 4,
+  "files": [
+    {
+      "id": "e2ae31d9-a931-4f48-a3fc-2f0480a755b6",
+      "key": "battery_pulse_diagnostics.zip",
+      "size": 2357008534,
+      "checksum": "md5:2a4e9eecf56ac100afd96438515342af",
+      "links": {
+        "self": "https://zenodo.org/api/records/14597394/files/battery_pulse_diagnostics.zip/content"
+      }
+    }
+  ],
+  "swh": {},
+  "owners": [
+    {
+      "id": "1168488"
+    }
+  ],
+  "status": "published",
+  "stats": {
+    "downloads": 689,
+    "unique_downloads": 202,
+    "views": 647,
+    "unique_views": 614,
+    "version_downloads": 689,
+    "version_unique_downloads": 202,
+    "version_unique_views": 614,
+    "version_views": 647
+  },
+  "state": "done",
+  "submitted": true
+}

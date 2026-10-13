@@ -1,0 +1,9 @@
+checkup,date,B_SOH_pp,eligible_A_cells,missing_hours,source_low_rate_fraction,B_4S_capacity_Ah,research_rate_4S_capacity_Ah,research_rate_SOH_pp,rate_multiplier_next,numeric_rate_accepted,mode_scope
+CK0,2025-01-14T00:00:00,98.44117647058823,0,0.0,0.0,100.41,100.41,98.44117647058823,1.0,False,frozen CK decision grid; common-rate two-channel assumption
+CK1,2025-02-08T00:00:00,97.42654004602007,1,139.18444444444444,1.0,99.37507084694046,99.37507084694046,97.42654004602007,1.0,False,frozen CK decision grid; common-rate two-channel assumption
+CK2,2025-03-11T00:00:00,97.2970813090942,1,686.8905555555556,1.0,99.24302293527607,99.24302293527607,97.2970813090942,1.0,False,frozen CK decision grid; common-rate two-channel assumption
+CK3,2025-04-14T00:00:00,96.70929786312652,2,805.02,1.0,98.64348382038906,98.64348382038906,96.70929786312652,1.0,False,frozen CK decision grid; common-rate two-channel assumption
+CK4,2025-05-16T00:00:00,96.28423992158656,2,900.7877777777778,1.0,98.2099247200183,98.2099247200183,96.28423992158656,1.0,False,frozen CK decision grid; common-rate two-channel assumption
+CK5,2025-06-16T00:00:00,95.93402953782595,2,996.9758333333333,1.0,97.85271012858247,97.85271012858247,95.93402953782595,1.0,False,frozen CK decision grid; common-rate two-channel assumption
+CK6,2025-07-25T00:00:00,95.61789669599807,2,1206.2075,1.0,97.53025462991803,97.53025462991803,95.61789669599807,1.0,False,frozen CK decision grid; common-rate two-channel assumption
+CK7,2025-08-28T00:00:00,95.34085658678065,2,1306.4133333333334,1.0,97.24767371851627,97.24767371851627,95.34085658678065,1.0,False,frozen CK decision grid; common-rate two-channel assumption

@@ -1,0 +1,4410 @@
+[
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 0
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/.gitignore",
+    "bytes": 102,
+    "compressed_bytes": 84,
+    "header_offset": 88
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 286
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/data_for_ml.h5",
+    "bytes": 35401993,
+    "compressed_bytes": 24050953,
+    "header_offset": 379
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/data_for_ml_extracted_features.h5",
+    "bytes": 243551586,
+    "compressed_bytes": 232215240,
+    "header_offset": 24051455
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/data_raw.h5",
+    "bytes": 3595677164,
+    "compressed_bytes": 1913875750,
+    "header_offset": 256266837
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/features_dcir.csv",
+    "bytes": 356607,
+    "compressed_bytes": 98457,
+    "header_offset": 2170142707
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/features_dcir_no_interpolation.csv",
+    "bytes": 537685,
+    "compressed_bytes": 115955,
+    "header_offset": 2170241290
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/features_pulse_hppc.csv",
+    "bytes": 114140141,
+    "compressed_bytes": 4055232,
+    "header_offset": 2170357388
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/features_pulse_psrp1.csv",
+    "bytes": 58249800,
+    "compressed_bytes": 4094395,
+    "header_offset": 2174412752
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/features_pulse_psrp1_1C.csv",
+    "bytes": 6064562,
+    "compressed_bytes": 998435,
+    "header_offset": 2178507280
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/features_pulse_psrp1_Cb2.csv",
+    "bytes": 6191919,
+    "compressed_bytes": 983146,
+    "header_offset": 2179505851
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/features_pulse_psrp2_1C.csv",
+    "bytes": 5880643,
+    "compressed_bytes": 919531,
+    "header_offset": 2180489134
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/features_pulse_psrp2_Cb2.csv",
+    "bytes": 6022147,
+    "compressed_bytes": 912785,
+    "header_offset": 2181408801
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/features_pulse_psrp2_charging.csv",
+    "bytes": 28564543,
+    "compressed_bytes": 1765362,
+    "header_offset": 2182321723
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/features_pulse_psrp2_discharging.csv",
+    "bytes": 24101499,
+    "compressed_bytes": 1426706,
+    "header_offset": 2184087227
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/features_pulse_rapid.csv",
+    "bytes": 7962225,
+    "compressed_bytes": 777825,
+    "header_offset": 2185514078
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/targets_soh - manual volume and thickness edit.csv",
+    "bytes": 38795,
+    "compressed_bytes": 13445,
+    "header_offset": 2186292036
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/data/targets_soh.csv",
+    "bytes": 36004,
+    "compressed_bytes": 12948,
+    "header_offset": 2186305640
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2186318712
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2186318813
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/Faraji-Niri_2023/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2186318919
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/Faraji-Niri_2023/data.csv",
+    "bytes": 396251,
+    "compressed_bytes": 108753,
+    "header_offset": 2186319042
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/Faraji-Niri_2023/freq.txt",
+    "bytes": 423,
+    "compressed_bytes": 154,
+    "header_offset": 2186427942
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/Faraji-Niri_2023/ref.txt",
+    "bytes": 344,
+    "compressed_bytes": 252,
+    "header_offset": 2186428243
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/Faraji-Niri_2023/WholeDataRealSOH.mat",
+    "bytes": 374883,
+    "compressed_bytes": 374774,
+    "header_offset": 2186428641
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/Gasper_2022/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2186803574
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/Gasper_2022/data.csv",
+    "bytes": 1951181,
+    "compressed_bytes": 802202,
+    "header_offset": 2186803692
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/Gasper_2022/freq.txt",
+    "bytes": 625,
+    "compressed_bytes": 231,
+    "header_offset": 2187606036
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/Gasper_2022/ref.txt",
+    "bytes": 289,
+    "compressed_bytes": 216,
+    "header_offset": 2187606409
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/RamirezMeyers_2023/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2187606766
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/RamirezMeyers_2023/data.xlsx",
+    "bytes": 16558956,
+    "compressed_bytes": 15886143,
+    "header_offset": 2187606891
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/RamirezMeyers_2023/freq.txt",
+    "bytes": 357,
+    "compressed_bytes": 188,
+    "header_offset": 2203493184
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/RamirezMeyers_2023/ref.txt",
+    "bytes": 224,
+    "compressed_bytes": 182,
+    "header_offset": 2203493521
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/Zhang_2020/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2203493851
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/Zhang_2020/data.csv",
+    "bytes": 2721711,
+    "compressed_bytes": 1089368,
+    "header_offset": 2203493968
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/Zhang_2020/freq.csv",
+    "bytes": 589,
+    "compressed_bytes": 287,
+    "header_offset": 2204583477
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/data/Zhang_2020/ref.txt",
+    "bytes": 388,
+    "compressed_bytes": 276,
+    "header_offset": 2204583905
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/eisplot.py",
+    "bytes": 2154,
+    "compressed_bytes": 845,
+    "header_offset": 2204584321
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/eis_models.pdf",
+    "bytes": 62546,
+    "compressed_bytes": 55389,
+    "header_offset": 2204585293
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/eis_models.png",
+    "bytes": 533915,
+    "compressed_bytes": 460014,
+    "header_offset": 2204640813
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/modeling_capacity_from_eis_all_data.ipynb",
+    "bytes": 274454,
+    "compressed_bytes": 197233,
+    "header_offset": 2205100958
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/plotyy.py",
+    "bytes": 2117,
+    "compressed_bytes": 719,
+    "header_offset": 2205298349
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/__pycache__/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2205299194
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/__pycache__/eisplot.cpython-310.pyc",
+    "bytes": 1903,
+    "compressed_bytes": 1113,
+    "header_offset": 2205299307
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/eis_analysis/__pycache__/plotyy.cpython-310.pyc",
+    "bytes": 1651,
+    "compressed_bytes": 1023,
+    "header_offset": 2205300572
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/environment.yml",
+    "bytes": 626,
+    "compressed_bytes": 239,
+    "header_offset": 2205301746
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2205302104
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_DCIR_Capacity_scatter.pdf",
+    "bytes": 32720,
+    "compressed_bytes": 28046,
+    "header_offset": 2205302197
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_DCIR_Capacity_scatter.png",
+    "bytes": 90400,
+    "compressed_bytes": 79960,
+    "header_offset": 2205330381
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_DCIR_Capacity_scatter_by_cell_type.pdf",
+    "bytes": 33414,
+    "compressed_bytes": 28213,
+    "header_offset": 2205410479
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_DCIR_Capacity_scatter_by_cell_type.png",
+    "bytes": 156921,
+    "compressed_bytes": 141557,
+    "header_offset": 2205438843
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_Relative_capacity_histogram.pdf",
+    "bytes": 15453,
+    "compressed_bytes": 10960,
+    "header_offset": 2205580551
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_Relative_capacity_histogram.png",
+    "bytes": 73830,
+    "compressed_bytes": 59335,
+    "header_offset": 2205591655
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_by_temperature.pdf",
+    "bytes": 166293,
+    "compressed_bytes": 156127,
+    "header_offset": 2205651134
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_by_temperature.png",
+    "bytes": 229740,
+    "compressed_bytes": 219931,
+    "header_offset": 2205807401
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_detail_CellA_Aged.pdf",
+    "bytes": 17944,
+    "compressed_bytes": 11601,
+    "header_offset": 2206027472
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_detail_CellA_Aged.png",
+    "bytes": 126504,
+    "compressed_bytes": 115672,
+    "header_offset": 2206039216
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_detail_CellA_Pristine.pdf",
+    "bytes": 20411,
+    "compressed_bytes": 13711,
+    "header_offset": 2206155031
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_detail_CellA_Pristine.png",
+    "bytes": 169397,
+    "compressed_bytes": 155081,
+    "header_offset": 2206168889
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_detail_CellB_Aged.pdf",
+    "bytes": 17737,
+    "compressed_bytes": 11307,
+    "header_offset": 2206324117
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_detail_CellB_Aged.png",
+    "bytes": 100141,
+    "compressed_bytes": 83989,
+    "header_offset": 2206335567
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_detail_CellB_Pristine.pdf",
+    "bytes": 17953,
+    "compressed_bytes": 11620,
+    "header_offset": 2206419699
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_detail_CellB_Pristine.png",
+    "bytes": 108746,
+    "compressed_bytes": 97744,
+    "header_offset": 2206431466
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_detail_CellC_Aged.pdf",
+    "bytes": 18121,
+    "compressed_bytes": 11685,
+    "header_offset": 2206529357
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_detail_CellC_Aged.png",
+    "bytes": 116381,
+    "compressed_bytes": 104264,
+    "header_offset": 2206541185
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_detail_CellC_Pristine.pdf",
+    "bytes": 18147,
+    "compressed_bytes": 11802,
+    "header_offset": 2206645592
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_detail_CellC_Pristine.png",
+    "bytes": 114189,
+    "compressed_bytes": 102033,
+    "header_offset": 2206657541
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_detail_CellD_Aged.pdf",
+    "bytes": 17247,
+    "compressed_bytes": 10894,
+    "header_offset": 2206759721
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_detail_CellD_Aged.png",
+    "bytes": 115073,
+    "compressed_bytes": 103094,
+    "header_offset": 2206770758
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_detail_CellD_Pristine.pdf",
+    "bytes": 17540,
+    "compressed_bytes": 11279,
+    "header_offset": 2206873995
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_DCIR_detail_CellD_Pristine.png",
+    "bytes": 123545,
+    "compressed_bytes": 111101,
+    "header_offset": 2206885421
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_histogram.pdf",
+    "bytes": 12091,
+    "compressed_bytes": 8597,
+    "header_offset": 2206996669
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_SOC_histogram.png",
+    "bytes": 41237,
+    "compressed_bytes": 32508,
+    "header_offset": 2207005396
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_target_correlations.pdf",
+    "bytes": 20913,
+    "compressed_bytes": 15621,
+    "header_offset": 2207038034
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_target_correlations.png",
+    "bytes": 128683,
+    "compressed_bytes": 111807,
+    "header_offset": 2207053791
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_target_correlations_combined.pdf",
+    "bytes": 36193,
+    "compressed_bytes": 21808,
+    "header_offset": 2207165734
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_target_correlations_ratecapability.pdf",
+    "bytes": 18382,
+    "compressed_bytes": 13849,
+    "header_offset": 2207187687
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_target_correlations_ratecapability.png",
+    "bytes": 93189,
+    "compressed_bytes": 76722,
+    "header_offset": 2207201687
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_Temperature_histogram.pdf",
+    "bytes": 10060,
+    "compressed_bytes": 7035,
+    "header_offset": 2207278560
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/EDA_Temperature_histogram.png",
+    "bytes": 33291,
+    "compressed_bytes": 24511,
+    "header_offset": 2207285733
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/figs/eis_models.png",
+    "bytes": 75378,
+    "compressed_bytes": 72075,
+    "header_offset": 2207310382
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notebooks/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2207382580
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notebooks/Example_Data_Handling/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2207382678
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notebooks/Example_Data_Handling/example_data_plotting.ipynb",
+    "bytes": 1002987,
+    "compressed_bytes": 709025,
+    "header_offset": 2207382798
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notebooks/Example_Data_Handling/example_safety.ipynb",
+    "bytes": 131414,
+    "compressed_bytes": 94297,
+    "header_offset": 2208091986
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notebooks/Example_Data_Handling/example_variable_extractions.ipynb",
+    "bytes": 417778,
+    "compressed_bytes": 289019,
+    "header_offset": 2208186439
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notebooks/Generating_PsRP_Pulses.ipynb",
+    "bytes": 319050,
+    "compressed_bytes": 225722,
+    "header_offset": 2208475628
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notebooks/Paper_Figures/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2208701492
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notebooks/Paper_Figures/Paper_Figures_Dataset_Overview.ipynb",
+    "bytes": 727372,
+    "compressed_bytes": 515131,
+    "header_offset": 2208701604
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notebooks/Paper_Figures/Paper_Figures_Results.ipynb",
+    "bytes": 1082263,
+    "compressed_bytes": 733728,
+    "header_offset": 2209216899
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notebooks/Paper_Figures/Paper_Figures_Supplemental.ipynb",
+    "bytes": 2298468,
+    "compressed_bytes": 1620356,
+    "header_offset": 2209950782
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notebooks/README.md",
+    "bytes": 279,
+    "compressed_bytes": 181,
+    "header_offset": 2211571298
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notebooks/Visualizing_Results/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2211571602
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notebooks/Visualizing_Results/Capacity_Prediction_via_SOC.ipynb",
+    "bytes": 397566,
+    "compressed_bytes": 288382,
+    "header_offset": 2211571720
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notebooks/Visualizing_Results/Development_Result_Visualizations.ipynb",
+    "bytes": 2569167,
+    "compressed_bytes": 1773707,
+    "header_offset": 2211860269
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notes/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2213634149
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notes/characterization_steps.md",
+    "bytes": 7389,
+    "compressed_bytes": 1250,
+    "header_offset": 2213634243
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/notes/Known data issues.txt",
+    "bytes": 714,
+    "compressed_bytes": 391,
+    "header_offset": 2213635628
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/README.md",
+    "bytes": 2543,
+    "compressed_bytes": 1134,
+    "header_offset": 2213636150
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2213637397
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2213637493
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/bootstrap_results_safety_bins_A_only.pth",
+    "bytes": 6225876,
+    "compressed_bytes": 294631,
+    "header_offset": 2213637601
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/bootstrap_results_safety_bins_B_only.pth",
+    "bytes": 2441044,
+    "compressed_bytes": 136458,
+    "header_offset": 2213932396
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/bootstrap_results_safety_bins_C_only.pth",
+    "bytes": 10707668,
+    "compressed_bytes": 479707,
+    "header_offset": 2214069018
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/bootstrap_results_safety_bins_full_dataset.pth",
+    "bytes": 19259308,
+    "compressed_bytes": 794677,
+    "header_offset": 2214548889
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/bootstrap_results_safety_outlier_iforest_A_only.pth",
+    "bytes": 6224512,
+    "compressed_bytes": 262311,
+    "header_offset": 2215343736
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/bootstrap_results_safety_outlier_iforest_B_only.pth",
+    "bytes": 2443072,
+    "compressed_bytes": 136079,
+    "header_offset": 2215606222
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/bootstrap_results_safety_outlier_iforest_C_only.pth",
+    "bytes": 10701184,
+    "compressed_bytes": 414879,
+    "header_offset": 2215742476
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2216157530
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/1C discharge capacity_Dynamic PsRP 1 1C.png",
+    "bytes": 226973,
+    "compressed_bytes": 195459,
+    "header_offset": 2216157649
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/1C discharge capacity_Dynamic PsRP 1 C_2.png",
+    "bytes": 264616,
+    "compressed_bytes": 232549,
+    "header_offset": 2216353286
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/1C discharge capacity_Dynamic PsRP 2 1C.png",
+    "bytes": 142232,
+    "compressed_bytes": 129935,
+    "header_offset": 2216586014
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/1C discharge capacity_Dynamic PsRP 2 C_2.png",
+    "bytes": 136351,
+    "compressed_bytes": 123143,
+    "header_offset": 2216716127
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/1C discharge capacity_Static HPPC.png",
+    "bytes": 204988,
+    "compressed_bytes": 184991,
+    "header_offset": 2216839449
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/1C discharge capacity_Static PsRP 1.png",
+    "bytes": 139588,
+    "compressed_bytes": 126631,
+    "header_offset": 2217024612
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/1C discharge capacity_Static PsRP 2 Chg.png",
+    "bytes": 141477,
+    "compressed_bytes": 127908,
+    "header_offset": 2217151417
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/1C discharge capacity_Static PsRP 2 Dis.png",
+    "bytes": 141384,
+    "compressed_bytes": 128161,
+    "header_offset": 2217279503
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/1C discharge capacity_Static Rapid.png",
+    "bytes": 140600,
+    "compressed_bytes": 126324,
+    "header_offset": 2217407842
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge depleting cycle charge throughput_Dynamic PsRP 1 1C.png",
+    "bytes": 150900,
+    "compressed_bytes": 137984,
+    "header_offset": 2217534339
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge depleting cycle charge throughput_Dynamic PsRP 1 C_2.png",
+    "bytes": 260388,
+    "compressed_bytes": 228173,
+    "header_offset": 2217672520
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge depleting cycle charge throughput_Dynamic PsRP 2 1C.png",
+    "bytes": 145078,
+    "compressed_bytes": 131430,
+    "header_offset": 2217900891
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge depleting cycle charge throughput_Dynamic PsRP 2 C_2.png",
+    "bytes": 146449,
+    "compressed_bytes": 133064,
+    "header_offset": 2218032518
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge depleting cycle charge throughput_Static HPPC.png",
+    "bytes": 138729,
+    "compressed_bytes": 125502,
+    "header_offset": 2218165780
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge depleting cycle charge throughput_Static PsRP 1.png",
+    "bytes": 141662,
+    "compressed_bytes": 127260,
+    "header_offset": 2218291473
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge depleting cycle charge throughput_Static PsRP 2 Chg.png",
+    "bytes": 157636,
+    "compressed_bytes": 144245,
+    "header_offset": 2218418926
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge depleting cycle charge throughput_Static PsRP 2 Dis.png",
+    "bytes": 145999,
+    "compressed_bytes": 131645,
+    "header_offset": 2218563368
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge depleting cycle charge throughput_Static Rapid.png",
+    "bytes": 137635,
+    "compressed_bytes": 123359,
+    "header_offset": 2218695210
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge sustaining cycle charge efficiency_Dynamic PsRP 1 1C.png",
+    "bytes": 163004,
+    "compressed_bytes": 149817,
+    "header_offset": 2218818761
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge sustaining cycle charge efficiency_Dynamic PsRP 1 C_2.png",
+    "bytes": 281062,
+    "compressed_bytes": 253611,
+    "header_offset": 2218968776
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge sustaining cycle charge efficiency_Dynamic PsRP 2 1C.png",
+    "bytes": 178418,
+    "compressed_bytes": 165865,
+    "header_offset": 2219222586
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge sustaining cycle charge efficiency_Dynamic PsRP 2 C_2.png",
+    "bytes": 183530,
+    "compressed_bytes": 171626,
+    "header_offset": 2219388649
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge sustaining cycle charge efficiency_Static HPPC.png",
+    "bytes": 193756,
+    "compressed_bytes": 181336,
+    "header_offset": 2219560474
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge sustaining cycle charge efficiency_Static PsRP 1.png",
+    "bytes": 180775,
+    "compressed_bytes": 168703,
+    "header_offset": 2219742002
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge sustaining cycle charge efficiency_Static PsRP 2 Chg.png",
+    "bytes": 165031,
+    "compressed_bytes": 152459,
+    "header_offset": 2219910899
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge sustaining cycle charge efficiency_Static PsRP 2 Dis.png",
+    "bytes": 161982,
+    "compressed_bytes": 149736,
+    "header_offset": 2220063556
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/Charge sustaining cycle charge efficiency_Static Rapid.png",
+    "bytes": 172564,
+    "compressed_bytes": 160117,
+    "header_offset": 2220213490
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_10 discharge capacity_Dynamic PsRP 1 1C.png",
+    "bytes": 222378,
+    "compressed_bytes": 190572,
+    "header_offset": 2220373800
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_10 discharge capacity_Dynamic PsRP 1 C_2.png",
+    "bytes": 216539,
+    "compressed_bytes": 185765,
+    "header_offset": 2220564552
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_10 discharge capacity_Dynamic PsRP 2 1C.png",
+    "bytes": 139072,
+    "compressed_bytes": 125561,
+    "header_offset": 2220750498
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_10 discharge capacity_Dynamic PsRP 2 C_2.png",
+    "bytes": 139840,
+    "compressed_bytes": 127020,
+    "header_offset": 2220876239
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_10 discharge capacity_Static HPPC.png",
+    "bytes": 173456,
+    "compressed_bytes": 153459,
+    "header_offset": 2221003440
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_10 discharge capacity_Static PsRP 1.png",
+    "bytes": 141570,
+    "compressed_bytes": 127773,
+    "header_offset": 2221157073
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_10 discharge capacity_Static PsRP 2 Chg.png",
+    "bytes": 151979,
+    "compressed_bytes": 138783,
+    "header_offset": 2221285022
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_10 discharge capacity_Static PsRP 2 Dis.png",
+    "bytes": 148193,
+    "compressed_bytes": 135796,
+    "header_offset": 2221423985
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_10 discharge capacity_Static Rapid.png",
+    "bytes": 133767,
+    "compressed_bytes": 119591,
+    "header_offset": 2221559961
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_2 discharge capacity_Dynamic PsRP 1 1C.png",
+    "bytes": 239278,
+    "compressed_bytes": 208640,
+    "header_offset": 2221679727
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_2 discharge capacity_Dynamic PsRP 1 C_2.png",
+    "bytes": 238721,
+    "compressed_bytes": 207074,
+    "header_offset": 2221888546
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_2 discharge capacity_Dynamic PsRP 2 1C.png",
+    "bytes": 154038,
+    "compressed_bytes": 141543,
+    "header_offset": 2222095800
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_2 discharge capacity_Dynamic PsRP 2 C_2.png",
+    "bytes": 161664,
+    "compressed_bytes": 147933,
+    "header_offset": 2222237522
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_2 discharge capacity_Static HPPC.png",
+    "bytes": 142375,
+    "compressed_bytes": 128239,
+    "header_offset": 2222385635
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_2 discharge capacity_Static PsRP 1.png",
+    "bytes": 145762,
+    "compressed_bytes": 132015,
+    "header_offset": 2222514047
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_2 discharge capacity_Static PsRP 2 Chg.png",
+    "bytes": 155470,
+    "compressed_bytes": 141895,
+    "header_offset": 2222646237
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_2 discharge capacity_Static PsRP 2 Dis.png",
+    "bytes": 138669,
+    "compressed_bytes": 125066,
+    "header_offset": 2222788311
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_2 discharge capacity_Static Rapid.png",
+    "bytes": 130248,
+    "compressed_bytes": 116929,
+    "header_offset": 2222913556
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_3 discharge capacity_Dynamic PsRP 1 1C.png",
+    "bytes": 244360,
+    "compressed_bytes": 211642,
+    "header_offset": 2223030659
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_3 discharge capacity_Dynamic PsRP 1 C_2.png",
+    "bytes": 263177,
+    "compressed_bytes": 233279,
+    "header_offset": 2223242480
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_3 discharge capacity_Dynamic PsRP 2 1C.png",
+    "bytes": 153173,
+    "compressed_bytes": 140116,
+    "header_offset": 2223475939
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_3 discharge capacity_Dynamic PsRP 2 C_2.png",
+    "bytes": 152696,
+    "compressed_bytes": 139502,
+    "header_offset": 2223616234
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_3 discharge capacity_Static HPPC.png",
+    "bytes": 141393,
+    "compressed_bytes": 126902,
+    "header_offset": 2223755916
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_3 discharge capacity_Static PsRP 1.png",
+    "bytes": 161573,
+    "compressed_bytes": 148437,
+    "header_offset": 2223882991
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_3 discharge capacity_Static PsRP 2 Chg.png",
+    "bytes": 151854,
+    "compressed_bytes": 139466,
+    "header_offset": 2224031603
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_3 discharge capacity_Static PsRP 2 Dis.png",
+    "bytes": 139021,
+    "compressed_bytes": 124796,
+    "header_offset": 2224171248
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_3 discharge capacity_Static Rapid.png",
+    "bytes": 127972,
+    "compressed_bytes": 115168,
+    "header_offset": 2224296223
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_5 discharge capacity_Dynamic PsRP 1 1C.png",
+    "bytes": 235774,
+    "compressed_bytes": 204835,
+    "header_offset": 2224411565
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_5 discharge capacity_Dynamic PsRP 1 C_2.png",
+    "bytes": 258523,
+    "compressed_bytes": 227351,
+    "header_offset": 2224616579
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_5 discharge capacity_Dynamic PsRP 2 1C.png",
+    "bytes": 165375,
+    "compressed_bytes": 151499,
+    "header_offset": 2224844110
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_5 discharge capacity_Dynamic PsRP 2 C_2.png",
+    "bytes": 159629,
+    "compressed_bytes": 146998,
+    "header_offset": 2224995788
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_5 discharge capacity_Static HPPC.png",
+    "bytes": 152954,
+    "compressed_bytes": 139557,
+    "header_offset": 2225142966
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_5 discharge capacity_Static PsRP 1.png",
+    "bytes": 151915,
+    "compressed_bytes": 138017,
+    "header_offset": 2225282696
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_5 discharge capacity_Static PsRP 2 Chg.png",
+    "bytes": 149411,
+    "compressed_bytes": 136122,
+    "header_offset": 2225420888
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_5 discharge capacity_Static PsRP 2 Dis.png",
+    "bytes": 144630,
+    "compressed_bytes": 131221,
+    "header_offset": 2225557189
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/C_5 discharge capacity_Static Rapid.png",
+    "bytes": 143293,
+    "compressed_bytes": 129087,
+    "header_offset": 2225688589
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/P_3 discharge capacity_Dynamic PsRP 1 1C.png",
+    "bytes": 135439,
+    "compressed_bytes": 122052,
+    "header_offset": 2225817850
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/P_3 discharge capacity_Dynamic PsRP 1 C_2.png",
+    "bytes": 256064,
+    "compressed_bytes": 224908,
+    "header_offset": 2225940081
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/P_3 discharge capacity_Dynamic PsRP 2 1C.png",
+    "bytes": 141060,
+    "compressed_bytes": 127154,
+    "header_offset": 2226165169
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/P_3 discharge capacity_Dynamic PsRP 2 C_2.png",
+    "bytes": 144238,
+    "compressed_bytes": 131084,
+    "header_offset": 2226292502
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/P_3 discharge capacity_Static HPPC.png",
+    "bytes": 137107,
+    "compressed_bytes": 123777,
+    "header_offset": 2226423766
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/P_3 discharge capacity_Static PsRP 1.png",
+    "bytes": 146157,
+    "compressed_bytes": 132849,
+    "header_offset": 2226547716
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/P_3 discharge capacity_Static PsRP 2 Chg.png",
+    "bytes": 131996,
+    "compressed_bytes": 118605,
+    "header_offset": 2226680740
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/P_3 discharge capacity_Static PsRP 2 Dis.png",
+    "bytes": 137717,
+    "compressed_bytes": 124142,
+    "header_offset": 2226799524
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/P_3 discharge capacity_Static Rapid.png",
+    "bytes": 129332,
+    "compressed_bytes": 116352,
+    "header_offset": 2226923845
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/soc_Dynamic PsRP 1 1C.png",
+    "bytes": 132318,
+    "compressed_bytes": 121640,
+    "header_offset": 2227040371
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/soc_Dynamic PsRP 1 C_2.png",
+    "bytes": 265664,
+    "compressed_bytes": 240175,
+    "header_offset": 2227162171
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/soc_Dynamic PsRP 2 1C.png",
+    "bytes": 135444,
+    "compressed_bytes": 124267,
+    "header_offset": 2227402507
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/soc_Dynamic PsRP 2 C_2.png",
+    "bytes": 139891,
+    "compressed_bytes": 127398,
+    "header_offset": 2227526934
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/soc_Static HPPC.png",
+    "bytes": 131159,
+    "compressed_bytes": 119703,
+    "header_offset": 2227654493
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/soc_Static PsRP 1.png",
+    "bytes": 140895,
+    "compressed_bytes": 130266,
+    "header_offset": 2227774350
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/soc_Static PsRP 2 Chg.png",
+    "bytes": 148364,
+    "compressed_bytes": 136404,
+    "header_offset": 2227904772
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/soc_Static PsRP 2 Dis.png",
+    "bytes": 150347,
+    "compressed_bytes": 138754,
+    "header_offset": 2228041336
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/neuralnets/soc_Static Rapid.png",
+    "bytes": 142187,
+    "compressed_bytes": 130244,
+    "header_offset": 2228180250
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2228310649
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Dynamic PsRP 1 C_2_1C discharge capacity_.pth",
+    "bytes": 93480,
+    "compressed_bytes": 21273,
+    "header_offset": 2228310767
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Dynamic PsRP 1 C_2_Charge depleting cycle charge throughput_.pth",
+    "bytes": 96372,
+    "compressed_bytes": 21982,
+    "header_offset": 2228332219
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Dynamic PsRP 1 C_2_Charge sustaining cycle charge efficiency_.pth",
+    "bytes": 97848,
+    "compressed_bytes": 20283,
+    "header_offset": 2228354399
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Dynamic PsRP 1 C_2_C_3 discharge capacity_.pth",
+    "bytes": 93420,
+    "compressed_bytes": 21352,
+    "header_offset": 2228374881
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Dynamic PsRP 1 C_2_soc_.pth",
+    "bytes": 95328,
+    "compressed_bytes": 29867,
+    "header_offset": 2228396413
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Static HPPC_1C discharge capacity_.pth",
+    "bytes": 351756,
+    "compressed_bytes": 74394,
+    "header_offset": 2228426441
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Static HPPC_Charge depleting cycle charge throughput_.pth",
+    "bytes": 362776,
+    "compressed_bytes": 76147,
+    "header_offset": 2228501007
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Static HPPC_Charge sustaining cycle charge efficiency_.pth",
+    "bytes": 368284,
+    "compressed_bytes": 67737,
+    "header_offset": 2228577345
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Static HPPC_C_3 discharge capacity_.pth",
+    "bytes": 351760,
+    "compressed_bytes": 74497,
+    "header_offset": 2228645274
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Static HPPC_soc_.pth",
+    "bytes": 359172,
+    "compressed_bytes": 107235,
+    "header_offset": 2228719944
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Static PsRP 1_1C discharge capacity_.pth",
+    "bytes": 90580,
+    "compressed_bytes": 20626,
+    "header_offset": 2228827333
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Static PsRP 1_Charge depleting cycle charge throughput_.pth",
+    "bytes": 93472,
+    "compressed_bytes": 21383,
+    "header_offset": 2228848133
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Static PsRP 1_Charge sustaining cycle charge efficiency_.pth",
+    "bytes": 94756,
+    "compressed_bytes": 19621,
+    "header_offset": 2228869709
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Static PsRP 1_C_3 discharge capacity_.pth",
+    "bytes": 90520,
+    "compressed_bytes": 20663,
+    "header_offset": 2228889524
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Static PsRP 1_soc_.pth",
+    "bytes": 92364,
+    "compressed_bytes": 28917,
+    "header_offset": 2228910362
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Static Rapid_1C discharge capacity_.pth",
+    "bytes": 90576,
+    "compressed_bytes": 20602,
+    "header_offset": 2228939435
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Static Rapid_Charge depleting cycle charge throughput_.pth",
+    "bytes": 93468,
+    "compressed_bytes": 21372,
+    "header_offset": 2228960210
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Static Rapid_Charge sustaining cycle charge efficiency_.pth",
+    "bytes": 94816,
+    "compressed_bytes": 19225,
+    "header_offset": 2228981774
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Static Rapid_C_3 discharge capacity_.pth",
+    "bytes": 90580,
+    "compressed_bytes": 20628,
+    "header_offset": 2229001192
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A/Static Rapid_soc_.pth",
+    "bytes": 92296,
+    "compressed_bytes": 28942,
+    "header_offset": 2229021994
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_all_targets_v_only/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2229051091
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_all_targets_v_only/bootstrap_results_A_only_dynamic.pth",
+    "bytes": 5424932,
+    "compressed_bytes": 844746,
+    "header_offset": 2229051226
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_all_targets_v_only/bootstrap_results_A_only_static.pth",
+    "bytes": 9728704,
+    "compressed_bytes": 1141789,
+    "header_offset": 2229896159
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_all_targets_v_only/bootstrap_results_B_only_dynamic.pth",
+    "bytes": 3753380,
+    "compressed_bytes": 653925,
+    "header_offset": 2231038134
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_all_targets_v_only/bootstrap_results_B_only_static.pth",
+    "bytes": 6520576,
+    "compressed_bytes": 855625,
+    "header_offset": 2231692246
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_all_targets_v_only/bootstrap_results_C_only_dynamic.pth",
+    "bytes": 12377828,
+    "compressed_bytes": 1909749,
+    "header_offset": 2232548057
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_all_targets_v_only/bootstrap_results_C_only_static.pth",
+    "bytes": 21967360,
+    "compressed_bytes": 2600148,
+    "header_offset": 2234457993
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_all_targets_v_only/bootstrap_results_D_only_dynamic.pth",
+    "bytes": 4332196,
+    "compressed_bytes": 829556,
+    "header_offset": 2237058327
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_all_targets_v_only/bootstrap_results_D_only_static.pth",
+    "bytes": 7761088,
+    "compressed_bytes": 1136743,
+    "header_offset": 2237888070
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2239024999
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Dynamic PsRP 1 C_2_1C discharge capacity_.pth",
+    "bytes": 93416,
+    "compressed_bytes": 21237,
+    "header_offset": 2239025128
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Dynamic PsRP 1 C_2_Charge depleting cycle charge throughput_.pth",
+    "bytes": 96436,
+    "compressed_bytes": 22031,
+    "header_offset": 2239046555
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Dynamic PsRP 1 C_2_Charge sustaining cycle charge efficiency_.pth",
+    "bytes": 97592,
+    "compressed_bytes": 20061,
+    "header_offset": 2239068795
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Dynamic PsRP 1 C_2_C_3 discharge capacity_.pth",
+    "bytes": 93356,
+    "compressed_bytes": 21234,
+    "header_offset": 2239089066
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Dynamic PsRP 1 C_2_soc_.pth",
+    "bytes": 95328,
+    "compressed_bytes": 29821,
+    "header_offset": 2239110491
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Static HPPC_1C discharge capacity_.pth",
+    "bytes": 351756,
+    "compressed_bytes": 73610,
+    "header_offset": 2239140484
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Static HPPC_Charge depleting cycle charge throughput_.pth",
+    "bytes": 362840,
+    "compressed_bytes": 74864,
+    "header_offset": 2239214277
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Static HPPC_Charge sustaining cycle charge efficiency_.pth",
+    "bytes": 368412,
+    "compressed_bytes": 67514,
+    "header_offset": 2239289343
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Static HPPC_C_3 discharge capacity_.pth",
+    "bytes": 351760,
+    "compressed_bytes": 73791,
+    "header_offset": 2239357060
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Static HPPC_soc_.pth",
+    "bytes": 359044,
+    "compressed_bytes": 107151,
+    "header_offset": 2239431035
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Static PsRP 1_1C discharge capacity_.pth",
+    "bytes": 90516,
+    "compressed_bytes": 20607,
+    "header_offset": 2239538351
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Static PsRP 1_Charge depleting cycle charge throughput_.pth",
+    "bytes": 93472,
+    "compressed_bytes": 21365,
+    "header_offset": 2239559143
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Static PsRP 1_Charge sustaining cycle charge efficiency_.pth",
+    "bytes": 94820,
+    "compressed_bytes": 19586,
+    "header_offset": 2239580712
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Static PsRP 1_C_3 discharge capacity_.pth",
+    "bytes": 90584,
+    "compressed_bytes": 20660,
+    "header_offset": 2239600503
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Static PsRP 1_soc_.pth",
+    "bytes": 92364,
+    "compressed_bytes": 28928,
+    "header_offset": 2239621349
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Static Rapid_1C discharge capacity_.pth",
+    "bytes": 90576,
+    "compressed_bytes": 20591,
+    "header_offset": 2239650444
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Static Rapid_Charge depleting cycle charge throughput_.pth",
+    "bytes": 93404,
+    "compressed_bytes": 21273,
+    "header_offset": 2239671219
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Static Rapid_Charge sustaining cycle charge efficiency_.pth",
+    "bytes": 94688,
+    "compressed_bytes": 19467,
+    "header_offset": 2239692695
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Static Rapid_C_3 discharge capacity_.pth",
+    "bytes": 90452,
+    "compressed_bytes": 20617,
+    "header_offset": 2239712366
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_no_current/Static Rapid_soc_.pth",
+    "bytes": 92232,
+    "compressed_bytes": 28888,
+    "header_offset": 2239733168
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2239762222
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Dynamic PsRP 1 C_2_1C discharge capacity_.pth",
+    "bytes": 90088,
+    "compressed_bytes": 21177,
+    "header_offset": 2239762358
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Dynamic PsRP 1 C_2_Charge depleting cycle charge throughput_.pth",
+    "bytes": 91188,
+    "compressed_bytes": 21623,
+    "header_offset": 2239783732
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Dynamic PsRP 1 C_2_Charge sustaining cycle charge efficiency_.pth",
+    "bytes": 93752,
+    "compressed_bytes": 20585,
+    "header_offset": 2239805571
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Dynamic PsRP 1 C_2_C_3 discharge capacity_.pth",
+    "bytes": 89964,
+    "compressed_bytes": 21206,
+    "header_offset": 2239826373
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Dynamic PsRP 1 C_2_soc_.pth",
+    "bytes": 92128,
+    "compressed_bytes": 29327,
+    "header_offset": 2239847777
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Static HPPC_1C discharge capacity_.pth",
+    "bytes": 340236,
+    "compressed_bytes": 74637,
+    "header_offset": 2239877283
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Static HPPC_Charge depleting cycle charge throughput_.pth",
+    "bytes": 343448,
+    "compressed_bytes": 75135,
+    "header_offset": 2239952110
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Static HPPC_Charge sustaining cycle charge efficiency_.pth",
+    "bytes": 354268,
+    "compressed_bytes": 71049,
+    "header_offset": 2240027454
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Static HPPC_C_3 discharge capacity_.pth",
+    "bytes": 339728,
+    "compressed_bytes": 74489,
+    "header_offset": 2240098713
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Static HPPC_soc_.pth",
+    "bytes": 348676,
+    "compressed_bytes": 106652,
+    "header_offset": 2240173393
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Static PsRP 1_1C discharge capacity_.pth",
+    "bytes": 87188,
+    "compressed_bytes": 20482,
+    "header_offset": 2240280217
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Static PsRP 1_Charge depleting cycle charge throughput_.pth",
+    "bytes": 88416,
+    "compressed_bytes": 20946,
+    "header_offset": 2240300891
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Static PsRP 1_Charge sustaining cycle charge efficiency_.pth",
+    "bytes": 90916,
+    "compressed_bytes": 19827,
+    "header_offset": 2240322048
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Static PsRP 1_C_3 discharge capacity_.pth",
+    "bytes": 87256,
+    "compressed_bytes": 20578,
+    "header_offset": 2240342087
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Static PsRP 1_soc_.pth",
+    "bytes": 89292,
+    "compressed_bytes": 28430,
+    "header_offset": 2240362858
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Static Rapid_1C discharge capacity_.pth",
+    "bytes": 87248,
+    "compressed_bytes": 20519,
+    "header_offset": 2240391462
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Static Rapid_Charge depleting cycle charge throughput_.pth",
+    "bytes": 88284,
+    "compressed_bytes": 20985,
+    "header_offset": 2240412172
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Static Rapid_Charge sustaining cycle charge efficiency_.pth",
+    "bytes": 90912,
+    "compressed_bytes": 19602,
+    "header_offset": 2240433367
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Static Rapid_C_3 discharge capacity_.pth",
+    "bytes": 87188,
+    "compressed_bytes": 20536,
+    "header_offset": 2240453180
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_PLSR/Static Rapid_soc_.pth",
+    "bytes": 89224,
+    "compressed_bytes": 28459,
+    "header_offset": 2240473908
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_safety/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2240502540
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_safety/Dynamic PsRP 1 C_2_Post 1C charge relaxation fit MSE_outlier_.pth",
+    "bytes": 109944,
+    "compressed_bytes": 18139,
+    "header_offset": 2240502678
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_safety/Static HPPC_Post 1C charge relaxation fit MSE_outlier_.pth",
+    "bytes": 414684,
+    "compressed_bytes": 62864,
+    "header_offset": 2240521036
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_safety/Static PsRP 1_Post 1C charge relaxation fit MSE_outlier_.pth",
+    "bytes": 106404,
+    "compressed_bytes": 17583,
+    "header_offset": 2240584112
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_A_with_current_safety/Static Rapid_Post 1C charge relaxation fit MSE_outlier_.pth",
+    "bytes": 106336,
+    "compressed_bytes": 17724,
+    "header_offset": 2240601909
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_D/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2240619846
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_D/bootstrap_results_D_only_regression.pth",
+    "bytes": 10183376,
+    "compressed_bytes": 1790863,
+    "header_offset": 2240619964
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_D/bootstrap_results_D_only_regression_P-I_only.pth",
+    "bytes": 10432436,
+    "compressed_bytes": 1733227,
+    "header_offset": 2242411000
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_D/bootstrap_results_D_only_regression_with_P-I.pth",
+    "bytes": 10426804,
+    "compressed_bytes": 1765359,
+    "header_offset": 2244144409
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_D/bootstrap_results_D_only_regression_with_P-I_redo.pth",
+    "bytes": 10426120,
+    "compressed_bytes": 1770828,
+    "header_offset": 2245909950
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_physical_updated/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2247680965
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_physical_updated/bootstrap_results_A.pth",
+    "bytes": 6646608,
+    "compressed_bytes": 1061053,
+    "header_offset": 2247681098
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_physical_updated/bootstrap_results_C.pth",
+    "bytes": 5600528,
+    "compressed_bytes": 884174,
+    "header_offset": 2248742323
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_physical_updated_again/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2249626669
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_physical_updated_again/bootstrap_results_A.pth",
+    "bytes": 5824208,
+    "compressed_bytes": 922339,
+    "header_offset": 2249626808
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_physical_updated_again/bootstrap_results_C.pth",
+    "bytes": 4918992,
+    "compressed_bytes": 768878,
+    "header_offset": 2250549325
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_volume/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2251318381
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_volume/bootstrap_results_A_only.pth",
+    "bytes": 24968932,
+    "compressed_bytes": 2883611,
+    "header_offset": 2251318504
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/DEV_RESULTS/RESULTS_volume/bootstrap_results_C_only.pth",
+    "bytes": 5775588,
+    "compressed_bytes": 799293,
+    "header_offset": 2254202282
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_3_features_V_V0-I_T/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2255001742
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_3_features_V_V0-I_T/bootstrap_results_A_only.pth",
+    "bytes": 82964964,
+    "compressed_bytes": 4235432,
+    "header_offset": 2255001869
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_3_features_V_V0-I_T/bootstrap_results_B_only.pth",
+    "bytes": 33770212,
+    "compressed_bytes": 1882122,
+    "header_offset": 2259237472
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_3_features_V_V0-I_T/bootstrap_results_C_only.pth",
+    "bytes": 155670756,
+    "compressed_bytes": 8226866,
+    "header_offset": 2261119765
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2269346802
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/A_1C discharge capacity_Dynamic PsRP 1 C_2.pth",
+    "bytes": 161388,
+    "compressed_bytes": 35177,
+    "header_offset": 2269346926
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/A_1C discharge capacity_Static HPPC.pth",
+    "bytes": 616976,
+    "compressed_bytes": 128436,
+    "header_offset": 2269382289
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/A_1C discharge capacity_Static PsRP 1.pth",
+    "bytes": 156440,
+    "compressed_bytes": 34182,
+    "header_offset": 2269510904
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/A_soc_Dynamic PsRP 1 C_2.pth",
+    "bytes": 164580,
+    "compressed_bytes": 45095,
+    "header_offset": 2269545267
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/A_soc_Static HPPC.pth",
+    "bytes": 629256,
+    "compressed_bytes": 166569,
+    "header_offset": 2269590530
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/A_soc_Static PsRP 1.pth",
+    "bytes": 159312,
+    "compressed_bytes": 43746,
+    "header_offset": 2269757260
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/B_1C discharge capacity_Dynamic PsRP 1 C_2.pth",
+    "bytes": 67820,
+    "compressed_bytes": 15837,
+    "header_offset": 2269801169
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/B_1C discharge capacity_Static HPPC.pth",
+    "bytes": 254480,
+    "compressed_bytes": 55598,
+    "header_offset": 2269817192
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/B_1C discharge capacity_Static PsRP 1.pth",
+    "bytes": 65816,
+    "compressed_bytes": 15354,
+    "header_offset": 2269872969
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/B_soc_Dynamic PsRP 1 C_2.pth",
+    "bytes": 68964,
+    "compressed_bytes": 19565,
+    "header_offset": 2269888504
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/B_soc_Static HPPC.pth",
+    "bytes": 258952,
+    "compressed_bytes": 70139,
+    "header_offset": 2269908237
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/B_soc_Static PsRP 1.pth",
+    "bytes": 66704,
+    "compressed_bytes": 19013,
+    "header_offset": 2269978537
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/C_1C discharge capacity_Dynamic PsRP 1 C_2.pth",
+    "bytes": 302892,
+    "compressed_bytes": 65015,
+    "header_offset": 2269997713
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/C_1C discharge capacity_Static HPPC.pth",
+    "bytes": 1195344,
+    "compressed_bytes": 248587,
+    "header_offset": 2270062914
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/C_1C discharge capacity_Static PsRP 1.pth",
+    "bytes": 301080,
+    "compressed_bytes": 64778,
+    "header_offset": 2270311680
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/C_soc_Dynamic PsRP 1 C_2.pth",
+    "bytes": 302052,
+    "compressed_bytes": 81270,
+    "header_offset": 2270376639
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/C_soc_Static HPPC.pth",
+    "bytes": 1191688,
+    "compressed_bytes": 314336,
+    "header_offset": 2270458077
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/C_soc_Static PsRP 1.pth",
+    "bytes": 299856,
+    "compressed_bytes": 80482,
+    "header_offset": 2270772574
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/D_1C discharge capacity_Dynamic PsRP 1 C_2.pth",
+    "bytes": 233004,
+    "compressed_bytes": 51951,
+    "header_offset": 2270853219
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/D_1C discharge capacity_Static HPPC.pth",
+    "bytes": 905168,
+    "compressed_bytes": 195127,
+    "header_offset": 2270905356
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/D_1C discharge capacity_Static PsRP 1.pth",
+    "bytes": 226904,
+    "compressed_bytes": 50535,
+    "header_offset": 2271100662
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/D_soc_Dynamic PsRP 1 C_2.pth",
+    "bytes": 233060,
+    "compressed_bytes": 63069,
+    "header_offset": 2271151378
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/D_soc_Static HPPC.pth",
+    "bytes": 903176,
+    "compressed_bytes": 238035,
+    "header_offset": 2271214615
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_comparing_models/D_soc_Static PsRP 1.pth",
+    "bytes": 226576,
+    "compressed_bytes": 61409,
+    "header_offset": 2271452811
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_DCIR_feature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2271514383
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_DCIR_feature/bootstrap_results_A.pth",
+    "bytes": 1473040,
+    "compressed_bytes": 216726,
+    "header_offset": 2271514503
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_DCIR_feature/bootstrap_results_A_soc.pth",
+    "bytes": 420704,
+    "compressed_bytes": 72472,
+    "header_offset": 2271731388
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_DCIR_feature/bootstrap_results_B.pth",
+    "bytes": 404176,
+    "compressed_bytes": 77385,
+    "header_offset": 2271804023
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_DCIR_feature/bootstrap_results_B_soc.pth",
+    "bytes": 109344,
+    "compressed_bytes": 26145,
+    "header_offset": 2271881567
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_DCIR_feature/bootstrap_results_C.pth",
+    "bytes": 2806864,
+    "compressed_bytes": 393306,
+    "header_offset": 2271907875
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_DCIR_feature/bootstrap_results_C_soc.pth",
+    "bytes": 793824,
+    "compressed_bytes": 127403,
+    "header_offset": 2272301340
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_DCIR_feature/bootstrap_results_D.pth",
+    "bytes": 2287760,
+    "compressed_bytes": 316349,
+    "header_offset": 2272428906
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_DCIR_feature/bootstrap_results_D_soc.pth",
+    "bytes": 626976,
+    "compressed_bytes": 106423,
+    "header_offset": 2272745414
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_safety_max_error/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2272852000
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_safety_max_error/bootstrap_results_A_only.pth",
+    "bytes": 17341092,
+    "compressed_bytes": 607365,
+    "header_offset": 2272852124
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_safety_max_error/bootstrap_results_B_only.pth",
+    "bytes": 4887524,
+    "compressed_bytes": 192709,
+    "header_offset": 2273459657
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_soc_from_[OCV,T]_only/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2273652534
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_soc_from_[OCV,T]_only/bootstrap_results_A_only.pth",
+    "bytes": 2960484,
+    "compressed_bytes": 367959,
+    "header_offset": 2273652663
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_soc_from_[OCV,T]_only/bootstrap_results_B_only.pth",
+    "bytes": 2002468,
+    "compressed_bytes": 259704,
+    "header_offset": 2274020795
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_soc_from_[OCV,T]_only/bootstrap_results_C_only.pth",
+    "bytes": 6648036,
+    "compressed_bytes": 789217,
+    "header_offset": 2274280672
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_soc_from_[OCV,T]_only/bootstrap_results_D_only.pth",
+    "bytes": 2374692,
+    "compressed_bytes": 341353,
+    "header_offset": 2275070062
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_temperature/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2275411588
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_temperature/no_temp/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2275411707
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_temperature/no_temp/results_A.pth",
+    "bytes": 255080,
+    "compressed_bytes": 164488,
+    "header_offset": 2275411834
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_temperature/no_temp/results_B.pth",
+    "bytes": 103720,
+    "compressed_bytes": 66404,
+    "header_offset": 2275576478
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_temperature/no_temp/results_C.pth",
+    "bytes": 426664,
+    "compressed_bytes": 271897,
+    "header_offset": 2275643038
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_temperature/with_temp/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2275915091
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_temperature/with_temp/results.pth",
+    "bytes": 1248,
+    "compressed_bytes": 643,
+    "header_offset": 2275915220
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_temperature/with_temp/results_A.pth",
+    "bytes": 254056,
+    "compressed_bytes": 163670,
+    "header_offset": 2275916019
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_temperature/with_temp/results_B.pth",
+    "bytes": 104296,
+    "compressed_bytes": 66547,
+    "header_offset": 2276079847
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/experiment_temperature/with_temp/results_C.pth",
+    "bytes": 426216,
+    "compressed_bytes": 270553,
+    "header_offset": 2276146552
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2276417263
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_A_only.pth",
+    "bytes": 29725412,
+    "compressed_bytes": 5101056,
+    "header_offset": 2276417385
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_B_only.pth",
+    "bytes": 11800484,
+    "compressed_bytes": 2270064,
+    "header_offset": 2281518607
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_capacity3bins_A_only.pth",
+    "bytes": 46967516,
+    "compressed_bytes": 1780649,
+    "header_offset": 2283788837
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_capacity3bins_A_only_thresholdredo.pth",
+    "bytes": 17614676,
+    "compressed_bytes": 666831,
+    "header_offset": 2285569666
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_capacity3bins_B_only.pth",
+    "bytes": 19096924,
+    "compressed_bytes": 798286,
+    "header_offset": 2286236691
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_capacity3bins_B_only_thresholdredo.pth",
+    "bytes": 7771220,
+    "compressed_bytes": 325061,
+    "header_offset": 2287035157
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_capacity3bins_C_only.pth",
+    "bytes": 87968860,
+    "compressed_bytes": 3457839,
+    "header_offset": 2287360412
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_capacity_bins_A_only.pth",
+    "bytes": 15930460,
+    "compressed_bytes": 594595,
+    "header_offset": 2290818431
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_capacity_bins_B_only.pth",
+    "bytes": 6397020,
+    "compressed_bytes": 265121,
+    "header_offset": 2291413206
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_capacity_bins_C_only.pth",
+    "bytes": 27434076,
+    "compressed_bytes": 1036467,
+    "header_offset": 2291678507
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_C_only.pth",
+    "bytes": 52057060,
+    "compressed_bytes": 8665472,
+    "header_offset": 2292715154
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_extracted_features_A_only.pth",
+    "bytes": 11290160,
+    "compressed_bytes": 1574151,
+    "header_offset": 2301380792
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_extracted_features_B_only.pth",
+    "bytes": 3745584,
+    "compressed_bytes": 585381,
+    "header_offset": 2302955128
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_extracted_features_C_only.pth",
+    "bytes": 8965616,
+    "compressed_bytes": 1254319,
+    "header_offset": 2303540694
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_extracted_features_full_dataset.pth",
+    "bytes": 25701960,
+    "compressed_bytes": 3399164,
+    "header_offset": 2304795198
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_full_dataset.pth",
+    "bytes": 92344956,
+    "compressed_bytes": 15268811,
+    "header_offset": 2308194553
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_no_current_A_only.pth",
+    "bytes": 55068752,
+    "compressed_bytes": 3086615,
+    "header_offset": 2323463536
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_no_current_B_only.pth",
+    "bytes": 22157776,
+    "compressed_bytes": 1366117,
+    "header_offset": 2326550328
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_no_current_C_only.pth",
+    "bytes": 95283536,
+    "compressed_bytes": 5489298,
+    "header_offset": 2327916622
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_redocapacityNY_C_only.pth",
+    "bytes": 30682144,
+    "compressed_bytes": 2498647,
+    "header_offset": 2333406097
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_safety_c_2_A_only.pth",
+    "bytes": 16083280,
+    "compressed_bytes": 587014,
+    "header_offset": 2335904925
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_safety_c_2_B_only.pth",
+    "bytes": 6455888,
+    "compressed_bytes": 263893,
+    "header_offset": 2336492116
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_safety_c_2_C_only.pth",
+    "bytes": 27750544,
+    "compressed_bytes": 1037419,
+    "header_offset": 2336756186
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_safety_outlier_A_only.pth",
+    "bytes": 6205856,
+    "compressed_bytes": 257362,
+    "header_offset": 2337793782
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_safety_outlier_B_only.pth",
+    "bytes": 2434720,
+    "compressed_bytes": 132123,
+    "header_offset": 2338051325
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_safety_outlier_C_only.pth",
+    "bytes": 10669664,
+    "compressed_bytes": 408363,
+    "header_offset": 2338183629
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_safety_outlier_probabilities_A_only.pth",
+    "bytes": 16353112,
+    "compressed_bytes": 1315375,
+    "header_offset": 2338592173
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_safety_outlier_probabilities_B_only.pth",
+    "bytes": 6670040,
+    "compressed_bytes": 499908,
+    "header_offset": 2339907743
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_safety_outlier_probabilities_C_only.pth",
+    "bytes": 30610200,
+    "compressed_bytes": 2590517,
+    "header_offset": 2340407846
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_soc_A_only.pth",
+    "bytes": 4225780,
+    "compressed_bytes": 685940,
+    "header_offset": 2342998558
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_soc_B_only.pth",
+    "bytes": 1669236,
+    "compressed_bytes": 303658,
+    "header_offset": 2343684668
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_soc_C_only.pth",
+    "bytes": 7262836,
+    "compressed_bytes": 1138612,
+    "header_offset": 2343988496
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-C/bootstrap_results_soc_full_dataset.pth",
+    "bytes": 13028172,
+    "compressed_bytes": 2011028,
+    "header_offset": 2345127278
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-D_physical_targets/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2347138482
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-D_physical_targets/bootstrap_results_A.pth",
+    "bytes": 6832272,
+    "compressed_bytes": 1062731,
+    "header_offset": 2347138621
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-D_physical_targets/bootstrap_results_C.pth",
+    "bytes": 16647952,
+    "compressed_bytes": 1569719,
+    "header_offset": 2348201530
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-D_physical_targets/bootstrap_results_D.pth",
+    "bytes": 15670800,
+    "compressed_bytes": 1558761,
+    "header_offset": 2349771427
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-D_physical_targets/bootstrap_results_electrolyte_C.pth",
+    "bytes": 5338624,
+    "compressed_bytes": 246574,
+    "header_offset": 2351330366
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-D_physical_targets/bootstrap_results_electrolyte_D.pth",
+    "bytes": 7036032,
+    "compressed_bytes": 319373,
+    "header_offset": 2351577130
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_A-D_physical_targets/bootstrap_results_thickness-dcir_D.pth",
+    "bytes": 527756,
+    "compressed_bytes": 72963,
+    "header_offset": 2351896693
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_D/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2351969849
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_D/bootstrap_results_D_capacity_classification.pth",
+    "bytes": 842864,
+    "compressed_bytes": 45485,
+    "header_offset": 2351969969
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_D/bootstrap_results_D_only_with_P-I.pth",
+    "bytes": 28661320,
+    "compressed_bytes": 4462040,
+    "header_offset": 2352015637
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/results/RESULTS_xgboost_cells_D/bootstrap_results_D_soc_from_v_t_only.pth",
+    "bytes": 3504856,
+    "compressed_bytes": 422662,
+    "header_offset": 2356477850
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/run_bootstrap_xgboost.py",
+    "bytes": 9936,
+    "compressed_bytes": 2615,
+    "header_offset": 2356900689
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/run_kfoldcv.py",
+    "bytes": 16159,
+    "compressed_bytes": 3739,
+    "header_offset": 2356903432
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/scripts/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2356907289
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/scripts/01_process_data.py",
+    "bytes": 19234,
+    "compressed_bytes": 4263,
+    "header_offset": 2356907385
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/scripts/02_extract_pulses.py",
+    "bytes": 4233,
+    "compressed_bytes": 990,
+    "header_offset": 2356911778
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/scripts/03_extract_targets.py",
+    "bytes": 8325,
+    "compressed_bytes": 1851,
+    "header_offset": 2356912900
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/scripts/04_extract_dcir.py",
+    "bytes": 5140,
+    "compressed_bytes": 1453,
+    "header_offset": 2356914884
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/scripts/04_extract_dcir_all_pulses.py",
+    "bytes": 4098,
+    "compressed_bytes": 1256,
+    "header_offset": 2356916467
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/scripts/05_process_data_for_ml.py",
+    "bytes": 2355,
+    "compressed_bytes": 736,
+    "header_offset": 2356917864
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/scripts/06_run_tsfeature_extraction.py",
+    "bytes": 5365,
+    "compressed_bytes": 1345,
+    "header_offset": 2356918737
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/utils/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2356920224
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/utils/data_utils.py",
+    "bytes": 65469,
+    "compressed_bytes": 7605,
+    "header_offset": 2356920318
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/utils/data_vis.py",
+    "bytes": 2246,
+    "compressed_bytes": 914,
+    "header_offset": 2356928046
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/utils/generate_prbs.py",
+    "bytes": 5356,
+    "compressed_bytes": 1617,
+    "header_offset": 2356929081
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/utils/modeling_utils.py",
+    "bytes": 4190,
+    "compressed_bytes": 1424,
+    "header_offset": 2356930824
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/utils/nn_models.py",
+    "bytes": 9454,
+    "compressed_bytes": 1064,
+    "header_offset": 2356932375
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/utils/__pycache__/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 2356933561
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/utils/__pycache__/data_utils.cpython-310.pyc",
+    "bytes": 27890,
+    "compressed_bytes": 10107,
+    "header_offset": 2356933667
+  },
+  {
+    "record": "14597394",
+    "archive": "battery_pulse_diagnostics.zip",
+    "name": "battery_pulse_diagnostics/utils/__pycache__/data_vis.cpython-310.pyc",
+    "bytes": 1892,
+    "compressed_bytes": 1234,
+    "header_offset": 2356943922
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 0
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#1.csv",
+    "bytes": 16450837,
+    "compressed_bytes": 5126859,
+    "header_offset": 52
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#10.csv",
+    "bytes": 17905989,
+    "compressed_bytes": 5572706,
+    "header_offset": 5126979
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#11.csv",
+    "bytes": 18108806,
+    "compressed_bytes": 5602986,
+    "header_offset": 10699754
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#12.csv",
+    "bytes": 19487457,
+    "compressed_bytes": 5685681,
+    "header_offset": 16302809
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#13.csv",
+    "bytes": 36282440,
+    "compressed_bytes": 11169827,
+    "header_offset": 21988559
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#14.csv",
+    "bytes": 3828406,
+    "compressed_bytes": 1215632,
+    "header_offset": 33158455
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#15.csv",
+    "bytes": 27237724,
+    "compressed_bytes": 8434662,
+    "header_offset": 34374156
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#16.csv",
+    "bytes": 30387353,
+    "compressed_bytes": 9421850,
+    "header_offset": 42808887
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#17.csv",
+    "bytes": 28856296,
+    "compressed_bytes": 8999633,
+    "header_offset": 52230806
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#18.csv",
+    "bytes": 16492717,
+    "compressed_bytes": 5148463,
+    "header_offset": 61230508
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#19.csv",
+    "bytes": 16519095,
+    "compressed_bytes": 5124422,
+    "header_offset": 66379040
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#2.csv",
+    "bytes": 16640683,
+    "compressed_bytes": 5126950,
+    "header_offset": 71503531
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#20.csv",
+    "bytes": 16470924,
+    "compressed_bytes": 5096249,
+    "header_offset": 76630549
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#21.csv",
+    "bytes": 16375349,
+    "compressed_bytes": 5101363,
+    "header_offset": 81726867
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#22.csv",
+    "bytes": 16326132,
+    "compressed_bytes": 5082511,
+    "header_offset": 86828299
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#23.csv",
+    "bytes": 17242378,
+    "compressed_bytes": 5115822,
+    "header_offset": 91910879
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#3.csv",
+    "bytes": 16495375,
+    "compressed_bytes": 5127659,
+    "header_offset": 97026770
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#4.csv",
+    "bytes": 16305933,
+    "compressed_bytes": 5084748,
+    "header_offset": 102154497
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#5.csv",
+    "bytes": 42478199,
+    "compressed_bytes": 12986473,
+    "header_offset": 107239313
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#6.csv",
+    "bytes": 16579710,
+    "compressed_bytes": 5128406,
+    "header_offset": 120225854
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#7.csv",
+    "bytes": 17466302,
+    "compressed_bytes": 5147047,
+    "header_offset": 125354328
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#8.csv",
+    "bytes": 30720865,
+    "compressed_bytes": 9498122,
+    "header_offset": 130501443
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY25-05_1-#9.csv",
+    "bytes": 31505852,
+    "compressed_bytes": 9670444,
+    "header_offset": 139999633
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY35-05_1-#1.csv",
+    "bytes": 97192520,
+    "compressed_bytes": 29885817,
+    "header_offset": 149670145
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY35-05_1-#2.csv",
+    "bytes": 111472053,
+    "compressed_bytes": 34480854,
+    "header_offset": 179556030
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY35-05_1-#3.csv",
+    "bytes": 107128323,
+    "compressed_bytes": 33061231,
+    "header_offset": 214036952
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY35-05_1-#4.csv",
+    "bytes": 103482544,
+    "compressed_bytes": 31478139,
+    "header_offset": 247098251
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#1.csv",
+    "bytes": 39907283,
+    "compressed_bytes": 11912636,
+    "header_offset": 278576458
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#10.csv",
+    "bytes": 33455529,
+    "compressed_bytes": 10448506,
+    "header_offset": 290489162
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#11.csv",
+    "bytes": 67509940,
+    "compressed_bytes": 20780960,
+    "header_offset": 300937737
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#12.csv",
+    "bytes": 68283175,
+    "compressed_bytes": 20966617,
+    "header_offset": 321718766
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#13.csv",
+    "bytes": 76992345,
+    "compressed_bytes": 22690393,
+    "header_offset": 342685452
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#14.csv",
+    "bytes": 72505543,
+    "compressed_bytes": 22510476,
+    "header_offset": 365375914
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#15.csv",
+    "bytes": 32981432,
+    "compressed_bytes": 10268085,
+    "header_offset": 387886459
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#16.csv",
+    "bytes": 49338679,
+    "compressed_bytes": 15254242,
+    "header_offset": 398154613
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#17.csv",
+    "bytes": 51531971,
+    "compressed_bytes": 15357779,
+    "header_offset": 413408924
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#18.csv",
+    "bytes": 48888060,
+    "compressed_bytes": 15267405,
+    "header_offset": 428766772
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#19.csv",
+    "bytes": 70154014,
+    "compressed_bytes": 20734959,
+    "header_offset": 444034246
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#2.csv",
+    "bytes": 38291490,
+    "compressed_bytes": 11919373,
+    "header_offset": 464769274
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#20.csv",
+    "bytes": 66525339,
+    "compressed_bytes": 20583579,
+    "header_offset": 476688715
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#21.csv",
+    "bytes": 79903853,
+    "compressed_bytes": 23538566,
+    "header_offset": 497272363
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#22.csv",
+    "bytes": 77129939,
+    "compressed_bytes": 22385213,
+    "header_offset": 520810998
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#23.csv",
+    "bytes": 76466576,
+    "compressed_bytes": 23680758,
+    "header_offset": 543196280
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#24.csv",
+    "bytes": 74022276,
+    "compressed_bytes": 23103922,
+    "header_offset": 566877107
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#25.csv",
+    "bytes": 78840587,
+    "compressed_bytes": 24502335,
+    "header_offset": 589981098
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#26.csv",
+    "bytes": 71666192,
+    "compressed_bytes": 22254742,
+    "header_offset": 614483502
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#27.csv",
+    "bytes": 80135357,
+    "compressed_bytes": 24525272,
+    "header_offset": 636738313
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#28.csv",
+    "bytes": 75237420,
+    "compressed_bytes": 23109861,
+    "header_offset": 661263654
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#3.csv",
+    "bytes": 17791047,
+    "compressed_bytes": 5347085,
+    "header_offset": 684373584
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#4.csv",
+    "bytes": 17874173,
+    "compressed_bytes": 5295103,
+    "header_offset": 689720737
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#5.csv",
+    "bytes": 16972559,
+    "compressed_bytes": 5284510,
+    "header_offset": 695015908
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#6.csv",
+    "bytes": 17320480,
+    "compressed_bytes": 5237390,
+    "header_offset": 700300486
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#7.csv",
+    "bytes": 33626087,
+    "compressed_bytes": 10538741,
+    "header_offset": 705537944
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#8.csv",
+    "bytes": 33262453,
+    "compressed_bytes": 10462189,
+    "header_offset": 716076753
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_2_NCM_battery.zip",
+    "name": "Dataset_2_NCM_battery/CY45-05_1-#9.csv",
+    "bytes": 33340338,
+    "compressed_bytes": 10501702,
+    "header_offset": 726539010
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 0
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-025_1-#1.csv",
+    "bytes": 77438138,
+    "compressed_bytes": 18841594,
+    "header_offset": 52
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-025_1-#2.csv",
+    "bytes": 38021274,
+    "compressed_bytes": 9145243,
+    "header_offset": 18841715
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-025_1-#3.csv",
+    "bytes": 28574339,
+    "compressed_bytes": 8842601,
+    "header_offset": 27987027
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-025_1-#4.csv",
+    "bytes": 30541410,
+    "compressed_bytes": 9756102,
+    "header_offset": 36829697
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-025_1-#5.csv",
+    "bytes": 31601268,
+    "compressed_bytes": 10021954,
+    "header_offset": 46585868
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-025_1-#6.csv",
+    "bytes": 23377901,
+    "compressed_bytes": 7476762,
+    "header_offset": 56607891
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-025_1-#7.csv",
+    "bytes": 24979118,
+    "compressed_bytes": 7669375,
+    "header_offset": 64084722
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#1.csv",
+    "bytes": 13031728,
+    "compressed_bytes": 3782804,
+    "header_offset": 71754166
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#10.csv",
+    "bytes": 18320850,
+    "compressed_bytes": 5697515,
+    "header_offset": 75537038
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#11.csv",
+    "bytes": 14396296,
+    "compressed_bytes": 4415265,
+    "header_offset": 81234622
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#12.csv",
+    "bytes": 14110494,
+    "compressed_bytes": 4357935,
+    "header_offset": 85649956
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#13.csv",
+    "bytes": 16373236,
+    "compressed_bytes": 5055567,
+    "header_offset": 90007960
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#14.csv",
+    "bytes": 16148145,
+    "compressed_bytes": 5028640,
+    "header_offset": 95063596
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#15.csv",
+    "bytes": 16356728,
+    "compressed_bytes": 5050560,
+    "header_offset": 100092305
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#16.csv",
+    "bytes": 14508905,
+    "compressed_bytes": 4263968,
+    "header_offset": 105142934
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#17.csv",
+    "bytes": 16252162,
+    "compressed_bytes": 5040567,
+    "header_offset": 109406971
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#18.csv",
+    "bytes": 16761742,
+    "compressed_bytes": 4924526,
+    "header_offset": 114447607
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#19.csv",
+    "bytes": 13534792,
+    "compressed_bytes": 4005464,
+    "header_offset": 119372202
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#2.csv",
+    "bytes": 14886912,
+    "compressed_bytes": 4609370,
+    "header_offset": 123377735
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#3.csv",
+    "bytes": 16298892,
+    "compressed_bytes": 5038716,
+    "header_offset": 127987173
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#4.csv",
+    "bytes": 16171310,
+    "compressed_bytes": 5053238,
+    "header_offset": 133025957
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#5.csv",
+    "bytes": 16436683,
+    "compressed_bytes": 5062633,
+    "header_offset": 138079263
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#6.csv",
+    "bytes": 15394752,
+    "compressed_bytes": 4774674,
+    "header_offset": 143141964
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#7.csv",
+    "bytes": 15237781,
+    "compressed_bytes": 4518498,
+    "header_offset": 147916706
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#8.csv",
+    "bytes": 9571982,
+    "compressed_bytes": 2992224,
+    "header_offset": 152435272
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-05_1-#9.csv",
+    "bytes": 9639659,
+    "compressed_bytes": 2987824,
+    "header_offset": 155427564
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-1_1-#1.csv",
+    "bytes": 3508566,
+    "compressed_bytes": 1013241,
+    "header_offset": 158415456
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-1_1-#2.csv",
+    "bytes": 3686791,
+    "compressed_bytes": 1061537,
+    "header_offset": 159428764
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-1_1-#3.csv",
+    "bytes": 2559914,
+    "compressed_bytes": 800140,
+    "header_offset": 160490368
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-1_1-#4.csv",
+    "bytes": 2810659,
+    "compressed_bytes": 880168,
+    "header_offset": 161290575
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-1_1-#5.csv",
+    "bytes": 3193344,
+    "compressed_bytes": 935192,
+    "header_offset": 162170810
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-1_1-#6.csv",
+    "bytes": 2552620,
+    "compressed_bytes": 802822,
+    "header_offset": 163106069
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-1_1-#7.csv",
+    "bytes": 3085814,
+    "compressed_bytes": 964637,
+    "header_offset": 163908958
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-1_1-#8.csv",
+    "bytes": 2729385,
+    "compressed_bytes": 849838,
+    "header_offset": 164873662
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY25-1_1-#9.csv",
+    "bytes": 3022139,
+    "compressed_bytes": 944120,
+    "header_offset": 165723567
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY35-05_1-#1.csv",
+    "bytes": 46176164,
+    "compressed_bytes": 14414100,
+    "header_offset": 166667754
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY35-05_1-#2.csv",
+    "bytes": 44425016,
+    "compressed_bytes": 13866821,
+    "header_offset": 181081922
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY35-05_1-#3.csv",
+    "bytes": 2770565,
+    "compressed_bytes": 835757,
+    "header_offset": 194948811
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#1.csv",
+    "bytes": 57799918,
+    "compressed_bytes": 17979989,
+    "header_offset": 195784636
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#10.csv",
+    "bytes": 33467064,
+    "compressed_bytes": 9952968,
+    "header_offset": 213764693
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#11.csv",
+    "bytes": 53255007,
+    "compressed_bytes": 15749771,
+    "header_offset": 223717730
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#12.csv",
+    "bytes": 63105753,
+    "compressed_bytes": 19524399,
+    "header_offset": 239467570
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#13.csv",
+    "bytes": 59351754,
+    "compressed_bytes": 17453228,
+    "header_offset": 258992038
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#14.csv",
+    "bytes": 60418607,
+    "compressed_bytes": 17970334,
+    "header_offset": 276445335
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#15.csv",
+    "bytes": 39892273,
+    "compressed_bytes": 11807523,
+    "header_offset": 294415738
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#16.csv",
+    "bytes": 45668762,
+    "compressed_bytes": 14137370,
+    "header_offset": 306223330
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#17.csv",
+    "bytes": 43134005,
+    "compressed_bytes": 12652323,
+    "header_offset": 320360769
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#18.csv",
+    "bytes": 48102617,
+    "compressed_bytes": 14365917,
+    "header_offset": 333013161
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#19.csv",
+    "bytes": 52446161,
+    "compressed_bytes": 16357154,
+    "header_offset": 347379147
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#2.csv",
+    "bytes": 59491975,
+    "compressed_bytes": 17585495,
+    "header_offset": 363736370
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#20.csv",
+    "bytes": 59267550,
+    "compressed_bytes": 17620804,
+    "header_offset": 381321933
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#21.csv",
+    "bytes": 49041201,
+    "compressed_bytes": 15195433,
+    "header_offset": 398942806
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#22.csv",
+    "bytes": 45931810,
+    "compressed_bytes": 13695221,
+    "header_offset": 414138308
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#23.csv",
+    "bytes": 56754611,
+    "compressed_bytes": 16785825,
+    "header_offset": 427833598
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#24.csv",
+    "bytes": 59273222,
+    "compressed_bytes": 17382972,
+    "header_offset": 444619492
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#25.csv",
+    "bytes": 57755502,
+    "compressed_bytes": 18023828,
+    "header_offset": 462002533
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#26.csv",
+    "bytes": 53945116,
+    "compressed_bytes": 16933695,
+    "header_offset": 480026430
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#27.csv",
+    "bytes": 50230709,
+    "compressed_bytes": 15573317,
+    "header_offset": 496960194
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#28.csv",
+    "bytes": 55920429,
+    "compressed_bytes": 17327530,
+    "header_offset": 512533580
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#3.csv",
+    "bytes": 15985120,
+    "compressed_bytes": 5009520,
+    "header_offset": 529861179
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#4.csv",
+    "bytes": 15986018,
+    "compressed_bytes": 5011406,
+    "header_offset": 534870767
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#5.csv",
+    "bytes": 15918985,
+    "compressed_bytes": 4988157,
+    "header_offset": 539882241
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#6.csv",
+    "bytes": 15840827,
+    "compressed_bytes": 4953885,
+    "header_offset": 544870466
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#7.csv",
+    "bytes": 31586786,
+    "compressed_bytes": 9973758,
+    "header_offset": 549824419
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#8.csv",
+    "bytes": 31316453,
+    "compressed_bytes": 9800874,
+    "header_offset": 559798245
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_1_NCA_battery.zip",
+    "name": "Dataset_1_NCA_battery/CY45-05_1-#9.csv",
+    "bytes": 33693589,
+    "compressed_bytes": 10021996,
+    "header_offset": 569599187
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_3_NCM_NCA_battery.zip",
+    "name": "Dataset_3_NCM_NCA_battery/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 0
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_3_NCM_NCA_battery.zip",
+    "name": "Dataset_3_NCM_NCA_battery/CY25-05_1-#1.csv",
+    "bytes": 154123654,
+    "compressed_bytes": 42036043,
+    "header_offset": 56
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_3_NCM_NCA_battery.zip",
+    "name": "Dataset_3_NCM_NCA_battery/CY25-05_1-#2.csv",
+    "bytes": 144504692,
+    "compressed_bytes": 42387545,
+    "header_offset": 42036171
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_3_NCM_NCA_battery.zip",
+    "name": "Dataset_3_NCM_NCA_battery/CY25-05_1-#3.csv",
+    "bytes": 149890896,
+    "compressed_bytes": 43923674,
+    "header_offset": 84423788
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_3_NCM_NCA_battery.zip",
+    "name": "Dataset_3_NCM_NCA_battery/CY25-05_2-#1.csv",
+    "bytes": 145971800,
+    "compressed_bytes": 39123397,
+    "header_offset": 128347534
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_3_NCM_NCA_battery.zip",
+    "name": "Dataset_3_NCM_NCA_battery/CY25-05_2-#2.csv",
+    "bytes": 133893440,
+    "compressed_bytes": 37985542,
+    "header_offset": 167471003
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_3_NCM_NCA_battery.zip",
+    "name": "Dataset_3_NCM_NCA_battery/CY25-05_2-#3.csv",
+    "bytes": 155706621,
+    "compressed_bytes": 41311608,
+    "header_offset": 205456617
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_3_NCM_NCA_battery.zip",
+    "name": "Dataset_3_NCM_NCA_battery/CY25-05_4-#1.csv",
+    "bytes": 134263298,
+    "compressed_bytes": 37818532,
+    "header_offset": 246768297
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_3_NCM_NCA_battery.zip",
+    "name": "Dataset_3_NCM_NCA_battery/CY25-05_4-#2.csv",
+    "bytes": 131334725,
+    "compressed_bytes": 36868856,
+    "header_offset": 284586901
+  },
+  {
+    "record": "6405084",
+    "archive": "Dataset_3_NCM_NCA_battery.zip",
+    "name": "Dataset_3_NCM_NCA_battery/CY25-05_4-#3.csv",
+    "bytes": 131127465,
+    "compressed_bytes": 34609331,
+    "header_offset": 321455829
+  },
+  {
+    "record": "6405084",
+    "archive": "Impedance raw data and fitting data.zip",
+    "name": "Impedance raw data and fitting data/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 0
+  },
+  {
+    "record": "6405084",
+    "archive": "Impedance raw data and fitting data.zip",
+    "name": "Impedance raw data and fitting data/NCA battery/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 66
+  },
+  {
+    "record": "6405084",
+    "archive": "Impedance raw data and fitting data.zip",
+    "name": "Impedance raw data and fitting data/NCA battery/CY25_0.25_1.xlsx",
+    "bytes": 124798,
+    "compressed_bytes": 118342,
+    "header_offset": 144
+  },
+  {
+    "record": "6405084",
+    "archive": "Impedance raw data and fitting data.zip",
+    "name": "Impedance raw data and fitting data/NCA battery/CY25_0.5_1.xlsx",
+    "bytes": 72967,
+    "compressed_bytes": 68714,
+    "header_offset": 118580
+  },
+  {
+    "record": "6405084",
+    "archive": "Impedance raw data and fitting data.zip",
+    "name": "Impedance raw data and fitting data/NCA battery/CY25_1_1.xlsx",
+    "bytes": 41746,
+    "compressed_bytes": 38590,
+    "header_offset": 187387
+  },
+  {
+    "record": "6405084",
+    "archive": "Impedance raw data and fitting data.zip",
+    "name": "Impedance raw data and fitting data/NCA battery/CY35_0.5_1.xlsx",
+    "bytes": 216366,
+    "compressed_bytes": 207799,
+    "header_offset": 226068
+  },
+  {
+    "record": "6405084",
+    "archive": "Impedance raw data and fitting data.zip",
+    "name": "Impedance raw data and fitting data/NCA battery/CY45_0.5_1.xlsx",
+    "bytes": 226177,
+    "compressed_bytes": 217163,
+    "header_offset": 433960
+  },
+  {
+    "record": "6405084",
+    "archive": "Impedance raw data and fitting data.zip",
+    "name": "Impedance raw data and fitting data/NCM battery/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 651216
+  },
+  {
+    "record": "6405084",
+    "archive": "Impedance raw data and fitting data.zip",
+    "name": "Impedance raw data and fitting data/NCM battery/CY25_0.5_1.xlsx",
+    "bytes": 87424,
+    "compressed_bytes": 82639,
+    "header_offset": 651294
+  },
+  {
+    "record": "6405084",
+    "archive": "Impedance raw data and fitting data.zip",
+    "name": "Impedance raw data and fitting data/NCM battery/CY35_0.5_1.xlsx",
+    "bytes": 254880,
+    "compressed_bytes": 244884,
+    "header_offset": 734026
+  },
+  {
+    "record": "6405084",
+    "archive": "Impedance raw data and fitting data.zip",
+    "name": "Impedance raw data and fitting data/NCM battery/CY45_0.5_1.xlsx",
+    "bytes": 140048,
+    "compressed_bytes": 133793,
+    "header_offset": 979003
+  },
+  {
+    "record": "6405084",
+    "archive": "Impedance raw data and fitting data.zip",
+    "name": "Impedance raw data and fitting data/NCM+NCA battery/",
+    "bytes": 0,
+    "compressed_bytes": 0,
+    "header_offset": 1112889
+  },
+  {
+    "record": "6405084",
+    "archive": "Impedance raw data and fitting data.zip",
+    "name": "Impedance raw data and fitting data/NCM+NCA battery/CY25_0.5_1.xlsx",
+    "bytes": 85235,
+    "compressed_bytes": 77589,
+    "header_offset": 1112971
+  },
+  {
+    "record": "6405084",
+    "archive": "Impedance raw data and fitting data.zip",
+    "name": "Impedance raw data and fitting data/NCM+NCA battery/CY25_0.5_2.xlsx",
+    "bytes": 85543,
+    "compressed_bytes": 77853,
+    "header_offset": 1190657
+  },
+  {
+    "record": "6405084",
+    "archive": "Impedance raw data and fitting data.zip",
+    "name": "Impedance raw data and fitting data/NCM+NCA battery/CY25_0.5_4.xlsx",
+    "bytes": 85580,
+    "compressed_bytes": 77480,
+    "header_offset": 1268607
+  },
+  {
+    "record": "6405084",
+    "archive": "Impedance raw data and fitting data.zip",
+    "name": "Impedance raw data and fitting data/Short discription.txt",
+    "bytes": 1289,
+    "compressed_bytes": 579,
+    "header_offset": 1346184
+  }
+]

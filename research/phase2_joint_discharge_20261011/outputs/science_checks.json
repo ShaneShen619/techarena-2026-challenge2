@@ -1,0 +1,28 @@
+{
+  "CK0_backsubstitution_max_error_V": 0.0,
+  "CK0_first_cutoff_Ah": 100.41,
+  "reference_increment_identity": true,
+  "strict_prefix_boundary": true,
+  "synthetic_experiments": [
+    {
+      "name": "wide_known_capacity",
+      "true_capacity_Ah": 90.369,
+      "best_capacity_Ah": 90.369,
+      "RMS_mV": 1.373024164315222e-13,
+      "low_plus1mV_Ah": 88.3608,
+      "high_plus1mV_Ah": 97.3977,
+      "RMS_Q80_mV": 4.568559909754985,
+      "RMS_Q100_mV": 1.2289205714411897
+    },
+    {
+      "name": "shallow_constant_capacity",
+      "true_capacity_Ah": 100.41,
+      "best_capacity_Ah": 100.41,
+      "RMS_mV": 1.4655471260595178e-13,
+      "low_plus1mV_Ah": 70.28699999999999,
+      "high_plus1mV_Ah": 105.4305,
+      "RMS_Q80_mV": 0.27958508086930617,
+      "RMS_Q100_mV": 0.024581790126236448
+    }
+  ]
+}

@@ -1,0 +1,756 @@
+[
+  {
+    "checkup": "CK1",
+    "T": 45,
+    "singular_values": [
+      0.45778463604271924,
+      0.12801633193525846,
+      0.09155767732064155,
+      0.05312903288276655,
+      0.02663271922545661,
+      0.021920927465720153,
+      0.021862933193166997,
+      0.021747710362914653,
+      0.021476638915595814,
+      0.008645602302597599,
+      0.008621905453950375,
+      0.008577662353243651,
+      0.008565631012411928,
+      0.0045341052922362466,
+      0.004530121936004163,
+      0.004509002271216766,
+      0.004462938466024133,
+      0.0001027519578037019,
+      0.00010078148818822648,
+      0.000100308682000563,
+      9.900658434824723e-05
+    ],
+    "condition_number": 4623.77971178665,
+    "capacity_high_correlation_pairs": [],
+    "interpretation": "Local normalized sensitivity only; weak rank plus global refitted profile are both reported"
+  },
+  {
+    "checkup": "CK1",
+    "T": 45,
+    "delta_mV": 0.5,
+    "width_Ah": 5.5
+  },
+  {
+    "checkup": "CK1",
+    "T": 45,
+    "delta_mV": 1.0,
+    "width_Ah": 8.800000000000011
+  },
+  {
+    "checkup": "CK1",
+    "T": 45,
+    "delta_mV": 2.0,
+    "width_Ah": 15.5
+  },
+  {
+    "checkup": "CK1",
+    "T": 45,
+    "structural_union_lower_Ah": 87.1,
+    "structural_union_upper_Ah": 102.39999999999998,
+    "structural_union_width_Ah": 15.299999999999983,
+    "all_registered_candidates_supported": false,
+    "accepted": false,
+    "reason": "dynamics_gate_not_passed_and_no_independent_reference_calibration"
+  },
+  {
+    "checkup": "CK2",
+    "T": 25,
+    "singular_values": [
+      0.17353720454645766,
+      0.11086928921993024,
+      0.09862394455902569,
+      0.09078340748708479,
+      0.025276983579388256,
+      0.022096507415797863,
+      0.021832947711393373,
+      0.02178910447662238,
+      0.02152537501002263,
+      0.008388158101183235,
+      0.008371743777959692,
+      0.008318839123871009,
+      0.008092235401293661,
+      0.00463231930640153,
+      0.0045176323316342155,
+      0.004489724973969944,
+      0.004171218084746988,
+      0.00017101061448411586,
+      0.0001561032498640609,
+      0.00015420387907835753,
+      0.00013618192747702896
+    ],
+    "condition_number": 1274.3042176116192,
+    "capacity_high_correlation_pairs": [],
+    "interpretation": "Local normalized sensitivity only; weak rank plus global refitted profile are both reported"
+  },
+  {
+    "checkup": "CK2",
+    "T": 25,
+    "delta_mV": 0.5,
+    "width_Ah": 6.5
+  },
+  {
+    "checkup": "CK2",
+    "T": 25,
+    "delta_mV": 1.0,
+    "width_Ah": 10.300000000000011
+  },
+  {
+    "checkup": "CK2",
+    "T": 25,
+    "delta_mV": 2.0,
+    "width_Ah": 18.0
+  },
+  {
+    "checkup": "CK2",
+    "T": 25,
+    "structural_union_lower_Ah": 87.1,
+    "structural_union_upper_Ah": 104.0,
+    "structural_union_width_Ah": 16.900000000000006,
+    "all_registered_candidates_supported": false,
+    "accepted": false,
+    "reason": "dynamics_gate_not_passed_and_no_independent_reference_calibration"
+  },
+  {
+    "checkup": "CK2",
+    "T": 45,
+    "singular_values": [
+      0.45734866117110856,
+      0.13010178389656837,
+      0.09124390515523041,
+      0.05290008591641553,
+      0.02702001673979649,
+      0.021996565534133893,
+      0.021947837886135874,
+      0.021814125965040947,
+      0.02160035121558158,
+      0.008475180953742188,
+      0.008460514438138363,
+      0.008417898137857439,
+      0.008351514210545882,
+      0.004616069093706597,
+      0.00453536156591655,
+      0.004517012227727458,
+      0.0044807313693976634,
+      0.00010677862563339333,
+      0.00010485550808258544,
+      0.00010325688835264011,
+      0.00010185095418128044
+    ],
+    "condition_number": 4490.3718855406305,
+    "capacity_high_correlation_pairs": [],
+    "interpretation": "Local normalized sensitivity only; weak rank plus global refitted profile are both reported"
+  },
+  {
+    "checkup": "CK2",
+    "T": 45,
+    "delta_mV": 0.5,
+    "width_Ah": 5.5
+  },
+  {
+    "checkup": "CK2",
+    "T": 45,
+    "delta_mV": 1.0,
+    "width_Ah": 8.800000000000011
+  },
+  {
+    "checkup": "CK2",
+    "T": 45,
+    "delta_mV": 2.0,
+    "width_Ah": 15.5
+  },
+  {
+    "checkup": "CK2",
+    "T": 45,
+    "structural_union_lower_Ah": 87.1,
+    "structural_union_upper_Ah": 102.39999999999998,
+    "structural_union_width_Ah": 15.299999999999983,
+    "all_registered_candidates_supported": false,
+    "accepted": false,
+    "reason": "dynamics_gate_not_passed_and_no_independent_reference_calibration"
+  },
+  {
+    "checkup": "CK3",
+    "T": 25,
+    "singular_values": [
+      0.1898698400492737,
+      0.1732650927218042,
+      0.10892766457007184,
+      0.09801370108447977,
+      0.026626487198586773,
+      0.021863407581526797,
+      0.021841895140331198,
+      0.02182756778837611,
+      0.02176872195519565,
+      0.008260819382666349,
+      0.008201734335201346,
+      0.008200421735434641,
+      0.008196032930260973,
+      0.0045246362423298474,
+      0.00451474743592099,
+      0.004510776468574344,
+      0.00445955830907831,
+      0.0001463097295508305,
+      0.0001454434881363531,
+      0.00014480508093559513,
+      0.00014257461094229008
+    ],
+    "condition_number": 1331.7226594160395,
+    "capacity_high_correlation_pairs": [],
+    "interpretation": "Local normalized sensitivity only; weak rank plus global refitted profile are both reported"
+  },
+  {
+    "checkup": "CK3",
+    "T": 25,
+    "delta_mV": 0.5,
+    "width_Ah": 5.5
+  },
+  {
+    "checkup": "CK3",
+    "T": 25,
+    "delta_mV": 1.0,
+    "width_Ah": 9.300000000000011
+  },
+  {
+    "checkup": "CK3",
+    "T": 25,
+    "delta_mV": 2.0,
+    "width_Ah": 17.0
+  },
+  {
+    "checkup": "CK3",
+    "T": 25,
+    "structural_union_lower_Ah": 85.79999999999998,
+    "structural_union_upper_Ah": 105.4305,
+    "structural_union_width_Ah": 19.630500000000012,
+    "all_registered_candidates_supported": false,
+    "accepted": false,
+    "reason": "dynamics_gate_not_passed_and_no_independent_reference_calibration"
+  },
+  {
+    "checkup": "CK3",
+    "T": 45,
+    "singular_values": [
+      0.35709210954112375,
+      0.13074670703379057,
+      0.10093166784836902,
+      0.0715292618523385,
+      0.03126862410569374,
+      0.02189278413462594,
+      0.021866416240876003,
+      0.021833549501226398,
+      0.02176789353802787,
+      0.008584658229304543,
+      0.008566689722587447,
+      0.00854940186890306,
+      0.008545925282382516,
+      0.00452674242980616,
+      0.004518344955490146,
+      0.004496402653855613,
+      0.0044431092549013645,
+      0.00010276691828925182,
+      0.0001023010481265211,
+      0.00010166893785462377,
+      0.00010103717538761258
+    ],
+    "condition_number": 3534.264573125667,
+    "capacity_high_correlation_pairs": [],
+    "interpretation": "Local normalized sensitivity only; weak rank plus global refitted profile are both reported"
+  },
+  {
+    "checkup": "CK3",
+    "T": 45,
+    "delta_mV": 0.5,
+    "width_Ah": 4.5
+  },
+  {
+    "checkup": "CK3",
+    "T": 45,
+    "delta_mV": 1.0,
+    "width_Ah": 7.800000000000011
+  },
+  {
+    "checkup": "CK3",
+    "T": 45,
+    "delta_mV": 2.0,
+    "width_Ah": 13.0
+  },
+  {
+    "checkup": "CK3",
+    "T": 45,
+    "structural_union_lower_Ah": 84.69999999999999,
+    "structural_union_upper_Ah": 97.69999999999999,
+    "structural_union_width_Ah": 13.0,
+    "all_registered_candidates_supported": false,
+    "accepted": false,
+    "reason": "dynamics_gate_not_passed_and_no_independent_reference_calibration"
+  },
+  {
+    "checkup": "CK4",
+    "T": 25,
+    "singular_values": [
+      0.25279609738711967,
+      0.2006866429697885,
+      0.17155101101843223,
+      0.16954508250144723,
+      0.030689304058073193,
+      0.023821904141569816,
+      0.023816126162766873,
+      0.023802994464467805,
+      0.023781468265073134,
+      0.006370345572697231,
+      0.006317898370542367,
+      0.006309669227136618,
+      0.006300128842462195,
+      0.004507781735724583,
+      0.004506433977260518,
+      0.004505955779475431,
+      0.004428227871396542,
+      0.00016886638783129816,
+      0.00016834063087037916,
+      0.0001679369320582526,
+      0.0001665883258826642
+    ],
+    "condition_number": 1517.489872400636,
+    "capacity_high_correlation_pairs": [],
+    "interpretation": "Local normalized sensitivity only; weak rank plus global refitted profile are both reported"
+  },
+  {
+    "checkup": "CK4",
+    "T": 25,
+    "delta_mV": 0.5,
+    "width_Ah": 5.5
+  },
+  {
+    "checkup": "CK4",
+    "T": 25,
+    "delta_mV": 1.0,
+    "width_Ah": 9.099999999999994
+  },
+  {
+    "checkup": "CK4",
+    "T": 25,
+    "delta_mV": 2.0,
+    "width_Ah": 14.0
+  },
+  {
+    "checkup": "CK4",
+    "T": 25,
+    "structural_union_lower_Ah": 83.89999999999998,
+    "structural_union_upper_Ah": 105.4305,
+    "structural_union_width_Ah": 21.530500000000018,
+    "all_registered_candidates_supported": false,
+    "accepted": false,
+    "reason": "dynamics_gate_not_passed_and_no_independent_reference_calibration"
+  },
+  {
+    "checkup": "CK4",
+    "T": 45,
+    "singular_values": [
+      0.29117827135196933,
+      0.11207317561190938,
+      0.08978425225147683,
+      0.04666648259918656,
+      0.029978922628523988,
+      0.0192846565761065,
+      0.019190170106824587,
+      0.019067687940505455,
+      0.018926585629450536,
+      0.010120455760532717,
+      0.010069369851368233,
+      0.010004823818033394,
+      0.009917294961793393,
+      0.0044840718162006315,
+      0.00447378894986732,
+      0.004446675026966005,
+      0.004390559990520843,
+      0.00011094723939342948,
+      0.00010875231460196924,
+      0.00010811988309432152,
+      0.00010706021982863364
+    ],
+    "condition_number": 2719.761568003923,
+    "capacity_high_correlation_pairs": [],
+    "interpretation": "Local normalized sensitivity only; weak rank plus global refitted profile are both reported"
+  },
+  {
+    "checkup": "CK4",
+    "T": 45,
+    "delta_mV": 0.5,
+    "width_Ah": 4.5
+  },
+  {
+    "checkup": "CK4",
+    "T": 45,
+    "delta_mV": 1.0,
+    "width_Ah": 8.199999999999989
+  },
+  {
+    "checkup": "CK4",
+    "T": 45,
+    "delta_mV": 2.0,
+    "width_Ah": 15.5
+  },
+  {
+    "checkup": "CK4",
+    "T": 45,
+    "structural_union_lower_Ah": 84.39999999999998,
+    "structural_union_upper_Ah": 100.29999999999998,
+    "structural_union_width_Ah": 15.900000000000006,
+    "all_registered_candidates_supported": false,
+    "accepted": false,
+    "reason": "dynamics_gate_not_passed_and_no_independent_reference_calibration"
+  },
+  {
+    "checkup": "CK5",
+    "T": 25,
+    "singular_values": [
+      0.25245160430460595,
+      0.2001731721339237,
+      0.17099065658079654,
+      0.1696421475065954,
+      0.029739771700197665,
+      0.023866798707181922,
+      0.023860475848158584,
+      0.02384937287854719,
+      0.02383641478971013,
+      0.0061196398904851635,
+      0.006069834268352173,
+      0.006057878878759597,
+      0.006054167962386263,
+      0.004509081254243907,
+      0.0045078804728682755,
+      0.004506178005055443,
+      0.004433391632849696,
+      0.00015916579174609795,
+      0.00015879117911413195,
+      0.00015847648624648077,
+      0.000156929622639431
+    ],
+    "condition_number": 1608.6931202571666,
+    "capacity_high_correlation_pairs": [],
+    "interpretation": "Local normalized sensitivity only; weak rank plus global refitted profile are both reported"
+  },
+  {
+    "checkup": "CK5",
+    "T": 25,
+    "delta_mV": 0.5,
+    "width_Ah": 6.0
+  },
+  {
+    "checkup": "CK5",
+    "T": 25,
+    "delta_mV": 1.0,
+    "width_Ah": 9.000000000000028
+  },
+  {
+    "checkup": "CK5",
+    "T": 25,
+    "delta_mV": 2.0,
+    "width_Ah": 14.0
+  },
+  {
+    "checkup": "CK5",
+    "T": 25,
+    "structural_union_lower_Ah": 83.29999999999998,
+    "structural_union_upper_Ah": 105.4305,
+    "structural_union_width_Ah": 22.130500000000012,
+    "all_registered_candidates_supported": false,
+    "accepted": false,
+    "reason": "dynamics_gate_not_passed_and_no_independent_reference_calibration"
+  },
+  {
+    "checkup": "CK5",
+    "T": 45,
+    "singular_values": [
+      0.29115109174905596,
+      0.11667457051650787,
+      0.09682939171910548,
+      0.057355797109271696,
+      0.030912589127503942,
+      0.019271028585722858,
+      0.019196941481225176,
+      0.019176659693127648,
+      0.01893184029412147,
+      0.01007034913342288,
+      0.010012534056744632,
+      0.009943223347269492,
+      0.009913722755875409,
+      0.004473137401231788,
+      0.004461930222555107,
+      0.004447089308263563,
+      0.004383929726903894,
+      0.00012954546308026284,
+      0.00012780765783901215,
+      0.00012717792044546366,
+      0.00012618385826597975
+    ],
+    "condition_number": 2307.3560735109713,
+    "capacity_high_correlation_pairs": [],
+    "interpretation": "Local normalized sensitivity only; weak rank plus global refitted profile are both reported"
+  },
+  {
+    "checkup": "CK5",
+    "T": 45,
+    "delta_mV": 0.5,
+    "width_Ah": 4.5
+  },
+  {
+    "checkup": "CK5",
+    "T": 45,
+    "delta_mV": 1.0,
+    "width_Ah": 7.900000000000006
+  },
+  {
+    "checkup": "CK5",
+    "T": 45,
+    "delta_mV": 2.0,
+    "width_Ah": 15.0
+  },
+  {
+    "checkup": "CK5",
+    "T": 45,
+    "structural_union_lower_Ah": 83.69999999999999,
+    "structural_union_upper_Ah": 99.0,
+    "structural_union_width_Ah": 15.300000000000011,
+    "all_registered_candidates_supported": false,
+    "accepted": false,
+    "reason": "dynamics_gate_not_passed_and_no_independent_reference_calibration"
+  },
+  {
+    "checkup": "CK6",
+    "T": 25,
+    "singular_values": [
+      0.25175069221806134,
+      0.2012055215495921,
+      0.17164093761207977,
+      0.1701766933480119,
+      0.03199942286756354,
+      0.023892000250310547,
+      0.023848129062909063,
+      0.023838626870621243,
+      0.02381967158817217,
+      0.006464939749247322,
+      0.006424567241178564,
+      0.006411196405235773,
+      0.006402428905828129,
+      0.004506991373310807,
+      0.004503982368572383,
+      0.004495370012276119,
+      0.004417515708620035,
+      0.00011796110504743183,
+      0.00011782094965464653,
+      0.00011754149521998125,
+      0.00011695203728789426
+    ],
+    "condition_number": 2152.597749095561,
+    "capacity_high_correlation_pairs": [],
+    "interpretation": "Local normalized sensitivity only; weak rank plus global refitted profile are both reported"
+  },
+  {
+    "checkup": "CK6",
+    "T": 25,
+    "delta_mV": 0.5,
+    "width_Ah": 5.5
+  },
+  {
+    "checkup": "CK6",
+    "T": 25,
+    "delta_mV": 1.0,
+    "width_Ah": 9.0
+  },
+  {
+    "checkup": "CK6",
+    "T": 25,
+    "delta_mV": 2.0,
+    "width_Ah": 13.0
+  },
+  {
+    "checkup": "CK6",
+    "T": 25,
+    "structural_union_lower_Ah": 82.79999999999998,
+    "structural_union_upper_Ah": 104.5,
+    "structural_union_width_Ah": 21.700000000000017,
+    "all_registered_candidates_supported": false,
+    "accepted": false,
+    "reason": "dynamics_gate_not_passed_and_no_independent_reference_calibration"
+  },
+  {
+    "checkup": "CK6",
+    "T": 45,
+    "singular_values": [
+      0.2513284802770003,
+      0.1166301654342641,
+      0.09679319265475356,
+      0.057480449974962385,
+      0.043871698419816314,
+      0.019232521614501348,
+      0.019226693782773127,
+      0.019042343711420696,
+      0.018193893772125505,
+      0.010057196086799669,
+      0.009970486952220841,
+      0.009909104802133428,
+      0.00906440703168685,
+      0.004463496179006359,
+      0.004452046326880425,
+      0.0044346985302582366,
+      0.0037916505809168343,
+      9.905189950668178e-05,
+      9.807171168856011e-05,
+      9.775354164979104e-05,
+      9.726093083534111e-05
+    ],
+    "condition_number": 2584.064105889439,
+    "capacity_high_correlation_pairs": [],
+    "interpretation": "Local normalized sensitivity only; weak rank plus global refitted profile are both reported"
+  },
+  {
+    "checkup": "CK6",
+    "T": 45,
+    "delta_mV": 0.5,
+    "width_Ah": 4.5
+  },
+  {
+    "checkup": "CK6",
+    "T": 45,
+    "delta_mV": 1.0,
+    "width_Ah": 7.800000000000011
+  },
+  {
+    "checkup": "CK6",
+    "T": 45,
+    "delta_mV": 2.0,
+    "width_Ah": 14.5
+  },
+  {
+    "checkup": "CK6",
+    "T": 45,
+    "structural_union_lower_Ah": 83.19999999999999,
+    "structural_union_upper_Ah": 97.79999999999998,
+    "structural_union_width_Ah": 14.599999999999994,
+    "all_registered_candidates_supported": false,
+    "accepted": false,
+    "reason": "dynamics_gate_not_passed_and_no_independent_reference_calibration"
+  },
+  {
+    "checkup": "CK7",
+    "T": 25,
+    "singular_values": [
+      0.25199022656967174,
+      0.20154181436309654,
+      0.1723003758641732,
+      0.17028806688015877,
+      0.031534901052558253,
+      0.023872997470427502,
+      0.023844070275602224,
+      0.023839071480087213,
+      0.02380742990708841,
+      0.006468703697587763,
+      0.00642958124474929,
+      0.006416643787227615,
+      0.00640518514839454,
+      0.004509108432660432,
+      0.0045009829766668626,
+      0.004497524080050185,
+      0.0044240725907153545,
+      0.00011957332716100945,
+      0.00011917113556724989,
+      0.00011892006472161772,
+      0.00011806239703515739
+    ],
+    "condition_number": 2134.3817582717083,
+    "capacity_high_correlation_pairs": [],
+    "interpretation": "Local normalized sensitivity only; weak rank plus global refitted profile are both reported"
+  },
+  {
+    "checkup": "CK7",
+    "T": 25,
+    "delta_mV": 0.5,
+    "width_Ah": 5.5
+  },
+  {
+    "checkup": "CK7",
+    "T": 25,
+    "delta_mV": 1.0,
+    "width_Ah": 9.0
+  },
+  {
+    "checkup": "CK7",
+    "T": 25,
+    "delta_mV": 2.0,
+    "width_Ah": 12.5
+  },
+  {
+    "checkup": "CK7",
+    "T": 25,
+    "structural_union_lower_Ah": 81.89999999999998,
+    "structural_union_upper_Ah": 103.5,
+    "structural_union_width_Ah": 21.600000000000023,
+    "all_registered_candidates_supported": false,
+    "accepted": false,
+    "reason": "dynamics_gate_not_passed_and_no_independent_reference_calibration"
+  },
+  {
+    "checkup": "CK7",
+    "T": 45,
+    "singular_values": [
+      0.2500827837687797,
+      0.11740518056315613,
+      0.09663730977628841,
+      0.057366080202805356,
+      0.03317277968072018,
+      0.019284913954910794,
+      0.019257648737310815,
+      0.019190787644645085,
+      0.01897036743664291,
+      0.010081668112139121,
+      0.009970716682326224,
+      0.009936613927678457,
+      0.009904047815012631,
+      0.004465629464334524,
+      0.004453431829561901,
+      0.0044335374963505895,
+      0.00436474001894412,
+      9.310851683923306e-05,
+      9.20597579695917e-05,
+      9.172869386451696e-05,
+      9.130772066689726e-05
+    ],
+    "condition_number": 2738.9007407283225,
+    "capacity_high_correlation_pairs": [],
+    "interpretation": "Local normalized sensitivity only; weak rank plus global refitted profile are both reported"
+  },
+  {
+    "checkup": "CK7",
+    "T": 45,
+    "delta_mV": 0.5,
+    "width_Ah": 4.5
+  },
+  {
+    "checkup": "CK7",
+    "T": 45,
+    "delta_mV": 1.0,
+    "width_Ah": 7.800000000000011
+  },
+  {
+    "checkup": "CK7",
+    "T": 45,
+    "delta_mV": 2.0,
+    "width_Ah": 15.0
+  },
+  {
+    "checkup": "CK7",
+    "T": 45,
+    "structural_union_lower_Ah": 82.39999999999998,
+    "structural_union_upper_Ah": 96.89999999999998,
+    "structural_union_width_Ah": 14.5,
+    "all_registered_candidates_supported": false,
+    "accepted": false,
+    "reason": "dynamics_gate_not_passed_and_no_independent_reference_calibration"
+  }
+]

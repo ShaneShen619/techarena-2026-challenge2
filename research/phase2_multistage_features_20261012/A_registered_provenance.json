@@ -1,0 +1,52 @@
+{
+  "original_windows": [
+    [
+      3.35,
+      3.39
+    ],
+    [
+      3.38,
+      3.42
+    ],
+    [
+      3.41,
+      3.45
+    ],
+    [
+      3.44,
+      3.48
+    ],
+    [
+      3.35,
+      3.42
+    ],
+    [
+      3.38,
+      3.45
+    ],
+    [
+      3.41,
+      3.48
+    ],
+    [
+      3.35,
+      3.45
+    ],
+    [
+      3.38,
+      3.48
+    ]
+  ],
+  "original_code_sha256": {
+    "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase1_transfer_ab/src/event_core.py": "abc430d3ce231ec43d7ef686ce114ffbbb5c4818df8f4e1c3e3ba552fe928d76",
+    "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase1_pack_trend_20261011/src/trend.py": "9720f331968621c6e06cc69de2ce5b6c9d3ee706c24a1ad514fa6d956be2fbe2",
+    "/Users/shane/Desktop/Arena 阶段 2 官方材料/research/phase1_transfer_ab/src/observation_a.py": "c33b5520a3b09824ad0f5e373833295feefb2b776588a45ad2b2a287c508de7b"
+  },
+  "history_limit": 5,
+  "source_events": "new fixed cycle25 panel; original20Ah crop ending at first3.50V upward crossing, stable-current CV<.08, original9 windows/median3/interpolated q crossings; not original older panel",
+  "rate_sign": "original positive means local Ah window shrinking; negated for residual covariate",
+  "coverage_events": 496,
+  "all_events": 575,
+  "no_B_labels": true,
+  "scope": "supplemental original-A algorithm check requested after non-A baseline, no performance-based window selection"
+}

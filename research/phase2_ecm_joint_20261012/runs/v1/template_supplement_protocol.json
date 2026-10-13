@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-13",
+  "query": "CK7 midnight",
+  "scenarios": [
+    "raw_CK0_table",
+    "constant_plus1mV",
+    "midshape_plus2mV",
+    "midshape_minus2mV"
+  ],
+  "scope": "Post-scoring structural diagnostic required by prompt; perturbations are hypotheses, not measured OCV ageing; no primary model selection"
+}

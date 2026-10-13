@@ -1,0 +1,23 @@
+[
+  {
+    "file": "Gasper_run_bootstrap_xgboost.py",
+    "url": "https://raw.githubusercontent.com/NatLabRockies/battery_pulse_diagnostics/1c2542ab9c0d67544d1787b21871c591588c7937/run_bootstrap_xgboost.py",
+    "commit": "1c2542ab9c0d67544d1787b21871c591588c7937",
+    "sha256": "264021aea4e1c08c8b5fff4c2ca05a7394f9426aef48b3dda08f14873a027102",
+    "note": "Read-only reference snapshot; not executed."
+  },
+  {
+    "file": "Gasper_05_process_data_for_ml.py",
+    "url": "https://raw.githubusercontent.com/NatLabRockies/battery_pulse_diagnostics/1c2542ab9c0d67544d1787b21871c591588c7937/scripts/05_process_data_for_ml.py",
+    "commit": "1c2542ab9c0d67544d1787b21871c591588c7937",
+    "sha256": "ed8765e13faa6f8b9254f9f6dcdd99fd047822fa1950a688a973f9b690b2cd4d",
+    "note": "Read-only reference snapshot; not executed."
+  },
+  {
+    "file": "Zhu_Features_extraction_dataset1.py",
+    "url": "https://raw.githubusercontent.com/Yixiu-Wang/data-driven-capacity-estimation-from-voltage-relaxation/28ec989229e16aca7ce4e75ad847287a08be44e9/Features_extraction_dataset1.py",
+    "commit": "28ec989229e16aca7ce4e75ad847287a08be44e9",
+    "sha256": "a2c50ff23f43d38f1cc5088713447b5eeb090c294915f19e1c928b94a1b9f34b",
+    "note": "Read-only reference snapshot; not executed."
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "task": "Mean of four-cell voltage, not mean of individual absolute errors",
+  "input": "Historical reference and target initialization all mean-only; no per-cell signal retained in mean branch",
+  "budgets_Ah": [
+    0,
+    1
+  ],
+  "parameters": "Frozen existing tau, capacity fixed, no tuning",
+  "post_primary_scoring": true,
+  "selection_use": false
+}

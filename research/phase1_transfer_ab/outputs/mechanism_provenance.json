@@ -1,0 +1,15 @@
+{
+  "generator_path": "/Users/shane/Desktop/Arena \u9636\u6bb5 2 \u5b98\u65b9\u6750\u6599/research/phase2_temperature_improvement/scripts/run_m6_mechanism.py",
+  "sha256": "1d63655ee8718f0a60646187e05e48a90b7f79106ff70587da6cd2f7698b90ef",
+  "functions": [
+    "charge_event",
+    "discharge_truth",
+    "pack_voltage",
+    "scenario_parameters"
+  ],
+  "n_cases": 110,
+  "reference_protocol": "synthetic fixed25C 5.1A pack first11.2V; SOC mismatch is intentional protocol failure",
+  "model_training_use": false,
+  "proves_real_accuracy": false,
+  "seed_first": 20261010
+}

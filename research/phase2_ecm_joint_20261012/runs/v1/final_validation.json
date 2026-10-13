@@ -1,0 +1,20 @@
+{
+  "document_links_valid": true,
+  "JSON_strictly_valid": true,
+  "Python_sources_compile": true,
+  "frozen_config_and_selections_unchanged": true,
+  "all_input_data_and_paper_SHA256_unchanged": true,
+  "initial_audit_configuration_updated_before_first_scoring": true,
+  "final_manifest_matches_pre_score_config": true,
+  "unexpected_frozen_core_changes": [],
+  "documented_reference_only_correction_original_snapshot_preserved": true,
+  "hidden_capacity_truth_and_errors_empty": true,
+  "forward_scored_rows": 800,
+  "official_evaluation_events": 50,
+  "physical_packs": 1,
+  "mechanism_test_combinations": 110,
+  "Canvas_TypeScript": "passed_strict_tsc_2026-10-13",
+  "scientific_plot_visual_inspection": "labels_units_legends_layout_verified",
+  "formal_files_unchanged": true,
+  "science_checks_passed": 24
+}

@@ -1,0 +1,26 @@
+{
+  "B_macro_MAE_pp": 3.084237790616022,
+  "F_signal_macro_MAE_pp": 3.328045523832598,
+  "F_metadata_macro_MAE_pp": 3.3411526926478,
+  "fusion_absolute_improvement_pp": -0.24380773321657623,
+  "fusion_relative_improvement": -0.07904959013159615,
+  "independent_voltage_increment_pp": 0.01310716881520202,
+  "A_increment_gate_pass": false,
+  "fusion_performance_gate_pass": false,
+  "tail_degradation_pp": {
+    "worst_cell_MAE_pp": 1.3551131956417732,
+    "max_error_pp": 0.42124711201694254,
+    "late_macro_MAE_pp": 0.29067239661970135
+  },
+  "noninferior_cells_vs_B": 4,
+  "noninferior_cells_vs_metadata": 6,
+  "A_update_coverage": 0.8277777777777778,
+  "minimum_cell_A_update_coverage": 0.3333333333333333,
+  "paired_macro_error_delta_bootstrap_95pct": [
+    0.0,
+    0.7314231996497296
+  ],
+  "final_research_strategy": "B plus A monitoring; numeric correction rejected",
+  "official_capacity_performance": "not_testable",
+  "corrector_runtime_scope": "frozen 30 decision dates; numeric deployment requires event-level replay equivalence"
+}

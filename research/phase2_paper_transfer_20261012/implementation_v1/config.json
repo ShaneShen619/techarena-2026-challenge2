@@ -1,0 +1,20 @@
+{
+  "version":"implementation_v1", "execution_date":"2026-10-13",
+  "s_grid":[0.70,0.725,0.75,0.775,0.80,0.825,0.85,0.875,0.90,0.925,0.95,0.975,1.0,1.025,1.05],
+  "d_max_Ah":65, "bias_bound_V":0.05,
+  "r_current_bounds_ohm":[0,0.015],"rp_bounds_ohm":[0,0.015],
+  "a_bound_V":0.10,"fit_max_points":64,"d_local_maxiter":14,
+  "history_count":4,"smoothing_lambda":0.000004,
+  "profile_tolerance_mV":1.0,"profile_width_gate_Ah":5,"sensitivity_gate_Ah":2,
+  "synthetic_s_error_gate":0.02,"positive_coverage_gate":0.8,"false_update_gate":0.05,
+  "voltage_gain_gate":0.1,"layer_worsening_gate":0.1,
+  "step_min_delta_A":3,"step_stability_A":0.3,"step_max_dt_s":10,
+  "step_min_evidence":3,"r_inflation_floor_ohm":0.0003,
+  "rest_min_duration_s":300,"rest_min_samples":20,"rest_train_fraction":0.6,
+  "development_seeds":[2100,2101],"evaluation_seeds":[3100,3101,3102,3103,3104,3105,3106,3107,3108,3109],
+  "synthetic_scenarios":["informative_60Ah","shallow_10Ah","capacity_only","start_only","capacity_and_start","cell_capacity_imbalance","cell_start_imbalance","temperature_45C","resistance_growth","path_hysteresis","voltage_bias","current_bias_gap","undercharge","unobserved_balancing","shape_change","outliers"],
+  "synthetic_tau_s":600,"synthetic_rest_constraint":true,
+  "joint_witness_seed":20261013,"joint_witness_count":32,
+  "reference_tail_Ah_sensitivity":2,
+  "note":"Numbers retained from START_PROMPT; old fixed per-layer tau/baseline retained, no new baseline selection on evaluation. New model separates current and reference polarization; apparent step R is a conditional constraint, not certified R0."
+}

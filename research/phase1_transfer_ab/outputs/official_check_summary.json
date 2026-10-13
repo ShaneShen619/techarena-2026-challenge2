@@ -1,0 +1,10 @@
+{
+  "causal_checks": 48,
+  "all_pass": true,
+  "stress_scenarios": 22,
+  "official_CK1_CK7_MAE": null,
+  "performance_status": "not_testable",
+  "raw_input_rows": 1572894,
+  "numeric_A_enabled": false,
+  "temperature_shift_is_sensor_bias_not_physical_reheating": true
+}

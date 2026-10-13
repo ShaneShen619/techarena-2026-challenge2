@@ -1,0 +1,17 @@
+{
+  "complete_primary_frozen_scoring": true,
+  "primary_prediction_rows": 1932,
+  "official_evaluation_events": 46,
+  "synthetic_seed_scenarios": 300,
+  "source_fingerprints_unchanged": 22,
+  "frozen_code_config_unchanged": true,
+  "no_invalid_capacity_projection_counted_as_success": true,
+  "qualified_daily_trace_unknown_after_gap": true,
+  "delivery_documents_present": true,
+  "canvas": "/Users/shane/.cursor/projects/Users-shane-Desktop-Arena-2/canvases/initial-SOC-four-methods-validation.canvas.tsx",
+  "canvas_sha256": "729ef7b608932327ce3b52631f36757a1cf1d34a12f8ad978fcd73f9295df718",
+  "canvas_TypeScript_check": "no errors",
+  "figure_visual_QA": "official forecasts, capacity profiles, shift-scale ridges, capacity recovery and temperature return inspected",
+  "main_framework_tracked_diff": "none",
+  "scope_limits": "missing legitimate real SOC/capacity truth; supplemental diagnostics post-primary exploratory; no full continuous charge-discharge voltage model validation"
+}

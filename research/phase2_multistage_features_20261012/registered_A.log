@@ -1,0 +1,12 @@
+registered A 102Ah_25degC_0p5C_cell3
+registered A 102Ah_25degC_1C_cell3
+registered A 102Ah_35degC_1C_cell1
+registered A 102Ah_45degC_0p5C_cell3
+registered A 102Ah_45degC_1C_cell1
+registered A 102Ah_55degC_1C_cell3
+P1_registered_A A_original_windows 7.480903383514395
+P1_registered_A A_original_history 7.521652027587713
+P1_registered_A F0_A_original 3.4988967189212423
+P1_registered_A joint 2.201101074440173
+/Users/shane/.cursor/worktrees/arena-phase2/multistage-features-20261013/research/phase2_multistage_features_20261012/source_benchmarks.py:80: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  truth=f.set_index('event_id').loc[g.event_id].reset_index();out.append({'dataset':tag,'family':name,**score(truth,g.pred_Ah.to_numpy())})

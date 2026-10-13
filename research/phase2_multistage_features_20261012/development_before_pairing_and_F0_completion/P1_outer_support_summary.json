@@ -1,0 +1,25 @@
+{
+  "coverage_events": 0.33217391304347826,
+  "coverage_entity_mean": 0.4067753273088915,
+  "retained_entities": 4,
+  "total_entities": 6,
+  "all_intersection_metrics": {
+    "MAE_Ah": 2.1105593523004775,
+    "RMSE_Ah": 3.995799151116806,
+    "relative_error": 0.02694578337843057,
+    "SOH_MAE_pp": 2.069175835588703,
+    "worst_entity_MAE_Ah": 5.788833601731521,
+    "entities": 6,
+    "events": 575
+  },
+  "retained_metrics": {
+    "MAE_Ah": 0.7054814481561735,
+    "RMSE_Ah": 1.0562947250769834,
+    "relative_error": 0.008010593731498691,
+    "SOH_MAE_pp": 0.6916484785844839,
+    "worst_entity_MAE_Ah": 0.9733323835100427,
+    "entities": 4,
+    "events": 191
+  },
+  "gate": "ALL model features finite and outer-training1%-99% interval expanded25%; outlier rejections may be high; unconditional metrics remain primary"
+}

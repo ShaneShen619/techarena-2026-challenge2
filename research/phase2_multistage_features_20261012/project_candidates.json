@@ -1,0 +1,46 @@
+[
+  {
+    "kind": "EN",
+    "alpha": 0.001,
+    "l1_ratio": 0.2
+  },
+  {
+    "kind": "EN",
+    "alpha": 0.001,
+    "l1_ratio": 0.8
+  },
+  {
+    "kind": "EN",
+    "alpha": 0.1,
+    "l1_ratio": 0.2
+  },
+  {
+    "kind": "EN",
+    "alpha": 0.1,
+    "l1_ratio": 0.8
+  },
+  {
+    "kind": "XGB",
+    "n_estimators": 40,
+    "max_depth": 2,
+    "learning_rate": 0.05
+  },
+  {
+    "kind": "XGB",
+    "n_estimators": 40,
+    "max_depth": 3,
+    "learning_rate": 0.05
+  },
+  {
+    "kind": "XGB",
+    "n_estimators": 100,
+    "max_depth": 2,
+    "learning_rate": 0.05
+  },
+  {
+    "kind": "XGB",
+    "n_estimators": 100,
+    "max_depth": 3,
+    "learning_rate": 0.05
+  }
+]

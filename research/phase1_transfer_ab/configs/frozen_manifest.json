@@ -1,0 +1,52 @@
+{
+  "frozen_utc": "2026-10-10T15:53:44.544354+00:00",
+  "files": [
+    {
+      "path": "research/phase1_transfer_ab/configs/experiment.json",
+      "sha256": "e597877a05c2bd15d1038049e97844cb581cd8ee1c8279dfef9fba07bc3aa836"
+    },
+    {
+      "path": "research/phase1_transfer_ab/configs/fallback_policy.json",
+      "sha256": "81e436ba152eccaca8b053591f07b13d7645edc68b2734b261a4f6fc15732a12"
+    },
+    {
+      "path": "research/phase1_transfer_ab/configs/input_budget.json",
+      "sha256": "e686fa1ab082dc537b1968308cfe2c7dc799432ad4254d6555aeba054e945e71"
+    },
+    {
+      "path": "research/phase1_transfer_ab/configs/protocol.md",
+      "sha256": "ac0e711b1bd713db7d299436634c058834c0026bf5b499c25f1fd1252ae71861"
+    },
+    {
+      "path": "research/phase1_transfer_ab/outputs/panel_scoring.csv",
+      "sha256": "7188b662900f84312292a7062d6023e5eeb4f2e32798b6d61a3547ed40cdc59c"
+    },
+    {
+      "path": "research/phase1_transfer_ab/src/legacy/model_template.py",
+      "sha256": "80cbb1af77be4266cff46b539ba5fa25b5489094b480c6e0080edb7b3569686d"
+    },
+    {
+      "path": "research/phase1_transfer_ab/src/legacy/collapse.py",
+      "sha256": "b4273ffab3a4a1e784716a543f926953b93808fa1de88a42434349b55143e57e"
+    },
+    {
+      "path": "research/phase1_transfer_ab/src/legacy/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "research/phase1_transfer_ab/src/legacy/pretrained.json",
+      "sha256": "d079c79c00fad861e3c5bbed994804cb60fba577bc21507a4e8846f8d476f6ee"
+    },
+    {
+      "path": "research/phase1_transfer_ab/src/legacy_data.py",
+      "sha256": "74bf0b1c803d41ddb5ce4177089ad31f73c518e959e9993952a3dc4636cdb6c3"
+    },
+    {
+      "path": "research/phase1_transfer_ab/src/event_core.py",
+      "sha256": "abc430d3ce231ec43d7ef686ce114ffbbb5c4818df8f4e1c3e3ba552fe928d76"
+    }
+  ],
+  "source_path": "/Users/shane/Desktop/项目/Current State_Challenge1",
+  "model_identity": "same_102Ah_LFP_specification_only; exact_type_or_physical_identity_unconfirmed",
+  "extra_harness_found": "Current State_Challenge1_v2/repro/evaluate_model.py depends on late_stretch attributes absent in specified source; inspected only, not mixed into model"
+}

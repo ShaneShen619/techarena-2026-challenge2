@@ -1,0 +1,7 @@
+budget,method,events,mean_voltage_mae_mV,direct_coverage
+A,full_cell_model_mean_output,50,12.697457032423113,1.0
+A,mean_only_model,50,14.048665088176325,0.96
+A,previous_mean,50,0.5018409751084356,1.0
+B,full_cell_model_mean_output,50,18.397712992673483,1.0
+B,mean_only_model,50,20.991160605832327,0.96
+B,previous_mean,50,0.6779864938109167,1.0

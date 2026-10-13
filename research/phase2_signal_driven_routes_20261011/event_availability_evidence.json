@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-11",
+  "scope": "existing event catalog re-count; no new raw certification or model training",
+  "source": "research/phase2_method_exploration/outputs/event_catalog.csv",
+  "source_sha256": "5ff31b7185f4d5f76103ec2b34f49c04a7cfe4e701935a1046188987129cdc3e",
+  "events_before_CK7": 39,
+  "physical_target_packs": 1,
+  "mean_discharge_Ah": 10.199300398860402,
+  "pre_rest_s_range": [
+    1799.0,
+    1800.0
+  ],
+  "post_rest_s_range": [
+    1800.0,
+    2251.0
+  ]
+}

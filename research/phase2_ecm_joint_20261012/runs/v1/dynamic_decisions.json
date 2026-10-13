@@ -1,0 +1,134 @@
+[
+  {
+    "budget": "A",
+    "method": "M_fixed",
+    "baseline": "B_previous",
+    "baseline_mae_mV": 0.5085282686464969,
+    "mae_mV": 13.043906128830121,
+    "relative_improvement": -24.650306842425675,
+    "direct_coverage": 0.94,
+    "worst_stratum_degradation": 55.066827672825546,
+    "gate": "FAIL"
+  },
+  {
+    "budget": "A",
+    "method": "M_ungated",
+    "baseline": "B_previous",
+    "baseline_mae_mV": 0.5085282686464969,
+    "mae_mV": 9.922471644730066,
+    "relative_improvement": -18.51213385076861,
+    "direct_coverage": 0.94,
+    "worst_stratum_degradation": 53.504472221853526,
+    "gate": "FAIL"
+  },
+  {
+    "budget": "A",
+    "method": "M_gated",
+    "baseline": "B_previous",
+    "baseline_mae_mV": 0.5085282686464969,
+    "mae_mV": 13.043906128830121,
+    "relative_improvement": -24.650306842425675,
+    "direct_coverage": 0.94,
+    "worst_stratum_degradation": 55.066827672825546,
+    "gate": "FAIL"
+  },
+  {
+    "budget": "A",
+    "method": "M_no_charge",
+    "baseline": "B_previous",
+    "baseline_mae_mV": 0.5085282686464969,
+    "mae_mV": 18.569420395087445,
+    "relative_improvement": -35.51600420270041,
+    "direct_coverage": 0.88,
+    "worst_stratum_degradation": 80.53939013332823,
+    "gate": "FAIL"
+  },
+  {
+    "budget": "A",
+    "method": "M_no_rest",
+    "baseline": "B_previous",
+    "baseline_mae_mV": 0.5085282686464969,
+    "mae_mV": 2.539737150190544,
+    "relative_improvement": -3.9942890234014516,
+    "direct_coverage": 0.96,
+    "worst_stratum_degradation": 7.382553176887287,
+    "gate": "FAIL"
+  },
+  {
+    "budget": "A",
+    "method": "M_mean_cells",
+    "baseline": "B_previous",
+    "baseline_mae_mV": 0.5085282686464969,
+    "mae_mV": 15.056127321614653,
+    "relative_improvement": -28.607257354027077,
+    "direct_coverage": 0.94,
+    "worst_stratum_degradation": 87.14933348968398,
+    "gate": "FAIL"
+  },
+  {
+    "budget": "B",
+    "method": "M_fixed",
+    "baseline": "B_previous",
+    "baseline_mae_mV": 0.6809439203238997,
+    "mae_mV": 18.527643425341065,
+    "relative_improvement": -26.208765468569208,
+    "direct_coverage": 0.94,
+    "worst_stratum_degradation": 55.39332258944497,
+    "gate": "FAIL"
+  },
+  {
+    "budget": "B",
+    "method": "M_ungated",
+    "baseline": "B_previous",
+    "baseline_mae_mV": 0.6809439203238997,
+    "mae_mV": 14.533186408293885,
+    "relative_improvement": -20.34270675532427,
+    "direct_coverage": 0.94,
+    "worst_stratum_degradation": 40.61100461187996,
+    "gate": "FAIL"
+  },
+  {
+    "budget": "B",
+    "method": "M_gated",
+    "baseline": "B_previous",
+    "baseline_mae_mV": 0.6809439203238997,
+    "mae_mV": 18.527643425341065,
+    "relative_improvement": -26.208765468569208,
+    "direct_coverage": 0.94,
+    "worst_stratum_degradation": 55.39332258944497,
+    "gate": "FAIL"
+  },
+  {
+    "budget": "B",
+    "method": "M_no_charge",
+    "baseline": "B_previous",
+    "baseline_mae_mV": 0.6809439203238997,
+    "mae_mV": 13.354728209275835,
+    "relative_improvement": -18.61208230322915,
+    "direct_coverage": 0.88,
+    "worst_stratum_degradation": 25.080479366267884,
+    "gate": "FAIL"
+  },
+  {
+    "budget": "B",
+    "method": "M_no_rest",
+    "baseline": "B_previous",
+    "baseline_mae_mV": 0.6809439203238997,
+    "mae_mV": 8.325461403911682,
+    "relative_improvement": -11.226353970458492,
+    "direct_coverage": 0.96,
+    "worst_stratum_degradation": 25.578997127582333,
+    "gate": "FAIL"
+  },
+  {
+    "budget": "B",
+    "method": "M_mean_cells",
+    "baseline": "B_previous",
+    "baseline_mae_mV": 0.6809439203238997,
+    "mae_mV": 20.70562381642252,
+    "relative_improvement": -29.40723795077519,
+    "direct_coverage": 0.94,
+    "worst_stratum_degradation": 68.7771651417163,
+    "gate": "FAIL"
+  }
+]

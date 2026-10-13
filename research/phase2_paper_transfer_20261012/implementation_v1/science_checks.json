@@ -1,0 +1,22 @@
+{
+  "passed": 16,
+  "checks": [
+    "raw_Ah_integral_cache_agree",
+    "four_cell_voltage_and_time_cache_exact",
+    "protected_sources_unchanged",
+    "same_pulse_not_split",
+    "known_anchor_chains_not_split",
+    "strict_domain_rejects_outside",
+    "CK0_first_pack_cutoff_identity",
+    "common_scale_capacity_identity",
+    "pack_channel_permutation_invariant",
+    "LAD_median_epigraph_optimum",
+    "L2_mean_optimum",
+    "LP_objective_is_mean_absolute_residual",
+    "suffix_voltage_poison_has_no_effect_budget_0",
+    "suffix_voltage_poison_has_no_effect_budget_1",
+    "current_polarization_reference_separate",
+    "future_pulse_not_used"
+  ],
+  "all_passed": true
+}

@@ -1,0 +1,17 @@
+{
+  "audits": "PASS",
+  "paper_code_and_formula_audit": "PASS",
+  "public_paper_capacity_benchmarks": "UNVERIFIED: verified waveform members unavailable due range download timeouts",
+  "P1_joint_vs_F0": "PASS",
+  "P1_joint_vs_best_single": "FAIL",
+  "P1_direct_stage_coverage": "FAIL",
+  "improvement_vs_F0": 0.407912952019304,
+  "improvement_vs_best_single": -0.7198248338272872,
+  "direct_stage_coverage": 0.8144475920679887,
+  "temperature_layer_gate": "FAIL",
+  "source_joint_capacity_mainline": "FAIL",
+  "official_capacity_transfer_coverage": "FAIL: zero compatible accepted rows; rejection does not establish robustness",
+  "four_cell_structure_capacity_increment": "UNVERIFIED: no real group labels",
+  "real_group_Qpack_conversion": "UNVERIFIED",
+  "replace_current_B": false
+}

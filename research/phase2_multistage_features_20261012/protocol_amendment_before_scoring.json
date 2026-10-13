@@ -1,0 +1,12 @@
+{
+  "changes": [
+    "CV defined by current taper within10mV of control-voltage maximum; pack control used for four-channel CV",
+    "Early rest temperature metadata calculated at actual300/900/1800 prefix, not full future rest",
+    "Post-rest budgets retain all previously completed1800s charge-rest data; only F4 prefix shortened",
+    "F3 also includes actual10s response"
+  ],
+  "reason": "input/availability implementation audit before first capacity benchmark",
+  "utc": "2026-10-13T15:57:02.581159+00:00",
+  "protocol_sha256": "2e9c4b130a58b99105abd4f0905caae973589ec6ddc077300da732cee49859b6",
+  "common_sha256": "2f161477788dea73f952eb3c4144cb2bbaf768740caa1c0db897cab7beadf269"
+}

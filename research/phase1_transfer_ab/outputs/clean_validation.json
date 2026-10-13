@@ -1,0 +1,81 @@
+{
+  "checks": [
+    {
+      "name": "official_sample_validator",
+      "exit_code": 0,
+      "elapsed_seconds": 0.7589688749285415
+    },
+    {
+      "name": "official_full_train",
+      "exit_code": 0,
+      "elapsed_seconds": 1.4865896670380607
+    },
+    {
+      "name": "official_full_test",
+      "exit_code": 0,
+      "elapsed_seconds": 13.581509749987163
+    },
+    {
+      "name": "separate_process_CK7",
+      "exit_code": 0,
+      "elapsed_seconds": 2.399393624975346
+    },
+    {
+      "name": "separate_process_CK1",
+      "exit_code": 0,
+      "elapsed_seconds": 1.4930768340127543
+    },
+    {
+      "name": "separate_process_CK4",
+      "exit_code": 0,
+      "elapsed_seconds": 1.8805716250790283
+    }
+  ],
+  "all_pass": true,
+  "framework": [
+    {
+      "path": "run_model.py",
+      "identical": true,
+      "sha256": "58b43ad8947ccf7939c804636996678d73df0f894c6d32f18134393b9df9c71d"
+    },
+    {
+      "path": "validate_submission.py",
+      "identical": true,
+      "sha256": "4ac51cf9d67d39d1a357e750d766a325c46cfc6856b72b63f48c3d3ef3e53ae8"
+    },
+    {
+      "path": "framework/persistence.py",
+      "identical": true,
+      "sha256": "8e2627dd4d33e5d1d9ae0d4be2d2584c53b0b93bcaedc19a2d81d8a7231fd1be"
+    },
+    {
+      "path": "framework/io.py",
+      "identical": true,
+      "sha256": "0af07e168ae038ce5b09d77b2547f23f98031f9f14c2756b62468b5925dbdd49"
+    },
+    {
+      "path": "framework/__init__.py",
+      "identical": true,
+      "sha256": "88e1c6670a9adb53b5579aa08e2ace24dea4f41502282246f41df489b2e82250"
+    },
+    {
+      "path": "framework/data.py",
+      "identical": true,
+      "sha256": "d0cf13e37a74fb1bcf540dacc4cc1ffd294196c97be5853c9616db1c9a66f708"
+    }
+  ],
+  "CLI_precision_decimals": 3,
+  "maximum_rounded_prediction_difference_pp": 0.0,
+  "max_child_process_peak_RSS_MB": 1402.78125,
+  "memory_measurement": "maximum child-process ru_maxrss; includes dataset IO; OS-specific peak metric",
+  "fresh_venv": "/Users/shane/Desktop/Arena \u9636\u6bb5 2 \u5b98\u65b9\u6750\u6599/research/phase1_transfer_ab/runs/clean_validation/.venv/bin/python",
+  "python_version": "Python 3.12.14",
+  "installed_packages": [
+    "numpy==2.3.5",
+    "pandas==2.2.3",
+    "python-dateutil==2.9.0.post0",
+    "pytz==2026.5",
+    "six==1.17.0",
+    "tzdata==2026.5"
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "summary": {
+    "B_age_180_macro_MAE_pp": 1.4291941948883682,
+    "B_age_max_error_pp": 8.095282735745315,
+    "max_prediction_difference_from_history_pp": 1.4210854715202004e-14,
+    "sixfold_trajectory_RMSE_mean_cell_pp": 1.9721950676464373,
+    "sixfold_monotone_truth_RMSE_mean_cell_pp": 1.9214218757235957,
+    "n70_MAPE_pct": 9.72899909676456,
+    "history_RMSE_aggregation_unknown": "both truth conventions reported; no retuning to 1.972",
+    "v2_harness": "not run: accesses late_stretch attributes absent in designated source",
+    "source_sample_validator": "see runs/source_smoke/validation_report.txt",
+    "old_age_coordinates": "reused frozen input coordinates; numerical fit and predictions freshly regenerated"
+  },
+  "per_cell": [
+    {
+      "cell_id": "102Ah_25degC_0p5C_cell3",
+      "trajectory_rmse_unconstrained_truth_pp": 0.41272644563392225,
+      "trajectory_rmse_monotone_truth_pp": 0.41273787041334253,
+      "n90_true": null,
+      "n90_estimate": 2318.017587669452,
+      "n90_MAPE_pct": null,
+      "n80_true": null,
+      "n80_estimate": 4632.184794480124,
+      "n80_MAPE_pct": null,
+      "n70_true": null,
+      "n70_estimate": 5985.378501921713,
+      "n70_MAPE_pct": null
+    },
+    {
+      "cell_id": "102Ah_25degC_1C_cell3",
+      "trajectory_rmse_unconstrained_truth_pp": 2.6263441621737345,
+      "trajectory_rmse_monotone_truth_pp": 2.6263734158728833,
+      "n90_true": 1886.1523109243697,
+      "n90_estimate": 2351.045892342884,
+      "n90_MAPE_pct": 24.647722176300725,
+      "n80_true": 4329.3,
+      "n80_estimate": 4694.642368203381,
+      "n80_MAPE_pct": 8.438832333249737,
+      "n70_true": 5141.96,
+      "n70_estimate": 6102.24009688025,
+      "n70_MAPE_pct": 18.675370809579427
+    },
+    {
+      "cell_id": "102Ah_35degC_1C_cell1",
+      "trajectory_rmse_unconstrained_truth_pp": 3.013245127971275,
+      "trajectory_rmse_monotone_truth_pp": 3.0131405917369123,
+      "n90_true": 1913.896848137536,
+      "n90_estimate": 1984.352243696039,
+      "n90_MAPE_pct": 3.681253544414641,
+      "n80_true": 4344.5,
+      "n80_estimate": 3829.173919385662,
+      "n80_MAPE_pct": 11.861573958207803,
+      "n70_true": null,
+      "n70_estimate": 4897.962898097449,
+      "n70_MAPE_pct": null
+    },
+    {
+      "cell_id": "102Ah_45degC_0p5C_cell3",
+      "trajectory_rmse_unconstrained_truth_pp": 3.8550751429887398,
+      "trajectory_rmse_monotone_truth_pp": 3.5504998492074824,
+      "n90_true": 1409.578947368421,
+      "n90_estimate": 1280.6466234148675,
+      "n90_MAPE_pct": 9.146867878117833,
+      "n80_true": 2860.375,
+      "n80_estimate": 2599.358465865087,
+      "n80_MAPE_pct": 9.125255749155722,
+      "n70_true": 3544.214285714286,
+      "n70_estimate": 3306.0929170406503,
+      "n70_MAPE_pct": 6.71859400921199
+    },
+    {
+      "cell_id": "102Ah_45degC_1C_cell1",
+      "trajectory_rmse_unconstrained_truth_pp": 1.0849841202530797,
+      "trajectory_rmse_monotone_truth_pp": 1.0849841202530797,
+      "n90_true": 1407.285714285714,
+      "n90_estimate": 1293.0770751986904,
+      "n90_MAPE_pct": 8.115526074603242,
+      "n80_true": null,
+      "n80_estimate": 2581.959308592197,
+      "n80_MAPE_pct": null,
+      "n70_true": null,
+      "n70_estimate": 3339.676247623079,
+      "n70_MAPE_pct": null
+    },
+    {
+      "cell_id": "102Ah_55degC_1C_cell3",
+      "trajectory_rmse_unconstrained_truth_pp": 0.8407954068578736,
+      "trajectory_rmse_monotone_truth_pp": 0.8407954068578736,
+      "n90_true": 909.8749999999995,
+      "n90_estimate": 878.4471677595864,
+      "n90_MAPE_pct": 3.4540824003751283,
+      "n80_true": 1777.7368421052633,
+      "n80_estimate": 1771.988686971867,
+      "n80_MAPE_pct": 0.32334117160946524,
+      "n70_true": 2218.04347826087,
+      "n70_estimate": 2302.174587623343,
+      "n70_MAPE_pct": 3.7930324715022667
+    }
+  ],
+  "folds": [
+    {
+      "heldout": "102Ah_25degC_0p5C_cell3",
+      "training_cells": [
+        "102Ah_25degC_1C_cell3",
+        "102Ah_35degC_1C_cell1",
+        "102Ah_45degC_0p5C_cell3",
+        "102Ah_45degC_1C_cell1",
+        "102Ah_55degC_1C_cell3"
+      ],
+      "shape": [
+        104.13110404110388,
+        15.399884439665142,
+        0.3447725073719025,
+        38.99436123425295,
+        0.4657884222421619
+      ],
+      "parameters": {
+        "eff": {
+          "lnA": -5.352972628369298,
+          "Ea": 35270.747215235075,
+          "gamma": 0.031189237660346886
+        },
+        "nom": {
+          "lnA": -3.9392016531807448,
+          "Ea": 30933.96320839128,
+          "gamma": -0.18303240985494168
+        }
+      },
+      "thermal_theta": [
+        34.49376013660717,
+        3.598021074930833,
+        5.522132504610386
+      ],
+      "fit_seconds": 0.20533095800783485
+    },
+    {
+      "heldout": "102Ah_25degC_1C_cell3",
+      "training_cells": [
+        "102Ah_25degC_0p5C_cell3",
+        "102Ah_35degC_1C_cell1",
+        "102Ah_45degC_0p5C_cell3",
+        "102Ah_45degC_1C_cell1",
+        "102Ah_55degC_1C_cell3"
+      ],
+      "shape": [
+        103.9992053954937,
+        15.047081561342853,
+        0.3448647636398565,
+        37.32811473276628,
+        0.49239201390074167
+      ],
+      "parameters": {
+        "eff": {
+          "lnA": -5.926156365109083,
+          "Ea": 36902.82058662376,
+          "gamma": 0.15929400252725237
+        },
+        "nom": {
+          "lnA": -4.305547465058061,
+          "Ea": 32108.157545380025,
+          "gamma": 0.24532903266444198
+        }
+      },
+      "thermal_theta": [
+        36.471464324293265,
+        3.66540285234034,
+        4.53622738378535
+      ],
+      "fit_seconds": 0.17909633298404515
+    },
+    {
+      "heldout": "102Ah_35degC_1C_cell1",
+      "training_cells": [
+        "102Ah_25degC_0p5C_cell3",
+        "102Ah_25degC_1C_cell3",
+        "102Ah_45degC_0p5C_cell3",
+        "102Ah_45degC_1C_cell1",
+        "102Ah_55degC_1C_cell3"
+      ],
+      "shape": [
+        104.13875021702522,
+        15.300333585916698,
+        0.3462135488839024,
+        33.78077092095964,
+        0.38671788772543286
+      ],
+      "parameters": {
+        "eff": {
+          "lnA": -5.333587325534205,
+          "Ea": 34927.27176701932,
+          "gamma": 0.0651743508647923
+        },
+        "nom": {
+          "lnA": -2.9861604663589913,
+          "Ea": 28076.257478295556,
+          "gamma": -0.003674572499474189
+        }
+      },
+      "thermal_theta": [
+        36.18503596580743,
+        3.9758569969061144,
+        1.4425893796477969
+      ],
+      "fit_seconds": 0.16186179197393358
+    },
+    {
+      "heldout": "102Ah_45degC_0p5C_cell3",
+      "training_cells": [
+        "102Ah_25degC_0p5C_cell3",
+        "102Ah_25degC_1C_cell3",
+        "102Ah_35degC_1C_cell1",
+        "102Ah_45degC_1C_cell1",
+        "102Ah_55degC_1C_cell3"
+      ],
+      "shape": [
+        104.10597007297476,
+        15.92314641470807,
+        0.33985128780884516,
+        72.83322266051204,
+        0.4397615282966124
+      ],
+      "parameters": {
+        "eff": {
+          "lnA": -5.246636002050305,
+          "Ea": 35525.19825124045,
+          "gamma": 0.1912347803501934
+        },
+        "nom": {
+          "lnA": -3.692596754578711,
+          "Ea": 30779.27915312577,
+          "gamma": 0.400122832766119
+        }
+      },
+      "thermal_theta": [
+        35.64847988486268,
+        3.689414250434678,
+        4.710448574032758
+      ],
+      "fit_seconds": 0.22731991589535028
+    },
+    {
+      "heldout": "102Ah_45degC_1C_cell1",
+      "training_cells": [
+        "102Ah_25degC_0p5C_cell3",
+        "102Ah_25degC_1C_cell3",
+        "102Ah_35degC_1C_cell1",
+        "102Ah_45degC_0p5C_cell3",
+        "102Ah_55degC_1C_cell3"
+      ],
+      "shape": [
+        104.12295262214225,
+        15.347639370686634,
+        0.3454445501115664,
+        39.68593393236055,
+        0.47623725492537705
+      ],
+      "parameters": {
+        "eff": {
+          "lnA": -5.393859106441441,
+          "Ea": 35355.120347983604,
+          "gamma": 0.08832654225980001
+        },
+        "nom": {
+          "lnA": -3.179525505437332,
+          "Ea": 28863.465523601524,
+          "gamma": 0.0423620788247
+        }
+      },
+      "thermal_theta": [
+        35.70657807463112,
+        3.7314836689536914,
+        4.486637447676809
+      ],
+      "fit_seconds": 0.2245190420653671
+    },
+    {
+      "heldout": "102Ah_55degC_1C_cell3",
+      "training_cells": [
+        "102Ah_25degC_0p5C_cell3",
+        "102Ah_25degC_1C_cell3",
+        "102Ah_35degC_1C_cell1",
+        "102Ah_45degC_0p5C_cell3",
+        "102Ah_45degC_1C_cell1"
+      ],
+      "shape": [
+        104.12028210590407,
+        15.374093773480455,
+        0.3430459329724073,
+        38.870355310662845,
+        0.4879679682624985
+      ],
+      "parameters": {
+        "eff": {
+          "lnA": -5.444517722859785,
+          "Ea": 35550.10198681637,
+          "gamma": 0.09962505631745339
+        },
+        "nom": {
+          "lnA": -3.078307831577831,
+          "Ea": 28709.314985299778,
+          "gamma": 0.0753733234896988
+        }
+      },
+      "thermal_theta": [
+        35.804947036236754,
+        3.930020183373467,
+        4.030599981708922
+      ],
+      "fit_seconds": 0.21550620801281184
+    }
+  ]
+}

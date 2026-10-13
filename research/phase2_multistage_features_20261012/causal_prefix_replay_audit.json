@@ -1,0 +1,60 @@
+{
+  "query_inputs_truncated_before_stage_identification": true,
+  "uses_future_event_ids_or_catalog": false,
+  "source": "raw timestamp/current/voltage only",
+  "thresholds": "completed >=600s positive charge, terminal pack>=13.95V, final current<=half80%peak, recorded rest; gap<=20s",
+  "prefixes": [
+    {
+      "checkup": "CK0",
+      "visible_charge_rest_rows": 0,
+      "all_availability_before_query": true,
+      "no_future_catalog_access": true
+    },
+    {
+      "checkup": "CK1",
+      "visible_charge_rest_rows": 12,
+      "all_availability_before_query": true,
+      "no_future_catalog_access": true
+    },
+    {
+      "checkup": "CK2",
+      "visible_charge_rest_rows": 21,
+      "all_availability_before_query": true,
+      "no_future_catalog_access": true
+    },
+    {
+      "checkup": "CK3",
+      "visible_charge_rest_rows": 37,
+      "all_availability_before_query": true,
+      "no_future_catalog_access": true
+    },
+    {
+      "checkup": "CK4",
+      "visible_charge_rest_rows": 55,
+      "all_availability_before_query": true,
+      "no_future_catalog_access": true
+    },
+    {
+      "checkup": "CK5",
+      "visible_charge_rest_rows": 73,
+      "all_availability_before_query": true,
+      "no_future_catalog_access": true
+    },
+    {
+      "checkup": "CK6",
+      "visible_charge_rest_rows": 92,
+      "all_availability_before_query": true,
+      "no_future_catalog_access": true
+    },
+    {
+      "checkup": "CK7",
+      "visible_charge_rest_rows": 113,
+      "all_availability_before_query": true,
+      "no_future_catalog_access": true
+    }
+  ],
+  "matched_inventory_rows": 403,
+  "all_matched_variances_equal": true,
+  "rows": 403,
+  "future_capacity_inference": "none"
+}

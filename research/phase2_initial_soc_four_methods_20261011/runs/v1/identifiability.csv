@@ -1,0 +1,5 @@
+panel,T,n_completed_events,best_s,conditional_best_capacity_Ah,best_rms_mV,conditional_profile_width_Ah,boundary,nuisance_best_capacity_spread_Ah,joint_witness_capacity_span_Ah,joint_search_exhaustive,capacity_identification,absolute_reference_state_confirmed
+short,25,4,1.05,105.4305,0.783080507618499,35.1435,True,0.0,25.102499999999992,False,refuted_by_witness,False
+short,45,4,1.05,105.4305,0.5224325193300675,32.633250000000004,True,0.0,25.102499999999992,False,refuted_by_witness,False
+wide,25,4,1.05,105.4305,0.9080781461183366,20.081999999999994,True,12.551249999999996,7.558752083224306,False,refuted_by_witness,False
+wide,45,4,0.9,90.369,2.087636016277029,30.12299999999999,False,7.530749999999998,20.081999999999994,False,refuted_by_witness,False

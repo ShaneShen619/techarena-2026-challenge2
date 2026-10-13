@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-13",
+  "papers": [
+    {
+      "author": "Liu",
+      "year": 2022,
+      "doi": "10.1016/j.etran.2022.100164",
+      "full_text": false,
+      "evidence": "publisher abstract/introduction/section preview",
+      "url": "https://www.sciencedirect.com/science/article/pii/S2590116822000108",
+      "missing": [
+        "full transformation formula",
+        "overpotential treatment",
+        "optimizer settings"
+      ],
+      "implementation": "paper-inspired LAD; not claimed reproduction"
+    },
+    {
+      "author": "Tsai & Chen",
+      "year": 2023,
+      "doi": "10.1016/j.est.2022.106502",
+      "full_text": false,
+      "evidence": "publisher preview and NTU author record",
+      "url": "https://www.sciencedirect.com/science/article/pii/S2352152X22024914",
+      "missing": [
+        "current interruption sequence",
+        "axis transformations",
+        "coefficients and constraints"
+      ],
+      "implementation": "paper-inspired pulse audit; not claimed reproduction"
+    },
+    {
+      "author": "Sun",
+      "year": 2022,
+      "doi": "10.1016/j.energy.2021.122882",
+      "full_text": false,
+      "evidence": "publisher preview; author institutional listing",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0360544221031315",
+      "missing": [
+        "feature matching rule",
+        "reconstruction formula",
+        "DEQ mapping",
+        "MPGA settings"
+      ],
+      "implementation": "feature feasibility only; formula not invented"
+    },
+    {
+      "author": "Wang et al.",
+      "year": 2025,
+      "doi": null,
+      "full_text": true,
+      "evidence": "arXiv v1 full HTML; local text/html present",
+      "url": "https://arxiv.org/html/2511.06989v1",
+      "missing": [
+        "certified CK0 OCV in this project"
+      ],
+      "implementation": "joint capacity/start alignment adapted to loaded template"
+    }
+  ],
+  "retrieval": "Bounded public publisher/author/institution search; no new lawful full text for first three located"
+}

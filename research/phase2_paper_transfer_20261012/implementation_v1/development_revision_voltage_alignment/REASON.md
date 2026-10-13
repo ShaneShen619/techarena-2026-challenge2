@@ -1,0 +1,1 @@
+Pre-freeze measurement correction: current edge rows often hold stale voltage. Apparent resistance uses the next voltage sample, records response delay and rejects responses under 3mV. This is delayed effective response, not R0. All official development profiles rebuilt, synthetic profiles unchanged; no evaluation occurred.

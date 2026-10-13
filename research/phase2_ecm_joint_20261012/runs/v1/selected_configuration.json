@@ -1,0 +1,25 @@
+{
+  "25": {
+    "tau": 300.0,
+    "development_B_mae_mV": 15.612766059104631,
+    "development_points": 20,
+    "available_after": "2025-04-14T00:00:00",
+    "development_baseline_B_mae_mV": 1.4591776324922001,
+    "development_dynamic_gate": false
+  },
+  "45": {
+    "tau": 1200.0,
+    "development_B_mae_mV": 14.6143627674841,
+    "development_points": 42,
+    "available_after": "2025-04-14T00:00:00",
+    "development_baseline_B_mae_mV": 0.9089309297258598,
+    "development_dynamic_gate": false
+  },
+  "noise": {
+    "delta_mV": 1.0,
+    "rest_block_RMS_change_q95_mV": 0.09129392443977331,
+    "residual_blocks": 10,
+    "seed": 7314,
+    "interpretation": "Sensitivity threshold; block residual includes model discrepancy, not calibrated probability interval"
+  }
+}

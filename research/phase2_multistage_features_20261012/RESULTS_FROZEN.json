@@ -1,0 +1,10 @@
+{
+  "utc": "2026-10-13T17:13:01.646945+00:00",
+  "artifact_manifest_sha256": "25a8ce0c997702d9be98adc4025ea785a708eb0801b77ffba2664f82aeb97f08",
+  "artifact_count": 257,
+  "protected_files_unchanged": true,
+  "capacity_acceptance": "FAIL",
+  "real_group_capacity_status": "UNVERIFIED",
+  "public_paper_benchmarks_completed": false,
+  "reproduce_into_new_sibling_only": true
+}

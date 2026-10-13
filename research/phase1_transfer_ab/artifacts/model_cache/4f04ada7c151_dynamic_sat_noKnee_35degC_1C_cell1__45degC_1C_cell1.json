@@ -1,0 +1,29 @@
+{
+  "config": "dynamic_sat_noKnee",
+  "shape": [
+    103.8754938796569,
+    16.075055368898504,
+    0.5999419718006942,
+    0.0,
+    1.0
+  ],
+  "parameters": {
+    "lnA": -6.581541254783807,
+    "Ea": 37257.630939269104,
+    "gamma": 0.0
+  },
+  "rate_mode": "sat",
+  "n_deep": 2,
+  "head_taus": [
+    2240.317816113804,
+    1492.1786147778098
+  ],
+  "source_coordinate_fit_rmse_pp": 1.434279483139933,
+  "training_cells": [
+    "102Ah_35degC_1C_cell1",
+    "102Ah_45degC_1C_cell1"
+  ],
+  "source_temperature_axis": "charge-exposure sensor bins",
+  "source_rate_definition": "charge-weighted stable-run median, binned",
+  "code_hash": "4f04ada7c151"
+}

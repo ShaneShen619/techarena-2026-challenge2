@@ -1,0 +1,4 @@
+method,n_seed_scenarios,finite_capacity_count,no_capacity_output_count,raw_accepted_fraction,valid_accepted_fraction,false_update_count,false_update_rate_all,false_update_rate_finite,positive_raw_acceptance,positive_valid_acceptance,positive_valid_acceptance_wilson95,positive_SOC_mae_pp,positive_s_mae,mechanism_gate_passed
+M2_joint_common,220,220,0,1.0,1.0,189,0.8590909090909091,0.8590909090909091,1.0,1.0,"[0.8388698745050667, 1.0]",1.4413776235419975,0.039649948218448486,False
+M2_joint_free4,220,12,208,1.0,0.05454545454545454,7,0.031818181818181815,0.5833333333333334,1.0,0.45,"[0.25819502085709295, 0.6579179916924003]",0.7075039346477101,0.01935197919476365,False
+M2_gated,220,220,0,0.0,0.0,0,0.0,0.0,0.7,0.7,"[0.4810232237710206, 0.854524726031006]",3.029699741640227,0.06001376972871527,False

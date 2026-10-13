@@ -1,0 +1,7 @@
+E1 102Ah_25degC_0p5C_cell3 fit_seconds 0.21
+E1 102Ah_25degC_1C_cell3 fit_seconds 0.18
+E1 102Ah_35degC_1C_cell1 fit_seconds 0.16
+E1 102Ah_45degC_0p5C_cell3 fit_seconds 0.23
+E1 102Ah_45degC_1C_cell1 fit_seconds 0.22
+E1 102Ah_55degC_1C_cell3 fit_seconds 0.22
+{"B_age_180_macro_MAE_pp": 1.4291941948883682, "B_age_max_error_pp": 8.095282735745315, "max_prediction_difference_from_history_pp": 1.4210854715202004e-14, "sixfold_trajectory_RMSE_mean_cell_pp": 1.9721950676464373, "sixfold_monotone_truth_RMSE_mean_cell_pp": 1.9214218757235957, "n70_MAPE_pct": 9.72899909676456, "history_RMSE_aggregation_unknown": "both truth conventions reported; no retuning to 1.972", "v2_harness": "not run: accesses late_stretch attributes absent in designated source", "source_sample_validator": "see runs/source_smoke/validation_report.txt", "old_age_coordinates": "reused frozen input coordinates; numerical fit and predictions freshly regenerated"}

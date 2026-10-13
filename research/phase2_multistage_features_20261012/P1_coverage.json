@@ -1,0 +1,14 @@
+{
+  "all_events": 706,
+  "intersection": 575,
+  "coverage": 0.8144475920679887,
+  "by_entity": {
+    "102Ah_25degC_0p5C_cell3": 0.8181818181818182,
+    "102Ah_25degC_1C_cell3": 0.8828125,
+    "102Ah_35degC_1C_cell1": 0.7767441860465116,
+    "102Ah_45degC_0p5C_cell3": 0.7426900584795322,
+    "102Ah_45degC_1C_cell1": 0.8709677419354839,
+    "102Ah_55degC_1C_cell3": 0.8863636363636364
+  },
+  "selection": "same complete chain intersection for main all-stage comparisons; all-event fallback separately"
+}
