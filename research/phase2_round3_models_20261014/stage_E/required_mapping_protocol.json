@@ -1,0 +1,21 @@
+{
+  "purpose": "Complete the requested per-cell CK0 loaded-discharge mapping; supplementary physical diagnostics, never scored or promoted from proxies",
+  "main": "Use available stage-A V/full per-cell piecewise maps composed with the A4 CK0-to-anchor1 bridge; otherwise per-cell A4 top/bottom map plus relative discharge-step offsets. Only states from causal CK_k prefixes, j<=k-1.",
+  "variants": [
+    "A_map_V_full",
+    "A_map_dVdQ_full",
+    "A_map_V_bottom",
+    "A4_only",
+    "A4_plus_relative_step"
+  ],
+  "smooth_Ah": [
+    1,
+    2,
+    3
+  ],
+  "reference": "Raw CK0 loaded per-cell curves; add no absolute IR or polarization. Sum four voltages and take first 11.2V root.",
+  "endpoint": "Raw cell sum ends at 11.203 V. Permit linear tail extension <=0.1 Ah fitted to the last 0.05 Ah, explicitly report its extent. No hidden capacity reconstruction.",
+  "epsilon": "Report model_root-Q_fc-eps0, and CK0-normalized drift separately to expose reference quantization.",
+  "selection": "None. Models are physical sensitivity scenarios. If >=0.10 pp, retain leaderboard-only status; causal correction uses last visible state, never post-cutoff anchors.",
+  "deviation": "Original stage E protocol covers different mechanism scenarios and did not implement the required maps. This supplement is frozen before its own execution; original main configuration and acceptance decisions remain unchanged."
+}
