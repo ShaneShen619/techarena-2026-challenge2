@@ -17,19 +17,25 @@
 .
 ├── README.md                              本文件
 ├── .gitignore
-├── TechArena_Challenge2_Team_Package/     官方提交模板（与 main 相同）
+├── TechArena_Challenge2_Team_Package/     提交包（官方模板 + 已接入的 V1 模型）
 │   ├── framework/  run_model.py  validate_submission.py   官方框架，不可修改
-│   ├── my_model/                          正式模型入口（当前仍为 ExampleModel）
+│   ├── my_model/                          正式模型入口（MyModel = V1 锚点 + 台阶）
+│   ├── README.md  REPORT.md               提交用方法说明与报告
 │   ├── data/                              官方运行数据与 CK0 检查数据
 │   ├── sample_data/                       validator 用的小样本
 │   └── requirements.txt                   提交环境依赖（numpy、pandas）
-└── research/phase2_anchor_step_20261013/  新模型研究
-    ├── README.md                          复现步骤、环境、文件说明
-    ├── FINAL_REPORT.md                    验证报告
-    ├── EXECUTION_PROMPT.md                执行任务书
-    ├── candidate_model/                   候选模型 AnchorStepModel
-    ├── src/  stage_*.py                   研究代码与各阶段脚本
-    └── outputs/  figures/                 结果
+└── research/
+    ├── phase2_anchor_step_20261013/       V1 研究
+    │   ├── README.md                      复现步骤、环境、文件说明
+    │   ├── FINAL_REPORT.md                验证报告
+    │   ├── EXECUTION_PROMPT.md            执行任务书
+    │   ├── candidate_model/               候选模型 AnchorStepModel
+    │   ├── src/  stage_*.py               研究代码与各阶段脚本
+    │   └── outputs/  figures/             结果
+    └── phase2_v2_phase_matched_20261013/  V2 研究（同相位台阶差分 + 物理 β）
+        ├── FINAL_REPORT.md  protocol.json 验证报告与冻结协议
+        ├── candidate_model/               候选类 MyModel（V2）
+        └── src/  stage_v2_*.py  outputs/  研究代码、脚本与结果
 ```
 
 ## 快速开始
@@ -46,14 +52,14 @@ python3 stage_a_events.py && python3 stage_bcd_causal_eval.py && python3 stage_e
 
 ## 当前状态
 
-- 候选模型 `AnchorStepModel` 已通过因果检查（截止日之后的数据不影响输出）和 sample_data 冒烟测试，在 Python 3.11 与 3.13 下输出一致。
-- **尚未接入正式提交**：`TechArena_Challenge2_Team_Package/my_model/__init__.py` 仍指向 ExampleModel，提交包的 README 仍是官方模板。接入时需要把候选类复制到 `my_model/`、切换开关、跑 `validate_submission.py`，并按提交要求更新 README 与报告。
-- 主要风险：检查协议与运行充电之间的偏置 ε、检查后回弹、CK1 对比例假设敏感。见报告第 6 节。
+- **V1 已接入正式提交**：`TechArena_Challenge2_Team_Package/my_model/model_template.py` 中的 `MyModel` 即 `AnchorStepModel`，开关已切到 `MyModel`。在全新 Python 3.11 venv 中 `validate_submission.py` 通过；全量数据输出与 `outputs/F_candidate_predictions.csv` 逐位一致（numpy 1.24/pandas 2.0 与 numpy 2.4/pandas 3.0 下相同）。提交包的 README 与 REPORT.md 已按提交要求更新（队名、成员待填）。尚未打包 zip、尚未提交。
+- **V2 候选**（[research/phase2_v2_phase_matched_20261013/](research/phase2_v2_phase_matched_20261013/)）：同相位 45 °C 台阶差分 + 物理 β，代理 MAE 0.29 → 0.22 pp，预登记门 H1–H6 全部通过（已曝光的探索性验证）。尚未接入正式提交。
+- 主要风险：检查协议与运行充电之间的偏置 ε、检查后回弹、CK1 对比例假设敏感、CK2 缺第 3 段。见两份报告的风险一节。
 
 ## 相关分支
 
 | 分支 | 内容 |
 |---|---|
 | `main` | 官方提交模板 |
-| `exp/phase2-anchor-step-20261013` | 本分支：main + 新模型 |
+| `exp/phase2-anchor-step-20261013` | 本分支：main + 新模型（V1 已接入提交包，V2 为候选） |
 | `research-archive-20261010` | 截至 2026-10-13 的全部其他研究（文献、历史实验、失败路线报告、诊断文档） |

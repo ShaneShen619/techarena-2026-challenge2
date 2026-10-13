@@ -1,0 +1,22 @@
+{
+  "H2_proxy": true,
+  "H3_eps_free": {
+    "V2": 0.2155472671451436,
+    "M4": 0.303677037944794,
+    "passed": true
+  },
+  "H4_robust": {
+    "step_wins": 6,
+    "settings": {
+      "V2_tau0.25": true,
+      "V2_tau4": true,
+      "V2_valid7": true,
+      "V2_valid14": true
+    },
+    "passed": true
+  },
+  "H5_no_large_regression": {
+    "max_abs_err_increase_pp": 0.038786973177270395,
+    "passed": true
+  }
+}
