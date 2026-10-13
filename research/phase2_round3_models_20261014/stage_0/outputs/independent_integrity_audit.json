@@ -1,0 +1,28 @@
+{
+  "protected_paths_modified": [],
+  "scope_passed": true,
+  "protocols": {
+    "B": {
+      "hash_matches": true,
+      "sha256": "19a579467b4d6ff2fa29531c88739bb697fb52c3ed6dd2083260167a21de8988"
+    },
+    "D": {
+      "hash_matches": true,
+      "sha256": "8bd614968e3f079f0fe13ca16ef879dd00e8c18d6b2e2aefd390717146fb9c45"
+    },
+    "A": {
+      "present": false
+    },
+    "C": {
+      "present": false
+    },
+    "E": {
+      "present": false
+    },
+    "F": {
+      "present": false
+    }
+  },
+  "candidate_import_audit": {},
+  "head": "9f1ca7e9c4ec35bb51db8ea744b79bbce72e7440"
+}
