@@ -4,13 +4,13 @@
 
 > English · [中文](#zh)
 
-Stage: 0.
+Stage: D pending; concurrent execution detected.
 
-Done: Initial branch verified; harness implemented; protocol frozen
+Done: Stages 0/B externally completed; original harness restored
 
-Next: Run baseline reproduction
+Next: Inspect existing stage D protocol and resume missing work
 
-Last commit: `ce6ce01838fad9bb3c3049eb8930f482b7e2ceca`.
+Last commit: `35f4efd4586fb963c0c3dd3ad32645b02a0f4ba8`.
 
 ---
 
@@ -20,10 +20,10 @@ Last commit: `ce6ce01838fad9bb3c3049eb8930f482b7e2ceca`.
 
 > [English](#en) · 中文
 
-阶段：0。
+阶段：D pending; concurrent execution detected。
 
-已完成：Initial branch verified; harness implemented; protocol frozen
+已完成：Stages 0/B externally completed; original harness restored
 
-下一步：Run baseline reproduction
+下一步：Inspect existing stage D protocol and resume missing work
 
-最近提交：`ce6ce01838fad9bb3c3049eb8930f482b7e2ceca`。
+最近提交：`35f4efd4586fb963c0c3dd3ad32645b02a0f4ba8`。
