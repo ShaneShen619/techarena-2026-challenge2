@@ -1,0 +1,25 @@
+{
+  "stage": "2 - prior construction (no proxy metric)",
+  "registered": "2026-10-14, before any Challenge 1 cell was loaded in this round",
+  "data": {
+    "cells": ["102Ah_25degC_0p5C_cell3", "102Ah_25degC_1C_cell3", "102Ah_35degC_1C_cell1",
+              "102Ah_45degC_0p5C_cell3", "102Ah_45degC_1C_cell1", "102Ah_55degC_1C_cell3"],
+    "label": "Challenge 1 framework definition re-implemented: max step_capacity_Ah in the cycle's cc_discharge step; implausible (>1.15*102 or <0) and partial (<0.6*rolling median) cycles dropped",
+    "per_cycle": "t_start = min absolute_time; T = time-weighted mean temperature_C; throughput = max cccv_charge step_capacity_Ah + max cc_discharge step_capacity_Ah",
+    "relative_capacity": "r = Q / median(Q of cycles 2..10); 21-point centred rolling median (min_periods 3) for the range filter only; fit on raw r",
+    "range": "cycles >= 2 while smoothed r >= 0.85 (first crossing ends the cell's usable range)"
+  },
+  "model": "L_Ah = 102*(1-r) = A_cal*(tau_eff)^z + A_cyc*ah_eff; tau_eff = sum a_T*dt (days), ah_eff = sum a_T*dAh, a_T = exp(-Ea/R*(1/T - 1/298.15))",
+  "fits": {
+    "joint": "all six cells, shared (log A_cal, log A_cyc, z in [0.2, 1.0], Ea in [5, 100] kJ/mol); residuals weighted 1/sqrt(n_cell) so each cell counts equally; least squares",
+    "per_cell": "each cell: (log A_cal, log A_cyc, z) with a_T = 1 (temperature absorbed); report only",
+    "uncertainty": "leave-one-cell-out (LOCO) joint refits; SD over the six LOCO fits (x sqrt(5) jackknife scaling) for each parameter"
+  },
+  "prior_rules": {
+    "z": "N(z_joint, max(SD_z, 0.1)^2)",
+    "Ea": "Challenge 1 joint Ea and SD if its 95% width (2*1.96*SD) < 25.6 kJ/mol, else Yagci 2025: N(37.3, (12.8/1.96)^2) kJ/mol",
+    "logA": "N(log A_joint, ln(3)^2) for A_cal and A_cyc",
+    "identifiability_fallback": "If for A_cal or A_cyc the jackknife SD of log A exceeds ln(3), or the joint estimate sits within 1e-3 (log scale: A < 1e-4 of the other term's typical contribution) of a bound, that parameter's centre is replaced by the Yagci 2025 derived value at the chosen z and Ea (calendar: mean of 75/100% SOC losses at 35 and 50 C over 848 days; cycle: cyclic minus calendar loss at 35 and 50 C over 1500 cycles of 2*180 Ah, scaled to a 102 Ah cell by relative loss), SD stays ln(3). The replacement is recorded in prior.json.",
+    "sanity": "Prior-mean predictions vs Yagci calendar (35/50 C, 848 d) and cyclic (35/50 C, 1500 cycles) relative losses; agreement factors reported only, nothing tuned."
+  }
+}
