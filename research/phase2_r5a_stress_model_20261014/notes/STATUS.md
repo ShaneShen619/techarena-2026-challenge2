@@ -12,8 +12,8 @@ Start: 2026-10-14. Branch `exp/phase2-r5a-stress-model-20261014`, worktree `/Use
 | 1 stress extraction | done | extrapolation error <= 1.7 eff-days except CK6 month (4.2) |
 | 2 prior | done | z at bound 0.2; Ea and A from Yagci fallback (prior.json) |
 | 3 pack model | done | no model passes; S_main eps-free 0.192 / pseudo 0.131 but CK1 -1.13 (prior only) |
-| 4 CK2 analysis | next | |
-| 5 final report | todo | |
+| 4 CK2 analysis | done | seg-3 extrapolation accurate (+3 % Ah, -0.013 pp); CK2 error is law shape; H-A weak/inconclusive |
+| 5 final report | next | |
 
 ---
 
@@ -31,5 +31,5 @@ Start: 2026-10-14. Branch `exp/phase2-r5a-stress-model-20261014`, worktree `/Use
 | 1 应力提取 | 完成 | 外推误差 <= 1.7 个有效天，CK6 那个月除外（4.2） |
 | 2 先验 | 完成 | z 撞界 0.2；Ea 与 A 回退到 Yagci（prior.json） |
 | 3 电池组模型 | 完成 | 无模型通过；S_main 与 ε 无关 0.192 / 伪场景 0.131，但 CK1 −1.13（仅先验） |
-| 4 CK2 分析 | 下一步 | |
-| 5 最终报告 | 待做 | |
+| 4 CK2 分析 | 完成 | 第 3 段外推准确（Ah +3 %，−0.013 pp）；CK2 误差来自定律形状；H-A 弱 / 无定论 |
+| 5 最终报告 | 下一步 | |

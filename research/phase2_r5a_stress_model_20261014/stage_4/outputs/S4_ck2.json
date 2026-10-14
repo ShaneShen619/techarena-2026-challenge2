@@ -1,0 +1,58 @@
+{
+ "ck2_errors_pp_delta04": {
+  "S_main": 0.565479406113681,
+  "S z = 1 (G4)": -2.134095299616109,
+  "S z free (G1)": 0.615775938944064,
+  "S z = 0.5 (report only)": -0.2064152919734183,
+  "S prior only": 0.3933946599492994,
+  "V2": 0.6690524237472275,
+  "D1 (round 3)": -1.427,
+  "D2 (round 3)": -1.049
+ },
+ "S_main_prediction_Ah": 96.93451621645804,
+ "fitted": {
+  "A_cal": 1.8234633238419409,
+  "A_cyc": 7.814858019047911e-06,
+  "o45": -0.0055909370177754285
+ },
+ "horizon": "2025-03-14 23:08:25",
+ "loss_decomposition": {
+  "segment 2 observed (anchor 1 -> seg 2 end)": {
+   "t0": "2025-02-11 23:08:25",
+   "t1": "2025-02-19 09:50:00",
+   "loss_Ah": 0.11575989188401786,
+   "d_tau_eff": 7.750505317011026,
+   "d_ah_eff": 1270.1173586521818
+  },
+  "segment 3 extrapolated (seg 2 end -> est. month end)": {
+   "t0": "2025-02-19 09:50:00",
+   "t1": "2025-03-11 15:35:55",
+   "loss_Ah": 0.6140312007652398,
+   "d_tau_eff": 54.64525419243026,
+   "d_ah_eff": 8567.236270731633
+  },
+  "checkup interval (est. month end -> horizon)": {
+   "t0": "2025-03-11 15:35:55",
+   "t1": "2025-03-14 23:08:25",
+   "loss_Ah": 0.02607352422585375,
+   "d_tau_eff": 3.3142361111111143,
+   "d_ah_eff": 0.0
+  }
+ },
+ "predicted_month_loss_Ah": 0.7558646168751114,
+ "segment3_extrapolated": {
+  "t0": "2025-02-19 09:50:00",
+  "t1": "2025-03-11 15:35:55",
+  "days": 20.240219907407408,
+  "Ah": 3173.244386560944
+ },
+ "segment3_true": {
+  "t0": "2025-02-19 09:50:00",
+  "t1": "2025-03-11 04:57:13",
+  "days": 19.79667824074074,
+  "Ah": 3073.671
+ },
+ "loss_with_true_stress_same_params_Ah": 0.7428543011483302,
+ "extrapolation_effect_on_prediction_pp": -0.012755211496844353,
+ "note": "Exposed, single point. The true segment-3 stress is used only to measure the extrapolation rule."
+}
