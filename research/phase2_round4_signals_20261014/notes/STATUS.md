@@ -12,4 +12,6 @@ Start 2026-10-14 20:21 CEST, worktree /Users/shane/Desktop/Arena_1014_round4, br
 | 5 recovery physics | done | recovery 0.02->0.87 Ah, tau ~2.5 d; ranking V1>V2 if C/20 is pre/partly recovered |
 | 6 eps temperature | done | V2_epsT lowers CK3-CK7 by ~0.21 pp (delta ~0.18); leaderboard-only |
 | 7 round-3 leads | done (fail) | SS_fixed 0.228 (CK2 -0.13 but CK4 +0.57); V2_startcorr 0.226 |
-| 8 final report | next | |
+| 8 final report | done | FINAL_REPORT.md + README.md |
+
+Run finished 2026-10-14. No new model beats V2; key finding = post-checkup recovery (stage 5) decides V1 vs V2. All commits pushed.
