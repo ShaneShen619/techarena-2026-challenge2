@@ -1,0 +1,32 @@
+{
+  "stage": "2a audit",
+  "registered": "2026-10-14, before the audit code was written or run",
+  "reference": "every pack CV end (pack >= 13.95 V, 0 < I < 6 A, last sample of the run) within a segment; depth(t) = Ah(CV end) - Ah(t) by integrating current_A (dt<=600 s, dt>0) until the next CV end in the same segment",
+  "bands_A": {
+    "dis10": [
+      -12.5,
+      -8.0
+    ],
+    "dis20": [
+      -22.0,
+      -18.0
+    ],
+    "chg10": [
+      8.0,
+      12.5
+    ],
+    "chg20": [
+      18.0,
+      22.0
+    ]
+  },
+  "run": "maximal contiguous samples with current inside one band",
+  "expected_step": "step_mean of the most recent program step (events.step_programs, main) with t_cv_end before the run start; if none, 32.8 Ah",
+  "coverage": "run depth range must include [exp-6, exp+6] Ah",
+  "location": "per cell midpoint crossing: upper window depth in [exp-6, exp-3], lower window [exp+3, exp+6], >=5 samples each; threshold = mean of the two window medians; discharge: first sample in time with depth > exp-3 and V < thr; charge: first sample in time with depth < exp+3 and V > thr; location = depth at that sample; four-cell mean if all four located",
+  "program_reproduction": "runs inside a program excursion window [t_cv_end, t_measured] of events.step_programs (main) are 'program runs'; report |dynamic location - program step_mean|",
+  "additional": "located crossings not inside any program excursion window",
+  "coulomb_drift": "for consecutive CV ends in a segment: integrated net Ah between them (closure, ideally ~0) and counter difference (charge_Ah_cum - discharge_Ah_cum; books the 20 A pulse as charge, reported only)",
+  "exit_rule": "continue to 2b only if median |program reproduction diff| <= 0.3 Ah AND median |closure| <= 0.2 Ah AND >= 5 of 7 months (month = between consecutive checkups, months 0..6) have >= 3 additional located 45 C crossings in one direction/band; otherwise diagnostic only",
+  "no_proxy_metrics": "the audit computes no proxy metric"
+}
