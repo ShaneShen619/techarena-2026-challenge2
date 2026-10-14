@@ -1,0 +1,73 @@
+{
+ "z": {
+  "mean": 0.20000000000000043,
+  "sd": 0.2529733798295173,
+  "source": "Challenge 1 joint fit; sd = max(jackknife, 0.1)"
+ },
+ "Ea_kJ": {
+  "mean": 37.3,
+  "sd": 6.530612244897959,
+  "source": "Yagci 2025",
+  "c1_joint": 57.02889051877439,
+  "c1_sd": 38.745070825534015,
+  "c1_95width": 151.88067763609334
+ },
+ "logA_cal": {
+  "mean": 0.8302140193463242,
+  "sd": 1.0986122886681098,
+  "source": "Yagci 2025 derived (identifiability fallback)",
+  "c1_joint": 1.1493967588623393,
+  "c1_jackknife_sd": 1.4417790753290793,
+  "c1_at_bound": false
+ },
+ "logA_cyc": {
+  "mean": -11.754453247878848,
+  "sd": 1.0986122886681098,
+  "source": "Yagci 2025 derived (identifiability fallback)",
+  "c1_joint": -12.59308705177727,
+  "c1_jackknife_sd": 6.978860806527018,
+  "c1_at_bound": false
+ },
+ "T_ref_K": 298.15,
+ "units": "L in Ah on a 102 Ah cell; tau_eff in Arrhenius-weighted days; ah_eff in Arrhenius-weighted Ah of total throughput",
+ "sanity_vs_yagci": {
+  "35C": {
+   "calendar_pred_pct": 9.550996371703983,
+   "calendar_obs_pct": 7.65,
+   "factor_cal": 1.2484962577390826,
+   "cyclic_pred_pct": 13.390619874120008,
+   "cyclic_obs_pct": 11.0,
+   "factor_cyc": 1.2173290794654552
+  },
+  "50C": {
+   "calendar_pred_pct": 10.933152514785228,
+   "calendar_obs_pct": 13.65,
+   "factor_cal": 0.8009635541967199,
+   "cyclic_pred_pct": 18.480116424597302,
+   "cyclic_obs_pct": 22.3,
+   "factor_cyc": 0.8287047724034664
+  }
+ },
+ "yagci_detail": {
+  "a_cal_35_50": [
+   1.8372578957676897,
+   2.8638127107643316
+  ],
+  "a_cyc_35_50": [
+   6.852704147106187e-06,
+   9.002220596034733e-06
+  ]
+ },
+ "c1_joint": {
+  "logA_cal": 1.1493967588623393,
+  "logA_cyc": -12.59308705177727,
+  "z": 0.20000000000000043,
+  "Ea_kJ": 57.02889051877439
+ },
+ "c1_jackknife_sd": {
+  "logA_cal": 1.4417790753290793,
+  "logA_cyc": 6.978860806527018,
+  "z": 0.2529733798295173,
+  "Ea_kJ": 38.745070825534015
+ }
+}
