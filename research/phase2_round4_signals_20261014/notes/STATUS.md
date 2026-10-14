@@ -10,6 +10,6 @@ Start 2026-10-14 20:21 CEST, worktree /Users/shane/Desktop/Arena_1014_round4, br
 | 3 rest pseudo-OCV | done (exit) | all 110 rests at 0-22 Ah below CV end; none near the step |
 | 4 top-21-Ah feature | done (exit) | 'peak' = window-edge artefact; valley 16.4-16.8 Ah, no trend |
 | 5 recovery physics | done | recovery 0.02->0.87 Ah, tau ~2.5 d; ranking V1>V2 if C/20 is pre/partly recovered |
-| 6 eps temperature | next | |
-| 7 round-3 leads | todo | |
+| 6 eps temperature | done | V2_epsT lowers CK3-CK7 by ~0.21 pp (delta ~0.18); leaderboard-only |
+| 7 round-3 leads | next | |
 | 8 final report | todo | |

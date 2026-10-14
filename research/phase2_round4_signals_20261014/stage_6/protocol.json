@@ -1,0 +1,9 @@
+{
+  "stage": "6",
+  "registered": "2026-10-14, before stage-6 code was written or run",
+  "status": "leaderboard-only; not judged on proxies (proxies share the eps assumption)",
+  "delta_k": "at each cutoff CK_k: mean over visible months m (anchor m visible, both a 25 C and a 45 C step in month m) of [first 45 C step - last 25 C step] (main step method); if none visible: 0.4",
+  "V2_epsT": "V2_main with the anchor offset for a 25 C anchor replaced: eps0 + delta_k instead of eps0 + 0.4 (CK1 uses the post-CK0 anchor and is unchanged)",
+  "outputs": "SOH table CK0-CK7 for V2 and V2_epsT, differences in pp, and delta_k per checkup; no proxy error is reported",
+  "cumulative": "no stage 1-4 model passed, so no cumulative variant"
+}
