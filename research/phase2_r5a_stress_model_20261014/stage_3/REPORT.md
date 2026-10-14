@@ -41,7 +41,7 @@ All variants are in [S3_summary_table.csv](outputs/S3_summary_table.csv) and the
 - **Every robustness group loses to V2 at Δ = 0.4**, all for the same reason: CK1 depends only on the prior. With z = 1 or cycle-only, the sign at CK1 flips (+2.3 to +2.6 pp).
 - **Fitted parameters are stable after CK2.**
   - A_cal = 1.61–1.74 (posterior SD of log A ≈ 0.14–0.18).
-  - A_cyc ≈ 1 × 10⁻⁴ per Arrhenius-weighted Ah, about 8–13 times the Yagci-derived prior centre (SD of log A ≈ 0.22–0.42).
+  - A_cyc = 4.8–6.2 × 10⁻⁵ per Arrhenius-weighted Ah from CK3 on, about 6–8 times the Yagci-derived prior centre (SD of log A ≈ 0.22–0.42). At CK2 it stays at the prior.
   - o_45 = −0.08 to −0.14 Ah, within its prior.
   - With z free the data choose z ≈ 0.38–0.40, larger than the Challenge 1 prior mean of 0.20.
 - **Calendar vs cycle split.**
@@ -95,7 +95,7 @@ All variants are in [S3_summary_table.csv](outputs/S3_summary_table.csv) and the
 - **每个稳健性组在 Δ = 0.4 时都输给 V2**，原因相同：CK1 只取决于先验。z = 1 或只有循环项时，CK1 的符号反过来（+2.3 至 +2.6 pp）。
 - **CK2 之后拟合参数很稳定。**
   - A_cal = 1.61–1.74（log A 的后验 SD ≈ 0.14–0.18）。
-  - A_cyc ≈ 1 × 10⁻⁴ /（Arrhenius 加权 Ah），约为 Yagci 推出的先验中心的 8–13 倍（log A 的 SD ≈ 0.22–0.42）。
+  - 从 CK3 起 A_cyc = 4.8–6.2 × 10⁻⁵ /（Arrhenius 加权 Ah），约为 Yagci 推出的先验中心的 6–8 倍（log A 的 SD ≈ 0.22–0.42）。CK2 时它停在先验值。
   - o_45 = −0.08 至 −0.14 Ah，在其先验范围内。
   - z 放开时，数据选出 z ≈ 0.38–0.40，大于 Challenge 1 的先验均值 0.20。
 - **日历与循环的划分。**
