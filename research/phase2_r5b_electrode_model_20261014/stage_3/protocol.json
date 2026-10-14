@@ -1,0 +1,26 @@
+{
+  "stage": "Real-anchor identifiability audit; no proxy metrics",
+  "main_fit": "Use the frozen stage1 soft-L1 fit and full multi-start grid on each anchor0..7/cell. Reuse completed identical stage2 main anchor0/1 fits; no refitting finished stages.",
+  "strict_validity": "Reject fitted/profile states with any theta outside [0,1] anywhere from q=0 through observed charge end. Re-solve pack endpoints only inside valid model domains; no interpolation clipping may create accepted target outputs.",
+  "LLI_profiles": {
+    "fixed": "QLi = QLi_reference_point - LLI; reference is stage2 main anchor0",
+    "grid": "QLi50..250 step10, include fitted center and center plus/minus .25,.5,1,2,4,8,16,32,64, clipped to bounds",
+    "refit": "All other five parameters refit using frozen soft-L1 least squares; starts include the optimum and neighboring profile fits. Compare against true unconstrained optimum; cache every parameter/data/OCP/source hash."
+  },
+  "confidence": {
+    "n_eff": "n/(1+2 sum positive rho_lag) using full residual FFT autocovariance, first nonpositive lag termination; floor1, capn",
+    "sigma_mV": "max(2 mV, residual RMS), reflecting model mismatch",
+    "profile_statistic": "2*(cost_fixed-cost_min)/sigma_mV^2 * n_eff/n",
+    "cell95": "chi2 df1 .95 threshold; report bounded-grid truncation",
+    "pack95": "Bonferroni alpha=.05/4 per-cell profile envelopes, then re-solve pack quantities over Cartesian profile combinations. Exact enumeration when <=65536 combinations; otherwise deterministic witnessed combinations and label target ranges lower bounds, never certify a narrow gate from sampling."
+  },
+  "pack_quantities": "Registered ideal 20.4A/14V/5.1A CCCV conventions, but reject sum(R)<=0 rather than the undocumented1e-6 floor. Enforce every cell stoichiometric domain. Program current10.782A and original midpoint windows; all4 cells must yield a step. C20 uses fixed stage2 main eta_dis and measured c_pack=-.003, first11.2V root; no extrapolation.",
+  "envelope_design": "Include each cell optimum, all one-cell profile excursions, common-index excursions, extrema in health parameters, and fixed-seed randomized Cartesian tuples if exhaustive enumeration exceeds cap. Unavailable roots or unsupported/truncated ranges fail eligibility; finite witnessed width already exceeding a gate can prove rejection.",
+  "beta_range": "Simulate pack reference anchor1 and current profiles from a common reference start-OCV vector; compute joint numerator/denominator envelopes. Denominator range containing zero means beta range unbounded/unavailable.",
+  "LLI_monotonicity": "Report both fitted-point monotonicity and feasibility of a nondecreasing sequence within the nominal mean per-cell profile intervals; a boundary-truncated interval cannot certify identification.",
+  "exit_rule": "Proceed stage4 only if stage1d passes AND >=5/7 finite certified Q_C20 intervals width<=.6Ah AND >=5/7 finite certified beta intervals width<=.3 AND LLI monotone within95 intervals. Otherwise stage4 diagnostic-only with no model proxy evaluation.",
+  "cap_seconds": 5400,
+  "seed": 20261015,
+  "variants": "No alternate main fits selected by proxy. Stage4 variants only if the exit rule passes.",
+  "exposure": "exposed-exploratory; no hidden capacity labels; nominal profile intervals are conditional diagnostic ranges, not externally calibrated coverage."
+}
