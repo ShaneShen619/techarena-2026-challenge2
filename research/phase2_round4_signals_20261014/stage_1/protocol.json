@@ -1,0 +1,21 @@
+{
+  "stage": "1",
+  "registered": "2026-10-14, before any stage-1 code was written or run",
+  "main": {
+    "month_line": "for month m (v2.month_steps membership, main step method, step_mean not NaN, setpoint 45) with >=3 steps: Theil-Sen slope over (days since first step, step_mean); intercept = median(s_i - slope*t_i); L_m = line value at CK_(m+1) date 00:00",
+    "validity": "exactly V2's: previous month k-2 has >=3 45 C steps and d(k-2) <= 10 days; current month k-1 has d(k-1) <= 10 days or >=3 steps; anchor k-1 visible and at 25 C",
+    "current_month_lt3": "if month k-1 has <3 45 C steps, its value is V2's E45 + r*d with r = 0 (V2 uses r only when n>=3), i.e. E45(k-1); month k-2 always uses its line",
+    "prediction": "Q = Q_fc(k-1) + eps + beta_k * (L_(k-1) - L_(k-2)); beta_k = v2.beta_a4(fc, a4[2.0], ck, k, 1.0, 1.0)",
+    "fallback": "V2 unchanged (M4) when the branch is not valid"
+  },
+  "variants": {
+    "OLS": "least-squares line instead of Theil-Sen",
+    "last3": "line over the last 3 steps of each month only",
+    "at_last_plus_rate": "line values at each month's last step time, then V2's rate term r*(d(k-1)-d(k-2)) with V2's r",
+    "beta1": "beta = 1",
+    "a4_smooth": "beta from A4 1 / 3 Ah",
+    "step_variants": "six step methods"
+  },
+  "gates": "common gates vs V2 (prompt section 5), incl. G-pseudo on PG1/PG2 (k=4..7) and PC5/PC10 (k=3..7)",
+  "diagnostic": "report per-month slope and intercept residual SD to see whether slope or intercept noise drives the change"
+}
