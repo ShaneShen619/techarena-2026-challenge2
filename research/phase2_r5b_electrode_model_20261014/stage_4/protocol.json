@@ -1,0 +1,14 @@
+{
+  "stage": "E1/E3 application",
+  "main": "E1 V2 with mechanistic beta_E",
+  "variants": [
+    "V2 shrinkage tau1",
+    "reference anchor1",
+    "alternative graphite OCP",
+    "dV/dQ residual fit"
+  ],
+  "registered_exit": "Stage3 failed: zero of seven anchors satisfy the two interval-width conditions. Skip all predictor evaluation and E3 output; mark diagnostic-only. No pseudo/real model proxy metrics are computed.",
+  "baseline_table": "Copy the already-reproduced M4/V2 baseline reference table for context only. No new model selection.",
+  "class_gates": "not run because no model is eligible; no candidate class and no submission wiring",
+  "exposure": "exposed-exploratory; proxies are not hidden truth"
+}
