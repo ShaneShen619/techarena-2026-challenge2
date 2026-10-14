@@ -4,6 +4,8 @@
 
 > **Language:** English · [中文](#zh)
 
+- D-CONCURRENT. On goal resume, existing commits through 1173340 and stage-2 files from another executor were found. Preserve shared modules, protocols and outputs; this executor writes independently named audit artifacts, adds only explicit paths, and does not redo completed stages.
+
 - D0.1 The run is driven from a session whose primary directory is `/Users/shane/Desktop/Arena_1013_model`; every command uses absolute paths or `git -C` into this worktree only. Nothing outside this worktree is written (except a pip install into the study's git-ignored cache venv).
 
 - D1.1 The registered 144-start grid is searched in two phases (all starts with 60 evaluations, best three refined); same optimum as the full search on anchor 1.
@@ -17,6 +19,8 @@
 # 决策记录（第五轮 B）
 
 > **语言：** [English](#en) · 中文
+
+- D-CONCURRENT. 目标续跑时发现另一执行会话的提交（至 1173340）及阶段 2 文件。保留共享模块、协议及输出；本会话仅创建独立命名审计产物、按明确路径暂存，不重做完成阶段。
 
 - D0.1 本次运行由主目录为 `/Users/shane/Desktop/Arena_1013_model` 的会话驱动；所有命令都用绝对路径或 `git -C` 指向本 worktree。除了向研究目录被忽略的缓存 venv 中 pip 安装外，不在本 worktree 之外写任何东西。
 - D1.1 登记的 144 起点网格分两段搜索（所有起点跑 60 次评估，最好的三个细化）；在锚点 1 上与完整搜索结果相同。

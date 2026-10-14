@@ -1,0 +1,19 @@
+{
+  "purpose": "Independent completion and physical invariant audit; no new capacity predictor, no proxy tuning, no rewrite of registered main configurations",
+  "checks": [
+    "Exact stage0 reproduction evidence",
+    "OCP source/version/license and tabulated domain",
+    "30 synthetic cases: finite quantities and all requested degradation-mode errors",
+    "Physical bounds across q=0 and actual charge endpoints of every recorded fit",
+    "Metamorphic invalid-theta tests: charge/program must not silently clip invalid states",
+    "CK0 holdout: no last15Ah fitting; validate tail predictions and root paths separately",
+    "Residual autocorrelation and n_eff profile thresholds",
+    "Every stage3 anchor/cell profile and target-envelope requirement",
+    "Stage4 exit/eligibility, protocol/sha commit order and pseudo-before-real order",
+    "Stage5 diagnostic intervals, cell limiting and recovery coverage",
+    "Bilingual final artifacts, protected tracked paths, clean study and branch push"
+  ],
+  "selection": "No main model changes or selection. Invalid or missing evidence means completion unproven until corrected or explicitly exited/capped per prompt.",
+  "exposure": "exposed-exploratory; proxies are not hidden truth",
+  "causal_only": "CK0 diagnostics may use prescribed reference anchors; no such fitted reference can be used before it is visible in a prediction."
+}
