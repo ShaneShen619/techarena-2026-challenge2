@@ -1,0 +1,19 @@
+{
+  "stage": "Descriptive degradation-mode diagnostics, even after stage4 exit",
+  "main": "All32 anchor-cell fits retained, no predictor selection",
+  "mode_intervals": "LLI from stage3 fixed-QLi profiles. Add fixed-Qn and fixed-Qp nuisance-refit profiles with the same main loss and n_eff. Use97.5% component intervals for reference/current subtraction (Bonferroni nominal95 per difference); reference anchor0 modes are zero by definition. Mark prior boundaries and unavailable intervals; all outputs inherit stage3 unidentified status.",
+  "additional_grids": "Qn/Qp60..200 step10 plus fitted center and center plus/minus.25,.5,1,2,4,8,16,32,64 within bounds",
+  "profile_starts": "frozen main optimum and previous profile solution; same bounded soft-L1 solver. Cache includes input, sources, fixed values and actual starts.",
+  "limiting_cells": "CK1..7 use only last visible anchor(k-1). CK0 is the prescribed heldout calibration, not an online prediction. Report minimum-voltage cell at first pack11.2V root; separately per-cell2.8V first/second crossings and stoichiometric end gaps. Single-cell crossing never replaces pack cutoff.",
+  "LLI_share": "Report nominal model-LLI / observed anchor-Qfc loss as an explicitly unvalidated comparison to empirical68–79%; model total-capacity share unavailable if reference chain has no valid root. No hidden-label claims.",
+  "recovery_coverage": "Audit first periodic CV charge after each anchor using integrated actual current/time and depth coverage. Fit recovery only if its window reaches the graphite-step/lower-plateau region (>=45Ah); otherwise mark not identifiable and do not fit.",
+  "artifacts": [
+    "per-cell mode table with nominal95 ranges and status",
+    "degradation figure PNG",
+    "limiting-cell table at each CK",
+    "recovery coverage table",
+    "bilingual report"
+  ],
+  "cap_seconds": 2700,
+  "exposure": "exposed-exploratory; allmode values are diagnostics, not validated electrode inventories."
+}
