@@ -1,0 +1,105 @@
+{
+ "stage": "3 - pack stress model, registered evaluation",
+ "registered": "2026-10-14, before any real-data CK1-CK7 result of S or its combinations",
+ "prior": "stage_2/prior.json",
+ "S_main": {
+  "z": 0.2,
+  "Ea_kJ": 37.3,
+  "sigma": 0.2,
+  "logA_cal_mu": 0.8302140193463242,
+  "logA_cyc_mu": -11.754453247878848,
+  "logA_sd": 1.0986122886681098,
+  "o45_sd": 0.3,
+  "z_free": false,
+  "z_sd": 0.2529733798295173,
+  "use_cal": true,
+  "use_cyc": true,
+  "prior_A": true,
+  "tau0": 0.0,
+  "checkup_Ah": 0.0,
+  "note": "z, Ea fixed at prior means; free log A_cal, log A_cyc, o45 (prior N(0,0.3^2), only in pair 0->1); MAP, Gaussian likelihood sigma_pair 0.20 Ah; integration origin = first operating row; horizon t*_k = CK_k + median visible (CK_j -> anchor j start) lag (3 d if none); base = Q_CK0 if the latest anchor is anchor 0 (mirrors M4/V2), else Q_fc,k-1 + eps; k = 1 uses prior means"
+ },
+ "variants": {
+  "G1_zfree": {
+   "z_free": true
+  },
+  "G2_Ea": {
+   "settings": {
+    "Ea_plus": {
+     "Ea_kJ": 43.83061224489796
+    },
+    "Ea_minus": {
+     "Ea_kJ": 30.769387755102038
+    }
+   }
+  },
+  "G3_terms": {
+   "settings": {
+    "cal_only": {
+     "use_cyc": false
+    },
+    "cyc_only": {
+     "use_cal": false
+    }
+   }
+  },
+  "G4_z1": {
+   "z": 1.0,
+   "logA_cal_mu": -5.225030751391907,
+   "note": "linear law (D1/D2 analogue); calendar prior centre re-derived from Yagci at z=1 by the stage-2 fallback rule"
+  },
+  "G5_preage30": {
+   "tau0": 30.0
+  },
+  "G6_checkup200": {
+   "checkup_Ah": 200.0
+  },
+  "G7_sigma": {
+   "settings": {
+    "sigma_half": {
+     "sigma": 0.1
+    },
+    "sigma_double": {
+     "sigma": 0.4
+    }
+   }
+  },
+  "G8_noprior": {
+   "prior_A": false,
+   "note": "k = 1 still uses prior means (no data)"
+  }
+ },
+ "report_only_variants": {
+  "X_z05": {
+   "z": 0.5,
+   "logA_cal_mu": -1.4405027696805106,
+   "note": "classical sqrt-t calendar law, motivated by the stage-2 idle-gap diagnostic (D2.3); not in G-robust, never promoted"
+  },
+  "X_prior_only": {
+   "prior_only": true,
+   "note": "no anchors used, to show how far the anchors move the model"
+  }
+ },
+ "combined": {
+  "ENS50": "0.5*S_main + 0.5*V2 (same delta, step variant, A4 smoothing)",
+  "V2_Sfb": "V2, except S_main where V2 returns branch 'fallback' (CK1-CK3)"
+ },
+ "gates": {
+  "G-causal": "exact-float identity under future noise and fit-on-CK1-prefix (candidate class only)",
+  "G-proxy": "MAE < V2 for every delta, MAX <= V2 MAX + 0.10 pp (real, main step, A4 2 Ah)",
+  "G-epsfree": "CK2-7 MAE at delta 0 <= V2 - 0.02 pp",
+  "G-robust_S_main": "variant groups G1..G8: a group wins if every setting in it beats V2's MAE (delta 0.4, real); pass if >= 6 of 8 groups win",
+  "G-robust_combined": "V2's six step variants, >= 5 of 6 wins (harness gates_vs_v2)",
+  "G-pseudo": "mean MAE over PG1, PG2, PC5, PC10 with k >= 3 (delta 0.4, main step) not worse than V2 by more than 0.02 pp",
+  "G-regress": "no checkup's absolute error grows by more than 0.30 pp vs V2 (delta 0.4)",
+  "G-impl": "numpy/pandas-only MyModel class within 0.001 pp, sample_data smoke test in Python 3.11"
+ },
+ "selection": "No variant replaces S_main. Candidates are S_main, ENS50 and V2_Sfb. If more than one passes every performance gate, choose by the lowest G-pseudo mean MAE (pseudo scenarios only, k >= 3). Only the chosen model gets a candidate class.",
+ "order": [
+  "commit this protocol",
+  "run pseudo scenarios PG1/PG2 (k 4..7) and PC5/PC10 (k 3..7) and commit",
+  "run real scenario (all step variants) and PC5/PC10 k = 2 for reporting",
+  "compute gates"
+ ],
+ "decision_scenarios_exclude_k2": true
+}
