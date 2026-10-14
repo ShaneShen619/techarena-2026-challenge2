@@ -1,0 +1,14 @@
+{
+  "synthetic_numeric_pass": true,
+  "profile_cells": 32,
+  "expected_profile_cells": 32,
+  "anchors_with_capacity_width_under_0_6": 0,
+  "anchors_with_beta_width_under_0_3": 0,
+  "LLI_interval_monotonic_compatible": true,
+  "LLI_point_monotonic": true,
+  "LLI_start_voltage_correlation": 0.4547173846188957,
+  "stage4_proceed": false,
+  "elapsed_seconds": 524.3443250656128,
+  "stage3_cap_reached": false,
+  "interpretation": "Nominal model-conditional profiles. Witnessed ranges are lower bounds when full boxes exceed enumeration cap; no narrow eligibility claim is made from sampling."
+}

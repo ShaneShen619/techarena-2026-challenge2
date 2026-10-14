@@ -1,0 +1,8 @@
+{
+  "fit_rows": 32,
+  "expected": 32,
+  "complete": true,
+  "elapsed_seconds": 47.080384969711304,
+  "cap_reached": false,
+  "all_charge_states_valid": true
+}
