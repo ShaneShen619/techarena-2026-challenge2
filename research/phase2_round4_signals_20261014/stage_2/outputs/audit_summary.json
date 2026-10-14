@@ -1,0 +1,23 @@
+{
+ "n_candidate": 71,
+ "n_located": 71,
+ "n_program_runs": 41,
+ "program_repro_median_abs": 0.21925277777777197,
+ "program_repro_p90_abs": 0.3897020833333258,
+ "closure_median_abs": 0.6078344444447632,
+ "closure_p90_abs": 0.969040000000367,
+ "n_closure_pairs": 28,
+ "median_four_cell_range": 0.5543083333333314,
+ "additional_45C_by_month_band": {
+  "dis10": {
+   "0": 4,
+   "2": 4,
+   "3": 3,
+   "4": 3,
+   "5": 3,
+   "6": 3
+  }
+ },
+ "months_with_ge3_additional_45C": 6,
+ "exit_passed": false
+}

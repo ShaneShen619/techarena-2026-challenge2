@@ -6,8 +6,8 @@ Start 2026-10-14 20:21 CEST, worktree /Users/shane/Desktop/Arena_1014_round4, br
 |---|---|---|
 | 0 setup | done | V2 0.215726/0.669052, M4 0.291265 reproduced (stage0/reproduce.json) |
 | 1 month-end regression | done (fail) | S1 0.242 > 0.216; in-segment residual SD 0.012-0.036 Ah -> V2 error is systematic, not noise |
-| 2 dynamic crossings | next | |
-| 3 rest pseudo-OCV | todo | |
+| 2 dynamic crossings | done (exit) | closure median 0.61 Ah > 0.2; extra crossings only at day 4 of each cycle |
+| 3 rest pseudo-OCV | next | |
 | 4 top-21-Ah feature | todo | |
 | 5 recovery physics | todo | |
 | 6 eps temperature | todo | |
