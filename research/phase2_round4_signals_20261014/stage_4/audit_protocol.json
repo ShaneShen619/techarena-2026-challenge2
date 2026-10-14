@@ -1,0 +1,8 @@
+{
+  "stage": "4 audit",
+  "registered": "2026-10-14, before the audit code was written or run",
+  "charges": "every charge ending in pack CV (stage-2 cv_ends), traced back over contiguous I>0.5 A; the ~5-day CCCV charges are those starting < 45 Ah below the CV end (anchors reported separately)",
+  "curve": "CC part (I > 20 A); depth = Ah(CV end) - Ah(t); per cell V on a 0.25 Ah depth grid; dV/dQ (sign: dV/d(charge)) with moving-average smoothing 1/2/3 Ah (main 2 Ah)",
+  "features": "in depth window [3, 19] Ah: location of max dV/dQ (peak) and of min dV/dQ (valley), per cell, then four-cell median; prominence = (max - median)/MAD of dV/dQ in the window",
+  "exit_rule": "a feature passes only if located (finite, not at a window edge +-0.5 Ah) in >= 90% of ~5-day charges, within-month SD of its four-cell median <= 0.3 Ah in every month with >= 3 charges, and Spearman |rho| >= 0.9 between month index and month median location; otherwise diagnostic only (no proxy metric is computed in the audit)"
+}
