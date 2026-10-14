@@ -1,0 +1,9 @@
+anchor,LLI_point,LAM_NE_point,LAM_PE_point,observed_anchor_loss_Ah,LLI_over_observed_anchor_loss,model_total_capacity_share,identifiability
+0,0.0,0.0,0.0,0.0,,unavailable: reference CCCV chain lacks a valid passive taper,unidentified; ratio is not a physical loss decomposition
+1,5.663369642135891,9.137194361161391,-92.58807592539574,3.119619166666851,1.8154041694092111,unavailable: reference CCCV chain lacks a valid passive taper,unidentified; ratio is not a physical loss decomposition
+2,7.284911121675403,10.113819837557926,-92.58807592539574,4.452272777777921,1.6362230000901292,unavailable: reference CCCV chain lacks a valid passive taper,unidentified; ratio is not a physical loss decomposition
+3,8.87011075709069,11.07118836453504,-92.58807593039573,5.479898888889082,1.6186632156800418,unavailable: reference CCCV chain lacks a valid passive taper,unidentified; ratio is not a physical loss decomposition
+4,9.22792683034696,10.956198016718936,-92.58807592509284,6.37498361111129,1.4475216554695336,unavailable: reference CCCV chain lacks a valid passive taper,unidentified; ratio is not a physical loss decomposition
+5,9.72771555098565,11.109763238107256,-92.58807592539574,7.040479722222258,1.381683625944056,unavailable: reference CCCV chain lacks a valid passive taper,unidentified; ratio is not a physical loss decomposition
+6,10.46242716253456,11.561811996320777,-92.58807593039573,7.4863319444447,1.3975371704294115,unavailable: reference CCCV chain lacks a valid passive taper,unidentified; ratio is not a physical loss decomposition
+7,11.152952754471755,11.715331155683884,-92.58807593039573,8.168747499999995,1.365319806307119,unavailable: reference CCCV chain lacks a valid passive taper,unidentified; ratio is not a physical loss decomposition

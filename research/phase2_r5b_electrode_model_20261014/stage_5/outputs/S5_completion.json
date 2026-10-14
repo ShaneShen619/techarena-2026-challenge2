@@ -1,0 +1,11 @@
+{
+  "mode_rows": 32,
+  "additional_material_profile_rows": 1916,
+  "all_health_component_grids_complete": true,
+  "elapsed_seconds": 152.90262818336487,
+  "cap_reached": false,
+  "recovery_fit_permitted": false,
+  "all_modes_identified": false,
+  "reference_zero_by_definition": true,
+  "limiting_checkups_reported": 8
+}

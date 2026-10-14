@@ -1,0 +1,9 @@
+anchor,event_available,days_after_anchor,charge_depth_Ah,crosses_step_region,decision
+0,True,4.791701388888889,21.37733444444494,False,no recovery fit; below graphite/lower-plateau coverage
+1,True,4.79144675925926,21.429556111111538,False,no recovery fit; below graphite/lower-plateau coverage
+2,True,4.79144675925926,21.40911444444488,False,no recovery fit; below graphite/lower-plateau coverage
+3,True,5.6365625,21.524232500000466,False,no recovery fit; below graphite/lower-plateau coverage
+4,True,4.791631944444444,21.249550555555984,False,no recovery fit; below graphite/lower-plateau coverage
+5,True,4.79144675925926,20.88084722222264,False,no recovery fit; below graphite/lower-plateau coverage
+6,True,4.79144675925926,21.00645805555591,False,no recovery fit; below graphite/lower-plateau coverage
+7,True,4.811770833333333,20.923780277777908,False,no recovery fit; below graphite/lower-plateau coverage
