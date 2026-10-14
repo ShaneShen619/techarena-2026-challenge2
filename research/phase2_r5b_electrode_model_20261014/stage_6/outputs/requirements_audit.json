@@ -1,0 +1,247 @@
+[
+  {
+    "requirement": "0.1",
+    "scope": "All stages completed or registered-exit skipped",
+    "disposition": "verified",
+    "evidence": "notes/STATUS.md; stage_3/outputs/S3_exit.json; stage_4/protocol.json; stage_5/outputs/S5_completion.json",
+    "note": "Stage4 is the only skipped stage. Completed historical stages retain disclosed deviations."
+  },
+  {
+    "requirement": "0.2",
+    "scope": "Bilingual conclusions-first final report and README",
+    "disposition": "verified",
+    "evidence": "FINAL_REPORT.md; README.md; stage_6/audit_completion.py:documents_and_isolation",
+    "note": "Both begin with keep V2 and no model qualification."
+  },
+  {
+    "requirement": "0.3",
+    "scope": "Every registered SHA committed before evaluation commit",
+    "disposition": "verified before delivery; stage6 final order checked after report commit",
+    "evidence": "stage_6/outputs/completion_evidence.json; audit_completion.py --post-commit",
+    "note": "All7 registered protocols, including independent audit. Stage0 had no registered protocol file; stage1 had disclosed development fit."
+  },
+  {
+    "requirement": "0.4",
+    "scope": "Every branch commit pushed to required origin branch",
+    "disposition": "post-push verification required",
+    "evidence": "audit_completion.py --post-commit",
+    "note": "Remote HEAD must equal local HEAD; no other branch is pushed."
+  },
+  {
+    "requirement": "0.5",
+    "scope": "No uncommitted study files",
+    "disposition": "post-push verification required",
+    "evidence": "git status --porcelain; audit_completion.py --post-commit",
+    "note": "Verified after all output writes and commits, not inferred from intent."
+  },
+  {
+    "requirement": "1",
+    "scope": "Worktree/branch isolation, explicit staging, coauthors, protected paths",
+    "disposition": "verified",
+    "evidence": "common5b.py; git diff a6bc61f HEAD; git log; notes/DECISIONS.md; completion_evidence.json",
+    "note": "Only this study changed; no submission integration; original concurrent work preserved."
+  },
+  {
+    "requirement": "1-docs",
+    "scope": "English-first bilingual Markdown and -B Python",
+    "disposition": "verified for new deliverables",
+    "evidence": "audit_completion.py; FINAL_REPORT.md reproduction commands",
+    "note": "Original reports preserved; verified stage1 report supersedes stronger claims."
+  },
+  {
+    "requirement": "3-cache",
+    "scope": "Worktree-local caches and complete new fit/profile cache keys",
+    "disposition": "verified with disclosed legacy snapshots",
+    "evidence": "src/common5b.py; stage_3/run_fits.py; stage_3/run_profiles.py; stage_5/run_diagnostics.py",
+    "note": "New keys include actual inputs, frozen configuration/OCP/source/fixed values and warm starts; write-only all_main_fits aggregation is not a lookup cache. Legacy bol snapshots retained as completed-fit provenance."
+  },
+  {
+    "requirement": "4.1",
+    "scope": "No artificial target endpoints, unavailable outside physical domain",
+    "disposition": "verified for accepted stage3+ target outputs; legacy deviation disclosed",
+    "evidence": "src/profile_pack.py; capacity_witnesses.json; independent/outputs/audit.json",
+    "note": "Every accepted witness has valid charge/discharge endpoints and pack11.2V root. Legacy invalid-state simulator remains archival, not promoted."
+  },
+  {
+    "requirement": "4.2",
+    "scope": "No new application proxy selection before registration; decision pseudo k>=3",
+    "disposition": "verified",
+    "evidence": "stage_4/outputs/S4_exit.json; S4_baseline_pseudo_decision_scope.csv",
+    "note": "No E1 or E3 application was run. Contextual old baselines are not selection experiments."
+  },
+  {
+    "requirement": "4.3",
+    "scope": "Implement formula exactly or report deviations",
+    "disposition": "reported deviations; no exact-fidelity claim",
+    "evidence": "stage_1/REPORT_VERIFIED.md; FINAL_REPORT.md deviations; notes/DECISIONS.md",
+    "note": "Generated current/ideal CCCV, start sampling, two-phase starts, development fit and legacy clipping/floor all explicit."
+  },
+  {
+    "requirement": "4.5",
+    "scope": "Exact-float candidate causality checks",
+    "disposition": "not applicable under registered exit",
+    "evidence": "stage_4/outputs/S4_exit.json",
+    "note": "No candidate qualified; G-causal/G-impl not run, never claimed passed."
+  },
+  {
+    "requirement": "4.7",
+    "scope": "Use residual-autocorrelation n_eff for confidence ranges",
+    "disposition": "verified",
+    "evidence": "S3_main_fits.csv; stage_6/audit_completion.py",
+    "note": "All32 residual sequences independently reconstructed; all3182 profile statistics/validity flags checked."
+  },
+  {
+    "requirement": "6.0",
+    "scope": "Setup, ignored cache, harness cache path, exact baseline reproduction",
+    "disposition": "verified",
+    "evidence": "stage0/reproduce.json; .gitignore; src/common5b.py; completion_evidence.json",
+    "note": "M4/V2 values independently compared with recomputed baseline metrics."
+  },
+  {
+    "requirement": "6.1a",
+    "scope": "Open licensed LFP/main+alternative graphite OCPs; grid and metadata",
+    "disposition": "verified",
+    "evidence": "ocp/SOURCES.md; ocp/ocp_meta.json; ocp/PyBaMM_LICENSE.txt; ocp_provenance_verified.json",
+    "note": "Installed function outputs equal all1001 CSV points within rounding; source/version/hashes retained."
+  },
+  {
+    "requirement": "6.1b",
+    "scope": "Electrode equations, health/event parameters and pack quantities",
+    "disposition": "completed with disclosed legacy validity/current deviations",
+    "evidence": "src/emodel.py; src/epack.py; src/profile_pack.py; FINAL_REPORT.md",
+    "note": "Accepted states verified in [0,1]. Invalid negative-R reference chain is unavailable. Ideal-current simulation is not measured replay."
+  },
+  {
+    "requirement": "6.1c",
+    "scope": "All-anchor/cell whole-charge robust fits, initial2Ah exclusion, dVdQ variant and residual autocorrelation",
+    "disposition": "verified",
+    "evidence": "edata.py; S3_main_fits.csv; stage_1/outputs/S1_anchor1_fits.csv",
+    "note": "Main32 fits plus stage1 anchor1 alternative/dVdQ diagnostic. Stage4 variants conditional on exit, not run."
+  },
+  {
+    "requirement": "6.1d",
+    "scope": "30-state noise/degradation recovery, all six errors and synthetic exit",
+    "disposition": "completed with explicit surrogate-current/start deviation",
+    "evidence": "S1_synthetic.csv; S1_synthetic_summary.json; synthetic_recovery_all_modes.csv; REPORT_VERIFIED.md",
+    "note": "Numeric Q_C20/beta gates pass only for surrogate. LAM errors reported exactly in saved fractional units; exact per-state mean-cell Ah losses not retained and not invented."
+  },
+  {
+    "requirement": "6.2-ref",
+    "scope": "Anchor0 main45C and anchor1 reference variant",
+    "disposition": "verified",
+    "evidence": "S2_ck0_check.json; stage_2/REPORT.md",
+    "note": "25C OCP mismatch recorded."
+  },
+  {
+    "requirement": "6.2-fit",
+    "scope": "CK0 health fixed, eta/start fit5..85.412 only; never last15Ah",
+    "disposition": "verified",
+    "evidence": "stage_2/run_2.py:fit_ck0; stage_6/audit_completion.py",
+    "note": "Source inspected; heldout predictions independently recomputed without fitting."
+  },
+  {
+    "requirement": "6.2-check",
+    "scope": "Root vs100.41/100.416854, tail per-cell RMS, step positions, limiting cell, credibility",
+    "disposition": "verified",
+    "evidence": "S2_ck0_check.json; completion_evidence.json; S5_limiting_cells.csv",
+    "note": "Main scalar passes; anchor1 variant fails. Full anchor chain separately rejected."
+  },
+  {
+    "requirement": "6.3-fits",
+    "scope": "All32 per-cell fits with modes/event state and residuals",
+    "disposition": "verified",
+    "evidence": "S3_main_fits.csv; audit_completion.py",
+    "note": "All expected anchor-cell pairs present and domain-valid."
+  },
+  {
+    "requirement": "6.3-profiles",
+    "scope": "Fixed LLI nuisance refits; pack Q_C20/Qfc error/beta nominal95 envelopes",
+    "disposition": "verified as conservative diagnostic, no narrow-range claim",
+    "evidence": "S3_LLI_profile_fits.csv; S3_pack_intervals.csv; capacity_witnesses.json",
+    "note": "All32 fixed-QLi grids complete. Witnessed spans are lower bounds, not exhaustive95 limits. Missing roots/zero beta denominator make full finite intervals unavailable."
+  },
+  {
+    "requirement": "6.3-confound",
+    "scope": "LLI/start-voltage correlation and monotonic trajectory",
+    "disposition": "verified",
+    "evidence": "S3_LLI_trajectory.csv; S3_exit.json; audit_completion.py",
+    "note": "r=.454717; point/interval monotonicity compatible, not mechanism validation."
+  },
+  {
+    "requirement": "6.3-exit",
+    "scope": "Apply all four preregistered identifiability conditions",
+    "disposition": "verified exit",
+    "evidence": "stage_3/protocol.json; S3_exit.json",
+    "note": "0/7 capacity and0/7 beta certification; failure alone precludes stage4 despite surrogate numeric pass and monotonic LLI."
+  },
+  {
+    "requirement": "6.4-E1",
+    "scope": "Main mechanistic beta and four variants; pseudo-first/real/gates",
+    "disposition": "skipped by registered exit",
+    "evidence": "stage_4/protocol.json; S4_exit.json; FINAL_REPORT.md E1 table",
+    "note": "No model application scores. Each main/variant explicitly not evaluated, all7 gates not run. No pseudo-first commit required for an experiment that was skipped."
+  },
+  {
+    "requirement": "6.4-E3",
+    "scope": "Mechanistic epsilon and leaderboard-only SOH table",
+    "disposition": "skipped by registered exit",
+    "evidence": "S4_exit.json; FINAL_REPORT.md CK0 chain and E3 decision",
+    "note": "Raw epsilon0 diagnostic supplied, no E3 SOH prediction generated or proxy improvement claimed."
+  },
+  {
+    "requirement": "6.5-modes",
+    "scope": "Per-cell LLI/LAM_NE/LAM_PE point/95 ranges, figure/table, identification status",
+    "disposition": "verified",
+    "evidence": "S5_modes_per_cell.csv; S5_health_component_intervals.csv; S5_material_profiles.csv; S5_degradation_modes.png",
+    "note": "32 mode rows,96 components,1916 extra nuisance refits; all grids verified. Figure visually inspected, intervals/negative LAM warning visible."
+  },
+  {
+    "requirement": "6.5-cells",
+    "scope": "Every checkup limiting cell and second-cell Ah gap; comparison with round3",
+    "disposition": "verified diagnostic/availability reporting",
+    "evidence": "S5_limiting_cells.csv; audit_completion.py; FINAL_REPORT.md",
+    "note": "All8 rows; causal last-visible anchors; separate2.8V/domain gaps; CK1 unavailable. Cell labels remain unidentified."
+  },
+  {
+    "requirement": "6.5-share",
+    "scope": "Compare LLI/total-loss share with68–79% and LFP literature expectations",
+    "disposition": "completed with unsupported quantity explicitly unavailable",
+    "evidence": "S5_mode_share_comparison.csv; FINAL_REPORT.md",
+    "note": "Model C20 total share unavailable due invalid reference chain; observed-Qfc-loss ratio1.37–1.82 is not a validated share. Literature expectation is not proof."
+  },
+  {
+    "requirement": "6.5-recovery",
+    "scope": "First roughly5-day CCCV coverage; fit only if window permits",
+    "disposition": "registered coverage exit verified",
+    "evidence": "S5_recovery_coverage.csv; stage_5/protocol.json; run_diagnostics.py",
+    "note": "All8 depths20.88–21.52Ah below45Ah threshold; no recovery fit permitted, no mechanism attribution."
+  },
+  {
+    "requirement": "6.6-final",
+    "scope": "All eight final-report items and bilingual README",
+    "disposition": "verified",
+    "evidence": "FINAL_REPORT.md; README.md; report local links checked",
+    "note": "OCP/synthetic, CK0, audit/exit, E1 main/variants+baselines/perCK, E3 conditional skip, modes, all named risks, reproduction commands."
+  },
+  {
+    "requirement": "6.6-candidate",
+    "scope": "Self-contained OCP/numpy fit candidate and exact causal/implementation evidence",
+    "disposition": "not applicable under registered exit",
+    "evidence": "S4_exit.json; absence of candidate_model/",
+    "note": "Required only for all-gate-passing models; none eligible. No submission wiring."
+  },
+  {
+    "requirement": "7",
+    "scope": "Stage caps and stop rules",
+    "disposition": "completed/registered exits; recorded runtimes within caps",
+    "evidence": "stage_3/outputs/S3_exit.json; stage_5/outputs/S5_completion.json; stage_6/outputs/S6_completion.json",
+    "note": "Historical completed stages not rerun; no cap invented as a substitute for completing required diagnostics."
+  },
+  {
+    "requirement": "8",
+    "scope": "No hidden-label reconstruction, no other checkout writes, no force/other-branch push",
+    "disposition": "verified from current diff and executed commands",
+    "evidence": "git status; git diff a6bc61f HEAD; branch push output; common5b.py",
+    "note": "Earlier report-summary read in another checkout did not mutate that checkout; all R5B work isolated here."
+  }
+]

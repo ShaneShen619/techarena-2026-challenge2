@@ -1,0 +1,30 @@
+{
+  "pybamm_version": "26.10.1.0",
+  "license_sha256": "e32e218b9184b0c498c1e13a8e66c1e67df9ef48ba9071bd2a5ebe04efdb303a",
+  "tables": {
+    "lfp_afshar2017.csv": {
+      "function": "LFP_ocp_Afshar2017",
+      "module": "pybamm.input.parameters.lithium_ion.Prada2013",
+      "source_sha256": "e8300a919e971705f8127be6475dd8725ce5e8a211f2e0695e92e24f5b680f0e",
+      "csv_sha256": "b729e33743db150a719ea2261e173c344ead5ecaf9d0d81b2a6338c80a773562",
+      "max_tabulation_roundoff_V": 4.997026792352699e-09,
+      "points": 1001
+    },
+    "graphite_chen2020.csv": {
+      "function": "graphite_LGM50_ocp_Chen2020",
+      "module": "pybamm.input.parameters.lithium_ion.Chen2020",
+      "source_sha256": "0bdcc03354d1e3ac01bec73785aac768a566064daa74c7e1a017e5b73a09e762",
+      "csv_sha256": "65155e082885a22f88d33cd17fb95b5b43fbb583765d6119ef02a3bcff6af9bf",
+      "max_tabulation_roundoff_V": 4.997031288755949e-09,
+      "points": 1001
+    },
+    "graphite_ecker2015.csv": {
+      "function": "graphite_ocp_Ecker2015",
+      "module": "pybamm.input.parameters.lithium_ion.Ecker2015",
+      "source_sha256": "689c88da8562094f72bbcd90831c022f850d1f13bcd13f15e19e60c87d5a0a93",
+      "csv_sha256": "f801dcc83f0c58cd2ea3d9f5072163bc2497f7a75ce2206476c0f2b2142fbd28",
+      "max_tabulation_roundoff_V": 4.991523708253176e-09,
+      "points": 1001
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "elapsed_seconds_to_scientific_audit": 423.7664542198181,
+  "cap_seconds": 3600,
+  "cap_reached": false,
+  "required_artifacts_written": true,
+  "scientific_audit_passed": true,
+  "delivery_audit": "run after final commit/push"
+}

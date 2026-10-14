@@ -1,0 +1,107 @@
+{
+  "scientific": {
+    "synthetic_states": 30,
+    "synthetic_recovery_quantities_verified": {
+      "Q_C20": 0.03366659697137919,
+      "beta_E": 0.07050526186097061,
+      "Q_fc": 0.04015511498639768,
+      "LLI": 0.17347985689200174,
+      "LAM_NE fraction": 0.25530880573421,
+      "LAM_PE fraction": 0.07101039157899995
+    },
+    "fixed_grids_verified": 96,
+    "profile_validity_flags_verified": 3182,
+    "main_fit_rows_verified": 32,
+    "capacity_witness_endpoints": 14,
+    "CK0": {
+      "main_anchor0": {
+        "root_Ah": 100.6986038664616,
+        "tail_rms_mV": [
+          23.39923016240788,
+          23.929638844247766,
+          25.77308126561922,
+          24.130544512544294
+        ],
+        "scalar_credible": true
+      },
+      "variant_anchor1": {
+        "root_Ah": 107.47681318703883,
+        "tail_rms_mV": [
+          57.558710834592176,
+          59.61177183489484,
+          60.73747954272554,
+          54.566028078856554
+        ],
+        "scalar_credible": false
+      }
+    },
+    "mode_rows_verified": 32,
+    "nominal_component_intervals": 96,
+    "limiting_rows": 8,
+    "recovery_rows": 8,
+    "recovery_fit_supported": false,
+    "baseline_metrics_recomputed": true,
+    "pseudo_decision_scope_excludes_CK2": true,
+    "registered_stage4_exit_verified": true,
+    "original_synthetic_current_replay_requirement": "deviation; surrogate only, not validated as exact replay",
+    "legacy_hard_domain_rejection": "deviation in preserved stage1/2; stage3+ helpers reject invalid targets"
+  },
+  "protocol_commit_order": [
+    {
+      "stage": "stage_1",
+      "sha256": "8d1f78b6e5f4deddaf119a4d3a4720718f6f8dd392d194fac90dd4d1a41958f7",
+      "protocol_commit": "1d716259e8405115b53a81ebdba76e8eaf289681",
+      "evaluation_commit": "808fc034f4170a835aa94d267b5430ca7863296b",
+      "evaluation_order": "verified"
+    },
+    {
+      "stage": "stage_2",
+      "sha256": "4a68a9729d2d9b4133b4ec28f22898b459000dd0dc4f0aac574f57489fdf2c6c",
+      "protocol_commit": "1173340091abde45c0fc80ce991f4c03685cf7f3",
+      "evaluation_commit": "4aa68be5bc6f158d331469c245257bb432b81055",
+      "evaluation_order": "verified"
+    },
+    {
+      "stage": "independent",
+      "sha256": "3981214d55359bb65beab4e111af3a5e670c78fa3127fdc46c063928b1eba507",
+      "protocol_commit": "d580300715cacf352668ad9992601984b189b8d4",
+      "evaluation_commit": "4aa68be5bc6f158d331469c245257bb432b81055",
+      "evaluation_order": "verified"
+    },
+    {
+      "stage": "stage_3",
+      "sha256": "653871aaa6ece2a349c18cff9c90ed6f4a2ebe5855109ad60e5e7c66a5f94d46",
+      "protocol_commit": "bd3b526e070cdd9583ac994a3142718add917898",
+      "evaluation_commit": "ceb24a35d46e21bf17f72a6681c49ee6f8209523",
+      "evaluation_order": "verified"
+    },
+    {
+      "stage": "stage_4",
+      "sha256": "074d1b23c8eeb81230d92e04eb71dc127d239e066891600f234f8fea810cf32f",
+      "protocol_commit": "74a5e4c7371901f3ec3dedff429ea39fada130f7",
+      "evaluation_commit": "12e4a53984f0e97a93b0cb402494607bfa2e1efc",
+      "evaluation_order": "verified"
+    },
+    {
+      "stage": "stage_5",
+      "sha256": "67f612b7dea4f122d22234a1cafe486f5a1c449f716d8b0655ca02656a62fc4c",
+      "protocol_commit": "577ee7e3eae330f55baa6934ac3d035ec628f700",
+      "evaluation_commit": "70c2c9f9af38c7fcc9f73c2fe3e4edafc4afd84d",
+      "evaluation_order": "verified"
+    },
+    {
+      "stage": "stage_6",
+      "sha256": "3feee2a45f4748c522280a0842b10dcd2897e27e23112e7dfb1dce8668a82026",
+      "protocol_commit": "f5617b738bb09437089959d5ec9de205ba80b1eb",
+      "evaluation_commit": null,
+      "evaluation_order": "pending final evaluation commit"
+    }
+  ],
+  "documents_and_isolation": {
+    "protected_tracked_paths_unchanged": true,
+    "bilingual_deliverables_verified": true,
+    "all_commit_coauthors_verified": true,
+    "candidate_not_required_due_registered_exit": true
+  },
+  "delivery": "pending final commit/push and --post-commit read-only audit"
+}

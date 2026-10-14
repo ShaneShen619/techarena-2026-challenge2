@@ -1,0 +1,7 @@
+Quantity,Median absolute recovery error,Unit
+Q_C20,0.03366659697137919,Ah
+beta_E,0.07050526186097061,dimensionless
+Q_fc,0.04015511498640478,Ah
+LLI,0.17347985689200174,Ah
+LAM_NE fraction,0.25530880573421,percentage points of reference electrode capacity
+LAM_PE fraction,0.07101039157899995,percentage points of reference electrode capacity
