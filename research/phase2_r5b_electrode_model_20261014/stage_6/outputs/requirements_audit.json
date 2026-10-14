@@ -16,22 +16,22 @@
   {
     "requirement": "0.3",
     "scope": "Every registered SHA committed before evaluation commit",
-    "disposition": "verified before delivery; stage6 final order checked after report commit",
-    "evidence": "stage_6/outputs/completion_evidence.json; audit_completion.py --post-commit",
+    "disposition": "verified on report commit; final record HEAD rechecked after its push",
+    "evidence": "stage_6/outputs/completion_evidence.json; audit_completion.py --post-commit; stage_6/outputs/delivery_verified_report_commit.json",
     "note": "All7 registered protocols, including independent audit. Stage0 had no registered protocol file; stage1 had disclosed development fit."
   },
   {
     "requirement": "0.4",
     "scope": "Every branch commit pushed to required origin branch",
-    "disposition": "post-push verification required",
-    "evidence": "audit_completion.py --post-commit",
+    "disposition": "verified on report commit; final record HEAD rechecked after its push",
+    "evidence": "audit_completion.py --post-commit; stage_6/outputs/delivery_verified_report_commit.json",
     "note": "Remote HEAD must equal local HEAD; no other branch is pushed."
   },
   {
     "requirement": "0.5",
     "scope": "No uncommitted study files",
-    "disposition": "post-push verification required",
-    "evidence": "git status --porcelain; audit_completion.py --post-commit",
+    "disposition": "verified on report commit; final record HEAD rechecked after its push",
+    "evidence": "git status --porcelain; audit_completion.py --post-commit; stage_6/outputs/delivery_verified_report_commit.json",
     "note": "Verified after all output writes and commits, not inferred from intent."
   },
   {

@@ -4,5 +4,7 @@
   "cap_reached": false,
   "required_artifacts_written": true,
   "scientific_audit_passed": true,
-  "delivery_audit": "run after final commit/push"
+  "delivery_audit": "passed for report commit; repeat for final record HEAD",
+  "elapsed_seconds_to_delivery_verification": 505.8094642162323,
+  "verified_report_commit": "1d2ecf57fb287020bb05d64b080de428135c849b"
 }

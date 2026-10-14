@@ -93,8 +93,8 @@
       "stage": "stage_6",
       "sha256": "3feee2a45f4748c522280a0842b10dcd2897e27e23112e7dfb1dce8668a82026",
       "protocol_commit": "f5617b738bb09437089959d5ec9de205ba80b1eb",
-      "evaluation_commit": null,
-      "evaluation_order": "pending final evaluation commit"
+      "evaluation_commit": "1d2ecf57fb287020bb05d64b080de428135c849b",
+      "evaluation_order": "verified"
     }
   ],
   "documents_and_isolation": {
@@ -103,5 +103,9 @@
     "all_commit_coauthors_verified": true,
     "candidate_not_required_due_registered_exit": true
   },
-  "delivery": "pending final commit/push and --post-commit read-only audit"
+  "delivery": {
+    "report_commit_verified": "1d2ecf57fb287020bb05d64b080de428135c849b",
+    "verification_snapshot": "delivery_verified_report_commit.json",
+    "final_record_commit": "after writing this record, push and repeat read-only --post-commit audit"
+  }
 }
