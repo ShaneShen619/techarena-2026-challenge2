@@ -1,0 +1,82 @@
+{
+ "S_main": {
+  "G-proxy": false,
+  "G-epsfree": {
+   "model": 0.19168822822681272,
+   "V2": 0.2155472671451436,
+   "passed": true
+  },
+  "G-regress": {
+   "max_abs_err_increase_pp": 0.9171065257440184,
+   "passed": false
+  },
+  "G-robust": {
+   "group_wins": {
+    "G1_zfree": false,
+    "G2_Ea": false,
+    "G3_terms": false,
+    "G4_z1": false,
+    "G5_preage30": false,
+    "G6_checkup200": false,
+    "G7_sigma": false,
+    "G8_noprior": false
+   },
+   "wins": 0,
+   "passed": false
+  },
+  "G-pseudo": {
+   "model": 0.130547628726927,
+   "V2": 0.2400235571547599,
+   "passed": true
+  },
+  "all_performance_gates": false
+ },
+ "ENS50": {
+  "G-proxy": false,
+  "G-epsfree": {
+   "model": 0.1730307013054467,
+   "V2": 0.2155472671451436,
+   "passed": true
+  },
+  "G-robust": {
+   "wins": 6,
+   "passed": true
+  },
+  "G-regress": {
+   "max_abs_err_increase_pp": 0.24175751123757833,
+   "passed": true
+  },
+  "G-pseudo": {
+   "model": 0.1441764643372926,
+   "V2": 0.2400235571547599,
+   "passed": true
+  },
+  "all_performance_gates": false
+ },
+ "V2_Sfb": {
+  "G-proxy": false,
+  "G-epsfree": {
+   "model": 0.18914196063505115,
+   "V2": 0.2155472671451436,
+   "passed": true
+  },
+  "G-robust": {
+   "wins": 0,
+   "passed": false
+  },
+  "G-regress": {
+   "max_abs_err_increase_pp": 0.9171065257440184,
+   "passed": false
+  },
+  "G-pseudo": {
+   "model": 0.147319032928486,
+   "V2": 0.2400235571547599,
+   "passed": true
+  },
+  "all_performance_gates": false
+ },
+ "selection": {
+  "passing": [],
+  "chosen": null
+ }
+}
