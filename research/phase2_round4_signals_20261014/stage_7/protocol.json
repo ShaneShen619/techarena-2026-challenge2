@@ -1,0 +1,19 @@
+{
+  "stage": "7",
+  "registered": "2026-10-14, before stage-7 code was written or run",
+  "SS_fixed": {
+    "model": "round-3 state-space model (round3 src/statespace.py) with one extra parameter o: Q(t) = 100.41 + o + sum_m[...]; prior o ~ N(0, 0.5^2) Ah; anchor observations m>=1 unchanged (Q_fc + eps, SD 0.05); prediction Q(CK_k) includes o; tau_tr = 8 d (main), beta = V2 beta_a4 (A4 2 Ah), random walk 0.02",
+    "deviation": "adding o cannot be done by wrapping; src/ss_fixed.py is a copy of round-3 fit_predict with the single added parameter; round-3 file unchanged",
+    "variants": [
+      "tau_tr 5 d",
+      "tau_tr 3 d"
+    ]
+  },
+  "BETA_startcorr": {
+    "model": "V2 phase branch with beta from round-3 registration (src/registration.py, mode V, fit full, A4 2 Ah reference): for visible 25 C anchors j=2..k-1, dbottom_j (four-cell mean of registered bottom minus anchor-1 p1) and dv_j = mean start cell voltage(j) - (anchor 1); if >=3 anchors: c = sum(dv*dbottom)/sum(dv^2) (LS through origin), dbottom_corr = dbottom - c*dv; else beta0 = 1. pairs (dQ - dbottom_corr, dQ), shrink(beta0=1, tau=1)",
+    "variants": [
+      "no shrink (tau -> 0)"
+    ]
+  },
+  "gates": "common gates vs V2 (prompt section 5); expected weak"
+}
