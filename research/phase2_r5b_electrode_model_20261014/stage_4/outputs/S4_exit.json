@@ -1,0 +1,12 @@
+{
+  "stage": "skipped by registered stage3 exit",
+  "E1": "not evaluated",
+  "E1_variants": "not evaluated",
+  "E3": "not produced",
+  "G_causal": "not run; no eligible candidate",
+  "G_impl": "not run; no eligible candidate",
+  "baseline_source": "phase2_round3_models_20261014/stage0/baseline_long.csv",
+  "baseline_source_sha256": "afc711e47c671dcc606728b9edca63ac0251f5f4bad53d0a28a500d5d856cdc9",
+  "no_new_proxy_model_evaluated": true,
+  "PC_CK2_used_for_decision": false
+}
