@@ -1,0 +1,28 @@
+{
+  "stage": "Final synthesis and requirement-by-requirement completion audit; no new predictor evaluation",
+  "start_epoch": 1792019259.0491378,
+  "cap_seconds": 3600,
+  "main": "Retain V2. Stage3 exit precludes E1, all four variants, E3 and candidate classes. Do not redo completed fits or select by exposed proxies.",
+  "deliverables": [
+    "Bilingual conclusions-first FINAL_REPORT.md and README.md",
+    "Verified stage1 clarification with all six synthetic recovery errors",
+    "Full PyBaMM BSD-3 license",
+    "Explicit stage0..6 statuses",
+    "Completion evidence and protocol/evaluation git order"
+  ],
+  "audit": [
+    "Verify every protocol SHA and ancestor ordering before evaluation commit",
+    "Reconstruct every fixed QLi/Qn/Qp grid from source configuration; require full grid coverage or record actual cap",
+    "Inspect all32 fit states, n_eff and physical validity; verify accepted profile flags and statistics",
+    "Reconstruct deterministic Cartesian witnesses and record exact admissible minimum/maximum capacity tuples; do not refit finished stages",
+    "Recompute heldout CK0 root and tail RMS without fitting; assert no last15Ah fit usage",
+    "Verify contextual baseline metrics and k>=3 pseudo scope from original rows",
+    "Verify32 mode rows/96 component intervals/8 limiting-cell and recovery rows and visual figure",
+    "Verify protected tracked paths unchanged against a6bc61f",
+    "Verify bilingual markers, explicit exits and candidate conditional scope",
+    "Post-commit audit: stage6 protocol before report commit; clean study status, remote HEAD equals local HEAD"
+  ],
+  "interval_claims": "Nominal model-conditional profiles only. Witnessed capacity extrema are lower bounds on full-box widths; unavailable beta and roots never become certified finite intervals.",
+  "deviations": "Preserve original legacy artifacts; new clarification supersedes claims of exact current replay/hard state rejection. Synthetic current surrogate, ideal CCCV rather than measured current replay, pre-registration development fit and legacy clipping/negative-R floor all disclosed.",
+  "exposure": "exposed-exploratory; CK0 is the only released capacity label; no hidden truth or new proxy-based claims"
+}
