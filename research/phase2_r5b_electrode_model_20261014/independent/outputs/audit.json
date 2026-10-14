@@ -1,0 +1,51 @@
+{
+  "synthetic": {
+    "rows": 30,
+    "valid_states": 30,
+    "finite_counts": {
+      "Q_C20_true": 30,
+      "Q_C20_fit": 30,
+      "Q_fc_true": 30,
+      "Q_fc_fit": 30,
+      "beta_true": 30,
+      "beta_fit": 30
+    },
+    "median_abs_LAM_NE_error_pct": 0.25530880573421,
+    "median_abs_LAM_PE_error_pct": 0.07101039157899995,
+    "current_profile_deviation": "Synthetic current is model-generated CCCV, not the measured anchor1 profile specified in the prompt and protocol; documented D1.2."
+  },
+  "invalid_theta_test": {
+    "theta_n_at_start": 1.2,
+    "bounds_violation": 0.19999999999999996,
+    "Q_fc_returned": 97.7978327748936,
+    "invalid_state_rejected": false,
+    "interpretation": "Any finite charge result from this invalid state contradicts the required hard stoichiometry rejection."
+  },
+  "CK0": {
+    "main_anchor0": {
+      "reference_fit_charge_valid": true,
+      "sum_R_Ohm": -0.006647769212077805,
+      "CCCV_resistance_floor_used": true,
+      "registered_CK0_credible": true,
+      "root_error_Ah": 0.2886038664615995,
+      "CCCV_chain_error_Ah": 1.9887467184530436,
+      "model_uses_tail_in_discharge_fit": false,
+      "source_window_evidence": "stage_2/run_2.py uses d in [5,85.412] then [::10]; last15Ah only used for prediction diagnostics."
+    },
+    "variant_anchor1": {
+      "reference_fit_charge_valid": true,
+      "sum_R_Ohm": 0.029724746177468373,
+      "CCCV_resistance_floor_used": false,
+      "registered_CK0_credible": false,
+      "root_error_Ah": 7.066813187038832,
+      "CCCV_chain_error_Ah": 8.237439847299044,
+      "model_uses_tail_in_discharge_fit": false,
+      "source_window_evidence": "stage_2/run_2.py uses d in [5,85.412] then [::10]; last15Ah only used for prediction diagnostics."
+    }
+  },
+  "protocol_hashes": {
+    "independent/protocol.json": true,
+    "stage_1/protocol.json": true,
+    "stage_2/protocol.json": true
+  }
+}
