@@ -60,7 +60,7 @@ Notes on running:
 | `inputs/` | comparison inputs copied from the archive branch (B baseline) |
 | `src/events.py` | event extraction: integrated charge, full charges, step location, CK0 reference |
 | `src/predictors.py` | pre-registered predictors M2–M5 |
-| `candidate_model/anchor_step_model.py` | framework-compatible candidate class `AnchorStepModel` (research copy; the equivalent `MyModel` in the submission package's `my_model/model_template.py` is wired in) |
+| `candidate_model/anchor_step_model.py` | framework-compatible candidate class `AnchorStepModel` (research copy; it was the submission's `MyModel` from 2026-10-13 until it was replaced by V2 on 2026-10-14) |
 | `stage_*.py` | stage scripts |
 | `outputs/`, `figures/` | all results and figures |
 
@@ -121,6 +121,6 @@ python3 stage_g_figures.py         # G：图                        -> figures/o
 | `inputs/` | 从归档分支复制的对照输入（B 基线） |
 | `src/events.py` | 事件提取：积分电量、完整充电、台阶定位、CK0 参考 |
 | `src/predictors.py` | 预登记预测器 M2–M5 |
-| `candidate_model/anchor_step_model.py` | 可接入框架的候选类 `AnchorStepModel`（研究副本；提交包中 `my_model/model_template.py` 的 `MyModel` 与它等价，已接入） |
+| `candidate_model/anchor_step_model.py` | 可接入框架的候选类 `AnchorStepModel`（研究副本；2026-10-13 起曾是提交包中的 `MyModel`，2026-10-14 被 V2 取代） |
 | `stage_*.py` | 各阶段运行脚本 |
 | `outputs/`、`figures/` | 全部结果与图 |

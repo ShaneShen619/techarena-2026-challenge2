@@ -16,7 +16,7 @@ The conclusions are in [FINAL_REPORT.md](FINAL_REPORT.md). The protocol is in [p
 | `src/v2.py` | research implementation: month split, month-end 45 °C values, rate, β (A4 / direct calibration), V2 predictor |
 | `stage_v2_eval.py` | causal prediction + proxy evaluation + gates H2–H5 |
 | `stage_v2_candidate.py` | runs the candidate class the way run_model.py does, checks H1 and H6, smoke test on sample_data |
-| `candidate_model/anchor_step_v2_model.py` | framework-compatible candidate class `MyModel` (numpy / pandas only; not yet wired into the submission) |
+| `candidate_model/anchor_step_v2_model.py` | framework-compatible candidate class `MyModel` (numpy / pandas only; wired into the submission as `my_model/model_template.py` on 2026-10-14) |
 | `outputs/` | all results |
 
 **Dependencies.** The study reuses `../phase2_anchor_step_20261013/src/events.py` and that study's requirements. Data and framework come from `TechArena_Challenge2_Team_Package/`.
@@ -41,7 +41,7 @@ V2 容量估计：在 V1（检查后完整充电锚点 + 石墨台阶位移）�
 | `src/v2.py` | 研究实现：月份划分、月末 45 °C 值、速率、β（A4 / 直接标定）、V2 预测器 |
 | `stage_v2_eval.py` | 因果预测 + 代理评估 + 门 H2–H5 |
 | `stage_v2_candidate.py` | 候选类按 run_model.py 方式运行，检查 H1、H6，sample_data 冒烟 |
-| `candidate_model/anchor_step_v2_model.py` | 可接入框架的候选类 `MyModel`（只依赖 numpy / pandas，尚未接入正式提交） |
+| `candidate_model/anchor_step_v2_model.py` | 可接入框架的候选类 `MyModel`（只依赖 numpy / pandas；2026-10-14 已作为 `my_model/model_template.py` 接入正式提交） |
 | `outputs/` | 全部结果 |
 
 依赖：复用 `../phase2_anchor_step_20261013/src/events.py` 与其 requirements；数据与框架来自 `TechArena_Challenge2_Team_Package/`。

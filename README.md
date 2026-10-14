@@ -21,9 +21,9 @@ The proxy label is the post-checkup full charge plus an offset. On it, the stric
 .
 ├── README.md                              this file
 ├── .gitignore
-├── TechArena_Challenge2_Team_Package/     submission package (official template + wired-in V1 model)
+├── TechArena_Challenge2_Team_Package/     submission package (official template + wired-in V2 model)
 │   ├── framework/  run_model.py  validate_submission.py   official framework, do not modify
-│   ├── my_model/                          active model entry (MyModel = V1 anchor + step)
+│   ├── my_model/                          active model entry (MyModel = V2 anchor + phase-matched step)
 │   ├── README.md  REPORT.md               submission write-up and report
 │   ├── data/                              official operating data and CK0 checkup data
 │   ├── sample_data/                       small sample used by the validator
@@ -56,16 +56,15 @@ To see only the candidate's per-checkup output, run `stage_bcd_causal_eval.py` a
 
 ## Current status
 
-- **V1 is wired into the submission.**
-  - `MyModel` in `TechArena_Challenge2_Team_Package/my_model/model_template.py` is `AnchorStepModel`, and the switch points at `MyModel`.
+- **V2 is wired into the submission (2026-10-14).**
+  - `MyModel` in `TechArena_Challenge2_Team_Package/my_model/model_template.py` is the V2 candidate class from [research/phase2_v2_phase_matched_20261013/](research/phase2_v2_phase_matched_20261013/): phase-matched 45 °C step differencing plus a physics β. The switch points at `MyModel`.
   - `validate_submission.py` passes in a fresh Python 3.11 venv.
-  - The full-data output is identical to `outputs/F_candidate_predictions.csv`, both with numpy 1.24 / pandas 2.0 and with numpy 2.4 / pandas 3.0.
-  - The submission README and REPORT.md have been updated to the submission requirements. Team name and members are still to be filled in.
+  - The full-data output is identical to `outputs/V2_candidate_predictions.csv`, both with numpy 1.24 / pandas 2.0 and with numpy 2.4 / pandas 3.0.
+  - Proxy MAE is 0.22 pp (V1: 0.29 pp). This is exposed-exploratory validation.
+  - The submission README and REPORT.md describe V2. Team name and members are still to be filled in.
   - The zip has not been built and nothing has been submitted.
-- **V2 candidate** ([research/phase2_v2_phase_matched_20261013/](research/phase2_v2_phase_matched_20261013/)).
-  - Phase-matched 45 °C step differencing plus a physics β.
-  - Proxy MAE 0.29 → 0.22 pp. The pre-registered gates H1–H6 all pass (exposed-exploratory validation).
-  - Not yet wired into the submission.
+- **V1** ([research/phase2_anchor_step_20261013/](research/phase2_anchor_step_20261013/)) was the active model until 2026-10-14 and remains in git history (commit `60a602d`).
+- **Further alternatives** were tested on branches `exp/phase2-round3-models-20261014` and `exp/phase2-round4-signals-20261014`; none beat V2.
 - **Main risks.** These are covered in the risk section of both reports:
   - the offset ε between the checkup protocol and the operating charge
   - the post-checkup recovery
@@ -77,7 +76,7 @@ To see only the candidate's per-checkup output, run `stage_bcd_causal_eval.py` a
 | Branch | Contents |
 |---|---|
 | `main` | official submission template |
-| `exp/phase2-anchor-step-20261013` | this branch: main + new model (V1 wired into the package, V2 as candidate) |
+| `exp/phase2-anchor-step-20261013` | this branch: main + new model (V2 wired into the package; V1 in history) |
 | `research-archive-20261010` | all other research up to 2026-10-13 (literature, earlier experiments, failed-route reports, diagnostics) |
 
 ---
@@ -105,9 +104,9 @@ To see only the candidate's per-checkup output, run `stage_bcd_causal_eval.py` a
 .
 ├── README.md                              本文件
 ├── .gitignore
-├── TechArena_Challenge2_Team_Package/     提交包（官方模板 + 已接入的 V1 模型）
+├── TechArena_Challenge2_Team_Package/     提交包（官方模板 + 已接入的 V2 模型）
 │   ├── framework/  run_model.py  validate_submission.py   官方框架，不可修改
-│   ├── my_model/                          正式模型入口（MyModel = V1 锚点 + 台阶）
+│   ├── my_model/                          正式模型入口（MyModel = V2 锚点 + 同相位台阶）
 │   ├── README.md  REPORT.md               提交用方法说明与报告
 │   ├── data/                              官方运行数据与 CK0 检查数据
 │   ├── sample_data/                       validator 用的小样本
@@ -140,8 +139,9 @@ python3 stage_a_events.py && python3 stage_bcd_causal_eval.py && python3 stage_e
 
 ## 当前状态
 
-- **V1 已接入正式提交**：`TechArena_Challenge2_Team_Package/my_model/model_template.py` 中的 `MyModel` 即 `AnchorStepModel`，开关已切到 `MyModel`。在全新 Python 3.11 venv 中 `validate_submission.py` 通过；全量数据输出与 `outputs/F_candidate_predictions.csv` 逐位一致（numpy 1.24/pandas 2.0 与 numpy 2.4/pandas 3.0 下相同）。提交包的 README 与 REPORT.md 已按提交要求更新（队名、成员待填）。尚未打包 zip、尚未提交。
-- **V2 候选**（[research/phase2_v2_phase_matched_20261013/](research/phase2_v2_phase_matched_20261013/)）：同相位 45 °C 台阶差分 + 物理 β，代理 MAE 0.29 → 0.22 pp，预登记门 H1–H6 全部通过（已曝光的探索性验证）。尚未接入正式提交。
+- **V2 已接入正式提交（2026-10-14）**：`TechArena_Challenge2_Team_Package/my_model/model_template.py` 中的 `MyModel` 即 [research/phase2_v2_phase_matched_20261013/](research/phase2_v2_phase_matched_20261013/) 的 V2 候选类（同相位 45 °C 台阶差分 + 物理 β），开关指向 `MyModel`。在全新 Python 3.11 venv 中 `validate_submission.py` 通过；全量数据输出与 `outputs/V2_candidate_predictions.csv` 逐位一致（numpy 1.24/pandas 2.0 与 numpy 2.4/pandas 3.0 下相同）。代理 MAE 0.22 pp（V1 为 0.29 pp），属已曝光的探索性验证。提交包的 README 与 REPORT.md 已改为描述 V2（队名、成员待填）。尚未打包 zip、尚未提交。
+- **V1**（[research/phase2_anchor_step_20261013/](research/phase2_anchor_step_20261013/)）在 2026-10-14 之前是正式模型，保留在 git 历史中（提交 `60a602d`）。
+- **更多备选方案**在分支 `exp/phase2-round3-models-20261014` 和 `exp/phase2-round4-signals-20261014` 上测试过，没有一个胜过 V2。
 - 主要风险：检查协议与运行充电之间的偏置 ε、检查后回弹、CK1 对比例假设敏感、CK2 缺第 3 段。见两份报告的风险一节。
 
 ## 相关分支
@@ -149,5 +149,5 @@ python3 stage_a_events.py && python3 stage_bcd_causal_eval.py && python3 stage_e
 | 分支 | 内容 |
 |---|---|
 | `main` | 官方提交模板 |
-| `exp/phase2-anchor-step-20261013` | 本分支：main + 新模型（V1 已接入提交包，V2 为候选） |
+| `exp/phase2-anchor-step-20261013` | 本分支：main + 新模型（V2 已接入提交包；V1 保留在历史中） |
 | `research-archive-20261010` | 截至 2026-10-13 的全部其他研究（文献、历史实验、失败路线报告、诊断文档） |
