@@ -1,0 +1,9 @@
+{
+  "stage": "3a audit",
+  "registered": "2026-10-14, before the audit code was written or run",
+  "rest": "maximal runs with |I| < 0.5 A lasting >= 10 min (main) or >= 30 min (variant), inside a segment, after a CV end in the same segment; per cell voltage at the last sample of the rest; depth = Ah(last CV end) - Ah(rest end); pre-rest direction = sign of the last sample with |I| >= 0.5 A before the rest; days since that CV end recorded (stage-2 closure drift ~ -0.14 Ah/day applies)",
+  "density": "rest points per month (between checkups) and setpoint with depth in [15, 45] Ah, by pre-rest direction",
+  "fit": "per month, setpoint and pre-rest direction, cell-mean voltage V(d) = a + b/(1+exp((d-s)/w)); s grid 15..45 step 0.05, w grid {0.5,0.75,1,1.5,2,3}; a,b by linear least squares; profile over s = min over w; 95% interval {s : n*ln(SSE(s)/SSE_min) <= 3.84}",
+  "exit_rule": "continue to 3b only if >= 5 months at 45 C have >= 8 rest points in [15,45] Ah within one pre-rest direction that include points both below exp-3 and above exp+3 (exp = latest program step depth) AND the 95% profile width of s <= 1.0 Ah in those months; otherwise diagnostic only",
+  "no_proxy_metrics": "the audit computes no proxy metric"
+}
