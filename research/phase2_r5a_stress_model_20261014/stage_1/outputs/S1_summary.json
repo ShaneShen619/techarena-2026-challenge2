@@ -1,0 +1,22 @@
+{
+ "full_total_days": 234.95572916666666,
+ "full_total_Ah": 31799.481,
+ "kinds": {
+  "days": {
+   "checkup": 32.27587962962963,
+   "observed": 182.8831712962963,
+   "seg_gap": 19.79667824074074
+  },
+  "thr_Ah": {
+   "checkup": 0.0,
+   "observed": 28725.81,
+   "seg_gap": 3073.671
+  }
+ },
+ "extrapolation_abs_err": {
+  "tau_eff_median": 1.0362368410315383,
+  "tau_eff_max": 4.224170550940299,
+  "ah_eff_median": 251.11648918358887,
+  "ah_eff_max": 1184.9830570043587
+ }
+}

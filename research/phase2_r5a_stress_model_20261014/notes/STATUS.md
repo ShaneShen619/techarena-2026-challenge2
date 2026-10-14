@@ -9,8 +9,8 @@ Start: 2026-10-14. Branch `exp/phase2-r5a-stress-model-20261014`, worktree `/Use
 | Stage | State | Notes |
 |---|---|---|
 | 0 setup | done | V2 0.215726/0.669052, M4 0.291265 reproduced (stage0/reproduce.json) |
-| 1 stress extraction | next | |
-| 2 prior | todo | |
+| 1 stress extraction | done | extrapolation error <= 1.7 eff-days except CK6 month (4.2) |
+| 2 prior | next | |
 | 3 pack model | todo | |
 | 4 CK2 analysis | todo | |
 | 5 final report | todo | |
@@ -28,8 +28,8 @@ Start: 2026-10-14. Branch `exp/phase2-r5a-stress-model-20261014`, worktree `/Use
 | 阶段 | 状态 | 说明 |
 |---|---|---|
 | 0 准备 | 完成 | 复现 V2 0.215726/0.669052、M4 0.291265（stage0/reproduce.json） |
-| 1 应力提取 | 下一步 | |
-| 2 先验 | 待做 | |
+| 1 应力提取 | 完成 | 外推误差 <= 1.7 个有效天，CK6 那个月除外（4.2） |
+| 2 先验 | 下一步 | |
 | 3 电池组模型 | 待做 | |
 | 4 CK2 分析 | 待做 | |
 | 5 最终报告 | 待做 | |
