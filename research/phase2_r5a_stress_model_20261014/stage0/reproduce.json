@@ -1,0 +1,12 @@
+{
+ "M4": {
+  "MAE": 0.29126542561474217,
+  "MAX": 0.6690524237472275
+ },
+ "V2": {
+  "MAE": 0.21572562207218463,
+  "MAX": 0.6690524237472275
+ },
+ "reproduced": true,
+ "cache_dir": "/Users/shane/Desktop/Arena_1014_r5a_stress/research/phase2_round3_models_20261014/cache"
+}
