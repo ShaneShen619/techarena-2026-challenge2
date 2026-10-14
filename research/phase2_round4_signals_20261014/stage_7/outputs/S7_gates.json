@@ -1,0 +1,46 @@
+{
+ "SS_fixed": {
+  "G-proxy": false,
+  "G-epsfree": {
+   "model": 0.20207487578958108,
+   "V2": 0.2155472671451436,
+   "passed": false
+  },
+  "G-robust": {
+   "wins": 2,
+   "passed": false
+  },
+  "G-regress": {
+   "max_abs_err_increase_pp": 0.34107410299449836,
+   "passed": false
+  },
+  "G-pseudo": {
+   "model": 0.19480344367302915,
+   "V2": 0.24002355715475993,
+   "passed": true
+  },
+  "all_common_gates_passed": false
+ },
+ "V2_startcorr": {
+  "G-proxy": false,
+  "G-epsfree": {
+   "model": 0.22697183362524664,
+   "V2": 0.2155472671451436,
+   "passed": false
+  },
+  "G-robust": {
+   "wins": 1,
+   "passed": false
+  },
+  "G-regress": {
+   "max_abs_err_increase_pp": 0.11364531423340042,
+   "passed": true
+  },
+  "G-pseudo": {
+   "model": 0.2388858487202261,
+   "V2": 0.24002355715475993,
+   "passed": true
+  },
+  "all_common_gates_passed": false
+ }
+}
