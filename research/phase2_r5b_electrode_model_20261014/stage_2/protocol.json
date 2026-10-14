@@ -1,0 +1,10 @@
+{
+ "stage": "2 - BoL calibration and the CK0 check",
+ "registered": "2026-10-14, before any CK0 fit or prediction",
+ "reference_health": {"main": "fit_main (stage_1/protocol.json) on anchor 0 per cell (45 C; OCPs are 25 C)", "variant": "anchor 1 (25 C)"},
+ "discharge_overpotential": "health (Qn, Qp, QLi) fixed at the reference; per cell fit eta_dis (constant, V) and the start lithiation theta_n,s on the CK0 curve for discharged Ah in [5, d_end - 15] (d_end = 100.412 Ah, window [5, 85.412]); model V = OCV(start, -d) - eta_dis; least squares (soft_l1, 2 mV), bounds eta_dis [-0.2, 0.2] V, theta_n,s [-0.05, 1.05]",
+ "never_used": "CK0 discharged Ah > 85.412 (last 15 Ah) in any fit",
+ "ck0_prediction": "from the fitted CK0 start states, simulate the four cells to the first pack root of sum V + c_pack = 11.2 V (c_pack -0.003); compare with 100.41 Ah and the round-3 bounded-extension root 100.416854 Ah; report per-cell residuals on the last 15 Ah, the first cell to reach its end, and the model step on the CK0 curve (events.MAIN_STEP midpoint rule on the simulated per-cell curve) vs events.ck0_reference_step mid values",
+ "credible_rule": "C/20 mapping credible iff |Q_C20_sim - 100.41| <= 0.5 Ah AND the model step lies within 1 Ah of the measured CK0 step for all four cells",
+ "diagnostic": "also report Q_C20 from the simulated CCCV end state of anchor 0 (the E3 chain) with the fitted eta_dis, and eps_sim(0) = that minus Q_fc,0, against the observed eps0 = 100.41 - Q_fc,0"
+}
