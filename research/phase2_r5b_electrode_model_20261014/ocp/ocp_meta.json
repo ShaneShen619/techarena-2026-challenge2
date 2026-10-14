@@ -1,0 +1,24 @@
+{
+ "pybamm_version": "26.10.1.0",
+ "grid": "stoichiometry 0..1 step 0.001",
+ "files": {
+  "lfp_afshar2017.csv": {
+   "function": "LFP_ocp_Afshar2017",
+   "module": "pybamm.input.parameters.lithium_ion.Prada2013",
+   "U_min": 2.4874310000000004,
+   "U_max": 3.907699999999916
+  },
+  "graphite_chen2020.csv": {
+   "function": "graphite_LGM50_ocp_Chen2020",
+   "module": "pybamm.input.parameters.lithium_ion.Chen2020",
+   "U_min": 0.09202000004038269,
+   "U_max": 2.383542174008993
+  },
+  "graphite_ecker2015.csv": {
+   "function": "graphite_ocp_Ecker2015",
+   "module": "pybamm.input.parameters.lithium_ion.Ecker2015",
+   "U_min": 0.06541882556314761,
+   "U_max": 1.7216279717844976
+  }
+ }
+}

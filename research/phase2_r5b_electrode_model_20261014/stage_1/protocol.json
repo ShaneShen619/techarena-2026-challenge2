@@ -1,0 +1,27 @@
+{
+ "stage": "1c/1d - fitting configuration and synthetic identifiability (no proxy metric)",
+ "registered": "2026-10-14, after the OCP tabulation and a development fit of anchor 1 (fit quality only; no proxy, no capacity mapping computed)",
+ "ocp": {"main": "LFP_ocp_Afshar2017 (PyBaMM Prada2013) + graphite_LGM50_ocp_Chen2020", "alt_graphite": "LFP_ocp_Afshar2017 + graphite_ocp_Ecker2015", "pybamm": "26.10.1.0"},
+ "fit_main": {
+   "data": "each anchor charge and cell, whole CC+CV with I > 0.5 A, excluding q < 2 Ah",
+   "parameters": "x = (Qn, Qp, QLi, theta_n0, R, h); bounds Qn,Qp in [60,200] Ah, QLi in [50,250] Ah, theta_n0 in [-0.05,0.6], R in [-0.02,0.02] Ohm, h in [-0.2,0.2] V; penalty if any theta leaves [0,1] at the event ends",
+   "loss": "scipy least_squares, soft_l1, f_scale 2 mV (residuals in mV)",
+   "starts": "grid theta_n0 in {0.0,0.03,0.08,0.13} x Qn in {100,115,130,150} x theta_p0 in {0.90,0.97,1.00} x Qp in {95,101,108}; best cost"
+ },
+ "fit_variant_dvdq": "adds the CC-part dV/dq residual (1 Ah moving average on a 0.25 Ah grid), in mV/Ah times weight 2.0 Ah",
+ "simulation_conventions": {
+   "start_state": "for a new health (Qn,Qp,QLi) the start theta_n0 solves full-cell OCV(q=0) = reference fitted OCV at q=0 of that anchor (start defined by voltage)",
+   "Q_fc_sim": "CC 20.4 A until pack OCV-sum + sum(R)*I + sum(h) = 14.0 V, then CV with I = (14.0 - sum U - sum h)/sum R until I <= 5.1 A (simplification of the measured profile; CC current measured 20.4 A in every anchor)",
+   "D_prog_sim": "from the CCCV end state, constant 10.782 A discharge (median measured program current); per-cell V = U - R*10.782 - h; step located with events.MAIN_STEP midpoint rule; pack value = mean of the four cells",
+   "Q_C20_sim": "from the CCCV end state, V_i = U_i - eta_dis_i at 5.1 A; first root of sum V_i + c_pack = 11.2 V, c_pack = median(pack - cell sum) on CK0 = -0.003 V; nan if any theta leaves [0,1] before the root",
+   "beta_E": "beta between reference health th1 and degraded thk: [Q_fc_sim(thk) - Q_fc_sim(th1)] / [D_prog_sim(thk) - D_prog_sim(th1)], pack-level"
+ },
+ "synthetic_1d": {
+   "bol_truth": "per cell Qn = 143, Qp = 106, theta_n0 = 0.16, theta_p0 = 0.93 (the physical development fit of anchor 1 cell 1, rounded), cells differ by theta_n0 offsets {-0.004,0,+0.002,+0.005}; R = 0.002 Ohm, h = 0.010 V on charge; eta_dis = 0.015 V per cell",
+   "current": "measured current profile of anchor 1 (q and I), 10 s sampling",
+   "noise": "2 mV white + 2 mV AR(1) rho 0.9 + constant per-cell offset uniform in [-3, +3] mV; numpy seed 20261014",
+   "states": "30 random states: LLI uniform 0-8 Ah, LAM_NE uniform 0-5 % of Qn, LAM_PE uniform 0-5 % of Qp; start state from the same start-voltage rule with a random start-OCV shift uniform in [-30,+30] mV",
+   "procedure": "fit the synthetic reference (state 0, no degradation) and each degraded state per cell with fit_main; compute Q_fc, Q_C20 (eta_dis known), beta_E from fitted and from true parameters",
+   "pass": "median |Q_C20 fitted - Q_C20 true| <= 0.2 Ah AND median |beta_E fitted - beta_E true| <= 0.10; otherwise stages 3-4 are diagnostic only"
+ }
+}
