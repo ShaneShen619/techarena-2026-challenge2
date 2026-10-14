@@ -56,27 +56,39 @@ def bounds_violation(q, hp, ocp):
                         np.clip(-tp, 0, None) + np.clip(tp - 1, 0, None)))
 
 
-def charge_residual(x, q, I, V, ocp, scale_mV=2.0):
-    """x = (Qn, Qp, QLi, thn0, R, h); soft-L1 is applied by the optimiser."""
+def charge_residual(x, q, I, V, ocp, scale_mV=2.0, extra=None):
+    """x = (Qn, Qp, QLi, thn0, R, h); residuals in mV (soft-L1 applied by the optimiser).
+    extra = dict(weight=..) adds the CC-part dV/dq residual (1 Ah moving average, 0.25 Ah grid)."""
     Qn, Qp, QLi, thn0, R, h = x
     hp = (Qn, Qp, QLi, thn0)
     model = ocp.ocv(q, hp) + R * I + h
     pen = bounds_violation(q[[0, -1]], hp, ocp)
-    return np.r_[(model - V) * 1000.0, 1e3 * pen]
+    out = [(model - V) * 1000.0]
+    if extra is not None:
+        cc = I > 20.0
+        g = np.arange(q[cc].min(), q[cc].max(), 0.25)
+        k = 4
+        def dvdq(vv):
+            vg = np.interp(g, q[cc], vv[cc])
+            vs = np.convolve(vg, np.ones(k) / k, mode="valid")
+            return np.gradient(vs, 0.25) * 1000.0
+        out.append(extra["weight"] * (dvdq(model) - dvdq(V)))
+    out.append(np.array([1e3 * pen]))
+    return np.concatenate(out)
 
 
-def fit_charge(q, I, V, ocp, x0_list=None, fixed=None):
+def fit_charge(q, I, V, ocp, x0_list=None, fixed=None, extra=None):
     """Bounded robust least squares (scipy; research only). fixed: dict index -> value."""
     from scipy.optimize import least_squares
     lb = np.array([60.0, 60.0, 50.0, -0.05, -0.02, -0.2])
     ub = np.array([200.0, 200.0, 250.0, 0.6, 0.02, 0.2])
     if x0_list is None:
         x0_list = []
-        for thn0 in (0.01, 0.05, 0.12):
-            for qn in (105.0, 120.0):
-                for qp in (100.0, 110.0):
-                    thp0 = 0.97
-                    x0_list.append([qn, qp, thn0 * qn + thp0 * qp, thn0, 0.002, 0.0])
+        for thn0 in (0.0, 0.03, 0.08, 0.13):
+            for qn in (100.0, 115.0, 130.0, 150.0):
+                for thp0 in (0.90, 0.97, 1.00):
+                    for qp in (95.0, 101.0, 108.0):
+                        x0_list.append([qn, qp, thn0 * qn + thp0 * qp, thn0, 0.002, 0.0])
     fixed = fixed or {}
     free = [i for i in range(6) if i not in fixed]
 
@@ -87,12 +99,19 @@ def fit_charge(q, I, V, ocp, x0_list=None, fixed=None):
             x[i] = v
         return x
 
-    best = None
+    def solve(x0, nfev):
+        return least_squares(lambda xf: charge_residual(full(xf), q, I, V, ocp, extra=extra), x0,
+                             bounds=(lb[free], ub[free]), loss="soft_l1", f_scale=2.0,
+                             x_scale=np.array([10, 10, 10, 0.02, 0.001, 0.01])[free], max_nfev=nfev)
+
+    coarse = []
     for x0 in x0_list:
         x0 = np.clip(np.asarray(x0, float), lb + 1e-9, ub - 1e-9)
-        r = least_squares(lambda xf: charge_residual(full(xf), q, I, V, ocp), x0[free],
-                          bounds=(lb[free], ub[free]), loss="soft_l1", f_scale=2.0,
-                          x_scale=np.array([10, 10, 10, 0.02, 0.001, 0.01])[free], max_nfev=4000)
+        coarse.append(solve(x0[free], 60))
+    coarse.sort(key=lambda r: r.cost)
+    best = None
+    for r0 in coarse[:3]:
+        r = solve(r0.x, 4000)
         if best is None or r.cost < best.cost:
             best = r
     x = full(best.x)

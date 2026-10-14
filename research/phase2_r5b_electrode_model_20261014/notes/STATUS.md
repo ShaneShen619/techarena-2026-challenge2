@@ -9,8 +9,8 @@ Start: 2026-10-14. Branch `exp/phase2-r5b-electrode-model-20261014`, worktree `/
 | Stage | State | Notes |
 |---|---|---|
 | 0 setup | done | V2 0.215726/0.669052, M4 0.291265 reproduced |
-| 1 OCPs, model, synthetic | next | |
-| 2 BoL + CK0 check | todo | |
+| 1 OCPs, model, synthetic | done | 1d pass (Q_C20 0.034 Ah, beta 0.071); real fits hit Qp bound (OCP mismatch) |
+| 2 BoL + CK0 check | next | |
 | 3 identifiability audit | todo | |
 | 4 E1 / E3 | todo | |
 | 5 diagnostics | todo | |
@@ -29,8 +29,8 @@ Start: 2026-10-14. Branch `exp/phase2-r5b-electrode-model-20261014`, worktree `/
 | 阶段 | 状态 | 说明 |
 |---|---|---|
 | 0 准备 | 完成 | 复现 V2 0.215726/0.669052、M4 0.291265 |
-| 1 OCP、模型、合成数据 | 下一步 | |
-| 2 BoL + CK0 检查 | 待做 | |
+| 1 OCP、模型、合成数据 | 完成 | 1d 通过（Q_C20 0.034 Ah，β 0.071）；真实拟合撞 Qp 上界（OCP 失配） |
+| 2 BoL + CK0 检查 | 下一步 | |
 | 3 可辨识性审计 | 待做 | |
 | 4 E1 / E3 | 待做 | |
 | 5 诊断 | 待做 | |
