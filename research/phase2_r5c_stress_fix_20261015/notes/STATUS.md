@@ -8,8 +8,8 @@ Start: 2026-10-15. Branch `exp/phase2-r5c-stress-fix-20261015`, worktree `/Users
 
 | Stage | State | Notes |
 |---|---|---|
-| 0 setup, reproduction, CS | in progress | protocol registered |
-| 1 design round 1 | todo | |
+| 0 setup, reproduction, CS | done | V2/M4/S_main/ENS50 reproduced; CS mean MAE: V2 0.252, S_main 0.287, ENS50 0.220 |
+| 1 design round 1 | next | |
 | 2 rounds 2-3 | todo | |
 | 3 candidate | todo | |
 | 4 final report | todo | |
@@ -26,8 +26,8 @@ Start: 2026-10-15. Branch `exp/phase2-r5c-stress-fix-20261015`, worktree `/Users
 
 | 阶段 | 状态 | 说明 |
 |---|---|---|
-| 0 准备、复现、CS | 进行中 | 协议已登记 |
-| 1 第一轮设计 | 待做 | |
+| 0 准备、复现、CS | 完成 | 复现 V2/M4/S_main/ENS50；CS 平均 MAE：V2 0.252、S_main 0.287、ENS50 0.220 |
+| 1 第一轮设计 | 下一步 | |
 | 2 第二、三轮 | 待做 | |
 | 3 候选 | 待做 | |
 | 4 最终报告 | 待做 | |
