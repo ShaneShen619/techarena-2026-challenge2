@@ -1,0 +1,39 @@
+{
+ "stage": "1 - design round 1",
+ "registered": "2026-10-15, before any design of this round was run (C1 refit included)",
+ "common": "All designs reuse 5A's stress table (stress.py), Arrhenius weighting Ea = 37.3 kJ/mol, horizon rule, base rule (Q_CK0 if latest anchor is anchor 0, else Q_fc,k-1 + eps), anchor-pair terms with sigma_pair 0.20 Ah and o_45 ~ N(0, 0.3^2) on pair 0->1, numpy LM (smodel._lm), MAP.",
+ "step_terms": {
+   "steps": "visible program steps of the evaluated step variant (ctx steps), setpoint 45 C, step_mean finite",
+   "transient_exclusion": "drop steps with t_cv_end < CK_m + 5 days, where CK_m is the last checkup date at or before the step",
+   "pairs": "consecutive steps i < j within the same month m (same CK_m)",
+   "equation": "beta * (s_j - s_i) = -[L(t_j) - L(t_i)] + e, e ~ N(0, sigma_s^2), sigma_s = 0.05 Ah; t = t_cv_end",
+   "beta": "V2 beta_a4(fc, a4, ck, k, beta0 = 1, tau = 1) at the cutoff (fixed, not fitted)"
+ },
+ "designs": {
+   "D1": {"law": "5A power law: A_cal * tau^0.2 + A_cyc * ah (5A prior.json)", "steps": true},
+   "D2": {"law": "two-term: A_b * (1 - exp(-tau/tau_b)) + A_cal * tau^0.5 + A_cyc * ah", "steps": false,
+          "free": "log A_b, log A_cal, log A_cyc, o_45; tau_b fixed at prior mean"},
+   "D3": {"law": "two-term (D2)", "steps": true},
+   "D4": {"ensembles": "w * D + (1 - w) * V2 for D in {D1, D2, D3}; w from {0, 0.25, 0.5, 0.75, 1} minimising the mean of pseudo MAE and cold-start MAE at delta 0.4 (main step); w = 0 is V2 itself and is excluded from the D4 candidates",
+          "fixed_variant": "w = 0.5 for each D"},
+   "D5": {"label": "exposed-CK1", "definition": "real scenario: V2 at CK1, D3 from CK2 on; pseudo/CS: identical to D3 (no CK1 in those scenarios)"}
+ },
+ "variants": {
+   "D1": {"sigma_s_half": {"sigma_s": 0.025}, "sigma_s_double": {"sigma_s": 0.10},
+          "beta_free": {"beta_mode": "free", "beta_prior": [1.3, 0.2]},
+          "with_25C": {"include_25C": true, "offset_prior": [0.0, 0.5], "note": "25 C steps included; a pair crossing 25 -> 45 C within a month gets a free per-month offset added to s_j - s_i"}},
+   "D2": {"tau_b_free": {"tau_b_free": true, "note": "log tau_b free with its prior"}},
+   "D3": {"sigma_s_half": {"sigma_s": 0.025}, "sigma_s_double": {"sigma_s": 0.10}, "tau_b_free": {"tau_b_free": true}}
+ },
+ "c1_two_term_refit": {
+   "data": "5A stage 2 cycle summaries and rules (copied c1_cycles.py / prepare / cum_stress; relative capacity >= 0.85 range; cycles at measured T, idle gaps at nominal T; model referenced at cycle 6)",
+   "fit": "joint over six cells, Ea fixed 37.3 kJ/mol, parameters (log A_b, log tau_b, log A_cal, log A_cyc); bounds log A_b [ln 1e-3, ln 50], log tau_b [ln 0.5, ln 300] effective days, log A_cal [ln 1e-4, ln 10], log A_cyc [ln 1e-10, ln 1e-2]; residuals weighted 1/sqrt(n_cell); multistart grid A_b {1, 4} x tau_b {5, 30} x A_cal {0.05, 0.3} x A_cyc {1e-6, 3e-5}",
+   "uncertainty": "leave-one-cell-out jackknife SD",
+   "prior": "log A_b, log A_cal, log A_cyc ~ N(joint, ln3^2); log tau_b ~ N(joint, max(jk, 0.5)^2)",
+   "fallback": "if jackknife SD > ln 3 or the estimate is within 1e-3 of a bound: A_cal -> Yagci-derived at z = 0.5 (5A smodel.yagci_logA_cal(0.5, 37.3)); A_cyc -> 5A prior centre (-11.7545); A_b and tau_b keep the joint value with SD max(jk, ln 3)"
+ },
+ "gates": "as EXECUTION_PROMPT section 5 (G-proxy, G-epsfree, G-robust: 6 step variants >= 5 wins for step-using models, >= 75 % of registered variant groups for D2, G-pseudo, G-coldstart, G-regress; G-causal and G-impl in stage 3)",
+ "selection": "round-1 main = among D1, D2, D3 and the D4 ensembles (chosen w), the design with the lowest mean of pseudo MAE (PG1, PG2, PC5, PC10, k >= 3) and cold-start MAE (CS, CSE) at delta 0.4, main step, that passes G-pseudo and G-coldstart; ties -> simpler (D2 < D1 < D3 < D4). Computed and committed before the real run.",
+ "candidate": "among designs passing every gate after the real run, the one with the best selection score",
+ "targets": "T1-T6 reported for the round-1 main and for the candidate"
+}
