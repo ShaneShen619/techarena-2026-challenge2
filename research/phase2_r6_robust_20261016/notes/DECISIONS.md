@@ -13,6 +13,9 @@
 
 - D2.1 WP2 main F2_S_A failed on the real run; per protocol no candidate class is produced. F1 variants are reported only. The exposed-CK1 F1_S_B/S_C would in any case not be selectable (rule 3).
 
+- D3.1 WP3 amendment 1 (3a reference anchor 1) was registered after the audits and before any evaluation, because anchor 0's 0.5 h / 45 C rest is not comparable with the 2 h / 25 C rests of anchors 1-7. The registered main (reference anchor 0) is still reported.
+- D3.2 The WP1 grid has no start-state axis, so 3a cannot win there by construction; it is reported as a leaderboard question only.
+
 ---
 
 <a id="zh"></a>
@@ -27,3 +30,5 @@
 - D1.1 WP1 的并列阈值。登记的 0.01 并列阈值（归一化单位）相对于因果网格后悔值的分布（0.009–0.034）太宽；在那里七个模型并列，决胜所用的期望值相差不到 0.001。按登记执行；报告中说明，如果直接看数值，因果网格更偏向应力集成。事后没有修改。
 - D1.2 WP1 中每个模型都按提交时的配置（eps0 + 0.4）评估；EX 在伪场景 / CS 上用的是该场景的运行数据，封装成框架的 Dataset。
 - D2.1 WP2 的主模型 F2_S_A 在真实运行中失败；按协议不产出候选类。F1 各变体只作报告。已曝光 CK1 的 F1_S_B/S_C 无论如何都不能入选（规则 3）。
+- D3.1 WP3 修订 1（3a 以锚点 1 为参照）是在审计之后、任何评估之前登记的，因为锚点 0 在 45 C 下 0.5 h 的静置与锚点 1-7 在 25 C 下 2 h 的静置不可比。登记的主配置（以锚点 0 为参照）仍然报告。
+- D3.2 WP1 网格里没有起点状态这条轴，所以 3a 按构造不可能在网格上胜出；它只作为需要排行榜回答的问题来报告。
