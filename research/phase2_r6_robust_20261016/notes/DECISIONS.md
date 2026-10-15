@@ -8,6 +8,9 @@
 - D0.2 Round 5C's `src/` is copied into this study (`src/`). Two edits only: the worktree assertion in `common6.py`, and the prior path in `smodel5c.py` (→ `sources/prior2_5c.json`).
 - D0.3 SUB tolerance: research reproduction within 5e-4 pp of the rounded reference table; the archived submitted class within 0.001 pp of SUB at delta 0.4 (observed 0.00037).
 
+- D1.1 WP1 tie window. The registered 0.01 tie window (normalised units) is wide relative to the spread of causal-grid regrets (0.009-0.034); seven models tie there and the tie-break expectation differs by < 0.001. Applied as registered; the report states that, read literally, the causal grid favours the stress ensembles. Not changed after the fact.
+- D1.2 WP1 evaluates every model in its submitted configuration (eps0 + 0.4); EX on pseudo/CS uses the scenario's operation data wrapped in a framework Dataset.
+
 ---
 
 <a id="zh"></a>
@@ -19,3 +22,5 @@
 - D0.1 本次运行由主目录为 `/Users/shane/Desktop/Arena_1013_model` 的会话驱动。对那个检出目录只通过只读的 `git show` / `git archive`（提交 21a7a55）访问；所有写入都在本 worktree 中。
 - D0.2 第五轮 C 的 `src/` 复制到本研究（`src/`）。只改了两处：`common6.py` 中的 worktree 断言，以及 `smodel5c.py` 中的先验路径（→ `sources/prior2_5c.json`）。
 - D0.3 SUB 的容差：研究复现与四舍五入后的参照表相差不超过 5e-4 pp；归档的提交类在 delta 0.4 时与 SUB 相差不超过 0.001 pp（实测 0.00037）。
+- D1.1 WP1 的并列阈值。登记的 0.01 并列阈值（归一化单位）相对于因果网格后悔值的分布（0.009–0.034）太宽；在那里七个模型并列，决胜所用的期望值相差不到 0.001。按登记执行；报告中说明，如果直接看数值，因果网格更偏向应力集成。事后没有修改。
+- D1.2 WP1 中每个模型都按提交时的配置（eps0 + 0.4）评估；EX 在伪场景 / CS 上用的是该场景的运行数据，封装成框架的 Dataset。
