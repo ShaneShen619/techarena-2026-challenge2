@@ -1,6 +1,6 @@
 # TechArena 2026 - Challenge 2 - Student Report
 
-**Team:** <TeamName>    **Members:** <names>    **Date:** 2026-10-14
+**Team:** <TeamName>    **Members:** <names>    **Date:** 2026-10-15
 
 ## 1. Approach
 
@@ -39,8 +39,11 @@ ageing:
 
 1. **Temperature.** The step reads about +0.18 Ah deeper at 45 °C than at 25 °C, at every
    25 → 45 °C switch.
-2. **Post-checkup recovery.** Right after each checkup the step is deeper, and it falls fast in
-   the first days of the 25 °C segment (0.07–0.13 Ah/day, against 0.02–0.04 Ah/day at 45 °C).
+2. **Post-anchor offset.** The first deep discharge after each post-checkup full charge reads
+   0.4–0.46 Ah deeper. This holds for all six step-detection methods.
+   - The offset is the same every month and is gone by the next deep discharge five days later.
+   - The plateau voltages, the Ah balance at the top of charge and the step sharpness are
+     unchanged, so we read it as a charge-path effect on the measurement.
 
 A simple "last step minus first step after the anchor" (our V1) mixes both effects with
 ageing.
@@ -67,21 +70,42 @@ lies between the step and the top of charge, so the step under-reads the total l
   25 °C anchors, shrunk towards 1.
 - Values: 1.06 (CK4), 1.24, 1.41 and 1.51 (CK7).
 
+**Coverage gap: √t extrapolation (CK2).** Segment 3 (19 Feb – 11 Mar) is missing, so the
+last visible step lies 22 days before CK2. The step signal cannot see those weeks. When the
+last visible deep discharge ended more than 10 days before the checkup, the model extrapolates
+the loss since the previous anchor with the square root of time since CK0:
+
+```
+loss_j = 100.41 − (Q_fc(j) + EPS0 + EPS_EXTRA_AH)   over the visible anchors j = 1..k−1
+a      = least-squares slope of loss_j on sqrt(t_j) through the origin
+Q_est  = Q_fc(k−1) + EPS0 + EPS_EXTRA_AH − a · (sqrt(t_k) − sqrt(t_(k−1)))
+```
+
+- **Why √t.** The proxy fade of this pack follows about t^0.44, i.e. calendar-like ageing.
+  The cycling-aged open datasets follow 0.56–1.09, so their shape was not used.
+- **Where it applies.** Only CK2 triggers this branch.
+
 **Fallback and CK0.**
 
-- For CK1–CK3 no phase-matched pair exists (too few months, plus the missing segment 3).
-  There the model uses the anchor plus the step change since the anchor, with β = 1.
+- For CK1 and CK3 no phase-matched pair exists, and there is no coverage gap. There the model
+  uses the anchor plus the step change since the anchor, with β = 1.
 - For CK1 the anchor is the post-CK0 charge, which maps to exactly 100.41 Ah.
 - The CK0 reference curve serves only as a cross-check of the step position.
 
 ## 2. Data
 
-We used only the released data: the 13 operating segments, CK0, and the CK0 reference
-discharge.
+The model uses only the released data: the 13 operating segments, CK0, and the CK0 reference
+discharge. No open data enters the model and nothing is pre-trained. Three open LFP datasets
+were analysed to bound its assumptions.
 
 | dataset | source / URL | licence | how it was used |
 |---|---|---|---|
-| none | - | - | No open-source data is used. A literature and transfer route based on Challenge 1 data was evaluated and dropped (see section 4). |
+| ESSL1 / ESSL2 (LFP 102 Ah and 105 Ah cells; 16S and 15S lab packs) | https://zenodo.org/records/20132842 (doi 10.5281/zenodo.20132842) | CC BY 4.0 | Graphite-step β within 0–8 % fade: packs 1.1–1.2, cells 0.9–1.1. Used to judge β; a β cap was tested and rejected. |
+| Gotion IFP 53 Ah LFP cell + 1P10S module (calibration every 50 cycles) | https://data.mendeley.com/datasets/4nww8p6vxf/1 (doi 10.17632/4nww8p6vxf.1) | CC BY 4.0 | Drift of full-charge Ah against independent calibration (ε): about −0.03 Ah per Ah of fade. Risk statement only. |
+| TEMPEST 280 Ah prismatic LFP (0.1C RPT every 50 cycles) | https://zenodo.org/records/20813753 (doi 10.5281/zenodo.20813753) | CC BY 4.0 | ε drift −0.035 Ah per Ah of fade; no capacity rebound after RPTs (≤ 0.1 %). Risk statement only. |
+
+A literature and transfer route based on Challenge 1 data was evaluated earlier and dropped
+(see section 4).
 
 ## 3. Validation
 
@@ -107,13 +131,28 @@ bit-identical outputs:
 - **Pseudo scenarios.** Data were cut 5 or 10 days early, or 45 °C segments truncated to
   imitate the missing segment, to create more test cases than the seven proxies.
 
+**Gap branch (this model vs V2).**
+
+- It changes only CK2. The proxy error moves from +0.67 to −0.21 / −0.02 / +0.18 pp across the
+  three ε values.
+- It improves the MAE by 0.08–0.10 pp under each of the six step-detection variants.
+- **Sensitivity.** With exponent 0.4–0.6 and a ±5-day time origin, the CK2 error ranges from
+  −0.35 to +0.29 pp. Every setting is still better than +0.67.
+- **Exposure.** The branch was chosen after the CK2 proxy error had been seen, so this
+  improvement is exploratory.
+- **Rejected with it.** A β cap at 1.2 and a 4-cell median, registered together with it, were
+  rejected:
+  - the cap moves CK5–CK7 up, in the same direction as the ε-drift risk;
+  - the median worsened the dV/dQ detection variant (MAE 0.333 → 0.448).
+
 **Alternatives tested and rejected.** All were pre-registered, and none beat V2:
 
 - a robust regression of the month-end value;
 - step crossings in daily operation (coulomb counting does not close between full charges);
 - rest-point pseudo-OCV (no rests near the step);
 - a feature in the top 21 Ah of the periodic charges (none found);
-- rate-based extrapolation over the missing segment (over-corrects);
+- rate-based extrapolation over the missing segment from segment-level step rates
+  (over-corrects; the √t branch instead extrapolates the anchor-to-anchor loss);
 - registration of the full anchor charge curves (confounded by the start state);
 - state-space fusion.
 
@@ -129,11 +168,12 @@ Proxy errors with ε = ε0 + 0.4, in pp:
 
 | | CK1 | CK2 | CK3 | CK4 | CK5 | CK6 | CK7 | MAE | max |
 |---|---|---|---|---|---|---|---|---|---|
-| this model (V2) | +0.22 | +0.67 | +0.08 | +0.23 | +0.15 | −0.16 | −0.00 | 0.22 | 0.67 |
+| this model (V2 + √t gap) | +0.22 | −0.02 | +0.08 | +0.23 | +0.15 | −0.16 | −0.00 | 0.12 | 0.23 |
+| V2 without gap branch | +0.22 | +0.67 | +0.08 | +0.23 | +0.15 | −0.16 | −0.00 | 0.22 | 0.67 |
 | V1 (unmatched) | +0.22 | +0.67 | +0.08 | +0.28 | −0.11 | −0.40 | −0.28 | 0.29 | 0.67 |
 | ExampleModel | +2.64 | +4.41 | +4.15 | +5.05 | +5.28 | +4.22 | +4.32 | 4.30 | 5.28 |
 
-SOH estimates (%): CK0 98.441, CK1 95.992, CK2 95.137, CK3 93.541, CK4 92.811, CK5 92.081,
+SOH estimates (%): CK0 98.441, CK1 95.992, CK2 94.451, CK3 93.541, CK4 92.811, CK5 92.081,
 CK6 91.331, CK7 90.821.
 
 **Strengths.**
@@ -147,16 +187,22 @@ CK6 91.331, CK7 90.821.
 
 **Weak points.**
 
-- **Recovery state at the checkup.** The recovery grows from about 0.02 Ah (CK1) to about
-  0.9 Ah (CK7) and fades with τ ≈ 2.5 days of cycling. This matches rest-driven
-  rehomogenisation of cycling-induced lithium/salt inhomogeneity.
-  - The model, like its proxies, describes the recovered state.
-  - The anchors start near empty after a short rest, which suggests that the C/20 discharge
-    is the last checkup step and sees nearly the same state.
-  - If the C/20 saw only part of the recovery, CK4–CK7 would be high by up to about 0.9 pp.
-- **ε:** a protocol offset shifts all estimates by about ±0.4 pp. A data-based temperature
-  offset (0.18 Ah instead of 0.4) would lower CK3–CK7 by about 0.2 pp.
-- **CK2:** the largest error, because segment 3 is missing.
+- **Post-anchor offset.** The first deep discharge after each post-checkup full charge reads
+  0.4–0.46 Ah deeper. Pairwise comparison shows the offset is constant across months, not
+  growing.
+  - Unchanged plateaus, Ah balance and step sharpness point to a charge-path measurement
+    effect.
+  - A very fast (≤ 2.5 days) real relaxation cannot be excluded by timing. If the hidden C/20
+    missed one, CK3–CK7 would read high by at most about 0.45 pp.
+  - Phase matching does not use these discharges.
+- **ε:** a protocol offset shifts all estimates by about ±0.4 pp.
+  - A data-based temperature offset (0.18 Ah instead of 0.4) would lower CK3–CK7 by about
+    0.2 pp.
+  - Open data with independent capacity tests show ε drifting by about −0.03 Ah per Ah of
+    fade. This would make the late estimates read high by up to about 0.3 pp. The proxies
+    share this bias.
+- **CK2:** estimated by the √t extrapolation. It carries the first-month break-in, the ε0
+  temperature confound and the exponent assumption (±0.3 pp across the tested settings).
 - **β:** it rises to 1.51 at CK7. If the LAM share falls late in life, β overstates the loss.
 
 **Routes we dropped earlier.** Three earlier routes were dropped: open-data transfer, an ECM
@@ -176,10 +222,13 @@ python validate_submission.py
 - **Runtime:** about 1 s for train and about 10 s for all eight evaluation points (Apple
   M-series, macOS).
 - **Determinism:** there is no randomness and there are no seeds.
-- **Tested environments:** Python 3.11 with numpy 1.24.4 / pandas 2.0.3 and with numpy 2.4.6 /
-  pandas 3.0.6. Both give identical output.
+- **Tested environment:** a fresh Python 3.11 virtual environment from `requirements.txt`, run
+  from a clean extraction of the submission zip. The validator passes, and the full-data output
+  equals the research implementation to within 0.0004 pp.
 - **Research code:** in the team repository.
   - V1: branch `exp/phase2-anchor-step-20261013`, under `research/phase2_anchor_step_20261013/`.
   - V2: same branch, under `research/phase2_v2_phase_matched_20261013/`.
+  - Gap branch, β cap and median study (V3, with the submitted V2 + √t variant):
+    `research/phase2_v3_20261015/`. Open-data screening: `external_data/`.
   - Rejected alternatives: branches `exp/phase2-round3-models-20261014` and
     `exp/phase2-round4-signals-20261014`.

@@ -1,4 +1,4 @@
-"""Anchor + phase-matched graphite-step SOH estimator (V2, active model).
+"""Anchor + phase-matched graphite-step SOH estimator (V2 + sqrt(t) gap branch, active model).
 
 Physics
 -------
@@ -15,8 +15,13 @@ Physics
 * Beta. The step reads only the lithium-inventory part of the fade. Beta is the
   capacity change per Ah of step-to-top change in the charge direction, from the
   visible 25 degC anchors, shrunk towards 1.
-* Fallback. When no phase-matched pair is visible (CK1-CK3 here), the anchor plus
-  the step change since the anchor is used (beta 1), as in V1.
+* Coverage gap. When the last visible deep discharge ends more than
+  ``GAP_DAYS`` before the checkup (CK2 here: segment 3 is missing), the steps
+  cannot see the uncovered weeks. The loss since the previous anchor is then
+  extrapolated with the square root of time since CK0, fitted to the visible
+  anchors (the pack fades like calendar ageing, roughly sqrt(t)).
+* Fallback. When no phase-matched pair is visible (CK1 and CK3 here), the anchor
+  plus the step change since the anchor is used (beta 1), as in V1.
 
 Only the data handed in by the framework (cut at the checkup date) is used; the
 checkup dates come from ``dataset.eval_points``.
@@ -32,6 +37,8 @@ BETA0 = 1.0                 # prior beta (pure LLI)
 BETA_TAU = 1.0              # prior weight (Ah^2 of step-to-top change)
 VALID_DAYS = 10.0           # a month-end step must lie this close to the checkup
 MIN_45_STEPS = 3            # 45 degC steps needed for a complete segment / a rate
+GAP_DAYS = 10.0             # last deep discharge older than this -> sqrt(t) branch
+FADE_EXPONENT = 0.5         # calendar-like fade, loss ~ t ** FADE_EXPONENT
 
 CHARGE_I_MIN_A = 0.5
 START_V_MAX = 12.3
@@ -119,7 +126,7 @@ def _locate_step(depth, volts):
 
 
 def _step_depths(seg):
-    """(CV-end time, chamber set point, mean step depth) for every deep discharge."""
+    """(CV-end time, chamber set point, mean step depth, end time) for every deep discharge."""
     i, ah = _integrated_ah(seg)
     u = seg["pack_voltage_V"].to_numpy(float)
     v = seg[CELLS].to_numpy(float)
@@ -140,7 +147,8 @@ def _step_depths(seg):
         if np.isfinite(locs).any():
             out.append((seg["timestamp"].iloc[e],
                         int(seg["chamber_temperature_C"].iloc[e]),
-                        float(np.nanmean(locs))))
+                        float(np.nanmean(locs)),
+                        seg["timestamp"].iloc[e + len(d) - 1]))
     return out
 
 
@@ -192,7 +200,7 @@ class MyModel:
             return None
         t0 = anc[m]["t_end"]
         t1 = anc[m + 1]["t_start"] if m + 1 in anc else None
-        s = [(t, d) for t, sp, d in steps
+        s = [(t, d) for t, sp, d, _ in steps
              if sp == 45 and t >= t0 and (t1 is None or t < t1)]
         if not s:
             return None
@@ -225,6 +233,17 @@ class MyModel:
         b = float((x * q).sum() / s) if s > 0 else BETA0
         return (BETA_TAU * BETA0 + s * b) / (BETA_TAU + s)
 
+    def _sqrt_extrapolation(self, anc, ck, k, eps):
+        """Anchor k-1 plus the sqrt(t) loss to CK_k, fitted to visible anchors 1..k-1."""
+        def t(j):
+            return (ck[j] - ck[0]).total_seconds() / 86400.0
+        js = [j for j in range(1, k) if j in anc]
+        x = np.array([t(j) ** FADE_EXPONENT for j in js])
+        loss = np.array([self.q_ck0 - (anc[j]["q"] + eps) for j in js])
+        a = float((x * loss).sum() / (x ** 2).sum())
+        return (anc[k - 1]["q"] + eps
+                - a * (t(k) ** FADE_EXPONENT - t(k - 1) ** FADE_EXPONENT))
+
     # ----- estimate ---------------------------------------------------------
     def estimate_capacity_ah(self, dataset, at_date):
         charges, steps = self.diagnose(dataset)
@@ -234,6 +253,11 @@ class MyModel:
         ck = pd.DatetimeIndex(dataset.eval_points.sort_values("date")["date"])
         k = int((ck < pd.Timestamp(at_date)).sum())
         anc = self._anchors(charges, ck)
+
+        if eps0 is not None and k >= 2 and (k - 1) in anc and steps:
+            gap = (ck[k] - max(s[3] for s in steps)).total_seconds() / 86400.0
+            if gap > GAP_DAYS:
+                return self._sqrt_extrapolation(anc, ck, k, eps0 + EPS_EXTRA_AH)
 
         last = charges[-1]
         if last["setpoint"] == 45:
@@ -249,7 +273,7 @@ class MyModel:
             if x is not None:
                 return q_anchor + self._beta(anc, k) * x
 
-        after = [d for t, _, d in steps if t >= last["t_end"]]
+        after = [d for t, _, d, _ in steps if t >= last["t_end"]]
         if not after:
             return q_anchor
         return q_anchor + (after[-1] - after[0])

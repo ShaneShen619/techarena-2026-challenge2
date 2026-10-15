@@ -21,9 +21,9 @@ The proxy label is the post-checkup full charge plus an offset. On it, the stric
 .
 ├── README.md                              this file
 ├── .gitignore
-├── TechArena_Challenge2_Team_Package/     submission package (official template + wired-in V2 model)
+├── TechArena_Challenge2_Team_Package/     submission package (official template + wired-in V2 + √t gap model)
 │   ├── framework/  run_model.py  validate_submission.py   official framework, do not modify
-│   ├── my_model/                          active model entry (MyModel = V2 anchor + phase-matched step)
+│   ├── my_model/                          active model entry (MyModel = V2 + √t gap branch)
 │   ├── README.md  REPORT.md               submission write-up and report
 │   ├── data/                              official operating data and CK0 checkup data
 │   ├── sample_data/                       small sample used by the validator
@@ -36,10 +36,15 @@ The proxy label is the post-checkup full charge plus an offset. On it, the stric
     │   ├── candidate_model/               candidate model AnchorStepModel
     │   ├── src/  stage_*.py               research code and stage scripts
     │   └── outputs/  figures/             results
-    └── phase2_v2_phase_matched_20261013/  V2 study (phase-matched step differencing + physics β)
-        ├── FINAL_REPORT.md  protocol.json validation report and frozen protocol
-        ├── candidate_model/               candidate class MyModel (V2)
-        └── src/  stage_v2_*.py  outputs/  research code, scripts and results
+    ├── phase2_v2_phase_matched_20261013/  V2 study (phase-matched step differencing + physics β)
+    │   ├── FINAL_REPORT.md  protocol.json validation report and frozen protocol
+    │   ├── candidate_model/               candidate class MyModel (V2)
+    │   └── src/  stage_v2_*.py  outputs/  research code, scripts and results
+    ├── phase2_rebound_diagnosis_20261015/ diagnosis of the post-checkup step offset
+    └── phase2_v3_20261015/                V3 study (√t gap + β cap + median), submission checks,
+                                           packaging script, comparison with r5c
+external_data/                             open datasets (raw files git-ignored): DATA_MANIFEST.md,
+                                           data_manifest.json, _screening/ scripts and outputs
 ```
 
 ## Quick start
@@ -56,27 +61,28 @@ To see only the candidate's per-checkup output, run `stage_bcd_causal_eval.py` a
 
 ## Current status
 
-- **V2 is wired into the submission (2026-10-14).**
-  - `MyModel` in `TechArena_Challenge2_Team_Package/my_model/model_template.py` is the V2 candidate class from [research/phase2_v2_phase_matched_20261013/](research/phase2_v2_phase_matched_20261013/): phase-matched 45 °C step differencing plus a physics β. The switch points at `MyModel`.
-  - `validate_submission.py` passes in a fresh Python 3.11 venv.
-  - The full-data output is identical to `outputs/V2_candidate_predictions.csv`, both with numpy 1.24 / pandas 2.0 and with numpy 2.4 / pandas 3.0.
-  - Proxy MAE is 0.22 pp (V1: 0.29 pp). This is exposed-exploratory validation.
-  - The submission README and REPORT.md describe V2. Team name and members are still to be filled in.
-  - The zip has not been built and nothing has been submitted.
+- **V2 + √t gap branch is wired into the submission (2026-10-15).**
+  - `MyModel` is V2 plus one change: when the last visible deep discharge is more than 10 days before the checkup (only CK2, because segment 3 is missing), the loss since the previous anchor is extrapolated with √t since CK0. Only CK2 changes (95.137 → 94.451).
+  - Proxy MAE at Δ = 0 / 0.4 / 0.8 is 0.207 / 0.123 / 0.140 pp; V2 alone gave 0.272 / 0.216 / 0.210. The √t branch was chosen after seeing CK2, so this is exposed-exploratory. See [research/phase2_v3_20261015/FINAL_REPORT.md](research/phase2_v3_20261015/FINAL_REPORT.md). V3 as registered (adding a β cap and a 4-cell median) is **not** the recommended version.
+  - Checks: the output matches the research implementation to within 0.0004 pp; noise causality holds on all 8 checkups; 320 reduced-budget calls give no error.
+  - **Zip:** `~/Desktop/Current State_Challenge2.zip` was built with `research/phase2_v3_20261015/package_submission.py` (team Current State; Mona Zhu, Zhikuan Shen). From a clean extraction it passed `validate_submission.py` with Python 3.11 + numpy 2.4.6 / pandas 3.0.6 and + numpy 1.24.4 / pandas 2.0.3. The full-data outputs were identical in both. Python 3.12 is untested.
+  - **Still open:** the presentation in the zip is the official template (placeholder). Nothing has been submitted yet.
+  - **Comparison:** the r5c candidate (branch `exp/phase2-r5c-stress-fix-20261015`) is roughly tied on the real proxies. It is better on the cut and cold-start scenarios: pseudo 0.123 vs 0.148, cold start 0.134 vs 0.175 ([compare_with_r5c.py](research/phase2_v3_20261015/compare_with_r5c.py)).
 - **V1** ([research/phase2_anchor_step_20261013/](research/phase2_anchor_step_20261013/)) was the active model until 2026-10-14 and remains in git history (commit `60a602d`).
-- **Further alternatives** were tested on branches `exp/phase2-round3-models-20261014` and `exp/phase2-round4-signals-20261014`; none beat V2.
+- **Further alternatives** were tested on branches `exp/phase2-round3-models-20261014`, `exp/phase2-round4-signals-20261014`, `exp/phase2-r5a-stress-model-20261014`, `exp/phase2-r5b-electrode-model-20261014` and `exp/phase2-r5c-stress-fix-20261015`.
 - **Main risks.** These are covered in the risk section of both reports:
-  - the offset ε between the checkup protocol and the operating charge
-  - the post-checkup recovery
-  - CK1's sensitivity to the ratio assumption
-  - the missing segment 3 before CK2
+  - **The offset ε.** This is the offset between the checkup protocol and the operating charge. Open data suggest it drifts by about −0.03 Ah per Ah of fade, so late estimates may read up to about 0.3 pp high.
+  - **The post-anchor step offset.** It is +0.4–0.46 Ah and constant across months; most likely it is a measurement effect.
+  - **The √t assumption at CK2.**
+  - **CK1's sensitivity to the ratio assumption.**
 
 ## Related branches
 
 | Branch | Contents |
 |---|---|
 | `main` | official submission template |
-| `exp/phase2-anchor-step-20261013` | this branch: main + new model (V2 wired into the package; V1 in history) |
+| `exp/phase2-anchor-step-20261013` | this branch: main + new model (V2 + √t wired into the package; V1 and V2 in history) |
+| `exp/phase2-r5c-stress-fix-20261015` | stress-model + V2 ensemble candidate R3_TD_w0.75 (not wired) |
 | `research-archive-20261010` | all other research up to 2026-10-13 (literature, earlier experiments, failed-route reports, diagnostics) |
 
 ---
@@ -104,7 +110,7 @@ To see only the candidate's per-checkup output, run `stage_bcd_causal_eval.py` a
 .
 ├── README.md                              本文件
 ├── .gitignore
-├── TechArena_Challenge2_Team_Package/     提交包（官方模板 + 已接入的 V2 模型）
+├── TechArena_Challenge2_Team_Package/     提交包（官方模板 + 已接入的 V2 + √t 缺口模型）
 │   ├── framework/  run_model.py  validate_submission.py   官方框架，不可修改
 │   ├── my_model/                          正式模型入口（MyModel = V2 锚点 + 同相位台阶）
 │   ├── README.md  REPORT.md               提交用方法说明与报告
@@ -139,15 +145,26 @@ python3 stage_a_events.py && python3 stage_bcd_causal_eval.py && python3 stage_e
 
 ## 当前状态
 
-- **V2 已接入正式提交（2026-10-14）**：`TechArena_Challenge2_Team_Package/my_model/model_template.py` 中的 `MyModel` 即 [research/phase2_v2_phase_matched_20261013/](research/phase2_v2_phase_matched_20261013/) 的 V2 候选类（同相位 45 °C 台阶差分 + 物理 β），开关指向 `MyModel`。在全新 Python 3.11 venv 中 `validate_submission.py` 通过；全量数据输出与 `outputs/V2_candidate_predictions.csv` 逐位一致（numpy 1.24/pandas 2.0 与 numpy 2.4/pandas 3.0 下相同）。代理 MAE 0.22 pp（V1 为 0.29 pp），属已曝光的探索性验证。提交包的 README 与 REPORT.md 已改为描述 V2（队名、成员待填）。尚未打包 zip、尚未提交。
+- **V2 + √t 缺口分支已接入正式提交（2026-10-15）。**
+  - 改动：在 V2 基础上，最后一次可见的深放电距检查日超过 10 天时（只有缺第 3 段的 CK2），用 CK0 以来的 √t 外推上一锚点之后的损失。只有 CK2 变化（95.137 → 94.451）。
+  - 代理 MAE（Δ = 0 / 0.4 / 0.8）：0.207 / 0.123 / 0.140 pp；V2 为 0.272 / 0.216 / 0.210。√t 分支是看过 CK2 之后才定的，属已曝光的探索性结果。详见 [research/phase2_v3_20261015/FINAL_REPORT.md](research/phase2_v3_20261015/FINAL_REPORT.md)。按登记版本的 V3（另加 β 上限和 4 芯中位数）**不是**推荐版本。
+  - 检查：与研究实现的差异 ≤ 0.0004 pp；8 个检查点的噪声因果性检验全部通过；320 次数据缩减调用没有报错。
+  - **压缩包**：`~/Desktop/Current State_Challenge2.zip`，由 `research/phase2_v3_20261015/package_submission.py` 生成（队名 Current State；成员 Mona Zhu、Zhikuan Shen）。从干净解压目录运行 `validate_submission.py`，在 Python 3.11 + numpy 2.4.6 / pandas 3.0.6 和 numpy 1.24.4 / pandas 2.0.3 下都通过，完整数据输出逐位一致。未在 Python 3.12 上测试。
+  - **待办**：包里的演示文稿还是官方模板占位。尚未提交给组委会。
+  - **对比**：r5c 候选（分支 `exp/phase2-r5c-stress-fix-20261015`）在真实代理上大致持平，在截断和冷启动情景上更好：伪情景 0.123 对 0.148，冷启动 0.134 对 0.175。
 - **V1**（[research/phase2_anchor_step_20261013/](research/phase2_anchor_step_20261013/)）在 2026-10-14 之前是正式模型，保留在 git 历史中（提交 `60a602d`）。
-- **更多备选方案**在分支 `exp/phase2-round3-models-20261014` 和 `exp/phase2-round4-signals-20261014` 上测试过，没有一个胜过 V2。
-- 主要风险：检查协议与运行充电之间的偏置 ε、检查后回弹、CK1 对比例假设敏感、CK2 缺第 3 段。见两份报告的风险一节。
+- **更多备选方案**在分支 `exp/phase2-round3-models-20261014`、`exp/phase2-round4-signals-20261014`、`exp/phase2-r5a-stress-model-20261014`、`exp/phase2-r5b-electrode-model-20261014` 和 `exp/phase2-r5c-stress-fix-20261015` 上测试过。
+- **主要风险**（见两份报告的风险一节）：
+  - **偏置 ε**：检查协议与运行充电之间的偏置。外部数据显示它每衰减 1 Ah 约漂移 −0.03 Ah，后期估计可能偏高最多约 0.3 pp。
+  - **锚点后台阶偏移**：+0.4–0.46 Ah，各月相同，最可能是测量效应。
+  - **CK2 的 √t 假设。**
+  - **CK1 对比例假设敏感。**
 
 ## 相关分支
 
 | 分支 | 内容 |
 |---|---|
 | `main` | 官方提交模板 |
-| `exp/phase2-anchor-step-20261013` | 本分支：main + 新模型（V2 已接入提交包；V1 保留在历史中） |
+| `exp/phase2-anchor-step-20261013` | 本分支：main + 新模型（V2 + √t 已接入提交包；V1、V2 保留在历史中） |
+| `exp/phase2-r5c-stress-fix-20261015` | 压力模型 + V2 集成候选 R3_TD_w0.75（未接入） |
 | `research-archive-20261010` | 截至 2026-10-13 的全部其他研究（文献、历史实验、失败路线报告、诊断文档） |
