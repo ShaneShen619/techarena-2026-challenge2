@@ -11,6 +11,8 @@
 - D1.1 WP1 tie window. The registered 0.01 tie window (normalised units) is wide relative to the spread of causal-grid regrets (0.009-0.034); seven models tie there and the tie-break expectation differs by < 0.001. Applied as registered; the report states that, read literally, the causal grid favours the stress ensembles. Not changed after the fact.
 - D1.2 WP1 evaluates every model in its submitted configuration (eps0 + 0.4); EX on pseudo/CS uses the scenario's operation data wrapped in a framework Dataset.
 
+- D2.1 WP2 main F2_S_A failed on the real run; per protocol no candidate class is produced. F1 variants are reported only. The exposed-CK1 F1_S_B/S_C would in any case not be selectable (rule 3).
+
 ---
 
 <a id="zh"></a>
@@ -24,3 +26,4 @@
 - D0.3 SUB 的容差：研究复现与四舍五入后的参照表相差不超过 5e-4 pp；归档的提交类在 delta 0.4 时与 SUB 相差不超过 0.001 pp（实测 0.00037）。
 - D1.1 WP1 的并列阈值。登记的 0.01 并列阈值（归一化单位）相对于因果网格后悔值的分布（0.009–0.034）太宽；在那里七个模型并列，决胜所用的期望值相差不到 0.001。按登记执行；报告中说明，如果直接看数值，因果网格更偏向应力集成。事后没有修改。
 - D1.2 WP1 中每个模型都按提交时的配置（eps0 + 0.4）评估；EX 在伪场景 / CS 上用的是该场景的运行数据，封装成框架的 Dataset。
+- D2.1 WP2 的主模型 F2_S_A 在真实运行中失败；按协议不产出候选类。F1 各变体只作报告。已曝光 CK1 的 F1_S_B/S_C 无论如何都不能入选（规则 3）。

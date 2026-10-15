@@ -1,0 +1,222 @@
+{
+ "main": "F2_S_A",
+ "main_passes_all": false,
+ "gates": {
+  "F1_S_A": {
+   "G-proxy": false,
+   "G-epsfree": {
+    "model": 0.13741190817789525,
+    "SUB": 0.139454487660199,
+    "passed": false
+   },
+   "G-robust": {
+    "wins": 4,
+    "passed": false
+   },
+   "G-regress": {
+    "max_abs_err_increase_pp": 0.10065772232944231,
+    "passed": true
+   },
+   "G-pseudo": true,
+   "G-coldstart": true,
+   "G-hyp": {
+    "model": 0.041643930432707914,
+    "SUB": 0.027093868290669676,
+    "passed": false
+   },
+   "all_performance_gates": false
+  },
+  "F2_S_A": {
+   "G-proxy": false,
+   "G-epsfree": {
+    "model": 0.1887776889637561,
+    "SUB": 0.139454487660199,
+    "passed": false
+   },
+   "G-robust": {
+    "wins": 2,
+    "passed": false
+   },
+   "G-regress": {
+    "max_abs_err_increase_pp": 0.6204769992869089,
+    "passed": false
+   },
+   "G-pseudo": true,
+   "G-coldstart": true,
+   "G-hyp": {
+    "model": 0.09479384336702287,
+    "SUB": 0.027093868290669676,
+    "passed": false
+   },
+   "all_performance_gates": false
+  },
+  "F3_S_A": {
+   "G-proxy": false,
+   "G-epsfree": {
+    "model": 0.1586100244666404,
+    "SUB": 0.139454487660199,
+    "passed": false
+   },
+   "G-robust": {
+    "wins": 4,
+    "passed": false
+   },
+   "G-regress": {
+    "max_abs_err_increase_pp": 0.31023849964345446,
+    "passed": false
+   },
+   "G-pseudo": true,
+   "G-coldstart": true,
+   "G-hyp": {
+    "model": 0.05101892631785593,
+    "SUB": 0.027093868290669676,
+    "passed": false
+   },
+   "all_performance_gates": false
+  },
+  "F1_S_B": {
+   "G-proxy": true,
+   "G-epsfree": {
+    "model": 0.13741190817789525,
+    "SUB": 0.139454487660199,
+    "passed": false
+   },
+   "G-robust": {
+    "wins": 6,
+    "passed": true
+   },
+   "G-regress": {
+    "max_abs_err_increase_pp": 0.10065772232944231,
+    "passed": true
+   },
+   "G-pseudo": true,
+   "G-coldstart": true,
+   "G-hyp": {
+    "model": 0.029496285445603468,
+    "SUB": 0.027093868290669676,
+    "passed": false
+   },
+   "all_performance_gates": false
+  },
+  "F2_S_B": {
+   "G-proxy": false,
+   "G-epsfree": {
+    "model": 0.1887776889637561,
+    "SUB": 0.139454487660199,
+    "passed": false
+   },
+   "G-robust": {
+    "wins": 2,
+    "passed": false
+   },
+   "G-regress": {
+    "max_abs_err_increase_pp": 0.6204769992869089,
+    "passed": false
+   },
+   "G-pseudo": true,
+   "G-coldstart": true,
+   "G-hyp": {
+    "model": 0.08047177761101271,
+    "SUB": 0.027093868290669676,
+    "passed": false
+   },
+   "all_performance_gates": false
+  },
+  "F3_S_B": {
+   "G-proxy": false,
+   "G-epsfree": {
+    "model": 0.1586100244666404,
+    "SUB": 0.139454487660199,
+    "passed": false
+   },
+   "G-robust": {
+    "wins": 4,
+    "passed": false
+   },
+   "G-regress": {
+    "max_abs_err_increase_pp": 0.31023849964345446,
+    "passed": false
+   },
+   "G-pseudo": true,
+   "G-coldstart": true,
+   "G-hyp": {
+    "model": 0.04460222041074363,
+    "SUB": 0.027093868290669676,
+    "passed": false
+   },
+   "all_performance_gates": false
+  },
+  "F1_S_C": {
+   "G-proxy": true,
+   "G-epsfree": {
+    "model": 0.13741190817789525,
+    "SUB": 0.139454487660199,
+    "passed": false
+   },
+   "G-robust": {
+    "wins": 6,
+    "passed": true
+   },
+   "G-regress": {
+    "max_abs_err_increase_pp": 0.10065772232944231,
+    "passed": true
+   },
+   "G-pseudo": true,
+   "G-coldstart": true,
+   "G-hyp": {
+    "model": 0.029496285445603468,
+    "SUB": 0.027093868290669676,
+    "passed": false
+   },
+   "all_performance_gates": false
+  },
+  "F2_S_C": {
+   "G-proxy": false,
+   "G-epsfree": {
+    "model": 0.1887776889637561,
+    "SUB": 0.139454487660199,
+    "passed": false
+   },
+   "G-robust": {
+    "wins": 2,
+    "passed": false
+   },
+   "G-regress": {
+    "max_abs_err_increase_pp": 0.6204769992869089,
+    "passed": false
+   },
+   "G-pseudo": true,
+   "G-coldstart": true,
+   "G-hyp": {
+    "model": 0.08047177761101271,
+    "SUB": 0.027093868290669676,
+    "passed": false
+   },
+   "all_performance_gates": false
+  },
+  "F3_S_C": {
+   "G-proxy": false,
+   "G-epsfree": {
+    "model": 0.1586100244666404,
+    "SUB": 0.139454487660199,
+    "passed": false
+   },
+   "G-robust": {
+    "wins": 4,
+    "passed": false
+   },
+   "G-regress": {
+    "max_abs_err_increase_pp": 0.31023849964345446,
+    "passed": false
+   },
+   "G-pseudo": true,
+   "G-coldstart": true,
+   "G-hyp": {
+    "model": 0.04460222041074363,
+    "SUB": 0.027093868290669676,
+    "passed": false
+   },
+   "all_performance_gates": false
+  }
+ }
+}
