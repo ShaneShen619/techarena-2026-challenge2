@@ -1,0 +1,15 @@
+{
+ "stage": "2 - design round 2",
+ "registered": "2026-10-15, after round 1 and its diagnosis (stage_2/DIAGNOSIS_round2.md, pseudo/CS only), before any round-2 design was run",
+ "common": "as round 1 (stage_1/protocol.json common) except the step terms",
+ "step_terms_round2": "steps_mode gap_endpoint: 45 C steps after the 5-day transient exclusion; for every month m >= index of the latest visible anchor (month 0 if none), one endpoint pair (first, last step of that month, if >= 2 steps): beta * (s_last - s_first) = -[L(t_last) - L(t_first)] + e, e ~ N(0, sigma_month^2); beta = 1 (fixed)",
+ "designs": {
+   "R2_A": {"law": "power (5A)", "steps_mode": "gap_endpoint", "sigma_month": 0.10},
+   "R2_B": {"law": "two-term (D2 prior2.json, tau_b fixed)", "steps_mode": "gap_endpoint", "sigma_month": 0.10},
+   "R2_C": {"law": "two-term", "steps_mode": "gap_endpoint", "sigma_month": 0.20},
+   "R2_D": {"ensemble": "w * R2_B + (1 - w) * V2, w from {0.25, 0.5, 0.75} (w = 1 is R2_B itself) minimising the pseudo + cold-start score"}
+ },
+ "selection": "same rule as round 1: lowest mean of pseudo MAE and cold-start MAE at delta 0.4 (main step) among R2_A, R2_B, R2_C and R2_D (chosen w), subject to G-pseudo and G-coldstart; ties -> simpler (R2_A < R2_B < R2_C < R2_D). Committed before the real run.",
+ "candidate": "registered designs only (R2_D with its chosen w): among those passing every gate after the real run, the best selection score; non-chosen w grid points are reported, never candidates (decision D1.1)",
+ "gates": "as round 1; G-robust over the six step variants (all round-2 designs use steps)"
+}

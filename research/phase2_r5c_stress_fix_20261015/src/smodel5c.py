@@ -22,7 +22,7 @@ def load_prior2():
 
 BASE = dict(law="power", steps=False, sigma_pair=0.20, o45_sd=0.3, sigma_s=0.05, beta_mode="a4",
             beta_prior=(1.3, 0.2), include_25C=False, offset_prior=(0.0, 0.5), tau_b_free=False,
-            transient_days=5.0, Ea_kJ=37.3, checkup_Ah=0.0, prior2=None)
+            transient_days=5.0, Ea_kJ=37.3, checkup_Ah=0.0, prior2=None, steps_mode="all_pairs")
 
 
 def beta_a4_safe(fc, a4, ck, k):
@@ -110,7 +110,16 @@ class LawFit:
         pairs = [(i - 1, i) for i in range(1, len(vis)) if vis[i] == vis[i - 1] + 1]
         st = select_steps(steps, ck, c["include_25C"], c["transient_days"]) if c["steps"] else select_steps(None, ck, False, 0)
         spairs = []
-        for i in range(1, len(st)):
+        if c["steps"] and c["steps_mode"] == "gap_endpoint":
+            # round 2: one endpoint pair per month not covered by an anchor pair (month >= latest anchor)
+            m0 = vis[-1] if vis else 0
+            for m in sorted(set(st["m"])):
+                if m < m0:
+                    continue
+                ii = np.where((st["m"] == m).to_numpy())[0]
+                if len(ii) >= 2:
+                    spairs.append((int(ii[0]), int(ii[-1]), False, int(m)))
+        for i in (range(1, len(st)) if c["steps_mode"] == "all_pairs" else []):
             if st["m"].iloc[i] == st["m"].iloc[i - 1]:
                 cross = bool(st["sp"].iloc[i - 1] == 25 and st["sp"].iloc[i] == 45)
                 if c["include_25C"] or (st["sp"].iloc[i] == 45 and st["sp"].iloc[i - 1] == 45):
@@ -119,6 +128,8 @@ class LawFit:
         names = self._names(months_off)
         mu, sd = self._prior(names)
         beta_fixed = beta_a4_safe(fc, a4, ck, k) if (c["steps"] and c["beta_mode"] == "a4" and a4 is not None) else 1.0
+        if c["beta_mode"] == "one":
+            beta_fixed = 1.0
         n_anc = len(vis)
         times = [anc[j][0] for j in vis] + list(st["t"]) + [hz]
         tau, ah = cumulative(tab, c["Ea_kJ"] * 1e3, t_eval=times)
