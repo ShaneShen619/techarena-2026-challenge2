@@ -1,22 +1,32 @@
 {
  "wp": "WP3 - truth-oriented corrections (leaderboard-only; never scored as proxy improvements)",
  "registered": "2026-10-16, before any WP3 computation",
- "base_models": {"SUB": "submitted V2+sqrt", "F2_S_A": "WP2 registered selection", "F1_S_A": "WP2 best-behaved fusion (report only)"},
+ "base_models": {
+  "SUB": "submitted V2+sqrt",
+  "F2_S_A": "WP2 registered selection",
+  "F1_S_A": "WP2 best-behaved fusion (report only)"
+ },
  "3a_start_state": {
-   "rest_voltage": "per anchor j and cell: the last sample before the anchor charge starts (row s-1 of the segment)",
-   "r_j": "events.tail_margin_Ah(CK0 reference discharge, {cell: rest voltage}) = upper bound of the charge left at the start (max over cells); half-bound variant r_j / 2",
-   "exit": "if max_j |r_j - r_0| < 0.1 Ah (upper-bound version): WP3a 'no material effect', stop 3a",
-   "correction": "otherwise Q'_fc,j = Q_fc,j + (r_j - r_0) applied to the visible anchor table before any model runs (causal: r_j uses only that anchor's own pre-charge voltages and the CK0 curve)"
+  "rest_voltage": "per anchor j and cell: the last sample before the anchor charge starts (row s-1 of the segment)",
+  "r_j": "events.tail_margin_Ah(CK0 reference discharge, {cell: rest voltage}) = upper bound of the charge left at the start (max over cells); half-bound variant r_j / 2",
+  "exit": "if max_j |r_j - r_0| < 0.1 Ah (upper-bound version): WP3a 'no material effect', stop 3a",
+  "correction": "otherwise Q'_fc,j = Q_fc,j + (r_j - r_0) applied to the visible anchor table before any model runs (causal: r_j uses only that anchor's own pre-charge voltages and the CK0 curve)"
  },
  "3b_eps_drift": "Q' = Q + d * max(0, 100.41 - Q), d = -0.031 (main), sensitivities -0.020 and -0.035",
  "3c_path_effect": {
-   "verification": "for each anchor j and each of the six step variants: P1 = first program with t_cv_end >= t_end_j - 10 min, P2 = next program in the same segment; offset_j = step(P1) - step(P2) - median of later consecutive differences in that segment (trend-adjusted). Verified if the median trend-adjusted offset over anchors lies in [0.2, 0.7] Ah in >= 5 of 6 variants",
-   "inputs_affected": "list which model inputs contain P1 programs: SUB fallback (M4: steps after the latest anchor, first vs last), SUB phase (45 C month-end steps), SUB sqrt branch (anchors only), S gap endpoints (45 C steps of the uncovered month)",
-   "SUB_3c": "in SUB's fallback branch drop P1 of the latest anchor; with the remaining steps s' (>= 2), Q = base + (s'_last - s'_first) + rate * (t(s'_first) - t(P1)), rate = Theil-Sen slope of s' if >= 3 points else the two-point slope; with < 2 remaining steps keep the original. Other branches unchanged",
-   "S_3c": "path rule S_C of WP2 (exposed-CK1)",
-   "applies_only_if_verified": true
+  "verification": "for each anchor j and each of the six step variants: P1 = first program with t_cv_end >= t_end_j - 10 min, P2 = next program in the same segment; offset_j = step(P1) - step(P2) - median of later consecutive differences in that segment (trend-adjusted). Verified if the median trend-adjusted offset over anchors lies in [0.2, 0.7] Ah in >= 5 of 6 variants",
+  "inputs_affected": "list which model inputs contain P1 programs: SUB fallback (M4: steps after the latest anchor, first vs last), SUB phase (45 C month-end steps), SUB sqrt branch (anchors only), S gap endpoints (45 C steps of the uncovered month)",
+  "SUB_3c": "in SUB's fallback branch drop P1 of the latest anchor; with the remaining steps s' (>= 2), Q = base + (s'_last - s'_first) + rate * (t(s'_first) - t(P1)), rate = Theil-Sen slope of s' if >= 3 points else the two-point slope; with < 2 remaining steps keep the original. Other branches unchanged",
+  "S_3c": "path rule S_C of WP2 (exposed-CK1)",
+  "applies_only_if_verified": true
  },
  "combined": "3a (if not exited) + 3c (if verified) + 3b main, applied in that order",
  "outputs": "leaderboard-only SOH tables (submitted configuration eps0 + 0.4, main step) for each base model x {base, 3a, 3a_half, 3b (3 d values), 3c, combined}; WP1 hypothesis-grid scores with these variants added (decision table and regret table); real-proxy numbers are shown only as the h = (Delta 0.4, f 0, d 0) column of the grid",
- "exposure": "3c changes SUB at CK1 and CK3 (fallback), whose proxy errors are known; it is therefore leaderboard-only and labelled exposed"
+ "exposure": "3c changes SUB at CK1 and CK3 (fallback), whose proxy errors are known; it is therefore leaderboard-only and labelled exposed",
+ "amendment_1": {
+  "when": "2026-10-16, after the 3a/3c audits (wp3_audits.json, no model metric) and before any WP3 evaluation",
+  "reason": "audit shows anchor 0 rested only 0.5 h at 45 C before charging while anchors 1-7 rested 2 h at 25 C, so r_0 is not comparable; the submitted model already bridges 45 -> 25 C through eps0 + 0.4 relative to anchor 1",
+  "added_variant": "3a_ref1: Q'_fc,j = Q_fc,j + (r_j - r_1) for anchors j >= 1, anchor 0 unchanged; plus its half-bound version 3a_ref1_half. The registered main 3a (reference r_0) is kept and reported",
+  "combined_variants": "combined (3a main + 3c + 3b) and combined_ref1 (3a_ref1 + 3c + 3b) are both reported"
+ }
 }
