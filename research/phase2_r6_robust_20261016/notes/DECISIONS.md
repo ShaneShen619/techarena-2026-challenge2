@@ -18,6 +18,9 @@
 
 - D5.1 The user started WP5 while WP4 was still running (the Yagci download had not finished). WP5 depends only on WP0, so it was completed; its drafts mark WP4 as "in progress". WP4 is resumed separately.
 
+- D4.1 Yagci download. Attempt 1 failed with curl exit 35 (SSL connect error). Attempt 2 (retry/resume) reached 0.82 GB, then a retry truncated the file to 0 bytes and the process stalled; it was stopped. Range requests are supported (HTTP 206). At the user's request the archive is downloaded manually by the user into cache/downloads/yagci/ (same record, same licence, expected 2,456,145,428 bytes). It is still treated as untrusted data (unzip into its own directory, read with python3 -I, execute nothing).
+- D4.2 The user switched the goal to WP6 while WP4 was waiting for the download, then asked to wait for the download. WP6's global Done needs WP4 done, capped or exited, so WP4 is completed first.
+
 ---
 
 <a id="zh"></a>
@@ -35,3 +38,5 @@
 - D3.1 WP3 修订 1（3a 以锚点 1 为参照）是在审计之后、任何评估之前登记的，因为锚点 0 在 45 C 下 0.5 h 的静置与锚点 1-7 在 25 C 下 2 h 的静置不可比。登记的主配置（以锚点 0 为参照）仍然报告。
 - D3.2 WP1 网格里没有起点状态这条轴，所以 3a 按构造不可能在网格上胜出；它只作为需要排行榜回答的问题来报告。
 - D5.1 用户在 WP4 仍在运行时（Yagci 下载尚未完成）启动了 WP5。WP5 只依赖 WP0，因此先完成了它；其草稿中把 WP4 标为"进行中"。WP4 另行恢复。
+- D4.1 Yagci 下载。第 1 次以 curl 错误码 35（SSL 连接错误）失败。第 2 次（重试 / 续传）下载到 0.82 GB 后，一次重试把文件截成了 0 字节，进程随之停滞，已被终止。服务器支持 Range 请求（HTTP 206）。应用户要求，压缩包改由用户手动下载到 cache/downloads/yagci/（同一记录、同一许可证，预期大小 2,456,145,428 字节）。它仍按不可信数据处理（在单独目录中解压，用 python3 -I 读取，不执行任何内容）。
+- D4.2 WP4 在等待下载时，用户把目标切换到了 WP6，随后又要求等待下载完成。WP6 的整体完成标准要求 WP4 已完成、到达上限或已退出，因此先完成 WP4。
