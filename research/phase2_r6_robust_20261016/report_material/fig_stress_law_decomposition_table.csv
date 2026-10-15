@@ -1,0 +1,4 @@
+component,parameter,loss_to_campaign_end_Ah
+break-in A_b(1-exp(-tau/tau_b)),"A_b=2.096 Ah, tau_b=134 eff. d",2.0333899912541544
+calendar A_cal*sqrt(tau),A_cal=0.2663 Ah/d^0.5,5.793218464966645
+cycle A_cyc*ah,A_cyc=6.11e-06 per Ah,0.4226814936232757

@@ -16,6 +16,8 @@
 - D3.1 WP3 amendment 1 (3a reference anchor 1) was registered after the audits and before any evaluation, because anchor 0's 0.5 h / 45 C rest is not comparable with the 2 h / 25 C rests of anchors 1-7. The registered main (reference anchor 0) is still reported.
 - D3.2 The WP1 grid has no start-state axis, so 3a cannot win there by construction; it is reported as a leaderboard question only.
 
+- D5.1 The user started WP5 while WP4 was still running (the Yagci download had not finished). WP5 depends only on WP0, so it was completed; its drafts mark WP4 as "in progress". WP4 is resumed separately.
+
 ---
 
 <a id="zh"></a>
@@ -32,3 +34,4 @@
 - D2.1 WP2 的主模型 F2_S_A 在真实运行中失败；按协议不产出候选类。F1 各变体只作报告。已曝光 CK1 的 F1_S_B/S_C 无论如何都不能入选（规则 3）。
 - D3.1 WP3 修订 1（3a 以锚点 1 为参照）是在审计之后、任何评估之前登记的，因为锚点 0 在 45 C 下 0.5 h 的静置与锚点 1-7 在 25 C 下 2 h 的静置不可比。登记的主配置（以锚点 0 为参照）仍然报告。
 - D3.2 WP1 网格里没有起点状态这条轴，所以 3a 按构造不可能在网格上胜出；它只作为需要排行榜回答的问题来报告。
+- D5.1 用户在 WP4 仍在运行时（Yagci 下载尚未完成）启动了 WP5。WP5 只依赖 WP0，因此先完成了它；其草稿中把 WP4 标为"进行中"。WP4 另行恢复。
