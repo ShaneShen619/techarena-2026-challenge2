@@ -1,0 +1,64 @@
+{
+ "chosen_w": 0.75,
+ "candidates": [
+  "R3_T",
+  "R3_TD_w0.75"
+ ],
+ "passing_pre_gates": [
+  "R3_T",
+  "R3_TD_w0.75"
+ ],
+ "main": "R3_TD_w0.75",
+ "V2_pseudo": 0.24002355715475993,
+ "V2_cold": 0.25223465413934243,
+ "scores": [
+  {
+   "model": "M4",
+   "pseudo": 0.246781,
+   "cold": 0.252235,
+   "score": 0.249508,
+   "G_pseudo": true,
+   "G_coldstart": true
+  },
+  {
+   "model": "V2",
+   "pseudo": 0.240024,
+   "cold": 0.252235,
+   "score": 0.246129,
+   "G_pseudo": true,
+   "G_coldstart": true
+  },
+  {
+   "model": "R3_T",
+   "pseudo": 0.11893,
+   "cold": 0.144033,
+   "score": 0.131481,
+   "G_pseudo": true,
+   "G_coldstart": true
+  },
+  {
+   "model": "R3_TD_w0.25",
+   "pseudo": 0.192593,
+   "cold": 0.204562,
+   "score": 0.198577,
+   "G_pseudo": true,
+   "G_coldstart": true
+  },
+  {
+   "model": "R3_TD_w0.5",
+   "pseudo": 0.154403,
+   "cold": 0.160822,
+   "score": 0.157613,
+   "G_pseudo": true,
+   "G_coldstart": true
+  },
+  {
+   "model": "R3_TD_w0.75",
+   "pseudo": 0.122822,
+   "cold": 0.134445,
+   "score": 0.128633,
+   "G_pseudo": true,
+   "G_coldstart": true
+  }
+ ]
+}

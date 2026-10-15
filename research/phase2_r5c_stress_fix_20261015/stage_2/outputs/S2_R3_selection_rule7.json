@@ -1,0 +1,6 @@
+{
+ "note": "Protocol round 3 / rule 7: R3_T and R3_TD are exposed-CK1. They equal R2_B / R2_D on every pseudo and cold-start case (max |dQ| = 0.0 Ah), so they cannot win on cold-start scenarios.",
+ "eligible_round3_main": null,
+ "script_label_main": "R3_TD_w0.75 (selection-script label only; not eligible under rule 7)",
+ "chosen_w": 0.75
+}

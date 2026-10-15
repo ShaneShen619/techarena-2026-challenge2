@@ -22,7 +22,8 @@ def load_prior2():
 
 BASE = dict(law="power", steps=False, sigma_pair=0.20, o45_sd=0.3, sigma_s=0.05, beta_mode="a4",
             beta_prior=(1.3, 0.2), include_25C=False, offset_prior=(0.0, 0.5), tau_b_free=False,
-            transient_days=5.0, Ea_kJ=37.3, checkup_Ah=0.0, prior2=None, steps_mode="all_pairs")
+            transient_days=5.0, Ea_kJ=37.3, checkup_Ah=0.0, prior2=None, steps_mode="all_pairs",
+            transient_ref="ck")
 
 
 def beta_a4_safe(fc, a4, ck, k):
@@ -33,7 +34,19 @@ def beta_a4_safe(fc, a4, ck, k):
         return 1.0
 
 
-def select_steps(steps, ck, include_25C, transient_days):
+def restarts(op, ck):
+    """restart_m = first row of the first segment that starts after CK_m (CK_m if none visible)."""
+    if op is None or len(op) == 0:
+        return list(ck)
+    seg0 = op.groupby("segment")["timestamp"].min().sort_values()
+    out = []
+    for c in ck:
+        later = seg0[seg0 > c]
+        out.append(later.iloc[0] if len(later) else c)
+    return out
+
+
+def select_steps(steps, ck, include_25C, transient_days, ref=None):
     if steps is None or len(steps) == 0:
         return pd.DataFrame(columns=["t", "s", "sp", "m"])
     s = steps.dropna(subset=["step_mean"]).sort_values("t_cv_end")
@@ -41,7 +54,8 @@ def select_steps(steps, ck, include_25C, transient_days):
         s = s[s["setpoint_C"] == 45]
     t = pd.DatetimeIndex(s["t_cv_end"])
     m = np.array([int((ck <= x).sum()) - 1 for x in t])
-    keep = np.array([x >= ck[mm] + pd.Timedelta(days=transient_days) for x, mm in zip(t, m)], bool) if len(t) else []
+    ref = list(ck) if ref is None else ref
+    keep = np.array([x >= ref[mm] + pd.Timedelta(days=transient_days) for x, mm in zip(t, m)], bool) if len(t) else []
     out = pd.DataFrame({"t": t, "s": s["step_mean"].to_numpy(float), "sp": s["setpoint_C"].to_numpy(int), "m": m})
     return out[keep].reset_index(drop=True) if len(out) else out
 
@@ -108,7 +122,9 @@ class LawFit:
             if tab_cache is not None and key is not None:
                 tab_cache[ckey] = tab
         pairs = [(i - 1, i) for i in range(1, len(vis)) if vis[i] == vis[i - 1] + 1]
-        st = select_steps(steps, ck, c["include_25C"], c["transient_days"]) if c["steps"] else select_steps(None, ck, False, 0)
+        ref = restarts(op, ck) if c["transient_ref"] == "restart" else None
+        st = (select_steps(steps, ck, c["include_25C"], c["transient_days"], ref) if c["steps"]
+              else select_steps(None, ck, False, 0))
         spairs = []
         if c["steps"] and c["steps_mode"] == "gap_endpoint":
             # round 2: one endpoint pair per month not covered by an anchor pair (month >= latest anchor)
