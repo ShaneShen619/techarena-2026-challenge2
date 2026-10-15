@@ -25,7 +25,7 @@
 
 | Quantity | Value |
 |---|---|
-| σ_S0 (S_A = S_B = S_C on pseudo/CS) | see [wp2_estimated_params.json](outputs/wp2_estimated_params.json) |
+| σ_S0 (S_A = S_B = S_C on pseudo/CS) | 0.161 Ah ([wp2_estimated_params.json](outputs/wp2_estimated_params.json)) |
 | σ_SUB: phase / sqrt_gap / fallback / pooled (Ah) | 0.250 / 0.179 / 0.245 / 0.208 |
 | F2 weights (cold, phase, sqrt_gap, fallback) | 1, 1, 1, 0.5 (for all S variants) |
 | Cases per class (S_A) | cold 10, phase 4, sqrt_gap 12, fallback 2 |
@@ -92,7 +92,7 @@ Real proxies, main step, A4 2 Ah, in pp. G-hyp columns come from the WP1 grid wi
 
 | 量 | 值 |
 |---|---|
-| σ_S0（S_A = S_B = S_C 在伪场景 / CS 上） | 见 [wp2_estimated_params.json](outputs/wp2_estimated_params.json) |
+| σ_S0（S_A = S_B = S_C 在伪场景 / CS 上） | 0.161 Ah（[wp2_estimated_params.json](outputs/wp2_estimated_params.json)） |
 | σ_SUB：phase / sqrt_gap / fallback / 合并（Ah） | 0.250 / 0.179 / 0.245 / 0.208 |
 | F2 权重（冷启动、phase、sqrt_gap、fallback） | 1、1、1、0.5（所有 S 变体相同） |
 | 各类别情形数（S_A） | 冷启动 10、phase 4、sqrt_gap 12、fallback 2 |
