@@ -1,0 +1,30 @@
+{
+ "wp": "WP1 - hypothesis-robust selection among existing models (no new model, no refit)",
+ "registered": "2026-10-16, before any WP1 score was computed",
+ "model_configuration": "every model is evaluated in its submitted / registered configuration: eps = eps0 + 0.4 (EPS_EXTRA_AH = 0.4), main step method, A4 2 Ah. The label hypotheses vary the truth, not the model.",
+ "hypotheses": {
+   "target": "T_k(h) = Q_fc,k + eps0 + Delta - f * R_k + d * L_k, L_k = max(0, 100.41 - (Q_fc,k + eps0)); Q_fc,k from the full data (harness QFC)",
+   "Delta": [0.0, 0.4, 0.8],
+   "f": [0.0, 0.5, 1.0],
+   "d_Ah_per_Ah": [0.0, -0.031],
+   "R_k": "round 4 stage_5 jumps.csv column recovery_Ah_with_aging for CK1..CK7",
+   "n": 18
+ },
+ "candidates": {
+   "EX": "official ExampleModel (archived 21a7a55 model_example.py), causal",
+   "M4": "V1 (harness)", "V2": "harness V2", "SUB": "v3(use_sqrt=True, beta_cap=inf, median=False) [exposed-CK2]",
+   "SUB_bcap": "v3(use_sqrt=True, beta_cap=1.2, median=False) [exposed-CK2]",
+   "V3": "v3(use_sqrt=True, beta_cap=1.2, median=True) [exposed-CK2]",
+   "S_main_5A": "5A StressFit default", "ENS50_5A": "0.5 * S_main_5A + 0.5 * V2",
+   "R2_B": "5C two-term + gap endpoint", "R2_D_w0.75": "0.75 * R2_B + 0.25 * V2",
+   "R3_T": "5C restart transient [exposed-CK1]", "R3_TD_w0.75": "0.75 * R3_T + 0.25 * V2 [exposed-CK1]"
+ },
+ "score": "s_h(m) = mean(MAE_m / MAE_EX, RMSE_m / RMSE_EX, MAX_m / MAX_EX) over the checkups of a scenario, errors in pp against T(h); EX evaluated under the same h",
+ "grids": {
+   "real": "scenario real, CK1..CK7",
+   "causal": "PG1, PG2 (k 4..7), PC5, PC10 (k 3..7), CS, CSE (k 3..7); s per scenario, then the mean over the six scenarios; EX on a scenario uses that scenario's operation data"
+ },
+ "decision_quantities": ["worst-case s over h", "max regret over h, regret = s_h(m) - min over candidates of s_h", "expected s, uniform prior", "expected s, diagnosis prior: f {0: 0.6, 0.5: 0.3, 1: 0.1}, d {0: 0.5, -0.031: 0.5}, Delta uniform"],
+ "robust_choice": "lowest real-grid max regret among candidates other than EX; ties within 0.01 (normalised score units) -> lower diagnosis-prior expectation; then report agreement with the causal grid and ranking stability under both priors",
+ "exposure_statement": "real-grid values are exposed proxies; WP1 measures robustness to label uncertainty, not new accuracy evidence"
+}
