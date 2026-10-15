@@ -1,0 +1,27 @@
+{
+ "predictions": [
+  98.441,
+  95.823,
+  94.157,
+  93.368,
+  92.715,
+  91.963,
+  91.296,
+  90.932
+ ],
+ "future_rows_corrupted_identical": true,
+ "fit_on_cut_data_identical": true,
+ "max_abs_diff_vs_research_pp": 0.0,
+ "passed": true,
+ "runtime_s": 28.905436277389526,
+ "research_soh_ck1_7": [
+  95.823,
+  94.157,
+  93.368,
+  92.715,
+  91.963,
+  91.296,
+  90.932
+ ],
+ "python": "3.11.14"
+}
