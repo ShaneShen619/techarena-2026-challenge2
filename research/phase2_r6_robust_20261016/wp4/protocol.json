@@ -1,0 +1,27 @@
+{
+ "wp": "WP4 - open-data prior for the stress model",
+ "registered": "2026-10-16, after a metadata-only check of the external datasets (no pack metric), before any download or fit",
+ "qualification_findings_so_far": {
+   "LIC280": "1 cell, 700 cycles at 1C in 50-cycle blocks with 1 day rest, 15 independent 0.1C RPT capacities (LIC_aging_analysed.csv), CC BY 4.0; continuous duty -> calendar and cycle collinear",
+   "Gotion53_cell": "1 cell, 1000 cycles, 21 independent calibrations, ~26.8 C, CC BY 4.0; continuous duty -> collinear",
+   "Gotion53_module": "10S module, 21 calibrations, initial capacity rise (+1.1 % by cycle 100): robustness only",
+   "Yagci2025": "Zenodo 22939281 v1.1, CC BY 4.0 (verified on the record API), Data.zip 2.456 GB: storage cells at 35/50 C and 75/100 % SOC give calendar loss without throughput"
+ },
+ "download": {"decision": "download Data.zip and readme.md of Zenodo 22939281 into cache/downloads/yagci/ (git-ignored, new directory), at most 3 GB, time cap 45 min; unzip into cache/downloads/yagci/unzipped/; read only with python3 -I from scripts in wp4/; never execute anything from the download; on any failure skip Yagci and record it"},
+ "law": "L(Ah on a 102 Ah cell) = A_b (1 - exp(-tau/tau_b)) + A_cal tau^0.5 + A_cyc ah; tau = Arrhenius-weighted days (Ea 37.3 kJ/mol, T_ref 25 C), ah = Arrhenius-weighted throughput scaled to a 102 Ah cell (Ah * 102 / C_nom); losses as fraction of the dataset's first capacity x 102",
+ "fits": {
+   "calendar_and_breakin": "Yagci storage cells (all SOC/temperature groups, chamber temperature, RPT times): joint fit of log A_b, log tau_b, log A_cal with A_cyc = 0; cell-level jackknife SD",
+   "cycle": "for each cycling dataset (LIC, Gotion cell, Yagci cycling cells if available): A_cyc from the residual loss after subtracting the calendar + break-in prediction of the storage fit over that dataset's own time and temperature; prior centre = median over datasets, SD = max(leave-one-dataset-out spread, ln 3)",
+   "time_axes": "LIC: elapsed time and throughput from the raw file at each RPT; Gotion: report-file timestamps and per-cycle charge+discharge Ah; Yagci: RPT day numbers and cycling throughput from the data",
+   "fallback": "a term whose jackknife SD > ln 3 or that hits a bound falls back to the 5C prior2 value (as in 5C); if Yagci is unavailable, A_b, tau_b and A_cal come from prior2 and only A_cyc is refitted on LIC/Gotion"
+ },
+ "prior3": "prior3.json with mean/SD per term and provenance",
+ "evaluation": {
+   "S_A3": "S_A (WP2) with prior3 instead of prior2",
+   "designs": "S_A3 alone; F2_S_A3 (class weights re-estimated on pseudo+CS by the WP2 procedure, the WP2 selected design); F1_S_A3 (report only)",
+   "order": "pseudo+CS first (committed), then real",
+   "gates": "the WP2 gates against SUB (G-proxy, G-epsfree, G-robust, G-pseudo, G-coldstart, G-regress, G-hyp; G-causal/G-impl only if all performance gates pass)",
+   "label": "cold start informed by external data only; CK1 itself was seen before"
+ },
+ "attribution": "table of dataset, licence, DOI, use in this study"
+}
