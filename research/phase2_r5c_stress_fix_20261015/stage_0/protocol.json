@@ -1,0 +1,11 @@
+{
+ "stage": "0 - setup, reproduction and cold-start scenarios",
+ "registered": "2026-10-15, before any CS/CSE scenario was run",
+ "reproduce": {"V2": [0.215726, 0.669052], "M4": 0.291265, "S_main_MAE_d04": 0.326, "ENS50_MAE_d04": 0.214, "tolerance": "5e-7 for V2/M4 (exact), 5e-4 for the 5A models (table rounding)"},
+ "CS": "k = 3..7: real CK_k cut; anchors before anchor k-1 removed from fc; program steps (all step variants) with t_cv_end before anchor k-1 start and A4 rows of segments before anchor k-1's segment removed; the stress history (operation data) is kept, as at CK1 (full history known, no anchor pair)",
+ "CSE": "as CS on the PC10 cut (operation data cut 10 days before CK_k)",
+ "proxy": "P_k = Q_fc,k + eps0 + delta (unchanged)",
+ "baselines_on_CS": ["V2", "M4", "S_main", "ENS50"],
+ "metric": "mean CS MAE = mean over CS and CSE of the scenario MAE at delta 0.4, main step, A4 2 Ah (delta cancels for k >= 2 in all anchor-based models)",
+ "T6_reference": "V2's mean CS MAE"
+}
