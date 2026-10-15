@@ -1,0 +1,10 @@
+{
+ "stage": "2 - design round 3 (last)",
+ "registered": "2026-10-15, after round 2 real results; diagnosis stage_2/DIAGNOSIS_round3.md uses pseudo/CS and physics only",
+ "designs": {
+   "R3_T": {"base": "R2_B", "change": "transient exclusion measured from restart_m = first row of the first segment starting after CK_m (instead of the CK_m date): drop steps with t_cv_end < restart_m + 5 days", "label": "exposed-CK1"},
+   "R3_TD": {"ensemble": "w * R3_T + (1 - w) * V2, w from {0.25, 0.5, 0.75, 1} by the pseudo + cold-start score", "label": "exposed-CK1"}
+ },
+ "selection": "Rule 7: exposed-CK1 designs cannot be the round main unless they win on cold-start scenarios. Round 3 therefore has no eligible main unless R3_T/R3_TD beat round 2's R2_B/R2_D_w0.75 on the cold-start score; both are reported and gated.",
+ "check": "verify that R3_T equals R2_B on every pseudo and cold-start case (expected by construction); report any difference"
+}
