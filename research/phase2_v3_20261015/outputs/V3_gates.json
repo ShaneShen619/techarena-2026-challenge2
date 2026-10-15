@@ -1,0 +1,54 @@
+{
+  "K1_causality": {
+    "per_checkup": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "passed": true
+  },
+  "K2_proxy": {
+    "per_delta": [
+      true,
+      true,
+      true
+    ],
+    "passed": true
+  },
+  "K3_eps_scope": {
+    "V3_CK3_7": 0.12004924052049837,
+    "V2_CK3_7": 0.12484623582472679,
+    "passed": true
+  },
+  "K4_robust": {
+    "step_wins": {
+      "main": true,
+      "band_narrow": true,
+      "windows_minus3": true,
+      "windows_plus3": true,
+      "dvdq_peak": true,
+      "ir_corrected": true
+    },
+    "sensitivity": {
+      "V3_G7": true,
+      "V3_G14": true,
+      "V3_cap1.1": true,
+      "V3_cap1.3": true,
+      "V3_p0.4": true,
+      "V3_p0.6": true,
+      "V3_origin-5": true,
+      "V3_origin+5": true
+    },
+    "passed": true
+  },
+  "K5_no_large_regression": {
+    "max_abs_err_increase_pp": 0.08112581777435887,
+    "passed": true
+  },
+  "all_passed": true,
+  "V2_reproduction_max_abs_diff_Ah": 1.4210854715202004e-14
+}
