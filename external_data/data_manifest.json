@@ -1,0 +1,721 @@
+{
+ "description": "External public datasets screened on 2026-10-14 for validating/improving the Challenge 2 capacity model. Raw files are git-ignored; this manifest is the tracked inventory.",
+ "added": "2026-10-14",
+ "datasets": [
+  {
+   "id": "EXT-ESSL1",
+   "folder": "ESSL1",
+   "source": "https://zenodo.org/records/20132842",
+   "doi": "10.5281/zenodo.20132842",
+   "license": "CC-BY-4.0",
+   "content": "LFP 102 Ah: 6 single cells + 1 lab 16S pack; per-cycle CCCV charge segments only (30 s), pack has V1..V16 and T1..T9",
+   "label": "SOH = same-cycle charge Ah / 102 Ah (identical to segment charge throughput; not an independent RPT)",
+   "tags": [
+    "external",
+    "LFP",
+    "102Ah",
+    "16S-pack",
+    "label:charge-Ah",
+    "not-truth",
+    "use:beta-step-calibration"
+   ],
+   "format_note": "pandas 1.x pickles (list of dicts per cycle); scanned for globals (pandas/numpy only) and converted to _converted/*.parquet with an allow-list unpickler",
+   "files": [
+    {
+     "path": "ESSL1/cells/Cell#1.pkl",
+     "bytes": 2585948,
+     "sha256": "5a6ea95cf700c258f7251866d3133f7c211ae2001baf9f53b9a0808d663d9eef"
+    },
+    {
+     "path": "ESSL1/cells/Cell#2.pkl",
+     "bytes": 8470814,
+     "sha256": "01be595850ae0544769d10608624426538cc7b69ef797767ff165493e4f5da37"
+    },
+    {
+     "path": "ESSL1/cells/Cell#3.pkl",
+     "bytes": 6551216,
+     "sha256": "9cd80b3fdd02cf1d6bbda46fc7fb2f5932d3e94e8dc1e00f04b5868cf8f9e582"
+    },
+    {
+     "path": "ESSL1/cells/Cell#4.pkl",
+     "bytes": 4111585,
+     "sha256": "f31891d4ba767b53f9e5c294f1a887a7cc7622b47084be7764c3733422b9b61e"
+    },
+    {
+     "path": "ESSL1/cells/Cell#5.pkl",
+     "bytes": 4003670,
+     "sha256": "9dfcb59498500c45bdfcb8466181e114fdc13ad66c4d7b03c95922f1ed5599de"
+    },
+    {
+     "path": "ESSL1/cells/Cell#6.pkl",
+     "bytes": 1639700,
+     "sha256": "cae3f61e972df20c80e1f57bae3597ef7f735e2f4b4e999fa90a2efce30fc221"
+    },
+    {
+     "path": "ESSL1/pack/Pack#1.pkl",
+     "bytes": 29479499,
+     "sha256": "5cd290c6c307f3bc9e2e3dad7cc9514e620d290e6fa34f815f9a87109eee77da"
+    }
+   ]
+  },
+  {
+   "id": "EXT-ESSL2",
+   "folder": "ESSL2",
+   "source": "https://zenodo.org/records/20132842",
+   "doi": "10.5281/zenodo.20132842",
+   "license": "CC-BY-4.0",
+   "content": "LFP 105 Ah: 16 single cells + 1 lab 15S pack; per-cycle charge segments (30 s)",
+   "label": "measured_capacity = same-cycle charge Ah (some corrupt values, e.g. -99500); pack SOH = charge Ah / 105 Ah",
+   "tags": [
+    "external",
+    "LFP",
+    "105Ah",
+    "15S-pack",
+    "label:charge-Ah",
+    "not-truth",
+    "use:beta-step-calibration"
+   ],
+   "format_note": "as EXT-ESSL1",
+   "files": [
+    {
+     "path": "ESSL2/cells/Cell#10.pkl",
+     "bytes": 20951733,
+     "sha256": "548efaec608e172e35fa26f01b1ce125e5adb26a91b85d293b57cab0d33903ed"
+    },
+    {
+     "path": "ESSL2/cells/Cell#11.pkl",
+     "bytes": 35650833,
+     "sha256": "79d5227b819a124b1f11ae008cc54c2424a6a13cdad8d58acb48b1953b6c2880"
+    },
+    {
+     "path": "ESSL2/cells/Cell#12.pkl",
+     "bytes": 34800739,
+     "sha256": "c1246c5cfca1b8acd1562bc40d2c9c009c595d2c73a0add32a6fe562bd603c97"
+    },
+    {
+     "path": "ESSL2/cells/Cell#13.pkl",
+     "bytes": 36896213,
+     "sha256": "de62edf29c718cbf04764a2674e5cf05c6f5529cd1fa1c335d4ac9c39bc34c86"
+    },
+    {
+     "path": "ESSL2/cells/Cell#14.pkl",
+     "bytes": 27406294,
+     "sha256": "e5e8e2c8fa1d972fba3339fe85481aa29ab379de9f06811cc16860b0caec1f60"
+    },
+    {
+     "path": "ESSL2/cells/Cell#15.pkl",
+     "bytes": 28950549,
+     "sha256": "846f64665debbbf69a90839cceec49cae016f829f4367b219e880add35d91e01"
+    },
+    {
+     "path": "ESSL2/cells/Cell#16.pkl",
+     "bytes": 28826094,
+     "sha256": "2703effa84d7fedbdfe3acbe5a078b2d3d6b49a2ef3a7fae22fb7aa2092a6e67"
+    },
+    {
+     "path": "ESSL2/cells/Cell#17.pkl",
+     "bytes": 10964005,
+     "sha256": "d108e40244ad3e985edb3d81b81393efb803bcb5b05017608cc59e4bc5e15503"
+    },
+    {
+     "path": "ESSL2/cells/Cell#18.pkl",
+     "bytes": 12236545,
+     "sha256": "d84f549f08dfd2a706fd7b0709c985f1d79b2d917c02fb7a32dfcac66dc6b86c"
+    },
+    {
+     "path": "ESSL2/cells/Cell#19.pkl",
+     "bytes": 12235617,
+     "sha256": "38b256333a7a10a5fb5cb7c80a44faf1c2d838c2277ec1b5dccd3b7af3e10929"
+    },
+    {
+     "path": "ESSL2/cells/Cell#20.pkl",
+     "bytes": 13246239,
+     "sha256": "3be98b968ee81c5245d7ece2081629b021f960af7dc785a7fc739ffb4edf2d55"
+    },
+    {
+     "path": "ESSL2/cells/Cell#21.pkl",
+     "bytes": 13609901,
+     "sha256": "0fe773b04a732c2c55fd1aeb69c124fc1b0c88085ac1c7f2830b2d3a40f83a27"
+    },
+    {
+     "path": "ESSL2/cells/Cell#22.pkl",
+     "bytes": 14098758,
+     "sha256": "6bd6b19c7cb89bde4c197a3984397b819846a62e6c6fcb7479fab1a3fcb47dd7"
+    },
+    {
+     "path": "ESSL2/cells/Cell#7.pkl",
+     "bytes": 29093077,
+     "sha256": "a3f75a4e26d84a029bf362cf72a8f28786ab99fe2bcd9cd89c0da9c8ce70401d"
+    },
+    {
+     "path": "ESSL2/cells/Cell#8.pkl",
+     "bytes": 26648593,
+     "sha256": "201d275ddde1c6b5fd1a27cc0aaa145183a839cc5f7262102bad8844d0258fee"
+    },
+    {
+     "path": "ESSL2/cells/Cell#9.pkl",
+     "bytes": 20940876,
+     "sha256": "32c4197704328ff482356051019fe6e2e3591e5e91370f584c2540c4e8acad98"
+    },
+    {
+     "path": "ESSL2/pack/Pack#2.pkl",
+     "bytes": 162790888,
+     "sha256": "9dcb58f621b27d0daee34730d67193af74702af43b46cdfb263082ae1146b3f5"
+    }
+   ]
+  },
+  {
+   "id": "EXT-GOTION53",
+   "folder": "Battery_expansion_force_data",
+   "source": "https://data.mendeley.com/datasets/4nww8p6vxf/1",
+   "doi": "10.17632/4nww8p6vxf.1",
+   "license": "CC-BY-4.0",
+   "content": "Gotion IFP4014888 53 Ah LFP: 1 cell + 1 1P10S module, 1000 cycles (multi-step 2C->0.1C charge to 3.65 V, 1C discharge to 2.5 V/cell), 1 s raw data with cell voltages, expansion-force maps",
+   "label": "independent capacity calibration every 50 cycles (0.1 Ah resolution; protocol not stated); module raw data has 900 complete cycles vs 1000 calibrated (alignment uncertain); some module files have 1970 timestamps",
+   "tags": [
+    "external",
+    "LFP",
+    "53Ah",
+    "10S-module",
+    "label:independent-calibration",
+    "use:epsilon-drift-check"
+   ],
+   "files": [
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Capacity_Calibration_Cell_data.xlsx",
+     "bytes": 10235,
+     "sha256": "145ac420937e643d19a539e24e55f8dd8eed27598be44ee21852d1108f4e0e20"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2024-11-12_17.07.32.txt",
+     "bytes": 26309312,
+     "sha256": "65c62818778bee780e43bd533d55d2a6473495863fd0e1e2d3aac6e1e9bfe2bc"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2024-11-15_17.09.50.txt",
+     "bytes": 30915745,
+     "sha256": "e0775ea0b2be49800cf89e41af7c949f007d4eafce4cd62ae03805f60574509d"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2024-11-21_10.25.53.txt",
+     "bytes": 28671708,
+     "sha256": "068fbdb8cdc4cf1900d0aef20746dd51a4413189a5de5f6e6fafb2e11a653814"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2024-11-24_17.22.42.txt",
+     "bytes": 28359447,
+     "sha256": "f1bafb343af4d95ff54b0e4618e5cd2a35823f8bf307ba454f8cd57c7feb117d"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2024-12-02_10.09.44.txt",
+     "bytes": 28405369,
+     "sha256": "045932ef834c405af96d3589545a441f0c7f22f4dd2f5d0f27c2d4dad80b0930"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2024-12-06_16.18.54.txt",
+     "bytes": 28363699,
+     "sha256": "a068b8bc97a7da11c841e4796ec9de5262b772c9d60c68a8eca0e69bf16b2636"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2024-12-13_14.42.34.txt",
+     "bytes": 28674049,
+     "sha256": "b85812a3bb7fff15beb8ba4f04abbec77ac2db7ed53ca25f140d432b6c763032"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2024-12-17_10.06.24.txt",
+     "bytes": 28502254,
+     "sha256": "4a88a18a39944f8032e7a211d6b5f2757f5ce85f7c4848929135ad1bc035b19b"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2024-12-28_17.17.15.txt",
+     "bytes": 18579535,
+     "sha256": "e0478390f93e4479d3ae8987bc552e9877750ed8533110dadfca4ca77bbc3d95"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2024-12-31_17.24.11.txt",
+     "bytes": 11499843,
+     "sha256": "e1c637f296462e293415c8daed4427884b5607021ced2d909b4d100c5607b24e"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-01-02_11.14.56.txt",
+     "bytes": 5723768,
+     "sha256": "3ff90031848c71c7a6343b11ad21e0aabea40776df6351904ef7526dd1e3f492"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-01-06_11.17.02.txt",
+     "bytes": 28210853,
+     "sha256": "4b210d088e0842f85f9eb632e9e046c6ac9742a0c53ad7cac6425ebdb02751dc"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-01-13_16.32.53.txt",
+     "bytes": 28429534,
+     "sha256": "5fb8aedfd4d5d1fd9684512b95e8a4004d63d0074311929682b116131bdb2ba7"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-01-17_15.21.04.txt",
+     "bytes": 28234480,
+     "sha256": "2d2403d7f536661e9a7746fbd14956c5fac90014f6ea9df36ce4093309c4d526"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-01-23_16.16.40.txt",
+     "bytes": 24861781,
+     "sha256": "881167eaa1b05fc023773531f19c3df1375bb713d7b58f55937f82d911159ea0"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-01-26_09.39.03.txt",
+     "bytes": 2692738,
+     "sha256": "3c08ad5dde1f6908eecf5f8608b215de04e65100b56245c40b6d976fa66393c8"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-01-26_16.54.46.txt",
+     "bytes": 67395723,
+     "sha256": "a07bca081a9152e65a4d4ea4324c2e7f04df24af473db6a67f720d33876d562e"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-02-03_08.39.25.txt",
+     "bytes": 27376823,
+     "sha256": "8bf2cc888916572b6a9818f54d42cf6e9ece0d278ce69a2c5527081b10309759"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-02-07_17.13.41.txt",
+     "bytes": 43038572,
+     "sha256": "fc2ef39c1cadc69e3cc1075d15b27289a3903c8c2cfef9ae167bc7a9687b313c"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-02-12_14.18.51.txt",
+     "bytes": 2074325,
+     "sha256": "a6814a7801422d9c6c92aa26f48c132340d2103e1f572b29ac4e83eb78513d79"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-02-12_20.10.52.txt",
+     "bytes": 55554778,
+     "sha256": "417ba14fbd03d01fe364f21193a20cfab2fc6759642ed1e072da6c30a8aeabb8"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-02-21_10.17.51.txt",
+     "bytes": 56418667,
+     "sha256": "e1fa2c56b06fa39a83beba41387e6381412c4940cbe56d214b9141366358ae78"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-03-01_10.51.01.txt",
+     "bytes": 51873285,
+     "sha256": "f72a21f669b41d5231a387ad5eb17cd0b1478426ba70cd743f2fbfbd1120d17e"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-03-11_08.49.13.txt",
+     "bytes": 56433718,
+     "sha256": "72606c3944c52ea442efbccc23313a0420c928103a6fa3e72b67355d48774041"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-03-19_08.34.24.txt",
+     "bytes": 56482160,
+     "sha256": "e4c3f6754ca8ba791adb9cdd67961bcb32ed0cd29517ae1f37fc6535dc610a1f"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-03-27_08.37.10.txt",
+     "bytes": 56419211,
+     "sha256": "de8a59d051fc12ad7db2ddf9f0c3334a89e859ab04df8afd1193aae50241291b"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-04-03_16.07.40.txt",
+     "bytes": 56001809,
+     "sha256": "a6454fe3d5c20b994064a1b09ad954e68b89a4d6affbdbd9044ef79677c9dbec"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-04-14_08.32.15.txt",
+     "bytes": 56533595,
+     "sha256": "ac210f3ece37d0f8d152d9933f7b70c048e707c5a7919bae5c7069eeab2a4eba"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-04-22_10.54.59.txt",
+     "bytes": 56168984,
+     "sha256": "920feccf9ded4d3e733d190f620415552a707efe56fc478222fde01292dffe69"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-05-01_10.32.41.txt",
+     "bytes": 55971205,
+     "sha256": "4ed93c59e0b1da2cc76c87a64455fbc305e69757fd6514ffdd4b7920be6112e6"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Cycle_Ageing_Cell_data/Report__BT1_MCU12_2025-05-09_08.54.47.txt",
+     "bytes": 56816408,
+     "sha256": "624306e4e2a51ab962a9129d30ebce58dafca7e4692301707efd9d21aa455385"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_feature_data.xlsx",
+     "bytes": 163605,
+     "sha256": "88ce040e174d56829bb09fd1026cfa4de0adf043e07231606e9acfa3f079093f"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/1-50.zip",
+     "bytes": 97697176,
+     "sha256": "844fb0a05467ce4194b99d8bfb935f3da4e099b60cdce358d19ee01ab108c33e"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/101-150.zip",
+     "bytes": 140830934,
+     "sha256": "5ebc0cbb740828bc176e5ef7869c2a8ec58c5055019ba7938841df608bdc59da"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/151-200.zip",
+     "bytes": 126288411,
+     "sha256": "3f94f8c28b8b5ddc84fea862cf04810af62d692993607a2b4478f8c79d22f167"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/201-250.zip",
+     "bytes": 176896589,
+     "sha256": "216961bc8e616556b1f33906af38c32f9ee71ec8fa9df161d474824c4abfbfa4"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/251-300.zip",
+     "bytes": 67956734,
+     "sha256": "39f73d2ff66a45780685f266df2b84d3eda8af6130e7671617da52e65be5a626"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/323-410.zip",
+     "bytes": 241920284,
+     "sha256": "19ce35b7df29dd28a9e9f214aa1655822c40300efc631088cb175df651d2f91f"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/411-450.zip",
+     "bytes": 112998308,
+     "sha256": "1a08c72b7cdbace339a2e57047ad5a77ba63d659b880387b4b1d53c12869dff5"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/451-500.zip",
+     "bytes": 132195305,
+     "sha256": "a9105a4bc5d8f32c22b6a43b6e8a7d4897f618b6524f856916b9e6ff39df3067"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/501-550.zip",
+     "bytes": 155204589,
+     "sha256": "b5246d9f3c246c25a5365442239b2bc15666945b47e9bdc129228970ff8e3505"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/51-100.zip",
+     "bytes": 132308011,
+     "sha256": "13d55d95fb0da714442dc22e6a8283588469f7fdf995b962ebf81a98f595c95a"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/551-600.zip",
+     "bytes": 176471233,
+     "sha256": "331e40abb8d9eda59c18ea909460fed14285c119d8ba89e0966dc05e92fc9469"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/601-650.zip",
+     "bytes": 141711886,
+     "sha256": "4e22c51bd138919d2b7c5e560fae19645958ca6a9cb088d0d8911f82a0595d16"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/651-700.zip",
+     "bytes": 154518997,
+     "sha256": "13e8bf8ac9aca3b912dc1c1aabf8e56e13190cdde373634951c1d4122f367647"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/701-750.zip",
+     "bytes": 153400371,
+     "sha256": "3e5dbf508ac3b6ae76ada68543c4b9ba36d20bcb2bbb4c0565925062186efb05"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/751-850.zip",
+     "bytes": 239072068,
+     "sha256": "352b2d126f199dd787eb3187172deb748754ca3ba250937e2d506e9e6e64d74f"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/851-900.zip",
+     "bytes": 172889098,
+     "sha256": "4056cdc9c4d42b1e146107777f2f33e08d18d0e32e3b3b2bd97ac88e08e62c6b"
+    },
+    {
+     "path": "Battery_expansion_force_data/Cell_Data/Expansion_force_Cell_source_data/901-1000.zip",
+     "bytes": 298490016,
+     "sha256": "53d67cd4ddc8639e1be763352072da00fa7980e9cb5a65b41d7a4537824f0b6a"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Capacity_Calibration_Module_data.xlsx",
+     "bytes": 10221,
+     "sha256": "2b00129404ba90c1d13519b2d02d5af97bab6c04c70a38b827677cbfcf453224"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-01-09_08.44.31.txt",
+     "bytes": 18446117,
+     "sha256": "ca1f8bb4c9ae94e7a5bbfaddce704d07b1019c2ad7ad5918e1de3bf2ad8e3839"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-01-10_14.30.03.txt",
+     "bytes": 29884862,
+     "sha256": "9f57d93eefd7662f9b85d551ef229e3fda11b581fcaa4bf4b2e340fe3cce6aec"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-01-13_10.16.21.txt",
+     "bytes": 51859340,
+     "sha256": "3663822e41f7d3a7244e2f8b5bb4a475f23ba6d37b6bc08d06a6b47add3e7830"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-01-17_15.23.11.txt",
+     "bytes": 49736288,
+     "sha256": "10969316ab4b9a127aa59f3d2edc26278887b51c4a2d398f98354d4af374ca0e"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-01-22_14.49.35.txt",
+     "bytes": 30841206,
+     "sha256": "a7d70b6a78b912cbba8f2ad87c0eeec08f4e9152d3eb09a4dc06080733477da9"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-01-24_16.44.12.txt",
+     "bytes": 20516505,
+     "sha256": "f2486f6d0c53c2594806d54bc9a081a5772eaa03a0fb7ec229c677350a45b647"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-01-29_10.54.25.txt",
+     "bytes": 111888217,
+     "sha256": "98bd6cfff84bf5808f3ce76dedb8446cbc6982233a0ee8328e2aed53a1101662"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-02-07_17.03.15.txt",
+     "bytes": 71659851,
+     "sha256": "5e50382139a78181a603fe57f592f709428357a72a0e611c5f9caaba1b5d27d1"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-02-13_16.54.52.txt",
+     "bytes": 94031172,
+     "sha256": "4ed04c13f1fb28a64bf2bd35275c0868f1f279c1950f86ef71a1242bd99dad26"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-02-23_16.52.17.txt",
+     "bytes": 84123680,
+     "sha256": "4afe1fb21478fcaa157529fb0e4dcbc5a10a6aa971d9c3e27f1ffa8841652d93"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-03-05_10.26.44.txt",
+     "bytes": 92689963,
+     "sha256": "9a73787afc258817680b4d0844e4da85b5b2cfa7ff49f63c859491b508ba00d6"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-03-13_11.37.56.txt",
+     "bytes": 93124221,
+     "sha256": "da13683b73eb49c4f6da4c50e45de0a99f20c4b35659c8bf8180d441d6872a55"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-03-21_14.26.14.txt",
+     "bytes": 94043376,
+     "sha256": "6722b06dc78fc48fba376446108d3de34cfb1f9651165f9444f3a723ce5db646"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-03-29_09.25.23.txt",
+     "bytes": 30205128,
+     "sha256": "77819dad262354c16ef5a24a7be7c386939bd38f4deb17ba06cddcb34937ec37"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-03-31_15.41.46.txt",
+     "bytes": 14591040,
+     "sha256": "18d01ba132ea5cd3413730fb6cbfd254f250b18206f61182660544a201ec15b5"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-04-01_17.07.22.txt",
+     "bytes": 50677886,
+     "sha256": "5b80b8c92ec8a6165f696a925f9ca7f9569a1e2f0d73067f9ebc48b0eaf6bd6d"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-04-15_18.23.41.txt",
+     "bytes": 93778471,
+     "sha256": "d398830786ea0b9fb7cc820b2eff9438ec5cd59e0cd5013e8a1546a37b100b64"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-04-25_11.31.10.txt",
+     "bytes": 78591904,
+     "sha256": "cc83082f48a09f22706f06895d72bc7717cbfb44beef33686da7568a2537677a"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-05-01_10.30.26.txt",
+     "bytes": 92907446,
+     "sha256": "2fec6ac2159fb3679fb0c62158246dbb6709eb171238786582319c66fb338123"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-05-09_14.34.06.txt",
+     "bytes": 93427481,
+     "sha256": "7d201aad91c511ec053f186510d181a80afe2eb61e6791096137903e96d24dd0"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-05-17_13.36.23.txt",
+     "bytes": 93840863,
+     "sha256": "345aa09aebe43bdee88e9383328e21a9cf3b610ad8343b3330d9a6adfb4fa8a0"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-05-26_08.35.36.txt",
+     "bytes": 64684805,
+     "sha256": "3070dc31e2c19ccf1b981f116731ec6870a96e170944e2ff545341495ee9b047"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-06-03_11.12.46.txt",
+     "bytes": 29283332,
+     "sha256": "1aa2943e92d8520c5f717bcf73e029afd5a93923d7e1fffd30183761bc8a50af"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-06-06_18.15.55.txt",
+     "bytes": 42776291,
+     "sha256": "f38e0af505b6a521e9118b472c1e1fa49a23c6cb4f76fb8bf8b834b6afc9bd07"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-06-10_10.57.01.txt",
+     "bytes": 30097536,
+     "sha256": "5ec746e5ee01a56cf2c8d8bfd9a9eac0cd672e5ea2c502f7d8c0caa466849070"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-06-13_15.27.11.txt",
+     "bytes": 27504713,
+     "sha256": "3b15a73d2a35d64a653f247e297f873f587b9bb2a0c475e1b231c1bd0dbb46a2"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-06-16_14.35.37.txt",
+     "bytes": 41505303,
+     "sha256": "6b946c7ced460db48a12c2ecbae3ce53cd5be4c6d115ffe46f8a79291e2595bd"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-06-23_08.36.40.txt",
+     "bytes": 11727312,
+     "sha256": "9d49743a168a8f59226418a3b173177f59d647234868fe4a2a35135872efd905"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Cycle_Ageing_Module_data/Report__BT1_MCU11_2025-06-24_19.21.34.txt",
+     "bytes": 93950720,
+     "sha256": "db854fc9aae6a53aac7bb3a0e6cacb7328b85c2b6ca8a18acea04ebafe41e78f"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_feature_data.xlsx",
+     "bytes": 149259,
+     "sha256": "3e756428153e33a1c77d1a6bc59aae3bb4e8467839e673fb68e98c385c7d9a3c"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/1-50.zip",
+     "bytes": 171404974,
+     "sha256": "fb12aa1790119490feacebfaf27340098750fb6b39e3141707761c08b1e5760e"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/101-160.zip",
+     "bytes": 248588792,
+     "sha256": "52747b77af42ba74e862825041841c2df061d2008d21512c62d6ffbd4fb5cc5e"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/161-200.zip",
+     "bytes": 117759585,
+     "sha256": "35ac7931937f3e975eead933fb9490d76c393a6d62ccc280d7ac9e8cacc9be87"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/201-250.zip",
+     "bytes": 147737380,
+     "sha256": "acef700114eeaf85de678727490088fa03d1da696160165c046ec270b3caa84e"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/251-300.zip",
+     "bytes": 159632193,
+     "sha256": "0524f62a34fab44e8c7ab5905d823fcb50a305cfbaa70b424ac82099d4fbbf0b"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/301-350.zip",
+     "bytes": 156523927,
+     "sha256": "f00e55fc72c4e486029bb5bbcb3f2b479e40ef4e87353356fe229e9f2ae9d7e1"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/351-400.zip",
+     "bytes": 169076424,
+     "sha256": "9a47aaad6b8f094bf97bee7362ee5282e05f491c08aed402f24cc819ba9b62bd"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/401-450.zip",
+     "bytes": 182041899,
+     "sha256": "45de92d627e57d1274e9ce38d2c40cc9aaf5fc6ac6fa721b7d7600d71460a08c"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/451-500.zip",
+     "bytes": 180711031,
+     "sha256": "1b257c66da24dffc8d7c4bff7b1f03fe9e4b8dbcaa526007154b616a7699fa18"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/501-550.zip",
+     "bytes": 153928603,
+     "sha256": "658004b13d3705daa43f31bb2bded9160d827105fbc77ec5e01267a49777afd8"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/551-600.zip",
+     "bytes": 174654838,
+     "sha256": "cfd9be77528cc5e1bdd1bfec31bd6ebd9a9858d81c2d348d866acafe3750b64b"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/601-650.zip",
+     "bytes": 219980929,
+     "sha256": "94014c66eec5332edb3dbe0065a94a1109beb879a8de7218364360726ea25dd9"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/651-750.zip",
+     "bytes": 276663725,
+     "sha256": "fa1869103c504f3bad30ec00676e848a6eb6ce205e46f41a50600d8babaf11c1"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/751-800.zip",
+     "bytes": 193296971,
+     "sha256": "06722b5c3849c979212ae9c6c9ac40415cf543b764b375302a6fe0e79d078601"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/76-100.zip",
+     "bytes": 85433083,
+     "sha256": "e2b03fb4d07d2497a5a5166bd9e85de2319e65d6c5414214012ebdf1f452281e"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/801-850.zip",
+     "bytes": 164622886,
+     "sha256": "a7492690f5d47b8f330fda1de626fdf936ef49d43f4cd3779d2deeac2c89c929"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/851-900.zip",
+     "bytes": 206607271,
+     "sha256": "01202fa7f7c5b81894c79c1a24189a5ea68593966a433101376c062f3f9c0b3c"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/901-950.zip",
+     "bytes": 184874280,
+     "sha256": "f228bb0794b8ecdfe557c51804e1b2f3c3b56e6ef9f6fce75b06daed3950545c"
+    },
+    {
+     "path": "Battery_expansion_force_data/Module_Data/Expansion_force_Module_source_data/951-1000.zip",
+     "bytes": 158945263,
+     "sha256": "d5de4765de457691671ab226209fd212e3290ce8d7285f573780cc333906927b"
+    }
+   ]
+  },
+  {
+   "id": "EXT-LIC280",
+   "folder": "LIC_aging",
+   "source": "https://zenodo.org/records/20813753",
+   "doi": "10.5281/zenodo.20813753",
+   "license": "CC-BY-4.0",
+   "content": "TEMPEST 280 Ah prismatic LFP cell: 700 1C cycles in 50-cycle blocks (CCCV, 0.05C cut-off), 1 s raw data",
+   "label": "independent RPT every 50 cycles: 0.1C capacity test + pulse tests; RPT k=5 discharge truncated at 280.00 Ah (10 h limit)",
+   "tags": [
+    "external",
+    "LFP",
+    "280Ah",
+    "single-cell",
+    "label:independent-RPT-0.1C",
+    "use:epsilon-drift-check"
+   ],
+   "files": [
+    {
+     "path": "LIC_aging/LIC_aging_analysed.csv",
+     "bytes": 595,
+     "sha256": "d3f08fbfdc179ca583bad6fecbba704b7674d2327733c3701b1a8d51a1ee038c"
+    },
+    {
+     "path": "LIC_aging/LIC_aging_data.csv",
+     "bytes": 1139245202,
+     "sha256": "9a175315c6d171acc511c16d44796c12a590c25c5d71562ace22fa2e4a5ab200"
+    },
+    {
+     "path": "LIC_aging/LIC_aging_readme.txt",
+     "bytes": 1439,
+     "sha256": "1d062a3eae52036401f437b8fac5abb05c8104981b4143022154ffae1b024b4f"
+    }
+   ]
+  }
+ ]
+}

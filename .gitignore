@@ -3,3 +3,9 @@ __pycache__/
 .venv/
 venv/
 .DS_Store
+
+# External public datasets (large raw files, kept locally; see external_data/DATA_MANIFEST.md)
+/external_data/*
+!/external_data/DATA_MANIFEST.md
+!/external_data/data_manifest.json
+!/external_data/_screening/

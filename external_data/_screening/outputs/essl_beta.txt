@@ -1,0 +1,8 @@
+ESSL1/cells/Cell#1 | n=459 | Q 102.5->67.6 | qA: step@19.5->8.5 Ah, top-share 0.69, beta 1.65 (R2 0.92) | qB: step@90.5->55.5 Ah, top-share -0.00, beta -3.88 (R2 0.01)
+ESSL1/cells/Cell#2 | n=774 | Q 101.7->77.1 | qA: step@18.5->19.0 Ah, top-share 1.02, beta 1.01 (R2 1.00) | qB: step@89.0->65.0 Ah, top-share 0.02, beta 3.65 (R2 0.01)
+ESSL1/cells/Cell#3 | n=588 | Q 101.8->77.0 | qA: step@18.5->18.0 Ah, top-share 0.98, beta 1.06 (R2 1.00) | qB: step@89.5->65.0 Ah, top-share 0.01, beta 9.16 (R2 0.06)
+ESSL1/cells/Cell#4 | n=382 | Q 101.3->71.7 | qA: step@19.0->20.0 Ah, top-share 1.03, beta 0.95 (R2 1.00) | qB: step@59.5->48.5 Ah, top-share 0.63, beta 1.65 (R2 0.96)
+ESSL1/cells/Cell#5 | n=366 | Q 102.1->72.9 | qA: step@19.0->20.5 Ah, top-share 1.05, beta 0.97 (R2 1.00) | qB: step@60.5->44.5 Ah, top-share 0.45, beta 2.41 (R2 0.89)
+ESSL1/cells/Cell#6 | n=281 | Q 100.9->73.3 | qA: step@20.5->17.5 Ah, top-share 0.89, beta 1.13 (R2 1.00) | qB: step@88.5->35.5 Ah, top-share -0.93, beta -0.46 (R2 0.68)
+ESSL1/pack/Pack#1 | n=419 | Q 99.3->77.5 | qA: step@18.0->18.0 Ah, top-share 1.00, beta 1.01 (R2 1.00) | qB: step@57.5->47.5 Ah, top-share 0.54, beta 1.69 (R2 0.93)
+ESSL2/pack/Pack#2 | n=499 | Q 102.1->85.4 | qA: step@13.5->13.5 Ah, top-share 1.00, beta 0.99 (R2 1.00) | qB: step@59.5->58.5 Ah, top-share 0.94, beta 1.07 (R2 1.00)
