@@ -46,10 +46,18 @@ def restarts(op, ck):
     return out
 
 
-def select_steps(steps, ck, include_25C, transient_days, ref=None):
+def select_steps(steps, ck, include_25C, transient_days, ref=None, drop_after=None):
     if steps is None or len(steps) == 0:
         return pd.DataFrame(columns=["t", "s", "sp", "m"])
     s = steps.dropna(subset=["step_mean"]).sort_values("t_cv_end")
+    if drop_after:   # round 6 path rule: drop the first deep program after each anchor charge
+        tt = pd.DatetimeIndex(s["t_cv_end"])
+        drop = set()
+        for a in drop_after:
+            idx = np.where(tt >= pd.Timestamp(a) - pd.Timedelta(minutes=10))[0]
+            if len(idx):
+                drop.add(s.index[idx[0]])
+        s = s.drop(index=list(drop))
     if not include_25C:
         s = s[s["setpoint_C"] == 45]
     t = pd.DatetimeIndex(s["t_cv_end"])
@@ -123,7 +131,11 @@ class LawFit:
                 tab_cache[ckey] = tab
         pairs = [(i - 1, i) for i in range(1, len(vis)) if vis[i] == vis[i - 1] + 1]
         ref = restarts(op, ck) if c["transient_ref"] == "restart" else None
-        st = (select_steps(steps, ck, c["include_25C"], c["transient_days"], ref) if c["steps"]
+        drop_after = None
+        if c["transient_ref"] == "path":
+            drop_after = [pd.Timestamp(r["t_end"]) for _, r in fc.iterrows()] if len(fc) else []
+        st = (select_steps(steps, ck, c["include_25C"], 0.0 if c["transient_ref"] == "path" else c["transient_days"],
+                           ref, drop_after) if c["steps"]
               else select_steps(None, ck, False, 0))
         spairs = []
         if c["steps"] and c["steps_mode"] == "gap_endpoint":
@@ -182,7 +194,35 @@ class LawFit:
         else:
             base, ml = anc[last][1] + eps, M[len(vis) - 1]
         q = base - (M[-1] - ml)
-        info = dict(n_pairs=len(pairs), n_step_pairs=len(spairs), beta_used=float(p.get("beta", beta_fixed)),
+        # round 6: predictive SD of q from the Laplace covariance (delta method)
+        q_sd = 0.0
+        if pairs or spairs:
+            r0 = resid(x)
+            Jm = np.empty((len(r0), len(x)))
+            gq = np.empty(len(x))
+            for i in range(len(x)):
+                hh = 1e-6 * max(1.0, abs(x[i]))
+                xp = x.copy()
+                xp[i] += hh
+                Jm[:, i] = (resid(xp) - r0) / hh
+                Mp = self._M(P(xp), tau, ah)
+                mlp = 0.0 if last is None else (Mp[vis.index(0)] if last == 0 else Mp[len(vis) - 1])
+                gq[i] = ((base - (Mp[-1] - mlp)) - q) / hh
+            cov = np.linalg.pinv(Jm.T @ Jm)
+            q_sd = float(np.sqrt(max(gq @ cov @ gq, 0.0)))
+        else:
+            sdv = sd
+            Mp0 = M
+            gq = np.empty(len(x))
+            for i in range(len(x)):
+                hh = 1e-6 * max(1.0, abs(x[i]))
+                xp = x.copy()
+                xp[i] += hh
+                Mp = self._M(P(xp), tau, ah)
+                mlp = 0.0 if last is None else (Mp[vis.index(0)] if last == 0 else Mp[len(vis) - 1])
+                gq[i] = ((base - (Mp[-1] - mlp)) - q) / hh
+            q_sd = float(np.sqrt(np.sum((gq * sdv) ** 2)))
+        info = dict(q_sd=q_sd, n_pairs=len(pairs), n_step_pairs=len(spairs), beta_used=float(p.get("beta", beta_fixed)),
                     horizon_lag_d=L, last_anchor=-1 if last is None else int(last), month_loss=float(M[-1] - ml),
                     **{n: float(v) for n, v in p.items() if not n.startswith("off_")})
         return float(q), info

@@ -1,0 +1,27 @@
+{
+ "wp": "WP2 - uncertainty-weighted fusion of the stress model S and SUB",
+ "registered": "2026-10-16, before any WP2 evaluation (only a smoke test of the code on one pseudo cut, no metric)",
+ "fusion": "Q = w_k * S + (1 - w_k) * SUB; SUB = v3(use_sqrt=True, beta_cap=inf, median=False); same delta, step variant and A4 smoothing as the evaluation context",
+ "S_variants": {
+   "S_A": "5C R2_B: two-term law (prior2_5c), gap-month step endpoint, beta 1, sigma_s 0.10, steps dropped < 5 days after the CK date [main, not exposed]",
+   "S_B": "5C R3_T: as S_A with the 5-day rule from the operation restart [exposed-CK1]",
+   "S_C": "as S_A, but the time rule is replaced by the path rule: drop the first deep program (t_cv_end >= anchor t_end - 10 min) after every visible anchor charge, no time exclusion [exposed-CK1]"
+ },
+ "designs": {
+   "F1": "inverse variance: w_k = s2_SUB,k / (s2_S,k + s2_SUB,k); s2_S,k = q_sd^2 (Laplace/delta-method predictive SD of S, Ah) + sigma_S0^2; sigma_S0 = RMS error (Ah) of that S variant on pseudo+CS (k >= 3, delta 0.4, main step); sigma_SUB,k = RMS error (Ah) of SUB on pseudo+CS for SUB's branch at that cutoff (phase / sqrt_gap / fallback), pooled overall RMS if fewer than 3 cases",
+   "F2": "class weights: class = cold if S has no anchor pair (n_pairs = 0), else SUB's branch (phase, sqrt_gap, fallback); per class w from {0, 0.25, 0.5, 0.75, 1} minimising that class's mean absolute error over pseudo+CS (delta 0.4, main step); ties -> 0.5 then smaller w; class absent from pseudo+CS -> 0.5",
+   "F3": "w = 0.5"
+ },
+ "estimation_data": "sigma_S0, sigma_SUB by branch and the F2 weights use only PG1, PG2, PC5, PC10, CS, CSE (k >= 3), delta 0.4, main step; committed before the real run",
+ "selection": "among F1, F2, F3 with S_A: lowest mean of pseudo MAE and cold-start MAE at delta 0.4, main step, subject to G-pseudo (<= SUB + 0.02) and G-coldstart (<= SUB); ties -> F3 < F2 < F1. S_B / S_C variants reported, never selected.",
+ "gates_vs_SUB": {
+   "G-proxy": "MAE < SUB at every delta and MAX <= SUB MAX + 0.10 (real, main step, A4 2 Ah)",
+   "G-epsfree": "CK2-7 MAE at delta 0 <= SUB - 0.02",
+   "G-robust": "beats SUB's MAE (delta 0.4) in >= 5 of 6 step variants",
+   "G-pseudo": "pseudo mean MAE <= SUB + 0.02", "G-coldstart": "CS mean MAE <= SUB",
+   "G-regress": "no checkup's absolute error grows by more than 0.30 pp vs SUB (delta 0.4)",
+   "G-hyp": "WP1 real-grid max regret with the design added to the WP1 candidate set <= SUB's max regret in the same set",
+   "G-causal / G-impl": "numpy/pandas class within 0.001 pp of research, python 3.11 venv, full run < 30 min, validate_submission.py passing on a copy of the archived 21a7a55 package"
+ },
+ "candidate": "only the selected design, only if it passes every gate"
+}
