@@ -1,0 +1,74 @@
+{
+ "S_A3": {
+  "G-proxy": false,
+  "G-epsfree": {
+   "model": 0.20790770150744411,
+   "SUB": 0.139454487660199,
+   "passed": false
+  },
+  "G-robust": {
+   "wins": 2,
+   "passed": false
+  },
+  "G-regress": {
+   "max_abs_err_increase_pp": 0.6204769992869089,
+   "passed": false
+  },
+  "G-pseudo": true,
+  "G-coldstart": true,
+  "G-hyp": {
+   "model": 0.09723138300000803,
+   "SUB": 0.027093868290669676,
+   "passed": false
+  },
+  "all_performance_gates": false
+ },
+ "F2_S_A3": {
+  "G-proxy": false,
+  "G-epsfree": {
+   "model": 0.1887776889637561,
+   "SUB": 0.139454487660199,
+   "passed": false
+  },
+  "G-robust": {
+   "wins": 2,
+   "passed": false
+  },
+  "G-regress": {
+   "max_abs_err_increase_pp": 0.6204769992869089,
+   "passed": false
+  },
+  "G-pseudo": true,
+  "G-coldstart": true,
+  "G-hyp": {
+   "model": 0.09479384336702287,
+   "SUB": 0.027093868290669676,
+   "passed": false
+  },
+  "all_performance_gates": false
+ },
+ "F1_S_A3": {
+  "G-proxy": false,
+  "G-epsfree": {
+   "model": 0.13741190817789525,
+   "SUB": 0.139454487660199,
+   "passed": false
+  },
+  "G-robust": {
+   "wins": 4,
+   "passed": false
+  },
+  "G-regress": {
+   "max_abs_err_increase_pp": 0.10065772232944231,
+   "passed": true
+  },
+  "G-pseudo": true,
+  "G-coldstart": true,
+  "G-hyp": {
+   "model": 0.041643930432707914,
+   "SUB": 0.027093868290669676,
+   "passed": false
+  },
+  "all_performance_gates": false
+ }
+}

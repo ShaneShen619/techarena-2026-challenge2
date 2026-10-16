@@ -21,6 +21,8 @@
 - D4.1 Yagci download. Attempt 1 failed with curl exit 35 (SSL connect error). Attempt 2 (retry/resume) reached 0.82 GB, then a retry truncated the file to 0 bytes and the process stalled; it was stopped. Range requests are supported (HTTP 206). At the user's request the archive is downloaded manually by the user into cache/downloads/yagci/ (same record, same licence, expected 2,456,145,428 bytes). It is still treated as untrusted data (unzip into its own directory, read with python3 -I, execute nothing).
 - D4.2 The user switched the goal to WP6 while WP4 was waiting for the download, then asked to wait for the download. WP6's global Done needs WP4 done, capped or exited, so WP4 is completed first.
 
+- D4.3 The manual download had not arrived after 7.5 h (WP4's 3 h cap long passed). WP4 was completed under its registered Yagci-unavailable fallback; the waiter was stopped. The cycle-term estimate hit its 1e-12 floor and fell back to prior2 by the registered bound rule (the fit script had omitted that rule for A_cyc; it was applied explicitly and recorded in prior3.json).
+
 ---
 
 <a id="zh"></a>
@@ -40,3 +42,4 @@
 - D5.1 用户在 WP4 仍在运行时（Yagci 下载尚未完成）启动了 WP5。WP5 只依赖 WP0，因此先完成了它；其草稿中把 WP4 标为"进行中"。WP4 另行恢复。
 - D4.1 Yagci 下载。第 1 次以 curl 错误码 35（SSL 连接错误）失败。第 2 次（重试 / 续传）下载到 0.82 GB 后，一次重试把文件截成了 0 字节，进程随之停滞，已被终止。服务器支持 Range 请求（HTTP 206）。应用户要求，压缩包改由用户手动下载到 cache/downloads/yagci/（同一记录、同一许可证，预期大小 2,456,145,428 字节）。它仍按不可信数据处理（在单独目录中解压，用 python3 -I 读取，不执行任何内容）。
 - D4.2 WP4 在等待下载时，用户把目标切换到了 WP6，随后又要求等待下载完成。WP6 的整体完成标准要求 WP4 已完成、到达上限或已退出，因此先完成 WP4。
+- D4.3 7.5 小时后手动下载仍未到位（远超 WP4 的 3 小时上限）。WP4 按登记的 Yagci 不可用回退方案完成；等待任务已停止。循环项的估计撞到 1e-12 的下限，按登记的边界规则回退到 prior2（拟合脚本漏掉了对 A_cyc 应用这条规则，已显式补上并记录在 prior3.json 中）。
