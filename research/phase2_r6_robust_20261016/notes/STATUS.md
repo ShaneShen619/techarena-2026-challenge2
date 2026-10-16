@@ -6,6 +6,8 @@
 
 Branch `exp/phase2-r6-robust-20261016`, worktree `/Users/shane/Desktop/Arena_1016_r6_robust`.
 
+**All work packages finished (WP0-WP6); WP4 via its registered Yagci-unavailable fallback.**
+
 | WP | State | Result |
 |---|---|---|
 | 0 setup, re-baselining | done | V2/SUB/R3_TD_w0.75/R2_B reproduced; archived submitted class = SUB within 0.0004 pp; ExampleModel computed (proxy MAE ~4.3 pp) |
@@ -14,7 +16,7 @@ Branch `exp/phase2-r6-robust-20261016`, worktree `/Users/shane/Desktop/Arena_101
 | 3 truth-oriented corrections | done | 3b drift: best worst-case and expectations (hedge, first probe); 3a start state up to 1.29 Ah, low confidence; 3c path effect verified 6/6 but contradicts proxies |
 | 4 open-data prior | done (registered Yagci-unavailable fallback; past the 3 h cap) | prior3 = prior2; prior2 over-predicts LIC (+50 %) and Gotion (+24 %) loss; no candidate |
 | 5 report material | done | 7 bilingual drafts in report_material/ (method, interpretability figure, open data, validation, negative results, slides, code audit) |
-| 6 synthesis | next | |
+| 6 synthesis | done | keep SUB; probe order P_drift -> P_stress_early -> P_start; FINAL_REPORT.md, README.md |
 
 ---
 
@@ -26,6 +28,8 @@ Branch `exp/phase2-r6-robust-20261016`, worktree `/Users/shane/Desktop/Arena_101
 
 分支 `exp/phase2-r6-robust-20261016`，worktree `/Users/shane/Desktop/Arena_1016_r6_robust`。
 
+**全部工作包（WP0–WP6）已完成；WP4 按登记的 Yagci 不可用回退方案完成。**
+
 | WP | 状态 | 结果 |
 |---|---|---|
 | 0 准备、重新确定基线 | 完成 | 复现 V2/SUB/R3_TD_w0.75/R2_B；归档的提交类与 SUB 相差不超过 0.0004 pp；已算出 ExampleModel（代理 MAE 约 4.3 pp） |
@@ -34,4 +38,4 @@ Branch `exp/phase2-r6-robust-20261016`, worktree `/Users/shane/Desktop/Arena_101
 | 3 真值导向修正 | 完成 | 3b 漂移：最坏情况与期望最好（对冲，首个探测）；3a 起点最多 1.29 Ah，置信度低；3c 路径效应 6/6 证实但与代理冲突 |
 | 4 开放数据先验 | 完成（按登记的 Yagci 不可用回退；已过 3 小时上限） | prior3 = prior2；prior2 高估 LIC（+50 %）和 Gotion（+24 %）的损失；无候选 |
 | 5 报告材料 | 完成 | report_material/ 中 7 份双语草稿（方法、可解释性图、开放数据、验证、负面结果、演示、代码审计） |
-| 6 综合 | 下一步 | |
+| 6 综合 | 完成 | 保留 SUB；探测顺序 P_drift -> P_stress_early -> P_start；FINAL_REPORT.md、README.md |
