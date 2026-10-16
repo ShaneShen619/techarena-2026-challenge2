@@ -13,9 +13,9 @@ Branch `exp/phase2-r7-lit-checks-20261016`, worktree `/Users/shane/Desktop/Arena
 | 2 temperature-weighted sqrt | done | T_main passes all gates (gap cases 0.105 vs 0.113, pseudo 0.144, cold 0.170, G_hyp, G_causal, G_impl) → recommend switching; CK2 94.451 → 94.507; not wired |
 | 3 eps drift on Yagci | done | drift sign not robust: Yagci 50 C −0.057, 35 C +0.178 (initial-checkup effect); pooled median −0.033; d stays −0.031; probe P_drift after the others |
 | 4 Reichert 2013 | skipped | no full text on Desktop or in papers/ |
-| 5 synthesis | pending | |
+| 5 synthesis | done | decision table, SOH tables, risk addendum; probe order P_stress_early → P_start → P_drift; FINAL_REPORT.md, README.md |
 
-Next: WP5.
+**All work packages done (WP4 skipped by rule). Global Done reached.**
 
 ---
 
@@ -25,4 +25,4 @@ Next: WP5.
 
 > **语言：** [English](#en) · 中文
 
-见上表。WP0–WP3 已完成，WP4 跳过；下一步 WP5。
+见上表。全部工作包完成（WP4 按规则跳过），整体完成。

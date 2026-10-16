@@ -1,0 +1,24 @@
+{
+ "CK2": "recommend switching to T_main (not wired)",
+ "CK2_SOH": {
+  "SUB": 94.451,
+  "T_main": 94.507,
+  "T_ea37": 94.541,
+  "T_seg25_sensitivity": 94.84
+ },
+ "offset_interpretation": "not_supported",
+ "hidden_C20_order": "before",
+ "d_for_P_drift": -0.031,
+ "drift_recommendation": "sign_not_robust",
+ "probe_order_round6": [
+  "P_drift",
+  "P_stress_early",
+  "P_start"
+ ],
+ "probe_order_round7": [
+  "P_stress_early",
+  "P_start",
+  "P_drift"
+ ],
+ "probe_base": "T_main if adopted, else SUB"
+}
