@@ -1,0 +1,44 @@
+{
+ "P2_excl_anchor2": {
+  "rho": -0.486,
+  "p_two_sided": 0.356,
+  "p_upper": 0.851,
+  "p_lower": 0.178,
+  "n": 6
+ },
+ "detrended_bottom_to_step": {
+  "rho": 0.393,
+  "p_two_sided": 0.396,
+  "p_upper": 0.198,
+  "p_lower": 0.823,
+  "n": 7
+ },
+ "detrended_r_upper": {
+  "rho": 0.393,
+  "p_two_sided": 0.396,
+  "p_upper": 0.198,
+  "p_lower": 0.823,
+  "n": 7
+ },
+ "detrended_dwell_h": {
+  "rho": -0.214,
+  "p_two_sided": 0.662,
+  "p_upper": 0.703,
+  "p_lower": 0.331,
+  "n": 7
+ },
+ "offset_vs_anchor_index": {
+  "rho": -0.429,
+  "p_two_sided": 0.354,
+  "p_upper": 0.849,
+  "p_lower": 0.177,
+  "n": 7
+ },
+ "bottom_vs_anchor_index": {
+  "rho": -0.829,
+  "p_two_sided": 0.03,
+  "p_upper": 0.987,
+  "p_lower": 0.015,
+  "n": 7
+ }
+}

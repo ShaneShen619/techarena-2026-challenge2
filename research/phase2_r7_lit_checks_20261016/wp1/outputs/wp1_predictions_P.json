@@ -1,0 +1,86 @@
+{
+ "classification": "not_supported",
+ "P1": false,
+ "P2": false,
+ "P3": false,
+ "P4": "not evaluable",
+ "n_P4_evaluable": 2,
+ "stats": {
+  "P1_rho_offset_vs_r_upper": {
+   "rho": -0.2882999880625789,
+   "p_two_sided": 0.5373015873015873,
+   "p_upper": 0.7440476190476191,
+   "p_lower": 0.26865079365079364,
+   "n": 7
+  },
+  "P2_rho_offset_vs_dwell": {
+   "rho": -0.1785714285714286,
+   "p_two_sided": 0.7130952380952381,
+   "p_upper": 0.6692460317460317,
+   "p_lower": 0.35654761904761906,
+   "n": 7
+  },
+  "P3_rho_offset_vs_bottom_to_step": {
+   "rho": 0.6126374746329801,
+   "p_two_sided": 0.15476190476190477,
+   "p_upper": 0.07738095238095238,
+   "p_lower": 0.9281746031746032,
+   "n": 7
+  },
+  "by_variant_main": {
+   "P1": -0.306,
+   "P2": -0.429,
+   "P3": 0.613
+  },
+  "by_variant_band_narrow": {
+   "P1": -0.018,
+   "P2": -0.214,
+   "P3": 0.414
+  },
+  "by_variant_windows_minus3": {
+   "P1": -0.288,
+   "P2": -0.179,
+   "P3": 0.613
+  },
+  "by_variant_windows_plus3": {
+   "P1": -0.252,
+   "P2": -0.464,
+   "P3": 0.577
+  },
+  "by_variant_dvdq_peak": {
+   "P1": -0.703,
+   "P2": -0.071,
+   "P3": 0.847
+  },
+  "by_variant_ir_corrected": {
+   "P1": -0.595,
+   "P2": -0.071,
+   "P3": 0.739
+  }
+ },
+ "exchange_AF_45_vs_25_Ea64p5": 5.133229581876053,
+ "segment_end_above_13V": "7/7",
+ "order_main": "before",
+ "b0_median": 0.48728604166633005,
+ "b0_measured": 0.7124459722223868,
+ "anchor0": {
+  "off_median": 0.7124459722223868,
+  "dwell_h": 139.6863888888889,
+  "r_upper": 0.7740000000000009,
+  "bottom_to_step": 66.375,
+  "step_to_top": 33.74738638889001
+ },
+ "f_weights_updated": {
+  "0.0": 0.5,
+  "0.5": 0.3,
+  "1.0": 0.2
+ },
+ "grid_main_SUB": {
+  "max_regret_all": 0.03438704799124867,
+  "max_regret_OV": 0.03438704799124867,
+  "worst_all": 0.22470407480323537
+ },
+ "lowest_max_regret_all": "SUB",
+ "lowest_max_regret_OV": "SUB+drift-0.02",
+ "lowest_E_updated": "SUB+drift-0.031"
+}
