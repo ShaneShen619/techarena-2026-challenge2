@@ -47,7 +47,7 @@
 | Excluded | sheet #1500, which is a byte-for-byte copy of #1000 (asserted in the script) |
 | Day 0 | the Checkup_0 IR test date (file name): the end of the initial checkup |
 | Later days | "Start of Test" in each cell's standard capacity-check file header (not the 18 A variant); last checkup at 511–551 days |
-| Throughput | cycle count × 2 × nominal capacity, scaled to 102 Ah (D4.5) |
+| Throughput (cycling cells) | measured charge + discharge Ah per cycle, summed to each checkup, scaled to 102 Ah by C_nom = 180 Ah; Arrhenius weighting at the mean cell temperature (36.1–36.5 °C and 51.0–51.8 °C, i.e. 1–2 °C above the chamber), from "Analysis individual cycles – cyclic aging cells.xlsx" (D4.7) |
 | Loss | 102 × (1 − C/C₀) |
 
 ## Fit and fallback
@@ -57,7 +57,7 @@
 | log A_b | 1.80 (6.0 Ah) | 1.23 > ln 3 | unidentified → prior2 | 1.857 (6.4 Ah), SD ln 3 |
 | log τ_b | 8.01 (3000 d, upper bound) | ~0 | at bound → prior2 | 4.90 (134 d), SD 5.35 |
 | log A_cal | −1.64 (0.194) | 0.27 | **identified** | −1.64, SD ln 3 |
-| log A_cyc | median at 1e-12 floor (4 of 6 datasets at the floor; Yagci 50 °C cells 5.7e-6 and 3.6e-6) | — | at bound → prior2 | −11.75, SD ln 3 |
+| log A_cyc | median at 1e-12 floor (4 of 6 datasets at the floor; Yagci 50 °C cells 4.8e-6 and 3.0e-6) | — | at bound → prior2 | −11.75, SD ln 3 |
 
 The calendar check ([CSV](outputs/wp4_yagci_calendar_check.csv)) gives the mean loss on the storage cells, in Ah on a 102 Ah scale:
 
@@ -152,7 +152,7 @@ The cycling axes ([CSV](outputs/wp4_cycling_axes.csv)) match each LIC capacity p
 | 排除 | #1500 表，它与 #1000 逐字节相同（脚本中有断言） |
 | 第 0 天 | Checkup_0 内阻测试的日期（取自文件名），即初始检查结束的时间 |
 | 之后的天数 | 每颗电芯标准容量检查文件（不是 18 A 版本）文件头中的 "Start of Test"；最后一次检查在第 511–551 天 |
-| 吞吐 | 循环数 × 2 × 标称容量，折算到 102 Ah（D4.5） |
+| 吞吐（循环电芯） | 每个循环实测的充电 + 放电 Ah，累加到每次检查，按 C_nom = 180 Ah 折算到 102 Ah；Arrhenius 加权用平均芯温（36.1–36.5 °C 和 51.0–51.8 °C，比温箱高 1–2 °C），取自 "Analysis individual cycles – cyclic aging cells.xlsx"（D4.7） |
 | 损失 | 102 × (1 − C/C₀) |
 
 ## 拟合与回退
@@ -162,7 +162,7 @@ The cycling axes ([CSV](outputs/wp4_cycling_axes.csv)) match each LIC capacity p
 | log A_b | 1.80（6.0 Ah） | 1.23 > ln 3 | 不可辨识 → prior2 | 1.857（6.4 Ah），SD ln 3 |
 | log τ_b | 8.01（3000 天，上限） | 约 0 | 撞到边界 → prior2 | 4.90（134 天），SD 5.35 |
 | log A_cal | −1.64（0.194） | 0.27 | **可辨识** | −1.64，SD ln 3 |
-| log A_cyc | 中位数在 1e-12 下限（6 个数据集中 4 个在下限；Yagci 50 °C 电芯为 5.7e-6 和 3.6e-6） | — | 撞到边界 → prior2 | −11.75，SD ln 3 |
+| log A_cyc | 中位数在 1e-12 下限（6 个数据集中 4 个在下限；Yagci 50 °C 电芯为 4.8e-6 和 3.0e-6） | — | 撞到边界 → prior2 | −11.75，SD ln 3 |
 
 日历项检查（[CSV](outputs/wp4_yagci_calendar_check.csv)）给出存储电芯上的平均损失，单位为按 102 Ah 折算的 Ah：
 

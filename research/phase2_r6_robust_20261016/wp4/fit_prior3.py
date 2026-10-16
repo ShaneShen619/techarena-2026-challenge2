@@ -84,7 +84,11 @@ cyc["loss"] = cyc["loss_Ah_102"]
 sets = {d: g for d, g in cyc.groupby("dataset")}
 if YT:
     yc = y[y["kind"] == "cyclic"].copy()
-    yc["ah"] = yc["cycles"] * 2 * 180.0 * 102.0 / 180.0 * aT(yc["T_C"])
+    if "thr_Ah" in yc:  # measured throughput and mean cell temperature (D4.7); C_nom = 180 Ah
+        yc["tau"] = yc["day"] * aT(yc["T_cell_C"])
+        yc["ah"] = yc["thr_Ah"] * 102.0 / 180.0 * aT(yc["T_cell_C"])
+    else:
+        yc["ah"] = yc["cycles"] * 2 * 180.0 * 102.0 / 180.0 * aT(yc["T_C"])
     for c, g in yc.groupby("cell"):
         sets[f"Yagci_cyc_{c}"] = g
 acyc = {}

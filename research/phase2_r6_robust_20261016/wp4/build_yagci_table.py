@@ -3,7 +3,9 @@ Usage: python3 -I build_yagci_table.py <study_dir>
 capacity = max_CCCV_DIS of 'Capacities in checkups - all cells.xlsx' (Checkup #1500 sheet excluded: identical to #1000);
 day 0 = the Checkup_0 IR test date (end of the initial checkup, start of ageing; from the file name);
 later days = 'Start of Test' in the header of each cell's standard capacity-check file (not the 18A variant);
-cycles = the checkup's nominal cycle count for cyclic cells (0 for storage cells)."""
+cycles = the checkup's nominal cycle count for cyclic cells (0 for storage cells);
+thr_Ah, T_cell_C (cyclic cells) = measured charge + discharge Ah summed over cycles <= checkup and the mean cell
+temperature over those cycles, from 'Analysis individual cycles - cyclic aging cells.xlsx' (D4.7)."""
 import os
 import re
 import sys
@@ -50,6 +52,19 @@ for sh, k in (("Checkup_#0", 0), ("Checkup_#100", 100), ("Checkup_#500", 500), (
                          date=dates[(c, k)], day=(dates[(c, k)] - dates[(c, 0)]).total_seconds() / 86400,
                          capacity_Ah=float(r["max_CCCV_DIS"]), cycles=k if m["kind"] == "cyclic" else 0))
 df = pd.DataFrame(rows).sort_values(["cell", "day"])
+per = pd.read_excel(os.path.join(X, "Analysis individual cycles - cyclic aging cells.xlsx"), sheet_name=None, header=None)
+for c, t in per.items():
+    hr = int(t.index[t.apply(lambda r: (r == "cycle_no").any(), axis=1)][0])
+    u = t.iloc[hr + 1:]
+    u.columns = t.iloc[hr]
+    u = u.loc[:, u.columns.notna()].astype(float)
+    for i in df.index[(df["cell"] == c) & (df["checkup"] > 0)]:
+        s = u[u["cycle_no"] <= df.at[i, "cycles"]]
+        df.at[i, "thr_Ah"] = float((s["max_CCCV_CHA"] + s["max_CCCV_DIS"]).sum())
+        df.at[i, "T_cell_C"] = float(s["T_mean"].mean())
+    i0 = df.index[(df["cell"] == c) & (df["checkup"] == 0)]
+    df.loc[i0, "thr_Ah"] = 0.0
+    df.loc[i0, "T_cell_C"] = float(u["T_mean"].iloc[:100].mean())
 assert (cap["Checkup_#1500"].iloc[2:, 2:].values == cap["Checkup_#1000"].iloc[2:, 2:].values).all()
 df.to_csv(os.path.join(STUDY, "wp4", "outputs", "wp4_yagci_table.csv"), index=False)
 pd.set_option("display.width", 200)

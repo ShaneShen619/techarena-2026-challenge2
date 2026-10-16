@@ -70,7 +70,7 @@
   - the WP3 amendment;
   - the WP4 bound fallback applied explicitly;
   - the WP5-before-WP4 order;
-  - the download wait and the Yagci supplement after the WP4 cap (day mapping, throughput approximation).
+  - the download wait and the Yagci supplement after the WP4 cap (day mapping, measured cycling throughput).
 
 ## Reproduction
 
@@ -166,7 +166,7 @@ python3 -B wp6/run_wp6.py
   - WP3 的协议修订；
   - WP4 中显式补上的边界回退；
   - WP5 先于 WP4 的执行顺序；
-  - 等待下载，以及在 WP4 上限之后补做 Yagci（天数对应、吞吐近似）。
+  - 等待下载，以及在 WP4 上限之后补做 Yagci（天数对应、实测循环吞吐）。
 
 ## 复现
 
