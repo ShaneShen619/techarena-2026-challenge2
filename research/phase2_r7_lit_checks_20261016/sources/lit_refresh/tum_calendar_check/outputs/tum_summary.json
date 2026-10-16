@@ -1,0 +1,38 @@
+{
+  "data_dir": "/Users/shane/Desktop/kxh42bfgtj-1",
+  "n_conditions_used": 15,
+  "ck2_analogue_t1_t2_days": [
+    25.0,
+    56.0
+  ],
+  "ratio_true_over_sqrt_pred": {
+    "median": 1.150566421008461,
+    "min": 0.807323480816388,
+    "max": 6.5956689595250575
+  },
+  "p_eff_d25_to_d56": {
+    "median": 0.5604566506098814,
+    "min": 0.4180697795099215,
+    "max": 1.8016372160467997
+  },
+  "implied_CK2_SOH_bias_pp_if_transferred": {
+    "median": -0.19927908662884541,
+    "min": -7.406032446430223,
+    "max": 0.255013040095957
+  },
+  "ratio_by_t1_median": {
+    "10.0": 1.442,
+    "17.0": 1.203,
+    "25.0": 1.151,
+    "40.0": 1.037,
+    "60.0": 0.831,
+    "100.0": 1.008
+  },
+  "best_bic_counts": {
+    "pow": 9,
+    "sat_lin": 5,
+    "sqrt": 2,
+    "sat_sqrt": 1
+  },
+  "p_free_median_used": 0.5420276931588137
+}

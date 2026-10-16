@@ -1,0 +1,56 @@
+{
+ "SUB": {
+  "MAE": [
+   0.2065256486201041,
+   0.12267898449071594,
+   0.13951944510256556
+  ],
+  "MAX": [
+   0.6089526143795345,
+   0.22769787016715068,
+   0.22769787016715068
+  ],
+  "pseudo": 0.14758255126430175,
+  "cold": 0.17427816372826688
+ },
+ "checks": {
+  "SUB": true,
+  "SUB_equals_round6_predictions": true,
+  "round6_grid_reproduced": true,
+  "3a_reproduced": true,
+  "3c_reproduced": true
+ },
+ "sub_vs_round6_max_abs_diff_Ah": 1.4210854715202004e-14,
+ "grid_max_regret_diff": 1.4849232954361469e-15,
+ "SUB_max_regret": 0.027093868290669676,
+ "sqrt_gap_cases": [
+  "real:CK2",
+  "PG1:CK4",
+  "PG1:CK5",
+  "PG1:CK6",
+  "PG1:CK7",
+  "PG2:CK4",
+  "PG2:CK5",
+  "PG2:CK6",
+  "PC10:CK3",
+  "PC10:CK4",
+  "PC10:CK5",
+  "PC10:CK6",
+  "PC10:CK7",
+  "CSE:CK3",
+  "CSE:CK4",
+  "CSE:CK5",
+  "CSE:CK6",
+  "CSE:CK7",
+  "PC5_all:CK2",
+  "PC10_all:CK2",
+  "PC10_all:CK3",
+  "PC10_all:CK4",
+  "PC10_all:CK5",
+  "PC10_all:CK6",
+  "PC10_all:CK7"
+ ],
+ "n_sqrt_gap_nonreal": 24,
+ "n_sqrt_gap_nonreal_unique_k": 24,
+ "all_checks": true
+}
