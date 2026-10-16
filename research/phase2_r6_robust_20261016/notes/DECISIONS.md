@@ -22,6 +22,9 @@
 - D4.2 The user switched the goal to WP6 while WP4 was waiting for the download, then asked to wait for the download. WP6's global Done needs WP4 done, capped or exited, so WP4 is completed first.
 
 - D4.3 The manual download had not arrived after 7.5 h (WP4's 3 h cap long passed). WP4 was completed under its registered Yagci-unavailable fallback; the waiter was stopped. The cycle-term estimate hit its 1e-12 floor and fell back to prior2 by the registered bound rule (the fit script had omitted that rule for A_cyc; it was applied explicitly and recorded in prior3.json).
+- D4.4 Data.zip was later obtained by a resumable download (curl -C - on a .part file; 2,456,145,428 bytes, the expected size). Following the user's "wait for the download and continue", the registered Yagci path was run as a supplement under the unchanged protocol. The fallback-run outputs are kept in wp4/outputs/fallback_no_yagci/. Only the summary xlsx files and the checkup file headers (test start dates) were read; nothing from the archive was executed.
+- D4.5 Yagci axes, fixed before the fit: day 0 = Checkup_0 IR date (file name), later days = "Start of Test" header of the standard capacity-check file; capacity = max_CCCV_DIS; sheet #1500 excluded (identical to #1000); cycling throughput = cycles x 2 x nominal (180 Ah) scaled to 102 Ah, because the raw cycling .mat files (2.3-2.4 GB each) were not extracted. Checkup #0 is a formation test, so part of the early drop may be protocol, not ageing.
+- D4.6 The A_cyc bound fallback is now encoded in fit_prior3.py (same rule as D4.3). An exploratory run with the unruled Yagci break-in (explore_yagci_unruled.py, outputs/exploratory/) is labelled exploratory and is not a candidate.
 
 ---
 
@@ -43,3 +46,6 @@
 - D4.1 Yagci 下载。第 1 次以 curl 错误码 35（SSL 连接错误）失败。第 2 次（重试 / 续传）下载到 0.82 GB 后，一次重试把文件截成了 0 字节，进程随之停滞，已被终止。服务器支持 Range 请求（HTTP 206）。应用户要求，压缩包改由用户手动下载到 cache/downloads/yagci/（同一记录、同一许可证，预期大小 2,456,145,428 字节）。它仍按不可信数据处理（在单独目录中解压，用 python3 -I 读取，不执行任何内容）。
 - D4.2 WP4 在等待下载时，用户把目标切换到了 WP6，随后又要求等待下载完成。WP6 的整体完成标准要求 WP4 已完成、到达上限或已退出，因此先完成 WP4。
 - D4.3 7.5 小时后手动下载仍未到位（远超 WP4 的 3 小时上限）。WP4 按登记的 Yagci 不可用回退方案完成；等待任务已停止。循环项的估计撞到 1e-12 的下限，按登记的边界规则回退到 prior2（拟合脚本漏掉了对 A_cyc 应用这条规则，已显式补上并记录在 prior3.json 中）。
+- D4.4 之后通过可续传下载（对 .part 文件用 curl -C -）拿到了 Data.zip（2,456,145,428 字节，与预期一致）。按用户"等待下载完继续推进"的指示，在不变的协议下把登记的 Yagci 路径作为补充运行。回退运行的输出保留在 wp4/outputs/fallback_no_yagci/。只读取了汇总 xlsx 和检查文件的文件头（测试开始日期）；没有执行压缩包里的任何内容。
+- D4.5 Yagci 时间轴在拟合之前确定：第 0 天 = Checkup_0 内阻测试日期（文件名），之后的天数 = 标准容量检查文件头中的 "Start of Test"；容量 = max_CCCV_DIS；排除 #1500 表（与 #1000 相同）；循环吞吐 = 循环数 x 2 x 标称容量（180 Ah），折算到 102 Ah，因为没有解压原始循环 .mat 文件（每个 2.3-2.4 GB）。检查 #0 是化成测试，所以早期下降里可能有一部分来自流程而不是老化。
+- D4.6 A_cyc 的边界回退现已写进 fit_prior3.py（与 D4.3 同一条规则）。用不受规则约束的 Yagci 磨合项做的运行（explore_yagci_unruled.py，outputs/exploratory/）标为探索性，不是候选。

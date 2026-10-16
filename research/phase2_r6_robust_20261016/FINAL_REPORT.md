@@ -20,7 +20,10 @@
 3. **The stress law is better in causal tests but cannot be validated where it matters.**
    - The stress law and its fusions beat SUB on pseudo-gap/cut and cold-start tests: pseudo 0.106–0.119 vs 0.148; cold start 0.141–0.144 vs 0.174.
    - SUB and the stress models disagree mainly at CK1 (first month, break-in) and CK2 (whole missing segment). Neither checkup has a causal analogue in this data, and the class weights learned on the analogues transfer badly (WP2).
-4. **Open data say the stress-law prior is too pessimistic (WP4).** Over their own histories, the prior over-predicts the measured fade of two open LFP cycling datasets by 24 % (Gotion 53 Ah) and 50 % (LIC 280 Ah). That is consistent with the over-predicted CK1 loss. The Yagci storage data that could fix the calendar term could not be obtained: two failed downloads, and a manual download did not arrive in time. The prior is therefore unchanged.
+4. **Open data say the stress-law prior is too pessimistic, but a better prior does not fix CK1 (WP4).**
+   - Over their own histories, the prior over-predicts the measured fade of two open LFP cycling datasets by 24 % (Gotion 53 Ah) and 50 % (LIC 280 Ah), and of the Yagci 180 Ah storage cells by 1.5–2.6×, mostly through the break-in term.
+   - The Yagci storage cells identify only the calendar coefficient (A_cal 0.194 vs 0.237). The break-in term is not identifiable (τ_b at its bound), so by the registered rule it stays at prior2.
+   - No WP4 design passes the gates. An exploratory run with the unruled open-data break-in moves CK1 only from −0.56 to −0.52 pp: the CK1 disagreement is not a prior problem.
 5. **ε drift is the best hedge, to be tested by a probe (WP3, WP6).** SUB with a −0.031 Ah per Ah drift correction has the best worst case and the best expectations on the grid, and wins in 14 of 18 hypotheses. Its max regret is higher, so it should be probed, not adopted blind.
    - The anchor start-state correction is large (up to 1.29 Ah) but low in confidence.
    - The path-effect correction is physically confirmed (6/6 detection methods) but contradicts the proxies at CK1.
@@ -40,7 +43,7 @@
 | 1 | hypothesis-robust selection | real grid: SUB (max regret 0.027); stress ensembles complementary (best worst case); causal grid favours the stress ensembles (tie window wide) | [wp1](wp1/REPORT.md) |
 | 2 | uncertainty-weighted fusion | no design passes; main F2_S_A fails (CK1 −0.56, CK2 −0.64); F1 best but behind SUB at Δ 0.4; causal scenarios do not represent CK1/CK2 | [wp2](wp2/REPORT.md) |
 | 3 | truth-oriented corrections | ε drift = best hedge; start state material, low confidence; path effect verified but correction contradicted | [wp3](wp3/REPORT.md) |
-| 4 | open-data prior | **capped** ([cap record](wp4/CAP_RECORD.md)); registered fallback (Yagci not obtained); prior2 over-predicts LIC +50 % and Gotion +24 %; prior3 = prior2; no candidate | [wp4](wp4/REPORT.md) |
+| 4 | open-data prior | done (Yagci supplement after the cap, [cap record](wp4/CAP_RECORD.md)); prior2 over-predicts LIC +50 %, Gotion +24 %, Yagci storage 1.5–2.6×; prior3 = prior2 except A_cal (Yagci); no candidate; prior is not the CK1 lever | [wp4](wp4/REPORT.md) |
 | 5 | report material | 7 bilingual drafts and a figure in [report_material/](report_material/) | [wp5](wp5/REPORT.md) |
 | 6 | synthesis and probes | keep SUB; probe order P_drift → P_stress_early → P_start | [wp6](wp6/REPORT.md) |
 
@@ -60,14 +63,14 @@
 
 - **Single pack and exposed proxies.** Causal scenarios reuse the same months and cannot represent CK1 and CK2.
 - **The hypothesis grid is our construction.** Its axes (Δ, f, d) and priors are assumptions; the official metric set is not published, and s approximates it.
-- **The stress-law prior is too pessimistic and its calendar/cycle split is not identifiable.** The fix (Yagci storage data) is pending.
+- **The stress-law prior is too pessimistic, and its break-in and calendar/cycle split are not identifiable from open data.** Only A_cal is (Yagci storage cells). The prior does not control the CK1 error.
 - **Deviations** are recorded in [notes/DECISIONS.md](notes/DECISIONS.md):
   - a pandas-3 cast in the copied causality check;
   - the WP1 tie window;
   - the WP3 amendment;
   - the WP4 bound fallback applied explicitly;
   - the WP5-before-WP4 order;
-  - the manual-download wait.
+  - the download wait and the Yagci supplement after the WP4 cap (day mapping, throughput approximation).
 
 ## Reproduction
 
@@ -78,7 +81,9 @@ python3 -B wp1/run_wp1.py
 python3 -B wp2/run_wp2.py select && python3 -B wp2/run_wp2.py real
 python3 -B wp3/audit_wp3.py && python3 -B wp3/run_wp3.py
 python3 -I -B wp4/axes_cycling.py /Users/shane/Desktop/Arena_1013_model/external_data wp4/outputs/wp4_cycling_axes.csv
-python3 -I -B wp4/fit_prior3.py "$PWD"          # add <yagci_table.csv> once the Yagci data are available
+python3 -I -B wp4/build_yagci_table.py "$PWD"   # needs cache/downloads/yagci/Data.zip (+ unzipped summary xlsx)
+python3 -I -B wp4/fit_prior3.py "$PWD" wp4/outputs/wp4_yagci_table.csv
+python3 -I -B wp4/check_yagci_calendar.py "$PWD"
 python3 -B wp4/run_wp4.py select && python3 -B wp4/run_wp4.py real
 python3 -B wp5/figure_wp5.py
 python3 -B wp6/run_wp6.py
@@ -111,7 +116,10 @@ python3 -B wp6/run_wp6.py
 3. **应力定律在因果检验上更好，但在关键处无法验证。**
    - 应力定律及其融合在伪缺口 / 伪截断和冷启动检验上优于 SUB：伪场景 0.106–0.119 对 0.148；冷启动 0.141–0.144 对 0.174。
    - SUB 与应力模型的分歧主要在 CK1（第一个月，磨合期）和 CK2（整段数据缺失）。这两个检查点在这批数据里都没有因果上的对应场景，而在对应场景上学到的类别权重迁移得很差（WP2）。
-4. **开放数据表明应力定律的先验过于悲观（WP4）。** 按两个开放 LFP 循环数据集各自的历史，先验把实测衰减高估了 24 %（Gotion 53 Ah）和 50 %（LIC 280 Ah）。这与 CK1 损失被高估一致。能修正日历项的 Yagci 存储数据没能拿到：两次下载失败，手动下载也没有及时到位。因此先验保持不变。
+4. **开放数据表明应力定律的先验过于悲观，但更好的先验修不好 CK1（WP4）。**
+   - 按各自的历史，先验把两个开放 LFP 循环数据集的实测衰减高估了 24 %（Gotion 53 Ah）和 50 %（LIC 280 Ah），把 Yagci 180 Ah 存储电芯的衰减高估了 1.5–2.6 倍，主要来自磨合项。
+   - Yagci 存储电芯只能辨识日历系数（A_cal 0.194，prior2 为 0.237）。磨合项不可辨识（τ_b 撞到边界），所以按登记规则保留 prior2。
+   - WP4 的设计都没过门槛。用不受规则约束的开放数据磨合项做的探索性运行，只把 CK1 从 −0.56 变到 −0.52 pp：CK1 上的分歧不是先验的问题。
 5. **ε 漂移是最好的对冲，应通过探测来检验（WP3、WP6）。** 加上每衰减 1 Ah 漂移 −0.031 Ah 修正的 SUB，在网格上最坏情况最好、期望也最好，在 18 种假设中有 14 种胜出。但它的最大后悔值更高，所以应先探测，不要直接采用。
    - 锚点起点修正量级大（最多 1.29 Ah），但置信度低。
    - 路径效应在物理上得到证实（6/6 种检测方法），但它对应的修正在 CK1 与代理相矛盾。
@@ -131,7 +139,7 @@ python3 -B wp6/run_wp6.py
 | 1 | 多假设稳健选择 | 真实网格：SUB（最大后悔值 0.027）；应力集成与之互补（最坏情况最好）；因果网格偏向应力集成（并列阈值偏宽） | [wp1](wp1/REPORT.md) |
 | 2 | 不确定度加权融合 | 无设计通过；主模型 F2_S_A 失败（CK1 −0.56，CK2 −0.64）；F1 最好，但 Δ 0.4 时落后于 SUB；因果场景代表不了 CK1/CK2 | [wp2](wp2/REPORT.md) |
 | 3 | 真值导向修正 | ε 漂移是最好的对冲；起点状态量级可观、置信度低；路径效应得到证实，但修正与代理矛盾 | [wp3](wp3/REPORT.md) |
-| 4 | 开放数据先验 | **到达上限**（[上限记录](wp4/CAP_RECORD.md)）；按登记规则回退（未拿到 Yagci）；prior2 高估 LIC +50 %、Gotion +24 %；prior3 = prior2；无候选 | [wp4](wp4/REPORT.md) |
+| 4 | 开放数据先验 | 完成（上限之后补做了 Yagci，[上限记录](wp4/CAP_RECORD.md)）；prior2 高估 LIC +50 %、Gotion +24 %、Yagci 存储 1.5–2.6 倍；prior3 除 A_cal（Yagci）外等于 prior2；无候选；先验不是 CK1 的杠杆 | [wp4](wp4/REPORT.md) |
 | 5 | 报告材料 | [report_material/](report_material/) 中的 7 份双语草稿和一张图 | [wp5](wp5/REPORT.md) |
 | 6 | 综合与探测 | 保留 SUB；探测顺序 P_drift → P_stress_early → P_start | [wp6](wp6/REPORT.md) |
 
@@ -151,14 +159,14 @@ python3 -B wp6/run_wp6.py
 
 - **单个电池组与已曝光的代理。** 因果场景复用同样的月份，无法代表 CK1 和 CK2。
 - **假设网格是我们自己构造的。** 它的各轴（Δ、f、d）和先验都是假设；官方指标集没有公布，s 只是近似。
-- **应力定律的先验过于悲观，日历 / 循环划分也不可辨识。** 修正办法（Yagci 存储数据）尚待取得。
+- **应力定律的先验过于悲观，而磨合项和日历 / 循环划分都无法用开放数据辨识。** 只有 A_cal 可以（Yagci 存储电芯）。先验并不决定 CK1 的误差。
 - **偏离**都记录在 [notes/DECISIONS.md](notes/DECISIONS.md) 中：
   - 复制的因果检查中为适配 pandas 3 加的类型转换；
   - WP1 的并列阈值；
   - WP3 的协议修订；
   - WP4 中显式补上的边界回退；
   - WP5 先于 WP4 的执行顺序；
-  - 等待手动下载。
+  - 等待下载，以及在 WP4 上限之后补做 Yagci（天数对应、吞吐近似）。
 
 ## 复现
 
@@ -169,7 +177,9 @@ python3 -B wp1/run_wp1.py
 python3 -B wp2/run_wp2.py select && python3 -B wp2/run_wp2.py real
 python3 -B wp3/audit_wp3.py && python3 -B wp3/run_wp3.py
 python3 -I -B wp4/axes_cycling.py /Users/shane/Desktop/Arena_1013_model/external_data wp4/outputs/wp4_cycling_axes.csv
-python3 -I -B wp4/fit_prior3.py "$PWD"          # 拿到 Yagci 数据后，再加上 <yagci_table.csv>
+python3 -I -B wp4/build_yagci_table.py "$PWD"   # 需要 cache/downloads/yagci/Data.zip（及解压出的汇总 xlsx）
+python3 -I -B wp4/fit_prior3.py "$PWD" wp4/outputs/wp4_yagci_table.csv
+python3 -I -B wp4/check_yagci_calendar.py "$PWD"
 python3 -B wp4/run_wp4.py select && python3 -B wp4/run_wp4.py real
 python3 -B wp5/figure_wp5.py
 python3 -B wp6/run_wp6.py

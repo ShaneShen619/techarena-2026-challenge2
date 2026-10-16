@@ -14,7 +14,7 @@
 | **Keep SUB (V2 + √t)** | registered robust choice on the 18-hypothesis grid (WP1: lowest max regret, 0.027); causal checks pass; CK2 √t branch exposed | **keep as the submission** |
 | Switch to the WP1 robust choice | WP1's robust choice is SUB itself | — |
 | Switch to a WP2 fusion | causal tests better (pseudo 0.119 vs 0.148; cold start 0.141 vs 0.174), but no design passes the gates; CK1/CK2 cannot be validated causally | not supported |
-| Switch to a WP4 open-data variant | prior3 = prior2 (Yagci data not obtained); identical to WP2 | not supported |
+| Switch to a WP4 open-data variant | prior3 = prior2 except A_cal (Yagci); fails the same gates; open-data break-in does not fix CK1 | not supported |
 | Truth-oriented corrections (WP3) | leaderboard-only; ε drift is the best hedge on the grid | **probe, do not adopt blind** |
 
 ## Probe plan (at most three submissions; leaderboard evaluated every two weeks)
@@ -77,7 +77,7 @@ The leaderboard returns one normalised score. Compare it with SUB's score on the
 | **保留 SUB（V2 + √t）** | 18 假设网格上登记的稳健选择（WP1：最大后悔值最低，0.027）；因果检查通过；CK2 的 √t 分支已曝光 | **保留作为提交** |
 | 换成 WP1 的稳健选择 | WP1 的稳健选择就是 SUB 本身 | — |
 | 换成 WP2 的融合 | 因果检验更好（伪场景 0.119 对 0.148；冷启动 0.141 对 0.174），但没有设计通过门槛；CK1/CK2 无法做因果验证 | 不支持 |
-| 换成 WP4 的开放数据变体 | prior3 = prior2（没拿到 Yagci 数据）；与 WP2 相同 | 不支持 |
+| 换成 WP4 的开放数据变体 | prior3 除 A_cal（Yagci）外等于 prior2；没过同样的门槛；开放数据磨合项修不好 CK1 | 不支持 |
 | 真值导向修正（WP3） | 只用于排行榜；ε 漂移是网格上最好的对冲 | **用于探测，不要直接采用** |
 
 ## 探测计划（最多三次提交；排行榜每两周评估一次）

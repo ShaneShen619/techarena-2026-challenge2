@@ -4,7 +4,7 @@
 
 > **Language:** English · [中文](#zh)
 
-Bilingual drafts for the team to merge into `REPORT.md` and the final presentation. **Nothing in the submission package was edited.** WP5 has no protocol; it produces no model metric. WP4 (open-data prior) was still running when these drafts were written, so they mark it "in progress".
+Bilingual drafts for the team to merge into `REPORT.md` and the final presentation. **Nothing in the submission package was edited.** WP5 has no protocol; it produces no model metric. WP4 (open-data prior) was still running when these drafts were written; the WP4 lines in drafts 01 and 03 were updated after WP4 finished.
 
 | # | Draft | For |
 |---|---|---|
@@ -28,7 +28,7 @@ Bilingual drafts for the team to merge into `REPORT.md` and the final presentati
 
 > **语言：** [English](#en) · 中文
 
-供团队合并进 `REPORT.md` 和最终演示的双语草稿。**没有编辑提交包里的任何内容。** WP5 没有协议，也不产生任何模型指标。撰写这些草稿时 WP4（开放数据先验）仍在运行，所以草稿中把它标为"进行中"。
+供团队合并进 `REPORT.md` 和最终演示的双语草稿。**没有编辑提交包里的任何内容。** WP5 没有协议，也不产生任何模型指标。撰写这些草稿时 WP4（开放数据先验）仍在运行；WP4 完成后，草稿 01 和 03 中关于 WP4 的内容已更新。
 
 | # | 草稿 | 用途 |
 |---|---|---|

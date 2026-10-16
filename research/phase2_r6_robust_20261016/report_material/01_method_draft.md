@@ -21,7 +21,7 @@
 
 None beat SUB under the registered gates. The stress law beats SUB on causal hold-out tests (pseudo 0.119 vs 0.148 pp; cold start 0.144 vs 0.174 pp) but not at CK1 and CK2, where neither the data nor physics can decide.
 
-**Candidate status:** no replacement for SUB is recommended. WP4 (open-data prior) is in progress at the time of writing.
+**Candidate status:** no replacement for SUB is recommended. WP4 (open-data prior) found no candidate either: open data identify only the calendar coefficient, and the prior does not control the CK1 error.
 
 ---
 
@@ -48,4 +48,4 @@ None beat SUB under the registered gates. The stress law beats SUB on causal hol
 
 在登记的门槛下，没有一个超过 SUB。应力定律在因果留出检验上优于 SUB（伪场景 0.119 对 0.148 pp；冷启动 0.144 对 0.174 pp），但在 CK1 和 CK2 上不行；而在这两个点上，数据和物理都无法判定谁对。
 
-**候选状态：** 不建议替换 SUB。撰写本稿时，WP4（开放数据先验）仍在进行中。
+**候选状态：** 不建议替换 SUB。WP4（开放数据先验）也没有找到候选：开放数据只能辨识日历系数，而先验并不决定 CK1 的误差。

@@ -4,7 +4,9 @@
 
 > **Language:** English · [中文](#zh)
 
-**State: capped** under the prompt's cap rule (§5: "At a cap, write up what exists (including 'inconclusive'), commit, push and mark the WP capped"). The WP4 cap is 3 h. WP4 started with protocol commit `b3108bd` (2026-10-16 ≈ 00:25 CEST), and the cap passed at ≈ 03:25 while the Yagci download was still pending.
+**Update (supplement completed):** Data.zip was later obtained by a resumable download, and the registered Yagci path was run under the unchanged protocol (commits `52e4b25`, then real). WP4 is now **done**. The record below is kept as written at the cap. Results: prior3 = prior2 except A_cal (0.194, from Yagci); no candidate; see [REPORT.md](REPORT.md) and D4.4–D4.6.
+
+**State at the cap: capped** under the prompt's cap rule (§5: "At a cap, write up what exists (including 'inconclusive'), commit, push and mark the WP capped"). The WP4 cap is 3 h. WP4 started with protocol commit `b3108bd` (2026-10-16 ≈ 00:25 CEST), and the cap passed at ≈ 03:25 while the Yagci download was still pending.
 
 **Registered clauses applied (all in [protocol.json](protocol.json), committed before any download or fit):**
 
@@ -35,7 +37,9 @@
 
 > **语言：** [English](#en) · 中文
 
-**状态：到达上限**，按 prompt 的上限规则处理（第 5 节："到上限时，把已有结果（包括'无定论'）写成报告、提交、推送，并把该工作包标为到达上限"）。WP4 的上限为 3 小时。WP4 从协议提交 `b3108bd`（2026-10-16 约 00:25 CEST）开始，约 03:25 到达上限，而当时 Yagci 下载仍未完成。
+**更新（补充运行已完成）：** 之后通过可续传下载拿到了 Data.zip，并在不变的协议下运行了登记的 Yagci 路径（先提交 `52e4b25`，再跑真实场景）。WP4 现在**已完成**。下面的记录保持在上限时的原样。结果：prior3 除 A_cal（0.194，来自 Yagci）外等于 prior2；无候选；见 [REPORT.md](REPORT.md) 和 D4.4–D4.6。
+
+**上限时的状态：到达上限**，按 prompt 的上限规则处理（第 5 节："到上限时，把已有结果（包括'无定论'）写成报告、提交、推送，并把该工作包标为到达上限"）。WP4 的上限为 3 小时。WP4 从协议提交 `b3108bd`（2026-10-16 约 00:25 CEST）开始，约 03:25 到达上限，而当时 Yagci 下载仍未完成。
 
 **所适用的登记条款（全部在 [protocol.json](protocol.json) 中，于任何下载或拟合之前提交）：**
 
