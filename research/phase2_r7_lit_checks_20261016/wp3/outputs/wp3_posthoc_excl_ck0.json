@@ -1,0 +1,25 @@
+{
+ "by_cell": {
+  "CA-181103-19": {
+   "T": 35,
+   "d_excl_ck0": 0.1229
+  },
+  "CA-181103-22": {
+   "T": 50,
+   "d_excl_ck0": 0.0521
+  },
+  "CA-181103-28": {
+   "T": 50,
+   "d_excl_ck0": -0.0182
+  },
+  "CA-181103-42": {
+   "T": 35,
+   "d_excl_ck0": -0.1458
+  }
+ },
+ "by_group": {
+  "35": -0.0115,
+  "50": 0.0169
+ },
+ "note": "post-hoc descriptive: checkup 0 removed (initial RPT anomaly); not part of the registered rule"
+}
