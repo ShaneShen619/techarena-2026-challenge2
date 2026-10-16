@@ -1,0 +1,44 @@
+{
+ "wp": "WP1 - is the post-anchor offset an overhang state effect? (no model change; descriptive, n = 7)",
+ "registered": "2026-10-16, before any WP1 table column or statistic was computed. Only the current waveform of one deep program and the size of the program-opening CCCV charges (about 21 Ah from 13.4 V) were inspected, to check measurability of column (f).",
+ "amendment_1": {
+  "reason": "Column (f) as written is not measurable: the CCCV charge that opens each deep program covers about 21 Ah from 13.4 V and never crosses the graphite step, and the recharges after a deep program are dynamic (2-12 A with interleaved discharges). In addition, Li accounting changes the predicted signs (derivation below).",
+  "derivation": "LFP/graphite with the discharge end set by the anode. After the C/20 checkup discharge the anode is near empty. If during the near-empty dwell an amount delta of Li flows from the overhang into the active anode, the cathode Li content is unchanged, so the anchor charge Q_fc (all cathode Li moved to the anode, top set by the cathode) is unchanged. But the anode starts the anchor charge delta more lithiated: the anchor's charge-direction bottom->step section is delta shorter, its step->top section delta longer, the pre-charge rest voltage is higher (so the 3a residual r_j, read off the CK0 tail, is larger), and the discharge right after the anchor finds the step delta deeper below the top. A discharge capacity measured after such a dwell is delta larger; one measured before it is not affected. delta then flows back into the overhang at high SOC (time constant days to weeks, faster at 45 C; Ea about 64.5 kJ/mol, Lewerenz 2018).",
+  "replaces": "P1 and P3 of the prompt; the classification rule; the H_ov target. P2 and P4 are kept."
+ },
+ "per_anchor_table": {
+  "anchors": "0..7 (anchor j = first full charge after CK_j), full operation data (diagnostic only)",
+  "columns": {
+   "a_dwell_h": "hours from the last operating sample before the CK_j date to the start of anchor j's charge (CK0: first operating sample before anchor 0 is the campaign start, so dwell = start of anchor 0 minus CK0 date at 00:00)",
+   "a_end_state": "pack voltage, current sign and setpoint of the last operating sample before the CK_j gap (segment end state)",
+   "a_rest": "rest hours before the anchor charge and pre-charge pack/cell rest voltages (from 3a)",
+   "b_r": "3a residual r_j upper bound (and half)",
+   "c_offset": "3c trend-adjusted offset of the first deep program after anchor j (all 6 step variants and their median); the first program is the discharge right after the anchor charge (lag 0)",
+   "d_second": "trend-adjusted offset of the second program vs the third, only where >= 3 programs exist in the same segment",
+   "e_split": "anchor charge-direction bottom_to_step_mean and step_to_top_mean from charge_step_split (A4 smoothing 2 Ah)",
+   "g_temp": "setpoint from anchor start to the first deep program"
+  }
+ },
+ "predictions_anchors_1_to_7": {
+  "P1": "overhang state link: Spearman rho(c_offset median, b_r upper) >= +0.5 (delta raises the rest voltage and r_j; a pure discharge-path effect predicts no relation)",
+  "P2": "dwell dependence: Spearman rho(c_offset median, a_dwell_h) >= +0.5",
+  "P3": "anchor bottom section: Spearman rho(c_offset median, e bottom_to_step_mean) <= -0.5 (delta shortens the bottom section; note: confounded with r_j, which also shortens it)",
+  "P4": "fast decay: d_second <= 0.15 Ah for at least 5 anchors among those evaluable; if fewer than 4 anchors are evaluable, P4 = not evaluable",
+  "p_values": "exact permutation p-values (all 7! permutations) for every rho; effect sizes and sign counts reported; no significance claims",
+  "anchor_0": "reported separately (break-in, delivery state, 45 C)"
+ },
+ "classification": {
+  "supported": "P1 holds and at least one of P2 / P3 holds",
+  "partly_supported": "exactly one of P1, P2, P3 holds",
+  "not_supported": "none of P1, P2, P3 holds"
+ },
+ "physical_discussion": "Arrhenius factor of the exchange between 25 C and 45 C with Ea 64.5 kJ/mol; whether month 0 (45 C, 0.83 Ah) is consistent; consistency of the offset size (0.2-0.65 Ah) with overhang shares 5.7-9 % of the anode",
+ "implication_analysis": {
+  "H_ov_before": "C/20 measured before the near-empty dwell: no effect on the hidden capacity relative to Q_fc (Q_fc is unaffected) -> identical to the round-6 proxy family; stated, not added",
+  "H_ov_after": "C/20 measured after a near-empty dwell that releases delta_k: T_k = Q_fc,k + eps0 + (b_k - b_0), b_k = c_offset median of anchor k used as the delta estimate; main b_0 = median(b_1..b_7); sensitivity b_0 = measured anchor-0 offset. Crossed with d in {0, -0.031} and Delta in {0, 0.4, 0.8}: 6 + 6 hypotheses added to the round-6 grid (main and sensitivity reported separately)",
+  "which_order": "decided by the segment end state, registered: if the last operating sample before most (>= 5 of 7) CK gaps is above 13.0 V pack, the pack enters the checkup charged, the C/20 follows a full charge without a near-empty dwell, and H_ov_before is the main reading (H_ov_after is then a sensitivity); otherwise H_ov_after gets equal weight",
+  "grid_models": "SUB, SUB + drift (d -0.031 and -0.020), and the round-6 WP1 candidate set (predictions from round 6 wp1_predictions.csv, real, main, A4 2 Ah); s_h, worst case, max regret on the round-6 grid plus H_ov_after",
+  "prior_update": "diagnosis prior over the round-6 axis f (share of the round-4 recovery R_k the hidden C/20 does not see): supported -> f weights {0: 0.7, 0.5: 0.2, 1: 0.1}; partly -> keep round 6 {0.6, 0.3, 0.1}; not supported -> {0.5, 0.3, 0.2}. Delta and d weights unchanged. Expected s recomputed for the WP1 candidate set under the updated prior."
+ },
+ "outputs": ["wp1/outputs/anchor_state_table.csv", "wp1/outputs/wp1_predictions_P.json", "wp1/outputs/wp1_grid_decision.csv", "plots"]
+}
