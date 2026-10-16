@@ -40,7 +40,7 @@
 | 1 | hypothesis-robust selection | real grid: SUB (max regret 0.027); stress ensembles complementary (best worst case); causal grid favours the stress ensembles (tie window wide) | [wp1](wp1/REPORT.md) |
 | 2 | uncertainty-weighted fusion | no design passes; main F2_S_A fails (CK1 −0.56, CK2 −0.64); F1 best but behind SUB at Δ 0.4; causal scenarios do not represent CK1/CK2 | [wp2](wp2/REPORT.md) |
 | 3 | truth-oriented corrections | ε drift = best hedge; start state material, low confidence; path effect verified but correction contradicted | [wp3](wp3/REPORT.md) |
-| 4 | open-data prior | registered fallback (Yagci not obtained); prior2 over-predicts LIC +50 % and Gotion +24 %; prior3 = prior2; no candidate | [wp4](wp4/REPORT.md) |
+| 4 | open-data prior | **capped** ([cap record](wp4/CAP_RECORD.md)); registered fallback (Yagci not obtained); prior2 over-predicts LIC +50 % and Gotion +24 %; prior3 = prior2; no candidate | [wp4](wp4/REPORT.md) |
 | 5 | report material | 7 bilingual drafts and a figure in [report_material/](report_material/) | [wp5](wp5/REPORT.md) |
 | 6 | synthesis and probes | keep SUB; probe order P_drift → P_stress_early → P_start | [wp6](wp6/REPORT.md) |
 
@@ -131,7 +131,7 @@ python3 -B wp6/run_wp6.py
 | 1 | 多假设稳健选择 | 真实网格：SUB（最大后悔值 0.027）；应力集成与之互补（最坏情况最好）；因果网格偏向应力集成（并列阈值偏宽） | [wp1](wp1/REPORT.md) |
 | 2 | 不确定度加权融合 | 无设计通过；主模型 F2_S_A 失败（CK1 −0.56，CK2 −0.64）；F1 最好，但 Δ 0.4 时落后于 SUB；因果场景代表不了 CK1/CK2 | [wp2](wp2/REPORT.md) |
 | 3 | 真值导向修正 | ε 漂移是最好的对冲；起点状态量级可观、置信度低；路径效应得到证实，但修正与代理矛盾 | [wp3](wp3/REPORT.md) |
-| 4 | 开放数据先验 | 按登记规则回退（未拿到 Yagci）；prior2 高估 LIC +50 %、Gotion +24 %；prior3 = prior2；无候选 | [wp4](wp4/REPORT.md) |
+| 4 | 开放数据先验 | **到达上限**（[上限记录](wp4/CAP_RECORD.md)）；按登记规则回退（未拿到 Yagci）；prior2 高估 LIC +50 %、Gotion +24 %；prior3 = prior2；无候选 | [wp4](wp4/REPORT.md) |
 | 5 | 报告材料 | [report_material/](report_material/) 中的 7 份双语草稿和一张图 | [wp5](wp5/REPORT.md) |
 | 6 | 综合与探测 | 保留 SUB；探测顺序 P_drift → P_stress_early → P_start | [wp6](wp6/REPORT.md) |
 

@@ -9,7 +9,7 @@
 
 ## Conclusions first
 
-1. **Yagci 2025 data could not be obtained, so WP4 ran under its registered fallback** (D4.1).
+1. **Yagci 2025 data could not be obtained, so WP4 ran under its registered fallback and is marked capped** (D4.1, [cap record](CAP_RECORD.md)).
    - The automatic download failed twice: an SSL error, then a truncated retry.
    - The manual download the user offered had not arrived after 7.5 hours, well past the 3-hour cap.
    - The calendar and break-in terms therefore stay at the 5C prior2 values.
@@ -54,7 +54,7 @@ The cycling axes ([CSV](outputs/wp4_cycling_axes.csv)) match each LIC capacity p
 
 ## 结论先读
 
-1. **没能拿到 Yagci 2025 的数据，所以 WP4 按登记的回退方案执行**（D4.1）。
+1. **没能拿到 Yagci 2025 的数据，所以 WP4 按登记的回退方案执行，并标为到达上限**（D4.1，[上限记录](CAP_RECORD.md)）。
    - 自动下载失败了两次：一次 SSL 错误，一次重试时文件被截断。
    - 用户提出手动下载，但 7.5 小时后文件仍未到位，远远超过了 3 小时的上限。
    - 因此日历项和磨合项保留 5C 的 prior2 值。
