@@ -1,7 +1,7 @@
 {
  "params": {
   "sigma_S0": {
-   "S_A3": 0.1610521231125621
+   "S_A3": 0.15888219241387908
   },
   "sigma_SUB": {
    "pooled": 0.20847387157700187,
@@ -11,7 +11,7 @@
   },
   "F2_w": {
    "S_A3": {
-    "cold": 1.0,
+    "cold": 0.75,
     "phase": 1.0,
     "sqrt_gap": 1.0,
     "fallback": 0.5
@@ -56,25 +56,25 @@
   },
   {
    "model": "S_A3",
-   "pseudo": 0.11893,
-   "cold": 0.144033,
-   "score": 0.131481,
+   "pseudo": 0.119161,
+   "cold": 0.143969,
+   "score": 0.131565,
    "G_pseudo": true,
    "G_coldstart": true
   },
   {
    "model": "F2_S_A3",
-   "pseudo": 0.106288,
-   "cold": 0.144033,
-   "score": 0.12516,
+   "pseudo": 0.106524,
+   "cold": 0.142185,
+   "score": 0.124354,
    "G_pseudo": true,
    "G_coldstart": true
   },
   {
    "model": "F1_S_A3",
-   "pseudo": 0.118776,
-   "cold": 0.141277,
-   "score": 0.130026,
+   "pseudo": 0.119083,
+   "cold": 0.139947,
+   "score": 0.129515,
    "G_pseudo": true,
    "G_coldstart": true
   }

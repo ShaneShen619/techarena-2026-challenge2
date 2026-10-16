@@ -97,6 +97,12 @@ lodo = [np.median(np.delete(la, i)) for i in range(len(la))] if len(la) > 1 else
 spread = float(np.max(np.abs(np.array(lodo) - np.median(la)))) if len(la) > 1 else LN3
 out["A_cyc_by_dataset"] = acyc
 out["logA_cyc"] = dict(mean=float(np.median(la)), sd=float(max(spread, LN3)), source="median over cycling datasets after subtracting the calendar prediction")
+# registered fallback (fits.fallback, D4.3): a term that hits a bound (here the 1e-12 floor) or has spread > ln 3 -> prior2
+cyc_bound = bool(np.median(la) <= np.log(1e-12) + 1e-3)
+if cyc_bound or spread > LN3:
+    out["logA_cyc_fit"] = out["logA_cyc"]
+    out["logA_cyc"] = dict(mean=P2["logA_cyc"]["mean"], sd=P2["logA_cyc"]["sd"], source="fallback: 5C prior2",
+                           at_bound=cyc_bound, unidentified=bool(spread > LN3))
 out["Ea_kJ"] = 37.3
 out["units"] = "loss in Ah on a 102 Ah cell; tau Arrhenius-weighted days; ah Arrhenius-weighted Ah scaled to 102 Ah"
 out["deviation"] = "cycling datasets use the cumulative mean cell temperature up to each capacity point for the Arrhenius weighting (approximation)"

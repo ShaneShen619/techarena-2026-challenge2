@@ -1,0 +1,28 @@
+{
+ "sigma_S0": {
+  "S_A3": 0.1610521231125621
+ },
+ "sigma_SUB": {
+  "pooled": 0.20847387157700187,
+  "phase": 0.2501415801889856,
+  "sqrt_gap": 0.1791181228602569,
+  "fallback": 0.24530405918313278
+ },
+ "F2_w": {
+  "S_A3": {
+   "cold": 1.0,
+   "phase": 1.0,
+   "sqrt_gap": 1.0,
+   "fallback": 0.5
+  }
+ },
+ "class_counts": {
+  "SUB_phase": 4,
+  "SUB_sqrt_gap": 17,
+  "SUB_fallback": 7,
+  "S_A3_cold": 10,
+  "S_A3_phase": 4,
+  "S_A3_sqrt_gap": 12,
+  "S_A3_fallback": 2
+ }
+}

@@ -1,0 +1,82 @@
+{
+ "params": {
+  "sigma_S0": {
+   "S_A3": 0.1610521231125621
+  },
+  "sigma_SUB": {
+   "pooled": 0.20847387157700187,
+   "phase": 0.2501415801889856,
+   "sqrt_gap": 0.1791181228602569,
+   "fallback": 0.24530405918313278
+  },
+  "F2_w": {
+   "S_A3": {
+    "cold": 1.0,
+    "phase": 1.0,
+    "sqrt_gap": 1.0,
+    "fallback": 0.5
+   }
+  },
+  "class_counts": {
+   "SUB_phase": 4,
+   "SUB_sqrt_gap": 17,
+   "SUB_fallback": 7,
+   "S_A3_cold": 10,
+   "S_A3_phase": 4,
+   "S_A3_sqrt_gap": 12,
+   "S_A3_fallback": 2
+  }
+ },
+ "SUB_pseudo": 0.14758255126430175,
+ "SUB_cold": 0.17427816372826688,
+ "scores": [
+  {
+   "model": "V2",
+   "pseudo": 0.240024,
+   "cold": 0.252235,
+   "score": 0.246129,
+   "G_pseudo": false,
+   "G_coldstart": false
+  },
+  {
+   "model": "SUB",
+   "pseudo": 0.147583,
+   "cold": 0.174278,
+   "score": 0.16093,
+   "G_pseudo": true,
+   "G_coldstart": true
+  },
+  {
+   "model": "S_A (prior2)",
+   "pseudo": 0.11893,
+   "cold": 0.144033,
+   "score": 0.131481,
+   "G_pseudo": true,
+   "G_coldstart": true
+  },
+  {
+   "model": "S_A3",
+   "pseudo": 0.11893,
+   "cold": 0.144033,
+   "score": 0.131481,
+   "G_pseudo": true,
+   "G_coldstart": true
+  },
+  {
+   "model": "F2_S_A3",
+   "pseudo": 0.106288,
+   "cold": 0.144033,
+   "score": 0.12516,
+   "G_pseudo": true,
+   "G_coldstart": true
+  },
+  {
+   "model": "F1_S_A3",
+   "pseudo": 0.118776,
+   "cold": 0.141277,
+   "score": 0.130026,
+   "G_pseudo": true,
+   "G_coldstart": true
+  }
+ ]
+}

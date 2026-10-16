@@ -1,35 +1,58 @@
 {
- "sources": {},
- "notes": [
-  "Yagci unavailable: A_b, tau_b, A_cal from 5C prior2"
- ],
+ "sources": {
+  "calendar": "Yagci 2025 storage cells (n = 8)"
+ },
+ "notes": [],
+ "calendar_fit": {
+  "logA_b": 1.795709571058169,
+  "logtau_b": 8.006367567650244,
+  "logA_cal": -1.6380260009598553
+ },
+ "calendar_jackknife_sd": {
+  "logA_b": 1.225414747924782,
+  "logtau_b": 1.2336411383998086e-13,
+  "logA_cal": 0.2742238296423124
+ },
  "logA_b": {
   "mean": 1.8572122086679987,
   "sd": 1.0986122886681098,
-  "source": "5C prior2 (Yagci unavailable)"
+  "source": "fallback: 5C prior2",
+  "at_bound": false,
+  "unidentified": true
  },
  "logtau_b": {
   "mean": 4.901437698447246,
   "sd": 5.3507028681658495,
-  "source": "5C prior2 (Yagci unavailable)"
+  "source": "fallback: 5C prior2",
+  "at_bound": true,
+  "unidentified": false
  },
  "logA_cal": {
-  "mean": -1.4405027696805106,
+  "mean": -1.6380260009598553,
   "sd": 1.0986122886681098,
-  "source": "5C prior2 (Yagci unavailable)"
+  "source": "Yagci 2025 storage cells"
  },
  "A_cyc_by_dataset": {
   "Gotion53_cell": 1e-12,
-  "LIC280": 1e-12
+  "LIC280": 1e-12,
+  "Yagci_cyc_CA-181103-19": 1e-12,
+  "Yagci_cyc_CA-181103-22": 5.719490923474095e-06,
+  "Yagci_cyc_CA-181103-28": 3.57324046068908e-06,
+  "Yagci_cyc_CA-181103-42": 1e-12
  },
  "logA_cyc": {
   "mean": -11.754453247878848,
   "sd": 1.0986122886681098,
-  "source": "fallback: 5C prior2 (cycling-data estimate hit the 1e-12 floor: prior2 calendar + break-in alone exceed the observed cycling losses)",
-  "estimate_at_bound": true
+  "source": "fallback: 5C prior2",
+  "at_bound": true,
+  "unidentified": false
+ },
+ "logA_cyc_fit": {
+  "mean": -27.631021115928547,
+  "sd": 1.0986122886681098,
+  "source": "median over cycling datasets after subtracting the calendar prediction"
  },
  "Ea_kJ": 37.3,
  "units": "loss in Ah on a 102 Ah cell; tau Arrhenius-weighted days; ah Arrhenius-weighted Ah scaled to 102 Ah",
- "deviation": "cycling datasets use the cumulative mean cell temperature up to each capacity point for the Arrhenius weighting (approximation)",
- "prior3_equals_prior2": true
+ "deviation": "cycling datasets use the cumulative mean cell temperature up to each capacity point for the Arrhenius weighting (approximation)"
 }

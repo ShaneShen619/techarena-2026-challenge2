@@ -1,0 +1,35 @@
+{
+ "sources": {},
+ "notes": [
+  "Yagci unavailable: A_b, tau_b, A_cal from 5C prior2"
+ ],
+ "logA_b": {
+  "mean": 1.8572122086679987,
+  "sd": 1.0986122886681098,
+  "source": "5C prior2 (Yagci unavailable)"
+ },
+ "logtau_b": {
+  "mean": 4.901437698447246,
+  "sd": 5.3507028681658495,
+  "source": "5C prior2 (Yagci unavailable)"
+ },
+ "logA_cal": {
+  "mean": -1.4405027696805106,
+  "sd": 1.0986122886681098,
+  "source": "5C prior2 (Yagci unavailable)"
+ },
+ "A_cyc_by_dataset": {
+  "Gotion53_cell": 1e-12,
+  "LIC280": 1e-12
+ },
+ "logA_cyc": {
+  "mean": -11.754453247878848,
+  "sd": 1.0986122886681098,
+  "source": "fallback: 5C prior2 (cycling-data estimate hit the 1e-12 floor: prior2 calendar + break-in alone exceed the observed cycling losses)",
+  "estimate_at_bound": true
+ },
+ "Ea_kJ": 37.3,
+ "units": "loss in Ah on a 102 Ah cell; tau Arrhenius-weighted days; ah Arrhenius-weighted Ah scaled to 102 Ah",
+ "deviation": "cycling datasets use the cumulative mean cell temperature up to each capacity point for the Arrhenius weighting (approximation)",
+ "prior3_equals_prior2": true
+}
