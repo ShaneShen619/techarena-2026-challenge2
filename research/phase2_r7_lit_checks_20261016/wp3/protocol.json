@@ -1,0 +1,31 @@
+{
+ "wp": "WP3 - eps drift on the Yagci 180 Ah cycling cells",
+ "registered": "2026-10-16, after the qualification audit of file structure (column names, cycle ranges, cell labels) and before any eps value was computed",
+ "qualification": {
+  "cells": "4 cycling cells: CA-181103-19 and -42 (35 C), -22 and -28 (50 C); storage cells excluded by design (no operating charge)",
+  "rpt": "checkups after cycles 0, 100, 500, 1000 (paper: 20 C, 50 A CC-CV, second cycle); RPT capacity = max_CCCV_DIS of 'Capacities in checkups - all cells.xlsx' as in round 6 (sheet #1500 excluded: byte-identical copy of #1000)",
+  "operating_charge": "'Analysis individual cycles - cyclic aging cells.xlsx', column max_CCCV_CHA (charge Ah to CV end), cycle_no continuous 1..~1500; the first operating cycle after checkup k is cycle k+1",
+  "result": "qualifies: 4 cells with 3 RPTs after the initial one (exit rule needs >= 2 cells with >= 3 RPTs)"
+ },
+ "estimand": {
+  "eps_j": "C_RPT,j - Q_ch,j for j in {0, 100, 500, 1000}, both scaled to 102 Ah by x 102/180 (scaling does not change the slope)",
+  "Q_ch_main": "max_CCCV_CHA of cycle j+1 (the first operating charge after RPT j)",
+  "start_state_guard": "if |Q_ch(cycle j+1) - median Q_ch(cycles j+2..j+4)| > 1 % of 180 Ah, the first cycle is flagged 'partial start' and that point uses the median of cycles j+2..j+4 in the main estimate; flags are reported",
+  "Q_ch_sensitivity": "mean of cycles j+1..j+3",
+  "L_j": "C_RPT,0 - C_RPT,j (same scale)",
+  "d_cell": "OLS slope of eps_j on L_j over the 4 points; leave-one-checkup-out range (4 refits)",
+  "temperature": "RPT at 20 C, cycling at 35 / 50 C: eps_0 is reported per temperature group; the slope is the target"
+ },
+ "pooling": {
+  "values": "LIC 280 Ah -0.035 and Gotion 53 Ah -0.031 (external_data/DATA_MANIFEST.md); Yagci 35 C group = mean of the 2 cells' d, Yagci 50 C group = mean of the 2 cells' d",
+  "report": "median, range, leave-one-dataset-out median (4 datasets: LIC, Gotion, Yagci35, Yagci50)"
+ },
+ "recommendation_rule": {
+  "keep_minus_0p031": "both Yagci group values within [-0.05, -0.015]",
+  "recommend_minus_0p020": "both Yagci group values within (-0.015, +0.01); state the disagreement",
+  "sign_not_robust": "any Yagci group value > +0.01: flag 'drift sign not robust' and recommend probing P_drift after the other probes",
+  "mixed": "any other combination (one group in [-0.05, -0.015], the other in (-0.015, +0.01], or a value < -0.05): recommend d = the pooled median clipped to [-0.035, -0.015] and state the disagreement"
+ },
+ "soh_tables": "SUB + drift with the recommended d (real, delta 0.4, main), SOH per checkup; grid scores on the round-6 grid plus WP1's H_ov_after (b_0 = median) family",
+ "not_usable": "TUM kxh42bfgtj (2018 calendar) and Mendeley 6hgyr25h8d (2020 cycle) carry no charge capacity; recorded, not used"
+}
