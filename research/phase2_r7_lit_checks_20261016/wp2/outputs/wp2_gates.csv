@@ -1,0 +1,7 @@
+model,G_gapcases,G_pseudo,G_coldstart,G_hyp,data_gates_all
+SUB,False,True,True,True,False
+T_main,True,True,True,True,True
+T_ea37,True,True,True,True,True
+T_gap45,False,True,True,True,False
+T_seg25,False,False,False,False,False
+R_p044,False,False,False,True,False

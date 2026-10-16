@@ -1,0 +1,27 @@
+Python 3.11.14
+numpy 2.4.6 pandas 3.0.6
+1/4 framework files present ...
+2/4 train on sample_data ...
+    ok (0 s)
+3/4 test on every evaluation point (causal cut) ...
+    ok (0 s)
+4/4 checking output schema ...
+PASSED - output schema satisfied (5 evaluation points). Output: /var/folders/bd/mk1nt6yj6px0t948s3knh0640000gn/T/c2_validate_dbanxb38/output.csv
+Reminder: package ONE zip named <TeamName>_Challenge2.zip (without data/), test it from a clean
+extraction inside a fresh venv, and keep run_model.py / framework/ / validate_submission.py unmodified.
+train ok -> /Users/shane/Desktop/Arena_1016_r7_lit/research/phase2_r7_lit_checks_20261016/cache/package_copy_tmain/out (1 s)
+  CK4 (2025-05-16): SOH_est = 92.81 %
+  CK5 (2025-06-16): SOH_est = 92.08 %
+  CK6 (2025-07-25): SOH_est = 91.33 %
+  CK7 (2025-08-28): SOH_est = 90.82 %
+test ok -> /Users/shane/Desktop/Arena_1016_r7_lit/research/phase2_r7_lit_checks_20261016/cache/package_copy_tmain/out/output.csv (10 s)
+checkup,date,SOH_est
+CK0,2025-01-14,98.441
+CK1,2025-02-08,95.992
+CK2,2025-03-11,94.507
+CK3,2025-04-14,93.541
+CK4,2025-05-16,92.811
+CK5,2025-06-16,92.081
+CK6,2025-07-25,91.331
+CK7,2025-08-28,90.821
+full run seconds: 12
