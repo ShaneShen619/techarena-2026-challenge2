@@ -1,0 +1,11 @@
+{
+ "wp": "WP5 - synthesis (no new evaluation)",
+ "registered": "2026-10-17, before the WP5 decision table was assembled",
+ "decision_rules": {
+  "CK2": "from WP2's registered decision: T_main passes all gates -> 'recommend switching to T_main (not wired)'; otherwise keep SUB",
+  "offset_interpretation": "from WP1's registered classification",
+  "d_for_P_drift": "from WP3's registered recommendation (d_recommended)",
+  "probe_order": "start from round 6's order P_drift -> P_stress_early -> P_start; apply WP3's rule ('sign_not_robust' moves P_drift to the end; 'keep'/'-0.020'/'mixed' keep it first with the recommended d); the probe base is T_main if the user adopts it, otherwise SUB; at most 3 probes"
+ },
+ "tables": "SOH per checkup for SUB, T_main, SUB + drift(d) and T_main + drift(d), d = WP3 recommended value; drift applied as Q + d * max(0, 100.41 - Q) (round 6 WP3b)"
+}
