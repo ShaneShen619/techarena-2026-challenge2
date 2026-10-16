@@ -1,0 +1,35 @@
+{
+ "wp": "WP2 - temperature-weighted time for the sqrt_gap branch of SUB",
+ "registered": "2026-10-17, before any WP2 prediction was computed (WP0 inventory only: which cases take sqrt_gap)",
+ "branch": "identical to SUB's sqrt_branch (v3.sqrt_branch): same trigger (k >= 2, anchor k-1 present, last visible deep program > 10 days before CK_k), same anchors j = 1..k-1 at CK_j dates, same eps, p = 0.5, fit through the origin; only the time axis t(date) changes. Outside the branch every design equals SUB exactly.",
+ "effective_time": {
+  "definition": "t_eff(date) = integral from CK0 to date of AF(T(tau)) dtau in days, AF(T) = exp[(Ea/R) (1/318.15 - 1/(T + 273.15))] (45 C = 1), hourly grid",
+  "T_of_tau": "from the cut operation data only: inside a visible segment's [first sample, last sample] -> that segment's chamber setpoint; in a gap between two visible segments -> T_gap; after the last visible sample up to the evaluated date -> 45 C if the last visible segment is 45 C; if it is 25 C, 25 C for the remainder of that segment's typical length (registered: until last sample + 0 days, i.e. none) then 45 C (public alternation schedule: short 25 C segments are followed by long 45 C segments); the interval of the never-provided segment 3 (2025-02-19 09:50 .. 2025-03-11, between visible segments 2 and 4) -> T_seg3",
+  "note": "the anchors used by the branch are at CK_j dates; t_eff is evaluated at CK dates, as SUB evaluates t"
+ },
+ "designs": {
+  "T_main": {"Ea_J_mol": 20600, "T_gap_C": 25, "T_seg3_C": 45},
+  "T_ea37": {"Ea_J_mol": 37300, "T_gap_C": 25, "T_seg3_C": 45},
+  "T_gap45": {"Ea_J_mol": 20600, "T_gap_C": 45, "T_seg3_C": 45},
+  "T_seg25": {"Ea_J_mol": 20600, "T_gap_C": 25, "T_seg3_C": 25, "role": "sensitivity only"},
+  "R_p044": {"time": "calendar days", "p": 0.44, "role": "non-causal reference (exponent fitted on all anchors); never selectable"}
+ },
+ "causal_evaluation_first": {
+  "gap_cases": "distinct non-real sqrt_gap cases (decision D0.1): cut family k = 3..7 (PG1/PG2/PC10 give identical branch inputs; evaluated on PC10) and CSE k = 3..7 reported separately; CK2 cases of PC5_all/PC10_all are the real CK2 (exposed) and excluded",
+  "metric": "mean absolute error (pp) at Delta = 0.4 over the 5 cut-family cases (main) and over the 5 CSE cases (secondary)",
+  "also": "pseudo mean (PG1, PG2, PC5, PC10) and cold-start mean (CS, CSE) at Delta 0.4, round-6 definitions (runner5c.scen_mean)",
+  "exit_rule": "fewer than 4 distinct non-real cases -> exit (not triggered: 5)",
+  "commit": "causal results committed before the real run"
+ },
+ "real_evaluation": "proxy MAE/MAX at Delta 0/0.4/0.8, per-checkup errors (exposed-CK2), CK2 SOH per design; grid max regret on the round-6 grid plus WP1's H_ov_after (b_0 = median) family with the designs added to the round-6 WP1 candidate set and SUB + drift(-0.031)",
+ "tum_consistency": "arithmetic only: for each design the ratio (CK1->CK2 loss increment of the design) / (SUB's increment) at Delta 0.4, compared with the TUM median ratio 0.87 (range 0.81-1.02)",
+ "gates_vs_SUB": {
+  "G_gapcases": "cut-family gap-case MAE <= SUB - 0.005 pp",
+  "G_pseudo": "pseudo mean <= SUB + 0.005",
+  "G_coldstart": "cold-start mean <= SUB + 0.005",
+  "G_hyp": "grid max regret <= SUB + 0.005 (same candidate set)",
+  "G_causal": "candidate class: bit-identical output with all post-cut rows replaced by noise on all 8 checkups (checks5c.candidate_checks); research implementation reads only cut data",
+  "G_impl": "candidate class within 0.001 pp of the research implementation; validate_submission.py passes on a copy of the archived 21a7a55 package under a Python 3.11 venv; full run < 30 min"
+ },
+ "decision": "recommend switching only if T_main passes all gates; otherwise keep SUB and report the CK2 risk range (SUB, T_main, T_ea37) with evidence classes. Another design may be named as an alternative only if it passes every gate and T_main fails G_gapcases by less than 0.005 pp. Candidate class and G_causal/G_impl are run only for a design that passes the four data gates. Never wire anything."
+}
