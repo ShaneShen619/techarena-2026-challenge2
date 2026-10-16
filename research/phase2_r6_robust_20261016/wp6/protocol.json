@@ -1,0 +1,15 @@
+{
+ "wp": "WP6 - synthesis and leaderboard probe plan",
+ "registered": "2026-10-16, after WP0-WP5, before any WP6 computation",
+ "probe_pool": {
+   "P_drift": "SUB + 3b (d = -0.031): discriminates the eps-drift hypothesis (d)",
+   "P_drift_mild": "SUB + 3b (d = -0.020): report only, softer version of P_drift",
+   "P_stress_early": "F1_S_B (WP2 inverse-variance fusion with the restart rule, exposed-CK1): discriminates CK1/early handling (stress law vs SUB)",
+   "P_stress_noexp": "F1_S_A (WP2, not exposed): report only",
+   "P_start": "SUB + 3a_ref1 (WP3): discriminates the anchor start-state hypothesis"
+ },
+ "expected_difference": "for each probe and each of the 18 WP1 hypotheses: delta_s = s_h(probe) - s_h(SUB) with s the WP1 normalised score (ExampleModel = 1), on the real grid at the submitted configuration; summarised by d, f and Delta",
+ "ordering_rule": "at most 3 probes, ordered by (1) the largest expected gain under the diagnosis prior among hypotheses where the probe is designed to win, (2) the smallest worst-case loss (max delta_s over all h); exposed-CK1 probes are allowed as probes (they are leaderboard questions) but are labelled",
+ "decision_table": "options keep SUB / WP1 robust choice / WP2 or WP4 candidate / probes, each with its evidence class (causal, exposed, leaderboard-only)",
+ "no_wiring": "nothing is wired into any my_model"
+}
