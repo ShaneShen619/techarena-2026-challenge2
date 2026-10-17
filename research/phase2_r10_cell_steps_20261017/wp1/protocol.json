@@ -1,0 +1,16 @@
+{
+ "registered": "2026-10-17, before any WP1 candidate was evaluated",
+ "variants": ["main", "band_narrow", "windows_minus3", "windows_plus3", "dvdq_peak", "ir_corrected"],
+ "loc_ens": "per program p and cell c: mean (A1, A2) or median (A3) over the variants of loc_v(p, c), NaN-aware, NaN if fewer than 4 finite variants; programs matched by t_cv_end",
+ "candidates": {
+  "A1": "loc_ens = mean over 6 variants; pack step = mean over cells",
+  "A2": "loc_ens = mean over 6 variants; pack step = median over cells",
+  "A3": "loc_ens = median over 6 variants; pack step = median over cells"
+ },
+ "simplicity_order": ["A1", "A2", "A3"],
+ "branch_freeze": "SUB selection on the main variant replayed (D0.1); mode 'position': SUB's formulas on the candidate pack series (rate = Theil-Sen of the pack series over SUB's rate-fit programs)",
+ "gates": "EXECUTION_PROMPT.md section 4: G_pseudo, G_cold, G_changed on the main ctx; G_robust on the 6 leave-one-variant-out ensembles (5 variants, >= 4 finite) vs SUB on main: causal <= SUB + 0.005 on >= 5 of 6, causal <= SUB + 0.03 and real MAE <= SUB + 0.05 on all 6; G_event: SD of leave-month-out R_anc_b of the candidate's full-data pack series <= 1.02 x SUB's (mean of main cells), 40 bracketed events; G_real_safety: real MAX at each delta <= SUB + 0.10",
+ "adoption": "passing = all gates; lowest causal mean (main); ties within 0.002 pp -> simplicity_order",
+ "diagnostics": ["per-cell sigma (1.4826 MAD of R_seg, 45 C segments with >= 4 programs) of loc_ens vs each single variant", "R_cell sign pattern (mean per cell, months with that sign) and spread (max-min over cells) by month group m0-2/m3-5/m6-7 on loc_ens, full data", "per-checkup real errors and SOH at delta 0.4"],
+ "seed": 20261017
+}
