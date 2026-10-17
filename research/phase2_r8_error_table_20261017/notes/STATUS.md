@@ -11,10 +11,10 @@
 | WP2 | done | table_events 205 rows; 41 events and 6 variants match events_merged (≤3.6e-15 Ah); free-slope b = 0.745 [0.674, 0.765] |
 | WP3 | done | table_anchors 8 rows; common 5.1 A cut = Q_fc (D3.1); 6 A cut removes 0.10–0.13 Ah; CV Ah 1.35→1.57; pulse R flat (quantised 0.049 mΩ) |
 | WP4 | done | table_cycles 430 swings; profile repeats exactly per 116 h block, so cycle Ah carries no state (slot-matched spread ~0.001 Ah); only loaded voltages vary |
-| WP5 | open | — |
+| WP5 | protocol registered | protocol.json committed before any slice |
 | WP6 | open | — |
 
-Next: WP5: register protocol (no slicing before commit). Last commit: see git log.
+Next: WP5: run registered slicing (run_wp5.py). Last commit: see git log.
 
 ---
 
@@ -31,7 +31,7 @@ Next: WP5: register protocol (no slicing before commit). Last commit: see git lo
 | WP2 | 完成 | table_events 共 205 行；41 个事件和 6 个变体与 events_merged 一致（≤3.6e-15 Ah）；自由斜率 b = 0.745 [0.674, 0.765] |
 | WP3 | 完成 | table_anchors 共 8 行；公共 5.1 A 截止 = Q_fc（D3.1）；6 A 截止去掉 0.10–0.13 Ah；CV 充电量 1.35→1.57 Ah；脉冲内阻平稳（量化步长 0.049 mΩ） |
 | WP4 | 完成 | table_cycles 共 430 次摆动；工况每 116 h 周期完全重复，循环 Ah 不携带状态（同槽位离散约 0.001 Ah）；只有带载电压在变 |
-| WP5 | 未开始 | — |
+| WP5 | 登记完成 | protocol.json 在任何切片之前提交 |
 | WP6 | 未开始 | — |
 
-下一步：WP5：登记协议（提交前不做切片）。最近一次提交见 git log。
+下一步：WP5：运行登记的切片（run_wp5.py）。最近一次提交见 git log。
