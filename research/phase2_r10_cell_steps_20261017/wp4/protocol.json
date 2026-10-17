@@ -1,0 +1,9 @@
+{
+ "registered": "2026-10-17, after WP1-WP3 and before the combination was evaluated",
+ "adopted_per_wp": {"WP1": "A3", "WP2": "B3", "WP3": "exited (no candidate)"},
+ "combination": "A -> C -> B: A3's per-cell locations (median over the 6 variants, >= 4 finite) fed to B3's combination (one-cell rejection, tau 0.352164 Ah, mean of the remaining per-cell changes). C is absent. By construction this is the same predictor as WP2's B3; it is re-evaluated with all gates and asserted equal to WP2's predictions",
+ "final_rule": "final = the combination if it passes and its causal mean is lower than every single adopted candidate; otherwise the single adopted candidate with the lowest causal mean (main variant)",
+ "candidate_class": "copy of the submitted 5cd305c MyModel; per deep program additionally compute the per-cell step location for all 6 detection variants inside the package (numpy/pandas only, events.py logic re-implemented), the per-cell median over variants (NaN if < 4 finite) and the median over cells; SUB's selection (programs, branch, n, d, rate set, after list, beta, sqrt branch) unchanged, only the step values used in E, the rate fit and the fallback increment are replaced",
+ "checks": ["G_impl: class vs research per checkup <= 0.001 pp (SOH, delta 0.4)", "G_causal: checks5c.candidate_checks (future rows -> noise identical at all 8 checkups; fit on CK1-cut data identical)", "package copy in cache/ with the class, validate_submission.py under Python 3.11 with the package requirements, full run_model.py train + test with timing"],
+ "never": "the class is not copied into the submission package"
+}
