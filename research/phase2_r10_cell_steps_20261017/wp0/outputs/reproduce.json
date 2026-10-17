@@ -1,0 +1,39 @@
+{
+ "checks": {
+  "framework_mean_equals_SUB_1e-9": true,
+  "SUB_real": true,
+  "SUB_pseudo_cold": true,
+  "SUB_per_checkup": true,
+  "P2a_round9": true,
+  "round9_variant_table": true,
+  "submitted_vs_research": true,
+  "submitted_equals_EXPECTED": true,
+  "sigma_main_matches_round8_R_seg": true
+ },
+ "all_checks": true,
+ "info": {
+  "framework_max_abs_Ah": 0.0,
+  "round9_variant_table_max_diff": 8.326672684688674e-17,
+  "cvend_cache_keys": 28,
+  "full_programs_with_cvend_volts": 41
+ },
+ "SUB": {
+  "MAE": [
+   0.19722804780401892,
+   0.125719879493125,
+   0.1464327546781233
+  ],
+  "MAX": [
+   0.6089526143795345,
+   0.22769787016715068,
+   0.22769787016715068
+  ],
+  "pseudo": 0.14390687848409825,
+  "cold": 0.17026649376311148
+ },
+ "P2a": {
+  "pseudo": 0.13847853018825518,
+  "cold": 0.15111943493958174,
+  "real": 0.11347302107364755
+ }
+}
