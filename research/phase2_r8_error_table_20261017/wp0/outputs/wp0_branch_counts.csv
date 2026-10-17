@@ -1,0 +1,10 @@
+scenario,fallback,phase,sqrt_gap
+CS,5,0,0
+CSE,0,0,5
+PC10,0,0,5
+PC10_all,0,0,6
+PC5,1,4,0
+PC5_all,1,4,1
+PG1,0,0,4
+PG2,1,0,3
+real,2,4,1

@@ -1,0 +1,92 @@
+{
+ "research": {
+  "MAE": [
+   0.19722804780401892,
+   0.125719879493125,
+   0.1464327546781233
+  ],
+  "MAX": [
+   0.6089526143795345,
+   0.22769787016715068,
+   0.22769787016715068
+  ],
+  "pseudo": 0.14390687848409825,
+  "cold": 0.17026649376311148,
+  "gap_cut": 0.10478772924635534
+ },
+ "target": {
+  "MAE": [
+   0.197,
+   0.126,
+   0.146
+  ],
+  "MAX": [
+   0.609,
+   0.228,
+   0.228
+  ],
+  "pseudo": 0.144,
+  "cold": 0.17,
+  "gap_cut": 0.105
+ },
+ "tolerance_pp": 0.001,
+ "checks": {
+  "research_MAE": true,
+  "research_MAX": true,
+  "research_pseudo": true,
+  "research_cold": true,
+  "research_gap_cut": true,
+  "submitted_vs_research_0p0005": true,
+  "submitted_equals_EXPECTED_SOH": true
+ },
+ "submitted_max_abs_diff_pp": 1.4210854715202004e-14,
+ "n_cases_delta04": 47,
+ "branch_counts": {
+  "CS": {
+   "fallback": 5,
+   "phase": 0,
+   "sqrt_gap": 0
+  },
+  "CSE": {
+   "fallback": 0,
+   "phase": 0,
+   "sqrt_gap": 5
+  },
+  "PC10": {
+   "fallback": 0,
+   "phase": 0,
+   "sqrt_gap": 5
+  },
+  "PC10_all": {
+   "fallback": 0,
+   "phase": 0,
+   "sqrt_gap": 6
+  },
+  "PC5": {
+   "fallback": 1,
+   "phase": 4,
+   "sqrt_gap": 0
+  },
+  "PC5_all": {
+   "fallback": 1,
+   "phase": 4,
+   "sqrt_gap": 1
+  },
+  "PG1": {
+   "fallback": 0,
+   "phase": 0,
+   "sqrt_gap": 4
+  },
+  "PG2": {
+   "fallback": 1,
+   "phase": 0,
+   "sqrt_gap": 3
+  },
+  "real": {
+   "fallback": 2,
+   "phase": 4,
+   "sqrt_gap": 1
+  }
+ },
+ "all_checks": true
+}
