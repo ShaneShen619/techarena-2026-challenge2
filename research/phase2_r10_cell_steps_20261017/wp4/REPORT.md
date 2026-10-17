@@ -29,7 +29,7 @@
 |---|---|---|---|---|---|---|---|---|
 | SUB | 98.441 | 95.992 | 94.507 | 93.541 | 92.811 | 92.081 | 91.331 | 90.821 |
 | A3 | 98.441 | 95.984 | 94.507 | 93.600 | 92.821 | 92.015 | 91.426 | 90.765 |
-| change (pp) | 0 | −0.008 | 0 | +0.060 | +0.010 | −0.066 | +0.095 | −0.056 |
+| change (pp) | 0 | −0.007 | 0 | +0.060 | +0.010 | −0.066 | +0.095 | −0.056 |
 
 Every change is below 0.1 pp. To wire A3, replace `TechArena_Challenge2_Team_Package/my_model/model_template.py` with the candidate file and update `EXPECTED_SOH` to the A3 row. That decision is the user's.
 
