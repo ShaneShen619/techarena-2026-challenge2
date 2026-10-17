@@ -1,0 +1,20 @@
+{
+ "registered": "2026-10-17, before any candidate below was evaluated",
+ "reference": "SUB = T_main (submission 5cd305c); variants.make() with defaults must reproduce it to 1e-9 Ah",
+ "candidates": {
+  "P1a_fb_beta": "fallback increment multiplied by the same beta_a4 the phase branch uses (visible 25 C anchors, prior 1, tau 1)",
+  "P1b_fb_beta_skip1": "as P1a, and the fallback increment starts at the second program after the anchor when >= 3 programs exist",
+  "P1c_beta_direct": "phase beta from past phase-matched pairs (anchor dQ vs month-end 45 C step change, v2.beta_direct) instead of the charge-side step-to-top",
+  "P1ref_prior_1_over_b": "REFERENCE ONLY, not causal: beta prior 1/0.745 (round 8 full-data fit), fallback x beta; never adoptable",
+  "P2a_median": "discharge step depth = median of the 4 cells instead of the mean (beta estimation unchanged)",
+  "P2b_min": "discharge step depth = minimum over the 4 cells (shallowest step) instead of the mean"
+ },
+ "scenarios": "real, PG1, PG2, PC5 (k3-7), PC10 (k3-7), CS, CSE, PC5_all, PC10_all; deltas 0/0.4/0.8; step main; A4 2 Ah",
+ "gates_vs_SUB_at_delta_0.4": {
+  "G_pseudo": "mean MAE over PG1, PG2, PC5, PC10 <= SUB + 0.005 pp",
+  "G_cold": "mean MAE over CS, CSE <= SUB + 0.005 pp",
+  "G_changed": "over the non-real cases whose prediction changes by > 1e-9 Ah: mean |err| decreases by >= 0.02 pp AND no single such case worsens by > 0.10 pp; if no non-real case changes the candidate is untestable and not adoptable",
+  "G_real_safety": "real proxy MAX at each delta not worse than SUB by > 0.10 pp (real numbers are exposed; reported, not used for selection otherwise)"
+ },
+ "adoption": "a causal candidate passing all four gates is recommended for wiring; if several pass, the one with the lowest mean |err| on the changed non-real cases; otherwise SUB stays"
+}
