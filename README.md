@@ -21,9 +21,9 @@ The proxy label is the post-checkup full charge plus an offset. On it, the stric
 .
 ├── README.md                              this file
 ├── .gitignore
-├── TechArena_Challenge2_Team_Package/     submission package (official template + wired-in V2 + √t gap model)
+├── TechArena_Challenge2_Team_Package/     submission package (official template + wired-in V2 + temperature-weighted √t gap model)
 │   ├── framework/  run_model.py  validate_submission.py   official framework, do not modify
-│   ├── my_model/                          active model entry (MyModel = V2 + √t gap branch)
+│   ├── my_model/                          active model entry (MyModel = V2 + temperature-weighted √t gap branch)
 │   ├── README.md  REPORT.md               submission write-up and report
 │   ├── data/                              official operating data and CK0 checkup data
 │   ├── sample_data/                       small sample used by the validator
@@ -61,7 +61,11 @@ To see only the candidate's per-checkup output, run `stage_bcd_causal_eval.py` a
 
 ## Current status
 
-- **V2 + √t gap branch is wired into the submission (2026-10-15).**
+- **Temperature-weighted √t (T_main) replaces the calendar-time √t branch (2026-10-17).**
+  - The √t gap branch now uses Arrhenius-weighted 45 °C-equivalent time (Ea 20.6 kJ/mol; checkup gaps at 25 °C; missing segment 3 at 45 °C). Only CK2 changes: 94.451 → 94.507.
+  - Evidence: round 7 WP2 (branch `exp/phase2-r7-lit-checks-20261016`). It passes every registered gate. On the causal one-month gap cases the error falls 0.113 → 0.105 pp (pseudo 0.148 → 0.144, cold start 0.174 → 0.170). Real proxy MAE Δ0/0.4/0.8 = 0.197 / 0.126 / 0.146, MAX 0.609 / 0.228 / 0.228.
+  - **Zip rebuilt:** `~/Desktop/Current State_Challenge2.zip`, validated from a clean extraction under Python 3.11.14 + numpy 2.4.6 / pandas 3.0.6. The previous zip is kept as `Current State_Challenge2_backup_V2sqrt_20261015.zip`.
+- **V2 + √t gap branch was wired into the submission (2026-10-15; superseded by T_main above).**
   - `MyModel` is V2 plus one change: when the last visible deep discharge is more than 10 days before the checkup (only CK2, because segment 3 is missing), the loss since the previous anchor is extrapolated with √t since CK0. Only CK2 changes (95.137 → 94.451).
   - Proxy MAE at Δ = 0 / 0.4 / 0.8 is 0.207 / 0.123 / 0.140 pp; V2 alone gave 0.272 / 0.216 / 0.210. The √t branch was chosen after seeing CK2, so this is exposed-exploratory. See [research/phase2_v3_20261015/FINAL_REPORT.md](research/phase2_v3_20261015/FINAL_REPORT.md). V3 as registered (adding a β cap and a 4-cell median) is **not** the recommended version.
   - Checks: the output matches the research implementation to within 0.0004 pp; noise causality holds on all 8 checkups; 320 reduced-budget calls give no error.
@@ -110,7 +114,7 @@ To see only the candidate's per-checkup output, run `stage_bcd_causal_eval.py` a
 .
 ├── README.md                              本文件
 ├── .gitignore
-├── TechArena_Challenge2_Team_Package/     提交包（官方模板 + 已接入的 V2 + √t 缺口模型）
+├── TechArena_Challenge2_Team_Package/     提交包（官方模板 + 已接入的 V2 + 温度加权 √t 缺口模型）
 │   ├── framework/  run_model.py  validate_submission.py   官方框架，不可修改
 │   ├── my_model/                          正式模型入口（MyModel = V2 锚点 + 同相位台阶）
 │   ├── README.md  REPORT.md               提交用方法说明与报告
@@ -145,7 +149,11 @@ python3 stage_a_events.py && python3 stage_bcd_causal_eval.py && python3 stage_e
 
 ## 当前状态
 
-- **V2 + √t 缺口分支已接入正式提交（2026-10-15）。**
+- **温度加权 √t（T_main）取代了日历时间 √t 分支（2026-10-17）。**
+  - √t 缺口分支现在使用按 Arrhenius 加权的 45 °C 等效时间（Ea 20.6 kJ/mol；检查间隔按 25 °C；缺失的段 3 按 45 °C）。只有 CK2 变化：94.451 → 94.507。
+  - 依据：第七轮 WP2（分支 `exp/phase2-r7-lit-checks-20261016`），通过全部登记门槛。因果一个月缺口案例上误差 0.113 → 0.105 pp（伪场景 0.148 → 0.144，冷启动 0.174 → 0.170）。真实代理 MAE Δ0/0.4/0.8 = 0.197 / 0.126 / 0.146，MAX 0.609 / 0.228 / 0.228。
+  - **压缩包已重建：** `~/Desktop/Current State_Challenge2.zip`，从干净解压目录在 Python 3.11.14 + numpy 2.4.6 / pandas 3.0.6 下验证通过。旧包保留为 `Current State_Challenge2_backup_V2sqrt_20261015.zip`。
+- **V2 + √t 缺口分支曾于 2026-10-15 接入正式提交（已被上面的 T_main 取代）。**
   - 改动：在 V2 基础上，最后一次可见的深放电距检查日超过 10 天时（只有缺第 3 段的 CK2），用 CK0 以来的 √t 外推上一锚点之后的损失。只有 CK2 变化（95.137 → 94.451）。
   - 代理 MAE（Δ = 0 / 0.4 / 0.8）：0.207 / 0.123 / 0.140 pp；V2 为 0.272 / 0.216 / 0.210。√t 分支是看过 CK2 之后才定的，属已曝光的探索性结果。详见 [research/phase2_v3_20261015/FINAL_REPORT.md](research/phase2_v3_20261015/FINAL_REPORT.md)。按登记版本的 V3（另加 β 上限和 4 芯中位数）**不是**推荐版本。
   - 检查：与研究实现的差异 ≤ 0.0004 pp；8 个检查点的噪声因果性检验全部通过；320 次数据缩减调用没有报错。

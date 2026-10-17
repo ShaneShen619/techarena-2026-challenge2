@@ -61,20 +61,25 @@ SOH_est     = 100 · Q_est / 102
 `E45(m)` is the last 45 °C step depth in month m, `d(m)` its distance in days
 to the checkup date, and `r` the current month's 45 °C Theil–Sen rate.
 
-3. **Coverage gap: √t extrapolation.** If the last visible deep discharge ended
+3. **Coverage gap: temperature-weighted √t extrapolation.** If the last visible deep discharge ended
    more than 10 days (`GAP_DAYS`) before the checkup, the step signal cannot see
    the uncovered weeks. This happens for CK2, because segment 3 (19 Feb – 11 Mar)
    is missing and the last visible step is 22 days before CK2. The model then
-   extrapolates the loss since the previous anchor with the square root of time
-   since CK0:
+   extrapolates the loss since the previous anchor with the square root of
+   temperature-weighted time since CK0:
 
 ```
 loss_j  = 100.41 − (Q_anchor(j) + EPS0 + EPS_EXTRA_AH),   j = 1..k−1 (visible anchors)
 a       = least-squares slope of loss_j on sqrt(t_j)      (through the origin)
 Q_est   = Q_anchor(k−1) + EPS0 + EPS_EXTRA_AH − a · (sqrt(t_k) − sqrt(t_(k−1)))
+t       = ∫ exp[(Ea/R)(1/318.15 − 1/T(τ))] dτ   (45 °C-equivalent days since CK0, Ea = 20.6 kJ/mol)
 ```
 
-   `t` is days since CK0. The pack's proxy fade follows t^0.44, i.e. it fades
+   `T(τ)` is the chamber set-point of the visible segments; checkup gaps count as
+   25 °C, and the missing segment 3 counts as 45 °C (public schedule: short 25 °C
+   segments alternate with long 45 °C ones). Calendar ageing under changing
+   temperature accumulates in this "virtual time" (Naumann et al., J. Energy
+   Storage 17 (2018) 153). The pack's proxy fade follows t^0.44, i.e. it fades
    like calendar ageing. The cycling-aged open datasets fade with exponents of
    0.56–1.09, so √t is a pack-specific choice, not one taken from them.
 
@@ -104,12 +109,19 @@ leaves every output bit-identical (checked on all 8 checkups).
 | ExampleModel (reference) | 4.7 / 4.3 / 3.9 | 4.9–5.7 |
 | Anchor + step, unmatched (V1) | 0.35 / 0.29 / 0.29 | 0.67 |
 | Phase-matched, no gap branch (V2) | 0.27 / 0.22 / 0.21 | 0.67 |
-| **This model (V2 + √t gap branch)** | **0.21 / 0.12 / 0.14** | **0.61 / 0.23 / 0.23** |
+| V2 + calendar-time √t gap branch (previous version) | 0.21 / 0.12 / 0.14 | 0.61 / 0.23 / 0.23 |
+| **This model (V2 + temperature-weighted √t gap branch)** | **0.20 / 0.13 / 0.15** | **0.61 / 0.23 / 0.23** |
 
 **Robustness.**
 
 - **The gap branch changes only CK2.** Its proxy error there moves from +0.67 to
-  −0.21 / −0.02 / +0.18 pp (ε0 / +0.4 / +0.8). The result depends on the
+  −0.15 / +0.04 / +0.23 pp (ε0 / +0.4 / +0.8).
+- **Temperature weighting is supported by causal hold-out tests.** On the five
+  one-month extrapolations that the gap rule produces when data are cut before
+  CK3–CK7, weighting time by temperature lowers the mean error from 0.113 to
+  0.105 pp (pseudo-cut mean 0.148 → 0.144, cold start 0.174 → 0.170). Simply
+  lowering the exponent to 0.44 in calendar time made every hold-out metric
+  worse. The result depends on the
   assumptions: with an exponent of 0.4–0.6 or a ±5-day time origin, the CK2
   error ranges from −0.35 to +0.29 pp at ε0 + 0.4. Every setting is still better
   than +0.67.
@@ -154,7 +166,7 @@ python validate_submission.py
 
 | checkup | CK0 | CK1 | CK2 | CK3 | CK4 | CK5 | CK6 | CK7 |
 |---|---|---|---|---|---|---|---|---|
-| SOH_est (%) | 98.441 | 95.992 | 94.451 | 93.541 | 92.811 | 92.081 | 91.331 | 90.821 |
+| SOH_est (%) | 98.441 | 95.992 | 94.507 | 93.541 | 92.811 | 92.081 | 91.331 | 90.821 |
 
 ## Known limits
 
@@ -168,7 +180,8 @@ python validate_submission.py
     locally.
 - **CK2.** The estimate rests on the √t assumption and on the CK0→CK1 loss,
   which includes the first-month break-in and the ε0 temperature confound
-  (the post-CK0 anchor was charged at 45 °C).
+  (the post-CK0 anchor was charged at 45 °C). It also assumes that the missing
+  segment 3 ran at 45 °C; at 25 °C, CK2 would be 94.84 %.
 - **Post-anchor step offset.**
   - The first deep discharge after each post-checkup full charge reads
     0.4–0.46 Ah deeper. The offset is the same every month and is gone five

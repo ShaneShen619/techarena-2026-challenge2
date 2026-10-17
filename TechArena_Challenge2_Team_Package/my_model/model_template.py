@@ -1,4 +1,4 @@
-"""Anchor + phase-matched graphite-step SOH estimator (V2 + sqrt(t) gap branch, active model).
+"""Anchor + phase-matched graphite-step SOH estimator (V2 + temperature-weighted sqrt(t) gap branch, active model).
 
 Physics
 -------
@@ -19,7 +19,14 @@ Physics
   ``GAP_DAYS`` before the checkup (CK2 here: segment 3 is missing), the steps
   cannot see the uncovered weeks. The loss since the previous anchor is then
   extrapolated with the square root of time since CK0, fitted to the visible
-  anchors (the pack fades like calendar ageing, roughly sqrt(t)).
+  anchors (the pack fades like calendar ageing, roughly sqrt(t)). Time is
+  Arrhenius-weighted (45 degC-equivalent days, Ea ``FADE_EA_J_MOL``), because
+  calendar ageing under changing temperature accumulates in "virtual time"
+  (Naumann et al., J. Energy Storage 17 (2018) 153). Unobserved time is
+  assigned by the public segment schedule: checkup gaps at ``GAP_TEMP_C``, a
+  gap longer than ``MISSING_SEGMENT_DAYS`` holds a missing 45 degC segment up
+  to the checkup date inside it, and time after the last visible sample is
+  45 degC.
 * Fallback. When no phase-matched pair is visible (CK1 and CK3 here), the anchor
   plus the step change since the anchor is used (beta 1), as in V1.
 
@@ -39,6 +46,13 @@ VALID_DAYS = 10.0           # a month-end step must lie this close to the checku
 MIN_45_STEPS = 3            # 45 degC steps needed for a complete segment / a rate
 GAP_DAYS = 10.0             # last deep discharge older than this -> sqrt(t) branch
 FADE_EXPONENT = 0.5         # calendar-like fade, loss ~ t ** FADE_EXPONENT
+FADE_EA_J_MOL = 20600.0     # calendar-ageing activation energy, LFP (Schimpe et al., JES 165 (2018) A181)
+GAS_R = 8.314
+REF_TEMP_K = 318.15         # effective time in 45 degC-equivalent days
+GAP_TEMP_C = 25.0           # assumed temperature during checkup gaps
+MISSING_SEGMENT_DAYS = 10.0  # a longer gap between segments holds a missing 45 degC segment
+MISSING_SEGMENT_TEMP_C = 45.0
+TAIL_TEMP_C = 45.0          # after the last visible sample (alternation schedule)
 
 CHARGE_I_MIN_A = 0.5
 START_V_MAX = 12.3
@@ -159,6 +173,30 @@ def _theil_sen(x, y):
     return float(np.median((y[j] - y[i])[ok] / dx[ok])) if ok.any() else 0.0
 
 
+def _effective_days(op, ck, dates):
+    """45 degC-equivalent days from ck[0] to each date (hourly grid, Arrhenius weights)."""
+    end = max(dates)
+    grid = pd.date_range(ck[0], end, freq="h", inclusive="left")
+    temp = np.full(len(grid), GAP_TEMP_C)
+    if op is not None and not op.empty:
+        seg = op.groupby("segment").agg(t0=("timestamp", "min"), t1=("timestamp", "max"),
+                                        sp=("chamber_temperature_C", "first")).sort_values("t0")
+        temp[grid > seg["t1"].max()] = TAIL_TEMP_C
+        ends, starts = seg["t1"].to_numpy()[:-1], seg["t0"].to_numpy()[1:]
+        for a, b in zip(ends, starts):
+            if (b - a) / np.timedelta64(1, "D") > MISSING_SEGMENT_DAYS:
+                inside = ck[(ck > a) & (ck <= b)]
+                stop = inside[0] if len(inside) else b
+                temp[(grid >= a) & (grid < stop)] = MISSING_SEGMENT_TEMP_C
+        for _, r in seg.iterrows():
+            temp[(grid >= r["t0"]) & (grid <= r["t1"])] = float(r["sp"])
+    else:
+        temp[:] = TAIL_TEMP_C
+    w = np.exp(FADE_EA_J_MOL / GAS_R * (1.0 / REF_TEMP_K - 1.0 / (temp + 273.15)))
+    cum = np.concatenate([[0.0], np.cumsum(w / 24.0)])
+    return [float(cum[len(pd.date_range(ck[0], d, freq="h", inclusive="left"))]) for d in dates]
+
+
 class MyModel:
     """Post-checkup full-charge anchor plus phase-matched graphite-step update."""
 
@@ -233,16 +271,15 @@ class MyModel:
         b = float((x * q).sum() / s) if s > 0 else BETA0
         return (BETA_TAU * BETA0 + s * b) / (BETA_TAU + s)
 
-    def _sqrt_extrapolation(self, anc, ck, k, eps):
-        """Anchor k-1 plus the sqrt(t) loss to CK_k, fitted to visible anchors 1..k-1."""
-        def t(j):
-            return (ck[j] - ck[0]).total_seconds() / 86400.0
+    def _sqrt_extrapolation(self, anc, ck, k, eps, op):
+        """Anchor k-1 plus the sqrt(t_eff) loss to CK_k, fitted to visible anchors 1..k-1."""
         js = [j for j in range(1, k) if j in anc]
-        x = np.array([t(j) ** FADE_EXPONENT for j in js])
+        te = _effective_days(op, ck, [ck[j] for j in js] + [ck[k - 1], ck[k]])
+        x = np.array(te[:len(js)]) ** FADE_EXPONENT
         loss = np.array([self.q_ck0 - (anc[j]["q"] + eps) for j in js])
         a = float((x * loss).sum() / (x ** 2).sum())
         return (anc[k - 1]["q"] + eps
-                - a * (t(k) ** FADE_EXPONENT - t(k - 1) ** FADE_EXPONENT))
+                - a * (te[-1] ** FADE_EXPONENT - te[-2] ** FADE_EXPONENT))
 
     # ----- estimate ---------------------------------------------------------
     def estimate_capacity_ah(self, dataset, at_date):
@@ -257,7 +294,7 @@ class MyModel:
         if eps0 is not None and k >= 2 and (k - 1) in anc and steps:
             gap = (ck[k] - max(s[3] for s in steps)).total_seconds() / 86400.0
             if gap > GAP_DAYS:
-                return self._sqrt_extrapolation(anc, ck, k, eps0 + EPS_EXTRA_AH)
+                return self._sqrt_extrapolation(anc, ck, k, eps0 + EPS_EXTRA_AH, dataset.operation)
 
         last = charges[-1]
         if last["setpoint"] == 45:

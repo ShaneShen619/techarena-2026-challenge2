@@ -70,19 +70,27 @@ lies between the step and the top of charge, so the step under-reads the total l
   25 °C anchors, shrunk towards 1.
 - Values: 1.06 (CK4), 1.24, 1.41 and 1.51 (CK7).
 
-**Coverage gap: √t extrapolation (CK2).** Segment 3 (19 Feb – 11 Mar) is missing, so the
+**Coverage gap: temperature-weighted √t extrapolation (CK2).** Segment 3 (19 Feb – 11 Mar) is missing, so the
 last visible step lies 22 days before CK2. The step signal cannot see those weeks. When the
 last visible deep discharge ended more than 10 days before the checkup, the model extrapolates
-the loss since the previous anchor with the square root of time since CK0:
+the loss since the previous anchor with the square root of temperature-weighted time since CK0:
 
 ```
 loss_j = 100.41 − (Q_fc(j) + EPS0 + EPS_EXTRA_AH)   over the visible anchors j = 1..k−1
 a      = least-squares slope of loss_j on sqrt(t_j) through the origin
 Q_est  = Q_fc(k−1) + EPS0 + EPS_EXTRA_AH − a · (sqrt(t_k) − sqrt(t_(k−1)))
+t      = ∫ exp[(Ea/R)(1/318.15 − 1/T(τ))] dτ  (45 °C-equivalent days since CK0, Ea = 20.6 kJ/mol)
 ```
 
 - **Why √t.** The proxy fade of this pack follows about t^0.44, i.e. calendar-like ageing.
   The cycling-aged open datasets follow 0.56–1.09, so their shape was not used.
+- **Why temperature-weighted time.** Calendar ageing under changing temperature accumulates
+  in Arrhenius-weighted "virtual time" (Naumann et al., J. Energy Storage 17 (2018) 153); Ea
+  20.6 kJ/mol is the LFP calendar value of Schimpe et al., J. Electrochem. Soc. 165 (2018) A181.
+  T(τ) is the chamber set-point of the visible segments, 25 °C during checkup gaps and 45 °C for
+  the missing segment 3 (public alternation schedule). On the five one-month extrapolations the
+  gap rule makes when data are cut before CK3–CK7, this lowers the mean error from 0.113 to
+  0.105 pp; calendar time with a lower exponent (0.44) made every hold-out metric worse.
 - **Where it applies.** Only CK2 triggers this branch.
 
 **Fallback and CK0.**
@@ -168,12 +176,13 @@ Proxy errors with ε = ε0 + 0.4, in pp:
 
 | | CK1 | CK2 | CK3 | CK4 | CK5 | CK6 | CK7 | MAE | max |
 |---|---|---|---|---|---|---|---|---|---|
-| this model (V2 + √t gap) | +0.22 | −0.02 | +0.08 | +0.23 | +0.15 | −0.16 | −0.00 | 0.12 | 0.23 |
+| this model (V2 + temperature-weighted √t gap) | +0.22 | +0.04 | +0.08 | +0.23 | +0.15 | −0.16 | −0.00 | 0.13 | 0.23 |
+| V2 + calendar-time √t gap (previous version) | +0.22 | −0.02 | +0.08 | +0.23 | +0.15 | −0.16 | −0.00 | 0.12 | 0.23 |
 | V2 without gap branch | +0.22 | +0.67 | +0.08 | +0.23 | +0.15 | −0.16 | −0.00 | 0.22 | 0.67 |
 | V1 (unmatched) | +0.22 | +0.67 | +0.08 | +0.28 | −0.11 | −0.40 | −0.28 | 0.29 | 0.67 |
 | ExampleModel | +2.64 | +4.41 | +4.15 | +5.05 | +5.28 | +4.22 | +4.32 | 4.30 | 5.28 |
 
-SOH estimates (%): CK0 98.441, CK1 95.992, CK2 94.451, CK3 93.541, CK4 92.811, CK5 92.081,
+SOH estimates (%): CK0 98.441, CK1 95.992, CK2 94.507, CK3 93.541, CK4 92.811, CK5 92.081,
 CK6 91.331, CK7 90.821.
 
 **Strengths.**
@@ -201,8 +210,9 @@ CK6 91.331, CK7 90.821.
   - Open data with independent capacity tests show ε drifting by about −0.03 Ah per Ah of
     fade. This would make the late estimates read high by up to about 0.3 pp. The proxies
     share this bias.
-- **CK2:** estimated by the √t extrapolation. It carries the first-month break-in, the ε0
-  temperature confound and the exponent assumption (±0.3 pp across the tested settings).
+- **CK2:** estimated by the temperature-weighted √t extrapolation. It carries the first-month
+  break-in, the ε0 temperature confound, the exponent assumption (±0.3 pp across the tested
+  settings) and the assumption that segment 3 ran at 45 °C (at 25 °C, CK2 would be 94.84 %).
 - **β:** it rises to 1.51 at CK7. If the LAM share falls late in life, β overstates the loss.
 
 **Routes we dropped earlier.** Three earlier routes were dropped: open-data transfer, an ECM

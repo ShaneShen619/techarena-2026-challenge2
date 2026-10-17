@@ -17,7 +17,7 @@ PY311 = "/opt/homebrew/bin/python3.11"
 FILES = ["run_model.py", "validate_submission.py", "requirements.txt", "README.md", "REPORT.md",
          "my_model/__init__.py", "my_model/model_template.py", "my_model/model_example.py"]
 DIRS = ["framework", "sample_data"]
-EXPECTED_SOH = {"CK0": 98.441, "CK1": 95.992, "CK2": 94.451, "CK3": 93.541,
+EXPECTED_SOH = {"CK0": 98.441, "CK1": 95.992, "CK2": 94.507, "CK3": 93.541,
                 "CK4": 92.811, "CK5": 92.081, "CK6": 91.331, "CK7": 90.821}
 
 
