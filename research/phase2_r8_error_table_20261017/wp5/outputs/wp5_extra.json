@@ -1,0 +1,127 @@
+{
+ "H4_slopes_Ah_per_Ah": {
+  "cases": {
+   "slope": -0.07846596213619805,
+   "ci90": [
+    -0.1370307093086874,
+    -0.022904691006613614
+   ],
+   "contains_eps_drift": true,
+   "label": "indistinguishable from eps drift, invisible to proxies"
+  },
+  "cases_without_CK1_anchor0": {
+   "slope": -0.06650307737710953,
+   "ci90": [
+    -0.163251533939284,
+    -0.0041734371155238556
+   ],
+   "contains_eps_drift": true,
+   "label": "indistinguishable from eps drift, invisible to proxies"
+  },
+  "events_R_anc": {
+   "slope": 0.304968004944965,
+   "ci90": [
+    0.2819294365452192,
+    0.3840093972102479
+   ],
+   "contains_eps_drift": false,
+   "label": ""
+  },
+  "events_R_anc_b": {
+   "slope": -0.026462898994905892,
+   "ci90": [
+    -0.0575254353334435,
+    0.0836036886590026
+   ],
+   "contains_eps_drift": true,
+   "label": "indistinguishable from eps drift, invisible to proxies"
+  }
+ },
+ "H7": {
+  "spearman_R_vs_anchor": {
+   "rho": 0.6071428571428572,
+   "p_exact": 0.16666666666666666,
+   "n_perm": 5040
+  },
+  "spearman_cvAh_vs_R": {
+   "rho": 0.6071428571428572,
+   "p_exact": 0.16666666666666666
+  },
+  "spearman_minus_dQcut6A_vs_R": {
+   "rho": 0.5,
+   "p_exact": 0.26666666666666666
+  },
+  "cv_Ah_change_across_R_range": 0.2290750820822974,
+  "events_R_trend": {
+   "25": {
+    "theil_sen_mOhm_per_day": 0.00029490523298675287,
+    "ci90": [
+     0.00011779942345317101,
+     0.0007425169146239431
+    ],
+    "n": 16
+   },
+   "45": {
+    "theil_sen_mOhm_per_day": -0.0009431733921049352,
+    "ci90": [
+     -0.0018858177773831823,
+     -0.00038798757799167303
+    ],
+    "n": 25
+   }
+  },
+  "verdict": "inconclusive"
+ },
+ "H9": {
+  "pairs": [
+   "1->2",
+   "2->3",
+   "3->4",
+   "4->5",
+   "5->6",
+   "6->7"
+  ],
+  "dQ_fc": [
+   -1.3326536111110698,
+   -1.0276261111111609,
+   -0.895084722222208,
+   -0.6654961111109543,
+   -0.4458522222224559,
+   -0.6824155555553091
+  ],
+  "dQ_fc_cut6A": [
+   -1.3291113888888333,
+   -1.026371944444506,
+   -0.9253750000000024,
+   -0.6612527777776052,
+   -0.4483166666668978,
+   -0.6755916666663921
+  ],
+  "d_r_upper": [
+   0.0,
+   -0.5349999999999967,
+   0.7849999999999967,
+   0.284000000000006,
+   -0.21300000000000807,
+   0.1350000000000049
+  ],
+  "scatter_sd_before": 0.1424045427556737,
+  "g_fitted": -0.039918261325534374,
+  "variance_ratios": {
+   "cut6A": 0.9606010850622121,
+   "start_state_r_half": 3.051087162555461,
+   "cut6A_plus_r_half": 2.802982162078301,
+   "start_state_fitted_insample": 0.9840953199593848,
+   "start_state_fitted_loo": 1.179973793539572
+  },
+  "spearman_dr_vs_scatter": {
+   "rho": -0.2571428571428572,
+   "p_exact": 0.6583333333333333
+  },
+  "pair_0_1": {
+   "dQ_fc": -3.119619166666851,
+   "dQ_fc_cut6A": -3.2132194444446327
+  },
+  "verdict": "not systematic"
+ }
+}

@@ -1,0 +1,24 @@
+set,item,residual,file
+cases |inc_resid|,real CK1,0.6211316666671323,case_real_CK1.png
+cases |inc_resid|,CS CK6,-0.4105368055555267,case_CS_CK6.png
+cases |inc_resid|,PC5 CK4,0.3331037679562102,case_PC5_CK4.png
+cases |inc_resid|,PC5_all CK4,0.3331037679562102,case_PC5_all_CK4.png
+cases |inc_resid|,CSE CK6,-0.3182270402049347,case_CSE_CK6.png
+cases |inc_resid|,PG1 CK6,-0.3180718378777489,case_PG1_CK6.png
+cases |inc_resid|,PG2 CK6,-0.3180718378777489,case_PG2_CK6.png
+cases |inc_resid|,PC10 CK6,-0.3180718378777489,case_PC10_CK6.png
+cases |inc_resid|,PC10_all CK6,-0.3180718378777489,case_PC10_all_CK6.png
+cases |inc_resid|,CS CK7,-0.2862219444448932,case_CS_CK7.png
+events |R_anc|,E01,-1.5467456376666782,event_E01_R_anc.png
+events |R_anc|,E02,-1.539085614362019,event_E02_R_anc.png
+events |R_anc|,E03,-1.3973799548793409,event_E03_R_anc.png
+events |R_anc|,E04,-1.1750261266368582,event_E04_R_anc.png
+events |R_anc|,E06,-1.1437854112372676,event_E06_R_anc.png
+events |R_anc|,E39,1.0431381303331406,event_E39_R_anc.png
+events |R_anc|,E00,-0.8548250711694791,event_E00_R_anc.png
+events |R_anc|,E32,0.814733166001286,event_E32_R_anc.png
+events |R_seg|,E00,0.8961990821355172,event_E00_R_seg.png
+events |R_seg|,E04,0.4231033463923417,event_E04_R_seg.png
+events |R_seg|,E02,-0.2569072261649481,event_E02_R_seg.png
+events |R_seg|,E01,-0.1834733620707176,event_E01_R_seg.png
+events |R_seg|,E18,-0.1038192109646267,event_E18_R_seg.png

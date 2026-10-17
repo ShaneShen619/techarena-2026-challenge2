@@ -1,0 +1,46 @@
+{
+ "H5_enrichment": {
+  "events_pack": {
+   "table": [
+    [
+     4,
+     1
+    ],
+    [
+     4,
+     16
+    ]
+   ],
+   "odds_ratio": 16.0,
+   "p_greater": 0.02345191040843215
+  },
+  "events_cell": {
+   "table": [
+    [
+     16,
+     4
+    ],
+    [
+     17,
+     63
+    ]
+   ],
+   "odds_ratio": 14.823529411764707,
+   "p_greater": 1.7772483135960729e-06
+  }
+ },
+ "exploratory_unregistered_H10_complete_blocks": {
+  "R_cyc_slot_top_Ah_rel_last_cv_end": {
+   "n": 327,
+   "abs_q50": 0.0008055555553312,
+   "abs_q90": 0.008720388888703145,
+   "abs_max": 0.1169055555552773
+  },
+  "R_cyc_slot_V_bottom_pack": {
+   "n": 336,
+   "abs_q50": 0.0020000000000006,
+   "abs_q90": 0.0099999999999997,
+   "abs_max": 0.08
+  }
+ }
+}
