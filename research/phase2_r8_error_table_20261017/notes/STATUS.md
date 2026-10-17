@@ -9,12 +9,12 @@
 | WP0 | done | SUB = T_main reproduced (MAE 0.197/0.126/0.146, pseudo 0.144, cold 0.170); submitted class = research = EXPECTED_SOH |
 | WP1 | done | table_cases 423 rows; offset assertion passes; SUB real inc_resid CK1 +0.62 Ah, others within ±0.24 |
 | WP2 | open | — |
-| WP3 | open | — |
+| WP3 | done | table_anchors 8 rows; common 5.1 A cut = Q_fc (D3.1); 6 A cut removes 0.10–0.13 Ah; CV Ah 1.35→1.57; pulse R flat (quantised 0.049 mΩ) |
 | WP4 | open | — |
 | WP5 | open | — |
 | WP6 | open | — |
 
-Next: WP3 anchor table, then WP2 event table. Last commit: see git log.
+Next: WP2 event table. Last commit: see git log.
 
 ---
 
@@ -29,9 +29,9 @@ Next: WP3 anchor table, then WP2 event table. Last commit: see git log.
 | WP0 | 完成 | SUB = T_main 复现（MAE 0.197/0.126/0.146，伪场景 0.144，冷启动 0.170）；提交类 = 研究实现 = EXPECTED_SOH |
 | WP1 | 完成 | table_cases 共 423 行；offset 断言通过；SUB 真实 inc_resid CK1 +0.62 Ah，其余在 ±0.24 以内 |
 | WP2 | 未开始 | — |
-| WP3 | 未开始 | — |
+| WP3 | 完成 | table_anchors 共 8 行；公共 5.1 A 截止 = Q_fc（D3.1）；6 A 截止去掉 0.10–0.13 Ah；CV 充电量 1.35→1.57 Ah；脉冲内阻平稳（量化步长 0.049 mΩ） |
 | WP4 | 未开始 | — |
 | WP5 | 未开始 | — |
 | WP6 | 未开始 | — |
 
-下一步：WP3 锚点表，然后 WP2 事件表。最近一次提交见 git log。
+下一步：WP2 事件表。最近一次提交见 git log。
