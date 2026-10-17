@@ -1,0 +1,8 @@
+{
+ "n_rows": 423,
+ "n_cases_per_delta_model": 47,
+ "offset_assertion_passes": true,
+ "sub_equals_wp0_max_abs_pp": 1.1102230246251565e-16,
+ "sub_branch_equals_wp0": true,
+ "n_matched": 141
+}
