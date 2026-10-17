@@ -1,0 +1,36 @@
+{
+ "checks": {
+  "n_events": 41,
+  "n_rows": 205,
+  "variants_vs_events_merged_max_abs_Ah": {
+   "main": 3.552713678800501e-15,
+   "band_narrow": 3.552713678800501e-15,
+   "windows_minus3": 3.552713678800501e-15,
+   "windows_plus3": 3.552713678800501e-15,
+   "dvdq_peak": 0.0,
+   "ir_corrected": 3.552713678800501e-15
+  },
+  "segment_equal": true,
+  "setpoint_C_equal": true,
+  "chg_Ah_equal": true,
+  "cv_Ah_equal": true,
+  "cv_h_equal": true,
+  "I_cv_end_equal": true,
+  "T_cv_end_equal": true,
+  "rest_before_chg_h_equal": true,
+  "R_mean_mOhm_equal": true,
+  "chg_start_pack_V_equals_sum_of_cell_rest": 0.009000000000000341,
+  "variants_match": true
+ },
+ "b_free_fit": {
+  "b": 0.7450516281771195,
+  "ci90": [
+   0.6736529332298862,
+   0.7645185417698257
+  ],
+  "n_events": 40,
+  "n_months": 8,
+  "n_boot_used": 2000,
+  "seed": 20261017
+ }
+}
