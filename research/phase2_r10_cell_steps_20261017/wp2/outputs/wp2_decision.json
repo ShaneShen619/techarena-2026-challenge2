@@ -1,0 +1,21 @@
+{
+ "passing": [
+  "B3"
+ ],
+ "adopted": "B3",
+ "rejections": {
+  "B2": {
+   "n_cases": 22,
+   "n_rejected": 1,
+   "by_cell": {
+    "cell2": 1
+   }
+  },
+  "B3": {
+   "n_cases": 22,
+   "n_rejected": 0,
+   "by_cell": {}
+  }
+ },
+ "event_sd_SUB": 0.2624556349671875
+}
