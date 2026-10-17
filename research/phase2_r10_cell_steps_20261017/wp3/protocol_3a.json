@@ -1,0 +1,12 @@
+{
+ "registered": "2026-10-17, before any WP3a statistic was computed",
+ "data": "full data, diagnostic: the 41 deep programs; per-cell main-variant depth loc_main(p, c); R_cell(p, c) = loc_main(p, c) - median over the 4 cells (round 8 definition)",
+ "covariates": {
+  "u": "u_c(p) = V_c - mean over cells of V at program p's CV end, in mV (cache/cvv_full.pkl, WP0)",
+  "w": "w_c(m) = step_to_top_c - mean over cells of step_to_top at anchor m (round 8 table_anchors, 0.25 Ah grid, 2 Ah smoothing), in Ah, assigned to every program of month m"
+ },
+ "test": "for each covariate separately: de-mean R_cell and the covariate within each cell (fixed offsets drop); OLS slope through the origin pooled over cells; within-cell R2 = 1 - SSR/SST of the de-meaned R_cell; per-cell OLS slope signs; 90 % block bootstrap CI of the pooled slope resampling months (de-meaning recomputed inside each resample), 2000 resamples, seed 20261017",
+ "expected_sign": "+1 (a fuller top gives a deeper step)",
+ "pass_rule": "CI excludes 0 with the expected sign AND the sign holds in >= 3 of 4 cells AND within-cell R2 >= 0.30; a failing covariate is not used; if both fail WP3 exits with 'top-state mechanism not supported'",
+ "note": "registered before computing; the per-cell R_cell offsets themselves were seen in round 8 (D2.2 there), the covariates' relation to them was never computed"
+}
