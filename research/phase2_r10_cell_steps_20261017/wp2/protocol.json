@@ -1,0 +1,38 @@
+{
+ "registered": "2026-10-17, after WP1 and before any WP2 candidate was evaluated",
+ "per_cell_change": {
+  "phase": "x_c = E_c(k-1) - E_c(k-2) + r_c(k-1)*(d(k-1) - d(k-2)); E_c = the cell's location at SUB's E programs; r_c = Theil-Sen of the cell over SUB's rate-fit programs (days from the first of them), 0 when SUB's r is 0",
+  "fallback": "inc_c = loc(after[-1], c) - loc(after[0], c)",
+  "then": "Q = SUB's anchor term + beta_used * combine(x_c) (phase) or + combine(inc_c) (fallback)"
+ },
+ "candidates": {
+  "B1": "combine = median over cells (mean of the middle two); per-cell locations of the ctx's detection variant",
+  "B2": "combine = one-cell rejection: dev_c = x_c - median of the other three; if max |dev_c| > tau_v drop that cell and average the other three, else average all four; tau_v = 3*sqrt(2)*sigma_det,v (WP0)",
+  "B3": "B2 on WP1's adopted A3 locations (median over the 6 variants per cell), tau = 3*sqrt(2)*sigma_det of the A3 ensemble (WP1 diagnostics)"
+ },
+ "tau_Ah_by_variant": {
+  "main": 0.380354,
+  "band_narrow": 0.444646,
+  "windows_minus3": 0.281807,
+  "windows_plus3": 0.429343,
+  "dvdq_peak": 1.572603,
+  "ir_corrected": 0.434313
+ },
+ "B3_sigma_det_A3": 0.08300593250410856,
+ "B3_tau_Ah": 0.352164,
+ "B3_robustness": "leave-one-variant-out A3 ensembles (5 variants, median, >= 4 finite) vs SUB on main, tau fixed at B3_tau_Ah",
+ "simplicity_order": [
+  "B1",
+  "B2",
+  "B3"
+ ],
+ "branch_freeze": "SUB selection on the ctx's detection variant (B1, B2) or on main (B3) replayed (D0.1)",
+ "gates": "EXECUTION_PROMPT.md section 4; G_robust for B1/B2: candidate on variant v vs SUB on variant v; for B3: LOVO as above",
+ "G_event_for_change_candidates": "change-based candidates have no position series; G_event uses the chained series (D2.1): within each segment start at the 4-cell mean of the first program and add combine(per-cell change between consecutive programs); compared with SUB's mean-of-main series",
+ "adoption": "passing = all gates; lowest causal mean (main); ties within 0.002 pp -> simplicity_order",
+ "diagnostics": [
+  "rejection log (B2, B3): per case dropped cell, |dev|, month; share of rejections per cell vs round 8 pattern (cell1, cell3)",
+  "per-checkup real errors and SOH at delta 0.4"
+ ],
+ "seed": 20261017
+}
