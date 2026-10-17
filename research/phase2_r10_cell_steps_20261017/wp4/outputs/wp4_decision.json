@@ -1,0 +1,10 @@
+{
+ "combination_equals_B3": true,
+ "combination_passes": true,
+ "combination_causal": 0.1514632476046328,
+ "singles_causal": {
+  "A3": 0.1470463509682407,
+  "B3": 0.1514632476046328
+ },
+ "final": "A3"
+}

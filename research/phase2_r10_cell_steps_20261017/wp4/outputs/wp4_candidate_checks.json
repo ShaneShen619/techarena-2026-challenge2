@@ -1,0 +1,26 @@
+{
+ "predictions": [
+  98.441,
+  95.984,
+  94.507,
+  93.6,
+  92.821,
+  92.015,
+  91.426,
+  90.765
+ ],
+ "future_rows_corrupted_identical": true,
+ "fit_on_cut_data_identical": true,
+ "max_abs_diff_vs_research_pp": 0.00048352396484574456,
+ "passed": true,
+ "research_soh": [
+  95.98446010348611,
+  94.50737224748016,
+  93.60048352396484,
+  92.82069555549992,
+  92.01531338035092,
+  91.4260980099223,
+  90.76522873064997
+ ],
+ "max_abs_diff_unrounded_pp": 1.4210854715202004e-14
+}
