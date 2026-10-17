@@ -1,0 +1,272 @@
+"""Writes DATA_DICTIONARY.md from the spec below and asserts that every column of every table is covered."""
+import os
+
+import pandas as pd
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+STUDY = os.path.dirname(HERE)
+CELLS = ["cell1", "cell2", "cell3", "cell4"]
+VARIANTS = ["main", "band_narrow", "dvdq_peak", "ir_corrected", "windows_minus3", "windows_plus3"]
+C, D, R = "causal (scenario cut)", "diagnostic (full data)", "reference (full data)"
+
+# column: (unit, definition EN, definition ZH, source, kind)
+CASES = {
+    "scenario": ("—", "scenario: real, PG1, PG2, PC5, PC10 (k 3..7), CS, CSE, PC5_all, PC10_all (k 2..7)", "场景名", "runner5c.SCEN", C),
+    "k": ("—", "index of the checkup predicted (1..7)", "被预测检查点序号", "runner5c.SCEN", C),
+    "checkup": ("—", "checkup name CK_k", "检查点名称", "harness.CK_NAMES", C),
+    "ck_date": ("date", "checkup date (framework cut date)", "检查日期（框架截断日期）", "evaluation_points.csv", C),
+    "delta": ("Ah", "Δ added to ε0 in the anchor term and in the proxy (0, 0.4, 0.8)", "加在 ε0 上的 Δ（锚点项与代理中）", "harness.DELTAS", C),
+    "model": ("—", "SUB = T_main (submitted), V2_sqrt = V2 + calendar √t, V2", "模型：SUB = T_main（提交版）、V2_sqrt、V2", "internals.MODELS", C),
+    "branch": ("—", "branch taken: phase, fallback or sqrt_gap", "所走分支", "internals.decompose", C),
+    "Q_pred": ("Ah", "predicted capacity (asserted equal to the model's own output, < 1e-9 Ah)", "预测容量（断言等于模型输出）", "internals.decompose / model_q", C),
+    "SOH_pred": ("%", "100·Q_pred/102", "预测 SOH", "run_wp1.py", C),
+    "proxy": ("Ah", "P_k = Q_fc,k (full data) + ε0 + Δ", "代理真值 P_k", "harness.QFC, EPS0", R),
+    "err_Ah": ("Ah", "Q_pred − proxy", "预测误差", "run_wp1.py", R),
+    "err_pp": ("pp", "100·err_Ah/102", "预测误差（pp）", "run_wp1.py", R),
+    "anchor_used": ("—", "index j of the anchor (post-CK_j empty→full charge) the prediction is built on", "所用锚点序号 j", "internals.decompose", C),
+    "anchor_t_end": ("timestamp", "CV end of the anchor used", "所用锚点的 CV 结束时刻", "events.full_charges", C),
+    "Q_fc_anchor_used": ("Ah", "integrated charge of the anchor used", "所用锚点充电量", "events.full_charges", C),
+    "q_anchor_term": ("Ah", "anchor term of the prediction: Q_fc + ε0 + Δ (ε0 + EPS_EXTRA_AH in the package), or Q_CK0 = 100.41 for fallback from the 45 °C anchor 0", "预测中的锚点项", "internals.decompose", C),
+    "increment_pred": ("Ah", "predicted change since the anchor: β·x (phase), after[-1] − after[0] (fallback), −a·(t_k^½ − t_k−1^½) (sqrt_gap)", "预测的锚点后变化量", "internals.decompose", C),
+    "Q_fc_k": ("Ah", "anchor charge after CK_k from the full data (the proxy's base)", "CK_k 后锚点充电量（全量数据）", "harness.QFC", R),
+    "increment_obs": ("Ah", "Q_fc,k − Q_fc_anchor_used", "观测增量", "run_wp1.py", R),
+    "inc_resid_Ah": ("Ah", "increment_pred − increment_obs; free of ε0 and Δ; the primary case residual", "增量残差（主残差）", "run_wp1.py", R),
+    "inc_resid_pp": ("pp", "100·inc_resid_Ah/102", "增量残差（pp）", "run_wp1.py", R),
+    "offset_part_Ah": ("Ah", "err_Ah − inc_resid_Ah = q_anchor_term − Q_fc_anchor_used − ε0 − Δ (0, or −Δ for fallback from anchor 0)", "偏移部分", "run_wp1.py", R),
+    "offset_part_pp": ("pp", "100·offset_part_Ah/102", "偏移部分（pp）", "run_wp1.py", R),
+    "uses_first_post_anchor_program": ("bool", "fallback whose increment uses after[0] with ≥ 2 programs after the anchor (D1.1)", "fallback 增量是否用到锚点后首个程序", "run_wp1.py", C),
+    "anchor_setpoint": ("°C", "chamber set point of the anchor charge", "锚点充电时的设定温度", "events.full_charges", C),
+    "anchor_is_ck0_45C": ("bool", "anchor used is anchor 0 at 45 °C", "所用锚点是否为 45 °C 的锚点 0", "run_wp1.py", C),
+    "beta_used": ("—", "β applied to the increment (phase: beta_a4; fallback: 1; sqrt_gap: NaN)", "实际使用的 β", "internals.decompose", C),
+    "beta_a4": ("—", "β from visible 25 °C anchors (step-to-top change vs Q_fc change), shrunk to 1 with τ = 1", "由 25 °C 锚点估计并收缩的 β", "v2.beta_a4", C),
+    "beta_raw": ("—", "unshrunk LS slope behind beta_a4 (NaN if < 2 usable anchors)", "未收缩的最小二乘斜率", "internals.beta_internals", C),
+    "beta_S": ("Ah²", "S = Σx² of the step-to-top changes used for β", "β 所用 Σx²", "internals.beta_internals", C),
+    "beta_shrink_w": ("—", "weight of the data in β: S/(τ+S)", "β 中数据的权重", "internals.beta_internals", C),
+    "beta_n_pairs": ("—", "number of anchor pairs in β", "β 所用锚点对数", "internals.beta_internals", C),
+    "x": ("Ah", "phase-matched month-end 45 °C step change E_cur − E_prev + r·(d_cur − d_prev)", "相位匹配的月末 45 °C 台阶变化", "v2.phase_diff", C),
+    "E_cur": ("Ah", "last 45 °C step depth of month k−1", "第 k−1 月最后一个 45 °C 台阶深度", "v2.end45", C),
+    "E_prev": ("Ah", "last 45 °C step depth of month k−2", "第 k−2 月最后一个 45 °C 台阶深度", "v2.end45", C),
+    "d_cur": ("days", "days from E_cur's program to CK_k", "E_cur 程序到 CK_k 的天数", "v2.end45", C),
+    "d_prev": ("days", "days from E_prev's program to CK_k−1", "E_prev 程序到 CK_k−1 的天数", "v2.end45", C),
+    "r_cur": ("Ah/day", "Theil–Sen rate of the 45 °C steps of month k−1 (0 if < 3)", "第 k−1 月 45 °C 台阶速率", "v2.end45", C),
+    "r_used": ("Ah/day", "rate used in x (r_cur if n_cur ≥ 3, else 0); NaN outside phase", "x 中使用的速率", "internals.decompose", C),
+    "n_cur": ("—", "number of 45 °C steps in month k−1", "第 k−1 月 45 °C 台阶数", "v2.end45", C),
+    "n_prev": ("—", "number of 45 °C steps in month k−2", "第 k−2 月 45 °C 台阶数", "v2.end45", C),
+    "gap_days": ("days", "days from the end of the last visible deep program to CK_k", "最后一个可见深放程序结束到 CK_k 的天数", "v3.coverage_gap_days", C),
+    "sqrt_a": ("Ah/day^½", "√t loss coefficient fitted to visible anchors 1..k−1", "√t 损失系数", "internals.decompose", C),
+    "sqrt_t_km1_days": ("days", "time axis at CK_k−1 (T_main: 45 °C-equivalent days; V2_sqrt: calendar days since CK0)", "CK_k−1 处的时间轴值", "tsqrt.t_eff_days", C),
+    "sqrt_t_k_days": ("days", "time axis at CK_k (same convention)", "CK_k 处的时间轴值", "tsqrt.t_eff_days", C),
+    "sqrt_anchors": ("—", "anchors used in the √t fit, '|'-separated", "√t 拟合所用锚点", "internals.decompose", C),
+    "n_after": ("—", "fallback: number of programs after the anchor", "fallback：锚点后程序数", "internals.decompose", C),
+    "ev_E_cur": ("timestamp", "CV end of the program used as E_cur", "作为 E_cur 的程序", "internals.decompose", C),
+    "ev_E_prev": ("timestamp", "CV end of the program used as E_prev", "作为 E_prev 的程序", "internals.decompose", C),
+    "ev_rate_fit": ("timestamps", "programs in the rate fit, '|'-separated (empty if no rate)", "速率拟合所用程序", "internals.decompose", C),
+    "ev_after_first": ("timestamp", "fallback: program after[0]", "fallback：after[0] 程序", "internals.decompose", C),
+    "ev_after_last": ("timestamp", "fallback: program after[-1]", "fallback：after[-1] 程序", "internals.decompose", C),
+    "days_anchor_to_ck": ("days", "anchor CV end to CK_k", "锚点到 CK_k 的天数", "internals.context", C),
+    "eff45_days_anchor_to_ck": ("days", "T_main 45 °C-equivalent days from the anchor to CK_k", "锚点到 CK_k 的 45 °C 等效天数", "internals.context", C),
+    "cum_fade_at_anchor_Ah": ("Ah", "100.41 − Q_fc_anchor_used − ε0", "锚点处累计衰减", "internals.context", C),
+    "throughput_dis_Ah_since_anchor": ("Ah", "integrated discharge (negative current_A) in the cut after the anchor", "锚点以来积分放电量", "internals.discharge_since", C),
+    "share_45C_assigned": ("—", "share of hours anchor→CK_k at 45 °C in the T_main temperature assignment (D1.2)", "T_main 温度分配中 45 °C 的小时占比", "internals.context", C),
+    "share_45C_visible": ("—", "visible 45 °C sample time / (anchor→CK_k hours)", "可见 45 °C 样本时间占比", "internals.context", C),
+}
+
+EVENTS = {
+    "event_id": ("—", "E00..E40 in time order", "事件编号", "run_wp2.py", D),
+    "unit": ("—", "cell1_V..cell4_V or pack_mean", "单元：单体或 pack 均值", "run_wp2.py", D),
+    "t_cv_end": ("timestamp", "CV end that opens the deep program", "深放程序开始的 CV 结束时刻", "events.step_programs", D),
+    "segment": ("—", "data segment number", "数据段号", "operation data", D),
+    "setpoint": ("°C", "chamber set point", "箱体设定温度", "operation data", D),
+    "month": ("—", "index m of the anchor the event follows", "事件所跟随的锚点序号", "run_wp2.py", D),
+    "program_index": ("—", "order of the program after its anchor (1, 2, …)", "锚点后的程序序号", "run_wp2.py", D),
+    "is_first_after_anchor": ("bool", "program_index == 1", "是否为锚点后首个程序", "run_wp2.py", D),
+    "ck_index": ("—", "index of the last checkup date before the event", "事件前最后一个检查点序号", "run_wp2.py", D),
+    "days_since_anchor": ("days", "event CV end − anchor CV end", "距锚点天数", "run_wp2.py", D),
+    "days_since_checkup": ("days", "event CV end − last checkup date", "距检查日期天数", "run_wp2.py", D),
+    "T_cv_end": ("°C", "measured temp_mean_C at the CV end", "CV 结束时实测温度", "events_merged.csv", D),
+    **{f"T_at{x}": ("°C", f"measured temp_mean_C at {x} Ah depth", f"{x} Ah 深度处实测温度", "events_merged.csv", D) for x in (15, 25, 35, 45)},
+    "dT_cv_end": ("K", "T_cv_end − set point", "CV 结束时实测温度与设定点之差", "run_wp2.py", D),
+    "dT_at45": ("K", "T_at45 − set point", "45 Ah 处实测温度与设定点之差", "run_wp2.py", D),
+    "segment_start": ("timestamp", "first sample of the event's segment", "所在段起点", "run_wp2.py", D),
+    "switch_kind": ("—", "how the segment began: campaign_start, direct_switch (25→45 °C, gap ≤ 2 d), after_checkup_gap (D2.1)", "段起点类型", "run_wp2.segment_table", D),
+    "prev_segment_gap_days": ("days", "gap between the previous segment's last sample and this segment's first", "与上一段的间隔", "run_wp2.segment_table", D),
+    "days_since_switch": ("days", "event CV end − segment start", "距段起点（切换）天数", "run_wp2.py", D),
+    "rest_before_chg_h": ("h", "rest before the program-opening charge", "开程序充电前静置时间", "events_merged.csv", D),
+    "chg_Ah": ("Ah", "Ah of the program-opening CCCV charge", "开程序 CCCV 充电量", "events_merged.csv", D),
+    "chg_start_pack_V": ("V", "pack voltage just before that charge", "该充电前的 pack 电压", "events_merged.csv", D),
+    "cv_Ah": ("Ah", "Ah in the CV phase of that charge", "该充电 CV 阶段电量", "events_merged.csv", D),
+    "cv_h": ("h", "CV duration", "CV 时长", "events_merged.csv", D),
+    "I_cv_end": ("A", "current at the CV end", "CV 结束电流", "events_merged.csv", D),
+    "throughput_dis_Ah_since_anchor": ("Ah", "integrated discharge since the anchor CV end", "锚点以来积分放电量", "run_wp2.discharge_cum", D),
+    "throughput_dis_Ah_since_start": ("Ah", "integrated discharge since the campaign start", "试验开始以来积分放电量", "run_wp2.discharge_cum", D),
+    "has_recording_gap": ("bool", "any Δt > 600 s from charge start to discharge stop", "程序内是否有 > 600 s 记录空档", "run_wp2.py", D),
+    "max_depth_Ah": ("Ah", "maximum depth below the CV end", "最大放电深度", "eventcurves.programs", D),
+    **{f"V_at{x}": ("V", f"loaded cell-mean voltage at {x} Ah depth", f"{x} Ah 处带载单体均值电压", "events_merged.csv", D) for x in (15, 25, 35, 45)},
+    **{f"I_at{x}": ("A", f"current at {x} Ah depth", f"{x} Ah 处电流", "events_merged.csv", D) for x in (15, 25, 35, 45)},
+    "R_mean_mOhm": ("mΩ", "mean per-cell apparent pulse resistance at the 20 A pulse after the CV end (quantised ≈ 0.049 mΩ)", "四单体平均脉冲内阻", "events_merged.csv", D),
+    "cell_spread_cv_end_V": ("V", "max − min cell voltage at the CV end", "CV 结束时单体电压差", "run_wp2.py", D),
+    "cell_spread_maxdepth_V": ("V", "max − min cell voltage at maximum depth", "最大深度处单体电压差", "run_wp2.py", D),
+    "weakest_cell_maxdepth": ("—", "cell with the lowest voltage at maximum depth", "最大深度处最弱单体", "run_wp2.py", D),
+    "Q_interp_Ah": ("Ah", "Q_fc interpolated linearly in time between the bracketing anchors (NaN after anchor 7)", "按时间插值的锚点 Q_fc", "run_wp2.py", D),
+    "use_end45_E_cur": ("checkups", "real-scenario SUB checkups (Δ 0.4) that used this event as E_cur", "以该事件为 E_cur 的真实检查点", "table_cases ev_*", D),
+    "use_end45_E_prev": ("checkups", "same, as E_prev", "以该事件为 E_prev 的检查点", "table_cases ev_*", D),
+    "use_rate_fit": ("checkups", "same, in the 45 °C rate fit", "在速率拟合中使用该事件的检查点", "table_cases ev_*", D),
+    "use_after_first": ("checkups", "same, as fallback after[0]", "作为 after[0] 的检查点", "table_cases ev_*", D),
+    "use_after_last": ("checkups", "same, as fallback after[-1]", "作为 after[-1] 的检查点", "table_cases ev_*", D),
+    "used_by_SUB_real": ("bool", "any of the use flags", "是否被真实场景 SUB 使用", "run_wp2.py", D),
+    **{f"depth_{v}": ("Ah", f"graphite-step depth below the CV end, variant {v}: the unit's cell locate (cell rows) or the 4-cell mean step_mean (pack_mean)", f"变体 {v} 的台阶深度", "events.step_programs", D) for v in VARIANTS},
+    "R_pulse_mOhm": ("mΩ", "pulse resistance of the unit (pack_mean: cell mean)", "该单元脉冲内阻", "events_merged.csv", D),
+    "start_rest_V": ("V", "rest voltage before the program-opening charge (pack_mean: sum of cells)", "开程序充电前静置电压", "eventcurves.programs", D),
+    "V_rank_maxdepth": ("—", "rank of the cell's voltage at maximum depth (1 = lowest); NaN for pack_mean", "最大深度处电压排名", "run_wp2.py", D),
+    "sharp_height_mV_per_Ah": ("mV/Ah", "peak of −dV/dQ in 22–42 Ah (0.25 Ah grid, 2 Ah moving average, band samples)", "台阶 −dV/dQ 峰高", "eventcurves.sharpness", D),
+    "sharp_fwhm_Ah": ("Ah", "full width at half maximum of that peak", "峰的半高宽", "eventcurves.sharpness", D),
+    "dvdq_peak_Ah": ("Ah", "depth of that peak", "峰位深度", "eventcurves.sharpness", D),
+    "plateau_upper_V": ("V", "median loaded voltage at 15–25 Ah depth", "上平台电压中位数", "eventcurves.plateau", D),
+    "plateau_lower_V": ("V", "median loaded voltage at 42–50 Ah depth", "下平台电压中位数", "eventcurves.plateau", D),
+    "t_days": ("days", "days since the first event's CV end", "距首个事件的天数", "run_wp2.add_residuals", D),
+    "R_seg": ("Ah", "depth_main − leave-one-out Theil–Sen line (time) of the other events of the same segment and unit; NaN if < 3 others", "段内残差", "run_wp2.add_residuals", D),
+    "R_anc": ("Ah", "depth_main − (a_sp,unit + 1·Q_interp), a = mean over other months", "锚点跟踪残差（b = 1）", "run_wp2.add_residuals", D),
+    "a_anc_loo": ("Ah", "leave-month-out intercept a_sp,unit used in R_anc", "R_anc 的留月截距", "run_wp2.add_residuals", D),
+    "pack_median_depth": ("Ah", "median of the four cell depth_main of the event", "四单体深度中位数", "run_wp2.add_residuals", D),
+    "R_cell": ("Ah", "depth_main − pack_median_depth", "单体离散残差", "run_wp2.add_residuals", D),
+}
+
+ANCHORS = {
+    "anchor": ("—", "anchor index j (first empty→full charge after CK_j)", "锚点序号", "v2.anchors_by_checkup", D),
+    "checkup": ("—", "CK_j", "检查点", "round 7 anchor_state_table", D),
+    "ck_date": ("date", "CK_j date", "检查日期", "round 7", D),
+    "anchor_start": ("timestamp", "start of the anchor charge", "锚点充电开始", "round 7", D),
+    "setpoint": ("°C", "set point during the anchor charge", "锚点充电设定温度", "round 7", D),
+    "Q_fc": ("Ah", "integrated anchor charge", "锚点充电量", "events.full_charges", D),
+    "dwell_h": ("h", "last operating sample before the CK_j date → start of the anchor charge", "检查前最后样本到锚点充电的小时数", "round 7 wp1", D),
+    "end_pack_V": ("V", "pack voltage of the last sample before the CK_j date", "检查前最后样本 pack 电压", "round 7 wp1", D),
+    "end_I_A": ("A", "current of that sample", "该样本电流", "round 7 wp1", D),
+    "end_setpoint": ("°C", "set point of that sample", "该样本设定温度", "round 7 wp1", D),
+    "end_time": ("timestamp", "time of that sample ('campaign start' for anchor 0)", "该样本时刻", "round 7 wp1", D),
+    "rest_before_h": ("h", "rest before the anchor charge", "锚点充电前静置", "round 6 3a", D),
+    "pack_rest_V": ("V", "pack rest voltage before the anchor charge", "锚点充电前 pack 静置电压", "round 6 3a", D),
+    "r_upper": ("Ah", "upper bound of the charge left at that rest voltage, from the CK0 C/20 tail", "起始剩余电量上界", "round 6 3a", D),
+    "r_half": ("Ah", "r_upper/2", "r_upper 的一半", "round 6 3a", D),
+    "off_median": ("Ah", "median over variants of the trend-adjusted first-program offset after this anchor", "首个程序偏移（各变体中位数）", "round 7 wp1", D),
+    **{f"off_{v}": ("Ah", f"trend-adjusted first-program offset (raw first − second minus the per-program trend), variant {v}", f"变体 {v} 的首个程序偏移", "round 6 3c", D) for v in VARIANTS},
+    "n_programs_after": ("—", "programs after the anchor in its segment", "锚点所在段内其后的程序数", "round 6 3c", D),
+    "first_program_setpoint": ("°C", "set point of the first program after the anchor", "首个程序设定温度", "round 6 3c", D),
+    "second_offset": ("Ah", "second − third program step difference, trend-adjusted (where ≥ 3 programs)", "第二与第三个程序的差", "round 7 wp1", D),
+    "bottom_to_step": ("Ah", "charge-direction Ah from the bottom to the step (4-cell mean)", "充电方向底部到台阶", "events.charge_step_split", D),
+    "step_to_top": ("Ah", "charge-direction Ah from the step to the top (4-cell mean)", "充电方向台阶到顶部", "events.charge_step_split", D),
+    "I_end_A_check": ("A", "end current of the anchor charge", "锚点充电终止电流", "events.full_charges", D),
+    "I_cut_common_A": ("A", "common cut-off = largest end current among the 8 anchors (5.10 A)", "公共截止电流", "run_wp3.py", D),
+    "Q_fc_cut_common": ("Ah", "charge up to the first CV sample with current ≤ I_cut_common (D3.1)", "公共截止下的充电量", "run_wp3.q_at_cut", D),
+    "dQ_cut_common": ("Ah", "Q_fc_cut_common − Q_fc (0 for all anchors)", "与 Q_fc 之差", "run_wp3.py", D),
+    "Q_fc_cut6A": ("Ah", "charge up to the first CV sample with current ≤ 6.0 A", "6 A 截止下的充电量", "run_wp3.q_at_cut", D),
+    "dQ_cut6A": ("Ah", "Q_fc_cut6A − Q_fc", "与 Q_fc 之差", "run_wp3.py", D),
+    "cv_Ah": ("Ah", "charge from the first sample at pack ≥ 13.95 V to the end", "CV 阶段电量", "run_wp3.py", D),
+    "cv_h": ("h", "CV duration", "CV 时长", "run_wp3.py", D),
+    "cc_Ah": ("Ah", "charge before the CV phase", "CV 之前的电量", "run_wp3.py", D),
+    "T_charge_mean_C": ("°C", "mean temp_mean_C during the charge", "充电期间平均温度", "events.full_charges", D),
+    "T_charge_max_C": ("°C", "max temp_mean_C during the charge", "充电期间最高温度", "run_wp3.py", D),
+    **{f"start_rest_{c}_V": ("V", f"{c} rest voltage before the anchor charge", f"{c} 充电前静置电压", "round 6 3a", D) for c in CELLS},
+    "start_rest_spread_V": ("V", "max − min of the four start rest voltages", "静置电压单体差", "run_wp3.py", D),
+    **{f"step_to_top_{c}_V": ("Ah", f"charge-direction step → top distance of {c} (0.25 Ah grid)", f"{c} 台阶到顶部距离", "events.charge_step_split", D) for c in CELLS},
+    "step_to_top_spread_Ah": ("Ah", "max − min over cells of step → top", "台阶到顶部的单体差", "run_wp3.py", D),
+    "pulse_event_t_cv_end": ("timestamp", "deep program supplying the pulse resistance (starts at the anchor CV end)", "提供脉冲内阻的程序", "events_merged.csv", D),
+    "pulse_event_lag_h": ("h", "its CV end − anchor CV end (0 for all)", "与锚点的时间差", "run_wp3.py", D),
+    "R_mean_mOhm": ("mΩ", "cell-mean pulse resistance at that program", "单体平均脉冲内阻", "events_merged.csv", D),
+    **{f"R_{c}_mOhm": ("mΩ", f"{c} pulse resistance", f"{c} 脉冲内阻", "events_merged.csv", D) for c in CELLS},
+    **{f"end_{c}_V": ("V", f"{c} voltage at the anchor CV end", f"{c} CV 结束电压", "events.full_charges", D) for c in CELLS},
+    "cv_end_spread_V": ("V", "max − min cell voltage at the CV end", "CV 结束时单体电压差", "run_wp3.py", D),
+    "dR_mean_from_anchor0_mOhm": ("mΩ", "R_mean_mOhm − anchor 0 value", "相对锚点 0 的平均内阻变化", "run_wp3.py", D),
+    **{f"dR_{c}_mOhm_from_anchor0": ("mΩ", f"R_{c}_mOhm − anchor 0 value", f"{c} 内阻相对锚点 0 的变化", "run_wp3.py", D) for c in CELLS},
+    "dQ_fc_next": ("Ah", "Q_fc of the next anchor − Q_fc", "到下一锚点的 ΔQ_fc", "run_wp3.py", D),
+    "dQ_fc_cut_common_next": ("Ah", "same with the common cut-off", "公共截止下的 ΔQ_fc", "run_wp3.py", D),
+    "dQ_fc_cut6A_next": ("Ah", "same with the 6 A cut-off", "6 A 截止下的 ΔQ_fc", "run_wp3.py", D),
+    "cum_fade_Ah": ("Ah", "100.41 − Q_fc − ε0", "累计衰减", "run_wp3.py", D),
+}
+
+CYCLES = {
+    "cycle_id": ("—", "C0000.. in time order", "循环编号", "run_wp4.py", D),
+    "t_top": ("timestamp", "SOC top starting the swing", "摆动起始 SOC 顶点", "run_wp4.py", D),
+    "segment": ("—", "segment", "段号", "operation data", D),
+    "setpoint": ("°C", "set point", "设定温度", "operation data", D),
+    "month": ("—", "index of the anchor before t_top", "所跟随的锚点序号", "run_wp4.py", D),
+    "program_block": ("—", "number of deep-program CV ends at or before t_top (block between consecutive programs)", "程序周期编号", "run_wp4.py", D),
+    "slot": ("—", "order of the swing inside its program block", "周期内槽位", "run_wp4.py", D),
+    "t_bottom": ("timestamp", "lowest SOC point of the swing", "摆动最低点", "run_wp4.py", D),
+    "t_next_top": ("timestamp", "next SOC top (end of the swing)", "下一个顶点", "run_wp4.py", D),
+    "ck_index": ("—", "last checkup before t_top", "此前最后检查点", "run_wp4.py", D),
+    "hours_since_program": ("h", "t_top − last deep-program CV end", "距上一深放程序的小时数", "run_wp4.py", D),
+    "hours_since_segment_start": ("h", "t_top − segment start", "距段起点小时数", "run_wp4.py", D),
+    "V_top_pack": ("V", "pack voltage at t_top (loaded or not)", "顶点 pack 电压", "run_wp4.py", D),
+    "I_top": ("A", "current at t_top", "顶点电流", "run_wp4.py", D),
+    "V_bottom_pack": ("V", "pack voltage at t_bottom", "最低点 pack 电压", "run_wp4.py", D),
+    "I_bottom": ("A", "current at t_bottom", "最低点电流", "run_wp4.py", D),
+    "V_next_top_pack": ("V", "pack voltage at t_next_top", "下一顶点 pack 电压", "run_wp4.py", D),
+    "V_rest_1h_after_top": ("V", "voltage 1 h after the top if the pack rested the whole hour (never: all NaN)", "顶点后 1 h 静置电压（全为 NaN）", "run_wp4.py", D),
+    "Ah_discharged": ("Ah", "integrated discharge top → bottom", "顶点到最低点放电量", "run_wp4.py", D),
+    "Ah_charged": ("Ah", "integrated charge bottom → next top", "最低点到下一顶点充电量", "run_wp4.py", D),
+    "swing_down_Ah": ("Ah", "net Ah top → bottom", "下摆净 Ah", "run_wp4.py", D),
+    "swing_up_Ah": ("Ah", "net Ah bottom → next top", "上摆净 Ah", "run_wp4.py", D),
+    "cv_reached": ("bool", "pack ≥ 13.95 V while charging between bottom and next top", "是否到达 CV", "run_wp4.py", D),
+    "top_Ah_rel_last_cv_end": ("Ah", "segment-integrated Ah at the next top minus at the last CV end (same segment)", "顶点相对上次 CV 结束的 Ah", "run_wp4.py", D),
+    "cell_spread_top_V": ("V", "max − min cell voltage at the next top", "顶点单体电压差", "run_wp4.py", D),
+    "cell_spread_bottom_V": ("V", "max − min cell voltage at the bottom", "最低点单体电压差", "run_wp4.py", D),
+    "T_mean_C": ("°C", "mean measured temperature over the swing", "摆动期间平均温度", "run_wp4.py", D),
+    "dT_mean": ("K", "T_mean_C − set point", "与设定点之差", "run_wp4.py", D),
+    "duration_h": ("h", "t_next_top − t_top", "摆动时长", "run_wp4.py", D),
+    **{f"R_cyc_{c}": (u, f"{c} minus the leave-one-out median of the centred 7-cycle window, same set point (prompt definition; mixes profile phases)", f"{c} 的 7 循环留一中位数残差", "run_wp4.r_cyc", D)
+       for c, u in (("top_Ah_rel_last_cv_end", "Ah"), ("V_bottom_pack", "V"), ("swing_down_Ah", "Ah"))},
+    **{f"R_cyc_slot_{c}": (u, f"{c} minus the leave-one-out median of the same slot in ±3 blocks, same set point (D4.1)", f"{c} 的同槽位残差", "run_wp4.r_cyc_slot", D)
+       for c, u in (("top_Ah_rel_last_cv_end", "Ah"), ("V_bottom_pack", "V"), ("swing_down_Ah", "Ah"))},
+}
+
+WP5EV = {
+    "event_id": EVENTS["event_id"], "unit": EVENTS["unit"],
+    "R_anc_b": ("Ah", "depth_main − (a_25/a_45 + b·Q_interp), leave-month-out OLS per unit (registered secondary)", "自由斜率锚点残差", "run_wp5.r_anc_b", D),
+    "cum_fade_Ah": ("Ah", "100.41 − Q_interp − ε0", "事件处累计衰减", "run_wp5.load", D),
+    "fade_pct": ("%", "100·cum_fade/102", "累计衰减百分比", "run_wp5.load", D),
+    "fade_bin": ("—", "registered fade bin 0-3 / 3-6 / >6 %", "衰减分箱", "protocol.json", D),
+    "switch_bin": ("—", "registered days-since-switch bin 0-2 / 2-5 / >5", "切换天数分箱", "protocol.json", D),
+    "dT_bin": ("—", "dT_at45 tercile per set point (low/mid/high)", "温差三分位", "protocol.json", D),
+    "sharp_bin": ("—", "sharpness tercile (pack or cell edges)", "尖锐度三分位", "protocol.json", D),
+    "month_group": ("—", "m0-2 / m3-5 / m6-7", "月份组", "protocol.json", D),
+}
+
+BUDGET = {
+    "checkup": CASES["checkup"], "branch": CASES["branch"], "err_Ah": CASES["err_Ah"], "err_pp": CASES["err_pp"],
+    "offset_part_Ah": CASES["offset_part_Ah"], "inc_resid_Ah": CASES["inc_resid_Ah"], "inc_resid_pp": CASES["inc_resid_pp"],
+    "contrib_beta_vs_step_scaling_Ah": ("Ah", "increment_pred − raw increment/b (b = 0.745): β used vs the step's sub-unity sensitivity", "β 与台阶比例的差贡献", "wp6/run_wp6.py", R),
+    "contrib_first_program_offset_Ah": ("Ah", "fallback: −off_main of the anchor (the deeper first program); phase: 0", "首个程序偏移贡献", "wp6/run_wp6.py", R),
+    "contrib_cell_mean_vs_median_Ah": ("Ah", "increment from cell means minus increment from cell medians", "单体均值与中位数之差贡献", "wp6/run_wp6.py", R),
+    "H4_trend_fitted_Ah": ("Ah", "fitted value of the H4 line inc_resid ~ cum_fade_at_anchor (all SUB cases)", "H4 趋势拟合值", "wp6/run_wp6.py", R),
+    "rest_Ah": ("Ah", "inc_resid − sum of the three contributions (descriptive; contributions interact)", "剩余部分", "wp6/run_wp6.py", R),
+}
+
+TABLES = [("outputs/table_cases.csv", "Case table (WP1)", "案例表（WP1）", CASES),
+          ("outputs/table_cases_wide.csv", "Case table, SUB at Δ = 0.4 (same columns as table_cases)", "案例宽表（SUB，Δ = 0.4，列同上）", CASES),
+          ("outputs/table_events.csv", "Event table (WP2)", "事件表（WP2）", EVENTS),
+          ("outputs/table_anchors.csv", "Anchor table (WP3)", "锚点表（WP3）", ANCHORS),
+          ("outputs/table_cycles.csv", "Cycle (SOC swing) table (WP4)", "循环（SOC 摆动）表（WP4）", CYCLES),
+          ("wp5/outputs/events_wp5_columns.csv", "WP5 event columns", "WP5 事件附加列", WP5EV),
+          ("wp6/outputs/error_budget_real_d04.csv", "Error budget, SUB real Δ = 0.4 (WP6)", "误差预算（WP6）", BUDGET)]
+
+if __name__ == "__main__":
+    en = ["<a id=\"en\"></a>", "", "# Data dictionary (round 8)", "", "> **Language:** English · [中文](#zh)", "",
+          "Every column of every table. Sign convention: residual = predicted − reference; pp = 100·Ah/102. "
+          "Kind: **causal** = computed from the scenario's cut data exactly as the framework hands it to the model; "
+          "**diagnostic** = built from the full operation data; **reference** = uses the full-data proxy Q_fc,k.", ""]
+    zh = ["<a id=\"zh\"></a>", "", "# 数据字典（第 8 轮）", "", "> **语言：** [English](#en) · 中文", "",
+          "覆盖每张表的每一列。符号约定：残差 = 预测 − 参考；pp = 100·Ah/102。类型：因果 = 由场景截断数据计算；诊断 = 由全量数据构建；参考 = 使用全量数据的代理 Q_fc,k。", ""]
+    for path, t_en, t_zh, spec in TABLES:
+        cols = list(pd.read_csv(os.path.join(STUDY, path), nrows=1).columns)
+        miss = [c for c in cols if c not in spec]
+        assert not miss, (path, miss)
+        en += [f"## {t_en} — `{path}`", "", "| column | unit | definition | source | kind |", "|---|---|---|---|---|"]
+        zh += [f"## {t_zh} — `{path}`", "", "| 列 | 单位 | 定义 |", "|---|---|---|"]
+        for c in cols:
+            u, d_en, d_zh, src, kind = spec[c]
+            en.append(f"| `{c}` | {u} | {d_en} | {src} | {kind} |")
+            zh.append(f"| `{c}` | {u} | {d_zh} |")
+        en.append("")
+        zh.append("")
+    open(os.path.join(STUDY, "DATA_DICTIONARY.md"), "w", encoding="utf-8").write("\n".join(en + ["---", ""] + zh))
+    print("ok", sum(len(pd.read_csv(os.path.join(STUDY, p), nrows=1).columns) for p, *_ in TABLES), "columns")

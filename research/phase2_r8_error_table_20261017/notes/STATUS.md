@@ -12,9 +12,9 @@
 | WP3 | done | table_anchors 8 rows; common 5.1 A cut = Q_fc (D3.1); 6 A cut removes 0.10–0.13 Ah; CV Ah 1.35→1.57; pulse R flat (quantised 0.049 mΩ) |
 | WP4 | done | table_cycles 430 swings; profile repeats exactly per 116 h block, so cycle Ah carries no state (slot-matched spread ~0.001 Ah); only loaded voltages vary |
 | WP5 | done | H6 (cell offsets, growing spread) systematic; H4 slope −0.078 Ah/Ah (ε-drift label); step moves 0.745 Ah/Ah so fallback β=1 under-predicts; H1/H3/H7/H9 not supported; H10 void |
-| WP6 | open | — |
+| WP6 | done | FINAL_REPORT, README, DATA_DICTIONARY (313 columns), error budget |
 
-Next: WP6 synthesis (FINAL_REPORT, README, DATA_DICTIONARY). Last commit: see git log.
+Next: all WPs done. Last commit: see git log.
 
 ---
 
@@ -32,6 +32,6 @@ Next: WP6 synthesis (FINAL_REPORT, README, DATA_DICTIONARY). Last commit: see gi
 | WP3 | 完成 | table_anchors 共 8 行；公共 5.1 A 截止 = Q_fc（D3.1）；6 A 截止去掉 0.10–0.13 Ah；CV 充电量 1.35→1.57 Ah；脉冲内阻平稳（量化步长 0.049 mΩ） |
 | WP4 | 完成 | table_cycles 共 430 次摆动；工况每 116 h 周期完全重复，循环 Ah 不携带状态（同槽位离散约 0.001 Ah）；只有带载电压在变 |
 | WP5 | 完成 | H6（单体偏移、离散增大）系统性；H4 斜率 −0.078 Ah/Ah（ε 漂移标注）；台阶每 Ah 只移动 0.745 Ah，故 fallback 的 β=1 低估损失；H1/H3/H7/H9 不成立；H10 无效 |
-| WP6 | 未开始 | — |
+| WP6 | 完成 | FINAL_REPORT、README、DATA_DICTIONARY（313 列）、误差预算 |
 
-下一步：WP6 综合（FINAL_REPORT、README、DATA_DICTIONARY）。最近一次提交见 git log。
+下一步：所有 WP 已完成。最近一次提交见 git log。
