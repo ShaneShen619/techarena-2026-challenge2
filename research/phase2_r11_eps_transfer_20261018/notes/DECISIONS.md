@@ -6,3 +6,4 @@
 - D4 (WP1): Yagci only needs the two summary xlsx files plus one raw checkup file for the order check, so only those were extracted from the 19 GB archive into cache/yagci/.
 - D5 (WP1): the registered event for LIC stays the single step between k = 4 and 5, as the prompt requires. A two-step model at both RPT temperature changes is registered only as a reported sensitivity (b2).
 - D6 (WP1): rest before the LIC operating charge is always 0.25 h (MAD = 0), so the outlier rule uses a 1 %-of-median fallback (registered).
+- D7 (WP2): integration convention for LIC charge details = backward rectangle with global sample spacing (matches _screening); an initial within-window version dropped the first interval and was fixed before any WP2 output was committed.
