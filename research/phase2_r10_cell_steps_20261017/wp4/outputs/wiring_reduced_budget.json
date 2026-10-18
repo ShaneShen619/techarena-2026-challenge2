@@ -1,0 +1,14 @@
+{
+ "calls_per_model": 320,
+ "A3_errors": 0,
+ "A3_nonfinite": 0,
+ "Tmain_errors": 0,
+ "Tmain_nonfinite": 0,
+ "max_abs_diff_A3_vs_Tmain_pp": 0.17086873638348266,
+ "median_abs_diff_pp": 0.019266952614373167,
+ "SOH_range_A3": [
+  89.81416966230978,
+  98.44117647058823
+ ],
+ "passed": true
+}
