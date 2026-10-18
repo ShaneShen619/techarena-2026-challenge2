@@ -1,0 +1,5 @@
+{
+ "wp": "WP6 - Figgener home-storage data (zenodo 12091223), screening",
+ "rule": "EXECUTION_PROMPT.md WP6: metadata first (Zenodo API file list/sizes + readme; the 31 kB Metadata_and_Code.zip counts as readme/metadata, not raw data). Proceed only if: >= 1 LFP system; field capacity tests included WITH their protocol; operating charge data around the tests included; total download needed <= 3 GB. Otherwise 'skipped: <reason>'.",
+ "download_policy": "own directory under cache/downloads/, untrusted, nothing executed (the .m files are not run)"
+}
