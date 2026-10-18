@@ -33,6 +33,13 @@ sequence: CCCV full charge, then a 20 A / 10.2 Ah pulse, then a ~45.7 Ah dynamic
   of the discharge.
 - The step was located in 41 of 41 events, with a median spread of 0.63 Ah across the cells.
 - The step depth fell from 32.81 Ah (20 Jan) to 25.87 Ah (6 Sep).
+- **Robust step value.** Five more detection variants locate the same step: a narrower current
+  band, plateau windows shifted by ±3 Ah, an IR-corrected voltage, and the dV/dQ peak. Each
+  cell's step is the median over the six variants; the discharge's step is the median over the
+  four cells. This matters for two reasons:
+  - the dV/dQ variant sits on a 0.25 Ah grid and is about four times noisier than the others;
+  - cell 1 slowly drifts away from the other cells (its relative step depth goes from −0.18 to
+    −0.51 Ah over the campaign, while cells 2–4 keep fixed offsets), and a mean follows it.
 
 **What else moves the step.** Splitting each month by segment showed two effects that are not
 ageing:
@@ -167,7 +174,22 @@ bit-identical outputs:
 A key diagnostic: within a 45 °C segment, step depths scatter by only 0.012–0.036 Ah around a
 line. The remaining error is systematic, not measurement noise.
 
-**Reduced data budget.** Not separately optimised. With a missing segment start, the anchor of
+**Robust step value (this model vs the previous version).** Registered before evaluation (round
+10, branch `exp/phase2-r10-cell-steps-20261017`), with the selection of discharges, β and the
+gap branch unchanged:
+
+- On the causal pseudo-cut and cold-start scenarios the mean error falls from 0.157 to
+  0.147 pp (pseudo-cut 0.144 → 0.134, cold start 0.170 → 0.160); 11 of the 16 changed hold-out
+  cases improve, the worst gets 0.06 pp worse.
+- Rebuilt from any five of the six detection variants it still beats the previous model, so no
+  single variant carries the gain. A plain 4-cell median (which failed on the dV/dQ variant), a
+  4-cell minimum, outlier rejection on per-cell changes and a per-cell top-of-charge correction
+  were tested in the same rounds and rejected.
+- It changes no checkup by more than 0.1 pp.
+
+**Reduced data budget.** Not separately optimised. In 320 calls on randomly reduced data
+(dropped segments, thinned rows, cut starts, blanked blocks) the model returned a finite
+estimate every time. With a missing segment start, the anchor of
 that month is lost and the model falls back to the previous anchor.
 
 ## 4. Results, strengths and limits
@@ -176,14 +198,15 @@ Proxy errors with ε = ε0 + 0.4, in pp:
 
 | | CK1 | CK2 | CK3 | CK4 | CK5 | CK6 | CK7 | MAE | max |
 |---|---|---|---|---|---|---|---|---|---|
-| this model (V2 + temperature-weighted √t gap) | +0.22 | +0.04 | +0.08 | +0.23 | +0.15 | −0.16 | −0.00 | 0.13 | 0.23 |
-| V2 + calendar-time √t gap (previous version) | +0.22 | −0.02 | +0.08 | +0.23 | +0.15 | −0.16 | −0.00 | 0.12 | 0.23 |
+| this model (V2 + temperature-weighted √t gap + robust step) | +0.21 | +0.04 | +0.14 | +0.24 | +0.08 | −0.07 | −0.06 | 0.12 | 0.24 |
+| V2 + temperature-weighted √t gap (previous version) | +0.22 | +0.04 | +0.08 | +0.23 | +0.15 | −0.16 | −0.00 | 0.13 | 0.23 |
+| V2 + calendar-time √t gap | +0.22 | −0.02 | +0.08 | +0.23 | +0.15 | −0.16 | −0.00 | 0.12 | 0.23 |
 | V2 without gap branch | +0.22 | +0.67 | +0.08 | +0.23 | +0.15 | −0.16 | −0.00 | 0.22 | 0.67 |
 | V1 (unmatched) | +0.22 | +0.67 | +0.08 | +0.28 | −0.11 | −0.40 | −0.28 | 0.29 | 0.67 |
 | ExampleModel | +2.64 | +4.41 | +4.15 | +5.05 | +5.28 | +4.22 | +4.32 | 4.30 | 5.28 |
 
-SOH estimates (%): CK0 98.441, CK1 95.992, CK2 94.507, CK3 93.541, CK4 92.811, CK5 92.081,
-CK6 91.331, CK7 90.821.
+SOH estimates (%): CK0 98.441, CK1 95.984, CK2 94.507, CK3 93.600, CK4 92.821, CK5 92.015,
+CK6 91.426, CK7 90.765.
 
 **Strengths.**
 
@@ -214,6 +237,9 @@ CK6 91.331, CK7 90.821.
   break-in, the ε0 temperature confound, the exponent assumption (±0.3 pp across the tested
   settings) and the assumption that segment 3 ran at 45 °C (at 25 °C, CK2 would be 94.84 %).
 - **β:** it rises to 1.51 at CK7. If the LAM share falls late in life, β overstates the loss.
+- **Cell imbalance in ageing.** Cell 1 ages faster than the others. A series pack is limited by
+  its weakest cell, while the model follows the median cell; a 4-cell minimum was tested and
+  failed every hold-out gate, so the median is the robust choice, not a proven one.
 
 **Routes we dropped earlier.** Three earlier routes were dropped: open-data transfer, an ECM
 joint estimate, and multistage plateau features. All three inferred capacity from mid-plateau
@@ -229,12 +255,12 @@ python run_model.py --model test  --input data --state-dir out --output-dir out 
 python validate_submission.py
 ```
 
-- **Runtime:** about 1 s for train and about 10 s for all eight evaluation points (Apple
+- **Runtime:** about 1 s for train and about 11 s for all eight evaluation points (Apple
   M-series, macOS).
 - **Determinism:** there is no randomness and there are no seeds.
 - **Tested environment:** a fresh Python 3.11 virtual environment from `requirements.txt`, run
   from a clean extraction of the submission zip. The validator passes, and the full-data output
-  equals the research implementation to within 0.0004 pp.
+  equals the research implementation to within 0.0005 pp.
 - **Research code:** in the team repository.
   - V1: branch `exp/phase2-anchor-step-20261013`, under `research/phase2_anchor_step_20261013/`.
   - V2: same branch, under `research/phase2_v2_phase_matched_20261013/`.
@@ -242,3 +268,6 @@ python validate_submission.py
     `research/phase2_v3_20261015/`. Open-data screening: `external_data/`.
   - Rejected alternatives: branches `exp/phase2-round3-models-20261014` and
     `exp/phase2-round4-signals-20261014`.
+  - Temperature-weighted gap branch: `exp/phase2-r7-lit-checks-20261016`. Error tables and the
+    robust step value: `exp/phase2-r8-error-table-20261017` and
+    `exp/phase2-r10-cell-steps-20261017`.

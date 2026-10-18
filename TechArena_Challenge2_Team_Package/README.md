@@ -31,8 +31,14 @@ voltage threshold on the flat LFP plateau.
    (~33 Ah below full at BOL).
    - **Locating the step.** For each cell, the step is located in the ~10 A
      part of the discharge as the first crossing of the midpoint between the
-     upper-plateau and lower-plateau median voltages. The four cells are
-     averaged.
+     upper-plateau and lower-plateau median voltages. The same is done with five
+     more detection variants: a narrower current band, plateau windows shifted
+     by ±3 Ah, an IR-corrected voltage, and the dV/dQ peak.
+   - **Robust step value.** Each cell's step is the median over the six
+     variants, and the discharge's step is the median over the four cells. A
+     single noisy detection method (the dV/dQ peak sits on a 0.25 Ah grid) or a
+     single cell that slowly drifts away from the others (cell 1 here) cannot
+     pull the value. Which discharges are used is unchanged.
    - **Why the step tracks capacity.** Loss of lithium inventory, the dominant
      mechanism here, shortens the top-to-step distance.
    - **Phase matching.** The step depth also moves for two reasons that are not
@@ -109,8 +115,9 @@ leaves every output bit-identical (checked on all 8 checkups).
 | ExampleModel (reference) | 4.7 / 4.3 / 3.9 | 4.9–5.7 |
 | Anchor + step, unmatched (V1) | 0.35 / 0.29 / 0.29 | 0.67 |
 | Phase-matched, no gap branch (V2) | 0.27 / 0.22 / 0.21 | 0.67 |
-| V2 + calendar-time √t gap branch (previous version) | 0.21 / 0.12 / 0.14 | 0.61 / 0.23 / 0.23 |
-| **This model (V2 + temperature-weighted √t gap branch)** | **0.20 / 0.13 / 0.15** | **0.61 / 0.23 / 0.23** |
+| V2 + calendar-time √t gap branch | 0.21 / 0.12 / 0.14 | 0.61 / 0.23 / 0.23 |
+| V2 + temperature-weighted √t gap branch (previous version) | 0.20 / 0.13 / 0.15 | 0.61 / 0.23 / 0.23 |
+| **This model (previous + robust multi-variant cell-median step)** | **0.19 / 0.12 / 0.14** | **0.60 / 0.24 / 0.24** |
 
 **Robustness.**
 
@@ -125,13 +132,22 @@ leaves every output bit-identical (checked on all 8 checkups).
   assumptions: with an exponent of 0.4–0.6 or a ±5-day time origin, the CK2
   error ranges from −0.35 to +0.29 pp at ε0 + 0.4. Every setting is still better
   than +0.67.
-- **Step detection.** The model beats V2 under all six step-detection variants
-  (MAE improvement 0.08–0.10 pp each).
+- **Robust step value is supported by causal hold-out tests.** On the data cuts
+  that hide the last days or the start of a month (pseudo-cut and cold-start
+  scenarios), the median over six detection variants and four cells lowers the
+  mean error from 0.157 to 0.147 pp (pseudo-cut 0.144 → 0.134, cold start
+  0.170 → 0.160). Rebuilt from any five of the six variants, it stays better
+  than the previous model, so no single detection method carries the gain. It
+  changes no checkup by more than 0.1 pp.
 - **Exposure.** The gap branch was chosen after the proxy values had been seen,
   so this improvement is exploratory, not blind.
-- **Rejected variants.** A β cap at 1.2 and a 4-cell median were also tested and
-  rejected. The cap pushes CK5–CK7 up in the same direction as the ε-drift risk
-  below. The median was not robust across detection variants.
+- **Rejected variants.** A β cap at 1.2, a plain 4-cell median and a 4-cell
+  minimum were tested and rejected. The cap pushes CK5–CK7 up in the same
+  direction as the ε-drift risk below. The plain median was not robust across
+  detection variants (the noisy dV/dQ variant broke it), which is why the
+  median is now taken over variants first. Combining per-cell changes with
+  outlier rejection added nothing, and correcting each cell for its top-of-charge
+  state was not supported by the data.
 
 Details are in [`REPORT.md`](REPORT.md).
 
@@ -155,7 +171,7 @@ python run_model.py --model test  --input data --state-dir out --output-dir out 
 python validate_submission.py
 ```
 
-- **Runtime:** about 1 s for train and about 10 s for all 8 evaluation points
+- **Runtime:** about 1 s for train and about 11 s for all 8 evaluation points
   (Apple M-series).
 - **Determinism:** the model is deterministic, with no seeds and no fitted
   parameters beyond the CK0 capacity.
@@ -166,7 +182,7 @@ python validate_submission.py
 
 | checkup | CK0 | CK1 | CK2 | CK3 | CK4 | CK5 | CK6 | CK7 |
 |---|---|---|---|---|---|---|---|---|
-| SOH_est (%) | 98.441 | 95.992 | 94.507 | 93.541 | 92.811 | 92.081 | 91.331 | 90.821 |
+| SOH_est (%) | 98.441 | 95.984 | 94.507 | 93.600 | 92.821 | 92.015 | 91.426 | 90.765 |
 
 ## Known limits
 

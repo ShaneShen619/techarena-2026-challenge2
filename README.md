@@ -21,9 +21,9 @@ The proxy label is the post-checkup full charge plus an offset. On it, the stric
 .
 ├── README.md                              this file
 ├── .gitignore
-├── TechArena_Challenge2_Team_Package/     submission package (official template + wired-in V2 + temperature-weighted √t gap model)
+├── TechArena_Challenge2_Team_Package/     submission package (official template + wired-in V2 + temperature-weighted √t gap model + robust step)
 │   ├── framework/  run_model.py  validate_submission.py   official framework, do not modify
-│   ├── my_model/                          active model entry (MyModel = V2 + temperature-weighted √t gap branch)
+│   ├── my_model/                          active model entry (MyModel = V2 + temperature-weighted √t gap branch + robust multi-variant cell-median step)
 │   ├── README.md  REPORT.md               submission write-up and report
 │   ├── data/                              official operating data and CK0 checkup data
 │   ├── sample_data/                       small sample used by the validator
@@ -61,7 +61,12 @@ To see only the candidate's per-checkup output, run `stage_bcd_causal_eval.py` a
 
 ## Current status
 
-- **Temperature-weighted √t (T_main) replaces the calendar-time √t branch (2026-10-17).**
+- **Robust multi-variant cell-median step (A3) wired in (2026-10-18).**
+  - Each cell's graphite step is now the median over six detection variants, and the discharge's step the median over the four cells (previously: main detection, mean of cells). Which discharges are used, β and the gap branch are unchanged. SOH changes by at most 0.1 pp: CK1 95.992 → 95.984, CK3 93.541 → 93.600, CK4 92.811 → 92.821, CK5 92.081 → 92.015, CK6 91.331 → 91.426, CK7 90.821 → 90.765.
+  - Evidence: round 10 WP1 (branch `exp/phase2-r10-cell-steps-20261017`), registered before evaluation and passing every gate. Causal pseudo/cold mean 0.157 → 0.147 pp (pseudo 0.144 → 0.134, cold start 0.170 → 0.160); better than the previous model when rebuilt from any five of the six variants. Real proxy MAE Δ0/0.4/0.8 = 0.191 / 0.120 / 0.142, MAX 0.602 / 0.237 / 0.237 (exposed).
+  - Checks: class = research implementation to 1.4e-14 pp; noise causality and fit-on-cut identical on all 8 checkups; 320 reduced-budget calls return finite values.
+  - **Zip rebuilt:** `~/Desktop/Arena项目书面文件/提交包/Current State_Challenge2.zip`, validated from a clean extraction under Python 3.11. The previous zip is kept as `Current State_Challenge2_backup_Tmain_20261017.zip`.
+- **Temperature-weighted √t (T_main) replaced the calendar-time √t branch (2026-10-17).**
   - The √t gap branch now uses Arrhenius-weighted 45 °C-equivalent time (Ea 20.6 kJ/mol; checkup gaps at 25 °C; missing segment 3 at 45 °C). Only CK2 changes: 94.451 → 94.507.
   - Evidence: round 7 WP2 (branch `exp/phase2-r7-lit-checks-20261016`). It passes every registered gate. On the causal one-month gap cases the error falls 0.113 → 0.105 pp (pseudo 0.148 → 0.144, cold start 0.174 → 0.170). Real proxy MAE Δ0/0.4/0.8 = 0.197 / 0.126 / 0.146, MAX 0.609 / 0.228 / 0.228.
   - **Zip rebuilt:** `~/Desktop/Current State_Challenge2.zip`, validated from a clean extraction under Python 3.11.14 + numpy 2.4.6 / pandas 3.0.6. The previous zip is kept as `Current State_Challenge2_backup_V2sqrt_20261015.zip`.
@@ -114,7 +119,7 @@ To see only the candidate's per-checkup output, run `stage_bcd_causal_eval.py` a
 .
 ├── README.md                              本文件
 ├── .gitignore
-├── TechArena_Challenge2_Team_Package/     提交包（官方模板 + 已接入的 V2 + 温度加权 √t 缺口模型）
+├── TechArena_Challenge2_Team_Package/     提交包（官方模板 + 已接入的 V2 + 温度加权 √t 缺口模型 + 稳健台阶值）
 │   ├── framework/  run_model.py  validate_submission.py   官方框架，不可修改
 │   ├── my_model/                          正式模型入口（MyModel = V2 锚点 + 同相位台阶）
 │   ├── README.md  REPORT.md               提交用方法说明与报告
@@ -149,7 +154,12 @@ python3 stage_a_events.py && python3 stage_bcd_causal_eval.py && python3 stage_e
 
 ## 当前状态
 
-- **温度加权 √t（T_main）取代了日历时间 √t 分支（2026-10-17）。**
+- **稳健的多变体单体中位数台阶（A3）已接入（2026-10-18）。**
+  - 每个单体的石墨台阶改为 6 种检测变体的中位数，每次放电的台阶取 4 个单体的中位数（原来是主检测方法 + 单体均值）。使用哪些放电、β 和缺口分支都不变。SOH 变化不超过 0.1 pp：CK1 95.992 → 95.984，CK3 93.541 → 93.600，CK4 92.811 → 92.821，CK5 92.081 → 92.015，CK6 91.331 → 91.426，CK7 90.821 → 90.765。
+  - 依据：第十轮 WP1（分支 `exp/phase2-r10-cell-steps-20261017`），评估前登记，通过全部门槛。因果伪场景/冷启动平均 0.157 → 0.147 pp（伪场景 0.144 → 0.134，冷启动 0.170 → 0.160）；用 6 种变体中任意 5 种重建都优于原模型。真实代理 MAE Δ0/0.4/0.8 = 0.191 / 0.120 / 0.142，MAX 0.602 / 0.237 / 0.237（已曝光）。
+  - 检查：模型类与研究实现相差 1.4e-14 pp；8 个检查点的噪声因果性和截断拟合一致；320 次数据缩减调用都返回有限值。
+  - **压缩包已重建：** `~/Desktop/Arena项目书面文件/提交包/Current State_Challenge2.zip`，在 Python 3.11 下从干净解压目录验证通过。旧包保留为 `Current State_Challenge2_backup_Tmain_20261017.zip`。
+- **温度加权 √t（T_main）曾于 2026-10-17 取代日历时间 √t 分支。**
   - √t 缺口分支现在使用按 Arrhenius 加权的 45 °C 等效时间（Ea 20.6 kJ/mol；检查间隔按 25 °C；缺失的段 3 按 45 °C）。只有 CK2 变化：94.451 → 94.507。
   - 依据：第七轮 WP2（分支 `exp/phase2-r7-lit-checks-20261016`），通过全部登记门槛。因果一个月缺口案例上误差 0.113 → 0.105 pp（伪场景 0.148 → 0.144，冷启动 0.174 → 0.170）。真实代理 MAE Δ0/0.4/0.8 = 0.197 / 0.126 / 0.146，MAX 0.609 / 0.228 / 0.228。
   - **压缩包已重建：** `~/Desktop/Current State_Challenge2.zip`，从干净解压目录在 Python 3.11.14 + numpy 2.4.6 / pandas 3.0.6 下验证通过。旧包保留为 `Current State_Challenge2_backup_V2sqrt_20261015.zip`。

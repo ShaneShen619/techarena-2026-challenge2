@@ -1,4 +1,5 @@
-"""Anchor + phase-matched graphite-step SOH estimator (V2 + temperature-weighted sqrt(t) gap branch, active model).
+"""Anchor + phase-matched graphite-step SOH estimator (V2 + temperature-weighted sqrt(t) gap branch, robust
+multi-variant cell-median step, active model).
 
 Physics
 -------
@@ -27,6 +28,13 @@ Physics
   gap longer than ``MISSING_SEGMENT_DAYS`` holds a missing 45 degC segment up
   to the checkup date inside it, and time after the last visible sample is
   45 degC.
+* Robust step value. Each cell's step is located with six detection variants
+  (midpoint crossing with the main, a narrower current band, shifted plateau
+  windows and an IR-corrected voltage, plus the dV/dQ peak). A cell's value is
+  the median over the variants and the program's value the median over the four
+  cells, so neither a single detection method nor a single cell that drifts away
+  from the others moves the pack value much. Which programs are used is decided
+  exactly as before (main detection).
 * Fallback. When no phase-matched pair is visible (CK1 and CK3 here), the anchor
   plus the step change since the anchor is used (beta 1), as in V1.
 
@@ -71,6 +79,20 @@ STEP_MIN_DEPTH_AH = 50.0
 STEP_RECHARGE_AH = 2.0
 STEP_MIN_BAND_SAMPLES = 50
 STEP_MIN_PLATEAU_SAMPLES = 5
+# detection variants for the robust step value: (current band, upper window, lower window, method, IR correction)
+STEP_VARIANTS = (
+    ((-12.5, -8.0), (15.0, 25.0), (42.0, 50.0), "midpoint", False),
+    ((-11.5, -9.0), (15.0, 25.0), (42.0, 50.0), "midpoint", False),
+    ((-12.5, -8.0), (12.0, 22.0), (39.0, 47.0), "midpoint", False),
+    ((-12.5, -8.0), (18.0, 28.0), (45.0, 53.0), "midpoint", False),
+    ((-12.5, -8.0), (15.0, 25.0), (42.0, 50.0), "dvdq", False),
+    ((-12.5, -8.0), (15.0, 25.0), (42.0, 50.0), "midpoint", True),
+)
+STEP_MIN_VARIANTS = 4       # a cell needs this many finite variants
+DVDQ_GRID_AH = (18.0, 46.0, 0.25)
+DVDQ_SMOOTH_POINTS = 8
+DVDQ_WINDOW_AH = (22.0, 42.0)
+PULSE_I_A = -15.0           # the 20 A pulse that follows each CV end (apparent resistance for the IR variant)
 
 MAX_DT_S = 600
 
@@ -124,9 +146,9 @@ def _first_full_charge(seg):
     }
 
 
-def _locate_step(depth, volts):
-    upper = (depth >= STEP_UPPER_AH[0]) & (depth <= STEP_UPPER_AH[1])
-    lower = (depth >= STEP_LOWER_AH[0]) & (depth <= STEP_LOWER_AH[1])
+def _locate_step(depth, volts, upper_ah=STEP_UPPER_AH, lower_ah=STEP_LOWER_AH):
+    upper = (depth >= upper_ah[0]) & (depth <= upper_ah[1])
+    lower = (depth >= lower_ah[0]) & (depth <= lower_ah[1])
     locs = []
     for c in range(len(CELLS)):
         if (upper.sum() < STEP_MIN_PLATEAU_SAMPLES
@@ -139,8 +161,61 @@ def _locate_step(depth, volts):
     return locs
 
 
+def _locate_dvdq(depth, volts):
+    """Depth of the steepest voltage drop (dV/dQ peak) per cell, or NaN."""
+    order = np.argsort(depth, kind="stable")
+    dd, keep = np.unique(depth[order], return_index=True)
+    grid = np.arange(*DVDQ_GRID_AH)
+    if dd.min() > grid[0] or dd.max() < grid[-1]:
+        return [np.nan] * len(CELLS)
+    win = (grid >= DVDQ_WINDOW_AH[0]) & (grid <= DVDQ_WINDOW_AH[1])
+    locs = []
+    for c in range(len(CELLS)):
+        vg = np.interp(grid, dd, volts[order, c][keep])
+        vs = np.convolve(vg, np.ones(DVDQ_SMOOTH_POINTS) / DVDQ_SMOOTH_POINTS, mode="same")
+        locs.append(float(grid[win][np.argmax(-np.gradient(vs, grid)[win])]))
+    return locs
+
+
+def _pulse_resistance(seg, i, e):
+    """Per-cell apparent resistance at the start of the pulse after CV end e (NaN if not visible)."""
+    idx = np.where(i[e + 1:] < PULSE_I_A)[0]
+    if not len(idx):
+        return np.full(len(CELLS), np.nan)
+    p = e + 1 + idx[0]
+    if p - 1 <= e or p + 2 >= len(i):
+        return np.full(len(CELLS), np.nan)
+    v = seg[CELLS].to_numpy(float)
+    return (v[p - 1] - v[p + 2]) / abs(i[p + 2])
+
+
+def _robust_step(seg, i, v, e, d):
+    """Median over cells of each cell's median over the detection variants (NaN if no cell has enough variants)."""
+    cur = i[e:e + len(d)]
+    vv = v[e:e + len(d)]
+    per_variant = []
+    for band_a, upper, lower, method, ir in STEP_VARIANTS:
+        band = (cur > band_a[0]) & (cur < band_a[1])
+        if band.sum() < STEP_MIN_BAND_SAMPLES:
+            per_variant.append([np.nan] * len(CELLS))
+            continue
+        volts = vv + np.abs(cur)[:, None] * _pulse_resistance(seg, i, e)[None, :] if ir else vv
+        if method == "dvdq":
+            per_variant.append(_locate_dvdq(d[band], volts[band]))
+        else:
+            per_variant.append(_locate_step(d[band], volts[band], upper, lower))
+    arr = np.array(per_variant, float)
+    cells = []
+    for c in range(len(CELLS)):
+        x = arr[:, c][np.isfinite(arr[:, c])]
+        cells.append(float(np.median(x)) if len(x) >= STEP_MIN_VARIANTS else np.nan)
+    cells = np.array(cells)
+    return float(np.median(cells[np.isfinite(cells)])) if np.isfinite(cells).any() else np.nan
+
+
 def _step_depths(seg):
-    """(CV-end time, chamber set point, mean step depth, end time) for every deep discharge."""
+    """(CV-end time, chamber set point, robust step depth, end time) for every deep discharge; which discharges are
+    kept is decided by the main detection, as in the submitted model."""
     i, ah = _integrated_ah(seg)
     u = seg["pack_voltage_V"].to_numpy(float)
     v = seg[CELLS].to_numpy(float)
@@ -161,7 +236,7 @@ def _step_depths(seg):
         if np.isfinite(locs).any():
             out.append((seg["timestamp"].iloc[e],
                         int(seg["chamber_temperature_C"].iloc[e]),
-                        float(np.nanmean(locs)),
+                        _robust_step(seg, i, v, e, d),
                         seg["timestamp"].iloc[e + len(d) - 1]))
     return out
 
