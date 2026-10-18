@@ -1,0 +1,33 @@
+{
+ "groups": {
+  "Yagci35": 0.17761209135857092,
+  "Yagci50": -0.057007508399209456
+ },
+ "pooled": {
+  "LIC": -0.035,
+  "Gotion": -0.031,
+  "Yagci35": 0.17761209135857092,
+  "Yagci50": -0.057007508399209456
+ },
+ "pooled_median": -0.033,
+ "pooled_range": [
+  -0.057007508399209456,
+  0.17761209135857092
+ ],
+ "leave_one_dataset_out_median": {
+  "LIC": -0.031,
+  "Gotion": -0.035,
+  "Yagci35": -0.035,
+  "Yagci50": -0.031
+ },
+ "recommendation": "sign_not_robust",
+ "d_recommended": -0.031,
+ "note": "35 C group positive mainly through checkup 0 (initial RPT vs first operating charge, eps0 -1.9 / -3.5 Ah)",
+ "SUB_drift_rows": [
+  "SUB",
+  "SUB+drift-0.02",
+  "SUB+drift-0.031",
+  "SUB+drift-0.033",
+  "SUB_bcap"
+ ]
+}

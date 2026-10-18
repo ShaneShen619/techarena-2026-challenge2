@@ -1,0 +1,18 @@
+{
+ "check_vs_round7": {
+  "SUB": {
+   "max_abs_diff_pp": 1.4210854715202004e-14
+  },
+  "SUB+drift-0.031": {
+   "max_abs_diff_pp": 0.0005354705882183453
+  },
+  "SUB+drift-0.02": {
+   "max_abs_diff_pp": 0.0005964705882348653
+  },
+  "SUB+drift-0.033": {
+   "max_abs_diff_pp": 0.0006358235294072756
+  }
+ },
+ "passed": true,
+ "note": "21a7a55 package run through its own CLI (python3 -B, system Python 3.13, pandas 3.0)"
+}
