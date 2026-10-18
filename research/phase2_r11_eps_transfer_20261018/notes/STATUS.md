@@ -9,4 +9,4 @@
 | WP4 | done | factor-1 and factor-0 conditions both fail → f in [0,1]; CV Ah trends like LIC, end current / relaxed top V do not; start V and bottom cell spread rise (pack-only) |
 | WP5 | done | O3: d in [−0.036, +0.052] (CK7 −0.29…+0.42 pp); all-median [−0.0065, −0.0008]; dominant T_path; probe order unchanged |
 | WP6 | skipped | LFP systems exist (IDs 14–21) but test protocol not included; LFP-with-tests download 6.2 GB > 3 GB |
-| FINAL | next | FINAL_REPORT + README |
+| FINAL | done | FINAL_REPORT.md + README.md; all WPs done or skipped |
