@@ -1,0 +1,5 @@
+{
+ "wp": "wp4",
+ "registered_rules": "wp1/protocol.json, sha256 64f6b595a2b8699d117eb007251edbceb52fdf62102d5376ffc5cb64d1351751 (committed d183743); this WP applies the sections for its datasets without change",
+ "outputs": "see EXECUTION_PROMPT.md section 3, wp4"
+}
