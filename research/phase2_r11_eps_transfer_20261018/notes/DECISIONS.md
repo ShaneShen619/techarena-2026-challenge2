@@ -8,3 +8,4 @@
 - D6 (WP1): rest before the LIC operating charge is always 0.25 h (MAD = 0), so the outlier rule uses a 1 %-of-median fallback (registered).
 - D7 (WP2): integration convention for LIC charge details = backward rectangle with global sample spacing (matches _screening); an initial within-window version dropped the first interval and was fixed before any WP2 output was committed.
 - D8 (WP4): pack charge Ah uses the forward rectangle (a row's current holds until the next row), which handles the step-start duplicate rows; Q_fc comes out 0.04-0.05 Ah above earlier rounds' values (constant offset, trends unaffected).
+- D9 (WP6): Metadata_and_Code.zip (31 kB) was treated as metadata/readme and downloaded; it shows the protocol is not in the data and the LFP-with-tests download is 6.2 GB → skipped by the registered screening (conservative reading of "total download needed").
