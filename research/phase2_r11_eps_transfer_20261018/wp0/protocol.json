@@ -1,0 +1,7 @@
+{
+ "wp": "WP0",
+ "registered_in": "EXECUTION_PROMPT.md (commit 18f8c96), WP0 step 3",
+ "check": "drift function Q' = Q + d*max(0, 100.41 - Q) applied to the 21a7a55 package output must reproduce round 7 wp3_SUB_drift_SOH.csv rows SUB, SUB+drift-0.02, -0.031, -0.033 within 0.001 pp",
+ "on_fail": "exit: cannot reproduce",
+ "then": "apply the same function to the current SUB (6525edf) -> wp0/SUB_drift_reference.csv"
+}
