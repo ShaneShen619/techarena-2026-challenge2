@@ -1,0 +1,68 @@
+{
+ "wp": "WP1 - registration for WP2-WP5 (written after the file/sequence audit, before any eps value was computed in this round)",
+ "date": "2026-10-18",
+ "note_on_blindness": "The LIC eps_total series from _screening/outputs/lic_eps.csv and the Yagci eps_main values of round 7 are printed in EXECUTION_PROMPT.md section 2, so totals are NOT blind. The decomposition into T_CE and T_path, the pack drivers and all new annotations are computed for the first time in WP2-WP4.",
+ "sign_convention": "eps = Q_reference - Q_operating_charge (positive = reference larger). fade(k) = Q_ref,dis(0) - Q_ref,dis(k) of the same dataset. All slopes in Ah per Ah (dimensionless, scale-free).",
+ "datasets": {
+  "LIC": {
+   "index": "k = 0..14: the 15 complete RPTs, i.e. 0.1C (28 A) discharges with |Ah| > 200 that end at <= 2.51 V (wp1/lic_rpt_summary.csv). The extra 0.1C discharge before RPT 5 that hit the 10 h limit is not an RPT.",
+   "Q_ref_dis": "Ah of role ref_dis_0.1C",
+   "Q_ref_ch": "Ah of role ref_ch_0.1C_CCCV (0.1C CC to 3.65 V, CV to ~14 A = 0.05C), which precedes Q_ref_dis after a 0.25 h rest and starts from the 0.1C-empty state after a 0.983 h rest",
+   "Q_op_ch_first": "Ah of role op_ch_first_1C_CCCV (1C CC to 3.65 V, CV to ~14 A), 0.25 h after Q_ref_dis; exists for k = 0..13 (after RPT 14 the file ends with a 0.1C charge)",
+   "T_CE": "Q_ref_dis(k) - Q_ref_ch(k), k = 0..14",
+   "T_path": "Q_ref_ch(k) - Q_op_ch_first(k), k = 0..13",
+   "eps_total": "T_CE + T_path, k = 0..13",
+   "annotations": "for both charges: CC Ah and CV Ah (split at the first sample with V >= 3.649 V), start voltage, rest before, end current, voltage at the end of the following rest, median temperature; also Tm(op_ch) - Tm(ref_ch)",
+   "registered_event": "between k = 4 and k = 5: extra truncated 0.1C test, an unrecorded voltage jump 2.820 -> 3.329 V at I = 0 in the preceding rest, and the RPT temperature step 29.7 -> 35.1 C",
+   "secondary_sensitivity": "model (b2): two steps at the RPT temperature changes (k 1->2: 24.7 -> 29.7 C; k 4->5: 29.7 -> 35.1 C). Reported only; not used for the decision.",
+   "audit_flags": "unrecorded voltage jump >= 0.1 V at I = 0 in the rests between the last 1C discharge and the RPT: k = 5 (seg1100) and k = 10 (seg2202)"
+  },
+  "Yagci": {
+   "cells": "CA-181103-19, -42 (35 C), -22, -28 (50 C); checkups 0, 100, 500, 1000 (#1500 excluded: byte-identical copy of #1000)",
+   "Q_ref_dis": "max_CCCV_DIS (RPT second 50 A cycle, CCCV discharge to 2.5 V, ~21-23 C)",
+   "Q_ref_ch": "max_CCCV_CHA of the same RPT cycle; order verified on CA-181103-19 checkup 100 raw file: charge -> 0.5 h pause -> discharge",
+   "Q_op_ch_first": "round 7 Q_main (max_CCCV_CHA of cycle k+1, with the round-7 partial-start guard), operating cycles at 50 A (same current as the RPT) at 35/50 C",
+   "T_CE": "Q_ref_dis - Q_ref_ch", "T_path": "Q_ref_ch - Q_op_ch_first", "eps_total": "round 7 eps_main definition (reproduce round 7 d per group within 0.005)",
+   "scale": "x 102/180 as in round 7 (does not change slopes)",
+   "group_value": "mean of the two cells' slopes per temperature group (as round 7)",
+   "registered_event": "none", "sensitivity": "with and without checkup 0 (registered here)"
+  },
+  "Gotion": {
+   "scope": "cell only; module excluded (index vs stretched alignment inconclusive, DATA_MANIFEST.md)",
+   "Q_ref": "Capacity_Calibration_Cell_data.xlsx (0.1 Ah resolution, protocol not stated, every 50 cycles)",
+   "Q_op_ch": "median qc of complete cycles n in (cyc-5, cyc+5] (sources/gotion_cell_cycles.csv, as _screening/gotion_cycles.py)",
+   "terms": "eps_total only; T_CE and T_path not identifiable (no reference charge capacity)",
+   "registered_event": "none"
+  }
+ },
+ "statistics": {
+  "slopes": "Theil-Sen (scipy.stats.theilslopes) and OLS slope of X on fade; leave-one-RPT-out min/max of both",
+  "bic": "Gaussian: n*ln(RSS/n) + p*ln(n); (a) linear p=2; (b) constant + one step at the registered event p=2; (c) linear + step p=3. Only datasets with a registered event fit (b)/(c).",
+  "model_choice": "lowest BIC; a step model counts as 'winning' only if its BIC is lower than (a) by more than 2, otherwise (a) is kept",
+  "slope_for_transfer": "Theil-Sen slope if (a) is kept; OLS slope of model (c) if (c) wins; 0 if (b) wins (the drift is then event-driven and the step is reported separately)",
+  "outliers": "flag a point if its operating-charge start voltage or its preceding rest duration lies > 3 MAD from the dataset median (if MAD = 0, flag deviations > 1 % of the median); LIC audit flags (k = 5, 10) are added to the flagged set. Flagged points stay in the main estimate; a sensitivity analysis without them is reported."
+ },
+ "pack_drivers_WP4": {
+  "per_anchor": "CC Ah, CV Ah, CV duration, CV decay constant tau from I(t) = I_inf + A exp(-t/tau) over the CV phase, pack and cell voltages 30 min after the CV end, start voltage, slope over the last 30 min of the preceding rest, rest duration, cell start voltages, median cell temperature during the charge, cell spread at the top (CV end) and at the start",
+  "trend": "Spearman rho vs anchor index over the 25 C anchors 1..7 (anchor 0 at 45 C reported, not in the trend); magnitude as OLS slope per Ah of (Q_fc,1 - Q_fc,k). No quantity uses 100.41 or P_k.",
+  "flags": "seg1 (anchor 0: 45 C, 0.5 h rest, unrelaxed) and seg6 (anchor 3: unrelaxed start)",
+  "lic_counterparts": "op-charge start voltage, rest before op charge, CV Ah of op charge, end current, voltage after the 0.25 h rest, Tm(op) - Tm(ref); Spearman rho vs k over k = 0..13"
+ },
+ "transfer_rules": {
+  "verbatim": "T_CE transfers with factor 1, in Ah per Ah of fade (LFP-intrinsic side reactions are assumed protocol-independent to first order; stated assumption). T_path transfers with an unknown factor in [0, 1], because our anchor differs from LIC's operating charge in rate (0.2C vs 1C), start state and temperature. The factor is 1 only if WP4 shows our drivers trend like LIC's. It is 0 only if WP2 shows that T_path is carried entirely by drivers whose trend WP4 finds flat in our pack, for example the relaxed top voltage and the start voltage. d_lo and d_hi are the minimum and maximum, over the factor range, of the combined slope from the datasets where each term is identifiable. Pooling across datasets uses the median, plus a leave-one-dataset-out range. A step-type component (WP2 BIC model (b) or (c) winning) transfers only if our pack has an analogous event (candidates: the missing segment 3, the seg1 45 C anchor); otherwise it is excluded from d and reported separately.",
+  "operational": {
+   "pooled_terms": "d_CE = median of T_CE transfer slopes over {LIC, Yagci35, Yagci50}; d_path = median of T_path transfer slopes over the same; Gotion (total only) is a consistency check and not part of the bounds",
+   "factor_1_condition": "every LIC T_path driver with |rho| >= 0.6 vs k has a pack counterpart with the same sign and |rho| >= 0.6",
+   "factor_0_condition": "every driver with |rho(T_path, driver)| >= 0.6 in LIC has a pack counterpart with |rho| < 0.3",
+   "interval": "d(f, pool) = d_CE(pool) + f * d_path(pool); main interval = min/max over f in the admissible set and over pooling variants {all-dataset median, each leave-one-dataset-out median}; the all-median-only interval is also reported",
+   "point_value": "only when f is pinned to 0 or 1: d_CE(all) + f * d_path(all)"
+  }
+ },
+ "decision_rule": {
+  "fade_CK7_Ah": 8.2,
+  "O1": "[d_lo, d_hi] within [-0.012, +0.012] -> keep SUB; move P_drift last or drop it",
+  "O2": "d_hi < -0.015 -> P_drift becomes the first probe; the report states the bias",
+  "O3": "otherwise -> keep round 7's order (P_stress_early -> P_start -> P_drift); round 12 models the dominant term on our own data",
+  "dominant_term": "the term whose pooled transfer slope is > 60 % of the pooled total (|d_X| / (|d_CE| + |d_path|)); otherwise 'mixed'; if the LIC step model wins, also report 'step-type'"
+ }
+}
