@@ -1,0 +1,7 @@
+{
+ "wp": "WP5",
+ "registered_rules": "wp1/protocol.json sha256 64f6b595a2b8699d117eb007251edbceb52fdf62102d5376ffc5cb64d1351751 (commit d183743): transfer_rules (verbatim + operational) and decision_rule, applied without change",
+ "inputs": "wp2/lic_stats.json (transfer_slope per term), wp3/ext_stats.json (all_checkups = main, without_checkup0 = registered sensitivity), wp4/pack_driver_trends.json (factor conditions)",
+ "variants_for_SOH_table": "d in {d_lo, point if f pinned, d_hi, -0.031}; drift function of round 7 (src/drift.py) applied to the current SUB (wp0/SUB_SOH.csv); leaderboard-only",
+ "sensitivities_reported": "Yagci without checkup 0; LIC without flagged points; all-median-only interval"
+}
