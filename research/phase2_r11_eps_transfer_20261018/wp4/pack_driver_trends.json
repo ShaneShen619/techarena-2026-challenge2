@@ -1,0 +1,158 @@
+{
+ "trends_anchors_1_7": {
+  "CC_Ah": {
+   "rho_vs_anchor": -1.0,
+   "slope_per_Ah_of_Qfc_decline": -1.0584436257997738,
+   "range": [
+    90.55206944444443,
+    95.87975555555553
+   ]
+  },
+  "CV_Ah": {
+   "rho_vs_anchor": 0.9285714285714288,
+   "slope_per_Ah_of_Qfc_decline": 0.05844362579978805,
+   "range": [
+    1.1654394444444445,
+    1.4440444444444445
+   ]
+  },
+  "CV_h": {
+   "rho_vs_anchor": 0.9285714285714288,
+   "slope_per_Ah_of_Qfc_decline": 0.0059830051664850024,
+   "range": [
+    0.12166666666666667,
+    0.15
+   ]
+  },
+  "tau_CV_s": {
+   "rho_vs_anchor": 0.8571428571428573,
+   "slope_per_Ah_of_Qfc_decline": 8.7717885034038,
+   "range": [
+    177.03855724079182,
+    216.6426647144315
+   ]
+  },
+  "I_end": {
+   "rho_vs_anchor": 0.0363696483726654,
+   "slope_per_Ah_of_Qfc_decline": 0.00043934810218360326,
+   "range": [
+    5.094,
+    5.1
+   ]
+  },
+  "V_pack_30min": {
+   "rho_vs_anchor": -0.6546536707079773,
+   "slope_per_Ah_of_Qfc_decline": -0.0011094949088580799,
+   "range": [
+    13.432,
+    13.439
+   ]
+  },
+  "spread_top_mV": {
+   "rho_vs_anchor": -1.0,
+   "slope_per_Ah_of_Qfc_decline": -6.864906287728694,
+   "range": [
+    52.00000000000004,
+    88.00000000000009
+   ]
+  },
+  "V_start": {
+   "rho_vs_anchor": 0.7857142857142859,
+   "slope_per_Ah_of_Qfc_decline": 0.03386743735181431,
+   "range": [
+    11.624,
+    11.953
+   ]
+  },
+  "start_slope_mV_h": {
+   "rho_vs_anchor": -0.6071428571428572,
+   "slope_per_Ah_of_Qfc_decline": -1.9724552064115826,
+   "range": [
+    -0.19160949549173642,
+    53.17637059073884
+   ]
+  },
+  "rest_h": {
+   "rho_vs_anchor": 0.0,
+   "slope_per_Ah_of_Qfc_decline": 0.0,
+   "range": [
+    2.0,
+    2.0
+   ]
+  },
+  "spread_start_mV": {
+   "rho_vs_anchor": 0.9642857142857145,
+   "slope_per_Ah_of_Qfc_decline": 2.452599748420193,
+   "range": [
+    22.00000000000024,
+    34.9999999999997
+   ]
+  },
+  "T_charge_C": {
+   "rho_vs_anchor": -0.4865062298556019,
+   "slope_per_Ah_of_Qfc_decline": -0.04603268859999622,
+   "range": [
+    26.61,
+    26.91
+   ]
+  },
+  "T_end_C": {
+   "rho_vs_anchor": -0.5714285714285715,
+   "slope_per_Ah_of_Qfc_decline": -0.03421942708241572,
+   "range": [
+    26.88,
+    27.19
+   ]
+  }
+ },
+ "lic_comparison": {
+  "V_start": {
+   "lic": "op_ch_V0",
+   "lic_rho_vs_k": -0.1032967032967033,
+   "lic_rho_vs_T_path": 0.3098901098901099,
+   "pack_rho": 0.7857142857142859
+  },
+  "rest_h": {
+   "lic": "op_ch_rest_before_h (constant 0.25 h)",
+   "lic_rho_vs_k": 0.0,
+   "lic_rho_vs_T_path": null,
+   "pack_rho": 0.0
+  },
+  "CV_Ah": {
+   "lic": "op_ch_CV_Ah",
+   "lic_rho_vs_k": 0.8285714285714285,
+   "lic_rho_vs_T_path": -0.8417582417582418,
+   "pack_rho": 0.9285714285714288
+  },
+  "I_end": {
+   "lic": "op_ch_I_end",
+   "lic_rho_vs_k": -0.8021978021978022,
+   "lic_rho_vs_T_path": 0.767032967032967,
+   "pack_rho": 0.0363696483726654
+  },
+  "V_pack_30min": {
+   "lic": "op_ch_V_after_rest",
+   "lic_rho_vs_k": 0.8241758241758241,
+   "lic_rho_vs_T_path": -0.6087912087912088,
+   "pack_rho": -0.6546536707079773
+  },
+  "T_charge_C": {
+   "lic": "dTm_op_minus_ref",
+   "lic_rho_vs_k": -0.4769230769230769,
+   "lic_rho_vs_T_path": 0.6043956043956044,
+   "pack_rho": -0.4865062298556019
+  }
+ },
+ "factor_1_condition": false,
+ "factor_0_condition": false,
+ "Q_fc_check": [
+  100.16,
+  97.05,
+  95.71,
+  94.68,
+  93.79,
+  93.12,
+  92.68,
+  92.0
+ ]
+}
