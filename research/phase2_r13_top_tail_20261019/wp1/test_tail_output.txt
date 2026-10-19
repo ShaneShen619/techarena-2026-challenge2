@@ -1,0 +1,77 @@
+PASS  M1 parameters within 1 %  fit=[19.0, 289.9998] gen=[19.0, 290.0] max_rel=1.28e-06
+PASS  M1 admitted  rmse=2.71e-04 last_third=1.11e-05
+PASS  M1 C1 Q_tail within 0.01 Ah  gen=0.00000 fit=0.00000 diff=+0.00e+00
+PASS  M1 C2 Q_tail within 0.01 Ah  gen=0.08701 fit=0.08701 diff=-2.83e-08
+PASS  M1 C3 Q_tail within 0.01 Ah  gen=0.21026 fit=0.21026 diff=-1.15e-07
+PASS  M1 C4 Q_tail within 0.01 Ah  gen=0.25134 fit=0.25134 diff=-1.44e-07
+PASS  M1 C5 Q_tail within 0.01 Ah  gen=0.29184 fit=0.29184 diff=-1.70e-07
+PASS  M1 C6 Q_tail within 0.01 Ah  gen=0.29243 fit=0.29243 diff=-1.73e-07
+PASS  M1 C7 Q_tail within 0.01 Ah  gen=0.29243 fit=0.29243 diff=-1.73e-07
+PASS  M2 parameters within 1 %  fit=[1.9998, 16.0, 230.0111] gen=[2.0, 16.0, 230.0] max_rel=1.10e-04
+PASS  M2 admitted  rmse=2.85e-04 last_third=-1.20e-05
+PASS  M2 C1 Q_tail within 0.01 Ah  gen=0.00000 fit=0.00000 diff=+0.00e+00
+PASS  M2 C2 Q_tail within 0.01 Ah  gen=0.25568 fit=0.25564 diff=-4.42e-05
+PASS  M2 C3 undefined in both  
+PASS  M2 C4 undefined in both  
+PASS  M2 C5 Q_tail within 0.01 Ah  gen=1.12677 fit=1.12668 diff=-9.05e-05
+PASS  M2 C6 Q_tail within 0.01 Ah  gen=2.12682 fit=2.12662 diff=-2.00e-04
+PASS  M2 C7 Q_tail within 0.01 Ah  gen=4.12682 fit=4.12640 diff=-4.20e-04
+PASS  M3 parameters within 1 %  fit=[150.0002, 60.0008] gen=[150.0, 60.0] max_rel=1.28e-05
+PASS  M3 admitted  rmse=2.80e-04 last_third=-7.38e-05
+PASS  M3 C1 Q_tail within 0.01 Ah  gen=0.00000 fit=0.00000 diff=+0.00e+00
+PASS  M3 C2 Q_tail within 0.01 Ah  gen=2.96547 fit=2.96548 diff=+8.09e-06
+PASS  M3 C3 Q_tail within 0.01 Ah  gen=10.31841 fit=10.31844 diff=+2.58e-05
+PASS  M3 C4 Q_tail within 0.01 Ah  gen=22.57331 fit=22.57337 diff=+5.53e-05
+PASS  M3 C5 Q_tail within 0.01 Ah  gen=2.09464 fit=2.09464 diff=+1.81e-06
+PASS  M3 C6 Q_tail within 0.01 Ah  gen=3.42541 fit=3.42541 diff=+3.24e-06
+PASS  M3 C7 Q_tail within 0.01 Ah  gen=5.39495 fit=5.39495 diff=+5.48e-06
+PASS  M4 parameters within 1 %  fit=[9.0, 39.9988, 11.0001, 399.9958] gen=[9.0, 40.0, 11.0, 400.0] max_rel=3.11e-05
+PASS  M4 admitted  rmse=2.74e-04 last_third=-2.15e-05
+PASS  M4 C1 Q_tail within 0.01 Ah  gen=0.00000 fit=0.00000 diff=+0.00e+00
+PASS  M4 C2 Q_tail within 0.01 Ah  gen=0.08479 fit=0.08479 diff=-3.73e-06
+PASS  M4 C3 Q_tail within 0.01 Ah  gen=0.25479 fit=0.25479 diff=-5.50e-06
+PASS  M4 C4 Q_tail within 0.01 Ah  gen=0.31146 fit=0.31145 diff=-6.09e-06
+PASS  M4 C5 Q_tail within 0.01 Ah  gen=0.36404 fit=0.36403 diff=-6.42e-06
+PASS  M4 C6 Q_tail within 0.01 Ah  gen=0.36808 fit=0.36807 diff=-6.68e-06
+PASS  M4 C7 Q_tail within 0.01 Ah  gen=0.36813 fit=0.36812 diff=-6.68e-06
+PASS  M2-undefined parameters within 1 %  [4.2002, 14.9998, 179.9931]
+PASS  M2-undefined C2 undefined  
+PASS  M2-undefined C3 undefined  
+PASS  M2-undefined C4 undefined  
+PASS  M2-undefined C5 defined, within 0.01 Ah  gen=2.15211 fit=2.15222
+PASS  M2-undefined C6 defined, within 0.01 Ah  gen=4.25211 fit=4.25234
+PASS  M2-undefined C7 defined, within 0.01 Ah  gen=8.45211 fit=8.45258
+PASS  M2 generator with Iinf = 2.0 is defined at C2 and undefined at C3/C4  
+PASS  M1 integral [0,480] closed form = quad  diff=+0.0e+00 Ah
+PASS  M1 integral [480,2280] closed form = quad  diff=+0.0e+00 Ah
+PASS  M1 integral [480,7680] closed form = quad  diff=+6.3e-17 Ah
+PASS  M1 I(t_cut(2.55)) = 2.55  t_cut=582.4 s
+PASS  M1 I(t_cut(1.02)) = 1.02  t_cut=848.1 s
+PASS  M1 I(t_cut(0.51)) = 0.51  t_cut=1049.2 s
+PASS  M2 integral [0,480] closed form = quad  diff=+2.5e-16 Ah
+PASS  M2 integral [480,2280] closed form = quad  diff=+0.0e+00 Ah
+PASS  M2 integral [480,7680] closed form = quad  diff=+1.0e-15 Ah
+PASS  M2 I(t_cut(2.55)) = 2.55  t_cut=775.2 s
+PASS  M3 integral [0,480] closed form = quad  diff=-2.5e-16 Ah
+PASS  M3 integral [480,2280] closed form = quad  diff=+0.0e+00 Ah
+PASS  M3 integral [480,7680] closed form = quad  diff=+1.0e-15 Ah
+PASS  M3 I(t_cut(2.55)) = 2.55  t_cut=3400.2 s
+PASS  M3 I(t_cut(1.02)) = 1.02  t_cut=21566.3 s
+PASS  M3 I(t_cut(0.51)) = 0.51  t_cut=86445.2 s
+PASS  M4 integral [0,480] closed form = quad  diff=-1.3e-16 Ah
+PASS  M4 integral [480,2280] closed form = quad  diff=+0.0e+00 Ah
+PASS  M4 integral [480,7680] closed form = quad  diff=+0.0e+00 Ah
+PASS  M4 I(t_cut(2.55)) = 2.55  t_cut=584.7 s
+PASS  M4 I(t_cut(1.02)) = 1.02  t_cut=951.2 s
+PASS  M4 I(t_cut(0.51)) = 0.51  t_cut=1228.5 s
+PASS  Theil-Sen slope and LOO exact  0.05 [0.05, 0.05]
+PASS  Theil-Sen robust to one outlier  0.05
+PASS  decide O1  -> O1 tail drift small env=0.1804
+PASS  decide O2  -> O2 tail drift material env=0.246
+PASS  decide O3-inconclusive  -> O3 inconclusive env=0.205
+PASS  decide O3-not-identifiable  -> O3 not identifiable env=0.41
+PASS  decide O3-LOO-wide  -> O3 inconclusive env=0.082
+PASS  decide O2 d_tail = median without C1  0.02
+PASS  decide envelope boundary 0.30 is identifiable  
+
+0 failures

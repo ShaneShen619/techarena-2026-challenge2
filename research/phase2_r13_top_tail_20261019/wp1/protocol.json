@@ -1,0 +1,149 @@
+{
+ "round": 13,
+ "title": "Top-of-charge drift bound: how much can the anchor's CV tail move eps?",
+ "registered": "2026-10-19, before any tail fit or top-state estimate on challenge data",
+ "base_commit": "6525edf",
+ "implementation": "src/tail.py (all fitting, integration, slopes, top-state and decision logic); src/test_tail.py (synthetic tests only)",
+ "no_proxy_rule": "No rule, statistic or output of this round uses P_k, any proxy label or any proxy error. The submission is never changed.",
+
+ "data": {
+  "catalogue": "wp0/cv_catalogue.csv (src/wp0_catalogue.py): 41 full charges, 8 anchors (type A) and 33 top-ups (type T)",
+  "cv_phase": "samples from the CV start (first sample with pack >= 13.95 V and I < 19.9 A) to the CV end (last sample of the charge step, I ~ 5.1 A), inclusive",
+  "time_origin": "t = elapsed_s - elapsed_s(CV start), in seconds",
+  "t_end": "t at the CV end (observed); the anchor's CV end and its 5.1 A point",
+  "I_end": "observed current at the CV end",
+  "anchors_used": [1, 2, 3, 4, 5, 6, 7],
+  "anchor_excluded": {"0": "45 C, 37 s / 5-sample CV phase (prompt: excluded)"},
+  "reference_anchor": 1,
+  "fade": {
+   "definition": "fade_k = Q_fc,1 - Q_fc,k",
+   "Q_fc_source": "sources/r11_wp4_pack_drivers.csv column Q_fc (round 11's integral of the anchor charge), anchors 1..7",
+   "fade_CK0_to_CK7_Ah": 8.2,
+   "effect_at_CK7": "d * 8.2 Ah"
+  }
+ },
+
+ "models": {
+  "M1": {"formula": "I = A*exp(-t/tau)", "params": ["A", "tau"], "bounds": {"A": [0, 1e4], "tau": [1, 1e6]},
+         "starts": "A = I(0); tau in {100, 300, 1000} s"},
+  "M2": {"formula": "I = Iinf + A*exp(-t/tau)", "params": ["Iinf", "A", "tau"],
+         "bounds": {"Iinf": [0, "I_end"], "A": [0, 1e4], "tau": [1, 1e6]},
+         "starts": "Iinf in {0, 0.5*I_end, 0.9*I_end}; A = I(0) - Iinf; tau in {50, 150, 400} s"},
+  "M3": {"formula": "I = A*(t + t0)^(-1/2)", "params": ["A", "t0"], "bounds": {"A": [0, 1e6], "t0": [0, 1e7]},
+         "starts": "t0 in {1, 30, 300, 3000} s; A = I(0)*sqrt(t0)",
+         "numerics": "t + t0 floored at 1e-9 s"},
+  "M4": {"formula": "I = A1*exp(-t/tau1) + A2*exp(-t/tau2), tau2 >= 3*tau1",
+         "params": ["A1", "tau1", "A2", "tau2"],
+         "parametrisation": "fit (A1, tau1, A2, delta) with tau2 = 3*tau1 + delta, delta >= 0, so the constraint is a box bound",
+         "bounds": {"A1": [0, 1e4], "tau1": [1, 1e5], "A2": [0, 1e4], "delta": [0, 1e6]},
+         "starts": "tau1 in {10, 30, 100} s; tau2/tau1 in {3, 10, 30}; A1 = f*I(0), A2 = (1-f)*I(0), f in {0.3, 0.5, 0.7}"},
+  "solver": "scipy.optimize.least_squares, method 'trf', x_scale 'jac', ftol = xtol = gtol = 1e-12, max_nfev 20000 per start; residual = I_model - I_obs (A), unweighted; the start with the lowest cost wins",
+  "amplitudes_nonnegative": "all amplitudes >= 0, so every model current is non-increasing in t and the cutoff time is unique"
+ },
+
+ "admission": {
+  "rmse": "RMSE over all CV samples <= 0.15 A",
+  "last_third": "|mean residual over samples with t >= (2/3)*t_end| <= 0.10 A",
+  "rule": "a (charge, model) pair is admitted when both hold and the fit converged; non-admitted pairs are reported"
+ },
+
+ "scenarios": {
+  "C1": {"kind": "same termination as the anchor (5.1 A)", "Q_tail": 0.0},
+  "C2": {"kind": "current cutoff", "I_cut_A": 2.55},
+  "C3": {"kind": "current cutoff", "I_cut_A": 1.02},
+  "C4": {"kind": "current cutoff", "I_cut_A": 0.51},
+  "C5": {"kind": "CV hold beyond t_end", "hold_min": 30},
+  "C6": {"kind": "CV hold beyond t_end", "hold_min": 60},
+  "C7": {"kind": "CV hold beyond t_end", "hold_min": 120},
+  "integral": "Q_tail(k; M, C) = integral of I_M from t_end to the scenario end, in Ah; closed forms for M1-M4 (M4 cutoff time by bracketing + brentq)",
+  "cutoff_end": "the scenario end is t_c >= t_end with I_M(t_c) = I_cut; if I_M(t_end) <= I_cut then Q_tail = 0",
+  "undefined": "a current cutoff that the model never reaches (M2 with Iinf >= I_cut) is 'undefined'; it is recorded, and that model is used through C5-C7"
+ },
+
+ "tail_drift": {
+  "delta": "Delta_tail(k; M, C) = Q_tail(k) - Q_tail(1), k = 2..7",
+  "anchor_requirement": "a (M, C) pair needs anchor 1 admitted and defined (it is the reference) and at least 5 of the 6 anchors k = 2..7 admitted and defined; non-admitted or undefined anchors are dropped",
+  "slope": "d_tail(M, C) = Theil-Sen slope (scipy.stats.theilslopes, median of pairwise slopes) of Delta_tail(k) against fade_k over the usable anchors in k = 1..7, where anchor 1 enters as the point (fade 0, Delta 0); this equals the Theil-Sen slope of Q_tail(k) against fade_k",
+  "loo": "leave-one-anchor-out: drop each usable anchor in turn (anchor 1 included; dropping it is a re-reference that leaves pairwise slopes unchanged) and refit; LOO range = [min, max] of those slopes",
+  "reported_sensitivity": "d over all admitted and defined anchors without the anchor-1 requirement (not used in the decision)"
+ },
+
+ "top_state": {
+  "T2": {
+   "definition": "Delta F^A_V(k) = (V30_k - V30_1) / s_top; contribution Delta eps_T2(k) = -Delta F^A_V(k)",
+   "V30": "pack voltage at the last rest sample before the 20 A pulse (+1800-1801 s after the CV end), from wp0/cv_catalogue.csv",
+   "s_top": "s_top = -(least-squares slope of pack voltage against discharged Ah) on the CK0 C/20 curve (data/checkups/CK0_reference_discharge.csv.gz) over discharged Ah in the window; positive, in V per Ah of charge content",
+   "main_window_Ah": [0.5, 2.0],
+   "sensitivity_windows_Ah": [[0.25, 1.0], [1.0, 3.0]],
+   "per_cell": "same with each cell's V30 and that cell's CK0 slope; report the highest cell at each anchor's top (CV end and +30 min)",
+   "member_of_A": "pack, main window only"
+  },
+  "T3": {
+   "definition": "Delta F^A_R(k) = -5.1 * (R_k - R_1) / s_top (main window); contribution Delta eps_T3(k) = -Delta F^A_R(k)",
+   "R": "pack pulse resistance at the top = sum of round 8's per-cell R_pulse_mOhm (wp0/cv_catalogue.csv R_pulse_mOhm_r8_pack), in ohm",
+   "role": "consistency check only; not a member of A"
+  },
+  "slopes": "d_T2, d_T3 = Theil-Sen slope of Delta eps_T(k) against fade_k over k = 1..7 (anchor 1 at the origin), with the same LOO range"
+ },
+
+ "topups": {
+  "fit": "M1-M4 with the same solver and admission rules on every top-up (and anchor 0); all reported in wp2/fits.csv",
+  "monthly_series": "25 C top-ups only; month k = the anchor index of the same 25 C segment (segment 2 -> 1, ..., 14 -> 7); Q_tail(month k; M, C) = median over that month's admitted, defined 25 C top-ups",
+  "role": "cross-check only; not used in the decision (top-ups differ in path)",
+  "reported": "Theil-Sen slope of the monthly medians against fade_k, k = 1..7, labelled descriptive"
+ },
+
+ "ck0_comparison": {
+  "compare": "CK0 first C/20 sample (per-cell V under 5.1 A) vs each anchor's per-cell V at the CV end (and at +30 min) vs per-cell V at the first 10 s sample of the 20 A pulse after the 30 min rest (the step-start row that repeats the rest timestamp is skipped)",
+  "report": "which cell is highest (limits the top) in each case",
+  "role": "descriptive, not gating"
+ },
+
+ "decision_rules_verbatim": [
+  "Admitted set A = all (M, C) pairs with at least 5 of the 6 anchors k = 2..7 admitted and defined, plus T2 (main window), plus C1 (≡ 0).",
+  "Envelope = max − min over A of the median d·8.2 Ah.",
+  "Identifiability: envelope ≤ 0.30 Ah. Otherwise the outcome is O3 \"not identifiable\": report the envelope and exit WP3 after writing the result.",
+  "O1 \"tail drift small\": every member of A has |median d·8.2| ≤ 0.10 Ah, and every LOO range lies within ±0.15 Ah. This closes the tail part. SUB is unchanged, and the top-tail motivation for P_drift is removed.",
+  "O2 \"tail drift material\": identifiable, all members of A except C1 have the same sign, and their median |d·8.2| > 0.10 Ah. Candidate \"SUB + d_tail\" (d_tail = median over A without C1) is leaderboard-only.",
+  "O3 \"inconclusive\": any other case.",
+  "No rule uses P_k or proxy errors."
+ ],
+ "decision_implementation": {
+  "pairs": "(M, C) for M in M1..M4 and C in C2..C7 (24 candidates); C1 enters A once, as a single member with d = 0 and LOO range [0, 0]",
+  "median_d": "the Theil-Sen slope of a member (itself the median of pairwise slopes); 'median d*8.2' = slope * 8.2 Ah",
+  "loo_range": "a member's LOO slopes * 8.2 Ah; 'within +-0.15 Ah' means min >= -0.15 and max <= +0.15",
+  "envelope": "max - min over A (C1 and T2 included) of slope * 8.2",
+  "order": "1) envelope > 0.30 -> O3 'not identifiable'; 2) O1 test; 3) O2 test; 4) otherwise O3 'inconclusive'",
+  "O2_median": "median over members of A except C1 of |slope * 8.2|",
+  "same_sign": "all members of A except C1 strictly positive, or all strictly negative",
+  "d_tail": "median over A without C1 of the slope (Ah/Ah)",
+  "comparisons": "values rounded to 1e-9 before comparing to thresholds"
+ },
+
+ "wp3_variants": {
+  "function": "sources/r11_drift.py add_drift: Q' = Q + d * max(0, 100.41 - Q), applied to wp0/SUB_SOH.csv",
+  "d_values": {"d_min": "min over A of the slope (C1 and T2 included)", "d_median": "median over A without C1 (= d_tail)", "d_max": "max over A of the slope"},
+  "role": "leaderboard-only; never scored against proxies; written under every outcome"
+ },
+
+ "reported_quantities": [
+  "per anchor and model: fitted parameters, RMSE, last-third mean residual, admission",
+  "M1 back-of-envelope: I_end * tau_M1 (Ah) for anchors 1 and 7, and whether M1 passes admission for them",
+  "per (k, M, C): Q_tail and Delta_tail; undefined pairs listed",
+  "T2 per window (pack and per cell) and T3; d_T2, d_T3 with LOO ranges",
+  "top-up monthly medians (descriptive)",
+  "CK0 vs anchor top cell comparison (descriptive)"
+ ],
+
+ "synthetic_tests": {
+  "grid": "10 s sampling, t in [0, 480] s (49 samples), currents rounded to 1 mA like the data",
+  "generators": {
+   "M1": {"A": 19.0, "tau": 290.0},
+   "M2": {"Iinf": 2.0, "A": 16.0, "tau": 230.0},
+   "M3": {"A": 150.0, "t0": 60.0},
+   "M4": {"A1": 9.0, "tau1": 40.0, "A2": 11.0, "tau2": 400.0},
+   "M2_undefined_case": {"Iinf": 4.2, "A": 15.0, "tau": 180.0}
+  },
+  "pass": "each model fitted to its own trace: every parameter within 1 % (relative) of the generator, admitted, and Q_tail within 0.01 Ah of the generator's exact Q_tail for C2-C7 where defined; the M2 case with Iinf >= I_cut is reported undefined for those cutoffs; closed-form integrals match numerical quadrature to 1e-6 Ah; Theil-Sen + LOO recover a known linear slope exactly; the decision function returns the expected outcome on hand-made O1, O2, O3 and not-identifiable inputs"
+ }
+}
