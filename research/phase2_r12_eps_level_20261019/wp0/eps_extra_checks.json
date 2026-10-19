@@ -1,0 +1,48 @@
+{
+ "eps0.4_reproduces_SUB": true,
+ "CK1_unchanged": true,
+ "nominal_pp_per_Ah": 0.9804,
+ "CK3_CK7_slopes": {
+  "CK3": 0.9815,
+  "CK4": 0.98,
+  "CK5": 0.98,
+  "CK6": 0.98,
+  "CK7": 0.98
+ },
+ "CK3_CK7_at_nominal_within_rounding": true,
+ "CK2_slope": 1.4465,
+ "CK2_expected_sqrt_branch": 1.4465,
+ "CK2_te_days_45eq": {
+  "CK1": 22.626,
+  "CK2": 49.252
+ },
+ "unrounded_slopes_pp_per_Ah": {
+  "CK1": 0.0,
+  "CK2": 1.446454,
+  "CK3": 0.980392,
+  "CK4": 0.980392,
+  "CK5": 0.980392,
+  "CK6": 0.980392,
+  "CK7": 0.980392
+ },
+ "variant_diffs": {
+  "0.0": [
+   "-EPS_EXTRA_AH = 0.4          # 25 degC anchor offset beyond EPS0 (assumption)",
+   "+EPS_EXTRA_AH = 0.0          # 25 degC anchor offset beyond EPS0 (assumption)"
+  ],
+  "0.2": [
+   "-EPS_EXTRA_AH = 0.4          # 25 degC anchor offset beyond EPS0 (assumption)",
+   "+EPS_EXTRA_AH = 0.2          # 25 degC anchor offset beyond EPS0 (assumption)"
+  ],
+  "0.4": [],
+  "0.6": [
+   "-EPS_EXTRA_AH = 0.4          # 25 degC anchor offset beyond EPS0 (assumption)",
+   "+EPS_EXTRA_AH = 0.6          # 25 degC anchor offset beyond EPS0 (assumption)"
+  ],
+  "0.8": [
+   "-EPS_EXTRA_AH = 0.4          # 25 degC anchor offset beyond EPS0 (assumption)",
+   "+EPS_EXTRA_AH = 0.8          # 25 degC anchor offset beyond EPS0 (assumption)"
+  ]
+ },
+ "note": "outputs are rounded to 0.001 pp by run_model.py; slope = OLS over the five EPS_EXTRA values"
+}
