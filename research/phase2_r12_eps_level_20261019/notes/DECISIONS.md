@@ -76,3 +76,5 @@
 - D34 (WP3): E2 is computed for all five switches. None of the ten programs involved starts at an anchor CV end. r_45 uses all four deep programs of each 45 °C segment, per step-value type.
 - D35 (WP3): E3 is non-informative. The CK0 C/20 curve falls 330 mV in the first 1 Ah and then is flat or slightly rising, so s on [1.0, 3.0] Ah is negative (−1.4 mV/Ah). Term2_E3's interval is therefore unbounded below. This is reported as is; E3 is non-gating.
 - D36 (WP3): `wp3_top.png` shows the exploratory time-matched-λ values as hollow markers labelled "not registered". `T_top.json` keeps the registered result (`T_top`, `terms`, `gates`) apart from the descriptive and exploratory blocks.
+- D37 (WP3): the registered pair rule tests checkup *dates*. E04–E05 lies inside segment 1, but CK1's date (2025-02-08 00:00) falls between them, because segment 1 runs on until 15:35 that day. The pair is therefore not used, and segment 1's λ rests on 2 TT pairs. Applied as registered.
+- D38 (WP3): commit order. The E1 and E2/E3 outputs (58566c5, c3bb7c7) were committed before `src/wp3_run.py`, which went into the T_top commit 0d0c11f. All of them come after the protocol (b3f3e7a).
