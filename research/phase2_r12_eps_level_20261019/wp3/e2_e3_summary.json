@@ -1,0 +1,38 @@
+{
+ "s_windows": {
+  "(0.5, 2.0)": 0.022262317918465096,
+  "(0.25, 1.0)": 0.14799835585100293,
+  "(1.0, 3.0)": -0.0014117047268708647
+ },
+ "dUdT_assumption_mV_per_K_per_cell": 0.3,
+ "anchor0_top_cell": {
+  "cv_end": "cell3",
+  "prepulse": "cell3"
+ },
+ "top_cell_by_setpoint": {
+  "25": {
+   "cv_end": {
+    "cell3": 16
+   },
+   "prepulse": {
+    "cell3": 16
+   }
+  },
+  "45": {
+   "cv_end": {
+    "cell3": 25
+   },
+   "prepulse": {
+    "cell3": 25
+   }
+  }
+ },
+ "median_J_A3": 0.3192065668086636,
+ "median_J_DL1": 0.7051603223591062,
+ "median_Term2": 0.616454,
+ "median_Term2_E3": 2.7400560994326897,
+ "median_Term2_E3_interval": [
+  -60.15988923423695,
+  3.8148767936495007
+ ]
+}
