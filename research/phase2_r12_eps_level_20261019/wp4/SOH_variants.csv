@@ -1,0 +1,6 @@
+variant,description,CK0,CK1,CK2,CK3,CK4,CK5,CK6,CK7,dCK1_pp,dCK2_pp,dCK3_pp,dCK4_pp,dCK5_pp,dCK6_pp,dCK7_pp,leaderboard_only
+SUB,submission at base 6525edf (package itself),98.441,95.984,94.507,93.6,92.821,92.015,91.426,90.765,0.0,0.0,0.0,0.0,0.0,0.0,0.0,False
+SUB_eps_point,EPS_EXTRA_AH = 4.483 (budget point),98.441,95.984,100.413,97.603,96.824,96.018,95.429,94.768,0.0,5.906,4.003,4.003,4.003,4.003,4.003,True
+SUB_eps_lo,EPS_EXTRA_AH = 2.347 (budget lower end),98.441,95.984,97.324,95.509,94.73,93.924,93.335,92.674,0.0,2.817,1.909,1.909,1.909,1.909,1.909,True
+SUB_eps_hi,EPS_EXTRA_AH = 6.338 (budget upper end),98.441,95.984,103.096,99.422,98.642,97.837,97.248,96.587,0.0,8.589,5.822,5.821,5.822,5.822,5.822,True
+SUB_A3fix,anchor 3 Q_fc − a_3^rel (0.3047 Ah),98.441,95.984,94.507,93.6,92.461,91.987,91.41,90.75,0.0,0.0,0.0,-0.36,-0.028,-0.016,-0.015,True

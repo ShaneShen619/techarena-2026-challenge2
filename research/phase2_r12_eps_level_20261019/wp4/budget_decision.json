@@ -1,0 +1,71 @@
+{
+ "protocol": "v1 (wp1/protocol.sha256)",
+ "T_top": {
+  "point": 1.1082231,
+  "interval": [
+   0.6023036662274697,
+   1.6156425337725302
+  ],
+  "status": "not identified (G_T)"
+ },
+ "a0": {
+  "point": 3.374494766369036,
+  "interval": [
+   1.744921877200845,
+   4.722164293323209
+  ],
+  "status": "not identified"
+ },
+ "EPS_EXTRA_hat": {
+  "point": 4.482717866369036,
+  "interval": [
+   2.3472255434283147,
+   6.337806827095739
+  ],
+  "width": 3.9905812836674244,
+  "note": "interval endpoints add; non-identified components enter with their full intervals"
+ },
+ "decision": {
+  "level": "L3",
+  "reason": "width 3.991 Ah > 0.50 Ah; 0.4 outside the interval; G_SB failed (blocks L2)",
+  "contains_0p4": false,
+  "G_noise_passed": true,
+  "G_SB_failed": true,
+  "action": "keep SUB"
+ },
+ "anchor3_rule": {
+  "G_a3_identified": true,
+  "a3_rel": 0.3047028157489251,
+  "candidate": "SUB_A3fix (leaderboard-only, not wired)"
+ },
+ "exploratory_not_registered": {
+  "T_top_time_matched_lambda": 0.676729942517272,
+  "a0_with_h1_from_anchor0": {
+   "A3": -0.5087413888878629,
+   "DL1": -0.3071350074770365
+  },
+  "note": "not a decision input. h1_0 still carries the first-program offset (exposed: D1 reads 0.39-0.46 Ah deeper), which lowers these a_0 values by about that amount."
+ },
+ "variant_diffs": {
+  "SUB_eps_point": [
+   "-EPS_EXTRA_AH = 0.4          # 25 degC anchor offset beyond EPS0 (assumption)",
+   "+EPS_EXTRA_AH = 4.483        # research copy (round 12 WP4), not wired"
+  ],
+  "SUB_eps_lo": [
+   "-EPS_EXTRA_AH = 0.4          # 25 degC anchor offset beyond EPS0 (assumption)",
+   "+EPS_EXTRA_AH = 2.347        # research copy (round 12 WP4), not wired"
+  ],
+  "SUB_eps_hi": [
+   "-EPS_EXTRA_AH = 0.4          # 25 degC anchor offset beyond EPS0 (assumption)",
+   "+EPS_EXTRA_AH = 6.338        # research copy (round 12 WP4), not wired"
+  ],
+  "SUB_A3fix": [
+   "+    top = _charge_step_to_top(seg, i, ah, start, end, q)",
+   "+    if int(seg[\"segment\"].iloc[0]) == 6:   # research copy (round 12 WP4): anchor-3 bottom correction a_3^rel",
+   "+        q = q - 0.3047",
+   "-        \"top\": _charge_step_to_top(seg, i, ah, start, end, q),",
+   "+        \"top\": top,"
+  ]
+ },
+ "SOH_variants_file": "wp4/SOH_variants.csv (leaderboard-only; never scored against proxies)"
+}
