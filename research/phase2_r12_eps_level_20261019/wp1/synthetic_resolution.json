@@ -1,0 +1,111 @@
+{
+ "clean": {
+  "charge_max_abs_err_Ah": {
+   "CL1": 0.002,
+   "CL2": 0.0011,
+   "CL3": 0.002,
+   "CL4": 0.0016,
+   "CL5": 0.002,
+   "cell_median": 0.0014
+  },
+  "charge_median_abs_err_Ah": {
+   "CL1": 0.0008,
+   "CL2": 0.0004,
+   "CL3": 0.0007,
+   "CL4": 0.0004,
+   "CL5": 0.0007,
+   "cell_median": 0.0002
+  },
+  "discharge_max_abs_err_Ah": {
+   "DL1": 0.0,
+   "DL2": 0.0,
+   "DL3": 0.0,
+   "DL4": 0.0,
+   "DL5": 0.0,
+   "cell_median": 0.0
+  },
+  "discharge_median_abs_err_Ah": {
+   "DL1": 0.0,
+   "DL2": 0.0,
+   "DL3": 0.0,
+   "DL4": 0.0,
+   "DL5": 0.0,
+   "cell_median": 0.0
+  },
+  "program_dl1_max_abs_err_Ah": 0.0005,
+  "program_dl1_median_abs_err_Ah": 0.0004
+ },
+ "quantised_1mV": {
+  "charge_max_abs_err_Ah": {
+   "CL1": 0.574,
+   "CL2": 0.2568,
+   "CL3": 0.3201,
+   "CL4": 0.089,
+   "CL5": 0.2023,
+   "cell_median": 0.2023
+  },
+  "charge_median_abs_err_Ah": {
+   "CL1": 0.07,
+   "CL2": 0.0863,
+   "CL3": 0.1196,
+   "CL4": 0.0243,
+   "CL5": 0.0243,
+   "cell_median": 0.0243
+  },
+  "discharge_max_abs_err_Ah": {
+   "DL1": 0.402,
+   "DL2": 0.91,
+   "DL3": 0.677,
+   "DL4": 0.0859,
+   "DL5": 0.0859,
+   "cell_median": 0.402
+  },
+  "discharge_median_abs_err_Ah": {
+   "DL1": 0.102,
+   "DL2": 0.1,
+   "DL3": 0.127,
+   "DL4": 0.0373,
+   "DL5": 0.0373,
+   "cell_median": 0.0373
+  },
+  "program_dl1_max_abs_err_Ah": 0.385,
+  "program_dl1_median_abs_err_Ah": 0.115
+ },
+ "quantised_1mV_noise_0.5mV": {
+  "charge_max_abs_err_Ah": {
+   "CL1": 0.561,
+   "CL2": 1.3412,
+   "CL3": 0.7722,
+   "CL4": 0.2833,
+   "CL5": 0.1937,
+   "cell_median": 0.2988
+  },
+  "charge_median_abs_err_Ah": {
+   "CL1": 0.158,
+   "CL2": 0.2101,
+   "CL3": 0.1609,
+   "CL4": 0.0243,
+   "CL5": 0.0243,
+   "cell_median": 0.0243
+  },
+  "discharge_max_abs_err_Ah": {
+   "DL1": 0.4462,
+   "DL2": 0.6743,
+   "DL3": 0.4905,
+   "DL4": 0.2843,
+   "DL5": 0.2843,
+   "cell_median": 0.2843
+  },
+  "discharge_median_abs_err_Ah": {
+   "DL1": 0.127,
+   "DL2": 0.1534,
+   "DL3": 0.1313,
+   "DL4": 0.0996,
+   "DL5": 0.0996,
+   "cell_median": 0.0902
+  },
+  "program_dl1_max_abs_err_Ah": 0.5,
+  "program_dl1_median_abs_err_Ah": 0.128
+ },
+ "note": "synthetic symmetric tanh steps (w 1.0-2.5 Ah, height 24-36 mV) on a linear slope, single cell; charge 20.4 A/10 s, C/20 5.1 A/1 s, program 10 A/10 s; seeds 0-2; no challenge data"
+}

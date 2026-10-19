@@ -15,3 +15,49 @@
   - Counters "at both ends": at the sample before the charge's first sample, and at the CV end.
 - D8 (WP0): CK2's checkup window is reported as an upper bound (CK2 date 00:00 → segment 4 start), because the end of segment 3 is not visible.
 - D9 (WP0): segment 6 has two in-segment recording gaps (3.65 h, 16.64 h) and segment 14 has one (0.49 h). All three lie inside the AT pairs of anchors 3 and 7, and the counters stay flat across them (the profile paused). WP1 registers WP3's pair rule unchanged (dt > 60 s → excluded, the only exception being the chamber-switch idle with flat counters), with no new exception. Consequences: Term3 has no admissible pair for k = 3 or k = 7, and the main Term3 estimate coincides with the "exclude k = 3" sensitivity.
+- D10 (WP1): dV/dQ locators (CL1–CL3, DL1–DL3, program DL1).
+  - The "2 Ah moving average" is a centred average over 2·round(W/(2·0.05)) + 1 grid points (41 / 21 / 61 points for 2 / 1 / 3 Ah). An odd count avoids the half-sample shift that an even `np.convolve(..., "same")` window would add.
+  - The grid consists of multiples of 0.05 Ah. It spans the window plus the smoothing half-width plus 3 points, and the data must cover it, else NaN.
+  - The window is open. A maximum on the first or last window point, or a non-strict maximum, gives NaN. These are not located steps.
+- D11 (WP1): midpoint variants (CL4/CL5, DL4/DL5).
+  - The plateau medians are taken over raw samples, with ≥ 5 per plateau (package `STEP_MIN_PLATEAU_SAMPLES`).
+  - The crossing is the first crossing in the step direction among samples with q in [s − a, s + a], i.e. between the plateaus' inner edges. It is interpolated linearly with the preceding sample.
+- D12 (WP1): the prompt fixes "≥ 4 finite variants per cell" but not how many cells a pack value needs. Registered: ≥ 3 finite cells, else NaN. This is conservative: no single-cell or two-cell values.
+- D13 (WP1): t_k = days from the CK0 date (2025-01-14 00:00) to the anchor's charge start. Theil–Sen intercept = median(y − b·x).
+- D14 (WP1): G_SB's "|residual|" uses the leave-one-out residuals, the same ones that define σ_LOO. This is the stricter reading: an outlier cannot hide inside its own fit.
+- D15 (WP1): G_a3's per-locator a_3^rel is the locator's pack value minus that locator's own Theil–Sen trend over the relaxed anchors. A NaN locator does not count as same-sign.
+- D16 (WP1): DL "mirrored" search window. The charge window (50–80 Ah from the charge start, i.e. from the bottom) is mirrored to 50–80 Ah before the end of the C/20 discharge: D_top ∈ (100.41 − 80, 100.41 − 50). The plateau order is mirrored, and the crossing is downward.
+- D17 (WP1): D1/D2 step values.
+  - A3 is the package `_robust_step` via `_step_depths`, unchanged.
+  - DL1 on programs uses the package's deep-program definition (stop at 2 Ah of recharge, ≥ 50 Ah depth, band −12.5 < I < −8 A, ≥ 50 band samples) and the package's dV/dQ window (22, 42) Ah below the CV end, on the 0.05 Ah sub-grid.
+- D18 (WP1): h.
+  - The point is the median of the four finite medians {h1, h2} × {A3, DL1}.
+  - A median over k needs ≥ 3 finite anchors, else NaN.
+  - h2_k needs an admissible AT pair (the WP3 gap rule). Its F^T2 − F^A_k is exactly Term3_k from `ahchain.terms`.
+- D19 (WP1): the a_0 interval's "(D_bot − C_bot) over the locator variants" uses the mirrored pairs (DLi, CLi), i = 1..5, plus the combined value. Pairing like with like keeps definition offsets out of the interval. The 5 × 5 cross range is reported descriptively.
+- D20 (WP1): loss rule.
+  - "Fewer than 2 TT pairs overall" is counted on the full set of admissible TT pairs.
+  - The leave-one-out residual removes only the held-out pair from the median it uses.
+  - A 25 °C segment without TT pairs therefore uses the other 25 °C TT pairs whenever the set point has ≥ 2 overall.
+- D21 (WP1): "min/max over the λ sensitivities".
+  - Only Term2 has registered λ sensitivities (λ̄, λ_25 alone, λ_45 alone). Term1 and Term3 use the rule's λ only, plus ±2·SE.
+  - Pooled-λ alternatives for Term1/Term3 are reported descriptively and do not enter the interval. This is "exactly as specified", with no added widening.
+- D22 (WP1): order of the WP3 gates: G_noise (exit) → term intervals → G_E2 widening → T_top interval → G_T. If median_j J_dvdq is NaN, G_E2 is "not evaluable" and nothing is widened.
+- D23 (WP1): E2.
+  - r_45 is fitted to all deep programs of that 45 °C segment, per step-value type (A3 or DL1), against CV-end time.
+  - Δt runs between the two programs' CV ends.
+  - J is NaN if either program is the first after an anchor or is not a deep program.
+- D24 (WP1): E3.
+  - **dU/dT.** No cited LFP/graphite full-cell high-SOC dU/dT is available offline (no downloads this round). The repository's literature review (`phase2_literature_refresh_20261016/03_新文献综述.md`) quotes only electrode-level magnitudes (graphite ~±0.2, LFP ~±0.1 mV/K; Spingler et al. 2020). The prompt's fallback ±0.3 mV/K per cell is therefore used and labelled an assumption.
+  - ΔT is the measured temp_mean_C difference at the same two samples.
+  - s is the OLS slope of pack voltage vs charge content, > 0.
+  - The point uses dU/dT = 0 and the main window.
+- D25 (WP1): synthetic tests.
+  - The 0.02 Ah step requirement is tested on clean (unquantised) curves. There every variant recovers sub-grid step positions within 0.002 Ah.
+  - Under 1 mV quantisation the dV/dQ variants of the prescribed method err by up to 0.26–1.34 Ah (median 0.07–0.21 Ah), because a broad dV/dQ peak is flat at its top. The midpoint variants and the cell median do better: median error 0.02–0.10 Ah. See `wp1/synthetic_resolution.json`.
+  - This is a property of the registered method, not of the implementation. It is reported and does not enter any gate. The data's own scatter enters through σ_LOO.
+- D26 (WP1): budget operationalisation.
+  - Interval width = hi − lo.
+  - If T_top is unmeasured (G_noise failed) or a_0 has no finite interval, the budget is L3.
+  - SUB_L uses the point rounded to the nearest 0.05 Ah.
+- D27 (WP1): `ahchain.segment_arrays` treats the counter columns as optional (NaN if absent). Only synthetic test frames lack them. The change was made before registration.

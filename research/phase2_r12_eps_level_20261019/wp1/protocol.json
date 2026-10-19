@@ -1,0 +1,298 @@
+{
+ "round": 12,
+ "protocol_version": 1,
+ "written": "2026-10-19",
+ "branch": "exp/phase2-r12-eps-level-20261019",
+ "base_commit": "6525edf",
+ "status": "registered in WP1, committed before any WP2 or WP3 output; no value computed on challenge data",
+ "registered_code": [
+  "src/locators.py",
+  "src/ahchain.py",
+  "src/test_registered.py",
+  "src/wp1_protocol.py"
+ ],
+ "change_rule": "WP2 and WP3 import src/locators.py and src/ahchain.py unchanged. Any later change is a new registered version: reason in notes/DECISIONS.md, new protocol hash committed, results computed before it labelled.",
+ "proxy_rule": "No rule, gate or estimate in this protocol uses the Challenge 2 proxy labels P_k or any proxy error.",
+ "definitions_section2_verbatim": [
+  "**How the submission SUB uses ε.** SUB is `my_model/model_template.py` at the base commit.",
+  "- Every prediction built on a 25 °C anchor uses `q_anchor = Q_fc,k + ε0 + EPS_EXTRA_AH`.",
+  "  - ε0 = 100.41 − Q_fc,0 = 0.288 Ah comes from the 45 °C anchor 0.",
+  "  - `EPS_EXTRA_AH = 0.4` is an **assumption** (registered range {0, 0.4, 0.8} since the first anchor study).",
+  "- This moves CK2–CK7 together: 1 Ah of EPS_EXTRA = 0.98 pp. CK1 is built on CK0 = 100.41 directly and does not use it.",
+  "- The proxies are P_k = Q_fc,k + ε0 + Δ. Changing EPS_EXTRA moves the prediction and the proxy together, so **proxy scoring is blind to this question by construction**. That is why this round measures the offset from the pack's own data.",
+  "",
+  "**Decomposition registered for this round.** Quantities are charge contents in Ah. Coulombic efficiency is neglected (round 11: T_CE flat, −0.0008 Ah/Ah in LIC).",
+  "- C20_k = F^CK_k − S_k: from the checkup's top state to the state at the end of its C/20 discharge.",
+  "- Q_fc,k = F^A_k − B_k: from the anchor's start state to the anchor's top (14.0 V CV ended at ≈ 5.1 A).",
+  "",
+  "```",
+  "ε_k = C20_k − Q_fc,k = (F^CK_k − F^A_k) + (B_k − S_k)",
+  "",
+  "EPS_EXTRA_true(k) = ε_k − ε_0",
+  "   = [F^A_0 − F^A_k]                T_top: top of the 45 °C from-empty anchor 0 minus top of a 25 °C from-empty anchor   (WP3)",
+  "   + [F^CK_k − F^CK_0]              change of the checkup top with ageing = the drift d (out of scope)",
+  "   + [a_0 − a_k],  a_k := S_k − B_k  bottom mismatch: > 0 if the anchor starts deeper than its C/20 ended               (WP2)",
+  "```",
+  "",
+  "- **Hypothesis H_SB (\"shared bottom\").** The anchor starts from the state its checkup's C/20 discharge ended in, changed only by rest: a_k = 0. Under H_SB and at equal ageing, **EPS_EXTRA_true = T_top + a_0** for the relaxed 25 °C anchors. This round measures T_top and a_0 and tests H_SB as far as the data allow. For k ≥ 1 only a necessary condition can be tested, because S_k is not visible.",
+  "- **Prediction note (registered).** An anchor-specific bottom anomaly a_k^rel (deviation from the trend of the relaxed anchors) biases every prediction that uses anchor k as its base for a later checkup. This holds whether or not its own C/20 shared the anomaly, because the next checkup ends at a normal depth. For ε0 only the non-shared part a_0 = S_0 − B_0 matters."
+ ],
+ "definitions": {
+  "SOH": "C/20 capacity (5.1 A discharge to pack 11.2 V after a full charge) / 102 Ah",
+  "Q_fc_k": "F^A_k - B_k: package-integrated charge of anchor k (charge start state B_k to the end of the 14.0 V CV at ~5.1 A, F^A_k)",
+  "C20_k": "F^CK_k - S_k: checkup top state to the state at the end of its C/20 discharge",
+  "eps_k": "C20_k - Q_fc,k = (F^CK_k - F^A_k) + (B_k - S_k)",
+  "eps0": "100.41 - Q_fc,0 (45 degC anchor 0)",
+  "EPS_EXTRA_true_k": "eps_k - eps_0 = [F^A_0 - F^A_k] (T_top, WP3) + [F^CK_k - F^CK_0] (drift d, out of scope) + [a_0 - a_k] (WP2)",
+  "a_k": "S_k - B_k (> 0 if the anchor starts deeper than its C/20 ended)",
+  "H_SB": "a_k = 0: the anchor starts from the state its checkup's C/20 discharge ended in, changed only by rest",
+  "EPS_EXTRA_hat": "T_top + a_0 (under H_SB, equal ageing, relaxed 25 degC anchors)",
+  "a_k_rel": "anchor-specific bottom anomaly: Q_bot,k minus the trend of the relaxed anchors at t_k",
+  "coulombic_efficiency": "neglected (round 11: T_CE -0.0008 Ah/Ah in LIC)",
+  "anchors": "k = 0 segment 1 (45 degC); k = 1..7 segments 2, 4, 6, 8, 10, 12, 14 (25 degC); type-A events of wp0/events.csv"
+ },
+ "data_conventions": {
+  "integration": "package _integrated_ah per segment: backward rectangle i_k * dt_k with dt_k = t_k - t_(k-1); dt > 600 s or dt <= 0 contributes 0; the first sample of a segment has dt = 0",
+  "events": "wp0/events.csv (src/wp0_events.py, DECISIONS D7): CV end = last sample of a charge run (I > 0.5 A) with max pack >= 13.95 V and 0 < I_end < 6 A; type A = package _first_full_charge conditions",
+  "anchor_time_t_k": "days from the CK0 date 2025-01-14 00:00 to the anchor's charge start",
+  "ck0_curve": "CK0_reference_discharge.csv.gz; Q axis = its discharged_Ah column; per-cell voltages"
+ },
+ "WP2": {
+  "B1_start_audit": {
+   "rest": "contiguous samples with |I| <= 0.5 A immediately before the anchor charge",
+   "slope": "OLS slope of pack voltage over the last 30 min of rest (whole rest if shorter), mV/h",
+   "relaxed_if": "slope <= 6 mV/h",
+   "temperature_trend": "OLS slope of temp_mean_C over the rest, K/h; start value = last rest sample",
+   "spread": "max - min cell voltage at the last rest sample",
+   "window": "checkup window from wp0/checkup_windows.csv; k = 0: exact time since the C/20 end"
+  },
+  "B2_charge_side": {
+   "samples": "anchor charge from its first sample to its CV end; CC samples I > 20 A; q = Ah from the charge start with the package base ah[start - 1]; duplicate q removed (first occurrence after a stable sort)",
+   "dvdq_variants": {
+    "CL1": "maximum of +dV/dQ, 0.05 Ah grid, centred moving average 2 Ah (41 points), central differences, parabolic interpolation through the maximum and its two neighbours, open window (50, 80) Ah",
+    "CL2": "as CL1 with 1 Ah smoothing (21 points)",
+    "CL3": "as CL1 with 3 Ah smoothing (61 points)",
+    "grid": "grid points are multiples of 0.05 Ah from floor((lo - pad)/dx) dx to ceil((hi + pad)/dx) dx, pad = (points // 2 + 3) * 0.05 Ah; the data must cover the grid, else NaN",
+    "nan_rules": "NaN if the maximum is on the first or last grid point inside the window, or the three points are not a strict maximum (second difference >= 0)"
+   },
+   "midpoint_variants": {
+    "CL4": "threshold = mean of the medians of the raw cell-voltage samples on [s - 15, s - 5] Ah and [s + 5, s + 15] Ah (>= 5 samples each), s = CL1; location = first upward crossing among samples with q in [s - 5, s + 5], linear interpolation between the crossing sample and its predecessor",
+    "CL5": "as CL4 with plateaus [s - 20, s - 10] and [s + 10, s + 20] Ah, crossing searched in [s - 10, s + 10]"
+   },
+   "combination": "cell value = median of its finite variants (>= 4 needed); anchor value = median of the finite cell values (>= 3 needed); per-locator anchor value = median over the cells of that locator (>= 3 finite cells)",
+   "Q_bot_k": "combined anchor value (Ah from the charge start to the step); Q_top,k = Q_fc,k - Q_bot,k",
+   "R8_check": "CL1 per cell rounded to the 0.25 Ah grid, mean over the 4 cells, compared with round 8 table_anchors.bottom_to_step; passes within 0.25 Ah (diagnostic, not a gate)",
+   "trend": "Theil-Sen line (median pairwise slope, intercept median(y - b x)) of Q_bot vs t_k over the relaxed anchors {1, 2, 4, 5, 6, 7}",
+   "sigma_LOO": "1.4826 * MAD of the leave-one-out residuals (each anchor vs the Theil-Sen line of the other five)",
+   "a3_rel": "Q_bot,3 - trend(t_3) on the combined value; per locator: the locator's anchor value minus that locator's own Theil-Sen trend over the relaxed anchors",
+   "a0_rel": "Q_bot,0 - trend(t_0) (extrapolated, confounded by 45 degC; diagnostic only)",
+   "descriptive": "in-sample residuals of the relaxed anchors vs start pack voltage (rest end) and bottom spread: table and Spearman rho; no gate"
+  },
+  "B3_ck0_split": {
+   "dvdq_variants": "DL1-DL3: as CL1-CL3 with -dV/dQ on the CK0 curve (q = discharged_Ah = D_top axis), window mirrored from the end of the discharge: open (100.41 - 80, 100.41 - 50) = (20.41, 50.41) Ah",
+   "midpoint_variants": "DL4-DL5: as CL4-CL5 mirrored: plateau before the step [s - b, s - a], after it [s + a, s + b], first downward crossing in [s - a, s + a], s = DL1; (a, b) = (5, 15), (10, 20)",
+   "combination": "as B2 (cell >= 4 variants, pack >= 3 cells)",
+   "D_top_D_bot": "D_top,c from the DL family; D_bot,c = 100.41 - D_top,c",
+   "C_bot_C_top": "C_bot,c = anchor 0's Q_bot per cell (CL family); C_top,c = Q_fc,0 - C_bot,c",
+   "medians": "D_top, D_bot, C_top, C_bot = medians over the cells (the median commutes with x -> const - x, so eps0 = (D_top - C_top) + (D_bot - C_bot) holds exactly)",
+   "h": {
+    "anchors": [
+     1,
+     2,
+     4,
+     5,
+     6,
+     7
+    ],
+    "h1_k": "D1_k - C_top,k; D1_k = step depth of the deep program that starts at anchor k's own CV end",
+    "h2_k": "D2_k - C_top,k - (F^T2 - F^A_k); D2_k = step depth of the program that starts at the next CV end (T2) in the same segment; F^T2 - F^A_k = N - lambda_s thr of that AT pair from src/ahchain.py (Term3_k); AT pairs that are not admissible (recording gap) give no h2_k",
+    "step_values": "A3 = package _robust_step via _step_depths (unchanged); DL1 = locators.program_dl1 (band samples -12.5 < I < -8 A, depth below the CV end, window (22, 42) Ah, 2 Ah smoothing, pack = median of >= 3 finite cells)",
+    "C_top_k": "Q_fc,k - Q_bot,k (combined B2 value)",
+    "medians": "median over the finite k (>= 3 needed, else NaN) of h1(A3), h1(DL1), h2(A3), h2(DL1)",
+    "interval": "[h_lo, h_hi] = min and max of the finite medians; point = median of the finite medians"
+   },
+   "a0": "-(D_bot - C_bot) - h_point; interval [-max(V) - h_hi, -min(V) - h_lo], V = {combined D_bot - C_bot} united with the paired variants (DLi, CLi), i = 1..5 (the 5 x 5 range is reported descriptively)",
+   "top_split": "F^CK_0 - F^A_0 = (D_top - C_top) - h_point; interval from the same paired variants and [h_lo, h_hi]",
+   "caveats": "CK0 discharges at 5.1 A while the programs' step band is ~10 A; checkup temperature unknown; anchor 0 charged at 45 degC"
+  }
+ },
+ "WP3": {
+  "E1_pairs": {
+   "pairs": "consecutive CV ends i -> j (wp0/events.csv in time order) with no checkup date in (t_i, t_j]",
+   "N": "sum of i_k dt_k / 3600 over the samples in (t_i, t_j] (package convention); across a chamber switch the two segments' sums are added and the boundary contributes 0",
+   "thr": "same sum restricted to i_k < 0, sign flipped (includes the 20 A pulse)",
+   "types": {
+    "AT": "anchor -> next top-up in the same segment",
+    "TT": "top-up -> top-up in the same segment",
+    "X": "last 25 degC CV end -> first 45 degC CV end of the next segment (consecutive segment files, set points 25 -> 45)"
+   },
+   "exclusion": "any sample spacing > 60 s inside (t_i, t_j] excludes the pair; the chamber-switch boundary is exempt only if both counters change by < 0.0005 Ah across it; every exclusion is recorded"
+  },
+  "E1_loss_rule": {
+   "lambda_s": "median of N/thr over the admissible TT pairs of segment s",
+   "fallback": "no TT pair in s -> pooled median of the same set point, if that set point has >= 2 TT pairs overall (counted on the full set); otherwise the other set point's pooled median (recorded)",
+   "loo": "for a TT pair's own residual the pair is left out of every median above (the overall count is not)",
+   "residual": "r = N - lambda thr",
+   "sigma_TT": "sigma_TT,25 and sigma_TT,45 = 1.4826 MAD of the TT residuals per set point"
+  },
+  "E1_terms": {
+   "Term1": "-(N(A_0 -> T) - lambda_seg1 thr) = F^A_0 - F^T_45 (one value)",
+   "Term3_k": "N(A_k -> T) - lambda_s thr = F^T_25 - F^A_k for the admissible AT pairs of k in 1..7; main = all of them; sensitivity = without k = 3",
+   "Term2_j": "N_X - lambda_bar thr_X = F^T_45 - F^T_25 for the admissible X pairs; lambda_bar = mean of the 25 degC segment's lambda and the 45 degC segment's lambda; sensitivities: each side's lambda alone",
+   "T_top": "Term1 + median_j Term2_j + median_k Term3_k",
+   "descriptive_only": "Term1 and Term3_k with the pooled same-set-point lambda (not part of the interval); Term2_j and Term3_k vs month; Term2_j vs idle hours"
+  },
+  "E1_interval": {
+   "per_term": "[min, max] of the point over its lambda sensitivities (Term2: lambda_bar, lambda_25, lambda_45; Term1 and Term3: the rule's lambda only), widened by +-2 SE",
+   "SE": "1.4826 MAD / sqrt(n) of the term's event values (main lambda); Term1: SE = sigma_TT,45",
+   "T_top_interval": "sum of the lower ends, sum of the upper ends",
+   "order": "G_noise -> term intervals -> G_E2 widening of Term2 -> T_top interval -> G_T on the final interval"
+  },
+  "E2_step_jump": {
+   "J_j": "depth(program of the first 45 degC CV end after switch j) - depth(program of the last 25 degC CV end before it) - r_45 dt; NaN if either program is the first program after an anchor or is not a deep program",
+   "r_45": "Theil-Sen rate (Ah/day) of the step depths of all deep programs of that 45 degC segment vs CV-end time",
+   "dt": "days between the two programs' CV ends",
+   "values": "A3 (package _robust_step) and DL1 (locators.program_dl1); median_j J_dvdq uses DL1"
+  },
+  "E3_physics_diagnostic": {
+   "dV_j": "pack voltage 30 min after the CV end (last sample before the pulse, wp0/events.csv pack_V_prepulse) of the first 45 degC top-up minus that of the last 25 degC top-up",
+   "dT_j": "temp_mean_C at the same two samples (difference)",
+   "s": "OLS slope of CK0 pack voltage vs charge content (= -discharged_Ah) on discharged Ah [0.5, 2.0] (V per Ah, > 0); sensitivities [0.25, 1.0] and [1.0, 3.0]",
+   "dU_dT": "assumption: +-0.3 mV/K per cell (no cited LFP/graphite high-SOC value available offline; the repository review quotes electrode-level magnitudes graphite ~0.2, LFP ~0.1 mV/K, Spingler et al. 2020, JES 167:040526)",
+   "Term2_E3": "(dV - 4 dU/dT dT) / s; point at dU/dT = 0 and the main window; interval = min/max over dU/dT in {-0.3, +0.3} mV/K and the three windows",
+   "top_cell": "cell with the highest voltage at the CV end and 30 min later, per temperature",
+   "gating": "none"
+  }
+ },
+ "section4_gates_and_decision_rules_verbatim": [
+  "- **G_noise (WP3).** σ_TT,25 ≤ 0.30 Ah and σ_TT,45 ≤ 0.30 Ah. Otherwise E1 exits \"not identifiable\" and T_top is unmeasured.",
+  "- **G_T (WP3).** T_top is \"identified\" if the half-width of its interval is ≤ 0.25 Ah.",
+  "- **G_E2 (WP3).** Term2 and E2 are \"consistent\" if |median_j J_dvdq − median_j Term2_j| ≤ 0.20 Ah. Otherwise they are \"inconsistent\": widen Term2's interval, and with it T_top's, to include median_j J_dvdq.",
+  "- **G_SB (WP2, a necessary condition for H_SB).** σ_LOO ≤ 0.25 Ah, and no relaxed anchor has |residual| > max(2·σ_LOO, 0.15 Ah). On failure, H_SB is \"rejected for anchor(s) …\", and those anchors join the anomaly list.",
+  "- **G_a3 (WP2).** a_3^rel is \"identified\" if |a_3^rel| > max(2·σ_LOO, 0.15 Ah) on the combined locator value, with the same sign on at least 4 of the 5 locators CL1–CL5.",
+  "- **G_B3 (WP2).** a_0 is \"identified\" if the width of its interval is ≤ 0.40 Ah. Otherwise it is \"not identified\" and enters the budget with its full interval. If no finite interval exists, the budget is L3.",
+  "- **Budget.** EPS_EXTRA_hat = T_top + a_0. The interval endpoints add.",
+  "- **Decision.**",
+  "  - **L1 \"assumption supported\":** 0.4 lies in the interval, and the interval width is ≤ 0.50 Ah. Keep SUB; the README may cite the interval.",
+  "  - **L2 \"assumption off\":** 0.4 lies outside the interval, the width is ≤ 0.50 Ah, G_noise passed, and G_SB did not fail. Candidate SUB_L = SUB with EPS_EXTRA_AH set to the point estimate rounded to 0.05 Ah. It is not wired and is leaderboard-only; the user decides.",
+  "  - **L3 \"inconclusive\":** any other case. Keep SUB.",
+  "  - **Anchor-3 rule:** if G_a3 passes, candidate SUB_A3fix subtracts a_3^rel from anchor 3's Q_fc in a research copy, so the change reaches every use of that anchor. It is not wired and is leaderboard-only.",
+  "- **No rule above uses P_k or any proxy error.**"
+ ],
+ "operationalisation": {
+  "G_SB_residuals": "leave-one-out residuals (the stricter reading)",
+  "G_a3_per_locator": "per-locator a_3^rel against the locator's own trend; a NaN locator does not count as same sign",
+  "G_B3_width": "a0_hi - a0_lo; NaN anywhere -> 'no finite interval' -> budget L3",
+  "G_E2_not_evaluable": "if median_j J_dvdq is NaN, G_E2 is reported as not evaluable and nothing is widened",
+  "budget_width": "EPS_EXTRA_hat interval width = hi - lo; T_top unmeasured or no finite a_0 interval -> L3",
+  "decision_point_rounding": "SUB_L uses the point estimate rounded to the nearest 0.05 Ah",
+  "decisions_reference": "notes/DECISIONS.md D10-D27"
+ },
+ "synthetic_tests": {
+  "file": "src/test_registered.py",
+  "step_tolerance_Ah": 0.02,
+  "ah_offset_tolerance_Ah": 0.005,
+  "curves": "clean symmetric tanh steps (w 1.0-2.5 Ah) on a linear slope; exact synthetic Ah chains",
+  "resolution_diagnostic": "wp1/synthetic_resolution.json (1 mV quantisation, reported, not a pass criterion)"
+ },
+ "constants": {
+  "locators.GRID_DX_AH": 0.05,
+  "locators.GRID_MARGIN_PTS": 3,
+  "locators.CC_I_MIN_A": 20.0,
+  "locators.CL_SMOOTH_AH": {
+   "CL1": 2.0,
+   "CL2": 1.0,
+   "CL3": 3.0
+  },
+  "locators.CL_WINDOW_AH": [
+   50.0,
+   80.0
+  ],
+  "locators.MID_WINDOWS_AH": {
+   "4": [
+    5.0,
+    15.0
+   ],
+   "5": [
+    10.0,
+    20.0
+   ]
+  },
+  "locators.MIN_PLATEAU_SAMPLES": 5,
+  "locators.MIN_VARIANTS": 4,
+  "locators.MIN_CELLS": 3,
+  "locators.DL_SMOOTH_AH": {
+   "DL1": 2.0,
+   "DL2": 1.0,
+   "DL3": 3.0
+  },
+  "locators.CK0_Q_AH": 100.41,
+  "locators.DL_WINDOW_FROM_END_AH": [
+   50.0,
+   80.0
+  ],
+  "locators.PROG_BAND_A": [
+   -12.5,
+   -8.0
+  ],
+  "locators.PROG_RECHARGE_AH": 2.0,
+  "locators.PROG_MIN_DEPTH_AH": 50.0,
+  "locators.PROG_MIN_BAND_SAMPLES": 50,
+  "locators.PROG_DL1_WINDOW_AH": [
+   22.0,
+   42.0
+  ],
+  "locators.RELAXED_ANCHORS": [
+   1,
+   2,
+   4,
+   5,
+   6,
+   7
+  ],
+  "locators.H_ANCHORS": [
+   1,
+   2,
+   4,
+   5,
+   6,
+   7
+  ],
+  "locators.MIN_H_ANCHORS": 3,
+  "locators.G_SB_SIGMA_MAX_AH": 0.25,
+  "locators.G_RESID_FLOOR_AH": 0.15,
+  "locators.G_A3_MIN_SAME_SIGN": 4,
+  "locators.G_B3_WIDTH_MAX_AH": 0.4,
+  "locators.R8_GRID_AH": 0.25,
+  "locators.R8_CHECK_TOL_AH": 0.25,
+  "ahchain.MAX_DT_S": 600.0,
+  "ahchain.GAP_DT_S": 60.0,
+  "ahchain.COUNTER_FLAT_AH": 0.0005,
+  "ahchain.MIN_POOLED_TT": 2,
+  "ahchain.MAD_K": 1.4826,
+  "ahchain.SE_WIDEN": 2.0,
+  "ahchain.G_NOISE_MAX_AH": 0.3,
+  "ahchain.G_T_HALF_WIDTH_AH": 0.25,
+  "ahchain.G_E2_MAX_AH": 0.2,
+  "ahchain.SWITCH_SETPOINTS": [
+   25,
+   45
+  ],
+  "ahchain.N_CELLS": 4,
+  "ahchain.DUDT_ASSUMED_V_PER_K": 0.0003,
+  "ahchain.S_WINDOWS_AH": [
+   [
+    0.5,
+    2.0
+   ],
+   [
+    0.25,
+    1.0
+   ],
+   [
+    1.0,
+    3.0
+   ]
+  ]
+ }
+}
