@@ -1,0 +1,227 @@
+{
+ "n_tests": 19,
+ "n_pass": 19,
+ "tests": [
+  {
+   "test": "events: anchors detected in segments 1, 2, 4, 5, 6 only",
+   "pass": true,
+   "detail": {
+    "1": "ATTTT",
+    "2": "AT",
+    "3": "TTTT",
+    "4": "ATT",
+    "5": "ATT",
+    "6": "AT"
+   }
+  },
+  {
+   "test": "lambda recovered (segment / pooled)",
+   "pass": true,
+   "detail": {
+    "1": [
+     -0.001999999999977099,
+     "segment"
+    ],
+    "2": [
+     -0.000999999999978743,
+     "pooled_25"
+    ],
+    "3": [
+     -0.0020000000000050724,
+     "segment"
+    ],
+    "4": [
+     -0.0009999999999787713,
+     "segment"
+    ],
+    "5": [
+     -0.0009999999999787145,
+     "segment"
+    ],
+    "6": [
+     -0.000999999999978743,
+     "pooled_25"
+    ]
+   }
+  },
+  {
+   "test": "planted A->T1 offsets recovered within 0.005 Ah (incl. 45 C anchor 0 and gap-bridged seg 6)",
+   "pass": true,
+   "detail": {
+    "1": 4.0464853690025393e-13,
+    "2": 5.69266855876549e-14,
+    "4": 6.006306563222097e-14,
+    "5": 5.0959236830294685e-14,
+    "6": 6.204758928873844e-14
+   }
+  },
+  {
+   "test": "gap pair excluded from P1 (seg 6) and recorded",
+   "pass": true,
+   "detail": {
+    "term3": NaN,
+    "n_gaps": 1
+   }
+  },
+  {
+   "test": "Term3' = Term3 when the segment has a single TT pair (algebraic identity)",
+   "pass": true,
+   "detail": {
+    "seg4": [
+     0.12000000000006006,
+     0.12000000000006006
+    ],
+    "seg5": [
+     0.13000000000005096,
+     0.13000000000005096
+    ]
+   }
+  },
+  {
+   "test": "sigma_TT = 0 on noise-free TT pairs",
+   "pass": true,
+   "detail": {
+    "sigma_tt25_gate": 2.106901320075849e-14,
+    "sigma_tt45": 7.217783037916092e-13
+   }
+  },
+  {
+   "test": "fade_k = Q_fc,1 - Q_fc,k is 0 for anchor 1",
+   "pass": true,
+   "detail": {
+    "fade_anchor1": 0.0
+   }
+  },
+  {
+   "test": "fallback: 25 C has 1 TT pair -> seg 2 uses pooled 45 C lambda (recorded)",
+   "pass": true,
+   "detail": {
+    "source": "fallback_pooled_45",
+    "term3": 0.35020000000296325,
+    "expected": 0.3501999999999592
+   }
+  },
+  {
+   "test": "noisy TT pairs (sd 0.08 Ah): sigma_TT,45 in [0.02, 0.20] Ah",
+   "pass": true,
+   "detail": {
+    "sigma_tt45": 0.0334850599196217,
+    "sigma_tt25_gate": 0.15182673742786798,
+    "reduced": {
+     "25": 0.07591336871393399,
+     "45": 0.0334850599196217
+    },
+    "full": {
+     "25": 0.15182673742786798,
+     "45": 0.0334850599196217
+    }
+   }
+  },
+  {
+   "test": "25 C LOO lambda readings: reduced -> fallback 45 C, full -> other 25 C pair",
+   "pass": true,
+   "detail": {
+    "reduced": [
+     "fallback_pooled_45"
+    ],
+    "full": [
+     "pooled_25"
+    ]
+   }
+  },
+  {
+   "test": "P2: s_top recovered and dV converted to Ah with the sign of Term3",
+   "pass": true,
+   "detail": {
+    "s_top_pack": -0.12000000000000038,
+    "dV_pack_mV": 29.99999999999936,
+    "P2_pack_Ah": 0.24999999999999387,
+    "expected": 0.24999999999999467
+   }
+  },
+  {
+   "test": "P3 table runs; CV differences anchor - T1 are 0 for identical synthetic tapers",
+   "pass": true,
+   "detail": {
+    "n": 5,
+    "dCV_Ah": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "test": "Theil-Sen exact line: slope 0.05, LOO width 0, E = 0.41",
+   "pass": true,
+   "detail": {
+    "d": 0.05,
+    "E": 0.41
+   }
+  },
+  {
+   "test": "BIC: strong slope prefers linear by >= 2; flat noise does not",
+   "pass": true,
+   "detail": {
+    "dBIC_slope": 33.544398280963975,
+    "dBIC_flat": -1.8602394077443378
+   }
+  },
+  {
+   "test": "outlier flag (3 raw MAD) catches a planted +0.5 Ah point and gives a sensitivity without it",
+   "pass": true,
+   "detail": {
+    "outliers": [
+     2,
+     5
+    ],
+    "d_without": 0.04599326803570869
+   }
+  },
+  {
+   "test": "fewer than 5 points: not estimable",
+   "pass": true,
+   "detail": {
+    "n": 4
+   }
+  },
+  {
+   "test": "sensitivity without anchor 3 when anchor 3 is absent is marked same_as_main",
+   "pass": true,
+   "detail": {}
+  },
+  {
+   "test": "decision rules on 9 synthetic scenarios",
+   "pass": true,
+   "detail": {
+    "noise gate fails": "not identifiable",
+    "P1 not estimable": "O3 not identifiable",
+    "LOO too wide": "O3 not identifiable",
+    "O1": "O1 path drift small",
+    "O1 blocked: P1b not estimable": "O3 inconclusive",
+    "O2": "O2 path drift material",
+    "O2 blocked: P1b opposite sign": "O3 inconclusive",
+    "O2 blocked: BIC": "O3 inconclusive",
+    "O2 blocked: P1b not estimable": "O3 inconclusive"
+   }
+  },
+  {
+   "test": "d_top = d_tail + d_path, ranges endpoint-wise",
+   "pass": true,
+   "detail": {
+    "d_top": 0.005,
+    "d_top_range": [
+     -0.01,
+     0.02
+    ],
+    "E_top": 0.040999999999999995,
+    "E_top_range": [
+     -0.08199999999999999,
+     0.16399999999999998
+    ]
+   }
+  }
+ ]
+}
