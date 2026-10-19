@@ -1,0 +1,407 @@
+{
+ "round": 13,
+ "source": "exp/phase2-r13-top-tail-20261019",
+ "protocol_commit": "7960a99",
+ "outcome": "O3",
+ "label": "not identifiable",
+ "identifiable": false,
+ "envelope_Ah": 0.411593932,
+ "envelope_threshold_Ah": 0.3,
+ "admitted_set": {
+  "C1": {
+   "slope": 0.0,
+   "effect_CK7_Ah": 0.0,
+   "loo_effect_CK7_Ah": [
+    0.0,
+    0.0
+   ]
+  },
+  "T2": {
+   "slope": 0.0501943819977317,
+   "effect_CK7_Ah": 0.411593932,
+   "loo_effect_CK7_Ah": [
+    0.291803916,
+    0.565743541
+   ]
+  },
+  "M4/C2": {
+   "slope": 0.0050136924242359,
+   "effect_CK7_Ah": 0.041112278,
+   "loo_effect_CK7_Ah": [
+    0.028729667,
+    0.087665387
+   ]
+  },
+  "M4/C3": {
+   "slope": 0.0111118090052677,
+   "effect_CK7_Ah": 0.091116834,
+   "loo_effect_CK7_Ah": [
+    0.061559473,
+    0.146800892
+   ]
+  },
+  "M4/C4": {
+   "slope": 0.0131442751534941,
+   "effect_CK7_Ah": 0.107783056,
+   "loo_effect_CK7_Ah": [
+    0.072499102,
+    0.166512658
+   ]
+  },
+  "M4/C5": {
+   "slope": 0.0129924344013253,
+   "effect_CK7_Ah": 0.106537962,
+   "loo_effect_CK7_Ah": [
+    0.071524363,
+    0.169125162
+   ]
+  },
+  "M4/C6": {
+   "slope": 0.0150792069459852,
+   "effect_CK7_Ah": 0.123649497,
+   "loo_effect_CK7_Ah": [
+    0.082901089,
+    0.18566299
+   ]
+  },
+  "M4/C7": {
+   "slope": 0.0151766272729581,
+   "effect_CK7_Ah": 0.124448344,
+   "loo_effect_CK7_Ah": [
+    0.083438073,
+    0.186224043
+   ]
+  }
+ },
+ "d_tail": {
+  "median_without_C1": 0.0131442751534941,
+  "min_over_A": 0.0,
+  "max_over_A": 0.0501943819977317,
+  "effect_CK7_Ah": {
+   "median": 0.1077830562586516,
+   "min": 0.0,
+   "max": 0.4115939323813999
+  },
+  "median_abs_effect_without_C1_Ah": 0.107783056
+ },
+ "T2": {
+  "main": {
+   "s_top_V_per_Ah": 0.022262317918465,
+   "slope": 0.0501943819977317,
+   "loo": [
+    0.0355858434128633,
+    0.0689931147859027
+   ],
+   "effect_CK7_Ah": 0.4115939323814001
+  },
+  "sensitivity_w025_1": {
+   "s_top_V_per_Ah": 0.1479983558510029,
+   "slope": 0.0075503763763387,
+   "effect_CK7_Ah": 0.0619130862859775
+  },
+  "sensitivity_w1_3": {
+   "s_top_V_per_Ah": -0.0014117047268708,
+   "note": "s_top < 0 on the CK0 plateau: not invertible"
+  },
+  "V30_resolution_note": "1 mV of V30 = 0.045 Ah under the main-window s_top"
+ },
+ "T3": {
+  "slope": 0.012506770659344,
+  "loo": [
+   0.0063337926967876,
+   0.0173938281640646
+  ],
+  "effect_CK7_Ah": 0.1025555194066215,
+  "role": "check only"
+ },
+ "models_admitted_on_anchors_1_7": {
+  "M1": 0,
+  "M2": 0,
+  "M3": 0,
+  "M4": 7
+ },
+ "M1_back_of_envelope": {
+  "1": {
+   "tau_M1_s": 328.54492290821094,
+   "I_end": 5.094,
+   "Iend_x_tau_Ah": 0.46489106591511853,
+   "admitted": false,
+   "rmse": 0.5430964525663866,
+   "last_third": -0.3971972391828932
+  },
+  "7": {
+   "tau_M1_s": 415.21196021004266,
+   "I_end": 5.098,
+   "Iend_x_tau_Ah": 0.5879862703196659,
+   "admitted": false,
+   "rmse": 0.40188831251370377,
+   "last_third": -0.29955889749238085
+  }
+ },
+ "undefined_pairs": "M2 x C2-C4 at every anchor (Iinf 3.6-4.2 A >= cutoff); M2 is not admitted on anchors 1-7 anyway",
+ "topup_cross_check": "M4 monthly median Q_tail of 25 C top-ups flat (C4 0.31-0.36 Ah, months 1-6); descriptive slope +0.003 Ah at CK7; not used",
+ "ck0_top_cell": "cell3 is the top cell at CK0's start (lead 137 mV) and at every anchor's CV end (51->20 mV), +30 min (14->7 mV) and pulse (12->5 mV)",
+ "per_anchor": [
+  {
+   "anchor": 1,
+   "fade_Ah": 0.0,
+   "admitted_models": "M4",
+   "M4_Q_tail_Ah": {
+    "C1": 0.0,
+    "C2": 0.2826670343443952,
+    "C3": 0.4579762366952974,
+    "C4": 0.516412672383144,
+    "C5": 0.5675307736502291,
+    "C6": 0.574755938436784,
+    "C7": 0.5748490930033231
+   },
+   "M4_Delta_tail_Ah": {
+    "C1": 0.0,
+    "C2": 0.0,
+    "C3": 0.0,
+    "C4": 0.0,
+    "C5": 0.0,
+    "C6": 0.0,
+    "C7": 0.0
+   },
+   "V30_pack_V": 13.439,
+   "T2_minus_dF_V_Ah": -0.0,
+   "R_pack_mOhm": 5.833619295063493,
+   "T3_d_eps_Ah": 0.0
+  },
+  {
+   "anchor": 2,
+   "fade_Ah": 1.3384594444444389,
+   "admitted_models": "M4",
+   "M4_Q_tail_Ah": {
+    "C1": 0.0,
+    "C2": 0.3305611324182921,
+    "C3": 0.5295118437975674,
+    "C4": 0.5958305478485969,
+    "C5": 0.6479914557252334,
+    "C6": 0.6618464985951806,
+    "C7": 0.662149123938178
+   },
+   "M4_Delta_tail_Ah": {
+    "C1": 0.0,
+    "C2": 0.0478940980738968,
+    "C3": 0.07153560710227,
+    "C4": 0.0794178754654528,
+    "C5": 0.0804606820750043,
+    "C6": 0.0870905601583966,
+    "C7": 0.0873000309348549
+   },
+   "V30_pack_V": 13.438,
+   "T2_minus_dF_V_Ah": 0.0449189524496913,
+   "R_pack_mOhm": 5.637254901960795,
+   "T3_d_eps_Ah": -0.0449844624666471
+  },
+  {
+   "anchor": 3,
+   "fade_Ah": 2.3604213888888808,
+   "admitted_models": "M4",
+   "M4_Q_tail_Ah": {
+    "C1": 0.0,
+    "C2": 0.3300816203268235,
+    "C3": 0.5274925452050689,
+    "C4": 0.5932969838135312,
+    "C5": 0.6454250562497333,
+    "C6": 0.6588176151279704,
+    "C7": 0.6591013033041143
+   },
+   "M4_Delta_tail_Ah": {
+    "C1": 0.0,
+    "C2": 0.0474145859824282,
+    "C3": 0.0695163085097715,
+    "C4": 0.0768843114303872,
+    "C5": 0.0778942825995042,
+    "C6": 0.0840616766911864,
+    "C7": 0.0842522103007912
+   },
+   "V30_pack_V": 13.435,
+   "T2_minus_dF_V_Ah": 0.1796758097988452,
+   "R_pack_mOhm": 5.735856456515345,
+   "T3_d_eps_Ah": -0.0223961619100772
+  },
+  {
+   "anchor": 4,
+   "fade_Ah": 3.255321388888902,
+   "admitted_models": "M4",
+   "M4_Q_tail_Ah": {
+    "C1": 0.0,
+    "C2": 0.3401042628809942,
+    "C3": 0.550201241040524,
+    "C4": 0.6202339716044192,
+    "C5": 0.6721673004173151,
+    "C6": 0.6897920999121301,
+    "C7": 0.6902663770595466
+   },
+   "M4_Delta_tail_Ah": {
+    "C1": 0.0,
+    "C2": 0.0574372285365989,
+    "C3": 0.0922250043452266,
+    "C4": 0.1038212992212751,
+    "C5": 0.104636526767086,
+    "C6": 0.1150361614753461,
+    "C7": 0.1154172840562235
+   },
+   "V30_pack_V": 13.434,
+   "T2_minus_dF_V_Ah": 0.2245947622486164,
+   "R_pack_mOhm": 5.8330473996372625,
+   "T3_d_eps_Ah": -0.0001310136116311
+  },
+  {
+   "anchor": 5,
+   "fade_Ah": 3.920924444444438,
+   "admitted_models": "M4",
+   "M4_Q_tail_Ah": {
+    "C1": 0.0,
+    "C2": 0.3245852489020632,
+    "C3": 0.5281707741811313,
+    "C4": 0.5960326175022672,
+    "C5": 0.6483999178402949,
+    "C6": 0.6635328354741967,
+    "C7": 0.6638942638451147
+   },
+   "M4_Delta_tail_Ah": {
+    "C1": 0.0,
+    "C2": 0.0419182145576679,
+    "C3": 0.0701945374858339,
+    "C4": 0.0796199451191231,
+    "C5": 0.0808691441900658,
+    "C6": 0.0887768970374127,
+    "C7": 0.0890451708417916
+   },
+   "V30_pack_V": 13.432,
+   "T2_minus_dF_V_Ah": 0.3144326671479991,
+   "R_pack_mOhm": 5.833333333333322,
+   "T3_d_eps_Ah": -6.551001693600203e-05
+  },
+  {
+   "anchor": 6,
+   "fade_Ah": 4.366726111111092,
+   "admitted_models": "M4",
+   "M4_Q_tail_Ah": {
+    "C1": 0.0,
+    "C2": 0.3390178691384881,
+    "C3": 0.549639353984603,
+    "C4": 0.6198467069361054,
+    "C5": 0.6717952609737244,
+    "C6": 0.6895709213966192,
+    "C7": 0.6900537220369848
+   },
+   "M4_Delta_tail_Ah": {
+    "C1": 0.0,
+    "C2": 0.0563508347940929,
+    "C3": 0.0916631172893055,
+    "C4": 0.1034340345529614,
+    "C5": 0.1042644873234953,
+    "C6": 0.1148149829598352,
+    "C7": 0.1152046290336616
+   },
+   "V30_pack_V": 13.434,
+   "T2_minus_dF_V_Ah": 0.2245947622486164,
+   "R_pack_mOhm": 5.931081809715209,
+   "T3_d_eps_Ah": 0.0223273617124779
+  },
+  {
+   "anchor": 7,
+   "fade_Ah": 5.049081111111093,
+   "admitted_models": "M4",
+   "M4_Q_tail_Ah": {
+    "C1": 0.0,
+    "C2": 0.3435617332074772,
+    "C3": 0.5573684185185583,
+    "C4": 0.6286374669965372,
+    "C5": 0.6803572913181911,
+    "C6": 0.6993604714866943,
+    "C7": 0.6999060897720961
+   },
+   "M4_Delta_tail_Ah": {
+    "C1": 0.0,
+    "C2": 0.060894698863082,
+    "C3": 0.0993921818232609,
+    "C4": 0.1122247946133931,
+    "C5": 0.112826517667962,
+    "C6": 0.1246045330499103,
+    "C7": 0.125056996768773
+   },
+   "V30_pack_V": 13.435,
+   "T2_minus_dF_V_Ah": 0.1796758097988452,
+   "R_pack_mOhm": 5.8826413059463745,
+   "T3_d_eps_Ah": 0.0112302886167717
+  }
+ ],
+ "soh_variants": [
+  {
+   "variant": "SUB",
+   "d": 0.0,
+   "CK0": 98.441,
+   "CK1": 95.984,
+   "CK2": 94.507,
+   "CK3": 93.6,
+   "CK4": 92.821,
+   "CK5": 92.015,
+   "CK6": 91.426,
+   "CK7": 90.765
+  },
+  {
+   "variant": "SUB + d_min (min over A)",
+   "d": 0.0,
+   "CK0": 98.441,
+   "CK1": 95.984,
+   "CK2": 94.507,
+   "CK3": 93.6,
+   "CK4": 92.821,
+   "CK5": 92.015,
+   "CK6": 91.426,
+   "CK7": 90.765
+  },
+  {
+   "variant": "SUB + d_median (median over A without C1 = d_tail)",
+   "d": 0.0131442751534941,
+   "CK0": 98.441,
+   "CK1": 96.016,
+   "CK2": 94.559,
+   "CK3": 93.664,
+   "CK4": 92.895,
+   "CK5": 92.099,
+   "CK6": 91.518,
+   "CK7": 90.866
+  },
+  {
+   "variant": "SUB + d_max (max over A)",
+   "d": 0.0501943819977317,
+   "CK0": 98.441,
+   "CK1": 96.107,
+   "CK2": 94.704,
+   "CK3": 93.843,
+   "CK4": 93.103,
+   "CK5": 92.338,
+   "CK6": 91.778,
+   "CK7": 91.15
+  }
+ ],
+ "unregistered_diagnostics": {
+  "without_T2": {
+   "outcome": "O2",
+   "label": "tail drift material",
+   "envelope_Ah": 0.124448344,
+   "median_abs_effect_Ah_without_C1": 0.107160509,
+   "d_tail": 0.0130683547774097
+  },
+  "T2_window_w025_1": {
+   "outcome": "O2",
+   "label": "tail drift material",
+   "envelope_Ah": 0.124448344,
+   "median_abs_effect_Ah_without_C1": 0.106537962,
+   "d_tail": 0.0129924344013253
+  },
+  "envelope_tail_models_only_Ah": 0.124448,
+  "note": "post-hoc; reported for rounds 14/15, never used for the outcome"
+ },
+ "recommendation": "SUB unchanged. No candidate (O3). The top-tail part of the eps drift is bounded by the admitted set to [0, +0.41] Ah at CK7; the tail models alone give +0.04..+0.12 Ah, all positive, and exactly 0 if the checkup terminates its CV at 5.1 A like the anchor (C1). The top-tail motivation for P_drift is not removed.",
+ "for_round_14": "the anchor tail grows (step anchor 1 -> 2, then slow rise) while 25 C top-up tails do not: a from-empty path effect candidate",
+ "for_round_15": "the open variable is the checkup's CV termination; a probe or organiser answer on it collapses the envelope to one scenario",
+ "no_proxy_statement": "No rule or output used P_k or any proxy error."
+}

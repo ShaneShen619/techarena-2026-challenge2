@@ -1,0 +1,16 @@
+{
+ "outcome": "O3 not identifiable",
+ "reason": "LOO range of E wider than 0.30 Ah",
+ "checks": {
+  "sigma_tt25": 0.12462553283641532,
+  "noise_gate_pass": true,
+  "p1_estimable": true,
+  "E_median": -0.9668349830384961,
+  "loo_range_E": [
+   -1.3692770293368488,
+   -0.7810739756075423
+  ],
+  "loo_width_E": 0.5882030537293064,
+  "identifiable": false
+ }
+}

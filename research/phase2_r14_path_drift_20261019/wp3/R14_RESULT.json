@@ -1,0 +1,561 @@
+{
+ "round": 14,
+ "source": "exp/phase2-r14-path-drift-20261019",
+ "protocol_commit": "46f3c26",
+ "protocol_sha256": "144bbac324940a50148b454687185a02c456fbb553d6ce1181fc0ac808a948fc",
+ "outcome": "O3",
+ "label": "O3 not identifiable",
+ "reason": "LOO range of E wider than 0.30 Ah",
+ "checks": {
+  "sigma_tt25": 0.12462553283641532,
+  "noise_gate_pass": true,
+  "p1_estimable": true,
+  "E_median": -0.9668349830384961,
+  "loo_range_E": [
+   -1.3692770293368488,
+   -0.7810739756075423
+  ],
+  "loo_width_E": 0.5882030537293064,
+  "identifiable": false
+ },
+ "d_path": {
+  "median": -0.1179067052485971,
+  "loo_range": [
+   -0.1669850035776645,
+   -0.09525292385457834
+  ],
+  "E_CK7_Ah": -0.9668349830384961,
+  "E_loo_range_Ah": [
+   -1.3692770293368488,
+   -0.7810739756075423
+  ],
+  "E_loo_width_Ah": 0.5882030537293064,
+  "n": 5,
+  "anchors": [
+   1,
+   2,
+   4,
+   5,
+   6
+  ],
+  "loo_by_dropped_anchor": {
+   "1": -0.1669850035776645,
+   "2": -0.1179067052485971,
+   "4": -0.1179067052485971,
+   "5": -0.09525292385457834,
+   "6": -0.10664177303398202
+  },
+  "days_slope_Ah_per_day": -0.003026547858274869,
+  "days_slope_loo_range": [
+   -0.0036474477522041747,
+   -0.0026192462024528964
+  ],
+  "excluded": {
+   "3": "recording gaps in A->T1",
+   "7": "recording gap in A->T1"
+  }
+ },
+ "bic": {
+  "bic_const": -12.164280965480886,
+  "bic_linear": -19.31636427545142,
+  "dBIC_const_minus_linear": 7.152083309970534
+ },
+ "outliers": [],
+ "noise": {
+  "reduced": {
+   "25": 0.06231258480195878,
+   "45": 0.03167780760556827
+  },
+  "full": {
+   "25": 0.12462553283641532,
+   "45": 0.03167780760556827
+  },
+  "sigma_tt25_gate": 0.12462553283641532,
+  "sigma_tt45": 0.03167780760556827
+ },
+ "P1b": {
+  "estimable": false,
+  "n": 2,
+  "anchors": [
+   5,
+   6
+  ],
+  "term3b_minus_term3": {
+   "0": 0.0,
+   "5": 0.0,
+   "6": 1.1102230246251565e-16
+  },
+  "agreement": "not estimable (2 points); where it exists Term3' = Term3 exactly (single TT pair per segment)"
+ },
+ "P2": {
+  "d": -0.034369204270276545,
+  "E_CK7_Ah": -0.28182747501626765,
+  "E_loo_range_Ah": [
+   -0.3121116591562324,
+   -0.14231296723707196
+  ],
+  "bic": {
+   "bic_const": -32.4028741648357,
+   "bic_linear": -36.11914116190458,
+   "dBIC_const_minus_linear": 3.716266997068878
+  },
+  "s_top_V_per_Ah": {
+   "n_samples": 1059,
+   "pack": -0.022262317918465096,
+   "cell1_V": -0.002517873104143201,
+   "cell2_V": -0.0007884258574789421,
+   "cell3_V": -0.017694220392378265,
+   "cell4_V": -0.0013802523585820115
+  },
+  "agreement_with_P1": {
+   "same_sign": true,
+   "loo_ranges_overlap": false,
+   "median_E_difference_Ah": -0.6850075080222284
+  },
+  "per_cell_dV_trend_mV_per_Ah_fade": {
+   "pack": -0.7651381520695654,
+   "cell1_V": 0.0,
+   "cell2_V": 0.0,
+   "cell3_V": -0.9967937851013638,
+   "cell4_V": 0.0
+  },
+  "note": "P2 in Ah is 2.5-15x the Ah-chain level (s_top dominated by cell 3): sign and trend only"
+ },
+ "S_gap_descriptive": {
+  "d": -0.12929555442800078,
+  "E_CK7_Ah": -1.0602235463096064,
+  "E_loo_range_Ah": [
+   -1.4631249423782366,
+   -0.9900403423167343
+  ],
+  "n": 7
+ },
+ "anchor0_45C": {
+  "term3": -0.0845681988277055,
+  "lambda": -0.0009415838868845865,
+  "lambda_source": "segment",
+  "P2_pack_Ah": -2.784975051882381,
+  "dV_pack_mV": -61.99999999999939
+ },
+ "d_top": {
+  "d_top": -0.104762430095103,
+  "d_top_range": [
+   -0.1669850035776645,
+   -0.04505854185684664
+  ],
+  "E_top": -0.8590519267798445,
+  "E_top_range": [
+   -1.3692770293368488,
+   -0.3694800432261424
+  ],
+  "d_tail_median": 0.0131442751534941,
+  "d_tail_range": [
+   0.0,
+   0.0501943819977317
+  ],
+  "r13_outcome": "O3 not identifiable",
+  "r13_mapping": "median = d_tail.median_without_C1 (round 13's own candidate rule); range = [d_tail.min_over_A, d_tail.max_over_A]",
+  "r13_sha256": "58b97b6c2883b13533bfd20b569a4ebcbb6ddea61a1f0d4a6eb7040875a995a8"
+ },
+ "EXPLORATORY_not_registered": {
+  "finding": "lambda (TT N/thr) is stable within a segment but steps between checkup cycles (45 C: -0.94, -1.42, -1.44, -1.69, -2.49, -2.82 e-3); the only 25 C TT pairs (Jul/Aug) sit on the same track, so the pooled 25 C lambda over-corrects anchors 2-4 by +0.29..+0.39 Ah. This produces the registered P1 trend.",
+  "same_cycle_lambda_term3": {
+   "2": 0.19152529085337755,
+   "4": 0.12984832001403768,
+   "5": 0.06574962374264748,
+   "6": 0.31766677311771496
+  },
+  "same_cycle_d_gap_free_4pts": 0.00474851212947296,
+  "same_cycle_E_gap_free_4pts": 0.03893779946167827,
+  "same_cycle_d_incl_gap_bridged_5pts": -0.0136623254780803,
+  "same_cycle_E_incl_gap_bridged_5pts": -0.11203106892025845,
+  "same_cycle_transfer_error_Ah_per_block": [
+   -0.027530102955676553,
+   0.1825700902128432
+  ],
+  "lambda_segments": [
+   {
+    "segment": 1,
+    "setpoint": 45,
+    "cycle_after": "CK0",
+    "t_mid": "2025-02-01 02:00:00",
+    "n_TT": 3,
+    "lambda_median": -0.0009415838868845,
+    "lambda_min": -0.0009962110871032,
+    "lambda_max": -0.0006930738935425,
+    "within_spread_Ah_per_block": 0.11440641710421766
+   },
+   {
+    "segment": 5,
+    "setpoint": 45,
+    "cycle_after": "CK2",
+    "t_mid": "2025-04-01 18:00:00",
+    "n_TT": 3,
+    "lambda_median": -0.0014238662953528,
+    "lambda_min": -0.0014326432960693,
+    "lambda_max": -0.0013333213718418,
+    "within_spread_Ah_per_block": 0.037484952510420964
+   },
+   {
+    "segment": 7,
+    "setpoint": 45,
+    "cycle_after": "CK3",
+    "t_mid": "2025-05-05 02:00:00",
+    "n_TT": 3,
+    "lambda_median": -0.0014415196117674,
+    "lambda_min": -0.0015743364156103,
+    "lambda_max": -0.0013290952168868,
+    "within_spread_Ah_per_block": 0.09255690248885225
+   },
+   {
+    "segment": 9,
+    "setpoint": 45,
+    "cycle_after": "CK4",
+    "t_mid": "2025-06-06 05:00:00",
+    "n_TT": 3,
+    "lambda_median": -0.0016883327647717,
+    "lambda_min": -0.0017157507883814,
+    "lambda_max": -0.0016467313201367,
+    "within_spread_Ah_per_block": 0.026048896333238102
+   },
+   {
+    "segment": 10,
+    "setpoint": 25,
+    "cycle_after": "CK5",
+    "t_mid": "2025-06-29 09:00:00",
+    "n_TT": 1,
+    "lambda_median": -0.0025618866699706,
+    "lambda_min": -0.0025618866699706,
+    "lambda_max": -0.0025618866699706,
+    "within_spread_Ah_per_block": 0.0
+   },
+   {
+    "segment": 11,
+    "setpoint": 45,
+    "cycle_after": "CK5",
+    "t_mid": "2025-07-14 23:00:00",
+    "n_TT": 3,
+    "lambda_median": -0.0024889417091471,
+    "lambda_min": -0.0025221599967076,
+    "lambda_max": -0.0024879331046269,
+    "within_spread_Ah_per_block": 0.012917520285063207
+   },
+   {
+    "segment": 12,
+    "setpoint": 25,
+    "cycle_after": "CK6",
+    "t_mid": "2025-08-05 04:00:00",
+    "n_TT": 1,
+    "lambda_median": -0.0023391602692626,
+    "lambda_min": -0.0023391602692626,
+    "lambda_max": -0.0023391602692626,
+    "within_spread_Ah_per_block": 0.0
+   },
+   {
+    "segment": 13,
+    "setpoint": 45,
+    "cycle_after": "CK6",
+    "t_mid": "2025-08-20 05:00:00",
+    "n_TT": 3,
+    "lambda_median": -0.0028229067823099,
+    "lambda_min": -0.0029984448920575,
+    "lambda_max": -0.0025809567673107,
+    "within_spread_Ah_per_block": 0.15756360867731733
+   }
+  ]
+ },
+ "per_anchor": [
+  {
+   "anchor": 0,
+   "segment": 1,
+   "setpoint": 45,
+   "Q_fc": 100.12238638889,
+   "fade": -3.119619166666851,
+   "days_since_ck0": 6.025092592592593,
+   "lambda": -0.0009415838868845,
+   "lambda_source": "segment",
+   "term3": -0.0845681988277055,
+   "term3_excluded": null,
+   "term3b": -0.0845681988277055,
+   "term3_gap_bridged": -0.0845681988277055,
+   "dV_pack_mV": -61.99999999999939,
+   "P2_pack_Ah": -2.784975051882381,
+   "o_A3": 1.321672916666639,
+   "o_dvdq": 0.875,
+   "abs_shift_A3": 1.2371047178389336,
+   "dCV_Ah_A_minus_T1": -0.1913952777777723,
+   "dCV_s_A_minus_T1": -75.0,
+   "dI_end_A_minus_T1": 0.0010000000000003,
+   "EXPLORATORY_lambda_same_cycle_45C": null,
+   "EXPLORATORY_term3_same_cycle": null
+  },
+  {
+   "anchor": 1,
+   "segment": 2,
+   "setpoint": 25,
+   "Q_fc": 97.00276722222316,
+   "fade": 0.0,
+   "days_since_ck0": 29.165081018518517,
+   "lambda": -0.0024505234696166,
+   "lambda_source": "pooled_25",
+   "term3": 0.6002295660637551,
+   "term3_excluded": null,
+   "term3b": null,
+   "term3_gap_bridged": 0.6002295660637551,
+   "dV_pack_mV": 32.999999999999474,
+   "P2_pack_Ah": 1.482325430840613,
+   "o_A3": 0.6980173611110487,
+   "o_dvdq": 0.875,
+   "abs_shift_A3": 1.2982469271748038,
+   "dCV_Ah_A_minus_T1": 0.4956800000000214,
+   "dCV_s_A_minus_T1": 182.0,
+   "dI_end_A_minus_T1": -0.0049999999999998,
+   "EXPLORATORY_lambda_same_cycle_45C": null,
+   "EXPLORATORY_term3_same_cycle": null
+  },
+  {
+   "anchor": 2,
+   "segment": 4,
+   "setpoint": 25,
+   "Q_fc": 95.67011361111209,
+   "fade": 1.3326536111110698,
+   "days_since_ck0": 59.95934027777778,
+   "lambda": -0.0024505234696166,
+   "lambda_source": "pooled_25",
+   "term3": 0.5789951907402989,
+   "term3_excluded": null,
+   "term3b": null,
+   "term3_gap_bridged": 0.5789951907402989,
+   "dV_pack_mV": 30.999999999998806,
+   "P2_pack_Ah": 1.3924875259411509,
+   "o_A3": 0.5556515277776413,
+   "o_dvdq": 1.125,
+   "abs_shift_A3": 1.1346467185179403,
+   "dCV_Ah_A_minus_T1": 0.5887300000000124,
+   "dCV_s_A_minus_T1": 217.0,
+   "dI_end_A_minus_T1": 0.0019999999999997,
+   "EXPLORATORY_lambda_same_cycle_45C": -0.0014238662953528,
+   "EXPLORATORY_term3_same_cycle": 0.1915252908533775
+  },
+  {
+   "anchor": 3,
+   "segment": 6,
+   "setpoint": 25,
+   "Q_fc": 94.64248750000093,
+   "fade": 2.3602797222222307,
+   "days_since_ck0": 93.0346875,
+   "lambda": -0.0024505234696166,
+   "lambda_source": "pooled_25",
+   "term3": null,
+   "term3_excluded": "recording gap in A->T1",
+   "term3b": null,
+   "term3_gap_bridged": 0.5772204208838643,
+   "dV_pack_mV": 30.999999999998806,
+   "P2_pack_Ah": 1.3924875259411509,
+   "o_A3": 0.4977923611110455,
+   "o_dvdq": 0.625,
+   "abs_shift_A3": null,
+   "dCV_Ah_A_minus_T1": 0.5907800000000236,
+   "dCV_s_A_minus_T1": 212.0,
+   "dI_end_A_minus_T1": 0.0,
+   "EXPLORATORY_lambda_same_cycle_45C": -0.0014415196117674,
+   "EXPLORATORY_term3_same_cycle": 0.1964100915207344
+  },
+  {
+   "anchor": 4,
+   "segment": 8,
+   "setpoint": 25,
+   "Q_fc": 93.74740277777872,
+   "fade": 3.2553644444444387,
+   "days_since_ck0": 125.88123842592591,
+   "lambda": -0.0024505234696166,
+   "lambda_source": "pooled_25",
+   "term3": 0.4175105693442291,
+   "term3_excluded": null,
+   "term3b": null,
+   "term3_gap_bridged": 0.4175105693442291,
+   "dV_pack_mV": 28.00000000000047,
+   "P2_pack_Ah": 1.2577306685920764,
+   "o_A3": 0.5471808333329982,
+   "o_dvdq": 0.125,
+   "abs_shift_A3": 0.9646914026772272,
+   "dCV_Ah_A_minus_T1": 0.7019966666667017,
+   "dCV_s_A_minus_T1": 258.0,
+   "dI_end_A_minus_T1": 0.0019999999999997,
+   "EXPLORATORY_lambda_same_cycle_45C": -0.0016883327647717,
+   "EXPLORATORY_term3_same_cycle": 0.1298483200140376
+  },
+  {
+   "anchor": 5,
+   "segment": 10,
+   "setpoint": 25,
+   "Q_fc": 93.08190666666776,
+   "fade": 3.9208605555554072,
+   "days_since_ck0": 159.14652777777778,
+   "lambda": -0.0025618866699706,
+   "lambda_source": "segment",
+   "term3": 0.0932797266983396,
+   "term3_excluded": null,
+   "term3b": 0.0932797266983396,
+   "term3_gap_bridged": 0.0932797266983396,
+   "dV_pack_mV": 29.99999999999936,
+   "P2_pack_Ah": 1.3475685734914593,
+   "o_A3": 0.3980604166667625,
+   "o_dvdq": 0.0,
+   "abs_shift_A3": 0.4913401433651021,
+   "dCV_Ah_A_minus_T1": 0.7505083333333005,
+   "dCV_s_A_minus_T1": 270.0,
+   "dI_end_A_minus_T1": 0.0050000000000007,
+   "EXPLORATORY_lambda_same_cycle_45C": -0.0024889417091471,
+   "EXPLORATORY_term3_same_cycle": 0.0657496237426474
+  },
+  {
+   "anchor": 6,
+   "segment": 12,
+   "setpoint": 25,
+   "Q_fc": 92.6360544444453,
+   "fade": 4.366712777777849,
+   "days_since_ck0": 195.94770833333337,
+   "lambda": -0.0023391602692626,
+   "lambda_source": "segment",
+   "term3": 0.1350966829049064,
+   "term3_excluded": null,
+   "term3b": 0.1350966829049065,
+   "term3_gap_bridged": 0.1350966829049064,
+   "dV_pack_mV": 31.000000000000583,
+   "P2_pack_Ah": 1.3924875259412304,
+   "o_A3": 0.5173361111111241,
+   "o_dvdq": 0.375,
+   "abs_shift_A3": 0.6524327940160305,
+   "dCV_Ah_A_minus_T1": 0.8023016666666649,
+   "dCV_s_A_minus_T1": 284.0,
+   "dI_end_A_minus_T1": 0.0030000000000001,
+   "EXPLORATORY_lambda_same_cycle_45C": -0.0028229067823099,
+   "EXPLORATORY_term3_same_cycle": 0.3176667731177149
+  },
+  {
+   "anchor": 7,
+   "segment": 14,
+   "setpoint": 25,
+   "Q_fc": 91.95363888889,
+   "fade": 5.049128333333144,
+   "days_since_ck0": 231.13197916666667,
+   "lambda": -0.0024505234696166,
+   "lambda_source": "pooled_25",
+   "term3": null,
+   "term3_excluded": "recording gap in A->T1",
+   "term3b": null,
+   "term3_gap_bridged": 0.052704130438537,
+   "dV_pack_mV": 27.999999999998693,
+   "P2_pack_Ah": 1.257730668591997,
+   "o_A3": 0.4792048611111248,
+   "o_dvdq": 0.625,
+   "abs_shift_A3": null,
+   "dCV_Ah_A_minus_T1": 0.7642697222222097,
+   "dCV_s_A_minus_T1": 279.0,
+   "dI_end_A_minus_T1": -0.0010000000000003,
+   "EXPLORATORY_lambda_same_cycle_45C": null,
+   "EXPLORATORY_term3_same_cycle": null
+  }
+ ],
+ "soh_variants": [
+  {
+   "variant": "SUB",
+   "d_Ah_per_Ah": 0.0,
+   "CK0": 98.441,
+   "CK1": 95.984,
+   "CK2": 94.507,
+   "CK3": 93.6,
+   "CK4": 92.821,
+   "CK5": 92.015,
+   "CK6": 91.426,
+   "CK7": 90.765,
+   "CK7_minus_SUB_pp": 0.0
+  },
+  {
+   "variant": "SUB + d_path (median)",
+   "d_Ah_per_Ah": -0.117907,
+   "CK0": 98.441,
+   "CK1": 95.694,
+   "CK2": 94.043,
+   "CK3": 93.029,
+   "CK4": 92.158,
+   "CK5": 91.257,
+   "CK6": 90.599,
+   "CK7": 89.86,
+   "CK7_minus_SUB_pp": -0.905
+  },
+  {
+   "variant": "SUB + d_path (LOO low)",
+   "d_Ah_per_Ah": -0.166985,
+   "CK0": 98.441,
+   "CK1": 95.574,
+   "CK2": 93.85,
+   "CK3": 92.792,
+   "CK4": 91.883,
+   "CK5": 90.942,
+   "CK6": 90.255,
+   "CK7": 89.483,
+   "CK7_minus_SUB_pp": -1.282
+  },
+  {
+   "variant": "SUB + d_path (LOO high)",
+   "d_Ah_per_Ah": -0.095253,
+   "CK0": 98.441,
+   "CK1": 95.75,
+   "CK2": 94.132,
+   "CK3": 93.139,
+   "CK4": 92.286,
+   "CK5": 91.403,
+   "CK6": 90.758,
+   "CK7": 90.034,
+   "CK7_minus_SUB_pp": -0.731
+  },
+  {
+   "variant": "SUB + d_top (median)",
+   "d_Ah_per_Ah": -0.104762,
+   "CK0": 98.441,
+   "CK1": 95.727,
+   "CK2": 94.095,
+   "CK3": 93.093,
+   "CK4": 92.232,
+   "CK5": 91.342,
+   "CK6": 90.691,
+   "CK7": 89.961,
+   "CK7_minus_SUB_pp": -0.804
+  },
+  {
+   "variant": "SUB + d_top (low)",
+   "d_Ah_per_Ah": -0.166985,
+   "CK0": 98.441,
+   "CK1": 95.574,
+   "CK2": 93.85,
+   "CK3": 92.792,
+   "CK4": 91.883,
+   "CK5": 90.942,
+   "CK6": 90.255,
+   "CK7": 89.483,
+   "CK7_minus_SUB_pp": -1.282
+  },
+  {
+   "variant": "SUB + d_top (high)",
+   "d_Ah_per_Ah": -0.045059,
+   "CK0": 98.441,
+   "CK1": 95.873,
+   "CK2": 94.33,
+   "CK3": 93.382,
+   "CK4": 92.568,
+   "CK5": 91.725,
+   "CK6": 91.11,
+   "CK7": 90.419,
+   "CK7_minus_SUB_pp": -0.346
+  }
+ ],
+ "recommendation": "SUB unchanged. No candidate (outcome O3). The registered d_path (E = -0.97 Ah at CK7) is not identifiable (LOO width 0.59 Ah) and is explained by a month-specific Ah-chain lambda, not by the pack's tops; the lambda-free voltage check P2 gives -0.28 Ah from cell 3 alone, and a same-cycle lambda (exploratory) gives no trend (-0.11..+0.04 Ah). Do not use SUB + d_path or SUB + d_top.",
+ "for_round_15": [
+  "any Ah-chain term must use a lambda from the same checkup cycle (lambda steps up to 0.8e-3, about 0.3 Ah per block, between cycles); round 12's Term3 with the pooled 25 C lambda has the same exposure",
+  "register a same-cycle lambda rule (45 C segment of the same cycle; 25 C transfer error -0.03/+0.18 Ah per block) before re-estimating d_path; anchors 1 and 7 have no same-cycle 45 C segment",
+  "the pack-native path drift is then at most a few tenths of an Ah at CK7; combined with round 13's tail bound [0, +0.41] Ah the open variable stays the checkup's CV termination and charge rate"
+ ],
+ "no_proxy_statement": "No rule or output used P_k or any proxy error."
+}

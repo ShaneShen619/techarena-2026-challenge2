@@ -35,3 +35,11 @@ Re-checked 2026-10-19 22:29 after `git fetch origin`; `origin/exp/phase2-r12-eps
 |---|---|---|---|
 | — | `research/phase2_r12_eps_level_20261019/wp3/pairs.csv` | prompt WP2 N cross-check | not available |
 | `r12/ahchain.py` | `research/phase2_r12_eps_level_20261019/src/ahchain.py` | descriptive N cross-check only (registered chain unchanged, D4/D10) | `0b88ab91e41dda1e77e4fd9187c0429c7d03490e07e8622682f19fe878105456` |
+
+## Added at WP3
+
+Re-checked 2026-10-19 22:35 after `git fetch origin`; `origin/exp/phase2-r13-top-tail-20261019` at `fb50d07`.
+
+| copy | path at ref | use | SHA256 |
+|---|---|---|---|
+| `r13/R13_RESULT.json` | `research/phase2_r13_top_tail_20261019/wp3/R13_RESULT.json` | d_top = d_tail + d_path (reported; decides nothing) | `58b97b6c2883b13533bfd20b569a4ebcbb6ddea61a1f0d4a6eb7040875a995a8` |
