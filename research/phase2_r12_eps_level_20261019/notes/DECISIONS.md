@@ -84,3 +84,11 @@
   - Not recommended. The registered budget is L3, and its point (+4.08 Ah over 0.4) would put CK2 at 100.41 % SOH, above CK0's 98.44 %. That is physically implausible and traces back to the h-transfer artefact (WP2).
   - The round-7 probe order P_stress_early → P_start → P_drift is unchanged.
   - SUB_A3fix is a registered single-anchor case of P_start's question (do anchor start states bias the anchors?). It is offered as a P_start variant; the user decides.
+
+- D42 (final closeout, 2026-10-19): the user clarified that the requested report is "Round 12 — The ε level on our own pack: final report". Resume from af263cb and the existing untracked FINAL_REPORT.md draft; do not redo completed WPs. The user's explicit no-upload instruction supersedes the prompt's push requirement for this closeout. Commit documentation locally only; distinguish local completion from remote synchronization.
+- D43 (report accuracy): correct the draft's h definition to discharge-side step depth minus charge-side step-to-top distance, matching wp2_run.py and ck0_split.json. Correct synthetic resolution wording: 0.02–0.10 Ah is a median-error range, not a worst-case bound; distinguish quantisation-only from added-noise cases. Limit preregistration claims to the registered decision methods and identify later exploratory diagnostics. Preserve all registered outputs and decisions.
+- D44 (final verification): all five protocol.sha256 entries match; registered core modules are unchanged from b3f3e7a. The existing synthetic suite passes 15/15 with python3 -B (without --diagnostic, so no result files are rewritten). Check budget addition/endpoints, handoff SOH and all final-report SOH rows against existing JSON/CSV; do not rerun completed challenge-data measurements. The submission directory is unchanged from 6525edf.
+
+## 中文收尾记录
+
+D42：用户明确本次目标为第 12 轮最终报告，从 af263cb 和已有未提交草稿续写；“不得上传”优先于 prompt 的 push 要求，仅本地提交。D43：修正 h 的差值方向、合成测试中位误差与最大误差的区别，以及登记范围表述，登记结果不变。D44：核对 5 项登记哈希、复跑已有 15 项合成测试并核对预算与 SOH，未重跑完成的赛题测量，提交包未修改。
