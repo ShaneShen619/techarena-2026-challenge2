@@ -1,0 +1,312 @@
+{
+ "protocol": "v1 (wp1/protocol.sha256)",
+ "lam": [
+  {
+   "segment": 1,
+   "setpoint": 45,
+   "lam": -0.0009688974869939396,
+   "source": "segment",
+   "n_TT": 2
+  },
+  {
+   "segment": 2,
+   "setpoint": 25,
+   "lam": -0.0024505234696166663,
+   "source": "pooled same set point",
+   "n_TT": 0
+  },
+  {
+   "segment": 4,
+   "setpoint": 25,
+   "lam": -0.0024505234696166663,
+   "source": "pooled same set point",
+   "n_TT": 0
+  },
+  {
+   "segment": 5,
+   "setpoint": 45,
+   "lam": -0.0014238662953528084,
+   "source": "segment",
+   "n_TT": 3
+  },
+  {
+   "segment": 6,
+   "setpoint": 25,
+   "lam": -0.0024505234696166663,
+   "source": "pooled same set point",
+   "n_TT": 0
+  },
+  {
+   "segment": 7,
+   "setpoint": 45,
+   "lam": -0.0014415196117674928,
+   "source": "segment",
+   "n_TT": 3
+  },
+  {
+   "segment": 8,
+   "setpoint": 25,
+   "lam": -0.0024505234696166663,
+   "source": "pooled same set point",
+   "n_TT": 0
+  },
+  {
+   "segment": 9,
+   "setpoint": 45,
+   "lam": -0.001688332764771759,
+   "source": "segment",
+   "n_TT": 3
+  },
+  {
+   "segment": 10,
+   "setpoint": 25,
+   "lam": -0.0025618866699706412,
+   "source": "segment",
+   "n_TT": 1
+  },
+  {
+   "segment": 11,
+   "setpoint": 45,
+   "lam": -0.0024889417091471257,
+   "source": "segment",
+   "n_TT": 3
+  },
+  {
+   "segment": 12,
+   "setpoint": 25,
+   "lam": -0.0023391602692626914,
+   "source": "segment",
+   "n_TT": 1
+  },
+  {
+   "segment": 13,
+   "setpoint": 45,
+   "lam": -0.002822906782309908,
+   "source": "segment",
+   "n_TT": 3
+  },
+  {
+   "segment": 14,
+   "setpoint": 25,
+   "lam": -0.0024505234696166663,
+   "source": "pooled same set point",
+   "n_TT": 0
+  }
+ ],
+ "tt_residuals": [
+  {
+   "pair": "E02-E03",
+   "segment": 1,
+   "setpoint": 45,
+   "lam_loo": -0.0009962110871032928,
+   "lam_source": "segment",
+   "r": 0.020616731909928188
+  },
+  {
+   "pair": "E03-E04",
+   "segment": 1,
+   "setpoint": 45,
+   "lam_loo": -0.0009415838868845865,
+   "lam_source": "segment",
+   "r": -0.02061752039286613
+  },
+  {
+   "pair": "E10-E11",
+   "segment": 5,
+   "setpoint": 45,
+   "lam_loo": -0.0013829823339555985,
+   "lam_source": "segment",
+   "r": -0.015429960336873716
+  },
+  {
+   "pair": "E11-E12",
+   "segment": 5,
+   "setpoint": 45,
+   "lam_loo": -0.001428254795711099,
+   "lam_source": "segment",
+   "r": 0.035829283375836574
+  },
+  {
+   "pair": "E12-E13",
+   "segment": 5,
+   "setpoint": 45,
+   "lam_loo": -0.001378593833597308,
+   "lam_source": "segment",
+   "r": -0.020398733613851916
+  },
+  {
+   "pair": "E16-E17",
+   "segment": 7,
+   "setpoint": 45,
+   "lam_loo": -0.001451715816248581,
+   "lam_source": "segment",
+   "r": 0.0038481807732451134
+  },
+  {
+   "pair": "E17-E18",
+   "segment": 7,
+   "setpoint": 45,
+   "lam_loo": -0.0015079280136889232,
+   "lam_source": "segment",
+   "r": 0.06749359333414462
+  },
+  {
+   "pair": "E18-E19",
+   "segment": 7,
+   "setpoint": 45,
+   "lam_loo": -0.0013853074143271506,
+   "lam_source": "segment",
+   "r": -0.07134159867434564
+  },
+  {
+   "pair": "E22-E23",
+   "segment": 9,
+   "setpoint": 45,
+   "lam_loo": -0.0017020417765766281,
+   "lam_source": "segment",
+   "r": 0.020874865630408634
+  },
+  {
+   "pair": "E23-E24",
+   "segment": 9,
+   "setpoint": 45,
+   "lam_loo": -0.0016675320424542482,
+   "lam_source": "segment",
+   "r": -0.018198436606375767
+  },
+  {
+   "pair": "E24-E25",
+   "segment": 9,
+   "setpoint": 45,
+   "lam_loo": -0.0016812410542591174,
+   "lam_source": "segment",
+   "r": -0.002676509058490484
+  },
+  {
+   "pair": "E27-E28",
+   "segment": 10,
+   "setpoint": 25,
+   "lam_loo": -0.0023391602692626914,
+   "lam_source": "pooled same set point",
+   "r": -0.08405873781207618
+  },
+  {
+   "pair": "E29-E30",
+   "segment": 11,
+   "setpoint": 45,
+   "lam_loo": -0.0025055508529273907,
+   "lam_source": "segment",
+   "r": 0.006649195036221189
+  },
+  {
+   "pair": "E30-E31",
+   "segment": 11,
+   "setpoint": 45,
+   "lam_loo": -0.002505046550667283,
+   "lam_source": "segment",
+   "r": 0.006078104215067381
+  },
+  {
+   "pair": "E31-E32",
+   "segment": 11,
+   "setpoint": 45,
+   "lam_loo": -0.0024884374068870176,
+   "lam_source": "segment",
+   "r": -0.012727145109717397
+  },
+  {
+   "pair": "E34-E35",
+   "segment": 12,
+   "setpoint": 25,
+   "lam_loo": -0.0025618866699706412,
+   "lam_source": "pooled same set point",
+   "r": 0.08405880277394207
+  },
+  {
+   "pair": "E36-E37",
+   "segment": 13,
+   "setpoint": 45,
+   "lam_loo": -0.0027897008296841287,
+   "lam_source": "segment",
+   "r": -0.012532207295746112
+  },
+  {
+   "pair": "E37-E38",
+   "segment": 13,
+   "setpoint": 45,
+   "lam_loo": -0.002701931774810312,
+   "lam_source": "segment",
+   "r": -0.11190660046191381
+  },
+  {
+   "pair": "E38-E39",
+   "segment": 13,
+   "setpoint": 45,
+   "lam_loo": -0.002910675837183724,
+   "lam_source": "segment",
+   "r": 0.12444040912707766
+  }
+ ],
+ "G_noise": {
+  "sigma_TT_25": 0.12462553283641532,
+  "sigma_TT_45": 0.026274970125778858,
+  "passed": true
+ },
+ "n_pairs": {
+  "TT": 19,
+  "AT": 8,
+  "none": 8,
+  "X": 5
+ },
+ "n_admissible": {
+  "AT": 6,
+  "TT": 19,
+  "X": 5
+ },
+ "exclusions": [
+  {
+   "pair": "E14-E15",
+   "type": "AT",
+   "reason": "recording gap 59909 s"
+  },
+  {
+   "pair": "E40-E41",
+   "type": "AT",
+   "reason": "recording gap 1753 s"
+  }
+ ],
+ "not_paired": [
+  {
+   "pair": "E04-E05",
+   "reason": "checkup between"
+  },
+  {
+   "pair": "E05-E06",
+   "reason": "segment boundary that is not a chamber switch"
+  },
+  {
+   "pair": "E07-E08",
+   "reason": "checkup between"
+  },
+  {
+   "pair": "E13-E14",
+   "reason": "checkup between"
+  },
+  {
+   "pair": "E19-E20",
+   "reason": "checkup between"
+  },
+  {
+   "pair": "E25-E26",
+   "reason": "checkup between"
+  },
+  {
+   "pair": "E32-E33",
+   "reason": "checkup between"
+  },
+  {
+   "pair": "E39-E40",
+   "reason": "checkup between"
+  }
+ ]
+}
