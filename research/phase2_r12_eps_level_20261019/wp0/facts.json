@@ -1,0 +1,207 @@
+{
+ "ck0": {
+  "t_start": "2025-01-15 14:03:42",
+  "t_end": "2025-01-16 09:44:56",
+  "I_median_A": -5.1,
+  "I_mean_A": -5.1003,
+  "V_start": 13.59,
+  "Ah_end": 100.412,
+  "Ah_at_11p2V": 100.412,
+  "V_end": 11.2,
+  "cells_end": [
+   2.8,
+   2.8,
+   2.802,
+   2.801
+  ],
+  "cells_start": [
+   3.374,
+   3.351,
+   3.511,
+   3.359
+  ],
+  "duration_h": 19.687
+ },
+ "structure": {
+  "blocks_per_segment": {
+   "1": {
+    "setpoint": 45,
+    "n_cv": 5,
+    "n_anchor": 1
+   },
+   "2": {
+    "setpoint": 25,
+    "n_cv": 2,
+    "n_anchor": 1
+   },
+   "4": {
+    "setpoint": 25,
+    "n_cv": 2,
+    "n_anchor": 1
+   },
+   "5": {
+    "setpoint": 45,
+    "n_cv": 4,
+    "n_anchor": 0
+   },
+   "6": {
+    "setpoint": 25,
+    "n_cv": 2,
+    "n_anchor": 1
+   },
+   "7": {
+    "setpoint": 45,
+    "n_cv": 4,
+    "n_anchor": 0
+   },
+   "8": {
+    "setpoint": 25,
+    "n_cv": 2,
+    "n_anchor": 1
+   },
+   "9": {
+    "setpoint": 45,
+    "n_cv": 4,
+    "n_anchor": 0
+   },
+   "10": {
+    "setpoint": 25,
+    "n_cv": 3,
+    "n_anchor": 1
+   },
+   "11": {
+    "setpoint": 45,
+    "n_cv": 4,
+    "n_anchor": 0
+   },
+   "12": {
+    "setpoint": 25,
+    "n_cv": 3,
+    "n_anchor": 1
+   },
+   "13": {
+    "setpoint": 45,
+    "n_cv": 4,
+    "n_anchor": 0
+   },
+   "14": {
+    "setpoint": 25,
+    "n_cv": 2,
+    "n_anchor": 1
+   }
+  },
+  "block_h_min": 116.034,
+  "block_h_median": 116.061,
+  "block_h_max": 136.373,
+  "block_h_without_gap": {
+   "min": 116.034,
+   "max": 116.085
+  },
+  "cc_I_A": [
+   20.4,
+   20.4
+  ],
+  "I_cv_end_A": [
+   5.088,
+   5.1
+  ],
+  "rest_after_cv_min": [
+   30.0,
+   30.017
+  ],
+  "pulse_min": [
+   30.0,
+   30.017
+  ],
+  "pulse_I_A": [
+   -20.4,
+   -20.399
+  ],
+  "pulse_Ah": [
+   -10.205,
+   -10.2
+  ],
+  "program_max_depth_Ah": [
+   53.424,
+   55.916,
+   55.921
+  ],
+  "program_depth_after_pulse_Ah": [
+   43.224,
+   45.716,
+   45.717
+  ],
+  "band_depth_from_to_Ah": [
+   11.84,
+   55.62
+  ],
+  "band_samples_min": 1130,
+  "all_cv_followed_by_pulse": true,
+  "prepulse_offset_min": [
+   30.0,
+   30.017
+  ]
+ },
+ "pulse_booking": {
+  "n": 41,
+  "integrated_Ah": [
+   -10.2054,
+   -10.1996
+  ],
+  "d_charge_cum_Ah": [
+   10.143,
+   10.257
+  ],
+  "d_discharge_cum_Ah": [
+   0.0,
+   0.0
+  ]
+ },
+ "top_rest_anchor_minus_next_topup": [
+  {
+   "anchor_k": 1,
+   "dV_cell_mean_mV": -8.249999999999869,
+   "dV_pack_mV": -32.999999999999474
+  },
+  {
+   "anchor_k": 2,
+   "dV_cell_mean_mV": -7.749999999999702,
+   "dV_pack_mV": -30.999999999998806
+  },
+  {
+   "anchor_k": 3,
+   "dV_cell_mean_mV": -7.749999999999702,
+   "dV_pack_mV": -30.999999999998806
+  },
+  {
+   "anchor_k": 4,
+   "dV_cell_mean_mV": -7.000000000000117,
+   "dV_pack_mV": -28.00000000000047
+  },
+  {
+   "anchor_k": 5,
+   "dV_cell_mean_mV": -7.49999999999984,
+   "dV_pack_mV": -29.99999999999936
+  },
+  {
+   "anchor_k": 6,
+   "dV_cell_mean_mV": -7.750000000000146,
+   "dV_pack_mV": -31.000000000000583
+  },
+  {
+   "anchor_k": 7,
+   "dV_cell_mean_mV": -6.999999999999673,
+   "dV_pack_mV": -27.999999999998693
+  }
+ ],
+ "rebound_first_program_offset_cited": {
+  "value": "0.39-0.46 Ah deeper on all six step-detection methods; gone by the next program",
+  "source": "commit 8429b53 message (phase2_rebound_diagnosis_20261015); package README: 0.4-0.46 Ah",
+  "note": "definition of the reference not stored in the copied outputs; not recomputed (WP0 forbids step locations)"
+ },
+ "v2_switch_step_jump_cited": {
+  "value": "+0.14 to +0.22 Ah at each 25->45 degC switch (CK1->CK2 month +0.60)",
+  "source": "sources/base/v2_phase_matched/FINAL_REPORT.md section 1",
+  "note": "not recomputed (WP0 rule)"
+ }
+}
