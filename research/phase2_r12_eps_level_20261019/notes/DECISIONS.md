@@ -61,3 +61,4 @@
   - If T_top is unmeasured (G_noise failed) or a_0 has no finite interval, the budget is L3.
   - SUB_L uses the point rounded to the nearest 0.05 Ah.
 - D27 (WP1): `ahchain.segment_arrays` treats the counter columns as optional (NaN if absent). Only synthetic test frames lack them. The change was made before registration.
+- D28 (concurrency, end of WP1): new untracked directories `research/phase2_r13_top_tail_20261019/`, `phase2_r14_path_drift_20261019/` and `phase2_r15_probe_plan_20261019/` appeared in the read-only source checkout `/Users/shane/Desktop/Arena_1013_model` during this session. This session did not create them. They are outside this worktree and were not read. This branch's history showed no unexpected commit (checked with `git log --oneline -5` before every commit), so no action was needed.
