@@ -1,0 +1,636 @@
+{
+ "admission_anchors": {
+  "M1": {
+   "0": 0,
+   "1": 0,
+   "2": 0,
+   "3": 0,
+   "4": 0,
+   "5": 0,
+   "6": 0,
+   "7": 0
+  },
+  "M2": {
+   "0": 1,
+   "1": 0,
+   "2": 0,
+   "3": 0,
+   "4": 0,
+   "5": 0,
+   "6": 0,
+   "7": 0
+  },
+  "M3": {
+   "0": 0,
+   "1": 0,
+   "2": 0,
+   "3": 0,
+   "4": 0,
+   "5": 0,
+   "6": 0,
+   "7": 0
+  },
+  "M4": {
+   "0": 1,
+   "1": 1,
+   "2": 1,
+   "3": 1,
+   "4": 1,
+   "5": 1,
+   "6": 1,
+   "7": 1
+  }
+ },
+ "admission_counts_anchors_1_7": {
+  "M1": 0,
+  "M2": 0,
+  "M3": 0,
+  "M4": 7
+ },
+ "admission_topups": {
+  "M1": {
+   "n": 33,
+   "admitted": 0,
+   "admitted_25C": 0,
+   "n_25C": 9
+  },
+  "M2": {
+   "n": 33,
+   "admitted": 10,
+   "admitted_25C": 2,
+   "n_25C": 9
+  },
+  "M3": {
+   "n": 33,
+   "admitted": 0,
+   "admitted_25C": 0,
+   "n_25C": 9
+  },
+  "M4": {
+   "n": 33,
+   "admitted": 30,
+   "admitted_25C": 7,
+   "n_25C": 9
+  }
+ },
+ "rmse_anchors_1_7": {
+  "M1": [
+   0.3797091779774203,
+   0.5430964525663866
+  ],
+  "M2": [
+   0.16080647951485091,
+   0.27897509572508894
+  ],
+  "M3": [
+   0.5596685684679193,
+   0.6072242064200489
+  ],
+  "M4": [
+   0.05457049630532716,
+   0.12402971818626005
+  ]
+ },
+ "last_third_anchors_1_7": {
+  "M1": [
+   -0.3971972391828932,
+   -0.2727341348864504
+  ],
+  "M2": [
+   0.031243837253985995,
+   0.06134703795552158
+  ],
+  "M3": [
+   0.6690832787184844,
+   0.742072300979003
+  ],
+  "M4": [
+   -0.0274836548514074,
+   0.0006045746704546051
+  ]
+ },
+ "backenv_M1": {
+  "1": {
+   "tau_M1_s": 328.54492290821094,
+   "I_end": 5.094,
+   "Iend_x_tau_Ah": 0.46489106591511853,
+   "admitted": false,
+   "rmse": 0.5430964525663866,
+   "last_third": -0.3971972391828932
+  },
+  "7": {
+   "tau_M1_s": 415.21196021004266,
+   "I_end": 5.098,
+   "Iend_x_tau_Ah": 0.5879862703196659,
+   "admitted": false,
+   "rmse": 0.40188831251370377,
+   "last_third": -0.29955889749238085
+  }
+ },
+ "pairs_member": [
+  {
+   "model": "M4",
+   "scenario": "C2",
+   "slope": 0.005013692424235921,
+   "loo_min": 0.0035036179802356154,
+   "loo_max": 0.01069090087085507,
+   "effect_CK7_Ah": 0.041112277878734546
+  },
+  {
+   "model": "M4",
+   "scenario": "C3",
+   "slope": 0.011111809005267726,
+   "loo_min": 0.0075072527526136,
+   "loo_max": 0.017902547850747963,
+   "effect_CK7_Ah": 0.09111683384319534
+  },
+  {
+   "model": "M4",
+   "scenario": "C4",
+   "slope": 0.013144275153494176,
+   "loo_min": 0.008841353847160498,
+   "loo_max": 0.02030642167357669,
+   "effect_CK7_Ah": 0.10778305625865224
+  },
+  {
+   "model": "M4",
+   "scenario": "C5",
+   "slope": 0.012992434401325366,
+   "loo_min": 0.008722483319630036,
+   "loo_max": 0.020625019771714662,
+   "effect_CK7_Ah": 0.106537962090868
+  },
+  {
+   "model": "M4",
+   "scenario": "C6",
+   "slope": 0.015079206945985229,
+   "loo_min": 0.010109888924680769,
+   "loo_max": 0.022641828042160018,
+   "effect_CK7_Ah": 0.12364949695707887
+  },
+  {
+   "model": "M4",
+   "scenario": "C7",
+   "slope": 0.015176627272958184,
+   "loo_min": 0.010175374701521678,
+   "loo_max": 0.022710249101575992,
+   "effect_CK7_Ah": 0.12444834363825709
+  }
+ ],
+ "pairs_not_member": [
+  {
+   "model": "M1",
+   "scenario": "C2",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M1",
+   "scenario": "C3",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M1",
+   "scenario": "C4",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M1",
+   "scenario": "C5",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M1",
+   "scenario": "C6",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M1",
+   "scenario": "C7",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M2",
+   "scenario": "C2",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M2",
+   "scenario": "C3",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M2",
+   "scenario": "C4",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M2",
+   "scenario": "C5",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M2",
+   "scenario": "C6",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M2",
+   "scenario": "C7",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M3",
+   "scenario": "C2",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M3",
+   "scenario": "C3",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M3",
+   "scenario": "C4",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M3",
+   "scenario": "C5",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M3",
+   "scenario": "C6",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  },
+  {
+   "model": "M3",
+   "scenario": "C7",
+   "ref_admitted_defined": false,
+   "n_usable_2_7": 0
+  }
+ ],
+ "undefined": [
+  {
+   "event_id": "E00",
+   "model": "M2",
+   "scenario": "C2"
+  },
+  {
+   "event_id": "E00",
+   "model": "M2",
+   "scenario": "C3"
+  },
+  {
+   "event_id": "E00",
+   "model": "M2",
+   "scenario": "C4"
+  },
+  {
+   "event_id": "E05",
+   "model": "M2",
+   "scenario": "C2"
+  },
+  {
+   "event_id": "E05",
+   "model": "M2",
+   "scenario": "C3"
+  },
+  {
+   "event_id": "E05",
+   "model": "M2",
+   "scenario": "C4"
+  },
+  {
+   "event_id": "E07",
+   "model": "M2",
+   "scenario": "C2"
+  },
+  {
+   "event_id": "E07",
+   "model": "M2",
+   "scenario": "C3"
+  },
+  {
+   "event_id": "E07",
+   "model": "M2",
+   "scenario": "C4"
+  },
+  {
+   "event_id": "E13",
+   "model": "M2",
+   "scenario": "C2"
+  },
+  {
+   "event_id": "E13",
+   "model": "M2",
+   "scenario": "C3"
+  },
+  {
+   "event_id": "E13",
+   "model": "M2",
+   "scenario": "C4"
+  },
+  {
+   "event_id": "E19",
+   "model": "M2",
+   "scenario": "C2"
+  },
+  {
+   "event_id": "E19",
+   "model": "M2",
+   "scenario": "C3"
+  },
+  {
+   "event_id": "E19",
+   "model": "M2",
+   "scenario": "C4"
+  },
+  {
+   "event_id": "E25",
+   "model": "M2",
+   "scenario": "C2"
+  },
+  {
+   "event_id": "E25",
+   "model": "M2",
+   "scenario": "C3"
+  },
+  {
+   "event_id": "E25",
+   "model": "M2",
+   "scenario": "C4"
+  },
+  {
+   "event_id": "E32",
+   "model": "M2",
+   "scenario": "C2"
+  },
+  {
+   "event_id": "E32",
+   "model": "M2",
+   "scenario": "C3"
+  },
+  {
+   "event_id": "E32",
+   "model": "M2",
+   "scenario": "C4"
+  },
+  {
+   "event_id": "E39",
+   "model": "M2",
+   "scenario": "C2"
+  },
+  {
+   "event_id": "E39",
+   "model": "M2",
+   "scenario": "C3"
+  },
+  {
+   "event_id": "E39",
+   "model": "M2",
+   "scenario": "C4"
+  }
+ ],
+ "T2_T3": [
+  {
+   "estimator": "T2",
+   "unit": "pack",
+   "window": "main",
+   "s_top_V_per_Ah": 0.022262317918465096,
+   "slope": 0.05019438199773172,
+   "loo_min": 0.03558584341286331,
+   "loo_max": 0.06899311478590277,
+   "effect_CK7_Ah": 0.4115939323814001,
+   "member_of_A": true
+  },
+  {
+   "estimator": "T2",
+   "unit": "pack",
+   "window": "w025_1",
+   "s_top_V_per_Ah": 0.14799835585100293,
+   "slope": 0.007550376376338727,
+   "loo_min": 0.005352920003053611,
+   "loo_max": 0.010378133234772107,
+   "effect_CK7_Ah": 0.06191308628597755,
+   "member_of_A": false
+  },
+  {
+   "estimator": "T2",
+   "unit": "pack",
+   "window": "w1_3",
+   "s_top_V_per_Ah": -0.0014117047268708647,
+   "slope": -0.7915559596030186,
+   "loo_min": -1.088008438530519,
+   "loo_max": -0.5611820548408126,
+   "effect_CK7_Ah": -6.490758868744752,
+   "member_of_A": false
+  },
+  {
+   "estimator": "T2",
+   "unit": "cell1",
+   "window": "main",
+   "s_top_V_per_Ah": 0.002517873104143201,
+   "slope": -0.0,
+   "loo_min": -0.10703344036419733,
+   "loo_max": -0.0,
+   "effect_CK7_Ah": -0.0,
+   "member_of_A": false
+  },
+  {
+   "estimator": "T2",
+   "unit": "cell1",
+   "window": "w025_1",
+   "s_top_V_per_Ah": 0.02637423787112434,
+   "slope": -0.0,
+   "loo_min": -0.010218176618175735,
+   "loo_max": -0.0,
+   "effect_CK7_Ah": -0.0,
+   "member_of_A": false
+  },
+  {
+   "estimator": "T2",
+   "unit": "cell1",
+   "window": "w1_3",
+   "s_top_V_per_Ah": -0.0005642398485688969,
+   "slope": -0.0,
+   "loo_min": -0.0,
+   "loo_max": 0.4776277702123703,
+   "effect_CK7_Ah": -0.0,
+   "member_of_A": false
+  },
+  {
+   "estimator": "T2",
+   "unit": "cell2",
+   "window": "main",
+   "s_top_V_per_Ah": 0.0007884258574789421,
+   "slope": -0.0,
+   "loo_min": -0.25120414048414164,
+   "loo_max": -0.0,
+   "effect_CK7_Ah": -0.0,
+   "member_of_A": false
+  },
+  {
+   "estimator": "T2",
+   "unit": "cell2",
+   "window": "w025_1",
+   "s_top_V_per_Ah": 0.01243218585055245,
+   "slope": -0.0,
+   "loo_min": -0.015930894393335424,
+   "loo_max": -0.0,
+   "effect_CK7_Ah": -0.0,
+   "member_of_A": false
+  },
+  {
+   "estimator": "T2",
+   "unit": "cell2",
+   "window": "w1_3",
+   "s_top_V_per_Ah": -0.0005110531953388881,
+   "slope": 0.0,
+   "loo_min": -0.0,
+   "loo_max": 0.3875444702623096,
+   "effect_CK7_Ah": 0.0,
+   "member_of_A": false
+  },
+  {
+   "estimator": "T2",
+   "unit": "cell3",
+   "window": "main",
+   "s_top_V_per_Ah": 0.017694220392378265,
+   "slope": 0.06315301069917313,
+   "loo_min": 0.06092308443338764,
+   "loo_max": 0.07243257752489127,
+   "effect_CK7_Ah": 0.5178546877332196,
+   "member_of_A": false
+  },
+  {
+   "estimator": "T2",
+   "unit": "cell3",
+   "window": "w025_1",
+   "s_top_V_per_Ah": 0.0911987813365125,
+   "slope": 0.012252831379732595,
+   "loo_min": 0.011820185172981536,
+   "loo_max": 0.01405323592630434,
+   "effect_CK7_Ah": 0.10047321731380728,
+   "member_of_A": false
+  },
+  {
+   "estimator": "T2",
+   "unit": "cell3",
+   "window": "w1_3",
+   "s_top_V_per_Ah": 0.0004193368622813231,
+   "slope": 2.6647866912394775,
+   "loo_min": 2.5706933492163038,
+   "loo_max": 3.0563446851319984,
+   "effect_CK7_Ah": 21.851250868163714,
+   "member_of_A": false
+  },
+  {
+   "estimator": "T2",
+   "unit": "cell4",
+   "window": "main",
+   "s_top_V_per_Ah": 0.0013802523585820115,
+   "slope": -0.30693892004401174,
+   "loo_min": -0.3779642003192423,
+   "loo_max": -0.2805479229938604,
+   "effect_CK7_Ah": -2.516899144360896,
+   "member_of_A": false
+  },
+  {
+   "estimator": "T2",
+   "unit": "cell4",
+   "window": "w025_1",
+   "s_top_V_per_Ah": 0.01828626745193427,
+   "slope": -0.023167831786609347,
+   "loo_min": -0.028528838940010997,
+   "loo_max": -0.021175832270056868,
+   "effect_CK7_Ah": -0.18997622065019662,
+   "member_of_A": false
+  },
+  {
+   "estimator": "T2",
+   "unit": "cell4",
+   "window": "w1_3",
+   "s_top_V_per_Ah": -0.0007245073511602577,
+   "slope": 0.5847465421198363,
+   "loo_min": 0.5344692939104596,
+   "loo_max": 0.72005615693857,
+   "effect_CK7_Ah": 4.794921645382658,
+   "member_of_A": false
+  },
+  {
+   "estimator": "T3",
+   "unit": "pack",
+   "window": "main",
+   "s_top_V_per_Ah": 0.022262317918465096,
+   "slope": 0.012506770659344088,
+   "loo_min": 0.006333792696787681,
+   "loo_max": 0.01739382816406464,
+   "effect_CK7_Ah": 0.10255551940662151,
+   "member_of_A": false
+  }
+ ],
+ "top_cells": [
+  {
+   "anchor": 1,
+   "top_cell_end": "cell3",
+   "top_cell_30": "cell3"
+  },
+  {
+   "anchor": 2,
+   "top_cell_end": "cell3",
+   "top_cell_30": "cell3"
+  },
+  {
+   "anchor": 3,
+   "top_cell_end": "cell3",
+   "top_cell_30": "cell3"
+  },
+  {
+   "anchor": 4,
+   "top_cell_end": "cell3",
+   "top_cell_30": "cell3"
+  },
+  {
+   "anchor": 5,
+   "top_cell_end": "cell3",
+   "top_cell_30": "cell3"
+  },
+  {
+   "anchor": 6,
+   "top_cell_end": "cell3",
+   "top_cell_30": "cell3"
+  },
+  {
+   "anchor": 7,
+   "top_cell_end": "cell3",
+   "top_cell_30": "cell3"
+  }
+ ],
+ "fade": {
+  "1": 0.0,
+  "2": 1.3384594444444389,
+  "3": 2.3604213888888808,
+  "4": 3.255321388888902,
+  "5": 3.920924444444438,
+  "6": 4.366726111111092,
+  "7": 5.049081111111093
+ }
+}
