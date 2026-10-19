@@ -1,0 +1,77 @@
+{
+ "protocol": "v1 (wp1/protocol.sha256)",
+ "G_SB": {
+  "sigma_LOO": 0.13180102465799964,
+  "threshold": 0.2636020493159993,
+  "loo_residuals": {
+   "1": 0.08525630883507773,
+   "2": 0.04333813026496358,
+   "4": -0.039350985433813435,
+   "5": -0.5195413682163874,
+   "6": -0.09254083760765752,
+   "7": 0.3997234255966333
+  },
+  "failed_anchors": [
+   5,
+   7
+  ],
+  "passed": false,
+  "status": "H_SB rejected for anchor(s) 5, 7"
+ },
+ "G_a3": {
+  "a3_rel": 0.3047028157489251,
+  "threshold": 0.2636020493159993,
+  "same_sign": 4,
+  "identified": true,
+  "a3_rel_per_locator": {
+   "CL1": -0.0865293699262395,
+   "CL2": 0.6752946819395476,
+   "CL3": 0.8042475427087936,
+   "CL4": 0.28217123623453944,
+   "CL5": 0.21789001407172037
+  },
+  "status": "identified"
+ },
+ "G_B3": {
+  "width": 2.9772424161223636,
+  "status": "not identified",
+  "a0": 3.374494766369036,
+  "a0_interval": [
+   1.744921877200845,
+   4.722164293323209
+  ],
+  "budget_entry": "full interval"
+ },
+ "anomaly_list": {
+  "anchors": [
+   3,
+   5,
+   7
+  ],
+  "reasons": {
+   "3": "G_a3",
+   "5": "G_SB residual",
+   "7": "G_SB residual"
+  }
+ },
+ "unrelaxed_starts": [
+  0,
+  3
+ ],
+ "H_SB": "necessary condition failed for anchors 5, 7",
+ "implications_for_WP4": [
+  "L2 requires 'G_SB did not fail'; G_SB failed, so L2 cannot be reached",
+  "the a_0 interval width is 2.977 Ah and interval endpoints add, so the EPS_EXTRA_hat width is at least that, above the 0.50 Ah limit of L1 and L2",
+  "the anchor-3 rule's condition (G_a3) holds: SUB_A3fix is a WP4 candidate (leaderboard-only)"
+ ],
+ "r8_check": {
+  "all_pass": false,
+  "failed_anchors": [
+   1,
+   3,
+   5,
+   7
+  ],
+  "note": "diagnostic only, not a gate"
+ }
+}

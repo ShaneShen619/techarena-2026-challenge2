@@ -240,6 +240,41 @@ def b3():
     print(json.dumps(res, indent=1, default=float))
 
 
+# ---- gates -------------------------------------------------------------------------------------------------
+def gates():
+    b2r = json.load(open(os.path.join(OUT, "b2_results.json")))
+    b3r = json.load(open(os.path.join(OUT, "ck0_split.json")))
+    sa = pd.read_csv(os.path.join(OUT, "start_audit.csv")).set_index("anchor_k")
+    gsb, ga3, gb3 = b2r["G_SB"], b2r["G_a3"], b3r["G_B3"]
+    failed = [int(k) for k in gsb["failed_anchors"]]
+    anomalies = sorted(set(failed + ([3] if ga3["identified"] else [])))
+    lo, hi = b3r["a0_interval"]
+    g = dict(
+        protocol="v1 (wp1/protocol.sha256)",
+        G_SB=dict(gsb, status=("not failed" if gsb["passed"] else
+                               "H_SB rejected for anchor(s) " + ", ".join(str(k) for k in failed))),
+        G_a3=dict(ga3, a3_rel_per_locator=b2r["a3_rel_per_locator"],
+                  status="identified" if ga3["identified"] else "not identified"),
+        G_B3=dict(gb3, a0=b3r["a0"], a0_interval=[lo, hi],
+                  budget_entry="identified" if gb3["status"] == "identified" else
+                  ("full interval" if gb3["status"] == "not identified" else "no finite interval -> L3")),
+        anomaly_list=dict(anchors=anomalies,
+                          reasons={str(k): ("G_SB residual" if k in failed else "G_a3") for k in anomalies}),
+        unrelaxed_starts=[int(k) for k in sa.index if not sa.loc[k, "relaxed"]],
+        H_SB=("necessary condition failed for anchors " + ", ".join(str(k) for k in failed)) if failed else
+             "necessary condition not failed (H_SB not proven: S_k for k >= 1 is not visible)",
+        implications_for_WP4=[
+            "L2 requires 'G_SB did not fail'; G_SB failed, so L2 cannot be reached",
+            f"the a_0 interval width is {hi - lo:.3f} Ah and interval endpoints add, so the EPS_EXTRA_hat width is at "
+            "least that, above the 0.50 Ah limit of L1 and L2",
+            "the anchor-3 rule's condition (G_a3) holds: SUB_A3fix is a WP4 candidate (leaderboard-only)"],
+        r8_check=dict(all_pass=b2r["r8_check_all_pass"],
+                      failed_anchors=[int(k) for k, v in b2r["r8_check"].items() if not v["passed"]],
+                      note="diagnostic only, not a gate"))
+    jdump(g, "gates.json")
+    print(json.dumps(g, indent=1, default=float))
+
+
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
-    {"b1": b1, "b2": b2, "b3": b3}[sys.argv[1]]()
+    {"b1": b1, "b2": b2, "b3": b3, "gates": gates}[sys.argv[1]]()
