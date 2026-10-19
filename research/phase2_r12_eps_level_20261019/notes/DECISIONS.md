@@ -68,3 +68,11 @@
   - The check is diagnostic only (protocol); no rule depends on it.
 - D31 (WP2): one exploratory quantity outside the registration is reported in `ck0_split.json` → `exploratory_not_registered`. It is h1_0 = D1_0 − C_top,0 from anchor 0's own first program (45 °C), and it feeds no gate or budget. Reason: the registered h comes from 25 °C anchors and is applied to the 45 °C anchor 0. The prompt names this as a caveat, and the diagnostic quantifies it.
 - D32 (WP2): commit order. The B2 outputs (26c886c) were committed one commit before the B2 code, which went into the B3 commit 6d57342 with the B3 code. Both come after the protocol (b3f3e7a), so the registration order is unaffected.
+- D33 (WP3): λ is not stationary.
+  - Per segment, N/thr of the TT blocks drifts from −0.00097 (segment 1) to −0.00282 (segment 13) in the 45 °C segments. Each block throughput is ≈ 377.4 Ah, so 0.001 of λ is ≈ 0.38 Ah.
+  - The registered rule gives the 25 °C segments without TT pairs (2, 4, 6, 8, 14) the pooled 25 °C median (−0.00245), which comes from segments 10 and 12 (months 5–6). This raises Term3 for k = 1, 2, 4 and the λ_25 side of Term2 for j = 1–3.
+  - The registered values are primary and are reported unchanged.
+  - An exploratory variant (`T_top.json` → `exploratory_not_registered`) uses the λ of the TT segment nearest in time. It is labelled "not registered" and is used in no gate.
+- D34 (WP3): E2 is computed for all five switches. None of the ten programs involved starts at an anchor CV end. r_45 uses all four deep programs of each 45 °C segment, per step-value type.
+- D35 (WP3): E3 is non-informative. The CK0 C/20 curve falls 330 mV in the first 1 Ah and then is flat or slightly rising, so s on [1.0, 3.0] Ah is negative (−1.4 mV/Ah). Term2_E3's interval is therefore unbounded below. This is reported as is; E3 is non-gating.
+- D36 (WP3): `wp3_top.png` shows the exploratory time-matched-λ values as hollow markers labelled "not registered". `T_top.json` keeps the registered result (`T_top`, `terms`, `gates`) apart from the descriptive and exploratory blocks.

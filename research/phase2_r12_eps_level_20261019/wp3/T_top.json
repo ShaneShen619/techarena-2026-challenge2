@@ -1,0 +1,256 @@
+{
+ "protocol": "v1 (wp1/protocol.sha256)",
+ "T_top": {
+  "point": 1.1082231,
+  "interval": [
+   0.6023036662274697,
+   1.6156425337725302
+  ],
+  "half_width": 0.5066694337725303,
+  "status": "not identified (G_T)"
+ },
+ "terms": {
+  "Term1": {
+   "point": 0.0742581,
+   "lo": 0.021708159748442278,
+   "hi": 0.1268080402515577,
+   "se": 0.026274970125778858
+  },
+  "Term2": {
+   "point": 0.616454,
+   "n": 5,
+   "lo": 0.4053841074982236,
+   "hi": 0.8290238925017763,
+   "se": 0.034369946250888184
+  },
+  "Term3": {
+   "point": 0.417511,
+   "n": 5,
+   "lo": 0.17521139898080382,
+   "hi": 0.6598106010191962,
+   "se": 0.1211498005095981
+  }
+ },
+ "gates": {
+  "G_noise": {
+   "sigma_TT_25": 0.12462553283641532,
+   "sigma_TT_45": 0.026274970125778858,
+   "passed": true
+  },
+  "G_E2": {
+   "median_J_dvdq": 0.70516,
+   "median_Term2": 0.616454,
+   "diff": 0.08870600000000006,
+   "consistent": true
+  },
+  "G_T": {
+   "half_width": 0.5066694337725303,
+   "identified": false
+  }
+ },
+ "before_G_E2": {
+  "point": 1.1082231,
+  "interval": [
+   0.6023036662274697,
+   1.6156425337725302
+  ]
+ },
+ "sensitivity_exclude_k3": {
+  "point": 1.1082231,
+  "interval": [
+   0.6023036662274697,
+   1.6156425337725302
+  ],
+  "note": "identical to the main estimate: k = 3 has no admissible AT pair (recording gap)"
+ },
+ "term3_event_ks": [
+  1,
+  2,
+  4,
+  5,
+  6
+ ],
+ "term2_events": [
+  "E09-E10",
+  "E15-E16",
+  "E21-E22",
+  "E28-E29",
+  "E35-E36"
+ ],
+ "E2": {
+  "median_J_A3": 0.319207,
+  "median_J_DL1": 0.70516,
+  "median_J_raw_A3": 0.185279
+ },
+ "E3": {
+  "median_Term2_E3": 2.74006,
+  "median_interval": [
+   -60.1599,
+   3.81488
+  ],
+  "note": "not gating; s on [1.0, 3.0] Ah is negative, so the interval is unbounded below"
+ },
+ "descriptive": {
+  "Term1_pooled_lambda": -0.181605,
+  "Term3_pooled_lambda_median": 0.417511,
+  "Term3_by_month": {
+   "1": 0.60023,
+   "2": 0.578995,
+   "4": 0.417511,
+   "5": 0.0932797,
+   "6": 0.135097
+  },
+  "Term2_by_month": {
+   "2": 0.668291,
+   "3": 0.664552,
+   "4": 0.616454,
+   "5": 0.444872,
+   "6": 0.519803
+  },
+  "Term2_vs_idle_h": {
+   "spearman_rho": -0.39999999999999997,
+   "theil_sen_slope_Ah_per_h": -0.011464364905291244,
+   "table": [
+    {
+     "switch": "E09-E10",
+     "idle_h": 21.2306,
+     "Term2": 0.668291
+    },
+    {
+     "switch": "E15-E16",
+     "idle_h": 6.87222,
+     "Term2": 0.664552
+    },
+    {
+     "switch": "E21-E22",
+     "idle_h": 9.70972,
+     "Term2": 0.616454
+    },
+    {
+     "switch": "E28-E29",
+     "idle_h": 25.2986,
+     "Term2": 0.444872
+    },
+    {
+     "switch": "E35-E36",
+     "idle_h": 12.0814,
+     "Term2": 0.519803
+    }
+   ]
+  },
+  "Term3_vs_month_spearman": -0.8999999999999998,
+  "Term2_vs_month_spearman": -0.8999999999999998,
+  "lambda_by_segment": {
+   "1": -0.0009688974869939396,
+   "2": -0.0024505234696166663,
+   "4": -0.0024505234696166663,
+   "5": -0.0014238662953528084,
+   "6": -0.0024505234696166663,
+   "7": -0.0014415196117674928,
+   "8": -0.0024505234696166663,
+   "9": -0.001688332764771759,
+   "10": -0.0025618866699706412,
+   "11": -0.0024889417091471257,
+   "12": -0.0023391602692626914,
+   "13": -0.002822906782309908,
+   "14": -0.0024505234696166663
+  }
+ },
+ "exploratory_not_registered": {
+  "note": "exploratory, NOT registered, not used in any gate: lambda from the TT-bearing segment nearest in time (any set point) instead of the pooled 25 degC median; shows the non-stationarity of lambda",
+  "Term1": 0.07425808042457127,
+  "Term2_median": 0.47262354207864077,
+  "Term3_median": 0.12984832001406,
+  "rows": [
+   {
+    "term": "Term1",
+    "pair": "E01-E02",
+    "k": 0,
+    "lam_time_matched": -0.0009688974869939396,
+    "lam_segment": 1,
+    "value": 0.07425808042457127
+   },
+   {
+    "term": "Term3",
+    "pair": "E06-E07",
+    "k": 1,
+    "lam_time_matched": -0.0009688974869939396,
+    "lam_segment": 1,
+    "value": 0.04105128524480878
+   },
+   {
+    "term": "Term3",
+    "pair": "E08-E09",
+    "k": 2,
+    "lam_time_matched": -0.0014238662953528084,
+    "lam_segment": 5,
+    "value": 0.19152529085338077
+   },
+   {
+    "term": "Term3",
+    "pair": "E20-E21",
+    "k": 4,
+    "lam_time_matched": -0.001688332764771759,
+    "lam_segment": 9,
+    "value": 0.12984832001406
+   },
+   {
+    "term": "Term3",
+    "pair": "E26-E27",
+    "k": 5,
+    "lam_time_matched": -0.0025618866699706412,
+    "lam_segment": 10,
+    "value": 0.09327972669833962
+   },
+   {
+    "term": "Term3",
+    "pair": "E33-E34",
+    "k": 6,
+    "lam_time_matched": -0.0023391602692626914,
+    "lam_segment": 12,
+    "value": 0.1350966829049064
+   },
+   {
+    "term": "Term2",
+    "pair": "E09-E10",
+    "k": -1,
+    "lam_time_matched": -0.0014238662953528084,
+    "lam_segment": 5,
+    "value": 0.47456197577770975
+   },
+   {
+    "term": "Term2",
+    "pair": "E15-E16",
+    "k": -1,
+    "lam_time_matched": -0.0014415196117674928,
+    "lam_segment": 7,
+    "value": 0.4741239780734573
+   },
+   {
+    "term": "Term2",
+    "pair": "E21-E22",
+    "k": -1,
+    "lam_time_matched": -0.001688332764771759,
+    "lam_segment": 9,
+    "value": 0.47262354207864077
+   },
+   {
+    "term": "Term2",
+    "pair": "E28-E29",
+    "k": -1,
+    "lam_time_matched": -0.0025618866699706412,
+    "lam_segment": 10,
+    "value": 0.45863733176304267
+   },
+   {
+    "term": "Term2",
+    "pair": "E35-E36",
+    "k": -1,
+    "lam_time_matched": -0.0023391602692626914,
+    "lam_segment": 12,
+    "value": 0.4285223314689176
+   }
+  ],
+  "T_top": 0.676729942517272
+ }
+}
