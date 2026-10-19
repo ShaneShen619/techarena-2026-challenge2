@@ -34,8 +34,10 @@ def main():
         lines.append(f"| `{dst}` | `{ROOT}/{rel}` | {use} | `{h}` |")
         status[rel] = {"copy": dst, "sha256": h, "commit": commit}
     path = os.path.join(ST, "sources", "SOURCES.md")
-    old = open(path).read().split(MARK)[0].rstrip("\n")
-    open(path, "w").write(old + "\n\n" + "\n".join(lines) + "\n")
+    text = open(path).read()
+    head, _, rest = text.partition(MARK)
+    later = rest[rest.find("\n## "):] if "\n## " in rest else ""   # keep sections added after WP2 (WP3)
+    open(path, "w").write(head.rstrip("\n") + "\n\n" + "\n".join(lines) + "\n" + later)
     json.dump({"checked": stamp, "commit": commit, "files": status},
               open(os.path.join(ST, "cache", "wp2_sources.json"), "w"), indent=1)
     print(json.dumps(status, indent=1))
