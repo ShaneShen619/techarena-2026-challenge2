@@ -26,3 +26,12 @@ Copied 2026-10-19 22:09 by `src/wp0_sources.py` after `git -C /Users/shane/Deskt
 | `origin/exp/phase2-r13-top-tail-20261019` | `0dc5e8f` | `research/phase2_r13_top_tail_20261019/wp3/R13_RESULT.json` | not available (2026-10-19 22:09) |
 
 Optional sources are re-checked at the step that would use them (see `notes/DECISIONS.md`).
+
+## Added at WP2
+
+Re-checked 2026-10-19 22:29 after `git fetch origin`; `origin/exp/phase2-r12-eps-level-20261019` at `3d3b6f6`.
+
+| copy | path at ref | use | SHA256 / status |
+|---|---|---|---|
+| — | `research/phase2_r12_eps_level_20261019/wp3/pairs.csv` | prompt WP2 N cross-check | not available |
+| `r12/ahchain.py` | `research/phase2_r12_eps_level_20261019/src/ahchain.py` | descriptive N cross-check only (registered chain unchanged, D4/D10) | `0b88ab91e41dda1e77e4fd9187c0429c7d03490e07e8622682f19fe878105456` |
