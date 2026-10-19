@@ -78,3 +78,9 @@
 - D36 (WP3): `wp3_top.png` shows the exploratory time-matched-λ values as hollow markers labelled "not registered". `T_top.json` keeps the registered result (`T_top`, `terms`, `gates`) apart from the descriptive and exploratory blocks.
 - D37 (WP3): the registered pair rule tests checkup *dates*. E04–E05 lies inside segment 1, but CK1's date (2025-02-08 00:00) falls between them, because segment 1 runs on until 15:35 that day. The pair is therefore not used, and segment 1's λ rests on 2 TT pairs. Applied as registered.
 - D38 (WP3): commit order. The E1 and E2/E3 outputs (58566c5, c3bb7c7) were committed before `src/wp3_run.py`, which went into the T_top commit 0d0c11f. All of them come after the protocol (b3f3e7a).
+- D39 (WP4): SUB_A3fix research copy. Anchor 3 is identified as the first full charge of segment 6. Its q is reduced by a_3^rel (0.3047 Ah) **after** its step-to-top distance (`top`) has been computed. The anomaly lives in the bottom section (Q_bot), so Q_top stays as it was. The correction reaches every use of q: CK4's anchor term and β for CK4–CK7. The research copy differs from SUB only in `_first_full_charge` (diff in `wp4/budget_decision.json`).
+- D40 (WP4): the EPS_EXTRA research copies use the budget point and ends rounded to 0.001 Ah (4.483, 2.347, 6.338). SUB_L and the combined variant are not built, because the decision is L3.
+- D41 (WP4): P_level probe assessment.
+  - Not recommended. The registered budget is L3, and its point (+4.08 Ah over 0.4) would put CK2 at 100.41 % SOH, above CK0's 98.44 %. That is physically implausible and traces back to the h-transfer artefact (WP2).
+  - The round-7 probe order P_stress_early → P_start → P_drift is unchanged.
+  - SUB_A3fix is a registered single-anchor case of P_start's question (do anchor start states bias the anchors?). It is offered as a P_start variant; the user decides.
