@@ -1,0 +1,57 @@
+{
+ "round": "12",
+ "source": "round 11 (exp/phase2-r11-eps-transfer-20261018)",
+ "outcome": "O3",
+ "dominant_term": "T_path (LIC alone: T_path 97 %)",
+ "d_interval": [
+  -0.036263732781424834,
+  0.05217319439615074
+ ],
+ "all_median_interval": [
+  -0.006508474891869729,
+  -0.0008492682755797655
+ ],
+ "terms": {
+  "T_CE": {
+   "identifiable_in": [
+    "LIC",
+    "Yagci35",
+    "Yagci50"
+   ],
+   "lic_slope": -0.0008492682755797655,
+   "pack_drivers": "none measurable (pack CE not measurable: per-block balance does not close)"
+  },
+  "T_path": {
+   "identifiable_in": [
+    "LIC",
+    "Yagci35",
+    "Yagci50"
+   ],
+   "lic_slope": -0.028741621752140692,
+   "lic_drivers": "top state of the operating charge: CV duration/Ah, end current, relaxed top voltage (start voltage not a driver)",
+   "pack_drivers": {
+    "CV_Ah": "trends like LIC (rho +0.93)",
+    "I_end": "flat 5.094-5.100 A (LIC falls)",
+    "V_pack_30min": "13.439 -> 13.435 V (LIC rises)",
+    "tau_CV_s": "179 -> 217 s"
+   },
+   "round12_model": "top-of-charge model: extrapolate each anchor's CV decay beyond 5.1 A to the checkup's top; estimate delta-eps_top(k)"
+  }
+ },
+ "not_assessed_this_round": [
+  "cell imbalance under pack-voltage cutoffs (bottom spread 22 -> 35 mV, top spread 88 -> 52 mV)",
+  "the 25 C offset Delta (EPS_EXTRA_AH 0.4)",
+  "coulombic efficiency of this pack",
+  "bottom (start) state: start voltage rises 11.805 -> 11.921 V over anchors 1-7",
+  "checkup charge protocol (CV voltage / cutoff) and checkup temperature"
+ ],
+ "flagged_anchors": {
+  "0": "seg1: 45 C, 0.5 h rest, unrelaxed (+84 mV/h); CV fit fails (36 s CV)",
+  "3": "seg6: unrelaxed start (+53 mV/h)"
+ },
+ "constraints": [
+  "do not retry absolute electrode-model (DMA) reconstruction of Q_C20 (round 5B: 8-10 Ah spans)",
+  "model only delta-eps_k of one term at a time with the pack's own CK0 per-cell C/20 curves and measured drivers",
+  "identifiability gate first: envelope of delta-eps_k < 0.3 Ah or exit"
+ ]
+}
