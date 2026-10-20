@@ -11,7 +11,7 @@
 - **The rules allow resubmission without limit; the last submission counts.** Five facts are unpublished: deadline, platform, cadence (weekly vs two-weekly), metric set, and board layout ([RULES.md](RULES.md)).
 - **Existing zips:** three, all in `Arena项目书面文件/提交包/`. `Current State_Challenge2.zip` is the current SUB (`6525edf`); the two backups are T_main (`5cd305c`) and V2 + √t (`21a7a55`). The log does not say which one was submitted. All three carry the **template** presentation ([existing_packages.csv](existing_packages.csv)).
 - **Rounds 12–14 are present and complete:** R12 = L3 with G_a3 passed; R13 = O3; R14 = O3 ([candidates.md](candidates.md)).
-- **Push policy:** following the session's "upload no file" instruction and round 12's precedent, commits after the first one stay local (D4).
+- **Push policy:** study commits are pushed to the round's branch; zips are never committed or uploaded (D26, superseding D4).
 
 ## Steps
 
@@ -48,7 +48,7 @@ WP1 registers the protocol: grid, metric family, eligible probes, reading rules.
 - **规则允许无限次重新提交，最后一次提交才算数。** 五件事没有公布：截止时间、平台、评估频率（每周还是每两周）、指标集、榜单形式（[RULES.md](RULES.md)）。
 - **现有 zip：** 三个，都在 `Arena项目书面文件/提交包/`。`Current State_Challenge2.zip` 是当前 SUB（`6525edf`）；两个备份分别是 T_main（`5cd305c`）和 V2 + √t（`21a7a55`）。记录里没有说提交过哪一个。三个 zip 里都是**模板**演示文稿（[existing_packages.csv](existing_packages.csv)）。
 - **第 12–14 轮都已存在且已完成：** R12 = L3，G_a3 通过；R13 = O3；R14 = O3（[candidates.md](candidates.md)）。
-- **推送策略：** 按本会话"不得上传任何文件"的要求和第 12 轮的先例，第一次提交之后的提交只保存在本地（D4）。
+- **推送策略：** 研究提交推送到本轮分支；zip 永远不提交、不上传（D26，取代 D4）。
 
 ## 步骤
 

@@ -54,7 +54,7 @@ After every board evaluation you have logged. WP4 checks the hash, filters the h
   `python3 -B src/package_submission.py "Current State" --members "Mona Zhu, Zhikuan Shen" --pptx "<deck path>" --out cache/packages/P_A3fix`
   (run from the study folder). SUB's zip would need the same rebuild with the base packaging script.
 - **Disclosure.** The probe's README has a section that describes the variant. If it is ever kept, the report must disclose it too (WP4 drafts the text).
-- **Git.** Commits after `f0480d8` are local only, because of the "upload no file" instruction (D4). To publish the branch: `git -C /Users/shane/Desktop/Arena_1019_r15_probe push origin exp/phase2-r15-probe-plan-20261019`.
+- **Git.** The study commits are pushed to `origin exp/phase2-r15-probe-plan-20261019` (D26). The zips are git-ignored: they were neither pushed nor uploaded.
 
 ---
 
@@ -107,4 +107,4 @@ After every board evaluation you have logged. WP4 checks the hash, filters the h
 - **最后一次提交才算数。** 除非探针胜出，最后要重新上传 SUB 的 zip。除非探针胜出，绝不能让探针成为最后一次提交。
 - **演示文稿警告。** `inputs/pptx_path.txt` 写的是 `template`，所以探针 zip 里是**模板**演示文稿。现有的三个 zip 也都是（包括 SUB 的，SHA256 同为 `8bcd38a1…`）。最后一次提交里的演示文稿就是决赛用的版本。如果团队有正式的演示文稿，把路径写进 `inputs/pptx_path.txt`，上传前重新构建（命令见英文部分，在研究目录中运行）。SUB 的 zip 也需要用基点的打包脚本同样重建。
 - **披露。** 探针的 README 有一节说明这个变体。如果最终保留它，报告里也必须披露（WP4 会起草文字）。
-- **Git。** 由于"不得上传任何文件"的要求，`f0480d8` 之后的提交只保存在本地（D4）。如需发布分支：`git -C /Users/shane/Desktop/Arena_1019_r15_probe push origin exp/phase2-r15-probe-plan-20261019`。
+- **Git。** 研究提交已推送到 `origin exp/phase2-r15-probe-plan-20261019`（D26）。zip 被 git 忽略：既没有推送，也没有上传。

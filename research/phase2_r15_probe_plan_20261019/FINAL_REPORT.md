@@ -31,7 +31,7 @@
 | WP3 | P_A3fix zip built and validated (fresh venv: validator PASSED; full-data output = expected); SHA256 `3d792662…72e6`; hand-over written. |
 | WP4 | 2026-10-20: waiting for leaderboard (log has no rows) |
 
-**Local vs remote.** All work is committed on `exp/phase2-r15-probe-plan-20261019` in `/Users/shane/Desktop/Arena_1019_r15_probe`. Only the first commit (the prompt) was pushed. Later commits are local because the session forbade uploads (D4). The prompt's push criterion is therefore not claimed.
+**Git.** All work is committed on `exp/phase2-r15-probe-plan-20261019` in `/Users/shane/Desktop/Arena_1019_r15_probe` and pushed to origin (D26, superseding D4). The zips are git-ignored and were not pushed or uploaded.
 
 ## Files
 
@@ -82,7 +82,7 @@ The log has no data rows, so the status is **waiting for leaderboard**. The sess
 | WP3 | 构建并验证了 P_A3fix 的 zip（全新 venv：验证器 PASSED；全量输出 = 预期）；SHA256 `3d792662…72e6`；写好了交接说明。 |
 | WP4 | 2026-10-20：等待排行榜（记录没有数据行） |
 
-**本地与远端。** 所有工作都提交在 `/Users/shane/Desktop/Arena_1019_r15_probe` 的 `exp/phase2-r15-probe-plan-20261019` 分支上。只有第一次提交（prompt）推送过。由于本会话禁止上传，之后的提交只在本地（D4），所以不宣称满足 prompt 的推送条件。
+**Git。** 所有工作都提交在 `/Users/shane/Desktop/Arena_1019_r15_probe` 的 `exp/phase2-r15-probe-plan-20261019` 分支上，并已推送到 origin（D26，取代 D4）。zip 被 git 忽略，没有推送也没有上传。
 
 ## 文件
 
