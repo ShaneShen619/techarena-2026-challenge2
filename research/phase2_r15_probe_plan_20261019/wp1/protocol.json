@@ -1,0 +1,93 @@
+{
+ "round": 15,
+ "wp": "WP1 registration: leaderboard probe plan",
+ "registered": "2026-10-20, before any WP2-WP4 output; registered code src/grid15.py and src/variants.py (hashes in wp1/protocol.sha256); machinery checks src/test_wp1.py -> wp1/test_wp1.json (7/7 pass, no current-SUB or probe number computed)",
+ "base": {"branch": "exp/phase2-anchor-step-20261013", "commit": "6525edf", "SUB_model_template_sha256": "3bd26ed8bbb5890fec5efa53606a03c39b55f52b04a0cf1e5f92ae0e36a2fbd5",
+          "SUB_SOH": {"CK1": 95.984, "CK2": 94.507, "CK3": 93.6, "CK4": 92.821, "CK5": 92.015, "CK6": 91.426, "CK7": 90.765}},
+ "inputs_at_registration": {"leaderboard_log_rows": 0, "observations": "none", "deadline": "unknown", "pptx_path": "template"},
+
+ "hypothesis_grid": {
+  "start": "round 6 wp1/protocol.json, copied exactly: Delta {0, 0.4, 0.8} x f {0, 0.5, 1} x d {0, -0.031}, n = 18",
+  "target": "T_k(h) = Q_fc,k + eps0 + Delta - f * R_k + d * L_k, L_k = max(0, 100.41 - (Q_fc,k + eps0)), k = 1..7 (round 6 run_wp1.target)",
+  "Q_fc_plus_eps0_Ah": {"source": "round 6 wp1_predictions.csv, proxy at Delta = 0.4 minus 0.4 (round-3 harness QFC + EPS0); reproduced independently with the base events.full_charges to 1.4e-14 Ah (test T1)",
+                        "CK1": 97.290381, "CK2": 95.957727, "CK3": 94.930101, "CK4": 94.035016, "CK5": 93.36952, "CK6": 92.923668, "CK7": 92.241252},
+  "R_k_Ah": {"source": "round 4 stage_5 jumps.csv recovery_Ah_with_aging",
+             "CK1": 0.017856, "CK2": 0.245300, "CK3": 0.336291, "CK4": 0.707450, "CK5": 0.826536, "CK6": 0.798079, "CK7": 0.865592},
+  "Delta_axis": {"rule": "replace with round 12's EPS_EXTRA interval only if round 12 reached L1 or L2",
+                 "round12": "L3 (a6994c7)", "applied": [0.0, 0.4, 0.8]},
+  "d_axis": {"rule": "replace with d_top = d_tail + d_path {lo, median, hi} only if rounds 13 and 14 are both present and identifiable; one present -> combine with round 11's [-0.036, +0.052]; neither present -> keep round 6's axis",
+             "round13": "present, O3 not identifiable (fb50d07)", "round14": "present, O3 not identifiable (643d202)",
+             "applied": [0.0, -0.031],
+             "reason": "both present but neither identifiable: the replacement condition fails and neither fallback case applies; round 6's axis is kept (D10)"},
+  "grids": {
+   "G_main": {"d": [0.0, -0.031], "n": 18, "role": "decides (surviving set, ranking, readability)"},
+   "G_r11": {"d": [-0.036, 0.0, 0.052], "n": 27, "role": "readability gate: a probe must also be readable here (conservative resolution of the uncovered d-axis case, D10)"},
+   "G_env": {"d": [-0.167, -0.105, -0.045, 0.0, 0.013, 0.050], "n": 54, "role": "descriptive only (non-identified envelopes of rounds 13 and 14)"}
+  }
+ },
+
+ "metric_family": {
+  "errors": "e_k(h) = SOH_k - 100 * T_k(h) / 102 in pp, SOH_k = the package CLI output (3 decimals), k = 1..7",
+  "raw": ["MAE = mean |e|", "RMSE = sqrt(mean e^2)", "MAX = max |e|"],
+  "normalised": "nMAE = MAE / MAE_EX, nRMSE = RMSE / RMSE_EX, nMAX = MAX / MAX_EX, EX under the same h",
+  "s": "round 6: s = (nMAE + nRMSE + nMAX) / 3 (reproduced to 4e-14 on round 6's 12 candidates x 18 h, test T2)",
+  "family": ["s", "nMAE", "nRMSE", "nMAX"],
+  "EX": "ExampleModel of the base package (my_model/model_example.py, unchanged since cd68ad4 = round 6's archived 21a7a55 copy), run through the package CLI from a research copy whose my_model/__init__.py switch points at ExampleModel (src/variants.py 'EX')"
+ },
+
+ "eligible_probes": {
+  "P_level": {"eligible": false, "rule": "round 12 reached L2", "fact": "round 12 = L3"},
+  "P_A3fix": {"eligible": true, "rule": "round 12's G_a3 passed", "fact": "G_a3 identified: a3_rel = +0.3047 Ah, 4 of 5 locators same sign",
+              "definition": "round 12 src/wp4_run.py a3fix_variant(a3_rel = 0.3047028157489251, segment = 6): after the step-to-top distance of the first full charge of segment 6 (anchor 3) is computed, q = q - 0.3047; exact text replacement in the base model_template.py (src/variants.py 'P_A3fix')",
+              "scalar": "a_3^rel = 0.3047 Ah (anchor-3 bottom correction)",
+              "rebuild_check": "its CLI SOH must equal round 12's SOH_variants.csv row SUB_A3fix exactly (3 decimals); otherwise it is dropped"},
+  "P_drift": {"eligible": false, "rule": "round 13 or round 14 reached O2; both O1 -> ineligible; neither present -> round 6's d = -0.031",
+              "fact": "both present, both O3: neither reached O2; the 'neither present' fallback does not apply (D11)"},
+  "P_stress_early": {"eligible": false, "rule": "rebuildable on the current SUB from round 6/7 code without new fitting",
+                     "fact": "dropped (D12): (1) F1_S_B's weight w = sigma_SUB^2 / (q_sd^2 + sigma_S0^2 + sigma_SUB^2) uses sigma_SUB per branch of round 6's SUB (V2 + sqrt t), fitted in round 6 WP2 from that SUB's proxy errors; the current SUB (T_main + A3) has a different gap branch and step estimator, so its sigma_SUB is unknown, and estimating it is new fitting against proxies, which round 15 forbids; reusing the old sigma_SUB is not a rebuild of the registered design. (2) Round 7 did not rebuild it. (3) A package variant would need the round-5C stress law ported into model_template.py, so it is neither a one-scalar change (section 2) nor 'the registered scalar or hook plus a docstring line' (WP3)."}
+ },
+
+ "descriptive_only": {
+  "variants": {"P_drift_r6": "SUB CLI output transformed by round 6's 3b rule with d = -0.031: Q' = Q + d * max(0, 100.41 - Q)",
+               "R13_d_tail_median": "round 13 SOH_variants.csv 'SUB + d_median'",
+               "R14_d_top_median": "round 14 SOH_variants.csv 'SUB + d_top (median)'"},
+  "role": "delta-s, readability and ranking keys are reported in a separate table for context; they never enter the selection"
+ },
+
+ "free_information_first": {
+  "rule": "for every leaderboard observation whose package SOH vector is known (wp0/existing_packages.csv or wp3/packages.csv), compute each hypothesis's predicted s, nMAE, nRMSE, nMAX; a hypothesis survives if, for every observation and every shown value, at least one metric predicts the shown value within one unit of its last displayed digit (grid15.surviving)",
+  "empty_result": "if no hypothesis survives, the grid is reported as inconsistent with the board and the full grid is kept (conservative)",
+  "role": "filters hypotheses only; never selects a model",
+  "applied_to": "G_main and G_r11 separately",
+  "at_registration": "no observations -> surviving set = full grid"
+ },
+
+ "probe_selection": {
+  "delta_s": "delta-s_m(h) = m_h(probe) - m_h(SUB), m in {s, nMAE, nRMSE, nMAX}; negative = the probe beats SUB",
+  "sign": "sign(x) = 0 if |x| < 1e-12",
+  "readable": "sign(delta-s) equal under all four metrics for >= 80 % of the surviving hypotheses, on G_main AND on G_r11",
+  "ranking": "key1 = max over the four metrics of the uniform expectation of delta-s over the surviving set (the least favourable metric); key2 = max over metrics of the worst-case delta-s; rank by key1, then key2",
+  "worth": "a readable probe is chosen only if key1 < 0, i.e. it is expected to beat SUB under every metric (D13)",
+  "max_probes": 2,
+  "none": "if no probe qualifies, the plan is 'no probe; keep SUB'",
+  "reported_not_deciding": ["detectable fraction: all four |delta-s| > 0.005 with one sign", "wins: hypotheses where all four delta-s < -0.005", "G_env readability"]
+ },
+
+ "reading_rules": {
+  "observed_delta": "board value of the probe minus board value of SUB, per shown metric, from evaluations of zips whose hashes match wp3/packages.csv (probe) and wp0/existing_packages.csv or wp3/packages.csv (SUB: model_template.py SHA256 3bd26ed8...)",
+  "tol": "the board's display precision (one unit of the last shown digit of both values); 0.005 if it cannot be read",
+  "rules": {"delta < -tol": "adopt the probe's scalar as the new submission candidate",
+            "delta > +tol": "revert to SUB and drop that hypothesis branch: remove from the surviving set the hypotheses under which every metric of the family predicted delta-s < -tol (a clear predicted win whatever the shown metric is; grid15.drop_branch)",
+            "|delta| <= tol": "no information; revert to SUB"},
+  "several_metrics": "the rule applies to each shown metric; the probe wins only if at least one shown metric improves by more than tol and none gets worse by more than tol",
+  "rank_only": "a board that shows only ranks carries no information (rank depends on other teams)",
+  "prerequisite": "SUB's own board value must be known; without it a probe cannot be read",
+  "code": "grid15.reading"
+ },
+
+ "end_state_rule": "the last submission before the deadline must be the best observed option, SUB by default; a probe is never left as the last submission unless it won; with evaluations every two weeks and an unknown deadline, assume at most two evaluation cycles remain; after a probe's evaluation is logged, SUB's zip is re-uploaded at once unless the probe won",
+
+ "compliance_rule": "at most two probes in total, each a whole-model variant changing one physically motivated scalar produced by a registered earlier round; each probe and any adopted change is disclosed in the README and report; no per-checkup edits; the final model must be justifiable from the physics alone; nothing is uploaded, sent or published by this round (the user performs every external action); the organiser question is a draft only",
+
+ "no_proxy_statement": "no error against the proxy labels P_k is reported as accuracy evidence; errors against T_k(h) exist only inside the registered delta-s / predicted-score machinery and are reported only as normalised aggregate scores, never per checkup"
+}

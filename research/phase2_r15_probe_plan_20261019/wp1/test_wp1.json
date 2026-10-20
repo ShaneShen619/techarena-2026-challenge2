@@ -1,0 +1,76 @@
+{
+ "T1_pk_independent": {
+  "passed": true,
+  "n_anchors": 8,
+  "max_abs_dev_Ah": 1.4210854715202004e-14,
+  "eps0": 0.2876136111099896,
+  "p_k": {
+   "1": 97.290381,
+   "2": 95.957727,
+   "3": 94.930101,
+   "4": 94.035016,
+   "5": 93.36952,
+   "6": 92.923668,
+   "7": 92.241252
+  }
+ },
+ "T2_round6_scores": {
+  "passed": true,
+  "n_cells": 216,
+  "max_abs_dev": 4.1522341120980855e-14
+ },
+ "T3_round6_P_drift_delta_s": {
+  "passed": true,
+  "max_abs_dev": 1.0755285551056204e-15,
+  "E_uniform": -0.016340345099476343,
+  "round6_E_uniform": -0.0163
+ },
+ "T4_readability": {
+  "passed": true,
+  "a": {
+   "n": 10,
+   "agree_fraction": 0.8,
+   "detectable_fraction": 0.8,
+   "readable": true
+  },
+  "b": {
+   "n": 10,
+   "agree_fraction": 0.7,
+   "detectable_fraction": 0.7,
+   "readable": false
+  },
+  "c": {
+   "n": 10,
+   "agree_fraction": 1.0,
+   "detectable_fraction": 1.0,
+   "readable": true
+  }
+ },
+ "T5_reading_rules": {
+  "passed": true,
+  "got": [
+   "probe wins: adopt its scalar",
+   "probe loses: revert to SUB, drop the branch",
+   "no information: revert to SUB",
+   "probe loses: revert to SUB, drop the branch",
+   "probe wins: adopt its scalar",
+   "no information: revert to SUB",
+   "no information"
+  ]
+ },
+ "T6_surviving_set": {
+  "passed": true,
+  "kept": 2,
+  "note": "2 of 18 survive",
+  "note_empty": "grid inconsistent with the observations: full grid kept",
+  "note_none": "no observations"
+ },
+ "T7_drop_branch": {
+  "passed": true,
+  "left": [
+   "h1",
+   "h2"
+  ]
+ },
+ "all_passed": true
+}
