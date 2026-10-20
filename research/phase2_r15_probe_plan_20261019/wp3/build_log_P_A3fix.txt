@@ -1,0 +1,35 @@
+
+[notice] A new release of pip is available: 25.3 -> 26.2.1
+[notice] To update, run: /private/var/folders/bd/mk1nt6yj6px0t948s3knh0640000gn/T/c2_pkg_td83rjvn/venv/bin/python -m pip install --upgrade pip
+zip: cache/packages/P_A3fix/Current State_Challenge2.zip (3.75 MB, 18 files)
+contents:
+  Current State_Final_Presentation.pptx
+  README.md
+  REPORT.md
+  framework/__init__.py
+  framework/data.py
+  framework/io.py
+  framework/persistence.py
+  my_model/__init__.py
+  my_model/model_example.py
+  my_model/model_template.py
+  requirements.txt
+  run_model.py
+  sample_data/checkups/CK0_reference_discharge.csv.gz
+  sample_data/checkups/checkup_capacities_released.csv
+  sample_data/checkups/evaluation_points.csv
+  sample_data/operation/segment_01_45degC.csv.gz
+  sample_data/operation/segment_02_25degC.csv.gz
+  validate_submission.py
+fresh venv (python, numpy, pandas): 3.11.14 2.4.6 3.0.6
+validate_submission.py: PASSED
+1/4 framework files present ...
+2/4 train on sample_data ...
+    ok (0 s)
+3/4 test on every evaluation point (causal cut) ...
+    ok (0 s)
+4/4 checking output schema ...
+PASSED - output schema satisfied (5 evaluation points). Output: /var/folders/bd/mk1nt6yj6px0t948s3knh0640000gn/T/c2_validate_ivuctj6e/output.csv
+Reminder: package ONE zip named <TeamName>_Challenge2.zip (without data/), test it from a clean
+extraction inside a fresh venv, and keep run_model.py / framework/ / validate_submission.py unmodified.
+full-data output equals expected: True {'CK0': 98.441, 'CK1': 95.984, 'CK2': 94.507, 'CK3': 93.6, 'CK4': 92.461, 'CK5': 91.987, 'CK6': 91.41, 'CK7': 90.75}

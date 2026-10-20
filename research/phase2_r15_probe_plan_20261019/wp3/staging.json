@@ -1,0 +1,25 @@
+[
+ {
+  "probe": "P_A3fix",
+  "staged": "cache/pkg_P_A3fix",
+  "model_template_diff": [
+   "+Leaderboard probe variant P_A3fix: anchor 3 (segment 6) charge minus a_3^rel = 0.3047 Ah (round 12).",
+   "+    top = _charge_step_to_top(seg, i, ah, start, end, q)",
+   "+    if int(seg[\"segment\"].iloc[0]) == 6:   # research copy (round 12 WP4): anchor-3 bottom correction a_3^rel",
+   "+        q = q - 0.3047",
+   "-        \"top\": _charge_step_to_top(seg, i, ah, start, end, q),",
+   "+        \"top\": top,"
+  ],
+  "soh": {
+   "CK0": 98.441,
+   "CK1": 95.984,
+   "CK2": 94.507,
+   "CK3": 93.6,
+   "CK4": 92.461,
+   "CK5": 91.987,
+   "CK6": 91.41,
+   "CK7": 90.75
+  },
+  "reproduces_wp2": true
+ }
+]
