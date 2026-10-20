@@ -1,0 +1,901 @@
+grid,h,Delta,f,d,model,metric,value
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2.zip,nMAE,0.10134221863503289
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2.zip,nRMSE,0.10269940414302757
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2.zip,nMAX,0.11111135667434631
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2.zip,s,0.10505099315080225
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.10030630188418058
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.10248255021610504
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.10934714517479265
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.1040453324250261
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.09860008605924588
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.10108167160946753
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.10934714517479265
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.10300963428116867
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,SUB,nMAE,0.10134221863503289
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,SUB,nRMSE,0.10269940414302757
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,SUB,nMAX,0.11111135667434631
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,SUB,s,0.10505099315080225
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,P_A3fix,nMAE,0.088576068087756
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,P_A3fix,nRMSE,0.09061316360952046
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,P_A3fix,nMAX,0.10607739632365581
+G_main,D0.0_f0.0_d0.0,0.0,0.0,0.0,P_A3fix,s,0.09508887600697742
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,zip:Current State_Challenge2.zip,nMAE,0.13507845266696059
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,zip:Current State_Challenge2.zip,nRMSE,0.13446301717991738
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,zip:Current State_Challenge2.zip,nMAX,0.14000761015075402
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,zip:Current State_Challenge2.zip,s,0.13651635999921066
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.1340814249466926
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.1341092659815765
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.13830757461820273
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.13549942184882394
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.13243926164272038
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.13278729834320444
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.13830757461820273
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.13451137820137585
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,SUB,nMAE,0.13507845266696059
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,SUB,nRMSE,0.13446301717991738
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,SUB,nMAX,0.14000761015075402
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,SUB,s,0.13651635999921066
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,P_A3fix,nMAE,0.12279155223188502
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,P_A3fix,nRMSE,0.1222432205364982
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,P_A3fix,nMAX,0.11863177193779507
+G_main,D0.0_f0.0_d-0.031,0.0,0.0,-0.031,P_A3fix,s,0.1212221815687261
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2.zip,nMAE,0.1495709966634212
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2.zip,nRMSE,0.14964104727964964
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2.zip,nMAX,0.16079849163260557
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2.zip,s,0.15333684519189214
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.1485906750457428
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.14951653725831485
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.1591519726741682
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.15241972832607528
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.14697602767544757
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.14840905252798056
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.1591519726741682
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.15151235095919877
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,SUB,nMAE,0.1495709966634212
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,SUB,nRMSE,0.14964104727964964
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,SUB,nMAX,0.16079849163260557
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,SUB,s,0.15333684519189214
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,P_A3fix,nMAE,0.13748997437496432
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,P_A3fix,nRMSE,0.13650742987439834
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,P_A3fix,nMAX,0.14051710369490567
+G_main,D0.0_f0.5_d0.0,0.0,0.5,0.0,P_A3fix,s,0.13817150264808944
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,zip:Current State_Challenge2.zip,nMAE,0.17984430693359932
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,zip:Current State_Challenge2.zip,nRMSE,0.17991860408703123
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,zip:Current State_Challenge2.zip,nMAX,0.18614167349597535
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,zip:Current State_Challenge2.zip,s,0.1819681948388686
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.17889888250355224
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.179688460904481
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.1847179501605803
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.1811017645228712
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.17734171285406156
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.17861070775256674
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.1847179501605803
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.18022345692240285
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,SUB,nMAE,0.17984430693359932
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,SUB,nRMSE,0.17991860408703123
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,SUB,nMAX,0.18614167349597535
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,SUB,s,0.1819681948388686
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,P_A3fix,nMAE,0.168193341163305
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,P_A3fix,nRMSE,0.16734952222547297
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,P_A3fix,nMAX,0.1697674014510773
+G_main,D0.0_f0.5_d-0.031,0.0,0.5,-0.031,P_A3fix,s,0.16843675494661844
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2.zip,nMAE,0.1928867996220134
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2.zip,nRMSE,0.1958298522042953
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2.zip,nMAX,0.20427085150387872
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2.zip,s,0.19766250111006248
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.1919564097656705
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.1957501321993079
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.20877771397824402
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.19882808531440746
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.19042400294345735
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.19481945762385025
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.20877771397824402
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.19800705818185058
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,SUB,nMAE,0.1928867996220134
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,SUB,nRMSE,0.1958298522042953
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,SUB,nMAX,0.20427085150387872
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,SUB,s,0.19766250111006248
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,P_A3fix,nMAE,0.18142111286295642
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,P_A3fix,nRMSE,0.1829792982391753
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,P_A3fix,nMAX,0.1942683704577501
+G_main,D0.0_f1.0_d0.0,0.0,1.0,0.0,P_A3fix,s,0.18622292718662728
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,zip:Current State_Challenge2.zip,nMAE,0.22020429231671096
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,zip:Current State_Challenge2.zip,nRMSE,0.22331547904729374
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,zip:Current State_Challenge2.zip,nMAX,0.22668986419025822
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,zip:Current State_Challenge2.zip,s,0.22340321185142095
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.2193053923654916
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.22315332131538612
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.23407477432453366
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.2255111626684705
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.21782485126936435
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.22223149992236282
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.23407477432453366
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.22471037517208692
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,SUB,nMAE,0.22020429231671096
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,SUB,nRMSE,0.22331547904729374
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,SUB,nMAX,0.22668986419025822
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,SUB,s,0.22340321185142095
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,P_A3fix,nMAE,0.20912667232961796
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,P_A3fix,nRMSE,0.21105572254988125
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,P_A3fix,nMAX,0.22002932539486134
+G_main,D0.0_f1.0_d-0.031,0.0,1.0,-0.031,P_A3fix,s,0.21340390675812018
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2.zip,nMAE,0.027801878238379672
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2.zip,nRMSE,0.03194796474433267
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2.zip,nMAX,0.04504287252224807
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2.zip,s,0.03493090516832014
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.029264835228062506
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.03417104498613839
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.04314753235953238
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.035527804191244426
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.02855729747816623
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.03404021278337921
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.04314753235953238
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.03524834754035928
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,SUB,nMAE,0.027801878238379672
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,SUB,nRMSE,0.03194796474433267
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,SUB,nMAX,0.04504287252224807
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,SUB,s,0.03493090516832014
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,P_A3fix,nMAE,0.02406797317155412
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,P_A3fix,nRMSE,0.026715173329754174
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,P_A3fix,nMAX,0.03963475267233172
+G_main,D0.4_f0.0_d0.0,0.4,0.0,0.0,P_A3fix,s,0.03013929972454667
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,zip:Current State_Challenge2.zip,nMAE,0.05935850431355307
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,zip:Current State_Challenge2.zip,nRMSE,0.06167284441002219
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,zip:Current State_Challenge2.zip,nMAX,0.07857820665443992
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,zip:Current State_Challenge2.zip,s,0.06653651845933839
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.05827419135022647
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.06225313832965772
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.07675673729303174
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.06576135565763865
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.05648826411651053
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.06134190372602833
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.07675673729303174
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.06486230171185686
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,SUB,nMAE,0.05935850431355307
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,SUB,nRMSE,0.06167284441002219
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,SUB,nMAX,0.07857820665443992
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,SUB,s,0.06653651845933839
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,P_A3fix,nMAE,0.045995941618430784
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,P_A3fix,nRMSE,0.04874415284180308
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,P_A3fix,nMAX,0.05567548866189569
+G_main,D0.4_f0.0_d-0.031,0.4,0.0,-0.031,P_A3fix,s,0.050138527707376514
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2.zip,nMAE,0.07647452725306655
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2.zip,nRMSE,0.08059500046117288
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2.zip,nMAX,0.10287146659714452
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2.zip,s,0.08664699810379466
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.07540994457554917
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.081412469926532
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.10111129442910756
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.08597790297706291
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.0736565142831661
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.08081571116370356
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.10111129442910756
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.08519450662532574
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,SUB,nMAE,0.07647452725306655
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,SUB,nRMSE,0.08059500046117288
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,SUB,nMAX,0.10287146659714452
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,SUB,s,0.08664699810379466
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,P_A3fix,nMAE,0.06335511131541693
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,P_A3fix,nRMSE,0.06526313456107431
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,P_A3fix,nMAX,0.08119012828386825
+G_main,D0.4_f0.5_d0.0,0.4,0.5,0.0,P_A3fix,s,0.06993612472011983
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,zip:Current State_Challenge2.zip,nMAE,0.11206672101136518
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,zip:Current State_Challenge2.zip,nRMSE,0.11548798258744071
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,zip:Current State_Challenge2.zip,nMAX,0.1320030383039159
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,zip:Current State_Challenge2.zip,s,0.1198525806342406
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.1110431667992752
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.11577473623013589
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.1304846075289565
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.1191008368527892
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.10935731280289025
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.11498605537357026
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.1304846075289565
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.11827599190180567
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,SUB,nMAE,0.11206672101136518
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,SUB,nRMSE,0.11548798258744071
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,SUB,nMAX,0.1320030383039159
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,SUB,s,0.1198525806342406
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,P_A3fix,nMAE,0.09945292057413012
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,P_A3fix,nRMSE,0.10127109532299974
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,P_A3fix,nMAX,0.11453953400334481
+G_main,D0.4_f0.5_d-0.031,0.4,0.5,-0.031,P_A3fix,s,0.1050878499668249
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2.zip,nMAE,0.12733388235785495
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2.zip,nRMSE,0.1358571851717913
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2.zip,nMAX,0.15300092874023224
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2.zip,s,0.13873066542329285
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.1263279271790174
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.1362981997889422
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.15779817455848025
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.1401414338421466
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.12467105982563646
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.1356921335972336
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.15779817455848025
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.13938712266045009
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,SUB,nMAE,0.12733388235785495
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,SUB,nRMSE,0.1358571851717913
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,SUB,nMAX,0.15300092874023224
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,SUB,s,0.13873066542329285
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,P_A3fix,nMAE,0.11493696412452492
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,P_A3fix,nRMSE,0.12136014106987879
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,P_A3fix,nMAX,0.14235397409193518
+G_main,D0.4_f1.0_d0.0,0.4,1.0,0.0,P_A3fix,s,0.12621702642877963
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,zip:Current State_Challenge2.zip,nMAE,0.15918142703951427
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,zip:Current State_Challenge2.zip,nRMSE,0.16716221331415348
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,zip:Current State_Challenge2.zip,nMAX,0.1785566093199519
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,zip:Current State_Challenge2.zip,s,0.1683000832245399
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.15821218372774487
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.1673458238970316
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.18640117948611762
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.17065306237029806
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.15661578297894688
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.16664079112935726
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.18640117948611762
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.16988591786480725
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,SUB,nMAE,0.15918142703951427
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,SUB,nRMSE,0.16716221331415348
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,SUB,nMAX,0.1785566093199519
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,SUB,s,0.1683000832245399
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,P_A3fix,nMAE,0.14723692857975995
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,P_A3fix,nRMSE,0.15354969678481967
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,P_A3fix,nMAX,0.17148149764290424
+G_main,D0.4_f1.0_d-0.031,0.4,1.0,-0.031,P_A3fix,s,0.1574227076691613
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2.zip,nMAE,0.07917851230918432
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2.zip,nRMSE,0.08257790589620537
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2.zip,nMAX,0.09417580660813635
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2.zip,s,0.08531074160450869
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.08042252212164366
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.0850652739924622
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.11362731142046527
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.09303836917819037
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.08247147945981376
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.08729825059228574
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.11362731142046527
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.09446568049085492
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,SUB,nMAE,0.07917851230918432
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,SUB,nRMSE,0.08257790589620537
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,SUB,nMAX,0.09417580660813635
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,SUB,s,0.08531074160450869
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,P_A3fix,nMAE,0.09450910382156137
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,P_A3fix,nRMSE,0.09700494046611126
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,P_A3fix,nMAX,0.1053465375021878
+G_main,D0.8_f0.0_d0.0,0.8,0.0,0.0,P_A3fix,s,0.09895352726328681
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,zip:Current State_Challenge2.zip,nMAE,0.033634556820575257
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,zip:Current State_Challenge2.zip,nRMSE,0.037249495810465064
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,zip:Current State_Challenge2.zip,nMAX,0.04559182361220413
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,zip:Current State_Challenge2.zip,s,0.038825292081081486
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.03412387632664512
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.04114108845388063
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.06422688841146977
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.04649728439733184
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.03608115435092554
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.043809830213262284
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.06422688841146977
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.048039290991885863
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,SUB,nMAE,0.033634556820575257
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,SUB,nRMSE,0.037249495810465064
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,SUB,nMAX,0.04559182361220413
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,SUB,s,0.038825292081081486
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,P_A3fix,nMAE,0.045535978898440146
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,P_A3fix,nRMSE,0.048845208123938194
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,P_A3fix,nMAX,0.06291918988705132
+G_main,D0.8_f0.0_d-0.031,0.8,0.0,-0.031,P_A3fix,s,0.05243345896980989
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2.zip,nMAE,0.030195554622181583
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2.zip,nRMSE,0.03366710109242903
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2.zip,nMAX,0.044104240748555845
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2.zip,s,0.03598896548772215
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.03714229311826437
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.03873057623899528
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.044104240748555845
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.03999237003527183
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.03906060723852867
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.04158920528208017
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.05469204228507572
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.04511395160189485
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,SUB,nMAE,0.030195554622181583
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,SUB,nRMSE,0.03366710109242903
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,SUB,nMAX,0.044104240748555845
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,SUB,s,0.03598896548772215
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,P_A3fix,nMAE,0.029456802602089046
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,P_A3fix,nRMSE,0.03248224367894473
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,P_A3fix,nMAX,0.044104240748555845
+G_main,D0.8_f0.5_d0.0,0.8,0.5,0.0,P_A3fix,s,0.03534776234319654
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,zip:Current State_Challenge2.zip,nMAE,0.04372315646606225
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,zip:Current State_Challenge2.zip,nRMSE,0.04961293083457506
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,zip:Current State_Challenge2.zip,nMAX,0.07014842087794167
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,zip:Current State_Challenge2.zip,s,0.05449483605952632
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.04208233212084312
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.05226618143059417
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.06852178470732377
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.05429009941958702
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.04392005538748903
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.053229323532099894
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.06852178470732377
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.0552237212089709
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,SUB,nMAE,0.04372315646606225
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,SUB,nRMSE,0.04961293083457506
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,SUB,nMAX,0.07014842087794167
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,SUB,s,0.05449483605952632
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,P_A3fix,nMAE,0.029973048453124734
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,P_A3fix,nRMSE,0.034530681961520586
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,P_A3fix,nMAX,0.051440444044522464
+G_main,D0.8_f0.5_d-0.031,0.8,0.5,-0.031,P_A3fix,s,0.038648058153055935
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2.zip,nMAE,0.06813201846005716
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2.zip,nRMSE,0.07652664417175581
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2.zip,nMAX,0.09466922236418097
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2.zip,s,0.07977596166533131
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.06652190045395173
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.07861958708638825
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.09979684816037827
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.08164611190023942
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.06832523262079028
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.07930842419580096
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.09979684816037827
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.08247683499232317
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,SUB,nMAE,0.06813201846005716
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,SUB,nRMSE,0.07652664417175581
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,SUB,nMAX,0.09466922236418097
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,SUB,s,0.07977596166533131
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,P_A3fix,nMAE,0.05463922956889252
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,P_A3fix,nRMSE,0.06113643003767926
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,P_A3fix,nMAX,0.08328902602363773
+G_main,D0.8_f1.0_d0.0,0.8,1.0,0.0,P_A3fix,s,0.06635489521006983
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,zip:Current State_Challenge2.zip,nMAE,0.09217151716128451
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,zip:Current State_Challenge2.zip,nRMSE,0.10792893059258227
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,zip:Current State_Challenge2.zip,nMAX,0.12403371273517574
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,zip:Current State_Challenge2.zip,s,0.10804472016301418
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.09062514835366171
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.10904054435678402
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.13239896234532333
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.11068821835192304
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.09097851916879404
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.10905918633424518
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.13239896234532333
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.11081222261612085
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,SUB,nMAE,0.09217151716128451
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,SUB,nRMSE,0.10792893059258227
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,SUB,nMAX,0.12403371273517574
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,SUB,s,0.10804472016301418
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,P_A3fix,nMAE,0.07921294655340437
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,P_A3fix,nRMSE,0.09293975148613445
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,P_A3fix,nMAX,0.11648899403873986
+G_main,D0.8_f1.0_d-0.031,0.8,1.0,-0.031,P_A3fix,s,0.09621389735942622
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,zip:Current State_Challenge2.zip,nMAE,0.14028399025067148
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,zip:Current State_Challenge2.zip,nRMSE,0.13949854592560793
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,zip:Current State_Challenge2.zip,nMAX,0.14447255970966738
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,zip:Current State_Challenge2.zip,s,0.1414183652953156
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.13929296315009654
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.1391309016664848
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.14278244042649402
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.14040210174769177
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.1376606832197364
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.13782122579581504
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.14278244042649402
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.13942144981401516
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,SUB,nMAE,0.14028399025067148
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,SUB,nRMSE,0.13949854592560793
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,SUB,nMAX,0.14447255970966738
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,SUB,s,0.1414183652953156
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,P_A3fix,nMAE,0.1280710386288719
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,P_A3fix,nRMSE,0.1273014884629619
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,P_A3fix,nMAX,0.12247983743068915
+G_r11,D0.0_f0.0_d-0.036,0.0,0.0,-0.036,P_A3fix,s,0.1259507881741743
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2.zip,nMAE,0.10134221863503289
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2.zip,nRMSE,0.10269940414302757
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2.zip,nMAX,0.11111135667434631
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2.zip,s,0.10505099315080225
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.10030630188418058
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.10248255021610504
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.10934714517479265
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.1040453324250261
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.09860008605924588
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.10108167160946753
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.10934714517479265
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.10300963428116867
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,SUB,nMAE,0.10134221863503289
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,SUB,nRMSE,0.10269940414302757
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,SUB,nMAX,0.11111135667434631
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,SUB,s,0.10505099315080225
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,P_A3fix,nMAE,0.088576068087756
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,P_A3fix,nRMSE,0.09061316360952046
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,P_A3fix,nMAX,0.10607739632365581
+G_r11,D0.0_f0.0_d0.0,0.0,0.0,0.0,P_A3fix,s,0.09508887600697742
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,zip:Current State_Challenge2.zip,nMAE,0.04764440728156057
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,zip:Current State_Challenge2.zip,nRMSE,0.05497620038848329
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,zip:Current State_Challenge2.zip,nMAX,0.08329383052256964
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,zip:Current State_Challenge2.zip,s,0.06197147939753783
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.0490788582301867
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.05552482976210439
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.08480061248818595
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.06313476682682567
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.047253193386481394
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.054226237758064205
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.08480061248818595
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.06209334787757718
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,SUB,nMAE,0.04764440728156057
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,SUB,nRMSE,0.05497620038848329
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,SUB,nMAX,0.08329383052256964
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,SUB,s,0.06197147939753783
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,P_A3fix,nMAE,0.03960442072890613
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,P_A3fix,nRMSE,0.04863239211359745
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,P_A3fix,nMAX,0.08329383052256964
+G_r11,D0.0_f0.0_d0.052,0.0,0.0,0.052,P_A3fix,s,0.05717688112169108
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,zip:Current State_Challenge2.zip,nMAE,0.18452640024929856
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,zip:Current State_Challenge2.zip,nRMSE,0.18462465670310924
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,zip:Current State_Challenge2.zip,nMAX,0.1900686167486147
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,zip:Current State_Challenge2.zip,s,0.1864065579003408
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.1835863730449756
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.18438214511299586
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.18916868658207953
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.185712401580017
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.18203809294373643
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.1833095149012268
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.18916868658207953
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.18483876480901426
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,SUB,nMAE,0.18452640024929856
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,SUB,nRMSE,0.18462465670310924
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,SUB,nMAX,0.1900686167486147
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,SUB,s,0.1864065579003408
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,P_A3fix,nMAE,0.1729419473489577
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,P_A3fix,nRMSE,0.17214106210660618
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,P_A3fix,nMAX,0.17429975496653302
+G_r11,D0.0_f0.5_d-0.036,0.0,0.5,-0.036,P_A3fix,s,0.17312758814069898
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2.zip,nMAE,0.1495709966634212
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2.zip,nRMSE,0.14964104727964964
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2.zip,nMAX,0.16079849163260557
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2.zip,s,0.15333684519189214
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.1485906750457428
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.14951653725831485
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.1591519726741682
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.15241972832607528
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.14697602767544757
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.14840905252798056
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.1591519726741682
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.15151235095919877
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,SUB,nMAE,0.1495709966634212
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,SUB,nRMSE,0.14964104727964964
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,SUB,nMAX,0.16079849163260557
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,SUB,s,0.15333684519189214
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,P_A3fix,nMAE,0.13748997437496432
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,P_A3fix,nRMSE,0.13650742987439834
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,P_A3fix,nMAX,0.14051710369490567
+G_r11,D0.0_f0.5_d0.0,0.0,0.5,0.0,P_A3fix,s,0.13817150264808944
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,zip:Current State_Challenge2.zip,nMAE,0.09344012990680507
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,zip:Current State_Challenge2.zip,nRMSE,0.09490882587492273
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,zip:Current State_Challenge2.zip,nMAX,0.1140254281178207
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,zip:Current State_Challenge2.zip,s,0.1007914612998495
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.0923951041199548
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.09520523839017023
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.11227549155715678
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.0999586113557606
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.09067388517690585
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.09408370893495673
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.11227549155715678
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.0990110285563398
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,SUB,nMAE,0.09344012990680507
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,SUB,nRMSE,0.09490882587492273
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,SUB,nMAX,0.1140254281178207
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,SUB,s,0.1007914612998495
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,P_A3fix,nMAE,0.08056172388649455
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,P_A3fix,nRMSE,0.08075147612551138
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,P_A3fix,nMAX,0.08653311533260767
+G_r11,D0.0_f0.5_d0.052,0.0,0.5,0.052,P_A3fix,s,0.08261543844820453
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,zip:Current State_Challenge2.zip,nMAE,0.224438100339758
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,zip:Current State_Challenge2.zip,nRMSE,0.2275821130291628
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,zip:Current State_Challenge2.zip,nMAX,0.23017226569860463
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,zip:Current State_Challenge2.zip,s,0.22739749302250847
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.22354408085888225
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.22740955259176296
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.238004230199286
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.22965262121664373
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.22207157818449733
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.22648978223420668
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.238004230199286
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.2288551968726633
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,SUB,nMAE,0.224438100339758
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,SUB,nRMSE,0.2275821130291628
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,SUB,nMAX,0.23017226569860463
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,SUB,s,0.22739749302250847
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,P_A3fix,nMAE,0.2134206249724873
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,P_A3fix,nRMSE,0.21540986135416462
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,P_A3fix,nMAX,0.22403083918069966
+G_r11,D0.0_f1.0_d-0.036,0.0,1.0,-0.036,P_A3fix,s,0.21762044183578386
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2.zip,nMAE,0.1928867996220134
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2.zip,nRMSE,0.1958298522042953
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2.zip,nMAX,0.20427085150387872
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2.zip,s,0.19766250111006248
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.1919564097656705
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.1957501321993079
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.20877771397824402
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.19882808531440746
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.19042400294345735
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.19481945762385025
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.20877771397824402
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.19800705818185058
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,SUB,nMAE,0.1928867996220134
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,SUB,nRMSE,0.1958298522042953
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,SUB,nMAX,0.20427085150387872
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,SUB,s,0.19766250111006248
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,P_A3fix,nMAE,0.18142111286295642
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,P_A3fix,nRMSE,0.1829792982391753
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,P_A3fix,nMAX,0.1942683704577501
+G_r11,D0.0_f1.0_d0.0,0.0,1.0,0.0,P_A3fix,s,0.18622292718662728
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,zip:Current State_Challenge2.zip,nMAE,0.14249765803433834
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,zip:Current State_Challenge2.zip,nRMSE,0.14547032497331502
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,zip:Current State_Challenge2.zip,nMAX,0.16314421027766324
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,zip:Current State_Challenge2.zip,s,0.15037073109510554
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.14150918271218837
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.14565089099234074
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.1623714275153269
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.149843833739952
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.1398811057109988
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.14473620069122423
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.1623714275153269
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.14899624463918332
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,SUB,nMAE,0.14249765803433834
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,SUB,nRMSE,0.14547032497331502
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,SUB,nMAX,0.16314421027766324
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,SUB,s,0.15037073109510554
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,P_A3fix,nMAE,0.13031615332901128
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,P_A3fix,nRMSE,0.13135203981314977
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,P_A3fix,nMAX,0.14701109083690975
+G_r11,D0.0_f1.0_d0.052,0.0,1.0,0.052,P_A3fix,s,0.13622642799302362
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,zip:Current State_Challenge2.zip,nMAE,0.0655121381921511
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,zip:Current State_Challenge2.zip,nRMSE,0.06730913107622515
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,zip:Current State_Challenge2.zip,nMAX,0.08374384622652192
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,zip:Current State_Challenge2.zip,s,0.07218837183163272
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.06443491875490932
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.0677599809533355
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.08193375560769467
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.0713762184386465
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.06266067497592136
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.0668104808123816
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.08193375560769467
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.07046830379866588
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,SUB,nMAE,0.0655121381921511
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,SUB,nRMSE,0.06730913107622515
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,SUB,nMAX,0.08374384622652192
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,SUB,s,0.07218837183163272
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,P_A3fix,nMAE,0.052236992774368454
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,P_A3fix,nRMSE,0.0542155216645194
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,P_A3fix,nMAX,0.06018999374049707
+G_r11,D0.4_f0.0_d-0.036,0.4,0.0,-0.036,P_A3fix,s,0.05554750272646164
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2.zip,nMAE,0.027801878238379672
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2.zip,nRMSE,0.03194796474433267
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2.zip,nMAX,0.04504287252224807
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2.zip,s,0.03493090516832014
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.029264835228062506
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.03417104498613839
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.04314753235953238
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.035527804191244426
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.02855729747816623
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.03404021278337921
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.04314753235953238
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.03524834754035928
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,SUB,nMAE,0.027801878238379672
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,SUB,nRMSE,0.03194796474433267
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,SUB,nMAX,0.04504287252224807
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,SUB,s,0.03493090516832014
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,P_A3fix,nMAE,0.02406797317155412
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,P_A3fix,nRMSE,0.026715173329754174
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,P_A3fix,nMAX,0.03963475267233172
+G_r11,D0.4_f0.0_d0.0,0.4,0.0,0.0,P_A3fix,s,0.03013929972454667
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,zip:Current State_Challenge2.zip,nMAE,0.05966973768995917
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,zip:Current State_Challenge2.zip,nRMSE,0.07032047596376657
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,zip:Current State_Challenge2.zip,nMAX,0.09684496838883024
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,zip:Current State_Challenge2.zip,s,0.07561172734751866
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.06146001340114643
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.07245137555439408
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.1107238920419476
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.08154509366582936
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.06346512219767668
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.07388883195146968
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.1107238920419476
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.08269261539703132
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,SUB,nMAE,0.05966973768995917
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,SUB,nRMSE,0.07032047596376657
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,SUB,nMAX,0.09684496838883024
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,SUB,s,0.07561172734751866
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,P_A3fix,nMAE,0.0746722481497096
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,P_A3fix,nRMSE,0.08372343288027286
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,P_A3fix,nMAX,0.09989550271706701
+G_r11,D0.4_f0.0_d0.052,0.4,0.0,0.052,P_A3fix,s,0.0860970612490165
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,zip:Current State_Challenge2.zip,nMAE,0.11755205762379611
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,zip:Current State_Challenge2.zip,nRMSE,0.1209356058367842
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,zip:Current State_Challenge2.zip,nMAX,0.13650478129925475
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,zip:Current State_Challenge2.zip,s,0.12499748158661168
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.1165348265663026
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.12116922658192894
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.13554533533625457
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.12441646282816203
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.1148593871774883
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.12036400442831703
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.13554533533625457
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.12358957564735329
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,SUB,nMAE,0.11755205762379611
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,SUB,nRMSE,0.1209356058367842
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,SUB,nMAX,0.13650478129925475
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,SUB,s,0.12499748158661168
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,P_A3fix,nMAE,0.10501618076820568
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,P_A3fix,nRMSE,0.106865257637541
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,P_A3fix,nMAX,0.11969306485666047
+G_r11,D0.4_f0.5_d-0.036,0.4,0.5,-0.036,P_A3fix,s,0.1105248344208024
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2.zip,nMAE,0.07647452725306655
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2.zip,nRMSE,0.08059500046117288
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2.zip,nMAX,0.10287146659714452
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2.zip,s,0.08664699810379466
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.07540994457554917
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.081412469926532
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.10111129442910756
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.08597790297706291
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.0736565142831661
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.08081571116370356
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.10111129442910756
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.08519450662532574
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,SUB,nMAE,0.07647452725306655
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,SUB,nRMSE,0.08059500046117288
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,SUB,nMAX,0.10287146659714452
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,SUB,s,0.08664699810379466
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,P_A3fix,nMAE,0.06335511131541693
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,P_A3fix,nRMSE,0.06526313456107431
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,P_A3fix,nMAX,0.08119012828386825
+G_r11,D0.4_f0.5_d0.0,0.4,0.5,0.0,P_A3fix,s,0.06993612472011983
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,zip:Current State_Challenge2.zip,nMAE,0.021867259639777155
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,zip:Current State_Challenge2.zip,nRMSE,0.027423330122496634
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,zip:Current State_Challenge2.zip,nMAX,0.04874563216624867
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,zip:Current State_Challenge2.zip,s,0.03267874064284082
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.025929629655569057
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.03195689369766266
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.0468667579303582
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.034917760427863306
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.027809456092376703
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.033210384710318966
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.0468667579303582
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.03596219957768462
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,SUB,nMAE,0.021867259639777155
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,SUB,nRMSE,0.027423330122496634
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,SUB,nMAX,0.04874563216624867
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,SUB,s,0.03267874064284082
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,P_A3fix,nMAE,0.01663458596154815
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,P_A3fix,nRMSE,0.017264972996981234
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,P_A3fix,nMAX,0.019227648864281625
+G_r11,D0.4_f0.5_d0.052,0.4,0.5,0.052,P_A3fix,s,0.017709069274270337
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,zip:Current State_Challenge2.zip,nMAE,0.16410170447325423
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,zip:Current State_Challenge2.zip,nRMSE,0.17202715550694156
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,zip:Current State_Challenge2.zip,nMAX,0.18251681206428855
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,zip:Current State_Challenge2.zip,s,0.17288189068149476
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.16313813295103383
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.17218035293278486
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.1908336068776457
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.17538403092048813
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.16155107397325766
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.17146489805651027
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.1908336068776457
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.17461652630247124
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,SUB,nMAE,0.16410170447325423
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,SUB,nRMSE,0.17202715550694156
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,SUB,nMAX,0.18251681206428855
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,SUB,s,0.17288189068149476
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,P_A3fix,nMAE,0.15222710247882412
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,P_A3fix,nRMSE,0.15853871353357116
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,P_A3fix,nMAX,0.1759952063794974
+G_r11,D0.4_f1.0_d-0.036,0.4,1.0,-0.036,P_A3fix,s,0.16225367413063088
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2.zip,nMAE,0.12733388235785495
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2.zip,nRMSE,0.1358571851717913
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2.zip,nMAX,0.15300092874023224
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2.zip,s,0.13873066542329285
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.1263279271790174
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.1362981997889422
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.15779817455848025
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.1401414338421466
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.12467105982563646
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.1356921335972336
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.15779817455848025
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.13938712266045009
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,SUB,nMAE,0.12733388235785495
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,SUB,nRMSE,0.1358571851717913
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,SUB,nMAX,0.15300092874023224
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,SUB,s,0.13873066542329285
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,P_A3fix,nMAE,0.11493696412452492
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,P_A3fix,nRMSE,0.12136014106987879
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,P_A3fix,nMAX,0.14235397409193518
+G_r11,D0.4_f1.0_d0.0,0.4,1.0,0.0,P_A3fix,s,0.12621702642877963
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,zip:Current State_Challenge2.zip,nMAE,0.06812702261735391
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,zip:Current State_Challenge2.zip,nRMSE,0.0795527014316387
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,zip:Current State_Challenge2.zip,nMAX,0.10584544067493497
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,zip:Current State_Challenge2.zip,s,0.08450838824130918
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.06705281745610661
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.08104629368644733
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.10501974616603982
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.08437295243619791
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.06552674063076185
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.080934699598851
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.10501974616603982
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.08382706213188422
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,SUB,nMAE,0.06812702261735391
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,SUB,nRMSE,0.0795527014316387
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,SUB,nMAX,0.10584544067493497
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,SUB,s,0.08450838824130918
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,P_A3fix,nMAE,0.05488902371844429
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,P_A3fix,nRMSE,0.06276947891320099
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,P_A3fix,nMAX,0.088607700933812
+G_r11,D0.4_f1.0_d0.052,0.4,1.0,0.052,P_A3fix,s,0.06875540118848576
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,zip:Current State_Challenge2.zip,nMAE,0.02839724054787595
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,zip:Current State_Challenge2.zip,nRMSE,0.031319704070234364
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,zip:Current State_Challenge2.zip,nMAX,0.038262169309001545
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,zip:Current State_Challenge2.zip,s,0.03265970464237062
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.029329198997272408
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.035631843262214795
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.05664484132628017
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.04053529452858912
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.031272452879792474
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.03838357797543019
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.05664484132628017
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.04210029072716761
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,SUB,nMAE,0.02839724054787595
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,SUB,nRMSE,0.031319704070234364
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,SUB,nMAX,0.038262169309001545
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,SUB,s,0.03265970464237062
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,P_A3fix,nMAE,0.03804458288738101
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,P_A3fix,nRMSE,0.04180619522807374
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,P_A3fix,nMAX,0.05640738031693683
+G_r11,D0.8_f0.0_d-0.036,0.8,0.0,-0.036,P_A3fix,s,0.045419386144130526
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2.zip,nMAE,0.07917851230918432
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2.zip,nRMSE,0.08257790589620537
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2.zip,nMAX,0.09417580660813635
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2.zip,s,0.08531074160450869
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.08042252212164366
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.0850652739924622
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.11362731142046527
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.09303836917819037
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.08247147945981376
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.08729825059228574
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.11362731142046527
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.09446568049085492
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,SUB,nMAE,0.07917851230918432
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,SUB,nRMSE,0.08257790589620537
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,SUB,nMAX,0.09417580660813635
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,SUB,s,0.08531074160450869
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,P_A3fix,nMAE,0.09450910382156137
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,P_A3fix,nRMSE,0.09700494046611126
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,P_A3fix,nMAX,0.1053465375021878
+G_r11,D0.8_f0.0_d0.0,0.8,0.0,0.0,P_A3fix,s,0.09895352726328681
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,zip:Current State_Challenge2.zip,nMAE,0.17120052840192151
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,zip:Current State_Challenge2.zip,nRMSE,0.17454336576522905
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,zip:Current State_Challenge2.zip,nMAX,0.19190218488253868
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,zip:Current State_Challenge2.zip,s,0.17921535968322977
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.17255061546636088
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.17640689636477003
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.20698391466452218
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.18531380883188434
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.1747742882783806
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.17844235135771566
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.20698391466452218
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.18673351810020614
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,SUB,nMAE,0.17120052840192151
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,SUB,nRMSE,0.17454336576522905
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,SUB,nMAX,0.19190218488253868
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,SUB,s,0.17921535968322977
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,P_A3fix,nMAE,0.18783836604899454
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,P_A3fix,nRMSE,0.1909676041338073
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,P_A3fix,nMAX,0.1952170913968344
+G_r11,D0.8_f0.0_d0.052,0.8,0.0,0.052,P_A3fix,s,0.19134102052654542
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,zip:Current State_Challenge2.zip,nMAE,0.04773958032465677
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,zip:Current State_Challenge2.zip,nRMSE,0.05467807479706504
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,zip:Current State_Challenge2.zip,nMAX,0.07535446365249343
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,zip:Current State_Challenge2.zip,s,0.059257372924738407
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.04610979939903159
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.05697235654792072
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.07432707240834781
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.0591364094517667
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.04793515403573228
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.057695111086297886
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.07432707240834781
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.05998577917679265
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,SUB,nMAE,0.04773958032465677
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,SUB,nRMSE,0.05467807479706504
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,SUB,nMAX,0.07535446365249343
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,SUB,s,0.059257372924738407
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,P_A3fix,nMAE,0.034082016167916576
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,P_A3fix,nRMSE,0.03933339510352717
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,P_A3fix,nMAX,0.05735218844548726
+G_r11,D0.8_f0.5_d-0.036,0.8,0.5,-0.036,P_A3fix,s,0.043589199905643666
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2.zip,nMAE,0.030195554622181583
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2.zip,nRMSE,0.03366710109242903
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2.zip,nMAX,0.044104240748555845
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2.zip,s,0.03598896548772215
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.03714229311826437
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.03873057623899528
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.044104240748555845
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.03999237003527183
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.03906060723852867
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.04158920528208017
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.05469204228507572
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.04511395160189485
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,SUB,nMAE,0.030195554622181583
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,SUB,nRMSE,0.03366710109242903
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,SUB,nMAX,0.044104240748555845
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,SUB,s,0.03598896548772215
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,P_A3fix,nMAE,0.029456802602089046
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,P_A3fix,nRMSE,0.03248224367894473
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,P_A3fix,nMAX,0.044104240748555845
+G_r11,D0.8_f0.5_d0.0,0.8,0.5,0.0,P_A3fix,s,0.03534776234319654
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,zip:Current State_Challenge2.zip,nMAE,0.09059434520595878
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,zip:Current State_Challenge2.zip,nRMSE,0.09287549852133094
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,zip:Current State_Challenge2.zip,nMAX,0.09335372685594873
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,zip:Current State_Challenge2.zip,s,0.09227452352774616
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.0918515144799706
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.09588265233925222
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.11062279474378486
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.09945232052100257
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.09392214622540358
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.09845323231682451
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.11062279474378486
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.10099939109533766
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,SUB,nMAE,0.09059434520595878
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,SUB,nRMSE,0.09287549852133094
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,SUB,nMAX,0.09335372685594873
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,SUB,s,0.09227452352774616
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,P_A3fix,nMAE,0.10608710772982076
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,P_A3fix,nRMSE,0.1052690923181247
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,P_A3fix,nMAX,0.09993880849611322
+G_r11,D0.8_f0.5_d0.052,0.8,0.5,0.052,P_A3fix,s,0.10376500284801955
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,zip:Current State_Challenge2.zip,nMAE,0.09699217916032946
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,zip:Current State_Challenge2.zip,nRMSE,0.11310234028230864
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,zip:Current State_Challenge2.zip,nMAX,0.1285718834061093
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,zip:Current State_Challenge2.zip,s,0.11288880094958247
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.0954556227212017
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.11410951696618371
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.13743749550340864
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.11566754506359801
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.0944653456783576
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.114059896130326
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.13743749550340864
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.11532091243736409
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,SUB,nMAE,0.09699217916032946
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,SUB,nRMSE,0.11310234028230864
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,SUB,nMAX,0.1285718834061093
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,SUB,s,0.11288880094958247
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,P_A3fix,nMAE,0.08411583620043778
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,P_A3fix,nRMSE,0.09823993242173648
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,P_A3fix,nMAX,0.12161992323991139
+G_r11,D0.8_f1.0_d-0.036,0.8,1.0,-0.036,P_A3fix,s,0.1013252306206952
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2.zip,nMAE,0.06813201846005716
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2.zip,nRMSE,0.07652664417175581
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2.zip,nMAX,0.09466922236418097
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2.zip,s,0.07977596166533131
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.06652190045395173
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.07861958708638825
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.09979684816037827
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.08164611190023942
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.06832523262079028
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.07930842419580096
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.09979684816037827
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.08247683499232317
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,SUB,nMAE,0.06813201846005716
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,SUB,nRMSE,0.07652664417175581
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,SUB,nMAX,0.09466922236418097
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,SUB,s,0.07977596166533131
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,P_A3fix,nMAE,0.05463922956889252
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,P_A3fix,nRMSE,0.06113643003767926
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,P_A3fix,nMAX,0.08328902602363773
+G_r11,D0.8_f1.0_d0.0,0.8,1.0,0.0,P_A3fix,s,0.06635489521006983
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,zip:Current State_Challenge2.zip,nMAE,0.04509833848920122
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,zip:Current State_Challenge2.zip,nRMSE,0.05137719826754705
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,zip:Current State_Challenge2.zip,nMAX,0.06372704559130146
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,zip:Current State_Challenge2.zip,s,0.053400860782683246
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAE,0.05265792715820218
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nRMSE,0.056004947187767676
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,nMAX,0.06372704559130146
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,zip:Current State_Challenge2_backup_Tmain_20261017.zip,s,0.057463306645757106
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAE,0.05459522703997174
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nRMSE,0.058855315814845224
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,nMAX,0.07422308896990584
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,zip:Current State_Challenge2_backup_V2sqrt_20261015.zip,s,0.0625578772749076
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,SUB,nMAE,0.04509833848920122
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,SUB,nRMSE,0.05137719826754705
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,SUB,nMAX,0.06372704559130146
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,SUB,s,0.053400860782683246
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,P_A3fix,nMAE,0.04284463815236121
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,P_A3fix,nRMSE,0.04909969064539319
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,P_A3fix,nMAX,0.06372704559130146
+G_r11,D0.8_f1.0_d0.052,0.8,1.0,0.052,P_A3fix,s,0.05189045812968529

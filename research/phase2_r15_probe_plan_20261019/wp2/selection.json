@@ -1,0 +1,105 @@
+{
+ "hashes": "all registered hashes match",
+ "P_A3fix_reproduces_round12": true,
+ "P_A3fix_diff": [
+  "+    top = _charge_step_to_top(seg, i, ah, start, end, q)",
+  "+    if int(seg[\"segment\"].iloc[0]) == 6:   # research copy (round 12 WP4): anchor-3 bottom correction a_3^rel",
+  "+        q = q - 0.3047",
+  "-        \"top\": _charge_step_to_top(seg, i, ah, start, end, q),",
+  "+        \"top\": top,"
+ ],
+ "EX_switch_diff": [
+  "-# from .model_example import ExampleModel as ActiveModel   # <-- the reference baseline (score = 1.0)",
+  "-from .model_template import MyModel as ActiveModel         # <-- your model",
+  "+from .model_example import ExampleModel as ActiveModel   # <-- the reference baseline (score = 1.0)",
+  "+# from .model_template import MyModel as ActiveModel         # <-- your model"
+ ],
+ "surviving": {
+  "G_main": {
+   "n": 18,
+   "note": "no observations"
+  },
+  "G_r11": {
+   "n": 27,
+   "note": "no observations"
+  },
+  "G_env": {
+   "n": 54,
+   "note": "no observations"
+  }
+ },
+ "selection_inputs": [
+  {
+   "probe": "P_A3fix",
+   "eligible": true,
+   "readable_main": true,
+   "readable_r11": true,
+   "key1_max_E": -0.00845598069772241,
+   "key2_max_worst": 0.01732736627484719
+  },
+  {
+   "probe": "P_drift_r6",
+   "eligible": false,
+   "readable_main": true,
+   "readable_r11": true,
+   "key1_max_E": -0.015073306029713839,
+   "key2_max_worst": 0.04708597956571148
+  },
+  {
+   "probe": "R13_d_tail_median",
+   "eligible": false,
+   "readable_main": true,
+   "readable_r11": true,
+   "key1_max_E": 0.010120919556023547,
+   "key2_max_worst": 0.015913887314715915
+  },
+  {
+   "probe": "R14_d_top_median",
+   "eligible": false,
+   "readable_main": true,
+   "readable_r11": true,
+   "key1_max_E": -0.012362511218799221,
+   "key2_max_worst": 0.16297599771074678
+  }
+ ],
+ "chosen": [
+  "P_A3fix"
+ ],
+ "plan": "probe(s): ['P_A3fix']",
+ "descriptive_would_qualify_if_eligible": [
+  "P_drift_r6",
+  "R14_d_top_median"
+ ],
+ "SOH": {
+  "SUB": {
+   "CK0": 98.441,
+   "CK1": 95.984,
+   "CK2": 94.507,
+   "CK3": 93.6,
+   "CK4": 92.821,
+   "CK5": 92.015,
+   "CK6": 91.426,
+   "CK7": 90.765
+  },
+  "EX": {
+   "CK0": 98.44,
+   "CK1": 98.416,
+   "CK2": 98.878,
+   "CK3": 97.612,
+   "CK4": 97.634,
+   "CK5": 97.207,
+   "CK6": 95.718,
+   "CK7": 95.148
+  },
+  "P_A3fix": {
+   "CK0": 98.441,
+   "CK1": 95.984,
+   "CK2": 94.507,
+   "CK3": 93.6,
+   "CK4": 92.461,
+   "CK5": 91.987,
+   "CK6": 91.41,
+   "CK7": 90.75
+  }
+ }
+}
