@@ -7,7 +7,7 @@
 | WP2 | done | G_SB failed (anchors 5 −0.52, 7 +0.40 > 0.264; σ_LOO 0.13) → H_SB rejected for 5, 7; G_a3 identified (a3_rel +0.305 Ah, 4/5); a0 +3.37 [1.74, 4.72] not identified (h does not transfer 25→45 °C; exploratory h1_0 gives a0 ≈ −0.3…−0.5) |
 | WP3 | done | T_top +1.11 [0.60, 1.62] Ah, G_T not identified (half-width 0.51); G_noise pass (σ 0.125/0.026); G_E2 consistent (J_DL1 0.705 vs Term2 0.616); λ drifts −0.97→−2.82·10⁻³ (exploratory time-matched λ: T_top ≈ 0.68); E3 non-informative |
 | WP4 | done | L3 (keep SUB): EPS_EXTRA_hat 4.48 [2.35, 6.34] Ah (point puts CK2 above CK0 → artefact); anchor-3 rule passes → SUB_A3fix leaderboard-only (CK4 −0.36 pp); no P_level probe; order P_stress_early → P_start → P_drift unchanged |
-| FINAL | done locally | FINAL_REPORT.md + README.md; 5/5 hashes and 15/15 synthetic tests pass; no upload/push per user instruction |
+| FINAL | done | FINAL_REPORT.md + README.md; 5/5 hashes and 15/15 synthetic tests pass; pushed 2026-10-20 after the user authorised it (D45) |
 
 - Done: WP0.1–WP0.5 (worktree, notes, sources, SUB + sensitivity, events, FACTS, REPORT)
 - Done: WP1.1–WP1.4 (protocol.json + sha256, registered modules, synthetic tests, REPORT with outcome table)
@@ -17,7 +17,8 @@
 - Current WP: none (local closeout complete)
 - Done: WP4.1–3 `wp4/budget_decision.json` (EPS_EXTRA_hat 4.48 [2.35, 6.34] → L3; anchor-3 rule passes), `wp4/SOH_variants.csv`
 - Done: WP4.4–6 probe assessment, `wp4/R13_HANDOFF.json`, README draft, `wp4/REPORT.md`
-- Next: no local work remains; remote synchronization not performed under the no-upload instruction.
+- Next: none. Round 12 is complete (Global Done); round 13 starts from `wp4/R13_HANDOFF.json`.
+- Update 2026-10-20: the user authorised the push (D45), lifting D42; all commits are on `origin exp/phase2-r12-eps-level-20261019`.
 - Last result commit: af263cb. Final documentation commit: `git log -1 --format=%h -- research/phase2_r12_eps_level_20261019/FINAL_REPORT.md` (self-reference).
 
 - Final verification (2026-10-19): registered file hashes match 5/5; synthetic tests rerun 15/15 pass; budget arithmetic and handoff SOH agree; final-report SOH table checked against CSV; submission unchanged from base 6525edf.

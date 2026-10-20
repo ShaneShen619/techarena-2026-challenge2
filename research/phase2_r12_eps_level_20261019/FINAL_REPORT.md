@@ -101,6 +101,7 @@ This report closes **Round 12**, using the existing WP0–WP4 results at `af263c
 - All five entries in [protocol.sha256](wp1/protocol.sha256) match. The registered core modules are unchanged from `b3f3e7a`. The existing synthetic suite was rerun with `python3 -B research/phase2_r12_eps_level_20261019/src/test_registered.py`: **15/15 passed**.
 - Budget addition, interval endpoints and SUB/SUB_A3fix SOH agree with the machine-readable decision and handoff. The report's five SOH rows were checked against the CSV. This closeout does not rerun the completed challenge-data analyses.
 - The submission package is unchanged relative to base `6525edf`. No proxy-label error was computed during closeout, and no file was uploaded. The final report, study README and notes are committed locally; the prompt's push requirement is superseded for this closeout by the user's explicit no-upload instruction. **Local closeout is complete; remote synchronization is intentionally not performed.**
+- **Update 2026-10-20:** the user later authorised the push ([DECISIONS](notes/DECISIONS.md) D45). This branch, including the closeout commit, is now pushed to `origin exp/phase2-r12-eps-level-20261019`. Results and decision are unchanged.
 
 ---
 
@@ -194,3 +195,4 @@ This report closes **Round 12**, using the existing WP0–WP4 results at `af263c
 - [protocol.sha256](wp1/protocol.sha256) 中 5 项哈希全部一致，核心登记模块自 `b3f3e7a` 后未变。以 `python3 -B research/phase2_r12_eps_level_20261019/src/test_registered.py` 复跑已有合成测试，**15/15 通过**。
 - 已核对预算加法、区间端点以及 SUB/SUB_A3fix 与机器可读交接文件的一致性；报告五行 SOH 与 CSV 一致。本次没有重跑已完成的赛题数据分析。
 - 提交包相对基点 `6525edf` 保持不变。本次收尾未计算任何代理标签误差，未上传任何文件。最终报告、研究目录 README 和记录在本地提交；用户明确要求“不得上传”，因此本次不执行 prompt 中的 push。**本地收尾完成，远端同步有意不执行。**
+- **2026-10-20 更新：** 用户随后授权推送（[决策记录](notes/DECISIONS.md) D45），本分支连同收尾提交已推送到 `origin exp/phase2-r12-eps-level-20261019`。结果和决策均不变。

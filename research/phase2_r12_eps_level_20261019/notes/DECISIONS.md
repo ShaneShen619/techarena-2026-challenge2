@@ -92,3 +92,6 @@
 ## 中文收尾记录
 
 D42：用户明确本次目标为第 12 轮最终报告，从 af263cb 和已有未提交草稿续写；“不得上传”优先于 prompt 的 push 要求，仅本地提交。D43：修正 h 的差值方向、合成测试中位误差与最大误差的区别，以及登记范围表述，登记结果不变。D44：核对 5 项登记哈希、复跑已有 15 项合成测试并核对预算与 SOH，未重跑完成的赛题测量，提交包未修改。
+
+- D45 (2026-10-20, concurrency + push): the closeout commit 4468572 (FINAL_REPORT.md, README.md, D42–D44, STATUS) was made by another session and was found unpushed at the start of this session. It was reviewed and kept unchanged; its corrections (h definition, synthetic median vs maximum errors, softer anchor-0 wording) check out against `wp2_run.py` and `wp1/synthetic_resolution.json`. Asked directly, the user then authorised pushing, which lifts D42's no-upload restriction. Both commits were pushed to `origin exp/phase2-r12-eps-level-20261019` (no force). Dated update notes were appended to FINAL_REPORT.md, README.md and STATUS.md; the earlier sentences were not rewritten.
+  - 中文：收尾提交 4468572 由另一会话完成，本会话开始时尚未推送；经审阅保持原样。用户随后在本会话中直接授权推送，解除 D42 的不上传限制；两个提交均已推送（未强推），并在 FINAL_REPORT.md、README.md、STATUS.md 末尾追加了带日期的更新说明。

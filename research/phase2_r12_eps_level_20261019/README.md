@@ -24,6 +24,8 @@ SOH is in percent. The candidate subtracts 0.3047 Ah from anchor 3's Q_fc after 
 
 Closeout verification: 5/5 registered hashes match, 15/15 synthetic tests pass, budget arithmetic and SOH agree with their source files, and the submission is unchanged. Documentation is complete locally; no upload or Git push was performed, as requested. This is the study README, not a change to the submission package README.
 
+**Update 2026-10-20:** the user later authorised the push (D45); the branch is now pushed to `origin exp/phase2-r12-eps-level-20261019`.
+
 ---
 
 <a id="zh"></a>
@@ -41,3 +43,5 @@ Closeout verification: 5/5 registered hashes match, 15/15 synthetic tests pass, 
 WP0–WP4 报告链接见上方，分别覆盖事实复核、登记、底部、顶部和最终决策；[状态](notes/STATUS.md)、[决策记录](notes/DECISIONS.md)及[来源](sources/SOURCES.md)记录执行与溯源。
 
 收尾核验：5 项登记哈希全部一致，15/15 合成测试通过，预算与 SOH 均与源文件一致，提交包未改变。文档在本地完成；按用户要求未上传、未 Git push。这是研究目录的 README，没有改动提交包 README。
+
+**2026-10-20 更新：** 用户随后授权推送（D45），本分支已推送到 `origin exp/phase2-r12-eps-level-20261019`。
