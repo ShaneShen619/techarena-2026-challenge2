@@ -1,0 +1,236 @@
+{
+ "round": "13",
+ "source": "round 12 (exp/phase2-r12-eps-level-20261019), protocol v1 registered in b3f3e7a",
+ "scope_note": "round 12 measured the eps LEVEL (user's choice); round 11's top-of-charge drift model moves to round 13",
+ "decision": {
+  "level": "L3",
+  "reason": "width 3.991 Ah > 0.50 Ah; 0.4 outside the interval; G_SB failed (blocks L2)",
+  "action": "keep SUB (6525edf)",
+  "submission_changed": false
+ },
+ "EPS_EXTRA_hat": {
+  "point": 4.4827,
+  "interval": [
+   2.3472,
+   6.3378
+  ],
+  "width": 3.9906,
+  "assumption_in_SUB": 0.4,
+  "note": "T_top + a_0, endpoints added; the point would put CK2 at 100.41 % SOH (> CK0), i.e. it is an artefact"
+ },
+ "T_top": {
+  "point": 1.1082,
+  "interval": [
+   0.6023,
+   1.6156
+  ],
+  "status": "not identified (G_T)",
+  "terms": {
+   "Term1": {
+    "point": 0.0743,
+    "interval": [
+     0.0217,
+     0.1268
+    ],
+    "se": 0.0263
+   },
+   "Term2": {
+    "point": 0.6165,
+    "interval": [
+     0.4054,
+     0.829
+    ],
+    "se": 0.0344
+   },
+   "Term3": {
+    "point": 0.4175,
+    "interval": [
+     0.1752,
+     0.6598
+    ],
+    "se": 0.1211
+   }
+  },
+  "event_values": {
+   "Term1": {
+    "E01-E02": 0.0743
+   },
+   "Term2": {
+    "E09-E10": 0.6683,
+    "E15-E16": 0.6646,
+    "E21-E22": 0.6165,
+    "E28-E29": 0.4449,
+    "E35-E36": 0.5198
+   },
+   "Term3": {
+    "E06-E07": 0.6002,
+    "E08-E09": 0.579,
+    "E20-E21": 0.4175,
+    "E26-E27": 0.0933,
+    "E33-E34": 0.1351
+   }
+  },
+  "gates": {
+   "G_noise": {
+    "sigma_TT_25": 0.1246,
+    "sigma_TT_45": 0.0263,
+    "passed": true
+   },
+   "G_E2": {
+    "median_J_dvdq": 0.7052,
+    "median_Term2": 0.6165,
+    "consistent": true
+   },
+   "G_T": {
+    "half_width": 0.5067,
+    "identified": false
+   }
+  },
+  "excluded_AT_pairs": [
+   "E14-E15 (recording gap 59909 s)",
+   "E40-E41 (recording gap 1753 s)"
+  ],
+  "exploratory_time_matched_lambda": 0.6767
+ },
+ "a0": {
+  "point": 3.3745,
+  "interval": [
+   1.7449,
+   4.7222
+  ],
+  "status": "not identified",
+  "Dbot_minus_Cbot": 2.0885,
+  "h": {
+   "point": -5.463,
+   "lo": -6.1662,
+   "hi": -4.7363
+  },
+  "h_medians": {
+   "h1_A3": -4.7363,
+   "h1_DL1": -5.2303,
+   "h2_A3": -5.6956,
+   "h2_DL1": -6.1662
+  },
+  "top_split_FCK0_minus_FA0": {
+   "point": 3.6621,
+   "interval": [
+    2.0325,
+    5.0098
+   ]
+  },
+  "exploratory_h1_from_anchor0": {
+   "A3": -1.5797,
+   "DL1": -1.7814
+  },
+  "exploratory_a0_with_h1_0": {
+   "A3": -0.5087,
+   "DL1": -0.3071
+  },
+  "diagnosis": "the registered h comes from 25 degC anchors; at anchor 0's own 45 degC top it is 3.7-3.9 Ah different, so a_0 is dominated by the temperature dependence of h"
+ },
+ "a3_rel": {
+  "value": 0.3047,
+  "threshold": 0.2636,
+  "same_sign": 4,
+  "per_locator": {
+   "CL1": -0.0865,
+   "CL2": 0.6753,
+   "CL3": 0.8042,
+   "CL4": 0.2822,
+   "CL5": 0.2179
+  },
+  "identified": true,
+  "candidate": "SUB_A3fix (leaderboard-only): CK1 +0.000 pp, CK2 +0.000 pp, CK3 +0.000 pp, CK4 -0.360 pp, CK5 -0.028 pp, CK6 -0.016 pp, CK7 -0.015 pp"
+ },
+ "H_SB": {
+  "status": "necessary condition failed for anchors 5, 7",
+  "sigma_LOO": 0.1318,
+  "threshold": 0.2636,
+  "loo_residuals": {
+   "1": 0.0853,
+   "2": 0.0433,
+   "4": -0.0394,
+   "5": -0.5195,
+   "6": -0.0925,
+   "7": 0.3997
+  },
+  "anomaly_list": {
+   "anchors": [
+    3,
+    5,
+    7
+   ],
+   "reasons": {
+    "3": "G_a3",
+    "5": "G_SB residual",
+    "7": "G_SB residual"
+   }
+  },
+  "unrelaxed_starts": [
+   0,
+   3
+  ],
+  "note": "necessary condition only; S_k for k >= 1 is not visible"
+ },
+ "SOH": {
+  "SUB": {
+   "CK1": 95.984,
+   "CK2": 94.507,
+   "CK3": 93.6,
+   "CK4": 92.821,
+   "CK5": 92.015,
+   "CK6": 91.426,
+   "CK7": 90.765
+  },
+  "SUB_A3fix": {
+   "CK1": 95.984,
+   "CK2": 94.507,
+   "CK3": 93.6,
+   "CK4": 92.461,
+   "CK5": 91.987,
+   "CK6": 91.41,
+   "CK7": 90.75
+  }
+ },
+ "open_terms": [
+  {
+   "term": "drift d = F^CK_k - F^CK_0",
+   "plan": "round 11's top-of-charge model: extrapolate each anchor's CV decay beyond 5.1 A to the checkup's top; estimate delta-eps_top(k)",
+   "status": "not addressed in round 12"
+  },
+  {
+   "term": "self-discharge during the checkup rests (3.1-6.0 d windows)",
+   "status": "not measured; the 25->45 degC switch idles (6.9-25.3 h) show no self-discharge signal in Term2 (rho -0.40, n = 5)"
+  },
+  {
+   "term": "checkup protocol and temperature",
+   "status": "unknown; CK0 discharges at 5.1 A while the operating step band is ~10 A; the CK0 top region falls 330 mV in the first Ah"
+  },
+  {
+   "term": "lambda non-stationarity",
+   "status": "per-block net Ah between equal tops drifts from -0.36 to -1.13 Ah (lambda -0.97e-3 -> -2.82e-3), wrong sign for side reactions: a time-varying measurement bias that sets most of T_top's width; a registered time-dependent loss rule is needed"
+  },
+  {
+   "term": "temperature dependence of h (charge-side vs discharge-side step position)",
+   "status": "h(25 degC) -5.46 Ah vs exploratory h1(45 degC, anchor 0) -1.6...-1.8 Ah; a 45 degC h with an explicit first-program correction is the missing piece for a_0"
+  },
+  {
+   "term": "locator resolution",
+   "status": "1 mV quantisation makes dV/dQ-argmax variants unstable by ~+-1 Ah per cell on the broad charge-side step; midpoint variants and cell medians are ~0.02-0.1 Ah (synthetic)"
+  },
+  {
+   "term": "unrecorded events before anchors 0 and 3",
+   "status": "anchor 0: +84 mV/h 3.4 d after its C/20, 2 K above set point and cooling, cells within 7 mV; anchor 3: +53 mV/h after a 3.1 d window; segment 6 also paused twice"
+  }
+ ],
+ "constraints": [
+  "do not retry absolute electrode-model (DMA) reconstruction of Q_C20 (round 5B: 8-10 Ah spans)",
+  "proxy scoring is blind to the eps level by construction (P_k = Q_fc,k + eps0 + Delta)",
+  "register any new loss rule / h estimator before evaluating it"
+ ],
+ "probe": {
+  "P_level": "not recommended: L3, and the measured shift (+4.08 Ah) is an artefact",
+  "order": "P_stress_early -> P_start -> P_drift (unchanged)",
+  "SUB_A3fix": "a registered single-anchor instance of P_start's question; the user decides"
+ }
+}

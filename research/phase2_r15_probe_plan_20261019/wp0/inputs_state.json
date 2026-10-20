@@ -1,0 +1,22 @@
+{
+ "templates_created": [
+  "leaderboard_log.csv",
+  "deadline.txt",
+  "pptx_path.txt"
+ ],
+ "log_rows": 0,
+ "observations": "no observations",
+ "deadline": "unknown",
+ "pptx_path": "template",
+ "n_zips": 3,
+ "SUB_SOH": {
+  "CK0": 98.441,
+  "CK1": 95.984,
+  "CK2": 94.507,
+  "CK3": 93.6,
+  "CK4": 92.821,
+  "CK5": 92.015,
+  "CK6": 91.426,
+  "CK7": 90.765
+ }
+}
