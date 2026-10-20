@@ -6,7 +6,7 @@
 | WP1 | done | registered (protocol sha256 f4cf3da6…); grid = round 6's 18 (R12 L3, R13/R14 O3 not identifiable) + G_r11 gate; eligible: P_A3fix only (P_level L3, P_drift no O2, P_stress_early dropped); tests 7/7 |
 | WP2 | done | plan = one probe P_A3fix (rebuild = R12 exactly; readable G_main 17/18, G_r11 24/27; E[Δs] −0.009 all metrics; worst +0.017); upload only if SUB's board value known and next evaluation ≥ 3 d before a known deadline |
 | WP3 | done | P_A3fix zip built + validated (validator PASSED, output = expected), SHA256 3d792662…72e6, template pptx (warning); HANDOVER, FINAL_REPORT, README |
-| WP4 | waiting | 2026-10-20: waiting for leaderboard (log has header only; the goal's "recorded results" were not found) |
+| WP4 | waiting | 2026-10-20: waiting for leaderboard (log header only; user confirmed "no results yet", D27) |
 
 - Current WP: none (WP0–WP3 done; WP4 waiting for leaderboard) — Global Done
 - Done: WP0.1 worktree, prompt commit `f0480d8` (pushed), notes, 25 sources; WP0.2 `wp0/RULES.md`; WP0.3 input templates; WP0.4 `wp0/existing_packages.csv`, `wp0/SUB_SOH.csv`; WP0.5 `wp0/candidates.md`; `wp0/REPORT.md`

@@ -45,7 +45,7 @@
 
 ### 2026-10-20 — waiting for leaderboard
 
-The log has no data rows, so the status is **waiting for leaderboard**. The session goal said that results had been recorded, but `inputs/leaderboard_log.csv` did not exist before WP0 created it and is still header-only. Keep SUB as the active and last submission. Log the next board evaluation (format in [wp3/HANDOVER.md](wp3/HANDOVER.md)), then rerun WP4. Details: [wp4/REPORT.md](wp4/REPORT.md).
+The log has no data rows, so the status is **waiting for leaderboard**. The session goal said that results had been recorded, but `inputs/leaderboard_log.csv` did not exist before WP0 created it and is still header-only. The user confirmed that nothing has been evaluated yet (D27). Keep SUB as the active and last submission. Log the next board evaluation (format in [wp3/HANDOVER.md](wp3/HANDOVER.md)), then rerun WP4. Details: [wp4/REPORT.md](wp4/REPORT.md).
 
 ---
 
@@ -92,4 +92,4 @@ The log has no data rows, so the status is **waiting for leaderboard**. The sess
 
 ### 2026-10-20 — 等待排行榜
 
-记录里没有数据行，所以状态是**等待排行榜**。本会话目标说已记录了结果，但 `inputs/leaderboard_log.csv` 在 WP0 创建之前并不存在，现在仍然只有表头。保持 SUB 为当前有效的提交和最后一次提交。记录下一次榜单评估（格式见 [wp3/HANDOVER.md](wp3/HANDOVER.md)）之后再运行 WP4。详情见 [wp4/REPORT.md](wp4/REPORT.md)。
+记录里没有数据行，所以状态是**等待排行榜**。本会话目标说已记录了结果，但 `inputs/leaderboard_log.csv` 在 WP0 创建之前并不存在，现在仍然只有表头。用户已确认目前还没有任何评估（D27）。保持 SUB 为当前有效的提交和最后一次提交。记录下一次榜单评估（格式见 [wp3/HANDOVER.md](wp3/HANDOVER.md)）之后再运行 WP4。详情见 [wp4/REPORT.md](wp4/REPORT.md)。
