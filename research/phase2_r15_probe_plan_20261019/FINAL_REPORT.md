@@ -29,7 +29,7 @@
 | WP1 | Protocol registered (sha256 `f4cf3da6…`) with the registered code; round 6's machinery reproduced exactly (7/7 tests). |
 | WP2 | Probe vectors, Δs on 3 grids × 4 metrics, readability, ranking; plan = P_A3fix; organiser question drafted (not sent). |
 | WP3 | P_A3fix zip built and validated (fresh venv: validator PASSED; full-data output = expected); SHA256 `3d792662…72e6`; hand-over written. |
-| WP4 | see below |
+| WP4 | 2026-10-20: waiting for leaderboard (log has no rows) |
 
 **Local vs remote.** All work is committed on `exp/phase2-r15-probe-plan-20261019` in `/Users/shane/Desktop/Arena_1019_r15_probe`. Only the first commit (the prompt) was pushed. Later commits are local because the session forbade uploads (D4). The prompt's push criterion is therefore not claimed.
 
@@ -43,7 +43,9 @@
 
 ## WP4 runs
 
-(one dated section per run, appended by WP4)
+### 2026-10-20 — waiting for leaderboard
+
+The log has no data rows, so the status is **waiting for leaderboard**. The session goal said that results had been recorded, but `inputs/leaderboard_log.csv` did not exist before WP0 created it and is still header-only. Keep SUB as the active and last submission. Log the next board evaluation (format in [wp3/HANDOVER.md](wp3/HANDOVER.md)), then rerun WP4. Details: [wp4/REPORT.md](wp4/REPORT.md).
 
 ---
 
@@ -78,7 +80,7 @@
 | WP1 | 协议已登记（sha256 `f4cf3da6…`），连同登记代码；完全复现第 6 轮的方法（7/7 测试）。 |
 | WP2 | 探针向量、3 个网格 × 4 个指标的 Δs、可解读性、排名；计划 = P_A3fix；起草了给主办方的问题（未发送）。 |
 | WP3 | 构建并验证了 P_A3fix 的 zip（全新 venv：验证器 PASSED；全量输出 = 预期）；SHA256 `3d792662…72e6`；写好了交接说明。 |
-| WP4 | 见下文 |
+| WP4 | 2026-10-20：等待排行榜（记录没有数据行） |
 
 **本地与远端。** 所有工作都提交在 `/Users/shane/Desktop/Arena_1019_r15_probe` 的 `exp/phase2-r15-probe-plan-20261019` 分支上。只有第一次提交（prompt）推送过。由于本会话禁止上传，之后的提交只在本地（D4），所以不宣称满足 prompt 的推送条件。
 
@@ -88,4 +90,6 @@
 
 ## WP4 运行记录
 
-（每次运行由 WP4 追加一个带日期的小节）
+### 2026-10-20 — 等待排行榜
+
+记录里没有数据行，所以状态是**等待排行榜**。本会话目标说已记录了结果，但 `inputs/leaderboard_log.csv` 在 WP0 创建之前并不存在，现在仍然只有表头。保持 SUB 为当前有效的提交和最后一次提交。记录下一次榜单评估（格式见 [wp3/HANDOVER.md](wp3/HANDOVER.md)）之后再运行 WP4。详情见 [wp4/REPORT.md](wp4/REPORT.md)。
