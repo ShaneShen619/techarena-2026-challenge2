@@ -1,0 +1,50 @@
+{
+ "c1_joint": {
+  "logA_b": 1.8572122086679987,
+  "logtau_b": 4.901437698447246,
+  "logA_cal": -2.546597249629878,
+  "logA_cyc": -11.964309522999896
+ },
+ "c1_jackknife_sd": {
+  "logA_b": 0.48555540898379074,
+  "logtau_b": 5.3507028681658495,
+  "logA_cal": 4.146393837128234,
+  "logA_cyc": 9.265015932404781
+ },
+ "logA_b": {
+  "mean": 1.8572122086679987,
+  "sd": 1.0986122886681098,
+  "source": "Challenge 1 joint two-term fit",
+  "at_bound": false,
+  "unidentified": false
+ },
+ "logtau_b": {
+  "mean": 4.901437698447246,
+  "sd": 5.3507028681658495,
+  "source": "fallback: joint value kept, SD max(jk, ln 3)",
+  "at_bound": false,
+  "unidentified": true
+ },
+ "logA_cal": {
+  "mean": -1.4405027696805106,
+  "sd": 1.0986122886681098,
+  "source": "fallback: Yagci-derived at z = 0.5",
+  "at_bound": false,
+  "unidentified": true
+ },
+ "logA_cyc": {
+  "mean": -11.754453247878848,
+  "sd": 1.0986122886681098,
+  "source": "fallback: 5A prior centre",
+  "at_bound": false,
+  "unidentified": true
+ },
+ "c1_per_cell_rmse_Ah": {
+  "102Ah_25degC_0p5C_cell3": 1.0494733712257722,
+  "102Ah_25degC_1C_cell3": 1.492252875608579,
+  "102Ah_35degC_1C_cell1": 0.6707937935268078,
+  "102Ah_45degC_0p5C_cell3": 1.1072445993158528,
+  "102Ah_45degC_1C_cell1": 0.8596260284752884,
+  "102Ah_55degC_1C_cell3": 1.3585567284134317
+ }
+}

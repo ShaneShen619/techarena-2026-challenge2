@@ -1,0 +1,54 @@
+{
+ "elapsed_s": 30.7,
+ "rows": {
+  "REF": {
+   "real": 0.1315,
+   "pseudo": 0.1228,
+   "cold": 0.1344,
+   "ck": [
+    0.048,
+    -0.311,
+    -0.092,
+    0.132,
+    0.033,
+    -0.197,
+    0.107
+   ],
+   "max_abs_diff_vs_prompt": 0.0005,
+   "reproduced": true
+  },
+  "R3_T": {
+   "real": 0.1794,
+   "pseudo": 0.1189,
+   "cold": 0.144,
+   "ck": [
+    -0.008,
+    -0.638,
+    -0.15,
+    0.1,
+    -0.007,
+    -0.209,
+    0.144
+   ],
+   "max_abs_diff_vs_prompt": 0.0004,
+   "reproduced": true
+  },
+  "V2": {
+   "real": 0.2157,
+   "pseudo": 0.24,
+   "cold": 0.2522,
+   "ck": [
+    0.217,
+    0.669,
+    0.08,
+    0.228,
+    0.15,
+    -0.163,
+    -0.004
+   ],
+   "max_abs_diff_vs_prompt": 0.0003,
+   "reproduced": true
+  }
+ },
+ "REF_reproduced": true
+}
