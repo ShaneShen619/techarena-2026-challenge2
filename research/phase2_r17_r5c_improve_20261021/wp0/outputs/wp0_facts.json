@@ -1,0 +1,530 @@
+{
+ "equivalence": {
+  "stress_table17_equals_stress_table": true,
+  "n_tables": 35,
+  "lawfit17_max_abs_diff_pp": 0.0,
+  "n_pred": 19
+ },
+ "F1": {
+  "construction_vs_containment_mismatches": 0,
+  "real_ck7_days_by_month": {
+   "1": {
+    "switch": 0.0,
+    "true_ck": 7.012
+   },
+   "2": {
+    "switch": 0.885,
+    "true_ck": 3.115
+   },
+   "3": {
+    "switch": 0.286,
+    "true_ck": 3.707
+   },
+   "4": {
+    "switch": 0.405,
+    "true_ck": 0.0
+   },
+   "5": {
+    "switch": 1.054,
+    "true_ck": 11.336
+   },
+   "6": {
+    "switch": 0.503,
+    "true_ck": 0.0
+   },
+   "7": {
+    "switch": 0.0,
+    "true_ck": 3.758
+   }
+  },
+  "real_ck7_switch_hours": [
+   21.2,
+   6.9,
+   9.7,
+   25.3,
+   12.1
+  ],
+  "real_ck7_tau_share": {
+   "observed": 0.8176,
+   "seg_gap": 0.1128,
+   "switch": 0.0068,
+   "true_ck": 0.0628
+  },
+  "real_ck7_days_by_kind": {
+   "observed": 172.411,
+   "seg_gap": 19.487,
+   "switch": 3.133,
+   "true_ck": 28.928
+  }
+ },
+ "F2": {
+  "nan_share": 0.0,
+  "monthly_mean_spread": {
+   "25": {
+    "min": 0.5707931517265528,
+    "max": 0.5923844258950715,
+    "sd": 0.007928514878361048
+   },
+   "45": {
+    "min": 0.4619567910257782,
+    "max": 0.6418005764421082,
+    "sd": 0.05545636729297276
+   }
+  },
+  "table": [
+   {
+    "month": 0,
+    "setpoint": 45,
+    "days": 19.201,
+    "mean_soc": 0.625,
+    "p10": 0.382,
+    "p90": 0.874
+   },
+   {
+    "month": 1,
+    "setpoint": 25,
+    "days": 7.529,
+    "mean_soc": 0.581,
+    "p10": 0.297,
+    "p90": 0.864
+   },
+   {
+    "month": 1,
+    "setpoint": 45,
+    "days": 0.65,
+    "mean_soc": 0.642,
+    "p10": 0.399,
+    "p90": 0.898
+   },
+   {
+    "month": 2,
+    "setpoint": 25,
+    "days": 8.056,
+    "mean_soc": 0.579,
+    "p10": 0.303,
+    "p90": 0.863
+   },
+   {
+    "month": 2,
+    "setpoint": 45,
+    "days": 21.022,
+    "mean_soc": 0.616,
+    "p10": 0.371,
+    "p90": 0.869
+   },
+   {
+    "month": 3,
+    "setpoint": 25,
+    "days": 8.038,
+    "mean_soc": 0.573,
+    "p10": 0.293,
+    "p90": 0.859
+   },
+   {
+    "month": 3,
+    "setpoint": 45,
+    "days": 19.986,
+    "mean_soc": 0.611,
+    "p10": 0.359,
+    "p90": 0.868
+   },
+   {
+    "month": 4,
+    "setpoint": 25,
+    "days": 6.822,
+    "mean_soc": 0.571,
+    "p10": 0.3,
+    "p90": 0.862
+   },
+   {
+    "month": 4,
+    "setpoint": 45,
+    "days": 20.17,
+    "mean_soc": 0.598,
+    "p10": 0.338,
+    "p90": 0.865
+   },
+   {
+    "month": 5,
+    "setpoint": 25,
+    "days": 10.697,
+    "mean_soc": 0.585,
+    "p10": 0.311,
+    "p90": 0.865
+   },
+   {
+    "month": 5,
+    "setpoint": 45,
+    "days": 19.585,
+    "mean_soc": 0.604,
+    "p10": 0.362,
+    "p90": 0.866
+   },
+   {
+    "month": 6,
+    "setpoint": 25,
+    "days": 10.212,
+    "mean_soc": 0.592,
+    "p10": 0.32,
+    "p90": 0.866
+   },
+   {
+    "month": 6,
+    "setpoint": 45,
+    "days": 19.613,
+    "mean_soc": 0.595,
+    "p10": 0.343,
+    "p90": 0.864
+   },
+   {
+    "month": 7,
+    "setpoint": 45,
+    "days": 0.0,
+    "mean_soc": 0.462,
+    "p10": 0.462,
+    "p90": 0.462
+   }
+  ],
+  "segment_last_soc": [
+   {
+    "segment": 1,
+    "t_last": "2025-02-08 15:35:55",
+    "soc_last": 0.442,
+    "setpoint": 45,
+    "v_last": 13.19
+   },
+   {
+    "segment": 2,
+    "t_last": "2025-02-19 09:50:00",
+    "soc_last": 0.557,
+    "setpoint": 25,
+    "v_last": 13.297
+   },
+   {
+    "segment": 4,
+    "t_last": "2025-03-22 17:36:35",
+    "soc_last": 0.85,
+    "setpoint": 25,
+    "v_last": 13.26
+   },
+   {
+    "segment": 5,
+    "t_last": "2025-04-13 15:21:55",
+    "soc_last": 0.341,
+    "setpoint": 45,
+    "v_last": 13.22
+   },
+   {
+    "segment": 6,
+    "t_last": "2025-04-25 14:58:45",
+    "soc_last": 0.891,
+    "setpoint": 25,
+    "v_last": 13.261
+   },
+   {
+    "segment": 7,
+    "t_last": "2025-05-15 21:30:54",
+    "soc_last": 0.704,
+    "setpoint": 45,
+    "v_last": 13.2
+   },
+   {
+    "segment": 8,
+    "t_last": "2025-05-26 10:12:54",
+    "soc_last": 0.184,
+    "setpoint": 25,
+    "v_last": 12.94
+   },
+   {
+    "segment": 9,
+    "t_last": "2025-06-16 12:23:32",
+    "soc_last": 0.789,
+    "setpoint": 45,
+    "v_last": 13.44
+   },
+   {
+    "segment": 10,
+    "t_last": "2025-07-02 13:35:33",
+    "soc_last": 0.356,
+    "setpoint": 25,
+    "v_last": 13.317
+   },
+   {
+    "segment": 11,
+    "t_last": "2025-07-22 16:32:49",
+    "soc_last": 0.5,
+    "setpoint": 45,
+    "v_last": 13.27
+   },
+   {
+    "segment": 12,
+    "t_last": "2025-08-07 21:12:09",
+    "soc_last": 0.423,
+    "setpoint": 25,
+    "v_last": 13.045
+   },
+   {
+    "segment": 13,
+    "t_last": "2025-08-28 00:00:00",
+    "soc_last": 0.462,
+    "setpoint": 45,
+    "v_last": 13.099
+   }
+  ]
+ },
+ "F3": {
+  "prior_mean": {
+   "params": {
+    "logA_b": 1.8572122086679987,
+    "logA_cal": -1.4405027696805106,
+    "logA_cyc": -11.754453247878848,
+    "o45": 0.0
+   },
+   "cumulative_to_CK7_Ah": {
+    "breakin": 6.1916,
+    "calendar": 5.062,
+    "cycle": 0.5286
+   },
+   "cumulative_to_CK7_pp": {
+    "breakin": 6.0702,
+    "calendar": 4.9627,
+    "cycle": 0.5183
+   },
+   "per_month_Ah": {
+    "CK1": {
+     "breakin": 2.0488,
+     "calendar": 1.7049,
+     "cycle": 0.0644
+    },
+    "CK2": {
+     "breakin": 1.6679,
+     "calendar": 0.8536,
+     "cycle": 0.0774
+    },
+    "CK3": {
+     "breakin": 1.0889,
+     "calendar": 0.6757,
+     "cycle": 0.0796
+    },
+    "CK4": {
+     "breakin": 0.6218,
+     "calendar": 0.5301,
+     "cycle": 0.0764
+    },
+    "CK5": {
+     "breakin": 0.3757,
+     "calendar": 0.4575,
+     "cycle": 0.0753
+    },
+    "CK6": {
+     "breakin": 0.2502,
+     "calendar": 0.4545,
+     "cycle": 0.0783
+    },
+    "CK7": {
+     "breakin": 0.1383,
+     "calendar": 0.3857,
+     "cycle": 0.0771
+    }
+   }
+  },
+  "map_real_ck7": {
+   "params": {
+    "logA_b": 0.7397951187116075,
+    "logA_cal": -1.3230545352034933,
+    "logA_cyc": -12.004846728329145,
+    "o45": 0.2768634864794019
+   },
+   "cumulative_to_CK7_Ah": {
+    "breakin": 2.0254,
+    "calendar": 5.6928,
+    "cycle": 0.4115
+   },
+   "cumulative_to_CK7_pp": {
+    "breakin": 1.9857,
+    "calendar": 5.5812,
+    "cycle": 0.4035
+   },
+   "per_month_Ah": {
+    "CK1": {
+     "breakin": 0.6702,
+     "calendar": 1.9174,
+     "cycle": 0.0502
+    },
+    "CK2": {
+     "breakin": 0.5456,
+     "calendar": 0.96,
+     "cycle": 0.0603
+    },
+    "CK3": {
+     "breakin": 0.3562,
+     "calendar": 0.76,
+     "cycle": 0.062
+    },
+    "CK4": {
+     "breakin": 0.2034,
+     "calendar": 0.5962,
+     "cycle": 0.0595
+    },
+    "CK5": {
+     "breakin": 0.1229,
+     "calendar": 0.5145,
+     "cycle": 0.0586
+    },
+    "CK6": {
+     "breakin": 0.0818,
+     "calendar": 0.5111,
+     "cycle": 0.061
+    },
+    "CK7": {
+     "breakin": 0.0452,
+     "calendar": 0.4337,
+     "cycle": 0.06
+    }
+   }
+  },
+  "tau_b_days": 134.48298674613596
+ },
+ "F5": {
+  "effective_Ea_on_k_kJ": 10.3,
+  "sqrt_gap_cases": [
+   "real_k2",
+   "PG1_k4",
+   "PG1_k5",
+   "PG1_k6",
+   "PG1_k7",
+   "PG2_k4",
+   "PG2_k5",
+   "PG2_k6",
+   "PC10_k3",
+   "PC10_k4",
+   "PC10_k5",
+   "PC10_k6",
+   "PC10_k7",
+   "CSE_k3",
+   "CSE_k4",
+   "CSE_k5",
+   "CSE_k6",
+   "CSE_k7"
+  ]
+ },
+ "F6": {
+  "counts": {
+   "CS": {
+    "fallback": 5,
+    "phase": 0
+   },
+   "CSE": {
+    "fallback": 5,
+    "phase": 0
+   },
+   "PC10": {
+    "fallback": 5,
+    "phase": 0
+   },
+   "PC5": {
+    "fallback": 1,
+    "phase": 4
+   },
+   "PG1": {
+    "fallback": 4,
+    "phase": 0
+   },
+   "PG2": {
+    "fallback": 4,
+    "phase": 0
+   },
+   "real": {
+    "fallback": 3,
+    "phase": 4
+   }
+  },
+  "per_case": [
+   "real:1:fallback",
+   "real:2:fallback",
+   "real:3:fallback",
+   "real:4:phase",
+   "real:5:phase",
+   "real:6:phase",
+   "real:7:phase",
+   "PG1:4:fallback",
+   "PG1:5:fallback",
+   "PG1:6:fallback",
+   "PG1:7:fallback",
+   "PG2:4:fallback",
+   "PG2:5:fallback",
+   "PG2:6:fallback",
+   "PG2:7:fallback",
+   "PC5:3:fallback",
+   "PC5:4:phase",
+   "PC5:5:phase",
+   "PC5:6:phase",
+   "PC5:7:phase",
+   "PC10:3:fallback",
+   "PC10:4:fallback",
+   "PC10:5:fallback",
+   "PC10:6:fallback",
+   "PC10:7:fallback",
+   "CS:3:fallback",
+   "CS:4:fallback",
+   "CS:5:fallback",
+   "CS:6:fallback",
+   "CS:7:fallback",
+   "CSE:3:fallback",
+   "CSE:4:fallback",
+   "CSE:5:fallback",
+   "CSE:6:fallback",
+   "CSE:7:fallback"
+  ],
+  "causal_phase": 4,
+  "causal_fallback": 24
+ },
+ "SUB_match": {
+  "n_common": 35,
+  "n_ref": 35,
+  "n_sub": 35,
+  "missing_in_sub": [],
+  "real_soh_d04": [
+   95.984,
+   94.507,
+   93.6,
+   92.821,
+   92.015,
+   91.426,
+   90.765
+  ],
+  "proxy_equal": true
+ },
+ "month_structure": {
+  "3": {
+   "R3_T": -0.17,
+   "REF": -0.048,
+   "SUB": 0.095,
+   "V2": 0.319
+  },
+  "4": {
+   "R3_T": 0.094,
+   "REF": 0.181,
+   "SUB": 0.143,
+   "V2": 0.444
+  },
+  "5": {
+   "R3_T": -0.013,
+   "REF": 0.022,
+   "SUB": -0.015,
+   "V2": 0.128
+  },
+  "6": {
+   "R3_T": -0.236,
+   "REF": -0.229,
+   "SUB": -0.291,
+   "V2": -0.208
+  },
+  "7": {
+   "R3_T": 0.133,
+   "REF": 0.098,
+   "SUB": -0.009,
+   "V2": -0.007
+  }
+ }
+}
