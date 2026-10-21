@@ -1,0 +1,13 @@
+{
+ "round": 17,
+ "wp": "WP4 real run (once), level column, synthesis",
+ "registered": "2026-10-21, after WP3 outputs, before the real run",
+ "selection_status": "all selections are final: M = R3_T, FINAL = REF; WP5 skipped (FINAL not causally better than SUB)",
+ "models": ["R3_T", "REF (= FINAL)", "V2", "SUB (A3 per-case, round-10 CSV)", "B0, S, C, O1, O2, D alone and as 0.75/0.25 ensembles with V2 (all main designs, moving and inert)"],
+ "settings": "real k = 1..7, delta 0/0.4/0.8, all 6 step variants (G-robust), a4s 2",
+ "report": ["MAE and MAX at delta 0/0.4/0.8", "per-CK signed errors at delta 0.4", "MAE without CK1, without CK2, without both (delta 0.4)",
+            "r5c real gates vs V2 (G-proxy, G-epsfree, G-robust, G-regress; harness.gates_vs_v2) as information",
+            "label exposed-CK1 / exposed-CK2 if >= 50 % of the real MAE gain over REF comes from CK1 / CK2",
+            "level: mean SOH shift vs SUB over CK1-7 and CK2-7 at delta 0.4, next to the two leaderboard readings (truth ~1 pp below SUB; CK2-7 ~+0.65 pp above SUB)"],
+ "rule": "real numbers never change any WP2/WP3 outcome"
+}
