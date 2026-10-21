@@ -10,3 +10,4 @@
 - **D2.1 (WP2 protocol)** O1's τ_b grid is 134.48·2^{−2..1} d, so its 134-d member equals R3_T exactly (prompt: 33.5/67/134/268).
 - **D2.2 (WP2 protocol)** O1's Laplace weights are per (case, step variant); ε does not enter the fit.
 - **D3.0 (WP3, from F6)** E2 is not run: only 4 causal cases are V2 `phase` (< 6), the registered exit.
+- **D3.1 (WP3)** No design passed the WP2 improvement rule, so there is no M_comb and M = R3_T. D (inert) is "accepted as non-inferior" but is not applied on its own: a combination folds it in only when an improvement passed. Applying it alone would change M with no causal gain. FINAL = 0.75·R3_T + 0.25·V2 = REF (the pre-registered weight; E2 not run per D3.0).
