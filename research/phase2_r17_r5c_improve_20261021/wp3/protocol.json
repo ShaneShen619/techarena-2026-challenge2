@@ -1,0 +1,21 @@
+{
+ "round": 17,
+ "wp": "WP3 combination and ensemble weights (causal only)",
+ "registered": "2026-10-21, after WP2 outputs, before any WP3 output",
+ "step1": {
+  "passed_in_wp2": [],
+  "accepted_noninferior": ["D (inert)"],
+  "M_comb": "none (nothing passed the improvement rule)",
+  "M": "R3_T (D3.1)"
+ },
+ "step2": {
+  "E1": "causal mean MAE (mean over the 6 causal scenario MAEs and over the 28 cases) of w M + (1-w) V2 and of w M + (1-w) SUB, w in {0, 0.25, 0.5, 0.75, 1}, delta 0/0.4/0.8, main variant; a curve, not a selection; also LOKO argmin of w for information",
+  "E2": "not run: 4 causal V2 'phase' cases < 6 (D3.0)",
+  "FINAL": "0.75 R3_T + 0.25 V2 (= REF; pre-registered fixed weight, not re-picked)"
+ },
+ "step3": {
+  "r_i": "|err_FINAL| - |err_SUB| per matching causal case (28), delta 0.4, main",
+  "rule": ["mean r <= -delta (0.0276 pp)", "at most one k block of r with positive mean", "every LOKO mean of r <= 0", "worst r_i <= +0.30 pp"],
+  "label": "causally better than SUB (yes/no)"
+ }
+}
