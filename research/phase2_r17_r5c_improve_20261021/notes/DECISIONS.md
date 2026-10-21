@@ -7,3 +7,6 @@
 - **D1.3 (WP1)** Lewerenz 2018 full-compensation times are 100/250/490 d at 50/40/30 °C (PDF p. 157); the 2026-10-16 notes' "150 d at 50 °C" is wrong. τ_oh = t_full/3 → 48.6 d at 45 °C, 249.5 d at 25 °C (stated Ea 64.5 line through 50 °C/100 d).
 - **D1.4 (WP1 → WP2, registered before any S run)** In S the clock weight is k_SOC(SOC)**2, not k_SOC: both sources write Q = k(T,SOC)·√t with the virtual-time rule (Naumann Eq. 17), so Q = √(Σ k² dt). This is the same doubling the prompt applies to Ea in C. The prompt's linear form is kept as a sensitivity.
 - **D0.3 (WP0 F1)** "Its interval contains a CK date" is read at day resolution: CK dates are calendar days (00:00), and the 45 °C segments of months 0, 4 and 6 end later on the CK day itself (CK1 15:35, CK5 12:23, CK7 00:00). A row is `true_ck` if [t0, t1] overlaps [CK, CK + 1 d). The strict "CK > t0" test mislabelled those three real checkups as switches.
+- **D2.1 (WP2 protocol)** O1's τ_b grid is 134.48·2^{−2..1} d, so its 134-d member equals R3_T exactly (prompt: 33.5/67/134/268).
+- **D2.2 (WP2 protocol)** O1's Laplace weights are per (case, step variant); ε does not enter the fit.
+- **D3.0 (WP3, from F6)** E2 is not run: only 4 causal cases are V2 `phase` (< 6), the registered exit.

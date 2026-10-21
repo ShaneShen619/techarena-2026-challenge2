@@ -1,0 +1,44 @@
+{
+ "round": 17,
+ "wp": "WP2 single-factor designs: prediction screen, then paired causal check",
+ "registered": "2026-10-21, before any WP2 output",
+ "base": "R3_T = LawFit(law=two, sigma_s=0.10, transient_ref=restart, steps=True, steps_mode=gap_endpoint, beta_mode=one); REF = 0.75 R3_T + 0.25 V2",
+ "external_params": "wp1/outputs/external_params.json sha256 cb29e4e799d880f3b06115431ac0ec22771c26d281b710190974a9b73388c6c6",
+ "noise": {"T_move_pp": 0.1103808801954137, "delta_pp": 0.027595220048853425, "source": "wp0/outputs/noise.json"},
+ "designs_main": {
+  "B0": "switch rows (day-resolution, D0.3) -> kind switch, T = mean(last row of earlier segment, first row of later segment), throughput 0; true_ck unchanged",
+  "S": "B0 + calendar clock tau_cal = sum days * aT(37.3 on time) * k_SOC(SOC)^2 / kappa; k_SOC = WP1 TUM table; kappa = time-weighted mean of k_SOC^2 over visible observed rows; SOC rules: observed = F2 series, switch = SOC at last row of earlier segment, true_ck = first half entry SOC then half 0 %, seg_gap/extrapolated = mean over last visible 45 C segment (k_SOC^2 averaged, not SOC)",
+  "C": "calendar clock Ea on time = 2 x 20.592 = 41.184 kJ/mol; break-in and cycle clocks 37.3 on time; priors unrefit",
+  "O1": "R3_T at tau_b in 134.48 x 2^{-2,-1,0,1} d = {33.6, 67.2, 134.5, 269.0}; per-case weights proportional to exp(logZ), logZ = -0.5 |r|^2 - 0.5 log det(J'J) at the MAP (prior rows included, numerical J over free parameters); exposed-tau_b",
+  "O2": "B0 + overhang state replacing break-in: dX/dt = (xe - X)/tau_oh(T), xe = (SOC - 0.30)/(SOC_op - 0.30), X(CK0) = 0; tau_oh = t_full/3, t_full = 100 d exp(64.5 kJ/mol / R (1/T - 1/323.15 K)); SOC_op = time-weighted mean SOC of visible observed rows; logA_oh ~ N(ln(0.062 (SOC_op - 0.30) 102), ln 2); calendar sqrt(tau_cal) and cycle terms unchanged; SOC rules as S",
+  "D": "cycle term and its prior row removed"
+ },
+ "sensitivities_report_only": {
+  "S": ["true_ck all at entry SOC", "true_ck all at 0 %", "linear k_SOC (prompt wording, D1.4)", "k_SOC_alt = Naumann cubic squared"],
+  "C": ["Ea_time 74.6 (Yagci read as on k; exposed-CK2)", "Ea_time 34.252 (Naumann 17.126 on k)"],
+  "O1": ["uniform weights"],
+  "O2": ["SOC_0 = 0.10", "SOC_0 = 0.50", "tau_oh from the three-point fitted Arrhenius line", "X(CK0) = xe (equilibrium start)"]
+ },
+ "deviations_registered_here": {
+  "D1.4": "S weights time by k_SOC^2 (virtual-time consistency, same as the Ea doubling in C); the prompt's linear form is a sensitivity",
+  "D2.1": "the tau_b grid is 134.48 x 2^k so that its 134-d member equals R3_T exactly (prompt: 33.5/67/134/268)",
+  "D2.2": "O1 Laplace weights are computed per (case, step variant); eps does not enter the fit"
+ },
+ "cases": "causal = PG1, PG2 (k 4-7), PC5, PC10, CS, CSE (k 3-7) = 28 cases; real k 1-7; delta 0.4 main variant a4s 2 for the screen",
+ "step1_screen": {
+  "stat": "dSOH = SOH(X) - SOH(R3_T); S_causal = 90th percentile |dSOH| over causal cases; S_real = max over real k",
+  "moves": "S_causal >= T_move or S_real >= 2 T_move",
+  "inert": "skip step 2; D inert -> accepted as non-inferior by definition",
+  "no_proxies": "the screen script never loads H.QFC, proxy or err (assert + grep in REPORT)"
+ },
+ "step2_paired": {
+  "p_i": "|err_X| - |err_R3_T| per causal case",
+  "q_i": "|err_X_ens| - |err_REF| per causal case, X_ens = 0.75 X + 0.25 V2",
+  "report": "mean, share < 0, per-k block means, LOKO means, worst; at delta 0, 0.4, 0.8; stress-alone per-CK signed errors next to V2 (causal per-k means); demeaned error correlation X vs V2",
+  "pass": ["mean p <= -delta at delta 0.4", "at most one k block of p with positive mean", "every LOKO mean of p <= 0", "worst p_i <= +0.30 pp", "mean q <= 0 at delta 0.4", "mean p <= 0 at delta 0 and at delta 0.8"],
+  "D_rule": "non-inferiority: mean p <= +delta and worst p_i <= +0.10 pp",
+  "O1_identified": "top weight >= 0.8 in at least half the causal cases; otherwise O1 = 'uncertainty band, not a model' (evaluated, cannot become the main design)"
+ },
+ "real_scenario": "not run in WP2 (WP4 only); real k rows of the screen are predictions, not errors",
+ "wp3_note": "E2 is not run: F6 shows 4 causal 'phase' cases (< 6), registered exit"
+}
