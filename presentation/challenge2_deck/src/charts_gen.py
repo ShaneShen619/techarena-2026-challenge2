@@ -199,7 +199,9 @@ def phase():
                   "after each anchor reads deeper, and 45 °C steps read deeper than 25 °C steps. The model subtracts "
                   "the last 45 °C step of two consecutive months.", W, H),
          f'<defs><marker id="ph-a" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto">'
-         f'<polygon points="0 0,12 5,0 10" fill="{ACC}"/></marker></defs>']
+         f'<polygon points="0 0,12 5,0 10" fill="{ACC}"/></marker>'
+         f'<marker id="ph-t" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto">'
+         f'<polygon points="0 0,12 5,0 10" fill="{C45}"/></marker></defs>']
     for v in (26.8, 27.2, 27.6, 28.0):
         s.append(f'<line x1="70" y1="{y(v):.1f}" x2="{W - 30}" y2="{y(v):.1f}" stroke="{RULE}" stroke-width="1"/>')
         s.append(T(60, y(v) + 6, f"{v:.1f}", 16, SOFT, anchor="end", mono=True))
@@ -213,11 +215,22 @@ def phase():
     e2 = [e for e in ev if e["temp"] == 45 and ck["CK4"] < e["d"] < ck["CK5"]][-1]
     post = [[e for e in ev if e["d"] > ck[k]][0] for k in ("CK3", "CK4")]   # first discharge after each anchor
     for e in ev:
-        if e in (e1, e2):
-            continue
         s.append(marker(x(e["d"]), y(e["robust"]), e["temp"]))
+    s.append('<g data-b="1" data-fx="fade">')
     for e in post:
         s.append(f'<circle cx="{x(e["d"]):.1f}" cy="{y(e["robust"]):.1f}" r="13" fill="none" stroke="{INK}" stroke-width="1.8" stroke-dasharray="3 3"/>')
+    p0 = post[0]
+    s.append(T(x(p0["d"]) + 20, y(p0["robust"]) - 8, "锚点后首次放电：深约 0.4 Ah", 16, INK, 500))
+    s.append("</g>")
+    # temperature: the 25 → 45 °C switch in the CK4 → CK5 month
+    a = [e for e in ev if e["temp"] == 25 and ck["CK4"] < e["d"] < ck["CK5"]][-1]
+    b = [e for e in ev if e["temp"] == 45 and e["d"] > a["d"]][0]
+    xm = (x(a["d"]) + x(b["d"])) / 2
+    s.append('<g data-b="2" data-fx="fade">')
+    s.append(f'<path d="M {xm:.1f} {y(a["robust"]):.1f} V {y(b["robust"]) + 10:.1f}" fill="none" stroke="{C45}" stroke-width="2.5" marker-end="url(#ph-t)"/>')
+    s.append(T(xm + 10, y(a["robust"]) + 28, "升到 45 °C：深约 0.18 Ah", 16, C45, 600))
+    s.append("</g>")
+    s.append('<g data-b="3" data-fx="fade">')
     # bracket: horizontal from e1 level to e2 date, then the drop
     x1, y1, x2, y2 = x(e1["d"]), y(e1["robust"]), x(e2["d"]), y(e2["robust"])
     s.append(f'<path d="M {x1 + 12:.1f} {y1:.1f} H {x2:.1f}" fill="none" stroke="{ACC}" stroke-width="1.8" stroke-dasharray="6 5"/>')
@@ -228,12 +241,11 @@ def phase():
     s.append(T(x2 - 10, y1 - 14, f"ΔE45 = {dlt:+.2f} Ah", 20, ACC, 700, "end", mono=True))
     s.append(T(x1 - 16, y1 + 32, "E45（CK4 前）", 17, ACC, 600, "end"))
     s.append(T(x2 - 16, y2 + 30, "E45（CK5 前）", 17, ACC, 600, "end"))
-    p0 = post[0]
-    s.append(T(x(p0["d"]) + 20, y(p0["robust"]) - 8, "锚点后首次放电：深约 0.4 Ah", 16, INK, 500))
+    s.append("</g>")
     s.append(marker(80, H - 9, 25))
     s.append(T(94, H - 3, "25 °C", 16, MUT))
     s.append(marker(170, H - 9, 45))
-    s.append(T(184, H - 3, "45 °C（比 25 °C 深约 0.18 Ah）", 16, MUT))
+    s.append(T(184, H - 3, "45 °C", 16, MUT))
     s.append(f'<circle cx="460" cy="{H - 9}" r="9" fill="none" stroke="{INK}" stroke-width="1.8" stroke-dasharray="3 3"/>')
     s.append(T(476, H - 3, "锚点后首次放电", 16, MUT))
     s.append(marker(640, H - 9, 45, 7, ACC))
@@ -290,12 +302,18 @@ def versions():
     for i, (name, v, col) in enumerate(VERSIONS):
         yy = 20 + i * rh
         last = i == len(VERSIONS) - 1
+        if i:
+            s.append(f'<g data-b="{i}" data-fx="fade">')
         s.append(T(lab_w, yy + 31, name, 20, INK if last else MUT, 700 if last else 400, "end"))
         s.append(f'<rect x="{bx0}" y="{yy + 8}" width="{max(x(v) - bx0, 3):.1f}" height="36" fill="{col}" opacity="{1 if last or i == 0 else 0.55}"/>')
         s.append(T(x(v) + 10, yy + 33, f"{v:.2f}", 20, ACC if col == ACC else MUT, 700, mono=True))
+        if i:
+            s.append("</g>")
     s.append(f'<line x1="{bx0}" y1="12" x2="{bx0}" y2="{20 + len(VERSIONS) * rh}" stroke="{SOFT}" stroke-width="1.5"/>')
     yb = 20 + len(VERSIONS) * rh + 14
+    s.append(f'<g data-b="{len(VERSIONS) - 1}" data-fx="fade">')
     s.append(T(20, yb + 18, "最大误差：5.28 → 0.67 → 0.67 → 0.23 → 0.24 pp", 18, MUT))
+    s.append("</g>")
     s.append("</svg>")
     return "".join(s)
 
