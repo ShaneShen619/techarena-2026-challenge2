@@ -1,0 +1,38 @@
+{
+  "study": "V3 = V2 + (1) sqrt(t) gap branch + (2) beta cap + (3) median-of-cells step aggregation",
+  "registered": "2026-10-15, before any V3 code was written or run",
+  "base": "research/phase2_v2_phase_matched_20261013 (V2_main, protocol sha 072395c8...)",
+  "exposure_disclosure": [
+    "Change 1 and 2 were motivated by an exploratory back-of-envelope calculation on the same proxies (2026-10-14/15): sqrt(t) for CK2 gave about -0.02 pp at delta 0.4; capping beta at 1.2 gave MAE 0.224 vs 0.216. Results for those two are therefore exposed, not blind.",
+    "Change 3 is motivated only by external data (ESSL1 16S pack); it has not been evaluated on this pack before registration.",
+    "Proxies are post-checkup full charges + eps; they are not hidden truth."
+  ],
+  "changes": {
+    "1_sqrt_gap_branch": {
+      "trigger": "the last visible deep step program before CK_k (cut at CK_k 00:00) ends more than G = 10 days before CK_k, and an anchor after CK_(k-1) is visible",
+      "rule": "Q_hat = Q_fc(anchor k-1) + eps - a * (sqrt(t_k) - sqrt(t_(k-1))); t = days since CK0 date; a = least-squares slope through origin of loss_j = 100.41 - (Q_fc(anchor j) + eps) on sqrt(t_j) over all visible anchors j = 1..k-1",
+      "rationale": "the step signal cannot see the uncovered period; our pack fades calendar-like (p about 0.44), unlike the cycling external data (p 0.56-1.09)",
+      "applies_to": "any checkup meeting the trigger; with the released data only CK2 is expected to trigger (segment 3 missing)"
+    },
+    "2_beta_cap": {
+      "rule": "beta_used = min(beta_a4, 1.2) in the phase-matched branch; beta0 = 1, tau = 1 Ah^2 unchanged",
+      "rationale": "external packs give beta 1.1-1.2 within 0-8 % fade; fixed 1.3 lost to beta = 1 on 13/14 external series"
+    },
+    "3_median_aggregation": {
+      "rule": "replace the 4-cell mean by the 4-cell median (mean of the middle two) both for discharge step programs (step_mean) and for the A4 charge-direction step-to-top distance used for beta",
+      "rationale": "ESSL1 pack: median R2 0.99 vs mean 0.89 because single cells mis-detect the step"
+    }
+  },
+  "main_model": "V3 = V2_main with changes 1+2+3",
+  "ablations": ["V2+1", "V2+2", "V2+3", "V2+1+2", "V2+1+3", "V2+2+3"],
+  "sensitivity": {"G_days": [7, 14], "beta_cap": [1.1, 1.3], "sqrt_exponent": [0.4, 0.6], "time_origin_shift_days": [-5, 5]},
+  "evaluation": "same harness as V2: predictions for CK_k use load_dataset(until=CK_k) only; proxies P_k = Q_fc,k(full data) + eps0 + delta, delta in {0, 0.4, 0.8}; six step-detection variants; A4 smoothing 2 Ah (1 and 3 Ah reported)",
+  "gates": {
+    "K1_causality": "replacing every operation row after the CK_k cut with noise leaves all V3 predictions bit-identical",
+    "K2_proxy": "V3 MAE < V2 MAE at all three deltas, and V3 MAX <= V2 MAX",
+    "K3_eps_scope": "CK3-CK7 MAE (eps-independent part) of V3 <= V2 + 0.02 pp; CK2 error reported at all three deltas because the sqrt branch is eps-dependent",
+    "K4_robust": "V3 MAE < V2 MAE (delta 0.4) on >= 5 of 6 step variants, and every sensitivity setting keeps V3 MAE < V2 MAE",
+    "K5_no_large_regression": "no single checkup's |error| increases by more than 0.15 pp versus V2 (delta 0.4, main step)"
+  },
+  "decision_rule": "V3 is called a candidate only if K1-K5 all pass; otherwise each change is reported by its ablation, and nothing is wired into my_model in this study"
+}

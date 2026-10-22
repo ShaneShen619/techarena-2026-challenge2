@@ -1,0 +1,58 @@
+{
+  "model": "my_model.model_template.MyModel",
+  "output": [
+    {
+      "checkup": "CK0",
+      "date": "2025-01-14",
+      "SOH_est": 98.441
+    },
+    {
+      "checkup": "CK1",
+      "date": "2025-02-08",
+      "SOH_est": 95.992
+    },
+    {
+      "checkup": "CK2",
+      "date": "2025-03-11",
+      "SOH_est": 94.451
+    },
+    {
+      "checkup": "CK3",
+      "date": "2025-04-14",
+      "SOH_est": 93.541
+    },
+    {
+      "checkup": "CK4",
+      "date": "2025-05-16",
+      "SOH_est": 92.811
+    },
+    {
+      "checkup": "CK5",
+      "date": "2025-06-16",
+      "SOH_est": 92.081
+    },
+    {
+      "checkup": "CK6",
+      "date": "2025-07-25",
+      "SOH_est": 91.331
+    },
+    {
+      "checkup": "CK7",
+      "date": "2025-08-28",
+      "SOH_est": 90.821
+    }
+  ],
+  "max_abs_diff_vs_research_pp": 0.0003659388905958849,
+  "note": "run_model rounds to 3 decimals",
+  "causality": {
+    "CK0": true,
+    "CK1": true,
+    "CK2": true,
+    "CK3": true,
+    "CK4": true,
+    "CK5": true,
+    "CK6": true,
+    "CK7": true
+  },
+  "causality_passed": true
+}

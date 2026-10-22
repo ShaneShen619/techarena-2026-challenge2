@@ -1,0 +1,32 @@
+{
+  "fit_on_cut_data_identical": true,
+  "future_rows_corrupted_identical": true,
+  "max_abs_diff_vs_research_V2_pp": 0.00041244553358410485,
+  "sample_data_smoke": [
+    {
+      "checkup": "CK0",
+      "date": "2024-12-30",
+      "SOH_est": 98.039
+    },
+    {
+      "checkup": "CK1",
+      "date": "2025-01-03",
+      "SOH_est": 98.039
+    },
+    {
+      "checkup": "CK2",
+      "date": "2025-01-06",
+      "SOH_est": 98.039
+    },
+    {
+      "checkup": "CK3",
+      "date": "2025-01-08",
+      "SOH_est": 98.039
+    },
+    {
+      "checkup": "CK4",
+      "date": "2025-01-10",
+      "SOH_est": 98.039
+    }
+  ]
+}

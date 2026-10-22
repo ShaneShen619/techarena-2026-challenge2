@@ -1,0 +1,1 @@
+# en translation. Format: id|fingerprint|||text. Fill it from: python3 src/i18n.py todo en

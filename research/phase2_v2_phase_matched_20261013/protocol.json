@@ -1,0 +1,67 @@
+{
+  "registered_at": "2026-10-13",
+  "base": "research/phase2_anchor_step_20261013 (events.py reused unchanged; M4 = its M4_main)",
+  "exposure_note": "EXPOSED-EXPLORATORY. Before registration the following were computed on the same data: per-month step decomposition (25 C drop, 25->45 bridge, 45 C drop), phase-matched 45 C end-of-month differences and anchor-to-anchor dQ for CK3-CK7, causal A4 beta (1.03/1.16/1.34/1.37 for CK4-7), and hand errors for beta=1 and causal beta on CK4-7. Results are not blind; CK1-CK3 rules below were fixed without computing their v2 errors.",
+  "notation": {
+    "month m": "steps with CK_m < t_cv_end < CK_(m+1), CK dates from dataset.eval_points",
+    "anchor_j": "first full charge after CK_j (events.full_charges); Q_anchor_0 = 100.41, Q_anchor_j = Q_fc_j + eps for j>=1",
+    "E45(m)": "last 45 C step (step_mean, main method) in month m",
+    "d(m)": "days from E45(m) t_cv_end to CK_(m+1) date 00:00"
+  },
+  "predictors": {
+    "M4": "unchanged baseline: Q_anchor_(k-1) + 1.0*(s_last - s_first_after_anchor)",
+    "V2_main": {
+      "phase_matched_branch": "if E45(k-1) exists AND month k-2 has a complete 45 C segment (>=3 steps at 45 C) AND d(k-2) <= 10 days: Q = Q_anchor_(k-1) + beta_k * [E45(k-1) - E45(k-2) + r * (d(k-1) - d(k-2))]",
+      "fallback": "otherwise exactly M4 (beta 1, no rate)",
+      "rate_r": "Theil-Sen slope (Ah/day) of 45 C steps in month k-1 if >=3 such steps, else 0",
+      "beta_k": "shrinkage: beta = (tau*beta0 + S*b_ls)/(tau + S); b_ls = sum(dQ*dT)/sum(dT^2), S = sum(dT^2); dQ_j = Q_fc_j - Q_fc_1, dT_j = T_j - T_1 for visible 25 C anchors j=2..k-1; T = step_to_top_mean of events.charge_step_split(smooth_Ah=2.0); beta0 = 1.0, tau = 1.0 Ah^2; no pairs -> beta0"
+    },
+    "variants": {
+      "V2_beta1": "phase-matched branch with beta=1",
+      "V2_no_rate": "r = 0",
+      "V2_beta_all": "beta_k also applied to the fallback (M4) difference",
+      "V2_beta_direct": "beta from past phase-matched pairs: LS through origin of (Q_fc_j - Q_fc_(j-1)) on [E45(j-1)-E45(j-2)] for visible valid j, shrunk with same beta0/tau",
+      "V2_beta0_1.3": "beta0 = 1.3 (exposed value)",
+      "tau": [
+        0.25,
+        1.0,
+        4.0
+      ],
+      "valid_days": [
+        7,
+        10,
+        14
+      ],
+      "a4_smooth_Ah": [
+        1.0,
+        2.0,
+        3.0
+      ],
+      "step_method": [
+        "main",
+        "band_narrow",
+        "windows_minus3",
+        "windows_plus3",
+        "dvdq_peak",
+        "ir_corrected"
+      ]
+    }
+  },
+  "proxy": "P_k = Q_fc_k + eps, eps in {eps0, eps0+0.4, eps0+0.8}, eps0 = 100.41 - Q_fc_0 (same as base study)",
+  "gates": {
+    "H1_causal": "candidate output bit-identical when rows after each cutoff are replaced by noise, and when fit() sees only data up to CK1",
+    "H2_proxy": "for every eps: V2_main MAE < M4 MAE and V2_main MAX <= M4 MAX + 0.10 pp",
+    "H3_eps_free": "CK2-CK7 eps-free MAE of V2_main <= M4 - 0.05 pp",
+    "H4_robust": "V2_main MAE < M4 MAE (eps0+0.4) in >=5 of 6 step methods, and in every tau and valid_days setting",
+    "H5_no_large_regression": "no checkup worse than M4 by more than 0.30 pp (eps0+0.4)",
+    "H6_reimplementation": "candidate class equals research V2_main within 0.001 pp"
+  },
+  "adoption": "V2 replaces M4 in my_model only if H1-H6 all pass AND the user approves; otherwise report and keep M4.",
+  "original_sha256": "ac151e0d78222ce88ba11a3509bf7bba9d0412ae297c00b770da4a169be6a02b",
+  "amendment_1": {
+    "when": "2026-10-13, before any V2 code was written or run",
+    "month_membership": "month m = steps with t_cv_end >= anchor_m.t_end and (t_cv_end < anchor_(m+1).t_start if that anchor is visible). Reason: the 2025-02-08 01:xx 45 C step belongs to segment 1 before the post-CK1 anchor; CK-date membership would misplace it.",
+    "d(m)": "days from E45(m) t_cv_end to CK_(m+1) date 00:00 (may be slightly negative)",
+    "current_end_phase": "phase-matched branch additionally requires d(k-1) <= valid_days OR r estimable (>=3 45 C steps in month k-1). Reason: symmetric end-phase requirement; without it a value 22 days before the checkup would be used with r=0."
+  }
+}

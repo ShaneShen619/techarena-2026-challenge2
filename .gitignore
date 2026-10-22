@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+
+# External public datasets (large raw files, kept locally; see external_data/DATA_MANIFEST.md)
+/external_data/*
+!/external_data/DATA_MANIFEST.md
+!/external_data/data_manifest.json
+!/external_data/_screening/
+
+# Publisher PDFs of papers (copyrighted, local reading copies only)
+/research/phase2_literature_refresh_20261016/papers/*.pdf

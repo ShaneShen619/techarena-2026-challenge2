@@ -1,0 +1,190 @@
+{
+  "study": "phase2_r18_c1_transfer_20261022",
+  "version": 1,
+  "registered": "2026-10-22, before any Challenge 1 output of this study was computed",
+  "changelog": [
+    {
+      "version": 1,
+      "date": "2026-10-22",
+      "note": "initial registration; design choices made during the synthetic self-test are in notes/DECISIONS.md (D0.1-D0.5)"
+    }
+  ],
+  "purpose": "Test the submitted anchor + graphite-step method (MyModel, commit 6525edf) end to end on the six Challenge 1 cells, the same 102 Ah LFP cell type, where every cycle carries a discharge-capacity label. The information structure of the pack (one anchor charge per month, a few partial-depth programs) is emulated on each cell; the submitted decision logic runs unchanged.",
+  "data": {
+    "c1_dir_default": "/Users/shane/Desktop/Arena 阶段 2 官方材料/dataset original",
+    "cells": [
+      "102Ah_25degC_0p5C_cell3",
+      "102Ah_25degC_1C_cell3",
+      "102Ah_35degC_1C_cell1",
+      "102Ah_45degC_0p5C_cell3",
+      "102Ah_45degC_1C_cell1",
+      "102Ah_55degC_1C_cell3"
+    ],
+    "columns": [
+      "cycle_number",
+      "step_type",
+      "time_in_cycle_s",
+      "voltage_V",
+      "current_A",
+      "temperature_C",
+      "step_capacity_Ah",
+      "absolute_time"
+    ],
+    "step_types": {
+      "charge": "cccv_charge",
+      "discharge": "cc_discharge",
+      "rest": "rest"
+    },
+    "dedup_keys": [
+      "cycle_number",
+      "step_type",
+      "absolute_time"
+    ],
+    "nominal_ah": 102.0
+  },
+  "structure": {
+    "first_cycle_number": 2,
+    "reference_days": 30.0,
+    "cv_reached_margin_v": 0.02,
+    "cv_end_current_frac_max": 0.25,
+    "empty_start_margin_v": 0.10,
+    "cc_current_frac": 0.95,
+    "note": "Structural thresholds come from cycles that start inside the first reference_days only, so a cut at any later boundary cannot change them. Labels never select input cycles."
+  },
+  "information_structure": {
+    "window_days": 30.0,
+    "window_days_sensitivity": [
+      20.0,
+      45.0
+    ],
+    "program_spacing_days": 5.0,
+    "visible_depth_ah": 56.0,
+    "visible_charge_top_ah": 21.0,
+    "label0_rule": "label of the anchor-0 cycle itself (its discharge directly follows the anchor charge, as CK0 sits right next to the post-CK0 anchor); a median over later cycles would carry the fast break-in into eps0",
+    "truth_n": 5,
+    "truth_max_offset_days": 2.0,
+    "gap_hide_days": 22.0,
+    "scope_primary_min_rel": 0.90,
+    "scope_extended_min_rel": 0.85,
+    "pack_analogue": {
+      "visible_depth_ah": "the pack's ~5-day program reaches 55.9 Ah below the CV end",
+      "visible_charge_top_ah": "the pack's periodic CCCV charges span about 21 Ah (round 3, stage B)",
+      "program_spacing_days": "one deep program roughly every 5 days",
+      "gap_hide_days": "the last visible step before CK2 lies 22 days before it (segment 3 missing)"
+    }
+  },
+  "steps": {
+    "pack_ref_current_a": 10.0,
+    "keys_primary": [
+      "robust",
+      "robust_interp"
+    ],
+    "keys_single": {
+      "robust": [
+        "v0",
+        "v1",
+        "v2",
+        "v3",
+        "v4",
+        "v5"
+      ],
+      "robust_interp": [
+        "i0",
+        "i1",
+        "i2",
+        "i3",
+        "i4",
+        "i5"
+      ]
+    },
+    "note": "robust = the submitted six-variant median with current bands scaled by |I_dis| / pack_ref_current_a, locators unchanged. robust_interp = the same, but the midpoint-type locators interpolate the threshold crossing linearly between samples (adaptation to 30 s sampling at 0.5C/1C; not submitted code). vN = submitted variant N alone; iN = variant N with the interpolated crossing (the dV/dQ variant, N = 4, is the same in both)."
+  },
+  "model": {
+    "EPS_EXTRA_AH": 0.0,
+    "anchor0_role_setpoint": 45,
+    "anchor_role_setpoint": 25,
+    "step_role_setpoint": 45,
+    "clock_setpoint": 45,
+    "note": "Setpoints here are role labels, not temperatures: they make the submitted code treat anchor 0 as the CK0-calibrated anchor, later anchors as the anchors that enter beta, and every program as a phase-matchable step. Each cell runs at one chamber temperature, so EPS_EXTRA_AH (the 25/45 degC anchor offset) is 0 and the Arrhenius clock is uniform."
+  },
+  "baseline": {
+    "v_lo_cell": 3.35,
+    "last_n": 3,
+    "note": "ExampleModel uses 13.4 V on the 4S pack = 3.35 V per cell, the median of the last 3 partial charges, and the first segment's median as reference."
+  },
+  "estimators": {
+    "E0_anchor": "submitted MyModel with no steps visible: last anchor + eps0",
+    "E1_fallback": "submitted MyModel with the phase branch disabled: anchor + step change since the anchor, beta 1",
+    "E2_SUB": "submitted MyModel unchanged (phase-matched month-end steps x V2 beta, fallback, sqrt gap rule)",
+    "E2_beta1": "E2 with beta fixed at 1",
+    "E2_beta_oracle": "E2 with beta = least-squares ratio from the cell's other windows (truth-based, leave-one-window-out; a reference, not causal)",
+    "E4_baseline": "ExampleModel analogue: label0 x median(last 3 visible partial charges from 3.35 V) / median(window-0 partial charges)",
+    "E5_trend": "linear extrapolation of the last two visible anchors (+ eps0) to the target boundary"
+  },
+  "noise": {
+    "delta_min_ah": 0.05,
+    "delta_rule": "delta = max(delta_min_ah, median over scored boundaries of SD(truth_n labels) / sqrt(truth_n))"
+  },
+  "controls": {
+    "shuffle_permutations": 20,
+    "seed": 0
+  },
+  "gates": {
+    "unit": "cell; a cell counts when it has at least min_targets scored targets for the compared estimators",
+    "min_targets": 3,
+    "C1_step_update": {
+      "compare": "E2_SUB vs E0_anchor",
+      "supported": "macro MAE ratio <= 0.70, E2 better on >= ceil(5/6 n) cells, every leave-one-cell-out macro ratio <= 0.80, and the shuffle control fails E2 by >= delta on >= ceil(5/6 n) cells",
+      "not_supported": "macro MAE ratio >= 1.00 or E2 better on <= floor(n/2) cells",
+      "otherwise": "inconclusive"
+    },
+    "C1b_beyond_trend": {
+      "compare": "E2_SUB vs E5_trend",
+      "supported": "macro MAE gain >= delta and E2 better on >= ceil(2/3 n) cells",
+      "not_supported": "macro MAE loss >= delta or E2 better on <= floor(n/2) cells",
+      "otherwise": "inconclusive"
+    },
+    "C3_beta": {
+      "compare": "E2_SUB vs E2_beta1 (phase-branch targets only)",
+      "supported": "macro MAE gain >= delta and E2_SUB better on >= ceil(2/3 n) cells",
+      "not_supported": "macro MAE loss >= delta or E2_SUB worse on >= ceil(2/3 n) cells",
+      "otherwise": "inconclusive",
+      "diagnostic": "median over cells of |beta_V2 at the last phase target - beta_realised|; > 0.30 is reported as a charge/discharge beta mismatch"
+    },
+    "C4_phase": {
+      "compare": "E2_SUB vs E1_fallback (targets where the phase branch fired)",
+      "supported": "macro MAE gain >= delta and better on >= ceil(2/3 n) cells",
+      "not_supported": "macro MAE loss >= delta",
+      "otherwise": "inconclusive"
+    },
+    "C5_robust": {
+      "compare": "E2 with the level's robust key vs E2 with each of its single variants (steps.keys_single)",
+      "supported": "macro MAE of robust <= median over single variants, and within delta of the best single variant",
+      "not_supported": "macro MAE of robust > median over single variants + delta",
+      "otherwise": "inconclusive"
+    },
+    "C8_vs_baseline": {
+      "compare": "E2_SUB / E4_baseline per cell (MAE ratio, the challenge's normalisation)",
+      "supported": "ratio <= 0.30 on every counted cell",
+      "not_supported": "ratio >= 1.00 on any counted cell",
+      "otherwise": "inconclusive"
+    },
+    "C9_gap": {
+      "compare": "gap scenario: E2_SUB (sqrt branch) vs E1_fallback vs E5_trend vs E0_anchor",
+      "rule": "report only; sqrt(t) is a pack-specific choice (the pack fades like calendar ageing, these cells cycle continuously)"
+    },
+    "claim_levels": {
+      "method": "decided on key robust_interp (resolution-matched)",
+      "code_as_is": "decided on key robust (submitted locators unchanged)"
+    }
+  },
+  "mechanism_checks": {
+    "C2_step_tracks_capacity": "per cell, beta_realised = Theil-Sen and through-origin LS slope of (truth_k - anchor_{k-1} - eps0) on the phase step change x_k; compare with the pack's beta 1.06-1.51 and round 8's 1/b = 1.34 (b 0.745, CI 0.674-0.765)",
+    "C2b_charge_side": "per cell, slope of (Q_anchor_j - Q_anchor_0) on (top_j - top_0) and of (truth_j - truth_0) on (top_j - top_0)",
+    "C6_step_noise": "per window, SD of program depths around their Theil-Sen line; median per cell and key; the pack shows 0.012-0.036 Ah",
+    "C7_eps_drift": "per cell, slope of eps_j = truth(B_j) - Q_anchor(j) on fade (label0 - truth(B_j)); round 11 bound for the pack: -0.036 to +0.052 Ah/Ah",
+    "C10_truncation": "median |robust step on the truncated vs the full discharge| per cell; > 0.05 Ah is flagged",
+    "C11_rate": "detection rate, C6 noise and beta_realised for the 0.5C vs the 1C cells (descriptive)",
+    "C12_window_overlap": "share of programs whose robust step depth is below 27 Ah (the upper plateau window ends at 25 Ah below full)"
+  }
+}
