@@ -1,0 +1,53 @@
+/* Deck-specific styles. Keep house components in base.css unchanged; add new classes here.
+   Prefix slide-specific classes (for example .s7-…) so they cannot clash with the engine classes
+   (.dctl, .frame, .zl, .zd, .np-, .vw-, .pr-). */
+
+/* slide 7: the fixed 5-day program; slide 8: branch per checkup */
+.s7-chain span{font-size:20px;padding:10px 8px}
+.s7-chain span small{font-size:15px}
+.s7-chain i{font-size:22px}
+.s8-branch span{font-size:22px;padding:8px 6px;font-family:var(--mono)}
+.s8-branch span small{font-family:var(--sans);font-size:16px}
+
+/* slide 12: term → physical meaning */
+.s12-terms{display:grid;grid-template-columns:auto 1fr;gap:14px 22px;margin:8px 0 0;font-size:25px;line-height:1.3;align-items:baseline}
+.s12-terms dt{font-family:var(--mono);font-weight:600;color:var(--accent);font-size:24px}
+.s12-terms dd{margin:0;padding-bottom:14px;border-bottom:1.5px solid var(--tint2)}
+
+/* reference figures (src/figs_gen.py): tables and formulas */
+.rf{padding:28px 36px;background:#fff;color:var(--ink);font-family:var(--sans);max-width:1500px}
+.rf h3{margin:0 0 6px;font-size:30px}
+.rf p{font-size:21px;line-height:1.4;color:var(--ink2);margin:0 0 14px}
+.rf table{border-collapse:collapse;width:100%;font-size:20px;margin:6px 0 18px}
+.rf th,.rf td{border-bottom:1.5px solid var(--rule);padding:7px 12px;text-align:right;white-space:nowrap}
+.rf th:first-child,.rf td:first-child{text-align:left;white-space:normal}
+.rf th{font-family:var(--mono);font-size:16px;letter-spacing:.06em;color:var(--ink3);font-weight:500}
+.rf tr.our td{color:var(--accent);font-weight:600}
+.rf .rf-l td{text-align:left;white-space:normal}
+.rf .fx{margin:4px 0 16px;font-size:22px}
+.rf .note{font-size:18px;color:var(--ink3)}
+
+/* slide 10: four text blocks share the height */
+.s10-cols>.rows>.blk{flex:1}
+.s10-cols .blk-h{font-size:30px}
+
+/* slide 11: five equal tinted cards that fill the body */
+.s11-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;height:100%}
+.s11-cards>.blk{background:var(--tint);border-radius:12px;padding:22px 22px;gap:16px}
+.s11-cards .blk-h{font-size:30px}
+.s11-cards .body-m{font-size:24px}
+
+/* slide 13: larger type in the insight cards */
+.s13-cards .ic-top{gap:14px;padding:22px 24px 16px}
+.s13-cards .ic-top h3{font-size:32px}
+.s13-cards .ic-why{font-size:23px;gap:8px}
+.s13-cards .ic-num{font-size:62px}
+.s13-cards .ic-top p{font-size:20px}
+.s13-cards .ic-dec{padding:14px 24px 16px}
+.s13-cards .ic-dec b{font-size:26px}
+.s13-cards .ic-dec p{font-size:20px}
+
+/* slide 12: term list fills the left block */
+.s12-terms{font-size:28px;gap:22px 26px}
+.s12-terms dt{font-size:28px}
+.s12-terms dd{padding-bottom:22px}

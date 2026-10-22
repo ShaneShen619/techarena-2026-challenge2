@@ -1,0 +1,355 @@
+<!-- TechArena 2026 final presentation, Current State. Source language: Chinese (zh); English via src/i18n/en.txt.
+     Charts between the "svg:NAME" and "/svg:NAME" comment markers are written by src/charts_gen.py from materials/*.csv.
+     Run it after a data change. -->
+
+<!-- ===================== 1 · TITLE ===================== -->
+<section class="slide s-title on" data-title="标题" data-act="开场" data-time="0.3">
+  <div class="kick">TechArena 2026 决赛<i>·</i>Challenge 1 &amp; Challenge 2</div>
+  <div class="main">
+    <h1>直接测量容量，<br><span>不从电压平台推断</span></h1>
+    <p class="tag">用运行数据估计 4×102 Ah LFP 电池组的健康状态（SOH）</p>
+  </div>
+  <div class="who"><b>Current State</b><br><span class="mut">Mona Zhu · Zhikuan Shen · [学校待补]</span></div>
+  <div class="pull">在代理标签上，我们的误差约为官方基线的 3%。</div>
+</section>
+
+<!-- ===================== 2 · SUMMARY ===================== -->
+<section class="slide" data-title="总结" data-act="开场" data-time="1">
+  <div class="kick">总结</div>
+  <h2 class="ttl">Challenge 2 的误差约为基线的 3%：关键是直接测量容量</h2>
+  <div class="body with-take">
+    <div class="argue">
+      <ol>
+        <li><span class="n">1</span><span>LFP 电压平台很平。从电压推算容量，<b>偏乐观 3–5 pp</b>。</span></li>
+        <li><span class="n">2</span><span>运行数据里有两个直接信号：<b>检查后完整充电</b>和<b>石墨台阶</b>。</span></li>
+        <li><span class="n">3</span><span>只比较同温度、同相位的数据：<span class="hl"><b>代理 MAE 0.12 pp</b></span>，基线 4.30 pp。</span></li>
+      </ol>
+    </div>
+    <div class="route">
+      <div class="grp"><span class="g-l">Challenge 1</span>
+        <div class="act"><div class="a-h">方法与结果<em>第 3–4 页</em></div><div class="a-d">[待补]</div></div>
+      </div>
+      <div class="grp"><span class="g-l">Challenge 2 · 问题</span>
+        <div class="act"><div class="a-h">为什么难<em>第 5 页</em></div><div class="a-d">一个容量标签，平坦的电压平台。</div></div>
+      </div>
+      <div class="grp our"><span class="g-l">Challenge 2 · 我们的工作</span>
+        <div class="act"><div class="a-h">方法<em>第 6–8 页</em></div><div class="a-d">锚点、石墨台阶、同相位比较。</div></div>
+        <div class="act"><div class="a-h">结果与验证<em>第 9–10 页</em></div><div class="a-d">代理误差，因果检验，否决的路线。</div></div>
+      </div>
+      <div class="grp"><span class="g-l">评价与结论</span>
+        <div class="act"><div class="a-h">创新、局限与结论<em>第 11–13 页</em></div><div class="a-d">为什么有效，风险有多大，三个决策。</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="take"><span class="tk-l">主线</span><p>在 LFP 上，<b>测量</b>容量比<b>推断</b>容量可靠。</p></div>
+  <div class="src"><b>来源</b><span>REPORT.md §4（代理误差，ε0+0.4）</span><span class="ev p">一手</span><span class="ev n">内部</span></div>
+</section>
+
+<!-- ===================== 3 · C1 METHOD (PLACEHOLDER) ===================== -->
+<section class="slide" data-title="C1 方法（待补）" data-act="Challenge 1" data-time="1.5">
+  <div class="kick">Challenge 1<i>·</i>方法</div>
+  <h2 class="ttl">[待补：一句话写出 C1 方法的结论]</h2>
+  <div class="body">
+    <div class="cols" style="grid-template-columns:repeat(4,1fr)">
+      <section class="blk"><div class="blk-k"><b>1</b> · 数据集</div><h3 class="blk-h">[待补]</h3><p class="gapnote"><b>待补</b>用了哪些数据，多少样本。</p></section>
+      <section class="blk"><div class="blk-k"><b>2</b> · 方法与特征</div><h3 class="blk-h">[待补]</h3><p class="gapnote"><b>待补</b>从数据中提取了什么特征。</p></section>
+      <section class="blk"><div class="blk-k"><b>3</b> · 模型</div><h3 class="blk-h">[待补]</h3><p class="gapnote"><b>待补</b>模型或方法，输入和输出。</p></section>
+      <section class="blk"><div class="blk-k"><b>4</b> · 关键技术决策</div><h3 class="blk-h">[待补]</h3><p class="gapnote"><b>待补</b>做了哪些选择，为什么。</p></section>
+    </div>
+  </div>
+  <div class="src"><b>来源</b><span>[待补：Challenge 1 报告]</span><span class="ev v">待核实</span></div>
+</section>
+
+<!-- ===================== 4 · C1 RESULTS (PLACEHOLDER) ===================== -->
+<section class="slide" data-title="C1 结果（待补）" data-act="Challenge 1" data-time="1.5">
+  <div class="kick">Challenge 1<i>·</i>结果</div>
+  <h2 class="ttl">[待补：一句话写出 C1 最强的结果]</h2>
+  <div class="body">
+    <div class="cols" style="grid-template-columns:repeat(4,1fr)">
+      <section class="blk"><div class="blk-k"><b>1</b> · 训练</div><h3 class="blk-h">[待补]</h3><p class="gapnote"><b>待补</b>训练集上的结果。</p></section>
+      <section class="blk"><div class="blk-k"><b>2</b> · 验证</div><h3 class="blk-h">[待补]</h3><p class="gapnote"><b>待补</b>验证方法和结果。</p></section>
+      <section class="blk"><div class="blk-k"><b>3</b> · 测试</div><h3 class="blk-h">[待补]</h3><p class="gapnote"><b>待补</b>测试结果和排名。</p></section>
+      <section class="blk"><div class="blk-k"><b>4</b> · 关键发现</div><h3 class="blk-h">[待补]</h3><p class="gapnote"><b>待补</b>哪些发现带到了 Challenge 2。</p></section>
+    </div>
+  </div>
+  <div class="src"><b>来源</b><span>[待补：Challenge 1 报告]</span><span class="ev v">待核实</span></div>
+</section>
+
+<!-- ===================== 5 · C2 PROBLEM ===================== -->
+<section class="slide" data-title="C2 问题" data-act="C2 · 问题" data-time="1">
+  <div class="kick">Challenge 2<i>·</i>问题</div>
+  <div class="story"><span class="on">问题</span><span>方法</span><span>结果</span><span>评价</span><span>结论</span></div>
+  <h2 class="ttl">只有一个容量标签，电压平台又平：从电压推容量会偏乐观</h2>
+  <p class="sub">每个检查日，只能用这一天之前的运行数据估计 SOH。</p>
+  <div class="body with-take">
+    <div class="cols" style="grid-template-columns:1.6fr 1fr">
+      <section class="blk">
+        <div class="blk-k"><b>1</b> · 数据</div>
+        <h3 class="blk-h">4 只 102 Ah LFP 电芯串联，13 段运行数据，第 3 段缺失</h3>
+        <!-- svg:timeline --><svg viewBox="0 0 1030 330" width="100%" role="img" aria-labelledby="tl-t tl-d"><title id="tl-t">Campaign timeline</title><desc id="tl-d">Thirteen operating segments from January to September 2025, alternating 25 and 45 °C, with the eight checkup dates. Segment 3 is missing.</desc><defs><pattern id="tl-h" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#fff"/><line x1="0" y1="0" x2="0" y2="8" stroke="#7a8794" stroke-width="3"/></pattern></defs><line x1="43.7" y1="44" x2="43.7" y2="228" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="43.7" y="32.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK0</text><line x1="142.3" y1="44" x2="142.3" y2="228" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="142.3" y="32.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK1</text><line x1="264.5" y1="44" x2="264.5" y2="228" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="264.5" y="32.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK2</text><line x1="398.6" y1="44" x2="398.6" y2="228" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="398.6" y="32.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK3</text><line x1="524.9" y1="44" x2="524.9" y2="228" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="524.9" y="32.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK4</text><line x1="647.1" y1="44" x2="647.1" y2="228" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="647.1" y="32.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK5</text><line x1="801.0" y1="44" x2="801.0" y2="228" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="801.0" y="32.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK6</text><line x1="935.1" y1="44" x2="935.1" y2="228" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="935.1" y="32.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK7</text><rect x="66.5" y="60" width="78.3" height="150" rx="3" fill="#d9691c"/><rect x="157.6" y="60" width="29.7" height="150" rx="3" fill="#2f67a6"/><rect x="187.3" y="60" width="77.3" height="150" fill="url(#tl-h)" stroke="#7a8794" stroke-width="1.5"/><rect x="201.9" y="123" width="48" height="24" fill="#fff"/><text x="225.9" y="141.0" font-size="17" fill="#141b24" font-weight="600" text-anchor="middle">缺失</text><rect x="279.0" y="60" width="31.8" height="150" rx="3" fill="#2f67a6"/><rect x="314.3" y="60" width="82.9" height="150" rx="3" fill="#d9691c"/><rect x="409.5" y="60" width="35.0" height="150" rx="3" fill="#2f67a6"/><rect x="445.6" y="60" width="78.8" height="150" rx="3" fill="#d9691c"/><rect x="539.1" y="60" width="26.9" height="150" rx="3" fill="#2f67a6"/><rect x="567.6" y="60" width="81.6" height="150" rx="3" fill="#d9691c"/><rect x="670.3" y="60" width="42.2" height="150" rx="3" fill="#2f67a6"/><rect x="716.6" y="60" width="75.2" height="150" rx="3" fill="#d9691c"/><rect x="815.4" y="60" width="40.3" height="150" rx="3" fill="#2f67a6"/><rect x="857.7" y="60" width="79.6" height="150" rx="3" fill="#d9691c"/><rect x="954.2" y="60" width="39.0" height="150" rx="3" fill="#2f67a6"/><line x1="20" y1="238" x2="1010" y2="238" stroke="#d9dfe5" stroke-width="1.5"/><line x1="114.7" y1="238" x2="114.7" y2="244" stroke="#7a8794" stroke-width="1.5"/><text x="118.7" y="262.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">2月</text><line x1="225.1" y1="238" x2="225.1" y2="244" stroke="#7a8794" stroke-width="1.5"/><text x="229.1" y="262.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">3月</text><line x1="347.4" y1="238" x2="347.4" y2="244" stroke="#7a8794" stroke-width="1.5"/><text x="351.4" y="262.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">4月</text><line x1="465.7" y1="238" x2="465.7" y2="244" stroke="#7a8794" stroke-width="1.5"/><text x="469.7" y="262.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">5月</text><line x1="588.0" y1="238" x2="588.0" y2="244" stroke="#7a8794" stroke-width="1.5"/><text x="592.0" y="262.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">6月</text><line x1="706.3" y1="238" x2="706.3" y2="244" stroke="#7a8794" stroke-width="1.5"/><text x="710.3" y="262.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">7月</text><line x1="828.6" y1="238" x2="828.6" y2="244" stroke="#7a8794" stroke-width="1.5"/><text x="832.6" y="262.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">8月</text><line x1="950.8" y1="238" x2="950.8" y2="244" stroke="#7a8794" stroke-width="1.5"/><text x="954.8" y="262.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">9月</text><rect x="20" y="298" width="22" height="14" rx="2" fill="#2f67a6"/><text x="50.0" y="311.0" font-size="17" fill="#46515e" font-weight="400" text-anchor="start">25 °C 运行段</text><rect x="190" y="298" width="22" height="14" rx="2" fill="#d9691c"/><text x="220.0" y="311.0" font-size="17" fill="#46515e" font-weight="400" text-anchor="start">45 °C 运行段</text><rect x="360" y="298" width="22" height="14" fill="url(#tl-h)" stroke="#7a8794"/><text x="390.0" y="311.0" font-size="16" fill="#46515e" font-weight="400" text-anchor="start">第 3 段缺失（2 月 19 日–3 月 11 日）</text></svg><!-- /svg:timeline -->
+        <p class="figcap">2025 年 1–9 月，每 10 s 一个点。运行段按箱温着色，竖线是检查日 CK0–CK7。</p>
+      </section>
+      <div class="rows blk">
+        <section class="blk">
+          <div class="blk-k"><b>2</b> · 标签</div>
+          <h3 class="blk-h">只给出 CK0：100.41 Ah（SOH 98.44%）</h3>
+          <ul class="ste body-s"><li>CK1–CK7 隐藏，用于评分。</li><li>分数按官方基线归一：基线 = 1.0。</li></ul>
+        </section>
+        <section class="blk">
+          <div class="blk-k"><b>3</b> · 难点</div>
+          <h3 class="blk-h">从电压推容量，一直偏乐观</h3>
+          <ul class="ste body-s"><li>官方 ExampleModel 在 CK1–CK7 上偏高 <b>2.6–5.3 pp</b>。</li><li>我们早期的三条路线也偏乐观 <b>3–5 pp</b>。</li></ul>
+        </section>
+      </div>
+    </div>
+  </div>
+  <div class="take"><span class="tk-l">所以</span><p>我们找<b>直接测量容量</b>的信号，不从平台电压反推。</p></div>
+  <div class="src"><b>来源</b><span>官方提交说明 2026 · REPORT.md §2、§4</span><span class="ev p">一手</span><span class="ev n">内部</span></div>
+</section>
+
+<!-- ===================== 6 · ANCHOR ===================== -->
+<section class="slide" data-title="锚点：检查后完整充电" data-act="C2 · 方法" data-time="1.2">
+  <div class="kick">Challenge 2<i>·</i>方法 1/3</div>
+  <div class="story"><span>问题</span><span class="on">方法</span><span>结果</span><span>评价</span><span>结论</span></div>
+  <h2 class="ttl">检查后的完整充电，几乎直接测出当时的容量</h2>
+  <div class="body with-take">
+    <div class="cols" style="grid-template-columns:1.55fr 1fr">
+      <section class="blk">
+        <div class="blk-k"><b>1</b> · 信号</div>
+        <div class="kpis">
+          <div class="kpi"><div class="v">8/8</div><div class="l">每次检查后都有这次充电</div></div>
+          <div class="kpi"><div class="v">0.022<small>Ah</small></div><div class="l">电流积分与计数器之差</div></div>
+          <div class="kpi red"><div class="v">100.12→91.95<small>Ah</small></div><div class="l">CK0 → CK7 的充入量</div></div>
+        </div>
+        <!-- svg:anchors --><svg viewBox="0 0 1020 440" width="100%" role="img" aria-labelledby="an-t an-d"><title id="an-t">Post-checkup full charges</title><desc id="an-d">The charged Ah of the eight post-checkup full charges falls from 100.12 Ah in January to 91.95 Ah in September.</desc><line x1="70" y1="354.7" x2="990" y2="354.7" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="360.7" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">92</text><line x1="70" y1="284.1" x2="990" y2="284.1" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="290.1" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">94</text><line x1="70" y1="213.5" x2="990" y2="213.5" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="219.5" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">96</text><line x1="70" y1="142.9" x2="990" y2="142.9" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="148.9" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">98</text><line x1="70" y1="72.4" x2="990" y2="72.4" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="78.4" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">100</text><text x="60.0" y="18.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">Ah</text><line x1="70" y1="390" x2="990" y2="390" stroke="#7a8794" stroke-width="1.5"/><line x1="159.4" y1="390" x2="159.4" y2="396" stroke="#7a8794" stroke-width="1.5"/><text x="163.4" y="414.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">2月</text><line x1="263.7" y1="390" x2="263.7" y2="396" stroke="#7a8794" stroke-width="1.5"/><text x="267.7" y="414.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">3月</text><line x1="379.1" y1="390" x2="379.1" y2="396" stroke="#7a8794" stroke-width="1.5"/><text x="383.1" y="414.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">4月</text><line x1="490.9" y1="390" x2="490.9" y2="396" stroke="#7a8794" stroke-width="1.5"/><text x="494.9" y="414.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">5月</text><line x1="606.4" y1="390" x2="606.4" y2="396" stroke="#7a8794" stroke-width="1.5"/><text x="610.4" y="414.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">6月</text><line x1="718.1" y1="390" x2="718.1" y2="396" stroke="#7a8794" stroke-width="1.5"/><text x="722.1" y="414.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">7月</text><line x1="833.6" y1="390" x2="833.6" y2="396" stroke="#7a8794" stroke-width="1.5"/><text x="837.6" y="414.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">8月</text><line x1="949.0" y1="390" x2="949.0" y2="396" stroke="#7a8794" stroke-width="1.5"/><text x="953.0" y="414.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">9月</text><circle cx="92.3" cy="57.9" r="7" fill="#fff" stroke="#141b24" stroke-width="2.5"/><text x="106.3" y="47.9" font-size="16" fill="#141b24" font-weight="500" text-anchor="start">CK0 标签 100.41</text><path d="M 114.0 68.0 L 200.2 178.1 L 314.9 225.2 L 438.1 261.4 L 560.5 293.0 L 684.4 316.5 L 821.5 332.3 L 952.5 356.3" fill="none" stroke="#c2412d" stroke-width="2.5"/><circle cx="114.0" cy="68.0" r="7" fill="#c2412d"/><text x="114.0" y="98.0" font-size="16" fill="#c2412d" font-weight="600" text-anchor="middle" class="m">100.12</text><circle cx="200.2" cy="178.1" r="7" fill="#c2412d"/><text x="200.2" y="162.1" font-size="16" fill="#46515e" font-weight="600" text-anchor="middle" class="m">97.00</text><circle cx="314.9" cy="225.2" r="7" fill="#c2412d"/><text x="314.9" y="209.2" font-size="16" fill="#46515e" font-weight="600" text-anchor="middle" class="m">95.67</text><circle cx="438.1" cy="261.4" r="7" fill="#c2412d"/><text x="438.1" y="245.4" font-size="16" fill="#46515e" font-weight="600" text-anchor="middle" class="m">94.64</text><circle cx="560.5" cy="293.0" r="7" fill="#c2412d"/><text x="560.5" y="277.0" font-size="16" fill="#46515e" font-weight="600" text-anchor="middle" class="m">93.75</text><circle cx="684.4" cy="316.5" r="7" fill="#c2412d"/><text x="684.4" y="300.5" font-size="16" fill="#46515e" font-weight="600" text-anchor="middle" class="m">93.08</text><circle cx="821.5" cy="332.3" r="7" fill="#c2412d"/><text x="821.5" y="316.3" font-size="16" fill="#46515e" font-weight="600" text-anchor="middle" class="m">92.64</text><circle cx="952.5" cy="356.3" r="7" fill="#c2412d"/><text x="952.5" y="340.3" font-size="16" fill="#c2412d" font-weight="600" text-anchor="middle" class="m">91.95</text><circle cx="80" cy="431" r="6" fill="#c2412d"/><text x="94.0" y="437.0" font-size="16" fill="#46515e" font-weight="400" text-anchor="start">检查后完整充电量 Q_fc</text><circle cx="330" cy="431" r="6" fill="#fff" stroke="#141b24" stroke-width="2"/><text x="344.0" y="437.0" font-size="16" fill="#46515e" font-weight="400" text-anchor="start">CK0 检查容量（唯一标签）</text></svg><!-- /svg:anchors -->
+        <p class="figcap">每个点是一次检查后的完整充电量。它比检查口径的容量小一个偏置 ε。</p>
+      </section>
+      <div class="rows blk">
+        <section class="blk">
+          <div class="blk-k"><b>2</b> · 充电过程</div>
+          <h3 class="blk-h">从近空充到满，协议每次相同</h3>
+          <ul class="ste body-s"><li>起点：2.87–3.00 V/芯。</li><li>以 20.4 A 充到 14.0 V 恒压阶段结束。</li><li>结束电流 5.10 A。</li></ul>
+        </section>
+        <section class="blk">
+          <div class="blk-k"><b>3</b> · 换算到检查口径</div>
+          <h3 class="blk-h">加一个固定偏置 ε</h3>
+          <ul class="ste body-s"><li>ε0 = 100.41 − 100.122 = <b>0.288 Ah</b>，由 CK0 定出。</li><li>25 °C 的锚点另加 <b>0.4 Ah</b>（假设）。</li></ul>
+        </section>
+      </div>
+    </div>
+  </div>
+  <div class="take"><span class="tk-l">所以</span><p>锚点把“推断容量”变成“测量容量”。<b>剩下要估的只是锚点之后的一个月。</b></p></div>
+  <div class="src"><b>来源</b><span>REPORT.md §1 · V1 报告 §1 · 按 R 看充电细节</span><span class="ev p">一手</span><span class="ev n">内部</span><span class="ev v">0.4 Ah 是假设</span></div>
+</section>
+
+<!-- ===================== 7 · GRAPHITE STEP ===================== -->
+<section class="slide" data-title="石墨台阶" data-act="C2 · 方法" data-time="1.2">
+  <div class="kick">Challenge 2<i>·</i>方法 2/3</div>
+  <div class="story"><span>问题</span><span class="on">方法</span><span>结果</span><span>评价</span><span>结论</span></div>
+  <h2 class="ttl">石墨台阶每 5 天测一次锂损失，填补两个锚点之间的空白</h2>
+  <div class="body with-take">
+    <div class="cols" style="grid-template-columns:1.55fr 1fr">
+      <section class="blk">
+        <div class="blk-k"><b>1</b> · 台阶深度</div>
+        <div class="kpis">
+          <div class="kpi"><div class="v">41/41</div><div class="l">每次放电都定位到台阶</div></div>
+          <div class="kpi red"><div class="v">32.81→25.87<small>Ah</small></div><div class="l">1 月 20 日 → 9 月 6 日</div></div>
+          <div class="kpi"><div class="v">0.012–0.036<small>Ah</small></div><div class="l">45 °C 段内对直线的散布</div></div>
+        </div>
+        <!-- svg:steps --><svg viewBox="0 0 1020 440" width="100%" role="img" aria-labelledby="st-t st-d"><title id="st-t">Graphite step depth</title><desc id="st-d">Step depth below the end of charge for 41 deep discharges. It falls from 32.81 Ah in January to 25.87 Ah in September.</desc><line x1="70" y1="354.5" x2="990" y2="354.5" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="360.5" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">26</text><line x1="70" y1="269.5" x2="990" y2="269.5" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="275.5" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">28</text><line x1="70" y1="184.5" x2="990" y2="184.5" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="190.5" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">30</text><line x1="70" y1="99.5" x2="990" y2="99.5" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="105.5" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">32</text><text x="60.0" y="18.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">Ah</text><line x1="92.3" y1="30" x2="92.3" y2="380" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="92.3" y="22.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK0</text><line x1="185.5" y1="30" x2="185.5" y2="380" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="185.5" y="22.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK1</text><line x1="300.9" y1="30" x2="300.9" y2="380" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="300.9" y="22.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK2</text><line x1="427.6" y1="30" x2="427.6" y2="380" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="427.6" y="22.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK3</text><line x1="546.8" y1="30" x2="546.8" y2="380" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="546.8" y="22.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK4</text><line x1="662.2" y1="30" x2="662.2" y2="380" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="662.2" y="22.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK5</text><line x1="807.5" y1="30" x2="807.5" y2="380" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="807.5" y="22.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK6</text><line x1="934.1" y1="30" x2="934.1" y2="380" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="934.1" y="22.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK7</text><line x1="70" y1="380" x2="990" y2="380" stroke="#7a8794" stroke-width="1.5"/><line x1="159.4" y1="380" x2="159.4" y2="386" stroke="#7a8794" stroke-width="1.5"/><text x="163.4" y="404.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">2月</text><line x1="263.7" y1="380" x2="263.7" y2="386" stroke="#7a8794" stroke-width="1.5"/><text x="267.7" y="404.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">3月</text><line x1="379.1" y1="380" x2="379.1" y2="386" stroke="#7a8794" stroke-width="1.5"/><text x="383.1" y="404.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">4月</text><line x1="490.9" y1="380" x2="490.9" y2="386" stroke="#7a8794" stroke-width="1.5"/><text x="494.9" y="404.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">5月</text><line x1="606.4" y1="380" x2="606.4" y2="386" stroke="#7a8794" stroke-width="1.5"/><text x="610.4" y="404.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">6月</text><line x1="718.1" y1="380" x2="718.1" y2="386" stroke="#7a8794" stroke-width="1.5"/><text x="722.1" y="404.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">7月</text><line x1="833.6" y1="380" x2="833.6" y2="386" stroke="#7a8794" stroke-width="1.5"/><text x="837.6" y="404.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">8月</text><line x1="949.0" y1="380" x2="949.0" y2="386" stroke="#7a8794" stroke-width="1.5"/><text x="953.0" y="404.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">9月</text><rect x="110.0" y="59.2" width="12" height="12" fill="#d9691c"/><rect x="128.0" y="116.3" width="12" height="12" fill="#d9691c"/><rect x="146.0" y="143.7" width="12" height="12" fill="#d9691c"/><rect x="164.0" y="165.4" width="12" height="12" fill="#d9691c"/><rect x="181.9" y="183.7" width="12" height="12" fill="#d9691c"/><circle cx="202.2" cy="187.5" r="6" fill="#2f67a6"/><circle cx="220.2" cy="215.1" r="6" fill="#2f67a6"/><circle cx="316.9" cy="232.3" r="6" fill="#2f67a6"/><circle cx="334.9" cy="255.6" r="6" fill="#2f67a6"/><rect x="350.2" y="240.1" width="12" height="12" fill="#d9691c"/><rect x="368.2" y="249.6" width="12" height="12" fill="#d9691c"/><rect x="386.2" y="258.8" width="12" height="12" fill="#d9691c"/><rect x="404.2" y="266.5" width="12" height="12" fill="#d9691c"/><circle cx="440.1" cy="274.3" r="6" fill="#2f67a6"/><circle cx="461.2" cy="292.0" r="6" fill="#2f67a6"/><rect x="474.3" y="280.2" width="12" height="12" fill="#d9691c"/><rect x="492.3" y="285.4" width="12" height="12" fill="#d9691c"/><rect x="510.3" y="286.6" width="12" height="12" fill="#d9691c"/><rect x="528.3" y="294.3" width="12" height="12" fill="#d9691c"/><circle cx="562.4" cy="285.9" r="6" fill="#2f67a6"/><circle cx="580.4" cy="311.0" r="6" fill="#2f67a6"/><rect x="593.9" y="297.5" width="12" height="12" fill="#d9691c"/><rect x="611.9" y="302.4" width="12" height="12" fill="#d9691c"/><rect x="630.0" y="305.6" width="12" height="12" fill="#d9691c"/><rect x="648.0" y="313.0" width="12" height="12" fill="#d9691c"/><circle cx="686.3" cy="300.7" r="6" fill="#2f67a6"/><circle cx="704.3" cy="322.8" r="6" fill="#2f67a6"/><circle cx="722.3" cy="329.8" r="6" fill="#2f67a6"/><rect x="738.3" y="315.6" width="12" height="12" fill="#d9691c"/><rect x="756.3" y="321.2" width="12" height="12" fill="#d9691c"/><rect x="774.3" y="328.2" width="12" height="12" fill="#d9691c"/><rect x="792.3" y="331.1" width="12" height="12" fill="#d9691c"/><circle cx="823.4" cy="318.0" r="6" fill="#2f67a6"/><circle cx="841.4" cy="338.6" r="6" fill="#2f67a6"/><circle cx="859.2" cy="350.1" r="6" fill="#2f67a6"/><rect x="873.3" y="336.3" width="12" height="12" fill="#d9691c"/><rect x="891.3" y="342.6" width="12" height="12" fill="#d9691c"/><rect x="909.3" y="348.5" width="12" height="12" fill="#d9691c"/><rect x="927.3" y="353.2" width="12" height="12" fill="#d9691c"/><circle cx="954.4" cy="336.0" r="6" fill="#2f67a6"/><circle cx="972.5" cy="360.1" r="6" fill="#2f67a6"/><text x="130.0" y="71.2" font-size="17" fill="#c2412d" font-weight="600" text-anchor="start" class="m">32.81</text><text x="972.5" y="390.1" font-size="17" fill="#c2412d" font-weight="600" text-anchor="middle" class="m">25.87</text><circle cx="80.0" cy="431.0" r="6" fill="#2f67a6"/><text x="94.0" y="437.0" font-size="16" fill="#46515e" font-weight="400" text-anchor="start">25 °C 段内的放电</text><rect x="274.0" y="425.0" width="12" height="12" fill="#d9691c"/><text x="294.0" y="437.0" font-size="16" fill="#46515e" font-weight="400" text-anchor="start">45 °C 段内的放电</text></svg><!-- /svg:steps -->
+        <p class="figcap">台阶到满充端的 Ah 距离（主检测方法，4 芯均值）。距离缩短 = 活性锂损失（LLI）。</p>
+      </section>
+      <div class="rows blk">
+        <section class="blk">
+          <div class="blk-k"><b>2</b> · 信号</div>
+          <h3 class="blk-h">约每 5 天的固定程序越过石墨台阶</h3>
+          <div class="chain s7-chain"><span>满充<small>CCCV</small></span><i>→</i><span>脉冲<small>20 A · 10.2 Ah</small></span><i>→</i><span>动态放电<small>约 45.7 Ah</small></span><i>→</i><span class="hot">越过台阶<small>深度 55.9 Ah</small></span></div>
+        </section>
+        <section class="blk">
+          <div class="blk-k"><b>3</b> · 稳健取值</div>
+          <h3 class="blk-h">两次取中位数，不跟随单一方法或单只电芯</h3>
+          <ul class="ste body-s"><li>每只电芯：6 种检测方法的中位数。</li><li>每次放电：4 只电芯的中位数。</li><li>电芯 1 在慢慢漂移，均值会跟着它走。</li></ul>
+        </section>
+      </div>
+    </div>
+  </div>
+  <div class="take"><span class="tk-l">所以</span><p>台阶给出月内的<b>老化读数</b>。但它只看到锂损失，还受两种非老化效应影响。</p></div>
+  <div class="src"><b>来源</b><span>REPORT.md §1 · V1 报告 §1 · 按 R 看检测方法</span><span class="ev p">一手</span><span class="ev n">内部</span></div>
+</section>
+
+<!-- ===================== 8 · PHASE MATCHING, BETA, GAP ===================== -->
+<section class="slide" data-title="同相位比较、β 与数据缺口" data-act="C2 · 方法" data-time="1.3">
+  <div class="kick">Challenge 2<i>·</i>方法 3/3</div>
+  <div class="story"><span>问题</span><span class="on">方法</span><span>结果</span><span>评价</span><span>结论</span></div>
+  <h2 class="ttl">只比较同温度、同相位的台阶，两种非老化偏移就会抵消</h2>
+  <div class="body with-take">
+    <div class="cols" style="grid-template-columns:1.5fr 1fr">
+      <section class="blk">
+        <div class="blk-k"><b>1</b> · 两种偏移 <b>2</b> · 同相位差分</div>
+        <h3 class="blk-h">只用相邻两个月月末的 45 °C 台阶（检查前 10 天内）</h3>
+        <!-- svg:phase --><svg viewBox="0 0 1000 470" width="100%" role="img" aria-labelledby="ph-t ph-d"><title id="ph-t">Phase-matched step differencing</title><desc id="ph-d">Step depths from April to June 2025. The first discharge after each anchor reads deeper, and 45 °C steps read deeper than 25 °C steps. The model subtracts the last 45 °C step of two consecutive months.</desc><defs><marker id="ph-a" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto"><polygon points="0 0,12 5,0 10" fill="#c2412d"/></marker></defs><line x1="70" y1="365.2" x2="970" y2="365.2" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="371.2" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">26.8</text><line x1="70" y1="275.5" x2="970" y2="275.5" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="281.5" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">27.2</text><line x1="70" y1="185.8" x2="970" y2="185.8" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="191.8" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">27.6</text><line x1="70" y1="96.1" x2="970" y2="96.1" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="102.1" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">28.0</text><text x="60.0" y="18.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">Ah</text><line x1="121.4" y1="30" x2="121.4" y2="410" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="121.4" y="22.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK3</text><line x1="532.9" y1="30" x2="532.9" y2="410" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="532.9" y="22.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK4</text><line x1="931.4" y1="30" x2="931.4" y2="410" stroke="#7a8794" stroke-width="1.5" stroke-dasharray="4 5"/><text x="931.4" y="22.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">CK5</text><line x1="70" y1="410" x2="970" y2="410" stroke="#7a8794" stroke-width="1.5"/><line x1="340.0" y1="410" x2="340.0" y2="416" stroke="#7a8794" stroke-width="1.5"/><text x="344.0" y="434.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">5月</text><line x1="738.6" y1="410" x2="738.6" y2="416" stroke="#7a8794" stroke-width="1.5"/><text x="742.6" y="434.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="start">6月</text><circle cx="164.5" cy="104.8" r="6" fill="#2f67a6"/><circle cx="237.6" cy="216.4" r="6" fill="#2f67a6"/><rect x="297.5" y="175.7" width="12" height="12" fill="#d9691c"/><rect x="359.6" y="201.9" width="12" height="12" fill="#d9691c"/><rect x="421.8" y="209.4" width="12" height="12" fill="#d9691c"/><circle cx="586.8" cy="184.0" r="6" fill="#2f67a6"/><circle cx="649.0" cy="306.7" r="6" fill="#2f67a6"/><rect x="710.4" y="259.1" width="12" height="12" fill="#d9691c"/><rect x="772.6" y="284.9" width="12" height="12" fill="#d9691c"/><rect x="834.8" y="307.3" width="12" height="12" fill="#d9691c"/><circle cx="164.5" cy="104.8" r="13" fill="none" stroke="#141b24" stroke-width="1.8" stroke-dasharray="3 3"/><circle cx="586.8" cy="184.0" r="13" fill="none" stroke="#141b24" stroke-width="1.8" stroke-dasharray="3 3"/><path d="M 502.0 243.2 H 902.9" fill="none" stroke="#c2412d" stroke-width="1.8" stroke-dasharray="6 5"/><path d="M 902.9 243.2 V 342.2" fill="none" stroke="#c2412d" stroke-width="2.5" marker-end="url(#ph-a)"/><rect x="481.0" y="234.2" width="18" height="18" fill="#c2412d"/><rect x="893.9" y="345.2" width="18" height="18" fill="#c2412d"/><text x="892.9" y="229.2" font-size="20" fill="#c2412d" font-weight="700" text-anchor="end" class="m">ΔE45 = -0.50 Ah</text><text x="474.0" y="275.2" font-size="17" fill="#c2412d" font-weight="600" text-anchor="end">E45（CK4 前）</text><text x="886.9" y="384.2" font-size="17" fill="#c2412d" font-weight="600" text-anchor="end">E45（CK5 前）</text><text x="184.5" y="96.8" font-size="16" fill="#141b24" font-weight="500" text-anchor="start">锚点后首次放电：深约 0.4 Ah</text><circle cx="80.0" cy="461.0" r="6" fill="#2f67a6"/><text x="94.0" y="467.0" font-size="16" fill="#46515e" font-weight="400" text-anchor="start">25 °C</text><rect x="164.0" y="455.0" width="12" height="12" fill="#d9691c"/><text x="184.0" y="467.0" font-size="16" fill="#46515e" font-weight="400" text-anchor="start">45 °C（比 25 °C 深约 0.18 Ah）</text><circle cx="460" cy="461" r="9" fill="none" stroke="#141b24" stroke-width="1.8" stroke-dasharray="3 3"/><text x="476.0" y="467.0" font-size="16" fill="#46515e" font-weight="400" text-anchor="start">锚点后首次放电</text><rect x="633.0" y="454.0" width="14" height="14" fill="#c2412d"/><text x="654.0" y="467.0" font-size="16" fill="#46515e" font-weight="400" text-anchor="start">模型使用的月末 45 °C 台阶</text></svg><!-- /svg:phase -->
+        <p class="figcap">2025 年 4–6 月的实测台阶（稳健取值）。两个红点相减：温度和锚点后的偏移都在差值里抵消。适用于 CK4–CK7。</p>
+      </section>
+      <div class="rows blk">
+        <section class="blk">
+          <div class="blk-k"><b>3</b> · β 来自物理</div>
+          <h3 class="blk-h">台阶只看到锂损失，所以乘以 β</h3>
+          <ul class="ste body-s"><li>68–79% 的损失在台阶与满充端之间。</li><li>β 按可见锚点的实测比例计算：<b>1.06</b>（CK4）→ <b>1.51</b>（CK7）。</li></ul>
+        </section>
+        <section class="blk">
+          <div class="blk-k"><b>4</b> · 数据缺口（CK2）</div>
+          <h3 class="blk-h">最后一次台阶在 CK2 前 22 天</h3>
+          <ul class="ste body-s"><li>用温度加权的 √t 外推锚点后的损失。</li><li>Arrhenius 加权，Ea = 20.6 kJ/mol。</li></ul>
+        </section>
+        <section class="blk">
+          <div class="blk-k">各检查点的分支</div>
+          <div class="chain s8-branch"><span>CK1<small>回退</small></span><span>CK2<small>√t</small></span><span>CK3<small>回退</small></span><span class="hot">CK4–CK7<small>同相位</small></span></div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <div class="take"><span class="tk-l">所以</span><p>每一项都有物理含义，<b>没有按标签调过的参数</b>。</p></div>
+  <div class="src"><b>来源</b><span>REPORT.md §1 · V2、V3 报告 · Naumann 2018 · Schimpe 2018 · 按 R 看公式和 β 表</span><span class="ev n">内部</span><span class="ev a">学术</span></div>
+</section>
+
+<!-- ===================== 9 · RESULTS ===================== -->
+<section class="slide" data-title="结果：代理误差" data-act="C2 · 结果" data-time="1.3">
+  <div class="kick">Challenge 2<i>·</i>结果</div>
+  <div class="story"><span>问题</span><span>方法</span><span class="on">结果</span><span>评价</span><span>结论</span></div>
+  <h2 class="ttl">代理误差 0.12 pp，约为官方基线的 3%</h2>
+  <p class="sub">代理标签 = 检查后完整充电 + ε（ε0 + 0.4 Ah）。它不是隐藏真值。</p>
+  <div class="body with-take">
+    <div class="cols" style="grid-template-columns:1.45fr 1fr">
+      <section class="blk">
+        <div class="blk-k"><b>1</b> · 逐检查点误差</div>
+        <div class="kpis">
+          <div class="kpi red"><div class="v">0.12<small>pp</small></div><div class="l">MAE（基线 4.30 pp）</div></div>
+          <div class="kpi red"><div class="v">0.24<small>pp</small></div><div class="l">最大误差（基线 5.28 pp）</div></div>
+        </div>
+        <!-- svg:errors --><svg viewBox="0 0 1000 440" width="100%" role="img" aria-labelledby="er-t er-d"><title id="er-t">Proxy error per checkup</title><desc id="er-d">Estimate minus proxy for CK1 to CK7. The official ExampleModel reads 2.6 to 5.3 pp high; our model stays within 0.24 pp.</desc><line x1="70" y1="347.1" x2="980" y2="347.1" stroke="#7a8794" stroke-width="1.8"/><text x="60.0" y="353.1" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">0</text><line x1="70" y1="292.4" x2="980" y2="292.4" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="298.4" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">1</text><line x1="70" y1="237.6" x2="980" y2="237.6" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="243.6" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">2</text><line x1="70" y1="182.8" x2="980" y2="182.8" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="188.8" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">3</text><line x1="70" y1="128.1" x2="980" y2="128.1" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="134.1" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">4</text><line x1="70" y1="73.3" x2="980" y2="73.3" stroke="#d9dfe5" stroke-width="1"/><text x="60.0" y="79.3" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">5</text><text x="60.0" y="14.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="end" class="m">pp</text><rect x="89.0" y="202.5" width="42" height="144.6" fill="#9aa5b1"/><text x="110.0" y="194.5" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">+2.64</text><rect x="139.0" y="335.6" width="42" height="11.5" fill="#c2412d"/><text x="160.0" y="327.6" font-size="16" fill="#c2412d" font-weight="700" text-anchor="middle" class="m">+0.21</text><text x="135.0" y="408.0" font-size="18" fill="#141b24" font-weight="500" text-anchor="middle" class="m">CK1</text><rect x="219.0" y="105.6" width="42" height="241.5" fill="#9aa5b1"/><text x="240.0" y="97.6" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">+4.41</text><rect x="269.0" y="344.9" width="42" height="2.2" fill="#c2412d"/><text x="290.0" y="336.9" font-size="16" fill="#c2412d" font-weight="700" text-anchor="middle" class="m">+0.04</text><text x="265.0" y="408.0" font-size="18" fill="#141b24" font-weight="500" text-anchor="middle" class="m">CK2</text><rect x="349.0" y="119.8" width="42" height="227.3" fill="#9aa5b1"/><text x="370.0" y="111.8" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">+4.15</text><rect x="399.0" y="339.5" width="42" height="7.7" fill="#c2412d"/><text x="420.0" y="331.5" font-size="16" fill="#c2412d" font-weight="700" text-anchor="middle" class="m">+0.14</text><text x="395.0" y="408.0" font-size="18" fill="#141b24" font-weight="500" text-anchor="middle" class="m">CK3</text><rect x="479.0" y="70.6" width="42" height="276.6" fill="#9aa5b1"/><text x="500.0" y="62.6" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">+5.05</text><rect x="529.0" y="334.0" width="42" height="13.1" fill="#c2412d"/><text x="550.0" y="326.0" font-size="16" fill="#c2412d" font-weight="700" text-anchor="middle" class="m">+0.24</text><text x="525.0" y="408.0" font-size="18" fill="#141b24" font-weight="500" text-anchor="middle" class="m">CK4</text><rect x="609.0" y="58.0" width="42" height="289.2" fill="#9aa5b1"/><text x="630.0" y="50.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">+5.28</text><rect x="659.0" y="342.8" width="42" height="4.4" fill="#c2412d"/><text x="680.0" y="334.8" font-size="16" fill="#c2412d" font-weight="700" text-anchor="middle" class="m">+0.08</text><text x="655.0" y="408.0" font-size="18" fill="#141b24" font-weight="500" text-anchor="middle" class="m">CK5</text><rect x="739.0" y="116.0" width="42" height="231.1" fill="#9aa5b1"/><text x="760.0" y="108.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">+4.22</text><rect x="789.0" y="347.1" width="42" height="3.8" fill="#c2412d"/><text x="810.0" y="339.1" font-size="16" fill="#c2412d" font-weight="700" text-anchor="middle" class="m">-0.07</text><text x="785.0" y="408.0" font-size="18" fill="#141b24" font-weight="500" text-anchor="middle" class="m">CK6</text><rect x="869.0" y="110.5" width="42" height="236.6" fill="#9aa5b1"/><text x="890.0" y="102.5" font-size="16" fill="#46515e" font-weight="500" text-anchor="middle" class="m">+4.32</text><rect x="919.0" y="347.1" width="42" height="3.3" fill="#c2412d"/><text x="940.0" y="339.1" font-size="16" fill="#c2412d" font-weight="700" text-anchor="middle" class="m">-0.06</text><text x="915.0" y="408.0" font-size="18" fill="#141b24" font-weight="500" text-anchor="middle" class="m">CK7</text><rect x="70" y="424" width="18" height="12" fill="#9aa5b1"/><text x="96.0" y="436.0" font-size="16" fill="#46515e" font-weight="400" text-anchor="start">官方 ExampleModel</text><rect x="290" y="424" width="18" height="12" fill="#c2412d"/><text x="316.0" y="436.0" font-size="16" fill="#46515e" font-weight="400" text-anchor="start">我们的模型（提交版）</text></svg><!-- /svg:errors -->
+        <p class="figcap">估计值减代理值，单位 pp（SOH 百分点）。正值 = 估计偏高。</p>
+      </section>
+      <section class="blk">
+        <div class="blk-k"><b>2</b> · 每一版降了多少</div>
+        <h3 class="blk-h">MAE 从 4.30 pp 降到 0.12 pp</h3>
+        <!-- svg:versions --><svg viewBox="0 0 660 440" width="100%" role="img" aria-labelledby="vs-t vs-d"><title id="vs-t">MAE by model version</title><desc id="vs-d">Proxy MAE falls from 4.30 pp for the official baseline to 0.29 pp for V1 and to 0.12 pp for the submitted model.</desc><text x="230.0" y="51.0" font-size="20" fill="#46515e" font-weight="400" text-anchor="end">官方 ExampleModel</text><rect x="240" y="28" width="340.0" height="36" fill="#9aa5b1" opacity="1"/><text x="590.0" y="53.0" font-size="20" fill="#46515e" font-weight="700" text-anchor="start" class="m">4.30</text><text x="230.0" y="127.0" font-size="20" fill="#46515e" font-weight="400" text-anchor="end">V1 锚点 + 台阶</text><rect x="240" y="104" width="22.9" height="36" fill="#c2412d" opacity="0.55"/><text x="272.9" y="129.0" font-size="20" fill="#c2412d" font-weight="700" text-anchor="start" class="m">0.29</text><text x="230.0" y="203.0" font-size="20" fill="#46515e" font-weight="400" text-anchor="end">V2 同相位 + β</text><rect x="240" y="180" width="17.4" height="36" fill="#c2412d" opacity="0.55"/><text x="267.4" y="205.0" font-size="20" fill="#c2412d" font-weight="700" text-anchor="start" class="m">0.22</text><text x="230.0" y="279.0" font-size="20" fill="#46515e" font-weight="400" text-anchor="end">+ √t 缺口分支</text><rect x="240" y="256" width="10.3" height="36" fill="#c2412d" opacity="0.55"/><text x="260.3" y="281.0" font-size="20" fill="#c2412d" font-weight="700" text-anchor="start" class="m">0.13</text><text x="230.0" y="355.0" font-size="20" fill="#141b24" font-weight="700" text-anchor="end">+ 稳健台阶（提交版）</text><rect x="240" y="332" width="9.5" height="36" fill="#c2412d" opacity="1"/><text x="259.5" y="357.0" font-size="20" fill="#c2412d" font-weight="700" text-anchor="start" class="m">0.12</text><line x1="240" y1="12" x2="240" y2="400" stroke="#7a8794" stroke-width="1.5"/><text x="20.0" y="432.0" font-size="18" fill="#46515e" font-weight="400" text-anchor="start">最大误差：5.28 → 0.67 → 0.67 → 0.23 → 0.24 pp</text></svg><!-- /svg:versions -->
+        <p class="figcap">同一组代理标签上的 MAE（pp）。每一版在上一版之上只改一处。</p>
+      </section>
+    </div>
+  </div>
+  <div class="take"><span class="tk-l">所以</span><p>大部分收益来自<b>锚点</b>（4.30 → 0.29）。后三步把最大误差从 0.67 降到 0.24 pp。</p></div>
+  <div class="src"><b>来源</b><span>REPORT.md §4 · 按 R 看三种 ε 下的完整表</span><span class="ev n">内部</span><span class="ev v">代理不是真值</span></div>
+</section>
+
+<!-- ===================== 10 · VALIDATION ===================== -->
+<section class="slide" data-title="验证" data-act="C2 · 结果" data-time="1">
+  <div class="kick">Challenge 2<i>·</i>验证</div>
+  <div class="story"><span>问题</span><span>方法</span><span class="on">结果</span><span>评价</span><span>结论</span></div>
+  <h2 class="ttl">验证严格因果、事先登记；另外 7 条路线都被否决</h2>
+  <div class="body with-take">
+    <div class="cols s10-cols" style="grid-template-columns:1fr 1fr">
+      <div class="rows blk">
+        <section class="blk">
+          <div class="blk-k"><b>1</b> · 因果</div>
+          <h3 class="blk-h">看不到未来的数据</h3>
+          <ul class="ste"><li>截断点之后的数据换成噪声：输出逐位不变（8/8）。</li><li>只用 CK1 之前的数据训练：输出也不变。</li></ul>
+        </section>
+        <section class="blk">
+          <div class="blk-k"><b>2</b> · 事先登记</div>
+          <h3 class="blk-h">先冻结协议，再评估</h3>
+          <ul class="ste"><li>每一轮协议用 SHA256 冻结，所有门槛都通过。</li><li>6 种台阶检测方法下，新版都优于上一版。</li></ul>
+        </section>
+      </div>
+      <div class="rows blk">
+        <section class="blk">
+          <div class="blk-k"><b>3</b> · 压力测试</div>
+          <h3 class="blk-h">截断和删减数据后仍然稳定</h3>
+          <ul class="ste"><li>伪场景（提前 5 或 10 天截断，截短 45 °C 段）：平均误差 <b>0.147 pp</b>。</li><li>随机删减数据 320 次：每次都返回有限值。</li></ul>
+        </section>
+        <section class="blk">
+          <div class="blk-k"><b>4</b> · 否决的路线</div>
+          <h3 class="blk-h">7 条备选路线都没有超过 V2</h3>
+          <p class="body-m mut">月末稳健回归 · 日常运行中的台阶穿越 · 静置伪 OCV · 充电顶部 21 Ah 的特征 · 分段速率外推 · 整条充电曲线配准 · 状态空间融合</p>
+        </section>
+      </div>
+    </div>
+  </div>
+  <div class="take"><span class="tk-l">注意</span><p>代理值在开发中都看过，所以这是<b>探索性验证</b>。真实精度只有排行榜能回答。</p></div>
+  <div class="src"><b>来源</b><span>REPORT.md §3 · V2、V3 门槛表 · 按 R 看否决原因</span><span class="ev n">内部</span></div>
+</section>
+
+<!-- ===================== 11 · INNOVATION ===================== -->
+<section class="slide" data-title="创新与技术贡献" data-act="评价" data-time="1">
+  <div class="kick">创新与技术贡献</div>
+  <div class="story"><span>问题</span><span>方法</span><span>结果</span><span class="on">评价</span><span>结论</span></div>
+  <h2 class="ttl">创新在于把 BMS 已有的两个信号变成容量观测</h2>
+  <div class="body with-take">
+    <div class="s11-cards">
+      <section class="blk"><div class="blk-k"><b>1</b> · 直接观测</div><h3 class="blk-h">锚点是充入量</h3><p class="body-m">用完整充电量做锚点，不从平台电压推断。</p></section>
+      <section class="blk"><div class="blk-k"><b>2</b> · 同相位</div><h3 class="blk-h">比较方式抵消偏移</h3><p class="body-m">靠比较方式本身消掉温度和锚点后偏移，不另加修正参数。</p></section>
+      <section class="blk"><div class="blk-k"><b>3</b> · 物理 β</div><h3 class="blk-h">比例来自实测</h3><p class="body-m">从充电方向台阶的实测位置算出 LLI 比例。</p></section>
+      <section class="blk"><div class="blk-k"><b>4</b> · 数据效率</div><h3 class="blk-h">只用官方数据</h3><p class="body-m">不做预训练。3 个开放 LFP 数据集（CC BY 4.0）只用来界定风险。</p><p class="body-m mut">训练约 1 s，8 个检查点约 11 s；只依赖 numpy、pandas。</p></section>
+      <section class="blk"><div class="blk-k"><b>5</b> · 可迁移</div><h3 class="blk-h">需要的信号很常见</h3><p class="body-m">有周期性满充和固定深放电的 LFP 储能系统都能用。<i class="inf">推断</i></p></section>
+    </div>
+  </div>
+  <div class="take"><span class="tk-l">所以</span><p>精度来自<b>选对信号</b>，不是来自更复杂的模型。</p></div>
+  <div class="src"><b>来源</b><span>REPORT.md §1、§2、§5 · DATA_MANIFEST.md</span><span class="ev n">内部</span><span class="ev i">推断</span></div>
+</section>
+
+<!-- ===================== 12 · INTERPRETABILITY AND LIMITS ===================== -->
+<section class="slide" data-title="可解释性与局限" data-act="评价" data-time="1.2">
+  <div class="kick">可解释性与局限</div>
+  <div class="story"><span>问题</span><span>方法</span><span>结果</span><span class="on">评价</span><span>结论</span></div>
+  <h2 class="ttl">每一项都能解释；已知风险有 5 个，最大约 0.45 pp</h2>
+  <div class="body with-take">
+    <div class="cols" style="grid-template-columns:1fr 1.6fr">
+      <section class="blk">
+        <div class="blk-k"><b>1</b> · 为什么有效</div>
+        <h3 class="blk-h">每一项都对应一个物理量</h3>
+        <dl class="s12-terms">
+          <dt>锚点</dt><dd>直接充入量</dd>
+          <dt>台阶</dt><dd>石墨电极的物理特征</dd>
+          <dt>β</dt><dd>实测的 LLI 比例</dd>
+          <dt>√t</dt><dd>日历老化规律（本组实测约 t<sup>0.44</sup>）</dd>
+        </dl>
+      </section>
+      <section class="blk">
+        <div class="blk-k"><b>2</b> · 已知风险</div>
+        <h3 class="blk-h">方向和大小，单位 pp</h3>
+        <!-- svg:risks --><svg viewBox="0 0 1030 500" width="100%" role="img" aria-labelledby="rk-t rk-d"><title id="rk-t">Known risks</title><desc id="rk-d">Five known risks with their direction and size in pp. Three are quantified (up to 0.45 pp); two have only a known direction.</desc><defs><marker id="rk-a" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto"><polygon points="0 0,12 5,0 10" fill="#46515e"/></marker></defs><line x1="462.5" y1="26" x2="462.5" y2="446" stroke="#d9dfe5" stroke-width="1"/><text x="462.5" y="468.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="middle" class="m">-0.4</text><line x1="547.5" y1="26" x2="547.5" y2="446" stroke="#d9dfe5" stroke-width="1"/><text x="547.5" y="468.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="middle" class="m">-0.2</text><line x1="717.5" y1="26" x2="717.5" y2="446" stroke="#d9dfe5" stroke-width="1"/><text x="717.5" y="468.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="middle" class="m">+0.2</text><line x1="802.5" y1="26" x2="802.5" y2="446" stroke="#d9dfe5" stroke-width="1"/><text x="802.5" y="468.0" font-size="16" fill="#7a8794" font-weight="400" text-anchor="middle" class="m">+0.4</text><line x1="632.5" y1="18" x2="632.5" y2="446" stroke="#141b24" stroke-width="1.8"/><text x="632.5" y="468.0" font-size="16" fill="#141b24" font-weight="400" text-anchor="middle" class="m">0</text><text x="420.0" y="16.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="start">← 估计偏低</text><text x="845.0" y="16.0" font-size="16" fill="#46515e" font-weight="500" text-anchor="end">估计偏高 →</text><text x="390.0" y="62.0" font-size="21" fill="#141b24" font-weight="600" text-anchor="end">ε 漂移</text><text x="390.0" y="88.0" font-size="17" fill="#7a8794" font-weight="400" text-anchor="end">后期估计</text><rect x="632.5" y="53.0" width="127.5" height="30" rx="3" fill="#9aa5b1"/><text x="859.0" y="74.0" font-size="17" fill="#46515e" font-weight="600" text-anchor="start" class="m">最多 +0.3</text><line x1="20" y1="110" x2="1010" y2="110" stroke="#f0f3f6" stroke-width="1.5"/><text x="390.0" y="146.0" font-size="21" fill="#141b24" font-weight="600" text-anchor="end">锚点后偏移若是真实回弹</text><text x="390.0" y="172.0" font-size="17" fill="#7a8794" font-weight="400" text-anchor="end">CK3–CK7</text><rect x="632.5" y="137.0" width="191.2" height="30" rx="3" fill="#c2412d"/><text x="859.0" y="158.0" font-size="17" fill="#c2412d" font-weight="600" text-anchor="start" class="m">最多 +0.45</text><line x1="20" y1="194" x2="1010" y2="194" stroke="#f0f3f6" stroke-width="1.5"/><text x="390.0" y="230.0" font-size="21" fill="#141b24" font-weight="600" text-anchor="end">CK2 的 √t 假设</text><text x="390.0" y="256.0" font-size="17" fill="#7a8794" font-weight="400" text-anchor="end">指数 0.4–0.6，起点 ±5 天</text><rect x="483.8" y="221.0" width="272.0" height="30" rx="3" fill="#9aa5b1"/><text x="859.0" y="242.0" font-size="17" fill="#46515e" font-weight="600" text-anchor="start" class="m">−0.35 … +0.29</text><line x1="20" y1="278" x2="1010" y2="278" stroke="#f0f3f6" stroke-width="1.5"/><text x="390.0" y="314.0" font-size="21" fill="#141b24" font-weight="600" text-anchor="end">β 偏高</text><text x="390.0" y="340.0" font-size="17" fill="#7a8794" font-weight="400" text-anchor="end">CK7 β = 1.51，若后期 LAM 比例下降</text><path d="M 626.5 320.0 H 505.0" fill="none" stroke="#46515e" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#rk-a)"/><text x="859.0" y="326.0" font-size="17" fill="#46515e" font-weight="500" text-anchor="start">偏低，未量化</text><line x1="20" y1="362" x2="1010" y2="362" stroke="#f0f3f6" stroke-width="1.5"/><text x="390.0" y="398.0" font-size="21" fill="#141b24" font-weight="600" text-anchor="end">电芯不均衡</text><text x="390.0" y="424.0" font-size="17" fill="#7a8794" font-weight="400" text-anchor="end">电芯 1 老化更快；模型跟随中位电芯</text><path d="M 638.5 404.0 H 760.0" fill="none" stroke="#46515e" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#rk-a)"/><text x="859.0" y="410.0" font-size="17" fill="#46515e" font-weight="500" text-anchor="start">偏高，未量化</text></svg><!-- /svg:risks -->
+        <p class="figcap">条 = 对 SOH 估计的可能影响范围；箭头 = 只知道方向。若第 3 段为 25 °C，CK2 为 94.84%（现估 94.51%）。</p>
+      </section>
+    </div>
+  </div>
+  <div class="take"><span class="tk-l">注意</span><p>多数风险的方向是<b>后期偏高</b>。代理标签带有同样的偏差，所以用它看不出来。</p></div>
+  <div class="src"><b>来源</b><span>REPORT.md §4 · DATA_MANIFEST.md · 按 R 看开放数据集</span><span class="ev n">内部</span><span class="ev a">学术</span><span class="ev v">待核实</span></div>
+</section>
+
+<!-- ===================== 13 · INSIGHTS ===================== -->
+<section class="slide" data-enter="fade" data-title="结论" data-act="结论" data-time="0.8">
+  <div class="kick">结论</div>
+  <div class="story"><span>问题</span><span>方法</span><span>结果</span><span>评价</span><span class="on">结论</span></div>
+  <h2 class="ttl">三个发现改变了我们的做法</h2>
+  <div class="body with-take" style="margin-top:20px">
+    <div class="rows" style="height:100%">
+      <section class="blk" style="flex:1;min-height:0">
+        <div class="icards s13-cards">
+          <article><div class="ic-top"><span class="ic-n">1</span><h3>在 LFP 上要<em>测量</em>容量</h3>
+            <ul class="ic-why"><li>电压平台平</li><li>电压推断偏乐观</li><li>锚点是直接充入量</li></ul>
+            <div class="ic-num">4.30 <i>→</i> 0.29<small>pp</small></div><p>MAE：官方基线 → 锚点 + 台阶（V1）。</p></div>
+            <div class="ic-dec"><b>只用直接的容量观测</b><p>停止从平台电压反推容量。</p></div></article>
+          <article><div class="ic-top"><span class="ic-n">2</span><h3>非老化偏移与一个月的<em>老化</em>同量级</h3>
+            <ul class="ic-why"><li>45 °C 台阶深 0.18 Ah</li><li>锚点后首次放电深 0.40–0.46 Ah</li><li>每月老化 0.45–1.33 Ah</li></ul>
+            <div class="ic-num">0.40–0.46<small>Ah</small></div><p>对比每月老化 0.45–1.33 Ah。<i class="inf">推断</i></p></div>
+            <div class="ic-dec"><b>只比较同温度、同相位</b><p>不再用单次台阶的差值。</p></div></article>
+          <article><div class="ic-top"><span class="ic-n">3</span><h3>剩下的误差主要来自<em>测量口径</em></h3>
+            <ul class="ic-why"><li>ε 随老化漂移</li><li>代理标签有同样的偏差</li><li>模型改动已收益很小</li></ul>
+            <div class="ic-num">0.3 <i>&gt;</i> 0.12<small>pp</small></div><p>ε 漂移的上限，大于剩余 MAE。</p></div>
+            <div class="ic-dec"><b>用排行榜反馈校准 ε</b><p>不再增加模型复杂度。<i class="inf">推断</i></p></div></article>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="take"><span class="tk-l">结论</span><p><b>测量</b>，不推断；<b>比较同类</b>，不加修正；每个风险都<b>标出量级</b>。</p></div>
+  <div class="src"><b>来源</b><span>REPORT.md · V1–V3 报告</span><span class="ev n">内部</span><span class="ev i">推断</span></div>
+</section>
